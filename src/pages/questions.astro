@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const items = [
+ ['想開始做地方工作，該先了解什麼？','local-practice'],
+ ['第一次申請補助，要怎麼看簡章？','subsidy-guide'],
+ ['補助計畫書要怎麼開始寫？','proposal-writing'],
+ ['活動經費應該如何編列？','budget-planning'],
+ ['什麼是二代健保補充保費？','supplemental-premium'],
+ ['活動辦完，經費該如何核銷？','reimbursement']
+];
+---
+<BaseLayout title="依問題找答案"><section class="page-hero"><div class="wrap"><span class="eyebrow">PROBLEMS & ANSWERS</span><h1 class="page-title">你遇到了什麼問題？</h1><p>不必先知道正確的專業名詞。選一個接近你當下情況的問題，直接進入相關詞條。</p></div></section><section class="section-spacer"><div class="wrap"><div class="entry-list">{items.map((item,i) => <a class="entry-card" href={root + '/entries/' + item[1] + '/'}><span class="meta">常見問題 {String(i+1).padStart(2,'0')}</span><h3>{item[0]}</h3><p>閱讀說明、實際案例及延伸知識 ↗</p></a>)}</div></div></section></BaseLayout>

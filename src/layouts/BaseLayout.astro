@@ -1,0 +1,52 @@
+---
+import '../styles/global.css';
+const { title = '地方實踐指南', description = '地方工作的知識、方法與實務工具，從這裡開始。' } = Astro.props;
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const nav = [
+  { label: '依問題找答案', url: root + '/questions/' },
+  { label: '學習路徑', url: root + '/learn/' },
+  { label: '知識百科', url: root + '/knowledge/' },
+  { label: '文件與範本', url: root + '/downloads/' }
+];
+---
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title === '地方實踐指南' ? title : title + '｜地方實踐指南'}</title>
+    <link rel="icon" href={root + '/favicon.svg'} type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href={root + '/'} aria-label="地方實踐指南首頁">
+          <span class="brand-stamp">地<br/>方</span>
+          <span><strong>地方實踐指南</strong><small>LOCAL PRACTICE GUIDE</small></span>
+        </a>
+        <nav class="desktop-nav" aria-label="主要導覽">
+          {nav.map((item) => <a href={item.url}>{item.label}</a>)}
+        </nav>
+        <a class="header-search" href={root + '/search/'} aria-label="搜尋指南"><span aria-hidden="true">⌕</span> 搜尋</a>
+        <details class="mobile-nav"><summary aria-label="開啟選單">☰</summary><div class="mobile-panel">{nav.map((item) => <a href={item.url}>{item.label}</a>)}<a href={root + '/search/'}>搜尋</a></div></details>
+      </div>
+    </header>
+    <main><slot /></main>
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <span class="eyebrow">AN OPEN GUIDE TO LOCAL PRACTICE</span>
+          <h2>讓地方工作，<br/>有跡可循。</h2>
+          <p>從實際經驗出發，把地方工作的方法整理成可以被理解、使用與傳承的知識。</p>
+        </div>
+        <div class="footer-links">
+          <a href={root + '/about/'}>關於這份指南 ↗</a>
+          <a href={root + '/knowledge/'}>探索知識百科 ↗</a>
+          <a href={root + '/downloads/'}>下載實務範本 ↗</a>
+        </div>
+      </div>
+      <div class="wrap footer-bottom"><span>地方實踐指南・網站測試版</span><span>由地方實務經驗出發，內容持續校訂中</span></div>
+    </footer>
+  </body>
+</html>

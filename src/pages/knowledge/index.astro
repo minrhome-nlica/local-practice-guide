@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { categories, categoryName } from '../../data/catalog';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const entries = (await getCollection('entries')).sort((a,b) => a.data.title.localeCompare(b.data.title, 'zh-Hant'));
+---
+<BaseLayout title="知識百科">
+  <section class="page-hero"><div class="wrap"><span class="eyebrow">KNOWLEDGE LIBRARY</span><h1 class="page-title">知識百科</h1><p>把地方工作的經驗拆成可獨立閱讀的詞條。從概念、做法到實際案例，循著你的問題找到答案。</p></div></section>
+  <section class="section-spacer"><div class="wrap"><div class="topic-grid">{categories.map((cat) => <a class="topic-card" href={root + '/knowledge/' + cat.slug + '/'}><span class="topic-no">{cat.number}</span><div><div class="english">{cat.english}</div><h3>{cat.name}</h3><p>{cat.description}</p></div></a>)}</div><div class="section-head" style="margin-top:65px"><div><span class="eyebrow">ALL ENTRIES</span><h2 class="section-title">目前可閱讀的詞條</h2></div><span class="muted small">{entries.length} 篇示範詞條</span></div><div class="entry-list">{entries.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}><span class="meta">{categoryName(item.data.category)} ・ {item.data.status}</span><h3>{item.data.title}</h3><p>{item.data.summary}</p></a>)}</div></div></section>
+</BaseLayout>

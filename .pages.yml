@@ -1,0 +1,37 @@
+media:
+  input: public/media
+  output: /local-practice-guide/media
+content:
+  - name: entries
+    label: 指南詞條
+    type: collection
+    path: src/content/entries
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: 詞條名稱
+        type: string
+        required: true
+      - name: summary
+        label: 短摘要
+        type: text
+        required: true
+      - name: category
+        label: 分類代稱
+        type: string
+        description: "例如 plans, finance, people, organizations, basics, tools"
+        required: true
+      - name: level
+        label: 閱讀程度
+        type: string
+      - name: updated
+        label: 內容更新日期
+        type: date
+        required: true
+      - name: status
+        label: 審核狀態
+        type: string
+        description: "示範稿、待查核、已核定"
+      - name: body
+        label: 正文
+        type: rich-text

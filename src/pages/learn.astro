@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { learningPaths } from '../data/catalog';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const entries = await getCollection('entries');
+---
+<BaseLayout title="學習路徑"><section class="page-hero"><div class="wrap"><span class="eyebrow">LEARNING PATHS</span><h1 class="page-title">沿著一條路，慢慢學會。</h1><p>不知道從哪篇文章開始讀也沒關係。我們依照不同的工作階段，安排適合的閱讀順序。</p></div></section><section class="section-spacer"><div class="wrap">{learningPaths.map((path) => <section id={'path-' + path.number} style="margin-bottom:75px"><span class="eyebrow">PATH / {path.number}</span><h2 class="section-title">{path.title}</h2><p class="muted">{path.desc}</p><div class="path-detail">{path.slugs.map((id,i) => {const item=entries.find((e)=>e.id===id);return item && <a href={root + '/entries/' + id + '/'}><small>STEP {i+1}　→　</small><strong>{item.data.title}</strong><div class="muted small">{item.data.summary}</div></a>})}</div></section>)}</div></section></BaseLayout>
