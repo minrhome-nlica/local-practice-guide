@@ -14,7 +14,7 @@ tags:
   - 地方創生
 ---
 
-什麼是地方實踐？地方實踐也是近年來逐漸被用來指代所有一切，不管是地方創生，又或社區營造等等，各項於「地方」工作的總稱。
+什麼是地方實踐？地方實踐也是近年來逐漸被用來指代所有一切，不管是[地方創生](/local-practice-guide/entries/local-revitalization/)，又或[社區營造](/local-practice-guide/entries/community-building/)等等，各項於「地方」工作的總稱。
 
 要說明什麼是地方實踐，首先我們要先明白：何謂「地方」？
 
