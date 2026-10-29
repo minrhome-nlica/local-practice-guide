@@ -68,3 +68,120 @@ strong, b,
   line-height: 1.8;
   color: #718175;
 }
+
+
+/* Enhanced reading rhythm for the subsidy guide entry only.
+   Other encyclopedia entries retain their existing typography and spacing. */
+.subsidy-article {
+  counter-reset: subsidy-section;
+}
+.subsidy-article > h2 {
+  position: relative;
+  border-top: 1px solid #d5ddd3;
+  margin: 78px 0 22px;
+  padding: 34px 0 0;
+  font-size: clamp(25px, 2.4vw, 30px);
+  line-height: 1.55;
+  letter-spacing: .035em;
+  scroll-margin-top: 112px;
+}
+.subsidy-article > h2::before {
+  counter-increment: subsidy-section;
+  content: "0" counter(subsidy-section) " / 04  ·  閱讀重點";
+  display: block;
+  font-size: 12px;
+  line-height: 1.65;
+  letter-spacing: .12em;
+  font-weight: 700;
+  color: #ae795f;
+  margin: 0 0 10px;
+}
+.subsidy-article > h2:first-of-type {
+  margin-top: 66px;
+}
+.subsidy-article > h3 {
+  border-left: 3px solid #8ba997;
+  padding-left: 14px;
+  margin: 31px 0 17px;
+  font-size: 19px;
+  line-height: 1.7;
+}
+.subsidy-article > p {
+  margin-bottom: 23px;
+}
+.subsidy-article > ul,
+.subsidy-article > ol {
+  padding-left: 1.55em;
+  margin: 25px 0 31px;
+}
+.subsidy-article li {
+  padding-left: .2em;
+  margin: 13px 0;
+}
+.subsidy-article li::marker {
+  color: #b88061;
+  font-weight: 700;
+}
+.subsidy-article .guide-figure {
+  margin: 38px 0 43px;
+}
+.subsidy-article .guide-figure img {
+  max-width: 100%;
+  background: #fff;
+  border: 1px solid #dfe4dc;
+  box-shadow: 0 12px 30px rgba(39, 62, 48, .07);
+  border-radius: 7px;
+}
+.subsidy-reading-note {
+  margin: 78px 0 15px;
+  padding: 30px 33px 29px;
+  background: #f3f2ea;
+  border: 1px solid #dee3d8;
+  border-left: 4px solid #bd8060;
+  border-radius: 8px;
+  scroll-margin-top: 112px;
+}
+.subsidy-reading-note h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  color: #294c3d;
+  line-height: 1.55;
+}
+.subsidy-reading-note p {
+  margin: 0 0 15px;
+}
+.subsidy-reading-note p:last-child {
+  margin-bottom: 0;
+}
+.subsidy-reading-note .subsidy-note-source {
+  border-top: 1px solid #d7ddd3;
+  padding-top: 17px;
+  margin-top: 22px;
+  color: #738076;
+  font-size: 13px;
+  line-height: 1.9;
+}
+@media (max-width: 650px) {
+  .subsidy-article > h2 {
+    margin-top: 58px;
+    padding-top: 26px;
+    font-size: 25px;
+  }
+  .subsidy-article > h2:first-of-type {
+    margin-top: 47px;
+  }
+  .subsidy-article > h3 {
+    margin: 25px 0 15px;
+    font-size: 18px;
+  }
+  .subsidy-article .guide-figure {
+    margin: 27px 0 32px;
+  }
+  .subsidy-reading-note {
+    margin-top: 58px;
+    padding: 23px 21px;
+  }
+  .subsidy-reading-note h2 {
+    font-size: 22px;
+  }
+}
