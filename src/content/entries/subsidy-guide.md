@@ -34,7 +34,7 @@ tags:
 我們以 115 年教育部青年發展署「青聚點」地方創生人才培育獎勵計畫為例，可以看見幾個重點：
 
 <figure class="guide-figure">
-  <img src="/local-practice-guide/diagrams/subsidy-purpose.svg" alt="115年教育部青年發展署青聚點地方創生人才培育獎勵計畫辦理目的截圖" />
+  <img src="/local-practice-guide/diagrams/subsidy-purpose.jpg" alt="115年教育部青年發展署青聚點地方創生人才培育獎勵計畫辦理目的截圖" />
 </figure>
 
 1. 招募具行動場域與地方創生經驗之民間組織  
@@ -59,7 +59,7 @@ tags:
 以同樣案例的補助簡章為例，可以把提案代表的資格拆成以下三個重點：
 
 <figure class="guide-figure">
-  <img src="/local-practice-guide/diagrams/subsidy-eligibility.svg" alt="青聚點地方創生人才培育獎勵計畫申請類型與資格截圖" />
+  <img src="/local-practice-guide/diagrams/subsidy-eligibility.jpg" alt="青聚點地方創生人才培育獎勵計畫申請類型與資格截圖" />
 </figure>
 
 1. 提案代表須具備中華民國國籍  
@@ -88,7 +88,7 @@ tags:
 這次我們來看國發會地方創生青年培力工作站的簡章（115 年），大家可以發現，它的補助款原則上分成三期：
 
 <figure class="guide-figure">
-  <img src="/local-practice-guide/diagrams/subsidy-timeline.svg" alt="地方創生青年培力工作站撥款方式截圖" />
+  <img src="/local-practice-guide/diagrams/subsidy-timeline.jpg" alt="地方創生青年培力工作站撥款方式截圖" />
 </figure>
 
 1. **第一期 30%**：依國發會所定期限完成修正計畫書、領據、專戶資料與工作站空間證明等文件後，才能請撥。
