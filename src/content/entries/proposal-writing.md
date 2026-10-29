@@ -76,6 +76,21 @@ tags:
 | **陸、** | 團隊介紹 | 讓人知道你們有能力完成 |
 | **附件** | 依規定檢附 | 補助或招標文件要求的資料 |
 
+<div class="plan-template-card" aria-labelledby="plan-template-title">
+  <div class="plan-template-header">
+    <span class="plan-template-label">計畫書實例 · PDF · 14 頁</span>
+    <h4 id="plan-template-title">山下線｜114 年度地方創生青年培力工作站計畫書</h4>
+  </div>
+  <p class="plan-template-owner">本範例為社團法人花蓮縣牛犁社區交流協會的青年培力工作站計畫書，提供的公開版本已隱匿相關隱私資訊。</p>
+  <p>可以對照申請動機、三大目標、工作項目、預期效益、期程與查核點，理解一份實際計畫如何從地方問題延伸至執行方案。</p>
+  <p class="plan-template-pages">建議對照閱讀：申請動機與計畫目標（PDF 第 4–5 頁）、工作項目（第 7–8 頁）、預期效益（第 9 頁）、期程與查核點（第 12–13 頁）。</p>
+  <div class="plan-template-actions">
+    <a class="plan-template-link" href="/local-practice-guide/downloads/youth-workstation-proposal-114.pdf" target="_blank" rel="noopener noreferrer">線上閱讀 PDF ↗</a>
+    <a class="plan-template-link plan-template-download" href="/local-practice-guide/downloads/youth-workstation-proposal-114.pdf" download="青年培力工作站計畫書參考範例.pdf">下載計畫書範例 ↓</a>
+  </div>
+  <p class="plan-template-footnote">此為過往年度的實際計畫範例，非可直接套用的現行申請表件。請以申請年度的正式簡章、格式與規定為準。</p>
+</div>
+
 接下來依這個順序，逐一說明每個章節可以怎麼寫。
 
 ## 壹、前言：動機、概述與執行策略

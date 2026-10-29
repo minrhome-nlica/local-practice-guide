@@ -409,3 +409,41 @@ strong, b,
   .plan-article table th,
   .plan-article table td { min-width: 110px; }
 }
+
+
+/* Proposal PDF example download card */
+.plan-article .plan-template-card {
+  margin: 30px 0 40px;
+  padding: 26px 29px 24px;
+  background: #f6f5ee;
+  border: 1px solid #d8e1d6;
+  border-left: 4px solid #ba8667;
+  border-radius: 9px;
+  color: #345243;
+  line-height: 1.8;
+}
+.plan-template-header { margin: 0 0 12px; }
+.plan-template-label { display: block; margin-bottom: 9px; font-size: 12px; letter-spacing: .07em; font-weight: 700; color: #a57459; }
+.plan-article .plan-template-card h4 { margin: 0 0 12px; color: #284939; font-size: clamp(19px,2vw,22px); line-height: 1.55; letter-spacing: .015em; }
+.plan-article .plan-template-card p { margin: 0 0 12px; font-size: 15px; }
+.plan-article .plan-template-card .plan-template-owner { font-weight: 700; }
+.plan-article .plan-template-card .plan-template-pages { color: #596d5e; font-size: 13px; }
+.plan-template-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 17px; }
+.plan-article .plan-template-link {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 43px; padding: 9px 18px;
+  background: #315343; color: #fff; border-radius: 6px;
+  font-weight: 700; font-size: 14px;
+  text-decoration: none; transition: background .15s ease;
+}
+.plan-article .plan-template-link:hover { background: #234436; color: #fff; }
+.plan-article .plan-template-download { background: #fff; color: #315343; border: 1px solid #a8b9aa; }
+.plan-article .plan-template-download:hover { background: #e7ede5; color: #315343; }
+.plan-article .plan-template-card .plan-template-footnote {
+  color: #718074; font-size: 12px; border-top: 1px solid #dce3d9; padding-top: 15px; margin: 19px 0 0;
+}
+@media(max-width: 650px){
+  .plan-article .plan-template-card { padding: 21px 18px; }
+  .plan-template-actions { gap: 10px; }
+  .plan-template-actions a { width: 100%; }
+}
