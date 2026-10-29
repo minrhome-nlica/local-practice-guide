@@ -1,4 +1,4 @@
-"""Build small, licensed WOFF2 subsets of the TW GenSen Rounded M/B fonts.
+"""Build small, licensed WOFF2 subsets of the TW GenSen Rounded R/B fonts.
 
 The complete 16MB OTF files are downloaded only during CI and are never
 committed to our repository. Only the glyphs currently used by this static
@@ -18,7 +18,7 @@ OUT = ROOT / "public" / "fonts"
 # Pin the upstream revision for reproducible deployments.
 UPSTREAM = "https://raw.githubusercontent.com/ButTaiwan/gensen-font/d347d3fffcb45e08857052433a0b432ed4f7ace8/"
 FONT_PATH = "otf/TW/"
-WEIGHTS = ("M", "B")
+WEIGHTS = ("R", "B")
 SOURCE_SUFFIXES = {".astro", ".md", ".mdx", ".ts", ".tsx", ".js", ".css", ".txt", ".csv", ".yml", ".json"}
 
 def fetch(url: str) -> bytes:

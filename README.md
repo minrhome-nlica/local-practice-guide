@@ -56,7 +56,7 @@ GitHub Actions 會在 main 分支更新時自動建置 Astro，並用 Pagefind �
 ## 全站字體
 
 採用 [源泉圓體 GenSen Rounded](https://github.com/ButTaiwan/gensen-font) 的臺灣版（TW）：
-- 網站內文：GenSenRounded2TW-M（Medium）
+- 網站內文：GenSenRounded2TW-R（Regular）
 - 所有標題、粗體文字：GenSenRounded2TW-B（Bold）
 
 授權：SIL Open Font License 1.1。為縮短載入時間，GitHub Actions 會在建置時透過 scripts/build_webfonts.py 自動下載原版字型，並按照目前網站實際用字生成精簡 WOFF2 字型；字型檔不儲存在本儲存庫，授權文件會隨網站一同發布。
