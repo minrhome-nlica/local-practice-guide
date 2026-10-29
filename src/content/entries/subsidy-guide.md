@@ -35,7 +35,6 @@ tags:
 
 <figure class="guide-figure">
   <img src="/local-practice-guide/diagrams/subsidy-purpose.svg" alt="115年教育部青年發展署青聚點地方創生人才培育獎勵計畫辦理目的截圖" />
-  <figcaption>圖解：補助宗旨的閱讀重點（依教材製作，並非原始簡章截圖）。</figcaption>
 </figure>
 
 1. 招募具行動場域與地方創生經驗之民間組織  
@@ -61,7 +60,6 @@ tags:
 
 <figure class="guide-figure">
   <img src="/local-practice-guide/diagrams/subsidy-eligibility.svg" alt="青聚點地方創生人才培育獎勵計畫申請類型與資格截圖" />
-  <figcaption>圖解：申請資格的閱讀重點（依教材製作，並非原始簡章截圖）。</figcaption>
 </figure>
 
 1. 提案代表須具備中華民國國籍  
@@ -91,7 +89,6 @@ tags:
 
 <figure class="guide-figure">
   <img src="/local-practice-guide/diagrams/subsidy-timeline.svg" alt="地方創生青年培力工作站撥款方式截圖" />
-  <figcaption>圖解：執行期程與撥款方式（依教材製作，並非原始簡章截圖）。</figcaption>
 </figure>
 
 1. **第一期 30%**：依國發會所定期限完成修正計畫書、領據、專戶資料與工作站空間證明等文件後，才能請撥。
