@@ -39,15 +39,8 @@ tags:
 
 一般的履約標的可能長這樣：
 
-<figure class="guide-figure tender-figure" aria-label="花蓮縣文化局社造輔導團履約標的案例">
-  <img class="tender-source-image" src="/local-practice-guide/diagrams/履約標的.jpg" alt="花蓮縣文化局社造輔導團履約標的條款截圖" loading="lazy" decoding="async" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true" />
-  <div class="tender-example" role="img" aria-label="履約標的文件：縣府要求社造輔導、資源調查、社區行動方案、訪視輔導和成果報告等工作">
-    <span class="tender-example-label">招標文件範例｜履約標的</span>
-    <strong>政府購買的是「必須完成的工作」</strong>
-    <span>社造輔導、資源調查、社區行動方案</span>
-    <span>訪視輔導、成果彙整及其他契約項目</span>
-    <small>以花蓮縣文化局社造輔導團案例整理，原始截圖待補入</small>
-  </div>
+<figure class="guide-figure tender-figure">
+  <img src="/local-practice-guide/diagrams/履約標的.jpg" alt="花蓮縣文化局社造輔導團履約標的條款截圖" loading="lazy" decoding="async" />
 </figure>
 
 這份文件來自花蓮縣文化局的社造輔導團一案。在閱讀履約標的時，可以先抓出以下三件事：
@@ -78,15 +71,8 @@ tags:
 
 下圖為標案中的契約價金給付內容，採用的是「總包價法」。簡單來說，就是雙方在招標與簽約時，先約定一個固定的總金額，再由得標廠商負責完成契約規定的所有工作。
 
-<figure class="guide-figure tender-figure" aria-label="總包價法契約價金案例">
-  <img class="tender-source-image" src="/local-practice-guide/diagrams/總包價法.jpg" alt="政府採購契約總包價法與價金給付條款截圖" loading="lazy" decoding="async" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true" />
-  <div class="tender-example" role="img" aria-label="契約價金給付：總包價法，在約定契約總價內完成各項工作，依契約驗收">
-    <span class="tender-example-label">契約範例｜總包價法</span>
-    <strong>先約定總金額，再完成所有契約工作</strong>
-    <span>契約總價 → 工作成本 → 履約驗收</span>
-    <span>成本增加通常不能直接要求調高契約總價</span>
-    <small>以契約價金給付條款整理，原始截圖待補入</small>
-  </div>
+<figure class="guide-figure tender-figure">
+  <img src="/local-practice-guide/diagrams/總包價法.jpg" alt="政府採購契約總包價法與價金給付條款截圖" loading="lazy" decoding="async" />
 </figure>
 
 可以把總包價法想成去餐廳點一份「套餐」。套餐價格在點餐時就已經確定。就算餐廳後來發現食材變貴了、製作時間比預期更久，通常也不會因為成本變高，就把套餐價格重新提高。
@@ -119,15 +105,8 @@ tags:
 
 因此閱讀標案時，不能只看「總金額有多少」，還要把每一期的**撥款比例、請款條件與必須完成的工作**放在一起看。
 
-<figure class="guide-figure tender-figure" aria-label="社造輔導團分期撥款條款案例">
-  <img class="tender-source-image" src="/local-practice-guide/diagrams/撥款程序.jpg" alt="花蓮縣文化局社造輔導團分期撥款程序截圖" loading="lazy" decoding="async" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true" />
-  <div class="tender-example" role="img" aria-label="標案分期撥款：第一期契約總價20%，第二期須依約完成前期工作並通過審查才可請款">
-    <span class="tender-example-label">契約範例｜撥款程序</span>
-    <strong>20% 第一期款，不等於足夠支撐下一期</strong>
-    <span>完成規定工作 → 提交成果 → 審查 → 請款</span>
-    <span>還要把期程與組織週轉能力一起計算</span>
-    <small>以花蓮縣文化局社造輔導團案例整理，原始截圖待補入</small>
-  </div>
+<figure class="guide-figure tender-figure">
+  <img src="/local-practice-guide/diagrams/撥款程序.jpg" alt="花蓮縣文化局社造輔導團分期撥款程序截圖" loading="lazy" decoding="async" />
 </figure>
 
 閱讀撥款程序時，可以先確認以下四件事：
@@ -162,15 +141,8 @@ tags:
 
 有些標案會直接附上「投標廠商資格暨投標文件審查表」或名稱相近的表單。找到之後，不要再靠記憶整理資料，直接把它當成投標前的檢查清單，一項一項核對。
 
-<figure class="guide-figure tender-figure" aria-label="投標廠商資格暨投標文件審查表案例">
-  <img class="tender-source-image" src="/local-practice-guide/diagrams/投標文件.jpg" alt="花蓮縣文化局招標文件投標廠商資格暨文件審查表截圖" loading="lazy" decoding="async" onload="this.nextElementSibling.hidden=true" onerror="this.hidden=true" />
-  <div class="tender-example" role="img" aria-label="投標文件審查表：服務建議書、證明文件、納稅資料、聲明與切結、三用文件及外標封標價單等">
-    <span class="tender-example-label">招標文件範例｜投標文件</span>
-    <strong>依審查表整理，不要只靠記憶</strong>
-    <span>服務建議書・資格證明・納稅資料</span>
-    <span>聲明與切結・三用文件・外標封與標價單</span>
-    <small>以文件審查表整理，原始截圖待補入</small>
-  </div>
+<figure class="guide-figure tender-figure">
+  <img src="/local-practice-guide/diagrams/投標文件.jpg" alt="花蓮縣文化局招標文件投標廠商資格暨文件審查表截圖" loading="lazy" decoding="async" />
 </figure>
 
 不同標案的文件要求可能不同，但實務上可以特別注意以下幾類文件：
