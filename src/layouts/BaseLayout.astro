@@ -17,6 +17,8 @@ const nav = [
     <meta name="description" content={description} />
     <title>{title === '地方實踐指南' ? title : title + '｜地方實踐指南'}</title>
     <link rel="icon" href={root + '/favicon.svg'} type="image/svg+xml" />
+    <link rel="preload" href={root + '/fonts/GenSenRounded2TW-M.woff2'} as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href={root + '/fonts/GenSenRounded2TW-B.woff2'} as="font" type="font/woff2" crossorigin="anonymous" />
   </head>
   <body>
     <header class="site-header">
@@ -46,7 +48,7 @@ const nav = [
           <a href={root + '/downloads/'}>下載實務範本 ↗</a>
         </div>
       </div>
-      <div class="wrap footer-bottom"><span>地方實踐指南・網站測試版</span><span>由地方實務經驗出發，內容持續校訂中</span></div>
+      <div class="wrap footer-bottom"><span>地方實踐指南・網站測試版</span><span>字體：<a href="https://github.com/ButTaiwan/gensen-font" target="_blank" rel="noopener noreferrer">源泉圓體</a>・<a href={root + '/fonts/SIL_Open_Font_License_1.1.txt'}>OFL 1.1</a></span></div>
     </footer>
   </body>
 </html>

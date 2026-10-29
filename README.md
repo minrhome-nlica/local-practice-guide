@@ -52,3 +52,13 @@ GitHub Actions 會在 main 分支更新時自動建置 Astro，並用 Pagefind �
 本網站為第一版原型，非已完成查核的正式知識庫。補助、稅務、健保及法律內容需依當年度機關公告逐條核對，確認後才更改狀態並正式推廣。
 
 站點目前以 GitHub Pages 的子路徑 /local-practice-guide/ 發布。未來更換獨立網域時，必須同步調整 astro.config.mjs 的 site 與 base。
+
+## 全站字體
+
+採用 [源泉圓體 GenSen Rounded](https://github.com/ButTaiwan/gensen-font) 的臺灣版（TW）：
+- 網站內文：GenSenRounded2TW-M（Medium）
+- 所有標題、粗體文字：GenSenRounded2TW-B（Bold）
+
+授權：SIL Open Font License 1.1。為縮短載入時間，GitHub Actions 會在建置時透過 scripts/build_webfonts.py 自動下載原版字型，並按照目前網站實際用字生成精簡 WOFF2 字型；字型檔不儲存在本儲存庫，授權文件會隨網站一同發布。
+
+新增中文詞條後，下一次部署將自動更新所需字形。若在本機使用 npm run dev，尚未執行字型生成腳本時，會暫時使用 CSS 設定的系統後備字體。
