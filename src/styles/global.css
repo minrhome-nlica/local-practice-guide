@@ -48,3 +48,23 @@ strong, b,
   .brand-logo { width:90px; }
   .brand strong { font-size:15px; }
 }
+
+
+/* Illustrated reading aids in guide entries (source-derived, not original WordPress media). */
+.article .guide-figure { margin: 27px 0 34px; }
+.article .guide-figure img {
+  display: block;
+  width: 100%;
+  max-width: 780px;
+  height: auto;
+  background: #f4f2e9;
+  border: 1px solid #dde4da;
+  border-radius: 9px;
+}
+.article .guide-figure figcaption {
+  margin-top: 8px;
+  max-width: 780px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #718175;
+}
