@@ -19,7 +19,7 @@ const related = relatedIds.map((id) => allEntries.find((e) => e.id === id)).filt
   <div class="wrap entry-grid">
     <article class="entry-layout" data-pagefind-body>
       <div class="article"><Content /></div>
-      {!isConceptEntry && <aside class="notice">資料查核提醒：補助、稅務、勞健保及法律規定可能隨年度調整，請以主管機關當年度公告及個案規定為準。</aside>}
+      {!isConceptEntry && entry.id !== "subsidy-guide" && <aside class="notice">資料查核提醒：補助、稅務、勞健保及法律規定可能隨年度調整，請以主管機關當年度公告及個案規定為準。</aside>}
       {entry.id !== 'local-practice' && <div style="margin-top:20px" class="muted small">最後更新：{entry.data.updated.toLocaleDateString('zh-TW')}　｜　編輯狀態：{entry.data.status}</div>}
       {related.length > 0 && <div style="margin-top:55px"><h2 class="section-title" style="font-size:27px">延伸閱讀</h2><div class="entry-list" style="margin-top:22px">{related.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}><h3>{item.data.title}</h3><p>{item.data.summary}</p></a>)}</div></div>}
     </article>
