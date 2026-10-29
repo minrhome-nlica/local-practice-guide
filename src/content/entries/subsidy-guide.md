@@ -7,6 +7,7 @@ updated: 2026-10-29
 status: 編輯稿
 related:
   - what-is-subsidy
+  - tender
   - proposal-writing
   - budget-planning
   - reimbursement
