@@ -5,6 +5,9 @@ category: basics
 level: 入門
 updated: 2026-10-29
 status: 編輯稿
+related:
+  - local-revitalization
+  - community-building
 tags:
   - 地方實踐
   - 地方
