@@ -72,10 +72,10 @@ strong, b,
 
 /* Enhanced reading rhythm for long-form subsidy and tender articles.
    Other encyclopedia entries retain their original typography and spacing. */
-:is(.subsidy-article, .tender-article) {
+:is(.subsidy-article, .tender-article, .plan-article) {
   counter-reset: subsidy-section;
 }
-:is(.subsidy-article, .tender-article) > h2 {
+:is(.subsidy-article, .tender-article, .plan-article) > h2 {
   position: relative;
   border-top: 1px solid #d5ddd3;
   margin: 78px 0 22px;
@@ -85,7 +85,7 @@ strong, b,
   letter-spacing: .035em;
   scroll-margin-top: 112px;
 }
-:is(.subsidy-article, .tender-article) > h2::before {
+:is(.subsidy-article, .tender-article, .plan-article) > h2::before {
   counter-increment: subsidy-section;
   content: "0" counter(subsidy-section) " / 04  ·  閱讀重點";
   display: block;
@@ -96,43 +96,43 @@ strong, b,
   color: #ae795f;
   margin: 0 0 10px;
 }
-:is(.subsidy-article, .tender-article) > h2:first-of-type {
+:is(.subsidy-article, .tender-article, .plan-article) > h2:first-of-type {
   margin-top: 66px;
 }
-:is(.subsidy-article, .tender-article) > h3 {
+:is(.subsidy-article, .tender-article, .plan-article) > h3 {
   border-left: 3px solid #8ba997;
   padding-left: 14px;
   margin: 31px 0 17px;
   font-size: 19px;
   line-height: 1.7;
 }
-:is(.subsidy-article, .tender-article) > p {
+:is(.subsidy-article, .tender-article, .plan-article) > p {
   margin-bottom: 23px;
 }
-:is(.subsidy-article, .tender-article) > ul,
-:is(.subsidy-article, .tender-article) > ol {
+:is(.subsidy-article, .tender-article, .plan-article) > ul,
+:is(.subsidy-article, .tender-article, .plan-article) > ol {
   padding-left: 1.55em;
   margin: 25px 0 31px;
 }
-:is(.subsidy-article, .tender-article) li {
+:is(.subsidy-article, .tender-article, .plan-article) li {
   padding-left: .2em;
   margin: 13px 0;
 }
-:is(.subsidy-article, .tender-article) li::marker {
+:is(.subsidy-article, .tender-article, .plan-article) li::marker {
   color: #b88061;
   font-weight: 700;
 }
-:is(.subsidy-article, .tender-article) .guide-figure {
+:is(.subsidy-article, .tender-article, .plan-article) .guide-figure {
   margin: 38px 0 43px;
 }
-:is(.subsidy-article, .tender-article) .guide-figure img {
+:is(.subsidy-article, .tender-article, .plan-article) .guide-figure img {
   max-width: 100%;
   background: #fff;
   border: 1px solid #dfe4dc;
   box-shadow: 0 12px 30px rgba(39, 62, 48, .07);
   border-radius: 7px;
 }
-:is(.subsidy-reading-note, .tender-reading-note) {
+:is(.subsidy-reading-note, .tender-reading-note, .plan-reading-note) {
   margin: 78px 0 15px;
   padding: 30px 33px 29px;
   background: #f3f2ea;
@@ -141,19 +141,19 @@ strong, b,
   border-radius: 8px;
   scroll-margin-top: 112px;
 }
-:is(.subsidy-reading-note, .tender-reading-note) h2 {
+:is(.subsidy-reading-note, .tender-reading-note, .plan-reading-note) h2 {
   margin: 0 0 20px;
   font-size: 24px;
   color: #294c3d;
   line-height: 1.55;
 }
-:is(.subsidy-reading-note, .tender-reading-note) p {
+:is(.subsidy-reading-note, .tender-reading-note, .plan-reading-note) p {
   margin: 0 0 15px;
 }
-:is(.subsidy-reading-note, .tender-reading-note) p:last-child {
+:is(.subsidy-reading-note, .tender-reading-note, .plan-reading-note) p:last-child {
   margin-bottom: 0;
 }
-:is(.subsidy-reading-note, .tender-reading-note) .subsidy-note-source {
+:is(.subsidy-reading-note, .tender-reading-note, .plan-reading-note) .subsidy-note-source {
   border-top: 1px solid #d7ddd3;
   padding-top: 17px;
   margin-top: 22px;
@@ -162,26 +162,26 @@ strong, b,
   line-height: 1.9;
 }
 @media (max-width: 650px) {
-  :is(.subsidy-article, .tender-article) > h2 {
+  :is(.subsidy-article, .tender-article, .plan-article) > h2 {
     margin-top: 58px;
     padding-top: 26px;
     font-size: 25px;
   }
-  :is(.subsidy-article, .tender-article) > h2:first-of-type {
+  :is(.subsidy-article, .tender-article, .plan-article) > h2:first-of-type {
     margin-top: 47px;
   }
-  :is(.subsidy-article, .tender-article) > h3 {
+  :is(.subsidy-article, .tender-article, .plan-article) > h3 {
     margin: 25px 0 15px;
     font-size: 18px;
   }
-  :is(.subsidy-article, .tender-article) .guide-figure {
+  :is(.subsidy-article, .tender-article, .plan-article) .guide-figure {
     margin: 27px 0 32px;
   }
-  :is(.subsidy-reading-note, .tender-reading-note) {
+  :is(.subsidy-reading-note, .tender-reading-note, .plan-reading-note) {
     margin-top: 58px;
     padding: 23px 21px;
   }
-  :is(.subsidy-reading-note, .tender-reading-note) h2 {
+  :is(.subsidy-reading-note, .tender-reading-note, .plan-reading-note) h2 {
     font-size: 22px;
   }
 }
@@ -255,4 +255,157 @@ strong, b,
 @media(max-width:650px) {
   .tender-article .tender-example { padding: 21px 19px; }
   .tender-article .tender-figure { margin: 28px 0 32px; }
+}
+
+
+/* Plan writing — long-form reading hierarchy and responsive, accessible tables. */
+.plan-article > h2::before {
+  content: "0" counter(subsidy-section) " / 08  ·  寫作步驟";
+}
+.plan-article h4 {
+  color: #315445;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 10px 0 12px;
+}
+.plan-article table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: auto;
+  margin: 30px 0 35px;
+  border: 1px solid #d9e1d7;
+  border-radius: 9px;
+  overflow: hidden;
+  background: #fff;
+  font-size: 14px;
+  line-height: 1.85;
+}
+.plan-article table thead th {
+  padding: 15px 17px;
+  color: #294738;
+  background: #eaf0e8;
+  text-align: left;
+  font-weight: 700;
+  border-bottom: 1px solid #cbd9cd;
+}
+.plan-article table td {
+  padding: 16px 17px;
+  vertical-align: top;
+  border-bottom: 1px solid #e8ece5;
+  overflow-wrap: anywhere;
+}
+.plan-article table tr:last-child td { border-bottom: 0; }
+.plan-article table td:first-child { width: 28%; color: #355d49; }
+.plan-article table th:nth-child(2),
+.plan-article table td:nth-child(2) { min-width: 88px; }
+.plan-article table td strong { color: #315745; }
+.plan-article .plan-heading-ladder {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  padding: 20px 18px;
+  border: 1px solid #dee6db;
+  border-radius: 8px;
+  background: #f4f5ee;
+  margin: 22px 0;
+}
+.plan-heading-ladder span {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  padding: 10px 15px;
+  background: #fff;
+  color: #315745;
+  border: 1px solid #dce4da;
+  border-radius: 7px;
+  font-weight: 700;
+}
+.plan-heading-ladder span:not(:last-child)::after { content: "›"; position: absolute; right: -10px; color: #ad795f; font-size: 19px; z-index: 1; }
+.plan-article .plan-flow {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 20px 0 30px;
+}
+.plan-flow span {
+  padding: 9px 13px;
+  border-radius: 7px;
+  border: 1px solid #dce4d9;
+  background: #f5f6f0;
+  color: #355743;
+  font-size: 13px;
+  font-weight: 700;
+}
+.plan-flow span:not(:last-child)::after {
+  content: "→";
+  color: #b57d60;
+  margin-left: 13px;
+}
+.plan-article .plan-example-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px;
+  margin: 26px 0 30px;
+}
+.plan-example-grid > div {
+  padding: 17px 19px;
+  border: 1px solid #dce4da;
+  border-left: 3px solid #b98361;
+  border-radius: 8px;
+  background: #f8f7f1;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.plan-example-grid small { color: #ad7759; font-weight: 700; font-size: 13px; }
+.plan-example-grid strong { line-height: 1.7; font-size: 15px; }
+.plan-article .plan-strategy-list {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0 31px;
+}
+.plan-strategy-list > div {
+  background: #f6f7f1;
+  padding: 22px 24px;
+  border-left: 3px solid #92ad99;
+  border-radius: 7px;
+}
+.plan-strategy-list > div > span { color: #a8795e; font-size: 13px; letter-spacing: .06em; font-weight: 700; }
+.plan-strategy-list h4 { margin: 8px 0 10px; }
+.plan-strategy-list p { margin: 0; }
+.plan-article .plan-consistency-note {
+  background: #fcf4e8;
+  border-left: 3px solid #bf8b63;
+  border-radius: 6px;
+  padding: 18px 20px;
+  color: #715839;
+  font-size: 14px;
+  line-height: 1.9;
+  margin: -10px 0 33px;
+}
+.plan-reading-note h2 { margin: 0 0 20px; font-size: 23px; color: #2d4b3d; }
+.plan-reading-note p { margin-bottom: 15px; }
+@media (max-width: 650px) {
+  .plan-article table { font-size: 13px; border-radius: 6px; }
+  .plan-article table thead th,
+  .plan-article table td { padding: 13px 12px; }
+  .plan-article table td:first-child { width: 30%; }
+  .plan-article .plan-example-grid { grid-template-columns: 1fr; }
+  .plan-heading-ladder span { min-width: 56px; padding: 9px 11px; }
+  .plan-strategy-list > div { padding: 19px 18px; }
+}
+@media (max-width: 420px) {
+  .plan-article table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .plan-article table th,
+  .plan-article table td { min-width: 110px; }
 }
