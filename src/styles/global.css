@@ -31,3 +31,20 @@ strong, b,
   font-family: "GenSen Rounded Guide", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
   font-weight: 700;
 }
+
+/* Mountain County full logo in the site header. Keep guide title next to it. */
+.brand-logo { display:block; width:145px; height:auto; max-height:65px; object-fit:contain; flex-shrink:0; }
+.brand { gap:15px; }
+@media (max-width: 950px) {
+  .brand-logo { width:124px; max-height:56px; }
+}
+@media (max-width: 650px) {
+  .brand-logo { width:106px; max-height:48px; }
+  .brand { gap:10px; }
+  .brand strong { font-size:16px; letter-spacing:.04em; }
+  .brand small { display:none; }
+}
+@media (max-width: 375px) {
+  .brand-logo { width:90px; }
+  .brand strong { font-size:15px; }
+}
