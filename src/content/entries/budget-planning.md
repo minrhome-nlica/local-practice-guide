@@ -120,31 +120,71 @@ tags:
 
 上圖用一場滑板工作坊來理解層級：先看它屬於經常門，再看業務費、鐘點費，最後才是實際支付給哪個工作項目。**這是方便初學者理解的示意分層**，不是所有機關都使用一模一樣的三級或四級會計科目名稱。
 
-### 常見經常門支出
+### 常見經常門支出：保留四層級分類
 
-| 常見大項 | 經費細項 | 實際用途 |
-| --- | --- | --- |
-| **人事費** | 專案人員薪資、勞健保、勞退 | 專案經理、專職行政人員及合法雇主負擔 |
-| **業務費** | 臨時工資、講師費、出席費、稿費 | 活動協助、授課、審查、寫作等 |
-| **業務費** | 材料費、印刷費、設計費、攝影製作 | 工作坊材料、手冊、文宣、成果紀錄 |
-| **業務費** | 場租、設備租借、餐費、差旅費 | 教室、音響帳篷、餐食與交通住宿 |
-| **業務費** | 保險、委託辦理、雜支 | 活動保險、專業外包與零星行政支出 |
+以下依照原始 Word 教材的編排，從左到右呈現 **門別 → 一級科目 → 二級科目 → 實際用途**。同一個門別或一級科目會合併儲存格，而不是每一列都重複寫一次。這樣比較能看出哪些費用屬於同一個大項。
+
+<div class="budget-table-scroll" role="region" aria-label="經常門經費四層級分類表，可左右捲動" tabindex="0">
+  <table class="budget-layered-table">
+    <caption>經常門｜經費科目與實際用途</caption>
+    <colgroup><col class="budget-col-door" /><col class="budget-col-one" /><col class="budget-col-two" /><col class="budget-col-purpose" /></colgroup>
+    <thead><tr><th scope="col">門別</th><th scope="col">一級科目</th><th scope="col">二級科目</th><th scope="col">實際用途</th></tr></thead>
+    <tbody>
+      <tr><th scope="rowgroup" rowspan="18" class="budget-table-door"><span>經常門</span></th><th scope="rowgroup" rowspan="2" class="budget-table-first">人事費</th><td class="budget-table-second">專案人員薪資</td><td>專案經理、專職行政人員薪資</td></tr>
+      <tr><td class="budget-table-second">專案人員勞健保</td><td>符合規定的勞健保、勞退提繳等</td></tr>
+      <tr><th scope="rowgroup" rowspan="16" class="budget-table-first">業務費</th><td class="budget-table-second">臨時人員工資</td><td>活動協助、環境清理等臨時人力支出</td></tr>
+      <tr><td class="budget-table-second">出席費</td><td>邀請專家參與諮詢或審查會議</td></tr>
+      <tr><td class="budget-table-second">講師鐘點費</td><td>課程講師費</td></tr>
+      <tr><td class="budget-table-second">稿費</td><td>文章撰寫、審稿、編稿等</td></tr>
+      <tr><td class="budget-table-second">材料費</td><td>課程耗材、手作材料、文具</td></tr>
+      <tr><td class="budget-table-second">印刷費</td><td>海報、傳單、手冊、成果報告印製</td></tr>
+      <tr><td class="budget-table-second">設計費</td><td>視覺設計、排版、宣傳品設計</td></tr>
+      <tr><td class="budget-table-second">攝影及影像製作費</td><td>活動紀錄、訪談拍攝、影片剪輯</td></tr>
+      <tr><td class="budget-table-second">宣傳費</td><td>核准的廣告投放、活動行銷</td></tr>
+      <tr><td class="budget-table-second">場地租借費</td><td>課程教室、會議室、展演場地</td></tr>
+      <tr><td class="budget-table-second">設備租借費</td><td>活動音響、投影機、帳篷租賃</td></tr>
+      <tr><td class="budget-table-second">餐費</td><td>研習或活動符合規定的餐食</td></tr>
+      <tr><td class="budget-table-second">差旅費</td><td>大眾運輸、出差住宿、相關雜費</td></tr>
+      <tr><td class="budget-table-second">保險費</td><td>活動公共意外責任保險等</td></tr>
+      <tr><td class="budget-table-second">委託辦理費</td><td>委託專業團隊執行特定工作</td></tr>
+      <tr><td class="budget-table-second">雜支</td><td>郵資、少量文具及未另列的小額辦公支出</td></tr>
+    </tbody>
+  </table>
+</div>
+
+例如，「講師鐘點費」和「材料費」在這份示意表裡，都屬於 **經常門 → 業務費**，但分別是不同的二級科目。這個關係正是後面理解「勻支」會用到的。
 
 原始教材把臨時人員工資列在業務費，這確實是許多補助經費表常見的做法；但其他計畫可能採不同科目歸類，應以正式預算科目表為準。
 
-### 常見資本門支出
+### 常見資本門支出：同樣保留一級與二級科目
 
-| 經費細項 | 可能的實際用途 |
-| --- | --- |
-| 資訊硬體 | 電腦、伺服器、網路設備 |
-| 資訊軟體及系統 | 符合資本性質的系統開發 |
-| 攝影影音設備 | 長期使用的相機、攝影機、收音設備 |
-| 機械及專業設備 | 加工機械及專業器材 |
-| 運輸及雜項設備 | 符合規定的車輛、大型展示或防護設備 |
-| 房屋建築、公共設施 | 建築物或資本性改善工程 |
-| 權利 | 符合資本支出認列條件的權利取得 |
+<div class="budget-table-scroll" role="region" aria-label="資本門經費四層級分類表，可左右捲動" tabindex="0">
+  <table class="budget-layered-table">
+    <caption>資本門｜經費科目與實際用途</caption>
+    <colgroup><col class="budget-col-door" /><col class="budget-col-one" /><col class="budget-col-two" /><col class="budget-col-purpose" /></colgroup>
+    <thead><tr><th scope="col">門別</th><th scope="col">一級科目</th><th scope="col">二級科目</th><th scope="col">實際用途</th></tr></thead>
+    <tbody>
+      <tr><th scope="rowgroup" rowspan="9" class="budget-table-door"><span>資本門</span></th><th scope="rowgroup" rowspan="9" class="budget-table-first">設備及投資</th><td class="budget-table-second">資訊硬體設備</td><td>電腦、伺服器、網路設備</td></tr>
+      <tr><td class="budget-table-second">資訊軟體及系統</td><td>符合資本支出性質的資訊系統開發</td></tr>
+      <tr><td class="budget-table-second">攝影及影音設備</td><td>長期使用的相機、攝影機、收音設備</td></tr>
+      <tr><td class="budget-table-second">機械及專業設備</td><td>農業加工機械、專業工作器材</td></tr>
+      <tr><td class="budget-table-second">運輸設備</td><td>符合計畫目的的車輛或運輸設備</td></tr>
+      <tr><td class="budget-table-second">雜項設備</td><td>大型家具、展示設備、防護設備</td></tr>
+      <tr><td class="budget-table-second">房屋建築及設備</td><td>建築物興建、資本性改善工程</td></tr>
+      <tr><td class="budget-table-second">公共建設及設施</td><td>公共空間及其他符合規定的設施工程</td></tr>
+      <tr><td class="budget-table-second">權利</td><td>符合資本性質的專用權利取得；是否包含字體、音樂及軟體授權須依資產認列及計畫規定判斷</td></tr>
+    </tbody>
+  </table>
+</div>
 
-不是所有「軟體授權」或「修繕」都會自動歸資本門。購置前應確認經費性質、認列標準及補助限制。
+資本門的例子中，「資訊硬體設備」與「攝影及影音設備」都位於 **資本門 → 設備及投資** 大項之下。要特別注意，並不是所有軟體授權、權利取得或修繕，都會自動歸入資本門；實際仍應依相關資產認列標準與補助規定判斷。
+
+<div class="budget-level-reading" aria-label="如何利用層級判斷經費調整">
+  <strong>看懂層級，才知道經費要怎麼調整</strong>
+  <div><span>同一個一級科目，不同二級科目</span><p>例如業務費中的「場地費 → 材料費」，是下一節所說的<strong>勻支</strong>示例。</p></div>
+  <div><span>不同一級科目之間</span><p>例如「人事費 → 業務費」，則涉及下一節所說的<strong>流用</strong>，而且可能受到較嚴格的限制。</p></div>
+  <small>以上為方便初學者理解的層級示意；各補助計畫不一定使用相同科目名稱，也不代表所舉經費調整均被允許。</small>
+</div>
 
 ## 四、什麼是「勻支」，什麼是「流用」？
 
@@ -191,6 +231,7 @@ tags:
 | 比較 | 勻支 | 流用 |
 | --- | --- | --- |
 | **主要概念** | 同一經費大項內部調整 | 不同經費大項之間調整 |
+| **對應層級** | 同一一級科目下的不同二級科目 | 不同一級科目之間 |
 | **常見例子** | 場地費轉至材料費 | 人事費轉至業務費 |
 | **總經費** | 通常不變 | 通常不變 |
 | **核准程序** | 依計畫限制與調整幅度 | 通常限制更嚴格 |
