@@ -192,22 +192,22 @@ tags:
 
 <div class="budget-transfer-grid" aria-label="勻支與流用差異">
   <div class="budget-transfer-card">
-    <span class="budget-mini-label">勻支 · 同一大項內調整</span>
+    <span class="budget-mini-label">勻支 · 同一個一級科目下調整</span>
     <div class="budget-transfer-line"><span>場地費</span><strong>− 3,000</strong></div>
-    <div class="budget-transfer-arrow">↓　業務費內部調整</div>
+    <div class="budget-transfer-arrow">↓　二級科目間調整</div>
     <div class="budget-transfer-line"><span>材料費</span><strong>＋ 3,000</strong></div>
     <p>業務費總額仍為 30,000 元。</p>
   </div>
   <div class="budget-transfer-card">
-    <span class="budget-mini-label">流用 · 不同大項間調整</span>
+    <span class="budget-mini-label">流用 · 不同一級科目之間調整</span>
     <div class="budget-transfer-line"><span>人事費</span><strong>− 50,000</strong></div>
-    <div class="budget-transfer-arrow">↓　跨大項調整</div>
+    <div class="budget-transfer-arrow">↓　跨一級科目調整</div>
     <div class="budget-transfer-line"><span>業務費</span><strong>＋ 50,000</strong></div>
-    <p>這裡只是說明跨大項調整的概念，<strong>人事費是否可以流用，仍須依各計畫規定確認</strong>。</p>
+    <p>這裡只是說明跨一級科目調整的概念，<strong>人事費是否可以流用，仍須依各計畫規定確認</strong>。</p>
   </div>
 </div>
 
-### 勻支：同一大項內的「小挪移」
+### 勻支：同一個一級科目下的「小挪移」
 
 例如一組社區課程的業務費原本編列如下：
 
@@ -220,9 +220,9 @@ tags:
 
 材料費多出 3,000 元需求，場地費則節省 3,000 元。這是同一業務費大項中細項間調整的示範，但**勻支不等於可以自行改表、先花再說**。有的計畫可依程序調整，有的必須事先報請核准。
 
-### 流用：不同大項間的「大挪移」
+### 流用：不同一級科目之間的「大挪移」
 
-假設計畫原編人事費 50 萬元、業務費 50 萬元，因為聘人時間延後，人事費節省 5 萬元，團隊想把它增加到工作坊及教材費用。這就不是單純的業務費內部調整，而涉及不同大項間的流用。
+假設計畫原編人事費 50 萬元、業務費 50 萬元，因為聘人時間延後，人事費節省 5 萬元，團隊想把它增加到工作坊及教材費用。這就不是單純的業務費內部調整，而涉及不同一級科目之間的流用。
 
 **人事費通常有較嚴格的流入、流出限制**，不少補助案也禁止經常門與資本門互相挪用。前面的數字只是用來說明概念，不能推論這 5 萬元一定可以合法調整。
 
