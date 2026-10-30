@@ -1520,3 +1520,61 @@ strong, b,
   .knowledge-index-groups { gap: 35px; }
   .knowledge-group-head { flex-direction: column; align-items: start; gap: 10px; }
 }
+
+
+/* Labor insurance 2026 reference image and accessible text-version table. */
+.insurance-article .insurance-grade-figure {
+  margin: 28px 0 15px;
+}
+.insurance-grade-figure > a {
+  display: block;
+  border: 1px solid #dce5d9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fbfaf6;
+  box-shadow: 0 10px 26px #263e3112;
+  line-height: 0;
+}
+.insurance-grade-figure > a:focus-visible {
+  outline: 3px solid #a97b5b;
+  outline-offset: 4px;
+}
+.insurance-grade-figure img { display:block; width:100%; height:auto; }
+.insurance-grade-figure figcaption {
+  font-size: 12px;
+  line-height: 1.95;
+  color: #627a68;
+  padding-top: 12px;
+}
+.insurance-grade-details {
+  margin: 24px 0 6px;
+  border: 1px solid #d9e3d9;
+  border-radius: 9px;
+  padding: 0 17px;
+  background: #fff;
+}
+.insurance-grade-details > summary {
+  display: list-item;
+  cursor: pointer;
+  color: #335b43;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 16px 8px;
+}
+.insurance-grade-details > summary:hover { color: #b17e60; }
+.insurance-grade-details[open] { padding-bottom: 17px; }
+.insurance-grade-details .insurance-table-scroll { margin: 0; }
+.insurance-article .insurance-grade-details .insurance-rate-table { min-width: 1060px; }
+.insurance-article .insurance-grade-details .insurance-rate-table :is(th,td) {
+  padding: 10px 12px;
+  font-size: 13px;
+  text-align: right;
+}
+.insurance-article .insurance-grade-details .insurance-rate-table thead th:first-child,
+.insurance-article .insurance-grade-details .insurance-rate-table tbody th { text-align: center; }
+.insurance-article .insurance-grade-details .insurance-rate-table thead th { white-space: normal; }
+@media(max-width:650px) {
+  .insurance-grade-figure figcaption { font-size: 12px; }
+  .insurance-grade-details { padding-inline: 12px; }
+}
