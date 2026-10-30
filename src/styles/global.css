@@ -1578,3 +1578,16 @@ strong, b,
   .insurance-grade-figure figcaption { font-size: 12px; }
   .insurance-grade-details { padding-inline: 12px; }
 }
+
+
+/* Traditional Chinese reading: prohibit orphan closing punctuation at line starts. */
+.article.guide-article,
+.entry-summary { line-break: strict; word-break: normal; }
+.article.guide-article :is(p,li,figcaption,blockquote,th,td,small),
+.article.guide-article :is(.insurance-compare,.insurance-case-grid,.insurance-formula,.insurance-note,.insurance-source-note) :is(strong,span,small,p) {
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+.article.guide-article :is(p,li,figcaption) { text-wrap: pretty; }
+.article.guide-article a { overflow-wrap: break-word; }
