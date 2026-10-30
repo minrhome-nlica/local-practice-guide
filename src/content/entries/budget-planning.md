@@ -203,7 +203,7 @@ tags:
     <div class="budget-transfer-line"><span>人事費</span><strong>− 50,000</strong></div>
     <div class="budget-transfer-arrow">↓　跨大項調整</div>
     <div class="budget-transfer-line"><span>業務費</span><strong>＋ 50,000</strong></div>
-    <p>僅示範概念，<strong>不代表人事費可以實際流用</strong>。</p>
+    <p>這裡只是說明跨大項調整的概念，<strong>人事費是否可以流用，仍須依各計畫規定確認</strong>。</p>
   </div>
 </div>
 
