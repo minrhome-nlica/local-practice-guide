@@ -1271,3 +1271,204 @@ strong, b,
   .chapter-jump-card { min-height: 112px; }
   .search-result .search-preview { font-size: 14px; }
 }
+
+
+/* 2026 labor/health-insurance lessons: shared infographic, tables and practical examples. */
+.insurance-article { --insurance-ink:#2c4939; --insurance-line:#d7e2d8; }
+.insurance-article > p { margin-bottom:24px; }
+.insurance-article .insurance-steps {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:11px;
+  margin:29px 0 38px;
+}
+.insurance-steps > div {
+  min-width:0;
+  padding:19px 17px;
+  background:#f7f8f3;
+  border:1px solid #dbe4d9;
+  border-radius:8px;
+}
+.insurance-steps span {
+  display:block;
+  color:#b78366;
+  font-family:Georgia,serif;
+  font-size:26px;
+  line-height:1.2;
+  margin-bottom:10px;
+}
+.insurance-steps strong { display:block;font-size:15px;color:#294938;line-height:1.5; }
+.insurance-steps small { display:block;font-size:12px;line-height:1.7;color:#788578;margin-top:7px; }
+.insurance-article .insurance-compare,.insurance-article .insurance-case-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+  margin:26px 0 32px;
+}
+.insurance-compare > div,.insurance-case-grid > div {
+  background:#f3f7f1;
+  border:1px solid var(--insurance-line);
+  border-radius:9px;
+  padding:21px 22px;
+  min-width:0;
+}
+.insurance-compare > div:nth-child(2) { background:#f8f4eb;border-color:#e7ded0; }
+.insurance-compare span,.insurance-case-grid span {
+  display:block;
+  font-weight:700;
+  color:#9f7358;
+  letter-spacing:.03em;
+  font-size:12px;
+  line-height:1.7;
+  margin-bottom:10px;
+}
+.insurance-compare strong,.insurance-case-grid strong {
+  display:block;
+  color:#2a4c3b;
+  font-size:clamp(17px,1.8vw,21px);
+  line-height:1.5;
+  overflow-wrap:anywhere;
+}
+.insurance-example-cards strong { font-size:clamp(24px,2.5vw,30px); font-variant-numeric:tabular-nums; }
+.insurance-compare p,.insurance-case-grid p {
+  margin:10px 0 0;
+  font-size:14px;
+  line-height:1.9;
+  color:#536b5a;
+}
+.insurance-case-grid small { display:block;color:#7b8578;font-size:12px;line-height:1.8;margin-top:9px; }
+.insurance-article > table {
+  display:table;
+  width:100%;
+  max-width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  table-layout:auto;
+  border:1px solid #d8e2d6;
+  border-radius:9px;
+  overflow:hidden;
+  background:#fff;
+  margin:25px 0 32px;
+  font-size:14px;
+  line-height:1.85;
+}
+.insurance-article > table th {
+  color:#2e503e;
+  background:#e9f0e7;
+  font-weight:700;
+  text-align:left;
+  white-space:normal;
+  padding:13px 14px;
+  border:0;
+  border-bottom:1px solid #d3ded4;
+}
+.insurance-article > table td {
+  white-space:normal;
+  overflow-wrap:anywhere;
+  vertical-align:top;
+  padding:13px 14px;
+  border:0;
+  border-bottom:1px solid #e6ebe2;
+}
+.insurance-article > table tr:last-child td { border-bottom:0; }
+.insurance-article > table tr:nth-child(even) td { background:#fafbf7; }
+.insurance-table-scroll {
+  overflow-x:auto;
+  width:100%;
+  border:1px solid #d8e2d6;
+  border-radius:9px;
+  margin:23px 0 8px;
+  box-shadow:0 6px 25px #253e3210;
+  -webkit-overflow-scrolling:touch;
+}
+.insurance-article .insurance-table-scroll .insurance-rate-table {
+  display:table;
+  table-layout:auto;
+  border:0;
+  border-radius:0;
+  width:100%;
+  min-width:850px;
+  margin:0;
+  border-collapse:collapse;
+  background:#fff;
+  font-size:13px;
+  line-height:1.65;
+}
+.insurance-rate-table caption {
+  caption-side:top;
+  padding:15px 16px;
+  text-align:left;
+  color:#315444;
+  background:#f6f8f2;
+  font-size:13px;
+  font-weight:700;
+}
+.insurance-rate-table :is(th,td) {
+  padding:12px 13px;
+  border:0;
+  border-bottom:1px solid #e9eee7;
+  white-space:nowrap;
+  text-align:right;
+  vertical-align:middle;
+  font-variant-numeric:tabular-nums;
+}
+.insurance-rate-table thead th {
+  background:#e7efe7;
+  color:#30513e;
+  font-weight:700;
+  position:sticky;
+  top:0;
+}
+.insurance-rate-table thead th:first-child,.insurance-rate-table tbody th { text-align:left; }
+.insurance-rate-table tbody th { font-weight:600; }
+.insurance-rate-table tbody tr:nth-child(even) { background:#fafbf8; }
+.insurance-rate-table tbody tr.insurance-focus-row { background:#e4efe3; }
+.insurance-rate-table tbody tr.insurance-focus-row :is(th,td) { color:#244b35;font-weight:700; }
+.insurance-article .insurance-table-hint { font-size:12px;color:#76877a;margin:6px 0 34px;line-height:1.7; }
+.insurance-article .insurance-note,.insurance-article .insurance-source-note {
+  background:#f7f5ee;
+  border:1px solid #e3e0d6;
+  border-left:4px solid #bd8b6a;
+  border-radius:8px;
+  padding:21px 23px;
+  margin:27px 0 36px;
+}
+.insurance-note > strong,.insurance-source-note > strong {
+  display:block;
+  color:#2c4c3a;
+  font-size:16px;
+  line-height:1.55;
+  margin-bottom:10px;
+}
+.insurance-article :is(.insurance-note,.insurance-source-note) p {
+  margin:0 0 12px;
+  font-size:14px;
+  line-height:1.95;
+  color:#566c5a;
+}
+.insurance-article :is(.insurance-note,.insurance-source-note) p:last-child {margin-bottom:0;}
+.insurance-article .insurance-source-note { background:#f3f7f1;border-color:#d9e5d8;border-left-color:#7fa08a; }
+.insurance-article .insurance-formula {
+  margin:25px 0 33px;
+  padding:23px 24px;
+  background:#edf4eb;
+  border:1px solid #d4e1d3;
+  border-radius:9px;
+}
+.insurance-formula > span {display:block;color:#697e6f;font-size:12px;font-weight:700;margin-bottom:11px;}
+.insurance-formula > strong {display:block;color:#31573f;font-size:clamp(16px,2vw,20px);line-height:1.7;overflow-wrap:anywhere;}
+.insurance-formula > small {display:block;font-size:12px;color:#687b6b;line-height:1.8;margin-top:10px;}
+.insurance-article > ol,.insurance-article > ul { padding-left:1.6em;margin:25px 0 35px; }
+.insurance-article li { margin:13px 0; }
+.insurance-article li::marker { color:#b78769;font-weight:700; }
+@media (max-width:700px) {
+  .insurance-article .insurance-steps {grid-template-columns:1fr;}
+  .insurance-steps > div {padding:14px 16px;}
+  .insurance-steps span {font-size:20px;margin-bottom:4px;}
+  .insurance-article .insurance-compare,.insurance-article .insurance-case-grid {grid-template-columns:1fr;gap:10px;}
+  .insurance-compare > div,.insurance-case-grid > div {padding:18px 19px;}
+  .insurance-article > table {font-size:13px;display:block;overflow-x:auto;}
+  .insurance-article > table :is(th,td) {padding:11px 12px;min-width:90px;}
+  .insurance-article .insurance-note,.insurance-article .insurance-source-note {padding:17px;}
+  .insurance-article .insurance-table-scroll .insurance-rate-table {min-width:800px;}
+}
