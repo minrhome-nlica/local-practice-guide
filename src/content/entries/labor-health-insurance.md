@@ -56,9 +56,9 @@ tags:
 
 <figure class="insurance-grade-figure">
   <a href="/local-practice-guide/diagrams/insurance/grade-2026.svg" target="_blank" rel="noopener noreferrer" aria-label="開啟可放大的2026年勞健保級距圖卡">
-    <img src="/local-practice-guide/diagrams/insurance/grade-2026.svg" alt="2026年一般受僱勞工勞健保級距對照圖卡，列出19個常用級距、員工勞健保自付及雇主勞健保與勞退負擔；月薪34,000元適用的34,800元級距以綠色標示。職業災害保險依行業別另計。" width="1360" height="1400" loading="lazy" />
+    <img src="/local-practice-guide/diagrams/insurance/grade-2026.svg" alt="2026年一般受僱勞工勞健保級距對照圖卡，列出19個常用級距、員工勞健保自付及雇主勞健保與勞退負擔；月薪34,000元適用的34,800元級距以綠色標示。職業災害保險依行業別另計。" width="1360" height="1344" loading="lazy" />
   </a>
-  <figcaption>點選圖卡可開啟大圖。圖中僅列一般受僱者常用級距，**雇主合計不含職災保險**，避免將不同產業的職災費率誤當成相同。</figcaption>
+  <figcaption>點選圖卡可開啟大圖。圖中僅列一般受僱者常用級距，<strong>雇主合計不含職災保險</strong>，避免將不同產業的職災費率誤當成相同。</figcaption>
 </figure>
 
 <details class="insurance-grade-details">
@@ -125,7 +125,7 @@ tags:
 
 <div class="insurance-note">
   <strong>你原本級距圖的「職災 0.11%」需要修正</strong>
-  <p>職災保險並不是所有單位都固定 0.11%。現行各行業別總費率為 **0.12%～0.96%**，且費用由雇主負擔。因此原圖中 34,000 元月薪、雇主總成本 **40,855 元**的算法不宜直接當作正式級距標準。本篇改成「**40,817 元＋依適用行業別計算的職災保費**」；上方 40,859 元僅以 0.12% 示範。真正編列計畫經費時，應確認單位的實際職災費率。</p>
+  <p>職災保險並不是所有單位都固定 0.11%。現行各行業別總費率為 <strong>0.12%～0.96%</strong>，且費用由雇主負擔。因此原圖中 34,000 元月薪、雇主總成本 <strong>40,855 元</strong>的算法不宜直接當作正式級距標準。本篇改成「<strong>40,817 元＋依適用行業別計算的職災保費</strong>」；上方 40,859 元僅以 0.12% 示範。真正編列計畫經費時，應確認單位的實際職災費率。</p>
 </div>
 
 這樣一來就比較容易理解，為什麼計畫經費表只寫「專案人員月薪 34,000 元」往往是不夠的。薪資是給員工的報酬；**勞健保單位負擔、勞退與職災保費，是另外要準備的聘人成本**。
