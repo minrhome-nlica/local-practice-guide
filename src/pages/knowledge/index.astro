@@ -1,11 +1,62 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { categories, categoryName } from '../../data/catalog';
+import { categories, categoryName, sortEntriesForCategory } from '../../data/catalog';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
-const entries = (await getCollection('entries')).sort((a,b) => a.data.title.localeCompare(b.data.title, 'zh-Hant'));
+const entries = await getCollection('entries');
+const categoryGroups = categories.map((cat) => ({
+  ...cat,
+  entries: sortEntriesForCategory(entries.filter((item) => item.data.category === cat.slug), cat.slug)
+}));
 ---
 <BaseLayout title="知識百科">
-  <section class="page-hero"><div class="wrap"><span class="eyebrow">KNOWLEDGE LIBRARY</span><h1 class="page-title">知識百科</h1><p>把地方工作的經驗拆成可獨立閱讀的詞條。從概念、做法到實際案例，循著你的問題找到答案。</p></div></section>
-  <section class="section-spacer"><div class="wrap"><div class="topic-grid">{categories.map((cat) => <a class="topic-card" href={root + '/knowledge/' + cat.slug + '/'}><span class="topic-no">{cat.number}</span><div><div class="english">{cat.english}</div><h3>{cat.name}</h3><p>{cat.description}</p></div></a>)}</div><div class="section-head" style="margin-top:65px"><div><span class="eyebrow">ALL ENTRIES</span><h2 class="section-title">目前可閱讀的詞條</h2></div><span class="muted small">{entries.length} 篇示範詞條</span></div><div class="entry-list">{entries.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}><span class="meta">{categoryName(item.data.category)} ・ {item.data.status}</span><h3>{item.data.title}</h3><p>{item.data.summary}</p></a>)}</div></div></section>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">KNOWLEDGE LIBRARY</span>
+      <h1 class="page-title">知識百科</h1>
+      <p>把地方工作的經驗拆成可獨立閱讀的詞條。從概念、做法到實際案例，循著你的問題找到答案。</p>
+    </div>
+  </section>
+  <section class="section-spacer">
+    <div class="wrap">
+      <div class="topic-grid">
+        {categoryGroups.map((cat) => <a class="topic-card" href={root + '/knowledge/' + cat.slug + '/'}>
+          <span class="topic-no">{cat.number}</span>
+          <div>
+            <div class="english">{cat.english}</div>
+            <h3>{cat.name}</h3>
+            <p>{cat.description}</p>
+            {cat.entries.length > 0 && <span class="topic-entry-preview">收錄：{cat.entries.slice(0, 2).map((entry) => entry.data.title).join('、')}{cat.entries.length > 2 ? '等詞條' : ''}</span>}
+          </div>
+        </a>)}
+      </div>
+
+      <div class="section-head" style="margin-top:65px">
+        <div>
+          <span class="eyebrow">ALL ENTRIES BY CATEGORY</span>
+          <h2 class="section-title">依六大分類閱讀詞條</h2>
+        </div>
+        <span class="muted small">共 {entries.length} 篇詞條</span>
+      </div>
+      <div class="knowledge-index-groups">
+        {categoryGroups.map((cat) => <section class="knowledge-group" aria-labelledby={'knowledge-' + cat.slug}>
+          <div class="knowledge-group-head">
+            <div>
+              <span class="eyebrow">CATEGORY / {cat.number}</span>
+              <h3 id={'knowledge-' + cat.slug}>{cat.name}</h3>
+              <p>{cat.description}</p>
+            </div>
+            <a class="text-link" href={root + '/knowledge/' + cat.slug + '/'}>查看本分類 ↗</a>
+          </div>
+          {cat.entries.length > 0
+            ? <div class="entry-list">{cat.entries.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}>
+                <span class="meta">{categoryName(item.data.category)} ・ {item.data.status}</span>
+                <h3>{item.data.title}</h3>
+                <p>{item.data.summary}</p>
+              </a>)}</div>
+            : <p class="empty">這個分類的詞條正在整理中。</p>}
+        </section>)}
+      </div>
+    </div>
+  </section>
 </BaseLayout>

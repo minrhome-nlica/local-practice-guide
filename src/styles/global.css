@@ -1472,3 +1472,51 @@ strong, b,
   .insurance-article .insurance-note,.insurance-article .insurance-source-note {padding:17px;}
   .insurance-article .insurance-table-scroll .insurance-rate-table {min-width:800px;}
 }
+
+/* Knowledge encyclopedia: explicit six-category article groups. */
+.topic-entry-preview {
+  display: block;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #edf0e9;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.9;
+  color: #52715d;
+  overflow-wrap: anywhere;
+}
+.knowledge-index-groups {
+  display: grid;
+  gap: 44px;
+  margin-top: 28px;
+}
+.knowledge-group {
+  padding-top: 26px;
+  border-top: 1px solid #dbe4db;
+  scroll-margin-top: 110px;
+}
+.knowledge-group-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.knowledge-group-head h3 {
+  font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  color: #294638;
+  font-size: clamp(23px, 2.5vw, 30px);
+  line-height: 1.5;
+  margin: 6px 0 5px;
+}
+.knowledge-group-head p {
+  margin: 0;
+  color: #718275;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.knowledge-group-head .text-link { flex-shrink: 0; }
+@media (max-width: 650px) {
+  .knowledge-index-groups { gap: 35px; }
+  .knowledge-group-head { flex-direction: column; align-items: start; gap: 10px; }
+}

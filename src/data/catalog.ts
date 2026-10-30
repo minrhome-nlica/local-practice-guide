@@ -8,6 +8,20 @@ export const categories = [
 ];
 export const categoryName = (slug: string) =>
   categories.find((item) => item.slug === slug)?.name ?? '未分類';
+
+// Maintain an editorial reading sequence for subjects that build on one another.
+// Other entries remain alphabetically ordered by their Traditional Chinese titles.
+const categoryFeaturedOrder: Record<string, string[]> = {
+  people: ['labor-health-insurance', 'supplemental-premium']
+};
+export const sortEntriesForCategory = <T extends { id: string; data: { title: string } }>(items: T[], categorySlug: string): T[] => {
+  const order = categoryFeaturedOrder[categorySlug] ?? [];
+  const rank = (id: string) => {
+    const index = order.indexOf(id);
+    return index < 0 ? Number.POSITIVE_INFINITY : index;
+  };
+  return [...items].sort((a, b) => rank(a.id) - rank(b.id) || a.data.title.localeCompare(b.data.title, 'zh-Hant'));
+};
 export const learningPaths = [
   { number: '01', title: '第一次開始地方實踐', desc: '先理解地方工作的目的，再學習尋找資源。', slugs: ['local-practice', 'community-building', 'local-revitalization', 'what-is-subsidy', 'subsidy-guide', 'proposal-writing'] },
   { number: '02', title: '第一次執行政府計畫', desc: '從閱讀規定、規劃經費，到完成核銷。', slugs: ['subsidy-guide', 'tender', 'proposal-writing', 'budget-planning', 'results-report-writing', 'reimbursement'] },

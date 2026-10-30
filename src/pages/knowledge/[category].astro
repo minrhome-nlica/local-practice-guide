@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { categories } from '../../data/catalog';
+import { categories, sortEntriesForCategory } from '../../data/catalog';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 export async function getStaticPaths(){
   return categories.map((category) => ({params:{category:category.slug},props:{category}}));
 }
 const {category} = Astro.props;
-const entries = (await getCollection('entries')).filter((entry) => entry.data.category === category.slug);
+const entries = sortEntriesForCategory((await getCollection('entries')).filter((entry) => entry.data.category === category.slug), category.slug);
 ---
 <BaseLayout title={category.name}>
   <section class="page-hero"><div class="wrap"><p class="breadcrumbs"><a href={root + '/knowledge/'}>知識百科</a> / {category.name}</p><span class="eyebrow">{category.english}</span><h1 class="page-title">{category.name}</h1><p>{category.description}</p></div></section>
