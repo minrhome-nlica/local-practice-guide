@@ -28,11 +28,13 @@ tags:
 
 <strong>以下以「補助案」的核銷方式為例。</strong>
 
-<div class="claim-pathway" aria-label="補助經費核銷的四個階段">
+<div class="claim-pathway" aria-label="補助案核銷與結報的六個步驟">
   <div><span>01</span><strong>核定函</strong><small>確認期間與項目</small></div>
   <div><span>02</span><strong>原始憑證</strong><small>蒐集交易與付款證明</small></div>
   <div><span>03</span><strong>支出明細</strong><small>整理每筆經費</small></div>
   <div><span>04</span><strong>黏貼憑證</strong><small>編號、歸檔與核章</small></div>
+  <div><span>05</span><strong>憑證附件</strong><small>補齊活動與成果佐證</small></div>
+  <div><span>06</span><strong>結報送件</strong><small>依規定檢查並提交</small></div>
 </div>
 
 ## 一、核定函確認經費項目
