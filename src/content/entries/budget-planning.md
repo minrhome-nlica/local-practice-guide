@@ -7,6 +7,7 @@ updated: 2026-10-30
 status: 編輯稿
 related:
   - proposal-writing
+  - results-report-writing
   - subsidy-guide
   - tender
   - reimbursement
