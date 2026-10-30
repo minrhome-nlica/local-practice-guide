@@ -10,15 +10,29 @@ export async function getStaticPaths(){
 const { entry } = Astro.props;
 const isConceptEntry = entry.data.category === 'basics';
 const { Content, headings } = await render(entry);
+const chapters = headings.filter((h) => h.depth === 2);
+const chapterTitle = (text) => text.replace(/^(?:[一二三四五六七八九十]+|[壹貳參肆伍陸柒捌玖拾]+|[0-9]{1,2})[、．.]\s*/, '');
+const reimbursementHints = ['確認期間與項目', '蒐集交易與付款證明', '整理每筆經費', '編號、歸檔與核章', '補齊活動與成果佐證', '依規定檢查並提交'];
 const relatedIds = entry.data.related || [];
 const allEntries = await getCollection('entries');
 const related = relatedIds.map((id) => allEntries.find((e) => e.id === id)).filter(Boolean);
 ---
 <BaseLayout title={entry.data.title} description={entry.data.summary}>
-  <section class="page-hero"><div class="wrap"><div class="breadcrumbs"><a href={root + '/'}>首頁</a> / <a href={root + '/knowledge/'}>知識百科</a> / <a href={root + '/knowledge/' + entry.data.category + '/'}>{categoryName(entry.data.category)}</a></div><span class="eyebrow">KNOWLEDGE ENTRY</span><h1 class="page-title">{entry.data.title}</h1><div class="tags"><span class="tag">{categoryName(entry.data.category)}</span><span class="tag">{entry.data.level}</span><span class="tag">{entry.data.status}</span></div><p class="entry-summary">{entry.data.summary}</p></div></section>
+  <section class="page-hero"><div class="wrap"><div class="breadcrumbs"><a href={root + '/'}>首頁</a> / <a href={root + '/knowledge/'}>知識百科</a> / <a href={root + '/knowledge/' + entry.data.category + '/'}>{categoryName(entry.data.category)}</a></div><span class="eyebrow">KNOWLEDGE ENTRY</span><h1 class="page-title">{entry.data.title}</h1><div class="tags"><span class="tag">{categoryName(entry.data.category)}</span><span class="tag">{entry.data.level}</span><span class="tag">{entry.data.status}</span></div><p class="entry-summary" data-pagefind-meta="summary">{entry.data.summary}</p></div></section>
   <div class="wrap entry-grid">
     <article class="entry-layout" data-pagefind-body>
-      <div class:list={['article', { 'subsidy-article': entry.id === 'subsidy-guide', 'tender-article': entry.id === 'tender', 'plan-article': entry.id === 'proposal-writing', 'budget-article': entry.id === 'budget-planning', 'report-article': entry.id === 'results-report-writing', 'reimburse-article': entry.id === 'reimbursement' }]}><Content /></div>
+      {chapters.length > 0 && <nav class="chapter-jump" aria-label="本篇章節快速導覽" data-pagefind-ignore>
+        <div class="chapter-jump-head"><div><span class="eyebrow">CHAPTER INDEX</span><h2>本篇章節</h2></div><span>點選圖卡，快速跳到對應段落</span></div>
+        <div class="chapter-jump-grid">
+          {chapters.map((heading, index) => <a class="chapter-jump-card" href={'#' + heading.slug} aria-label={'跳至' + heading.text}>
+            <span class="chapter-jump-number">{String(index + 1).padStart(2, '0')} / {String(chapters.length).padStart(2, '0')}</span>
+            <strong>{chapterTitle(heading.text)}</strong>
+            {entry.id === 'reimbursement' && <small>{reimbursementHints[index]}</small>}
+            <span class="chapter-jump-action">前往本節 ↘</span>
+          </a>)}
+        </div>
+      </nav>}
+      <div class:list={['article', 'guide-article', { 'subsidy-article': entry.id === 'subsidy-guide', 'tender-article': entry.id === 'tender', 'plan-article': entry.id === 'proposal-writing', 'budget-article': entry.id === 'budget-planning', 'report-article': entry.id === 'results-report-writing', 'reimburse-article': entry.id === 'reimbursement' }]} style={`--guide-total: "${String(chapters.length).padStart(2, '0')}"; --guide-name: "${entry.data.title.replace(/"/g, '')}";`}><Content /></div>
       {!isConceptEntry && !['subsidy-guide', 'tender', 'proposal-writing', 'budget-planning', 'results-report-writing', 'reimbursement'].includes(entry.id) && <aside class="notice">資料查核提醒：補助、稅務、勞健保及法律規定可能隨年度調整，請以主管機關當年度公告及個案規定為準。</aside>}
       {entry.id !== 'local-practice' && <div style="margin-top:20px" class="muted small">最後更新：{entry.data.updated.toLocaleDateString('zh-TW')}　｜　編輯狀態：{entry.data.status}</div>}
       {related.length > 0 && <div style="margin-top:55px"><h2 class="section-title" style="font-size:27px">延伸閱讀</h2><div class="entry-list" style="margin-top:22px">{related.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}><h3>{item.data.title}</h3><p>{item.data.summary}</p></a>)}</div></div>}
