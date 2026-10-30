@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const files = [
+ {name:'經費案例（Excel）',type:'XLSX・Excel 試算表',desc:'經費編列教材配套案例，可下載對照各項費用與計算欄位。',path:'/經費案例.xlsx'},
  {name:'計畫經費編列空白表',type:'CSV・可使用 Excel 開啟',desc:'包含項目、單價、數量、用途等基本欄位。僅供自行調整與參考。',path:'/downloads/budget-template.csv'},
  {name:'計畫撰寫檢查表',type:'TXT・純文字',desc:'依照前言、問題、策略、工項、經費、期程與效益逐項檢查。',path:'/downloads/proposal-checklist.txt'}
 ];
