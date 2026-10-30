@@ -252,23 +252,45 @@ tags:
 
 ### 從工作項目編出經費表
 
-經費表可以依照「項目、單價、數量、用途」逐項估算。例如策展人費、藝術家製作費、工作坊材料與舞台搭設，都能從前面規劃的工作內容推算。下表列出其中幾項支出；計畫還需要其他費用，因此不能只把這幾列當成全部預算。
+經費表可以依照「項目、單價、數量、用途」逐項估算。以豐田街區藝術展為例，策展、藝術創作、居民工作坊、走讀與成果展各有不同成本。除了計算總價，也要區分**哪些由補助款支應、哪些由團隊自籌**。
 
-| 項目 | 單價 × 數量 | 總價 | 編列理由 |
-| --- | --- | ---: | --- |
-| 策展人費 | 30,000 × 1 式 | 30,000 元 | 邀請返鄉藝術家擔任策展人 |
-| 藝術家製作費 | 20,000 × 3 組 | 60,000 元 | 3 組藝術家進行地方文化創作 |
-| 工作坊講師費 | 2,000 × 12 時 | 24,000 元 | 12 小時居民共創工作坊 |
-| 共創材料費 | 8,000 × 1 式 | 8,000 元 | 壓克力顏料、畫板及噴漆 |
-| 場地費 | 2,000 × 2 日 | 4,000 元 | 居民共作工作坊 |
-| 主視覺設計 | 20,000 × 1 式 | 20,000 元 | 成果展主視覺海報 |
-| 舞台搭設 | 50,000 × 1 式 | 50,000 元 | 舞台、音響及燈光 |
+下表把每一項費用的單價、數量、總價、申請補助、自籌款及編列說明放在同一張表中，讓讀者不必來回對照，便能了解這個計畫需要哪些經費。
 
-<div class="budget-totals" aria-label="街區藝術展經費試算">
-  <div><span>申請補助</span><strong>250,000 <small>元</small></strong></div>
-  <div><span>自籌款</span><strong>62,500 <small>元</small></strong></div>
-  <div class="budget-total-grand"><span>計畫總經費試算</span><strong>312,500 <small>元</small></strong></div>
+<div class="budget-case-table-shell" role="region" aria-label="豐田三村街區藝術展完整經費編列表，可左右捲動" tabindex="0">
+  <table class="budget-case-table">
+    <caption>豐田三村街區藝術展｜經費編列示例（單位：新臺幣元）</caption>
+    <colgroup><col class="case-col-item" /><col class="case-col-price" /><col class="case-col-quantity" /><col class="case-col-total" /><col class="case-col-grant" /><col class="case-col-self" /><col class="case-col-description" /></colgroup>
+    <thead>
+      <tr><th scope="col">項目</th><th scope="col">單價</th><th scope="col">數量</th><th scope="col">總價</th><th scope="col">申請補助</th><th scope="col" class="budget-case-self-head">自籌款</th><th scope="col">編列說明</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">策展人費</th><td class="amount">30,000</td><td class="quantity">1 式</td><td class="amount">30,000</td><td class="amount">30,000</td><td class="amount self-funded">—</td><td class="budget-case-detail">邀請返鄉藝術家擔任策展人</td></tr>
+      <tr><th scope="row">臨時工資</th><td class="amount">183</td><td class="quantity">36 時</td><td class="amount">6,588</td><td class="amount">6,588</td><td class="amount self-funded">—</td><td class="budget-case-detail">成果展 3 日，每日 6 小時 × 2 人</td></tr>
+      <tr><th scope="row">藝術家製作費</th><td class="amount">20,000</td><td class="quantity">3 組</td><td class="amount">60,000</td><td class="amount">60,000</td><td class="amount self-funded">—</td><td class="budget-case-detail">邀請 3 組藝術家轉譯地方文化並創作作品</td></tr>
+      <tr><th scope="row">材料費 1</th><td class="amount">5,000</td><td class="quantity">3 組</td><td class="amount">15,000</td><td class="amount">15,000</td><td class="amount self-funded">—</td><td class="budget-case-detail">藝術家創作材料</td></tr>
+      <tr><th scope="row">鐘點費 1</th><td class="amount">2,000</td><td class="quantity">12 時</td><td class="amount">24,000</td><td class="amount">0</td><td class="amount self-funded funded">24,000</td><td class="budget-case-detail">12 小時藝術工作坊，帶領居民共創</td></tr>
+      <tr><th scope="row">材料費 2</th><td class="amount">8,000</td><td class="quantity">1 式</td><td class="amount">8,000</td><td class="amount">0</td><td class="amount self-funded funded">8,000</td><td class="budget-case-detail">壓克力顏料 2,000 元、畫板 3,000 元、噴漆 3,000 元</td></tr>
+      <tr><th scope="row">授權費</th><td class="amount">500</td><td class="quantity">15 組</td><td class="amount">7,500</td><td class="amount">5,000</td><td class="amount self-funded funded">2,500</td><td class="budget-case-detail">15 組居民共創作品授權費</td></tr>
+      <tr><th scope="row">場地租借費 1</th><td class="amount">2,000</td><td class="quantity">2 日</td><td class="amount">4,000</td><td class="amount">4,000</td><td class="amount self-funded">—</td><td class="budget-case-detail">活動中心 2 日，辦理居民共創工作坊</td></tr>
+      <tr><th scope="row">餐費</th><td class="amount">100</td><td class="quantity">46 人</td><td class="amount">4,600</td><td class="amount">4,600</td><td class="amount self-funded">—</td><td class="budget-case-detail">2 日工作坊，含工作人員共 46 人次</td></tr>
+      <tr><th scope="row">保險費 1</th><td class="amount">80</td><td class="quantity">46 人</td><td class="amount">3,680</td><td class="amount">3,680</td><td class="amount self-funded">—</td><td class="budget-case-detail">工作坊意外責任保險</td></tr>
+      <tr><th scope="row">宣傳費</th><td class="amount">10,000</td><td class="quantity">1 式</td><td class="amount">10,000</td><td class="amount">10,000</td><td class="amount self-funded">—</td><td class="budget-case-detail">工作坊海報 1,000 元、成果展海報 6,000 元、社群廣告 3,000 元</td></tr>
+      <tr><th scope="row">海報設計</th><td class="amount">20,000</td><td class="quantity">1 式</td><td class="amount">20,000</td><td class="amount">20,000</td><td class="amount self-funded">—</td><td class="budget-case-detail">成果展主視覺海報設計</td></tr>
+      <tr><th scope="row">場地租借費 2</th><td class="amount">3,000</td><td class="quantity">3 日</td><td class="amount">9,000</td><td class="amount">9,000</td><td class="amount self-funded">—</td><td class="budget-case-detail">活動中心 3 日，辦理成果展</td></tr>
+      <tr><th scope="row">舞台搭建</th><td class="amount">50,000</td><td class="quantity">1 式</td><td class="amount">50,000</td><td class="amount">50,000</td><td class="amount self-funded">—</td><td class="budget-case-detail">舞台 18,000 元、音響 25,000 元、燈光設備 7,000 元</td></tr>
+      <tr><th scope="row">攝影費</th><td class="amount">8,000</td><td class="quantity">3 日</td><td class="amount">24,000</td><td class="amount">24,000</td><td class="amount self-funded">—</td><td class="budget-case-detail">成果展 3 日攝影紀錄</td></tr>
+      <tr><th scope="row">導覽費</th><td class="amount">2,000</td><td class="quantity">6 趟</td><td class="amount">12,000</td><td class="amount">0</td><td class="amount self-funded funded">12,000</td><td class="budget-case-detail">成果展 3 日，每日 2 趟藝術走讀</td></tr>
+      <tr><th scope="row">鐘點費 2</th><td class="amount">2,000</td><td class="quantity">8 時</td><td class="amount">16,000</td><td class="amount">0</td><td class="amount self-funded funded">16,000</td><td class="budget-case-detail">成果展期間藝術工作坊，共 8 小時</td></tr>
+      <tr><th scope="row">保險費 2</th><td class="amount">6,000</td><td class="quantity">1 式</td><td class="amount">6,000</td><td class="amount">6,000</td><td class="amount self-funded">—</td><td class="budget-case-detail">成果展 3 日活動場地保險</td></tr>
+      <tr><th scope="row">雜支</th><td class="amount">2,132</td><td class="quantity">1 式</td><td class="amount">2,132</td><td class="amount">2,132</td><td class="amount self-funded">—</td><td class="budget-case-detail">工作坊文具、印刷等零星支出</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><th scope="row" colspan="3">合計</th><td class="amount">312,500</td><td class="amount">250,000</td><td class="amount">62,500</td><td>補助款及自籌款合計</td></tr>
+    </tfoot>
+  </table>
 </div>
+<p class="budget-case-scroll-hint">如果使用手機閱讀，可以左右滑動表格，查看補助款、自籌款與編列說明。</p>
+<p class="budget-case-footnote">「—」表示該項沒有編列自籌款。例如授權費總價 7,500 元，其中 5,000 元編列申請補助、2,500 元為自籌款。這是依工作項目分配經費的示例，實際可補助項目仍應以申請年度規定為準。</p>
 
 這張示範表有三件事值得注意。
 
