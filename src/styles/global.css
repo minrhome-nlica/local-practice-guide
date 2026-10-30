@@ -447,3 +447,67 @@ strong, b,
   .plan-template-actions { gap: 10px; }
   .plan-template-actions a { width: 100%; }
 }
+
+
+/* Budget planning: same editorial palette and rhythm as proposal writing. */
+.budget-article {counter-reset:subsidy-section;}
+.budget-article > h2{position:relative;border-top:1px solid #d5ddd3;margin:78px 0 22px;padding:34px 0 0;font-size:clamp(25px,2.4vw,30px);line-height:1.55;scroll-margin-top:112px;}
+.budget-article > h2::before{counter-increment:subsidy-section;content:"0" counter(subsidy-section) " / 06 · 經費編列";display:block;font-size:12px;line-height:1.65;letter-spacing:.12em;font-weight:700;color:#ae795f;margin:0 0 10px;}
+.budget-article > h3{border-left:3px solid #8ba997;padding-left:14px;margin:32px 0 18px;font-size:19px;line-height:1.65;}
+.budget-article > p{margin-bottom:23px;}
+.budget-article > ol,.budget-article > ul{padding-left:1.6em;margin:23px 0 31px;}
+.budget-article li{margin:12px 0;}
+.budget-article li::marker{color:#b88061;font-weight:700;}
+.budget-article h4{color:#315445;font-size:17px;line-height:1.6;margin:6px 0 10px;}
+.budget-article table{display:table;width:100%;table-layout:auto;border-collapse:separate;border-spacing:0;border:1px solid #d9e1d7;border-radius:9px;overflow:hidden;background:#fff;margin:28px 0 36px;font-size:14px;line-height:1.8;}
+.budget-article th{padding:14px 15px;text-align:left;background:#eaf0e8;color:#294738;font-weight:700;border-bottom:1px solid #cbd9cd;white-space:normal;}
+.budget-article td{padding:14px 15px;vertical-align:top;border-bottom:1px solid #e8ece5;overflow-wrap:anywhere;white-space:normal;}
+.budget-article tr:last-child td{border-bottom:0;}
+.budget-article td:first-child{color:#355d49;}
+.budget-article table th:nth-child(2),.budget-article table td:nth-child(2){min-width:85px;}
+.budget-article .budget-mini-label{display:block;font-size:12px;letter-spacing:.1em;font-weight:700;color:#a8795e;margin-bottom:10px;}
+.budget-article .budget-route{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:27px 0 40px;}
+.budget-route>div,.budget-work-items>div{background:#f7f8f3;border:1px solid #dbe4d9;border-radius:8px;padding:18px 15px;}
+.budget-route span,.budget-work-items span{font-family:Georgia,serif;font-size:26px;color:#be8869;display:block;margin-bottom:10px;}
+.budget-route strong,.budget-work-items strong{display:block;color:#294b39;font-size:15px;line-height:1.6;}
+.budget-route small{display:block;color:#708175;font-size:12px;line-height:1.65;margin-top:7px;}
+.budget-article .budget-check-card,.budget-article .budget-rule-note{background:#f7f5ed;border:1px solid #dfe4d9;border-left:4px solid #b98a69;border-radius:7px;padding:21px 24px;margin:25px 0 33px;}
+.budget-check-card p,.budget-rule-note p{margin:0 0 12px;}
+.budget-check-card p:last-child,.budget-rule-note p:last-child{margin-bottom:0;}
+.budget-rule-note>strong{display:block;color:#315343;margin:0 0 11px;font-size:16px;}
+.budget-article .budget-source-links{font-size:12px;line-height:1.85;color:#718075;margin-top:14px;}
+.budget-article .budget-two-col,.budget-article .budget-transfer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0 35px;}
+.budget-simple-card,.budget-transfer-card{background:#f8f8f3;border:1px solid #d9e3d8;border-radius:8px;padding:22px 23px;}
+.budget-simple-card p,.budget-transfer-card p{font-size:14px;line-height:1.85;color:#5c7061;margin:0;}
+.budget-article .budget-hierarchy{display:grid;gap:8px;margin:30px 0 40px;}
+.budget-hierarchy>div{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#eff3ec;padding:13px 21px;border-radius:7px;border-left:3px solid #91ac98;}
+.budget-hierarchy span{font-size:13px;color:#668073;}
+.budget-hierarchy strong{color:#315544;font-size:16px;text-align:right;}
+.budget-transfer-line{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#305343;font-size:15px;}
+.budget-transfer-line strong{font-size:18px;}
+.budget-transfer-arrow{text-align:center;font-size:13px;color:#aa795f;margin:8px 0;}
+.budget-transfer-card p{border-top:1px solid #dce4d9;padding-top:13px;margin-top:15px;}
+.budget-article .budget-work-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:26px 0 36px;}
+.budget-work-items p{font-size:13px;line-height:1.75;margin:7px 0 0;color:#688071;}
+.budget-article .budget-totals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;background:#f3f5ee;padding:16px;border-radius:9px;margin:24px 0 34px;border:1px solid #dce6d9;}
+.budget-totals>div{padding:17px;background:#fff;border-radius:6px;}
+.budget-totals span{font-size:13px;color:#657c6e;display:block;margin-bottom:8px;}
+.budget-totals strong{display:block;color:#355946;font-size:27px;letter-spacing:.01em;}
+.budget-totals strong small{font-size:13px;}
+.budget-totals .budget-total-grand{grid-column:1/-1;background:#315644;}
+.budget-totals .budget-total-grand span,.budget-totals .budget-total-grand strong{color:#fff;}
+.budget-article .budget-download-card{display:flex;gap:23px;padding:29px 28px;background:#f4f5ee;border:1px solid #d8e2d7;border-left:4px solid #b98a69;border-radius:9px;margin:30px 0 50px;}
+.budget-download-mark{display:grid;place-items:center;background:#315744;color:#fff;border-radius:8px;font-size:13px;font-weight:700;min-width:66px;height:68px;letter-spacing:.05em;}
+.budget-download-body{flex:1;min-width:0;}
+.budget-article .budget-download-card h4{margin:0 0 11px;font-size:21px;}
+.budget-article .budget-download-card p{margin:0 0 12px;font-size:14px;line-height:1.85;}
+.budget-download-actions{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 16px;}
+.budget-article .budget-download-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;text-align:center;border-radius:6px;padding:10px 17px;font-size:14px;font-weight:700;text-decoration:none;}
+.budget-article .budget-download-primary{background:#315743;color:#fff;}
+.budget-article .budget-download-secondary{background:#fff;color:#315743;border:1px solid #a8bba9;}
+.budget-article .budget-download-card .budget-download-caveat{font-size:12px;color:#78877a;margin:0;}
+.budget-article .budget-reading-note{margin:76px 0 15px;padding:30px 33px;background:#f3f2ea;border:1px solid #dee3d8;border-left:4px solid #bd8060;border-radius:8px;}
+.budget-reading-note h2{margin:0 0 18px;color:#294c3d;font-size:24px;line-height:1.5;}
+.budget-reading-note p{margin:0 0 15px;}
+.budget-reading-note p:last-child{margin-bottom:0;}
+@media(max-width:650px){.budget-article > h2{margin-top:57px;padding-top:26px;font-size:25px;}.budget-article > h3{font-size:18px;}.budget-article .budget-route{grid-template-columns:repeat(2,minmax(0,1fr));}.budget-article .budget-two-col,.budget-article .budget-transfer-grid,.budget-article .budget-work-items{grid-template-columns:1fr;}.budget-article table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;font-size:13px;}.budget-article td,.budget-article th{padding:12px 11px;}.budget-article .budget-download-card{padding:20px 17px;gap:13px;}.budget-download-mark{min-width:48px;height:54px;font-size:11px;}.budget-download-actions a{width:100%;}.budget-article .budget-reading-note{padding:23px 20px;margin-top:55px;}.budget-totals strong{font-size:23px;}}
