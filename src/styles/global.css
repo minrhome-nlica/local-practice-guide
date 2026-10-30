@@ -1605,3 +1605,111 @@ strong, b,
   .article.guide-article > .chapter-jump { margin: 30px 0; }
   .article.guide-article > .chapter-jump + h2 { margin-top: 40px; }
 }
+
+
+/* Supplemental-premium example: monthly wages, insured salary and payable amount. */
+.insurance-article .premium-example-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin:24px 0 14px;
+}
+.insurance-article .premium-example-metric {
+  background:#f5f8f2;
+  border:1px solid #dce6d9;
+  border-radius:9px;
+  padding:21px 20px;
+  min-width:0;
+}
+.insurance-article .premium-example-metric:nth-child(2) {
+  background:#f8f5ed;
+  border-color:#e5dfd1;
+}
+.insurance-article .premium-example-metric span {
+  display:block;
+  color:#9e735a;
+  font-size:12px;
+  line-height:1.65;
+  font-weight:700;
+  margin-bottom:12px;
+}
+.insurance-article .premium-example-metric strong {
+  display:block;
+  font-size:clamp(16px,1.75vw,20px);
+  line-height:1.6;
+  color:#2e503e;
+  font-variant-numeric:tabular-nums;
+  overflow-wrap:break-word;
+}
+.insurance-article .premium-example-metric small {
+  display:block;
+  color:#718273;
+  font-size:12px;
+  line-height:1.7;
+  margin-top:7px;
+}
+.insurance-article .premium-example-reference {
+  margin:0 0 27px;
+  color:#6a7c6d;
+  font-size:13px;
+  line-height:1.85;
+}
+.insurance-article .premium-calculation {
+  margin:27px 0 27px;
+  padding:23px 25px 0;
+  background:#f1f6ef;
+  border:1px solid #d3e2d3;
+  border-radius:10px;
+  overflow:hidden;
+}
+.insurance-article .premium-calculation-label {
+  display:block;
+  color:#9d7358;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.07em;
+  margin-bottom:10px;
+}
+.insurance-article .premium-calculation-rule {
+  margin:0 0 19px;
+  color:#4f6a55;
+  font-size:14px;
+  line-height:1.85;
+}
+.insurance-article .premium-calculation-expression {
+  color:#2b4b3c;
+  font-weight:700;
+  font-size:clamp(15px,1.7vw,19px);
+  line-height:1.95;
+  overflow-wrap:break-word;
+  font-variant-numeric:tabular-nums;
+}
+.insurance-article .premium-calculation-result {
+  background:#e3eee0;
+  border-top:1px solid #ccddc9;
+  margin:22px -25px 0;
+  padding:20px 25px 23px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px 20px;
+}
+.insurance-article .premium-calculation-result span {
+  color:#4f7057;
+  font-size:14px;
+  line-height:1.7;
+  font-weight:700;
+}
+.insurance-article .premium-calculation-result strong {
+  color:#315340;
+  font-size:clamp(26px,3.4vw,36px);
+  line-height:1.4;
+  font-variant-numeric:tabular-nums;
+}
+@media(max-width:700px) {
+  .insurance-article .premium-example-grid { grid-template-columns:1fr;gap:9px; }
+  .insurance-article .premium-example-metric { padding:17px 18px; }
+  .insurance-article .premium-calculation { padding:19px 18px 0; }
+  .insurance-article .premium-calculation-result { margin:20px -18px 0;padding:17px 18px 20px; }
+}
