@@ -2,9 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const files = [
+ {name:'114 年青年培力工作站計畫書（公開參考版）',type:'PDF・計畫撰寫實際案例',desc:'社團法人花蓮縣牛犁社區交流協會青年培力工作站計畫書，已隱匿個人隱私資訊。可參考章節安排、工作規劃與計畫書寫法；屬 114 年度實際案例，並非現行制式表單。',path:'/downloads/youth-workstation-proposal-114.pdf',preview:true},
  {name:'經費案例（Excel）',type:'XLSX・Excel 試算表',desc:'經費編列教材配套案例，可下載對照各項費用與計算欄位。',path:'/經費案例.xlsx'},
  {name:'計畫經費編列空白表',type:'CSV・可使用 Excel 開啟',desc:'包含項目、單價、數量、用途等基本欄位。僅供自行調整與參考。',path:'/downloads/budget-template.csv'},
  {name:'計畫撰寫檢查表',type:'TXT・純文字',desc:'依照前言、問題、策略、工項、經費、期程與效益逐項檢查。',path:'/downloads/proposal-checklist.txt'}
 ];
 ---
-<BaseLayout title="文件與範本"><section class="page-hero"><div class="wrap"><span class="eyebrow">DOCUMENTS & TEMPLATES</span><h1 class="page-title">文件與範本</h1><p>從學習走向實作。先提供可直接編輯的簡易範本，正式文件會在內容與格式查核後陸續上架。</p></div></section><section class="section-spacer"><div class="wrap"><div class="files">{files.map((file) => <div class="file-row"><div><strong>{file.name}</strong><span>{file.type}</span><p class="muted small">{file.desc}</p></div><a href={root + file.path} download>下載文件 ↓</a></div>)}</div><aside class="notice">提醒：上述文件是工作示例，不代表政府機關核定格式。申請補助或辦理核銷時，請優先使用各計畫提供的正式表單。</aside></div></section></BaseLayout>
+<BaseLayout title="文件與範本"><section class="page-hero"><div class="wrap"><span class="eyebrow">DOCUMENTS & TEMPLATES</span><h1 class="page-title">文件與範本</h1><p>從學習走向實作。先提供可直接編輯的簡易範本，正式文件會在內容與格式查核後陸續上架。</p></div></section><section class="section-spacer"><div class="wrap"><div class="files">{files.map((file) => <div class="file-row"><div><strong>{file.name}</strong><span>{file.type}</span><p class="muted small">{file.desc}</p></div><div class="file-actions">{file.preview && <a class="file-preview-link" href={root + file.path} target="_blank" rel="noopener noreferrer">線上閱讀</a>}<a href={root + file.path} download>下載文件 ↓</a></div></div>)}</div><aside class="notice">提醒：上述文件是工作示例，不代表政府機關核定格式。申請補助或辦理核銷時，請優先使用各計畫提供的正式表單。</aside></div></section></BaseLayout>
