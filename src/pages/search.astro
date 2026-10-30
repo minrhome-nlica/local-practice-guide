@@ -23,7 +23,7 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
         const a = document.createElement('a'); a.className='search-result'; a.href=data.url;
         const h = document.createElement('h3'); h.textContent=data.meta.title || data.title || '搜尋結果';
         const p = document.createElement('p'); p.className = 'search-preview';
-        const excerpt = (data.plain_excerpt || (data.excerpt || '').replace(/<[^>]*>/g, '')).replace(/\\s+/g, ' ').trim();
+        const excerpt = (data.plain_excerpt || (data.excerpt || '').replace(/<[^>]*>/g, '')).replace(/\s+/g, ' ').trim();
         const summary = (data.meta?.summary || '').trim();
         p.textContent = excerpt.length >= 120 ? excerpt : [summary, excerpt].filter(Boolean).join('　');
         a.append(h,p); list.appendChild(a);
