@@ -997,3 +997,135 @@ strong, b,
 .file-row .file-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;text-decoration:none;font-weight:700;white-space:nowrap;}
 .file-row .file-actions .file-preview-link{background:#f1f5ee;color:#315745;border:1px solid #bdcfbe;}
 @media(max-width:650px){.file-row .file-actions{justify-content:flex-start;width:100%;}.file-row .file-actions a{flex:1 1 auto;}}
+
+
+/* Reimbursement entry: consistent with proposal / budget editorial templates. */
+.reimburse-article {counter-reset:reimburse-section;}
+.reimburse-article > h2 {
+  border-top:1px solid #d5ddd3;
+  padding-top:33px;
+  margin:76px 0 22px;
+  font-size:clamp(25px,2.4vw,30px);
+  line-height:1.55;
+  scroll-margin-top:115px;
+}
+.reimburse-article > h2::before {
+  counter-increment:reimburse-section;
+  content:"0" counter(reimburse-section) " / 07 · 怎麼核銷";
+  display:block;
+  font-size:12px;
+  line-height:1.7;
+  letter-spacing:.12em;
+  font-weight:700;
+  color:#ad7d61;
+  margin-bottom:9px;
+}
+.reimburse-article > h3 {border-left:3px solid #91a998;padding-left:14px;margin:32px 0 17px;font-size:19px;}
+.reimburse-article > p {margin-bottom:23px;}
+.reimburse-article table {
+  display:table;
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  table-layout:auto;
+  background:#fff;
+  border:1px solid #d9e2d6;
+  border-radius:9px;
+  overflow:hidden;
+  margin:27px 0 35px;
+  font-size:14px;
+  line-height:1.85;
+}
+.reimburse-article th {background:#eaf0e8;color:#2c4e3d;text-align:left;font-weight:700;border-bottom:1px solid #cddbcf;padding:14px 15px;}
+.reimburse-article td {padding:14px 15px;vertical-align:top;overflow-wrap:anywhere;border-bottom:1px solid #e6ece4;}
+.reimburse-article tr:last-child td {border-bottom:0;}
+.reimburse-article td:first-child {color:#315c46;}
+.reimburse-article .reimburse-flow {
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:9px;
+  margin:30px 0 45px;
+}
+.reimburse-flow > div {padding:17px 13px;background:#f6f8f2;border:1px solid #dce5d9;border-radius:8px;}
+.reimburse-flow span {display:block;font:700 23px Georgia,serif;color:#b98a6a;margin-bottom:10px;}
+.reimburse-flow strong {display:block;font-size:14px;line-height:1.7;color:#315441;}
+.reimburse-flow small {display:block;font-size:12px;line-height:1.8;color:#738477;margin-top:5px;}
+.reimburse-article .reimburse-question-card {
+  margin:26px 0 36px;
+  background:#f6f6ef;
+  border:1px solid #dae2d6;
+  border-radius:9px;
+  padding:24px 24px 20px;
+}
+.reimburse-label {display:block;font-size:12px;letter-spacing:.1em;font-weight:700;color:#ac7c5f;margin-bottom:15px;}
+.reimburse-question-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.reimburse-question-grid p {margin:0;padding:15px 18px;background:#fff;border:1px solid #e1e8dd;border-radius:7px;}
+.reimburse-question-grid strong {display:block;color:#2c543e;font-size:16px;margin-bottom:6px;}
+.reimburse-question-grid small {display:block;color:#65786a;font-size:13px;line-height:1.8;}
+.reimburse-article .reimburse-callout {
+  margin:27px 0 34px;
+  padding:22px 25px;
+  background:#f7f5ee;
+  border:1px solid #e0e4da;
+  border-left:4px solid #b88b6c;
+  border-radius:8px;
+}
+.reimburse-callout > strong {display:block;color:#315341;font-size:17px;margin-bottom:11px;}
+.reimburse-callout p {margin:0 0 8px;font-size:14px;line-height:1.95;}
+.reimburse-callout p:last-child {margin:0;}
+.reimburse-article .reimburse-form-sample,.reimburse-article .reimburse-document-example {
+  margin:28px 0 34px;
+  border:1px solid #d8e2d6;
+  border-radius:9px;
+  overflow:hidden;
+  background:#fff;
+}
+.reimburse-form-head,.reimburse-document-title {
+  display:flex;align-items:center;justify-content:space-between;gap:15px;
+  background:#e9f0e8;padding:14px 19px;border-bottom:1px solid #d5dfd4;
+}
+.reimburse-form-head span,.reimburse-document-title span {font-size:12px;font-weight:700;letter-spacing:.08em;color:#9c795e;}
+.reimburse-form-head strong,.reimburse-document-title strong {font-size:18px;color:#2b4d3a;}
+.reimburse-form-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;}
+.reimburse-form-grid > div {padding:16px 20px;min-height:83px;border-right:1px solid #e3e9e1;border-bottom:1px solid #e3e9e1;}
+.reimburse-form-grid > div:nth-child(even) {border-right:0;}
+.reimburse-form-grid .wide {grid-column:1/-1;border-right:0;}
+.reimburse-form-grid > div:last-child {border-bottom:0;}
+.reimburse-form-grid span,.reimburse-document-row span {display:block;color:#718373;font-size:12px;margin:0 0 8px;}
+.reimburse-form-grid strong,.reimburse-document-row strong {display:block;color:#315442;font-size:14px;line-height:1.8;}
+.reimburse-document-row {padding:15px 22px;border-bottom:1px solid #e4ebe3;display:grid;grid-template-columns:100px 1fr;gap:16px;}
+.reimburse-document-row span {margin:0;}
+.reimburse-document-attachment {margin:20px;padding:25px 18px;text-align:center;color:#779081;background:#f9faf6;border:1px dashed #bdd2c3;border-radius:6px;font-size:13px;}
+.reimburse-article .reimburse-final-check {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;margin:26px 0 35px;
+}
+.reimburse-final-check > div {display:flex;align-items:flex-start;gap:13px;padding:17px 18px;background:#f6f8f2;border:1px solid #dde6d9;border-radius:8px;}
+.reimburse-final-check span {font:700 20px Georgia,serif;color:#b48867;}
+.reimburse-final-check p {margin:0;color:#355645;line-height:1.85;font-size:14px;}
+.reimburse-article .reimburse-ending {
+  margin:75px 0 20px;padding:30px 33px;
+  border:1px solid #dde2d5;
+  border-left:4px solid #bc8463;
+  border-radius:9px;background:#f3f2ea;
+  scroll-margin-top:115px;
+}
+.reimburse-ending h2 {margin:0 0 17px;font-size:24px;color:#284b3b;line-height:1.55;}
+.reimburse-ending p {margin:0 0 15px;}
+.reimburse-ending p:last-child {margin:0;}
+@media(max-width:800px){.reimburse-article .reimburse-flow {grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media(max-width:650px){
+  .reimburse-article > h2 {padding-top:26px;margin-top:58px;font-size:25px;}
+  .reimburse-article .reimburse-flow {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .reimburse-question-grid,.reimburse-article .reimburse-final-check {grid-template-columns:1fr;}
+  .reimburse-article table {display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;font-size:13px;}
+  .reimburse-article th,.reimburse-article td {padding:12px 11px;}
+  .reimburse-article .reimburse-form-sample,.reimburse-article .reimburse-document-example {margin-block:24px;}
+  .reimburse-form-grid {grid-template-columns:1fr;}
+  .reimburse-form-grid > div {border-right:0;}
+  .reimburse-form-grid .wide {grid-column:1;}
+  .reimburse-article .reimburse-callout {padding:20px 18px;}
+  .reimburse-article .reimburse-ending {padding:23px 20px;margin-top:57px;}
+  .reimburse-document-row {grid-template-columns:75px 1fr;gap:12px;padding:14px;}
+}
