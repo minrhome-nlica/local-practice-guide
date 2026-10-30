@@ -999,7 +999,7 @@ strong, b,
 @media(max-width:650px){.file-row .file-actions{justify-content:flex-start;width:100%;}.file-row .file-actions a{flex:1 1 auto;}}
 
 
-/* 怎麼核銷｜four-section, image-led article based on the provided Word file */
+/* 怎麼核銷｜six-section, image-led article based on the provided Word file */
 .reimburse-article {counter-reset:claim-section;}
 .reimburse-article > h2 {
   border-top:1px solid #d5ddd3;
@@ -1011,7 +1011,7 @@ strong, b,
 }
 .reimburse-article > h2::before {
   counter-increment:claim-section;
-  content:"0" counter(claim-section) " / 04 · 怎麼核銷";
+  content:"0" counter(claim-section) " / 06 · 怎麼核銷";
   display:block;
   color:#a8765a;
   letter-spacing:.13em;
