@@ -991,3 +991,9 @@ strong, b,
   .report-article .report-final-note {padding:23px 20px;margin-top:57px;}
   .report-final-note h2 {font-size:22px;}
 }
+
+/* File library: separate PDF preview and download actions. */
+.file-row .file-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:9px;}
+.file-row .file-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;text-decoration:none;font-weight:700;white-space:nowrap;}
+.file-row .file-actions .file-preview-link{background:#f1f5ee;color:#315745;border:1px solid #bdcfbe;}
+@media(max-width:650px){.file-row .file-actions{justify-content:flex-start;width:100%;}.file-row .file-actions a{flex:1 1 auto;}}
