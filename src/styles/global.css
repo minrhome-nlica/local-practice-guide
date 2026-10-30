@@ -511,3 +511,114 @@ strong, b,
 .budget-reading-note p{margin:0 0 15px;}
 .budget-reading-note p:last-child{margin-bottom:0;}
 @media(max-width:650px){.budget-article > h2{margin-top:57px;padding-top:26px;font-size:25px;}.budget-article > h3{font-size:18px;}.budget-article .budget-route{grid-template-columns:repeat(2,minmax(0,1fr));}.budget-article .budget-two-col,.budget-article .budget-transfer-grid,.budget-article .budget-work-items{grid-template-columns:1fr;}.budget-article table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;font-size:13px;}.budget-article td,.budget-article th{padding:12px 11px;}.budget-article .budget-download-card{padding:20px 17px;gap:13px;}.budget-download-mark{min-width:48px;height:54px;font-size:11px;}.budget-download-actions a{width:100%;}.budget-article .budget-reading-note{padding:23px 20px;margin-top:55px;}.budget-totals strong{font-size:23px;}}
+
+
+/* Four-column, row-spanned budget classification tables — follows original Word hierarchy. */
+.budget-article .budget-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  margin: 27px 0 35px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid #d6e0d4;
+  border-radius: 9px;
+  background: #fff;
+}
+.budget-article .budget-table-scroll:focus-visible {
+  outline: 3px solid #7d9c85;
+  outline-offset: 3px;
+}
+.budget-article .budget-layered-table {
+  display: table;
+  width: 100%;
+  min-width: 665px;
+  table-layout: fixed;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  overflow: visible;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.budget-article .budget-layered-table caption {
+  caption-side: top;
+  background: #f5f6f0;
+  color: #607568;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 11px 17px;
+  text-align: left;
+  border-bottom: 1px solid #dbe3d9;
+}
+.budget-col-door {width: 9%;}
+.budget-col-one {width: 15%;}
+.budget-col-two {width: 25%;}
+.budget-col-purpose {width: 51%;}
+.budget-article .budget-layered-table th,
+.budget-article .budget-layered-table td {
+  min-width: 0;
+  padding: 14px 13px;
+  font-size: 14px;
+  line-height: 1.9;
+  text-align: left;
+  vertical-align: middle;
+  border: 0;
+  border-right: 1px solid #e0e5dc;
+  border-bottom: 1px solid #e1e7dd;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.budget-article .budget-layered-table thead th {
+  background: #e9f0e7;
+  font-weight: 700;
+  color: #294a39;
+  border-bottom: 2px solid #cad9cb;
+}
+.budget-article .budget-layered-table tr > :last-child {border-right: 0;}
+.budget-article .budget-layered-table tbody tr:last-child > :not([rowspan]) {border-bottom: 0;}
+.budget-article .budget-layered-table th.budget-table-door {
+  background: #e5ede2;
+  color: #2b513d;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid #b9cdbd;
+}
+.budget-table-door span {display: inline-block; writing-mode: vertical-rl; letter-spacing: .24em;}
+.budget-article .budget-layered-table th.budget-table-first {
+  background: #f1f5ed;
+  color: #315443;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid #cbdccb;
+}
+.budget-article .budget-layered-table td.budget-table-second {
+  font-weight: 700;
+  color: #355b47;
+}
+.budget-article .budget-level-reading {
+  border: 1px solid #d7e1d6;
+  border-left: 4px solid #a9c0aa;
+  border-radius: 8px;
+  padding: 24px 26px;
+  margin: 36px 0 41px;
+  background: #f6f7f1;
+}
+.budget-article .budget-level-reading > strong {
+  display: block;
+  margin-bottom: 18px;
+  color: #2c4d3c;
+  font-size: 18px;
+}
+.budget-level-reading > div {padding: 11px 0 14px; border-top: 1px solid #dee5da;}
+.budget-level-reading > div span {display: block; font-weight: 700; color: #366049; font-size: 14px; margin-bottom: 7px;}
+.budget-level-reading > div p {margin: 0; font-size: 14px; line-height: 1.9;}
+.budget-level-reading > small {display: block; padding-top: 11px; color: #718374; font-size: 12px; line-height: 1.85;}
+@media (max-width: 650px) {
+  .budget-article .budget-table-scroll { margin: 23px 0 30px; }
+  .budget-article .budget-layered-table {display: table; min-width: 690px; overflow: visible;}
+  .budget-article .budget-layered-table th,
+  .budget-article .budget-layered-table td {padding: 12px 11px; font-size: 13px;}
+  .budget-article .budget-level-reading {padding: 20px 18px;}
+}
