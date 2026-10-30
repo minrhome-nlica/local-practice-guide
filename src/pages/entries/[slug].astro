@@ -39,4 +39,17 @@ const related = relatedIds.map((id) => allEntries.find((e) => e.id === id)).filt
     </article>
     <aside class="side-box"><h3>本篇目錄</h3>{[...headings.filter((h) => h.depth === 2), ...(entry.id === 'subsidy-guide' ? [{ text: '小提醒', slug: 'subsidy-note-heading' }] : []), ...(entry.id === 'tender' ? [{ text: '小提醒', slug: 'tender-note-heading' }] : []), ...(entry.id === 'proposal-writing' ? [{ text: '寫完計畫，再回頭檢查', slug: 'plan-note-heading' }] : []), ...(entry.id === 'budget-planning' ? [{ text: '編完經費表，再回頭看一次計畫書', slug: 'budget-note-heading' }] : []), ...(entry.id === 'results-report-writing' ? [{ text: '寫完以後，換成審查者的角度讀一次', slug: 'report-final-note-heading' }] : [])].map((h) => <a href={'#' + h.slug}>{h.text}</a>)}<a href={root + '/knowledge/'} style="margin-top:20px;font-weight:700">← 返回百科總覽</a></aside>
   </div>
+  <script is:inline>
+    // Present the introduction before the automatic chapter shortcuts.
+    // The guide's H2 headings remain the anchor targets for every card.
+    (() => {
+      const page = document.querySelector('.entry-layout');
+      const articleBody = page?.querySelector('.article.guide-article');
+      const shortcuts = page?.querySelector('.chapter-jump');
+      const firstChapter = articleBody?.querySelector(':scope > h2');
+      if (shortcuts && firstChapter) {
+        firstChapter.before(shortcuts);
+      }
+    })();
+  </script>
 </BaseLayout>

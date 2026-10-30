@@ -1591,3 +1591,17 @@ strong, b,
 }
 .article.guide-article :is(p,li,figcaption) { text-wrap: pretty; }
 .article.guide-article a { overflow-wrap: break-word; }
+
+/* Put the chapter index after the opening explanation, before section one. */
+.article.guide-article > .chapter-jump { margin: 40px 0 35px; }
+.article.guide-article .chapter-jump-card,
+.article.guide-article .chapter-jump-card:hover,
+.article.guide-article .chapter-jump-card:focus-visible {
+  text-decoration: none;
+  color: #2c4b3b;
+}
+.article.guide-article > .chapter-jump + h2 { margin-top: 45px; }
+@media (max-width: 700px) {
+  .article.guide-article > .chapter-jump { margin: 30px 0; }
+  .article.guide-article > .chapter-jump + h2 { margin-top: 40px; }
+}
