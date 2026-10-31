@@ -1786,3 +1786,119 @@ main table :is(th, td) p {
     padding: 12px 13px;
   }
 }
+
+
+/* Organization formation: legal person vs natural person explainer. */
+.org-concept-pair,
+.org-step-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px;
+  margin:26px 0 31px;
+}
+.org-concept-pair > div,
+.org-step-grid > div {
+  background:#f4f7f1;
+  border:1px solid #d8e4d5;
+  border-radius:9px;
+  padding:23px 21px;
+  min-width:0;
+}
+.org-concept-pair > div:nth-child(2),
+.org-step-grid > div:nth-child(2) {
+  background:#f8f5ef;
+  border-color:#e6ddce;
+}
+.org-concept-pair span,
+.org-step-grid span {
+  display:block;
+  color:#a47759;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.02em;
+  margin-bottom:12px;
+}
+.org-concept-pair strong,
+.org-step-grid strong {
+  display:block;
+  font-size:20px;
+  font-weight:700;
+  color:#294e3c;
+  line-height:1.6;
+}
+.org-concept-pair p,
+.org-step-grid p {
+  color:#5a7162;
+  font-size:14px;
+  line-height:1.85;
+  margin:12px 0 0;
+}
+.org-table-scroll {
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid #d6e2d5;
+  border-radius:9px;
+  margin:25px 0 9px;
+}
+.article .org-compare-table {
+  display:table;
+  width:100%;
+  min-width:640px;
+  overflow:visible;
+  border-collapse:collapse;
+  table-layout:fixed;
+  background:#fff;
+  margin:0;
+  font-size:14px;
+  line-height:1.85;
+}
+.article .org-compare-table :is(th,td) {
+  white-space:normal;
+  word-break:normal;
+  line-break:strict;
+  overflow-wrap:break-word;
+  padding:15px 16px;
+  vertical-align:top;
+  border:0;
+  border-bottom:1px solid #e3e9df;
+  text-align:left;
+}
+.article .org-compare-table thead th {
+  background:#e9f0e7;
+  color:#2e4c3b;
+  font-weight:700;
+}
+.article .org-compare-table thead th:first-child {width:24%;}
+.article .org-compare-table tbody th {
+  font-weight:700;
+  background:#f7f9f5;
+  color:#2e5440;
+}
+.article .org-compare-table tbody tr:last-child :is(td,th) {border-bottom:0;}
+.article .org-type-table {min-width:710px;}
+.article .org-type-table thead th:first-child {width:27%;}
+.article .org-type-table thead th:nth-child(2) {width:26%;}
+.org-table-hint {
+  color:#738477;
+  font-size:12px;
+  line-height:1.75;
+  margin:6px 0 29px !important;
+}
+.org-source-note {
+  margin:50px 0 15px;
+  padding:23px 24px;
+  border-left:3px solid #7e9f88;
+  background:#f5f7f1;
+  border-radius:0 8px 8px 0;
+}
+.org-source-note > strong {display:block;color:#345940;margin-bottom:12px;}
+.org-source-note p {font-size:13px;line-height:1.85;margin:9px 0;}
+@media(max-width:700px) {
+  .org-concept-pair,.org-step-grid {grid-template-columns:1fr;gap:10px;}
+  .org-concept-pair > div,.org-step-grid > div {padding:19px 17px;}
+  .article .org-compare-table {min-width:620px;font-size:13px;}
+  .article .org-compare-table :is(th,td) {padding:12px 13px;}
+  .article .org-type-table {min-width:690px;}
+  .org-source-note {padding:19px 17px;}
+}
