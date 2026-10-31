@@ -10,6 +10,7 @@ related:
   - local-practice
   - what-is-subsidy
   - labor-health-insurance
+  - which-status-saves-tax
 tags:
   - 自然人
   - 法人
@@ -161,7 +162,7 @@ tags:
 2. **錢和資產要歸誰管理？** 是個人的工作收入，還是大家希望共同累積的資源？
 3. **如果負責人離開，事情還要不要繼續？** 未來是否需要由不同成員接手經營？
 
-搞清楚自然人與法人，只是選擇組織形式的第一步。接下來才有辦法進一步比較：**個人接案、商號、公司、人民團體與合作社，究竟哪一種適合你想做的地方工作。**
+搞清楚自然人與法人，只是選擇組織形式的第一步。接下來才有辦法進一步比較：**個人接案、商號、公司、人民團體與合作社，究竟哪一種適合你想做的地方工作。** 至於各種身分的所得稅、營業稅及免稅條件，可以繼續看[〈什麼身分比較節稅？〉](/local-practice-guide/entries/which-status-saves-tax/)。
 
 <div class="org-source-note">
   <strong>參考資料與閱讀提醒</strong>
