@@ -87,23 +87,25 @@ tags:
 
 **無限責任合作社的責任範圍不同。** 依《合作社法》第 4 條，合作社財產不足清償債務時，社員須連帶負責。因此，農友在成立合作社時，需要確認選擇的是哪一種責任形式。
 
-## 三、合作社購買冰庫，卻無法支付尾款
+## 三、社團法人舉辦文化節，卻無法支付活動尾款
 
-某個有限責任合作社為了保存農產品，訂購一套 **200 萬元的冰庫與分級設備**，已經支付 50 萬元，剩下 **150 萬元尾款**。但當年遇到強烈颱風，農產品無法順利銷售，合作社資金周轉困難，付不出尾款。
+假設一群地方青年依法成立並完成法人登記的**社團法人文化協會**，共同舉辦地方文化節。協會以自己的名義與舞台工程公司簽訂 **200 萬元的舞台、燈光與音響服務合約**，先支付 **50 萬元**，剩下 **150 萬元尾款**。
 
-我們假設設備商依法可以請求 150 萬元，而合作社處理其他可供清償財產後，最後只有 **100 萬元** 可以償還。
+活動結束後，實際籌得的經費低於預期，協會無法支付全部尾款。假設協會整理可依法用於清償的現金及其他財產後，只有 **100 萬元** 可以償還。
 
 <div class="org-liability-example">
-  <span class="org-liability-example-label">冰庫採購尾款｜數字情境</span>
+  <span class="org-liability-example-label">地方文化節｜社團法人契約債務</span>
   <div class="org-liability-stats">
-    <div><small>尚欠設備商</small><strong>150 萬元</strong></div>
-    <div><small>可供清償的財產</small><strong>100 萬元</strong></div>
+    <div><small>尚欠舞台工程公司</small><strong>150 萬元</strong></div>
+    <div><small>協會可供清償的財產</small><strong>100 萬元</strong></div>
     <div><small>未能清償的差額</small><strong>50 萬元</strong></div>
   </div>
-  <p><strong>設備商可以依法向合作社追償未付的 50 萬元。</strong> 合作社財產依法清理後仍不足的部分，已繳足社股、沒有提供個人保證或另負法定責任的普通社員，原則上無須以私人存款或農地補足。</p>
+  <p><strong>契約是由社團法人協會簽訂，150 萬元尾款便是協會的債務。</strong> 依法處理協會財產並償還 100 萬元後，剩餘 50 萬元仍須依適用的法定程序處理。一般會員原則上無須僅因會員身分，就拿個人存款或房屋補足。</p>
 </div>
 
-設備商尚有 **50 萬元未受償債權**，應依合作社適用的法定程序處理。這筆欠款屬於合作社的債務；社員個人是否另須負責，取決於合作社的責任形式及有無個人保證、其他法定責任。
+這裡可以看到，**社團法人能讓協會以自己的財產承擔共同活動產生的契約責任**。即使協會因財務困難而無法全額清償，會員也不會僅因為參與協會，就成為活動廠商的個人債務人。
+
+協會的**理事、實際簽署個人保證的人，或涉及其他違法行為者**，則可能依個別規定承擔責任。例如依[《民法》第 35 條](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001)，法人財產不足清償債務時，董事應即聲請破產；如因有過失而未依規定聲請，致債權人受損害，可能須負賠償責任。這些屬於理事的法定義務，與一般會員的身分不同。
 
 ## 四、公司欠了 500 萬，只剩 100 萬，負責人要還嗎？
 
@@ -185,9 +187,11 @@ tags:
 
 ### 3. 讓更多人有機會合作
 
-**有限責任合作社**讓農友在法定責任範圍內，共同投入運銷與設備採購。當社員清楚知道出資、分工和風險如何分配，就能建立較穩定的合作制度。
+假設幾位返鄉青年想和社區居民共同辦理親子共學、長者課程及地方文化活動。剛開始可能由其中一人負責簽約、收款與聯繫講師；活動越來越多後，就需要讓更多夥伴共同參與規劃和管理。
 
-法人能讓資產、契約、決策、權責更制度化，讓一個地方事業有機會不只靠單一創辦人的熱情維持。
+如果大家依法成立**社團法人協會**，就可以透過章程、會員大會及理監事會等制度，分工討論課程方向、安排經費與決定重要事務。對外合作也能以協會名義辦理，讓工作逐漸成為一個團隊共同承擔的事業。
+
+**法人的意義，是讓地方工作有共同的法律主體與決策制度。** 不同世代、不同專長的夥伴，都能在這套制度下參與，讓合作逐漸穩定下來。
 
 ## 七、結語：讓組織與個人的責任有清楚界線
 
@@ -201,6 +205,6 @@ tags:
 
 <div class="org-source-note">
   <strong>資料來源與閱讀提醒</strong>
-  <p>本篇依《團體立案指南》及《人民團體、創業與自由接案指南》的高麗菜供貨、冰庫採購、公司欠款與千萬貸款案例重整。各金額均為教學假設，不代表實際違約金、債權清償順位或清算結果；清水祖師廟「跨越三百年」亦為說明法人永續性的假設情境。</p>
-  <p>官方法規：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080001" target="_blank" rel="noopener noreferrer">公司法第 2、23、24、25、99 條等</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">合作社法第 4 條</a>、<a href="https://mojlaw.moj.gov.tw/LawContent.aspx?LSID=FL001351&amp;TypeSort=3&amp;lawNumber=739" target="_blank" rel="noopener noreferrer">民法保證契約相關規定</a>、<a href="https://serv.gcis.nat.gov.tw/crm/faqAction.do?id=915&amp;method=faqDetl" target="_blank" rel="noopener noreferrer">經濟部：公司法人格何時消滅？</a>、<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=GL000108" target="_blank" rel="noopener noreferrer">財政部：清算、破產程序與公司人格消滅釋疑</a>。</p>
+  <p>本篇依《團體立案指南》及《人民團體、創業與自由接案指南》的有限責任教學架構重整，並設計高麗菜供貨、社團法人舉辦文化節、公司欠款與千萬貸款等假設案例。各金額均為教學假設，不代表實際違約金、債權清償順位或清算結果；清水祖師廟「跨越三百年」亦為說明法人永續性的假設情境。</p>
+  <p>官方法規：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080001" target="_blank" rel="noopener noreferrer">公司法第 2、23、24、25、99 條等</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">合作社法第 4 條</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001" target="_blank" rel="noopener noreferrer">民法第 35 條（法人不能清償債務時董事的義務）</a>、<a href="https://mojlaw.moj.gov.tw/LawContent.aspx?LSID=FL001351&amp;TypeSort=3&amp;lawNumber=739" target="_blank" rel="noopener noreferrer">民法保證契約相關規定</a>、<a href="https://serv.gcis.nat.gov.tw/crm/faqAction.do?id=915&amp;method=faqDetl" target="_blank" rel="noopener noreferrer">經濟部：公司法人格何時消滅？</a>、<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=GL000108" target="_blank" rel="noopener noreferrer">財政部：清算、破產程序與公司人格消滅釋疑</a>。</p>
 </div>
