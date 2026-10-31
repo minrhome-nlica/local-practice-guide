@@ -2001,3 +2001,38 @@ main table :is(th, td) p {
   .org-answer-card {padding:18px 17px;}
   .org-responsibility-list > div {grid-template-columns:1fr;gap:4px;padding:17px;}
 }
+
+/* Plain-language case outcomes: keep the answer visually separate from the explanation. */
+.article.guide-article .org-case-result {
+  background: #edf4e9;
+  border-left: 4px solid #6e9778;
+  border-radius: 5px 8px 8px 5px;
+  padding: 15px 18px;
+  margin: 17px 0 2px;
+}
+.article.guide-article .org-case-result > span {
+  display: block;
+  color: #51745a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  margin: 0 0 6px;
+}
+.article.guide-article .org-case-result > p {
+  margin: 0;
+  color: #294734;
+  font-size: 15px;
+  line-height: 1.85;
+}
+.article.guide-article .org-case-result strong {
+  color: #254c35;
+  font-size: 16px;
+}
+.article.guide-article .org-responsibility-list > div > div { min-width: 0; }
+.article.guide-article .org-responsibility-list > div > div > p {
+  margin: 10px 0;
+}
+@media (max-width: 700px) {
+  .article.guide-article .org-case-result { padding: 14px 15px; }
+  .article.guide-article .org-case-result strong { font-size: 15px; }
+}
