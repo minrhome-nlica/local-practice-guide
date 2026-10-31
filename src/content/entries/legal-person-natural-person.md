@@ -6,6 +6,7 @@ level: 入門
 updated: 2026-10-31
 status: 編輯稿
 related:
+  - why-establish-legal-person
   - local-practice
   - what-is-subsidy
   - labor-health-insurance

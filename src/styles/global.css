@@ -1902,3 +1902,75 @@ main table :is(th, td) p {
   .article .org-type-table {min-width:690px;}
   .org-source-note {padding:19px 17px;}
 }
+
+
+/* Organizations: limited-liability hypothetical scenarios and reader question. */
+.org-liability-example {
+  margin:27px 0 34px;
+  padding:23px 23px 18px;
+  background:#f3f7f1;
+  border:1px solid #cddfcd;
+  border-radius:10px;
+}
+.org-liability-example-label {
+  display:block;
+  color:#a36c51;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.04em;
+  margin-bottom:14px;
+}
+.org-liability-stats {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin:12px 0 17px;
+}
+.org-liability-stats > div {
+  padding:14px 12px;
+  background:#fff;
+  border:1px solid #e0e8dd;
+  border-radius:7px;
+  min-width:0;
+}
+.org-liability-stats small {
+  display:block;
+  color:#748577;
+  font-size:12px;
+  line-height:1.7;
+  margin-bottom:9px;
+}
+.org-liability-stats strong {
+  display:block;
+  color:#2e533e;
+  font-size:clamp(16px,1.9vw,22px);
+  line-height:1.5;
+  font-variant-numeric:tabular-nums;
+}
+.org-liability-example p {margin:12px 0 0;line-height:1.85;font-size:14px;}
+.org-question-panel {
+  margin:24px 0 27px;
+  padding:25px;
+  background:#f8f3e9;
+  border:1px solid #e7dbcb;
+  border-left:4px solid #ba805e;
+  border-radius:8px;
+}
+.org-question-panel span {display:block;color:#a36c51;font-size:12px;font-weight:700;margin-bottom:12px;}
+.org-question-panel strong {display:block;font-size:clamp(18px,2.4vw,23px);line-height:1.8;color:#2c4939;}
+.org-explainer-note {
+  margin:20px 0 26px;
+  padding:17px 20px;
+  background:#f8f7f2;
+  border-left:3px solid #8da98f;
+  color:#576b5d;
+  font-size:14px;
+  line-height:1.8;
+}
+@media(max-width:700px){
+  .org-liability-example {padding:18px 15px;}
+  .org-liability-stats {grid-template-columns:1fr;gap:7px;}
+  .org-liability-stats > div {padding:11px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .org-liability-stats small {margin:0;}
+  .org-question-panel {padding:20px 17px;}
+}

@@ -8,7 +8,7 @@ export async function getStaticPaths(){
   return entries.map((entry) => ({ params: {slug:entry.id}, props: {entry} }));
 }
 const { entry } = Astro.props;
-const isConceptEntry = entry.data.category === 'basics';
+const isConceptEntry = ['basics', 'organizations'].includes(entry.data.category);
 const { Content, headings } = await render(entry);
 const chapters = headings.filter((h) => h.depth === 2);
 const chapterTitle = (text) => text.replace(/^(?:[一二三四五六七八九十]+|[壹貳參肆伍陸柒捌玖拾]+|[0-9]{1,2})[、．.]\s*/, '');
