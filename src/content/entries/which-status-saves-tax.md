@@ -59,12 +59,17 @@ tags:
 
 假設這筆設計報酬依法認定為執行業務所得（9A），而且我是臺灣境內居住者，並符合應扣取二代健保補充保費的條件：
 
-| 項目 | 金額 |
-| --- | ---: |
-| 設計報酬 | 100,000 元 |
-| 預扣所得稅 10% | −10,000 元 |
-| 二代健保補充保費 2.11% | −2,110 元 |
-| **實際匯入帳戶** | **87,890 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="2. 個人接案會被扣多少錢？的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">設計報酬</th><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">預扣所得稅 10%</th><td class="tax-number">−10,000 元</td></tr>
+    <tr><th scope="row">二代健保補充保費 2.11%</th><td class="tax-number">−2,110 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>實際匯入帳戶</strong></th><td class="tax-number"><strong>87,890 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 <div class="tax-withholding-note" data-rate="10" role="note" aria-label="小提醒：預扣10%不是最終所得稅">
   <span class="tax-withholding-kicker">小提醒｜先扣稅，不等於最後繳這麼多</span>
@@ -83,12 +88,17 @@ tags:
 
 雖然我只實領 87,890 元，但付款公司並不是只花了 87,890 元。
 
-| 付款去向 | 金額 |
-| --- | ---: |
-| 匯給設計師 | 87,890 元 |
-| 代繳國稅局所得稅 | 10,000 元 |
-| 代繳健保署補充保費 | 2,110 元 |
-| **付款公司合計支出** | **100,000 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 那付款公司要付出多少錢？的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">付款去向</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">匯給設計師</th><td class="tax-number">87,890 元</td></tr>
+    <tr><th scope="row">代繳國稅局所得稅</th><td class="tax-number">10,000 元</td></tr>
+    <tr><th scope="row">代繳健保署補充保費</th><td class="tax-number">2,110 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>付款公司合計支出</strong></th><td class="tax-number"><strong>100,000 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 換句話說，**所得稅和個人補充保費是從原本 100,000 元報酬中扣下來的，不是付款公司另外多付 12,110 元。**
 
@@ -110,8 +120,8 @@ tags:
 
 **首先，要先區分「授課鐘點費」與「講演鐘點費」。**
 
-<div class="org-table-scroll" role="region" aria-label="設計委託授課與講演的所得類別比較" tabindex="0">
-<table class="org-compare-table">
+<div class="org-table-scroll tax-table-wrap tax-table-horizontal" role="region" aria-label="設計委託授課與講演的所得類別比較" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-topics">
   <thead><tr><th scope="col">工作情境</th><th scope="col">可能的所得分類</th><th scope="col">說明</th></tr></thead>
   <tbody>
     <tr><th scope="row">委託設計師製作活動主視覺</th><td>9A 執行業務所得</td><td>須依實際委託與創作性質認定</td></tr>
@@ -131,12 +141,17 @@ tags:
 
 依此情境試算：
 
-| 項目 | 金額 |
-| --- | ---: |
-| 設計課程講師費 | 100,000 元 |
-| 預扣薪資所得稅 5% | −5,000 元 |
-| 個人兼職薪資補充保費 2.11% | −2,110 元 |
-| **講師實際收到** | **92,890 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="（1）設計師實際可以領到多少錢？的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">設計課程講師費</th><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">預扣薪資所得稅 5%</th><td class="tax-number">−5,000 元</td></tr>
+    <tr><th scope="row">個人兼職薪資補充保費 2.11%</th><td class="tax-number">−2,110 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>講師實際收到</strong></th><td class="tax-number"><strong>92,890 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 <div class="tax-withholding-note" data-rate="5" role="note" aria-label="小提醒：預扣5%不是最終所得稅">
   <span class="tax-withholding-kicker">小提醒｜5% 是預扣，不是最後的稅率</span>
@@ -169,15 +184,20 @@ tags:
 
 舉例來說，假設付款公司原本的薪資情況如下：
 
-| 項目 | 金額 |
-| --- | ---: |
-| 公司原本當月支付員工薪資總額 | 500,000 元 |
-| 公司原本當月受僱者健保投保金額總額 | 500,000 元 |
-| 額外支付設計課程講師費（所得 50） | +100,000 元 |
-| **當月薪資所得總額** | **600,000 元** |
-| 扣除受僱者健保投保金額總額 | −500,000 元 |
-| **應計收補充保費的差額** | **100,000 元** |
-| **投保單位額外補充保費 2.11%** | **2,110 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="（2）付款公司為什麼可能還要額外付 2.11%？的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">公司原本當月支付員工薪資總額</th><td class="tax-number">500,000 元</td></tr>
+    <tr><th scope="row">公司原本當月受僱者健保投保金額總額</th><td class="tax-number">500,000 元</td></tr>
+    <tr><th scope="row">額外支付設計課程講師費（所得 50）</th><td class="tax-number">+100,000 元</td></tr>
+    <tr class="tax-subtotal-row"><th scope="row"><strong>當月薪資所得總額</strong></th><td class="tax-number"><strong>600,000 元</strong></td></tr>
+    <tr><th scope="row">扣除受僱者健保投保金額總額</th><td class="tax-number">−500,000 元</td></tr>
+    <tr class="tax-subtotal-row"><th scope="row"><strong>應計收補充保費的差額</strong></th><td class="tax-number"><strong>100,000 元</strong></td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>投保單位額外補充保費 2.11%</strong></th><td class="tax-number"><strong>2,110 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 這代表什麼？
 
@@ -193,16 +213,16 @@ tags:
 
 我們沿用剛才的假設，將付款去向整理如下：
 
-<div class="org-table-scroll" role="region" aria-label="講師費十萬元及付款公司額外補充保費試算表" tabindex="0">
-<table class="org-compare-table">
+<div class="org-table-scroll tax-table-wrap tax-table-horizontal" role="region" aria-label="講師費十萬元及付款公司額外補充保費試算表" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-payment">
   <thead><tr><th scope="col">付款項目</th><th scope="col">金額</th><th scope="col">由誰負擔</th></tr></thead>
   <tbody>
-    <tr><th scope="row">實際匯給設計講師</th><td>92,890 元</td><td>原講師費的一部分</td></tr>
-    <tr><th scope="row">代繳薪資所得稅 5%</th><td>5,000 元</td><td>從講師費預扣</td></tr>
-    <tr><th scope="row">代繳個人兼職薪資補充保費 2.11%</th><td>2,110 元</td><td>從講師費扣取</td></tr>
-    <tr><th scope="row"><strong>原約定講師報酬合計</strong></th><td><strong>100,000 元</strong></td><td>付款公司原約定支出</td></tr>
-    <tr><th scope="row">投保單位額外補充保費 2.11%</th><td>+2,110 元</td><td>付款公司額外負擔</td></tr>
-    <tr><th scope="row"><strong>付款公司實際總支出</strong></th><td><strong>102,110 元</strong></td><td><strong>公司總成本</strong></td></tr>
+    <tr><th scope="row">實際匯給設計講師</th><td class="tax-number">92,890 元</td><td>原講師費的一部分</td></tr>
+    <tr><th scope="row">代繳薪資所得稅 5%</th><td class="tax-number">5,000 元</td><td>從講師費預扣</td></tr>
+    <tr><th scope="row">代繳個人兼職薪資補充保費 2.11%</th><td class="tax-number">2,110 元</td><td>從講師費扣取</td></tr>
+    <tr class="tax-subtotal-row"><th scope="row"><strong>原約定講師報酬合計</strong></th><td class="tax-number"><strong>100,000 元</strong></td><td>付款公司原約定支出</td></tr>
+    <tr><th scope="row">投保單位額外補充保費 2.11%</th><td class="tax-number">+2,110 元</td><td>付款公司額外負擔</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>付款公司實際總支出</strong></th><td class="tax-number"><strong>102,110 元</strong></td><td><strong>公司總成本</strong></td></tr>
   </tbody>
 </table>
 </div>
@@ -217,17 +237,17 @@ tags:
 
 最後，將兩種情境放在一起比較：
 
-<div class="org-table-scroll" role="region" aria-label="設計委託與設計課程十萬元付款成本對照表" tabindex="0">
-<table class="org-compare-table">
+<div class="org-table-scroll tax-table-wrap tax-table-horizontal" role="region" aria-label="設計委託與設計課程十萬元付款成本對照表" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-side-by-side">
   <thead><tr><th scope="col">比較項目</th><th scope="col">設計委託</th><th scope="col">開設設計課程</th></tr></thead>
   <tbody>
-    <tr><th scope="row">假設所得代碼</th><td>9A</td><td>50</td></tr>
-    <tr><th scope="row">約定報酬</th><td>100,000 元</td><td>100,000 元</td></tr>
-    <tr><th scope="row">預扣所得稅</th><td>10,000 元</td><td>5,000 元</td></tr>
-    <tr><th scope="row">個人補充保費</th><td>2,110 元</td><td>2,110 元</td></tr>
-    <tr><th scope="row"><strong>收款人實領</strong></th><td><strong>87,890 元</strong></td><td><strong>92,890 元</strong></td></tr>
-    <tr><th scope="row">投保單位因本案增加的補充保費</th><td>0 元</td><td>2,110 元</td></tr>
-    <tr><th scope="row"><strong>付款公司總支出</strong></th><td><strong>100,000 元</strong></td><td><strong>102,110 元</strong></td></tr>
+    <tr><th scope="row">假設所得代碼</th><td class="tax-number">9A</td><td class="tax-number">50</td></tr>
+    <tr><th scope="row">約定報酬</th><td class="tax-number">100,000 元</td><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">預扣所得稅</th><td class="tax-number">10,000 元</td><td class="tax-number">5,000 元</td></tr>
+    <tr><th scope="row">個人補充保費</th><td class="tax-number">2,110 元</td><td class="tax-number">2,110 元</td></tr>
+    <tr class="tax-subtotal-row"><th scope="row"><strong>收款人實領</strong></th><td class="tax-number"><strong>87,890 元</strong></td><td class="tax-number"><strong>92,890 元</strong></td></tr>
+    <tr><th scope="row">投保單位因本案增加的補充保費</th><td class="tax-number">0 元</td><td class="tax-number">2,110 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>付款公司總支出</strong></th><td class="tax-number"><strong>100,000 元</strong></td><td class="tax-number"><strong>102,110 元</strong></td></tr>
   </tbody>
 </table>
 </div>
@@ -264,11 +284,16 @@ tags:
 
 假設我的工作室已經由國稅局核定使用統一發票，而且這筆設計服務適用 5% 營業稅：
 
-| 項目 | 金額 |
-| --- | ---: |
-| 設計服務費 | 100,000 元 |
-| 營業稅 5% | 5,000 元 |
-| **客戶付款金額** | **105,000 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="1. 假設我成立了自己的設計工作室的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">設計服務費</th><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">營業稅 5%</th><td class="tax-number">5,000 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>客戶付款金額</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 這次工作室實際收到 105,000 元，其中 5,000 元是銷項營業稅，不應直接當成工作室賺到的利潤。
 
@@ -288,11 +313,16 @@ tags:
 
 假設工作室依法開立 105,000 元的應稅統一發票：
 
-| 項目 | 金額 |
-| --- | ---: |
-| 支付工作室設計費 | 100,000 元 |
-| 支付營業稅 | 5,000 元 |
-| **實際付款** | **105,000 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 付款公司要付出多少錢？的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">支付工作室設計費</th><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">支付營業稅</th><td class="tax-number">5,000 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>實際付款</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 和個人領據不同，付款公司取得依法開立的營業人發票後，通常不需要就這筆一般營業交易，再代扣個人的 10% 執行業務所得稅或 2.11% 個人補充保費。
 
@@ -340,13 +370,18 @@ tags:
 
 假設最後課稅所得額為 60 萬元，適用 20% 營所稅率：
 
-| 項目 | 金額 |
-| --- | ---: |
-| 年度營業收入 | 1,000,000 元 |
-| 假設可認列成本與費用 | −400,000 元 |
-| 課稅所得額 | 600,000 元 |
-| 公司營所稅 20% | 120,000 元 |
-| **公司階段稅後所得** | **480,000 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="2. 公司需要繳多少稅？的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">年度營業收入</th><td class="tax-number">1,000,000 元</td></tr>
+    <tr><th scope="row">假設可認列成本與費用</th><td class="tax-number">−400,000 元</td></tr>
+    <tr><th scope="row">課稅所得額</th><td class="tax-number">600,000 元</td></tr>
+    <tr><th scope="row">公司營所稅 20%</th><td class="tax-number">120,000 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>公司階段稅後所得</strong></th><td class="tax-number"><strong>480,000 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 但不能因為公司繳完 120,000 元營所稅，就認為剩下 480,000 元已經是我個人的免稅收入。
 
@@ -356,11 +391,16 @@ tags:
 
 在這筆 100,000 元設計案中：
 
-| 項目 | 金額 |
-| --- | ---: |
-| 公司設計服務費 | 100,000 元 |
-| 營業稅 5% | 5,000 元 |
-| **付款公司合計支出** | **105,000 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 付款公司需要付出多少錢？的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">公司設計服務費</th><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">營業稅 5%</th><td class="tax-number">5,000 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>付款公司合計支出</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 付款方依發票及交易資料辦理帳務，符合條件的 5,000 元進項稅額可以申報扣抵。
 
@@ -414,11 +454,16 @@ tags:
 
 假設這筆委託屬於協會依法應課徵 5% 營業稅、並須開立統一發票的服務：
 
-| 項目 | 金額 |
-| --- | ---: |
-| 設計服務費 | 100,000 元 |
-| 營業稅 5% | 5,000 元 |
-| **付款公司合計支出** | **105,000 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 付款公司要付出多少錢？的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">設計服務費</th><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">營業稅 5%</th><td class="tax-number">5,000 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>付款公司合計支出</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 付款公司取得合法發票後，依相關規定辦理成本、費用與營業稅扣抵。
 
@@ -472,11 +517,16 @@ tags:
 
 假設合作社依法提供這項設計服務，交易適用 5% 營業稅並開立應稅發票：
 
-| 項目 | 金額 |
-| --- | ---: |
-| 合作社設計服務費 | 100,000 元 |
-| 營業稅 5% | 5,000 元 |
-| **付款公司合計支出** | **105,000 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 付款公司需要付出多少錢？的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">合作社設計服務費</th><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">營業稅 5%</th><td class="tax-number">5,000 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>付款公司合計支出</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 付款公司取得合法發票後，依規定認列費用，並判斷進項稅額是否可以扣抵。
 
@@ -516,11 +566,16 @@ tags:
 
 因此，在這個案例裡，我直接販售自己種植、未經加工的高麗菜，符合規定時：
 
-| 項目 | 金額 |
-| --- | ---: |
-| 高麗菜銷售金額 | 100,000 元 |
-| 營業稅 | 0 元 |
-| **農民收款金額** | **100,000 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="2. 自產自銷的生鮮農產品，可以免徵營業稅的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">高麗菜銷售金額</th><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">營業稅</th><td class="tax-number">0 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>農民收款金額</strong></th><td class="tax-number"><strong>100,000 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 這和一般設計公司提供應稅服務、另外加收 5% 營業稅的情況不同。
 
@@ -540,11 +595,16 @@ tags:
 
 假設符合該年度標準的自力耕作收入為 100,000 元：
 
-| 項目 | 金額 |
-| --- | ---: |
-| 自力耕作收入 | 100,000 元 |
-| 依該年度標準減除成本及必要費用 100% | −100,000 元 |
-| **計算所得額** | **0 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 農民取得的收入，個人所得稅怎麼算？的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">自力耕作收入</th><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">依該年度標準減除成本及必要費用 100%</th><td class="tax-number">−100,000 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>計算所得額</strong></th><td class="tax-number"><strong>0 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 這就是為什麼一般農民從事真正的農業生產，在所得稅上也可能享有相當特殊的待遇。
 
@@ -554,11 +614,16 @@ tags:
 
 從付款方的角度，這筆交易也和委託設計師不同。
 
-| 項目 | 金額 |
-| --- | ---: |
-| 向農民購買高麗菜 | 100,000 元 |
-| 營業稅 | 0 元 |
-| **餐飲公司合計支出** | **100,000 元** |
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="4. 那購買農產品的餐飲公司要付出多少錢？的金額試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">向農民購買高麗菜</th><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">營業稅</th><td class="tax-number">0 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>餐飲公司合計支出</strong></th><td class="tax-number"><strong>100,000 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
 餐飲公司並不是把這 100,000 元當成支付設計師的執行業務報酬，因此不能直接套用個人設計師的 10% 所得稅扣繳及 2.11% 補充保費計算。
 
@@ -574,8 +639,8 @@ tags:
 
 ### 5. 那如果把蔬菜加工，還能免稅嗎？
 
-<div class="org-table-scroll" role="region" aria-label="不同農產品販售情境的營業稅判斷" tabindex="0">
-<table class="org-compare-table">
+<div class="org-table-scroll tax-table-wrap" role="region" aria-label="不同農產品販售情境的營業稅判斷" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-guidance">
   <thead><tr><th scope="col">販售情況</th><th scope="col">營業稅判斷</th></tr></thead>
   <tbody>
     <tr><th scope="row">農民販售自己種植的高麗菜</th><td>符合規定可免營業稅</td></tr>
@@ -597,8 +662,8 @@ tags:
 
 同樣是一筆 100,000 元的交易，我們用不同身分收款，可能有以下差別：
 
-<div class="org-table-scroll" role="region" aria-label="六種身分的稅務及付款方義務總整理" tabindex="0">
-<table class="org-compare-table">
+<div class="org-table-scroll tax-table-wrap tax-table-horizontal" role="region" aria-label="六種身分的稅務及付款方義務總整理" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-summary">
   <thead><tr><th scope="col">身分</th><th scope="col">一般交易的收款與稅務重點</th><th scope="col">付款方需要注意</th></tr></thead>
   <tbody>
     <tr><th scope="row">個人接案</th><td>可能預扣所得稅與補充保費；仍須申報年度所得</td><td>依法代扣、申報及保存領據；若屬薪資所得 50，還須檢查投保單位額外補充保費</td></tr>
