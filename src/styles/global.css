@@ -1974,3 +1974,30 @@ main table :is(th, td) p {
   .org-liability-stats small {margin:0;}
   .org-question-panel {padding:20px 17px;}
 }
+
+
+/* Organization encyclopedia: no horizontal scrolling on desktops. */
+@media(min-width:701px) {
+  .article .org-compare-table,
+  .article .org-type-table { min-width:0; width:100%; table-layout:fixed; font-size:13px; }
+  .article .org-compare-table :is(th,td) { padding:12px 11px; line-height:1.75; overflow-wrap:anywhere; }
+  .org-table-scroll { max-width:100%; overflow-x:visible; }
+}
+.org-answer-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:20px 0 27px;}
+.org-answer-card {padding:22px 20px;border-radius:8px;background:#f3f8f0;border:1px solid #d3e1d1;min-width:0;}
+.org-answer-card:first-child {background:#f8f5ee;border-color:#e9dfd1;}
+.org-answer-card span {display:block;font-size:12px;color:#a36c51;font-weight:700;margin-bottom:10px;}
+.org-answer-card strong {display:block;font-size:17px;line-height:1.65;color:#2e503f;}
+.org-answer-card p {font-size:14px;line-height:1.85;color:#536957;margin:13px 0 0;}
+.org-responsibility-list {margin:20px 0 30px;border:1px solid #d9e4d7;border-radius:9px;overflow:hidden;}
+.org-responsibility-list > div {display:grid;grid-template-columns:85px minmax(0,1fr);gap:15px;align-items:start;padding:18px 20px;background:#fff;border-bottom:1px solid #e3ebe0;}
+.org-responsibility-list > div:nth-child(even) {background:#f7f9f5;}
+.org-responsibility-list > div:last-child {border-bottom:0;}
+.org-responsibility-list span {font-weight:700;color:#aa7559;font-size:12px;padding-top:5px;}
+.org-responsibility-list strong {color:#2b513c;line-height:1.65;}
+.org-responsibility-list p {font-size:14px;line-height:1.9;margin:7px 0 0;}
+@media(max-width:700px) {
+  .org-answer-grid {grid-template-columns:1fr;gap:10px;}
+  .org-answer-card {padding:18px 17px;}
+  .org-responsibility-list > div {grid-template-columns:1fr;gap:4px;padding:17px;}
+}
