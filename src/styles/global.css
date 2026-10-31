@@ -1713,3 +1713,21 @@ strong, b,
   .insurance-article .premium-calculation { padding:19px 18px 0; }
   .insurance-article .premium-calculation-result { margin:20px -18px 0;padding:17px 18px 20px; }
 }
+
+/* Full justification for reading text across the guide.
+   Keep headings, navigation, buttons and data tables in their designed alignment.
+   The final line of each paragraph remains naturally left-aligned. */
+main p,
+main .article li,
+main .article blockquote,
+main .article figcaption,
+main .details-note,
+main .notice,
+.site-footer p {
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+/* Tables, including any paragraphs nested inside cells, retain readable alignment. */
+main table :is(th, td) p {
+  text-align: left;
+}
