@@ -35,6 +35,12 @@ tags:
 
 為了方便比較，前五個案例都以同一筆 100,000 元的設計服務為基礎。假設付款方是臺灣境內公司，100,000 元為未含應外加營業稅的服務價格；若承接者依法須開立 5% 應稅發票，則另加營業稅 5,000 元。
 
+<div class="tax-prerequisite-note" role="note" aria-label="閱讀前提醒：先閱讀二代健保補充保費">
+  <span class="tax-prerequisite-eyebrow">閱讀前提醒</span>
+  <strong class="tax-prerequisite-title">請先閱讀〈二代健保補充保費〉</strong>
+  <p>本篇會提到個人補充保費，以及付款單位可能增加的成本。建議先讀過<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>，再回來看不同身分的接案案例，會更容易理解。</p>
+</div>
+
 ## 一、個人身分接案
 
 ### 1. 假設我是一名自由接案的設計師
