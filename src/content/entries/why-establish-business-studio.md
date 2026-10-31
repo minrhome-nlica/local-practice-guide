@@ -216,16 +216,16 @@ tags:
 
 依財政部自 **2025 年 1 月 1 日**起適用的小規模營業人營業稅起徵點：
 
-<div class="org-table-scroll" role="region" aria-label="常見行業的每月營業稅起徵點" tabindex="0">
+<div class="org-table-scroll" role="region" aria-label="銷售貨物與銷售勞務的每月營業稅起徵點" tabindex="0">
 <table class="org-compare-table">
   <thead><tr><th scope="col">經營類型</th><th scope="col">每月起徵點</th><th scope="col">生活例子</th></tr></thead>
   <tbody>
-    <tr><th scope="row">商品銷售及部分行業</th><td><strong>10 萬元</strong></td><td>販售商品、一般餐飲、照相業（包括攝影等）等。</td></tr>
-    <tr><th scope="row">部分服務行業</th><td><strong>5 萬元</strong></td><td>活動代辦、廣告、技術與設計業等。</td></tr>
+    <tr><th scope="row">銷售貨物</th><td><strong>10 萬元</strong></td><td>販售商品、餐飲等。</td></tr>
+    <tr><th scope="row">銷售勞務</th><td><strong>5 萬元</strong></td><td>活動代辦、設計等具有營業性質的服務，仍須依實際所得性質認定。</td></tr>
   </tbody>
 </table>
 </div>
-<p class="org-table-hint">上表是依財政部「行業」分類的起徵點，不是所有提供服務者都一律適用 5 萬元；金額指的是銷售額，不是扣除成本後的淨利。個人攝影師的收入應如何歸類，仍要看實際工作及交易性質。</p>
+<p class="org-table-hint">這裡說的是「銷售額」，不是扣掉成本後的淨利；也不是說所有月收入超過 5 萬元的人都要成立工作室。</p>
 
 例如小明持續透過網路承接活動行政代辦服務，某個月收取 6 萬元。若這些收入屬於營業稅法上的營業性勞務銷售，就不能只因為自稱「個人接案」，認為完全不用登記。依財政部對網路交易的規定，當月銷售額**達到**適用起徵點時，就應依法辦理稅籍登記，並確認是否也有商業登記義務。
 
@@ -236,28 +236,6 @@ tags:
 - **偶爾接到一筆大案，不一定等於持續經營的營業人。** 仍須依交易性質、經營事實與國稅局認定判斷。
 
 因此，**5 萬元是特定情況下的營業稅起徵點，不是「每月接案超過 5 萬元，就一律要成立工作室」的規定。**
-
-### 網路銷售、連鎖經營或設備較多，會被要求開發票嗎？
-
-除了「要不要登記」，還要分清楚另一件事：**辦理稅籍登記，不代表一定要使用統一發票。** 國稅局會依營業額、營業性質與經營規模核定。
-
-<div class="org-table-scroll" role="region" aria-label="登記與使用統一發票的判斷重點" tabindex="0">
-<table class="org-compare-table">
-  <thead><tr><th scope="col">經營情況</th><th scope="col">需要注意什麼？</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">只在網路上賣商品或提供營業性服務</th><td>例如蝦皮、自架網站或透過社群平台完成交易。當月銷售額達到適用起徵點，應依法辦理稅籍登記；<strong>不代表一開始網路銷售就一定要開統一發票</strong>。</td></tr>
-    <tr><th scope="row">每月銷售額達使用發票標準</th><td>一般以<strong>每月 20 萬元</strong>為重要標準，原則上會由國稅局核定使用統一發票；仍須留意依法免用發票的例外。</td></tr>
-    <tr><th scope="row">連鎖、加盟或具有相當經營規模</th><td>可能影響國稅局對發票使用能力的判斷。尤其部分大眾化餐飲店達使用發票標準後，還有專門規定；但不能說所有連鎖店都無條件必須開發票。</td></tr>
-    <tr><th scope="row">攝影師擁有昂貴相機、鏡頭或攝影棚</th><td><strong>設備價值高本身，不是必須成立商號或開統一發票的獨立門檻。</strong>仍要看是否具有營業性質、實際銷售額與營業規模。</td></tr>
-  </tbody>
-</table>
-</div>
-
-例如你長期在網路上販售手作品，某個月賣了 12 萬元。若全部交易都在網路進行，這已達銷售貨物的稅籍登記門檻，但不代表當月就一定必須使用統一發票。若每月銷售額超過 20 萬元，原則上就應依國稅局核定使用統一發票。
-
-另外，財政部對部分大眾化餐飲店的連鎖、加盟、網路銷售及電子化管理方式，設有核定使用發票的特別規定；但 **2026 至 2028 年也有符合條件者得繼續免用統一發票的過渡優惠**，不能只憑「有加盟」或「有網路銷售」四個字就判斷結果。
-
-**簡單記住：登記看營業性質與適用門檻；是否使用發票，還要看營業額、經營方式及國稅局的核定。** 這裡先說明基本概念，詳細課稅與發票申報方式，將留在後續的稅務比較詞條。
 
 ### 那麼，哪些情況值得評估成立商號？
 
@@ -295,5 +273,5 @@ tags:
 <div class="org-source-note">
   <strong>參考資料與閱讀提醒</strong>
   <p>本文案例均為方便理解而設定的假設情境；實際的稅籍登記、開立發票、契約責任與合夥清償，仍須看業務內容、契約、行政核定及適用法律。個人、商號與公司的勞健保、二代健保補充保費、扣繳和稅務差異，將在獨立詞條另行比較。</p>
-  <p>官方參考：<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/network-transaction-taxtation-area/regulation" target="_blank" rel="noopener noreferrer">財政部｜網路交易與行業起徵點規定</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/network-transaction-taxtation-area/q-and-a" target="_blank" rel="noopener noreferrer">財政部｜網路交易課稅 Q&amp;A</a>、<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=3ee59a0b82a94e35a7cfc684d8e12d0d" target="_blank" rel="noopener noreferrer">財政部｜115 年免用發票制度說明</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080004" target="_blank" rel="noopener noreferrer">《商業登記法》第 3－5 條</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001" target="_blank" rel="noopener noreferrer">《民法》第 681 條</a>、<a href="https://www.gov.tw/News_Content_2_513467" target="_blank" rel="noopener noreferrer">財政部｜申請使用／免用統一發票</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/network-transaction-taxtation-area/seller/notice" target="_blank" rel="noopener noreferrer">財政部稅務入口網｜境內網路交易應注意事項</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/network-transaction-taxtation-area/press/PEwQK1V" target="_blank" rel="noopener noreferrer">財政部｜114 年起營業稅起徵點</a>。</p>
+  <p>官方參考：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080004" target="_blank" rel="noopener noreferrer">《商業登記法》第 3－5 條</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001" target="_blank" rel="noopener noreferrer">《民法》第 681 條</a>、<a href="https://www.gov.tw/News_Content_2_513467" target="_blank" rel="noopener noreferrer">財政部｜申請使用／免用統一發票</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/network-transaction-taxtation-area/seller/notice" target="_blank" rel="noopener noreferrer">財政部稅務入口網｜境內網路交易應注意事項</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/network-transaction-taxtation-area/press/PEwQK1V" target="_blank" rel="noopener noreferrer">財政部｜114 年起營業稅起徵點</a>。</p>
 </div>
