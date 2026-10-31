@@ -116,45 +116,53 @@ tags:
 </table>
 </div>
 
-<div class="tax-withholding-note" data-rate="5" role="note" aria-label="小提醒：預扣5%不是最終所得稅">
-  <span class="tax-withholding-kicker">小提醒｜5% 是預扣，不是最後的稅率</span>
-  <strong class="tax-withholding-title">預扣 5%，不代表最後只需要繳 5% 的所得稅</strong>
-  <p>這裡預扣的 5,000 元和前面設計費預扣 10,000 元一樣，都是公司先代扣、替講師繳給國稅局的稅款。<strong>真正應納多少所得稅，還是要等隔年申報全年綜合所得稅時結算。</strong></p>
-  <p>例如全年結算後，假設講師應繳所得稅 3,000 元，且只有這筆 5,000 元扣繳稅額，就可能退還 2,000 元；如果全年應繳 8,000 元，就可能補繳 3,000 元。預扣 5% 比 10% 少，不代表這種工作最終必然比較省稅。</p>
+<div class="tax-withholding-note" data-rate="5" role="note" aria-label="小提醒：為什麼講師費要預扣5%所得稅">
+  <span class="tax-withholding-kicker">小提醒｜什麼是「所得稅扣繳」？</span>
+  <strong class="tax-withholding-title">為什麼這筆講師費要先扣 5% 所得稅？</strong>
+  <p>這個制度同樣稱為<strong>「所得稅扣繳」</strong>。</p>
+  <p>臺灣境內居住的個人，如果收入屬於<strong>薪資所得（代碼50）</strong>，而且是兼職或非每月給付的薪資，原則上會先扣繳 <strong>5% 所得稅</strong>。不過，依照 2026 年（民國 115 年）規定，<strong>單次給付未達 90,501 元</strong>，符合規定可免予扣繳。本案例一次給付 100,000 元，因此付款公司會先扣下 5,000 元，代繳給國稅局。</p>
+  <p>因此，設計師實際收到的講師費會先被扣掉 5%，但<strong>這不代表最後一定繳 5% 的所得稅</strong>。隔年申報綜合所得稅時，仍要依全年所得、免稅額及扣除額等結算真正應納稅額，先前被扣繳的稅款可以用來抵繳。</p>
+  <p>例如最後應納稅額是 3,000 元，若只預扣過這 5,000 元，就可能退回 2,000 元；若應納稅額是 8,000 元，就可能再補繳 3,000 元。</p>
 </div>
 
-在這個案例裡，因為所得認定為薪資所得（代碼50），而不是執行業務所得（代碼9A），所以所得稅扣繳方式有所不同。依 <strong>2026 年（民國 115 年）</strong>規定，境內居住者取得非每月給付的薪資或兼職所得，原則上按 5% 扣繳；每次給付未達 <strong>90,501 元</strong>者，符合規定可免予扣繳。本案例一次給付 100,000 元，因此按 5% 試算；一般按月給付薪資另有扣繳規定。
+與前面不一樣，大家還記得嗎？前面設計師領取的是<strong>執行業務所得（代碼9A）</strong>，因此需要預扣 10% 所得稅。但這次設計師受邀開設設計課程，領取的變成<strong>薪資所得（代碼50）</strong>，所以這筆講師費改為預扣 5% 所得稅。也就是說，<strong>雖然都是同一位設計師，但因為工作內容不同，所得分類與扣繳方式也跟著改變。</strong>
 
-而且，假設我是在其他單位投保健保，這次收到的 100,000 元屬於非所屬投保單位給付的兼職薪資，並符合扣費條件，付款公司便須從報酬中扣取 2.11% 的個人補充保費。這筆 2,110 元仍然由講師個人負擔，<strong>且不能直接拿來抵繳綜合所得稅</strong>。
+另外，假設設計師是在其他單位投保健保，這次領取的 100,000 元屬於非所屬投保單位給付的兼職薪資，而且符合扣費條件，付款公司就需要從報酬中扣取 2.11% 的個人補充保費。這筆 2,110 元仍然由設計師個人負擔，並不是付款公司額外支出的錢。
 
-#### （2）付款公司為什麼可能還要額外付 2.11%？
+#### （2）付款公司需要支付的費用，會因為薪資所得（代碼50）而提高
 
-前面試算的 2,110 元，是從講師報酬中扣下來的個人補充保費。但如果這筆講師費屬於薪資所得（代碼50），付款公司還可能需要額外負擔另一筆<strong>投保單位補充保費</strong>。依二代健保制度，投保單位每月支付的薪資所得總額若超過當月受僱者健保投保金額總額，就須針對差額按 2.11% 計算補充保費。
+因為這筆講師費屬於<strong>薪資所得（代碼50）</strong>，不再是前面的<strong>執行業務所得（代碼9A）</strong>，所以公司計算二代健保的「雇主額外負擔」時，也必須把這筆講師費計算進去。
+
+依照規定，如果公司當月支付的薪資所得總額，超過員工的健保投保金額總額，公司就需要針對超出的差額，另外繳交 <strong>2.11% 的補充保費</strong>。
 
 計算公式如下：
 
 <strong>投保單位補充保費＝（當月支付薪資所得總額－當月受僱者健保投保金額總額）× 2.11%</strong>
 
-如果差額小於或等於 0，就沒有這筆差額補充保費。以下假設付款公司原本每月的薪資總額與受僱者健保投保金額總額相同，再額外支付 100,000 元授課費：
+如果還不清楚這項規定，可以回頭閱讀[〈二代健保補充保費〉](/local-practice-guide/entries/supplemental-premium/)的篇章。
 
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="（2）付款公司為什麼可能還要額外付 2.11%？的金額試算" tabindex="0">
+<strong>假設公司有 5 名員工，每人的月薪都是 34,000 元。</strong>依照 2026 年的健保投保金額分級表，月薪 34,000 元對應的健保投保金額為 <strong>34,800 元</strong>。這個月除了原本的員工薪資，公司又額外支付設計講師 100,000 元的薪資所得（代碼50），要多繳多少補充保費？
+
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="雇主有5名月薪34000元員工，另支付10萬元講師費的補充保費試算" tabindex="0">
 <table class="org-compare-table tax-guide-table tax-table-money">
   <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
   <tbody>
-    <tr><th scope="row">公司原本當月支付員工薪資總額</th><td class="tax-number">500,000 元</td></tr>
-    <tr><th scope="row">公司原本當月受僱者健保投保金額總額</th><td class="tax-number">500,000 元</td></tr>
-    <tr><th scope="row">額外支付設計課程講師費／薪資所得（代碼50）</th><td class="tax-number">+100,000 元</td></tr>
-    <tr class="tax-subtotal-row"><th scope="row"><strong>當月薪資所得總額</strong></th><td class="tax-number"><strong>600,000 元</strong></td></tr>
-    <tr><th scope="row">扣除受僱者健保投保金額總額</th><td class="tax-number">−500,000 元</td></tr>
-    <tr class="tax-subtotal-row"><th scope="row"><strong>應計收補充保費的差額</strong></th><td class="tax-number"><strong>100,000 元</strong></td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>投保單位額外補充保費 2.11%</strong></th><td class="tax-number"><strong>2,110 元</strong></td></tr>
+    <tr><th scope="row">5 名員工每人月薪 34,000 元</th><td class="tax-number">170,000 元</td></tr>
+    <tr><th scope="row">5 名員工每人健保投保金額 34,800 元</th><td class="tax-number">174,000 元</td></tr>
+    <tr><th scope="row">額外支付設計講師費／薪資所得（代碼50）</th><td class="tax-number">+100,000 元</td></tr>
+    <tr class="tax-subtotal-row"><th scope="row"><strong>當月支付薪資所得總額</strong></th><td class="tax-number"><strong>270,000 元</strong></td></tr>
+    <tr><th scope="row">扣除 5 名員工健保投保金額總額</th><td class="tax-number">−174,000 元</td></tr>
+    <tr class="tax-subtotal-row"><th scope="row"><strong>需要計算補充保費的差額</strong></th><td class="tax-number"><strong>96,000 元</strong></td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>投保單位額外負擔 2.11%</strong></th><td class="tax-number"><strong>2,026 元</strong></td></tr>
   </tbody>
 </table>
 </div>
 
-原本公司支付的 100,000 元如果是執行業務所得（代碼9A）的設計委託費，就不會計入投保單位補充保費的薪資總額；但如果改成薪資所得（代碼50）的授課費，這筆報酬就會計入當月薪資所得總額。在上述假設條件下，<strong>公司因此須另外支付 2,110 元補充保費</strong>。
+計算方式為 <strong>96,000 元 × 2.11%＝2,025.6 元</strong>，四捨五入後是 <strong>2,026 元</strong>。
 
-不過，必須再次提醒：這是依公司整個月的薪資總額與投保金額總額計算，<strong>不是所有薪資所得（代碼50）都一律另外加收 2.11%</strong>。例如公司原本的薪資總額就低於投保金額總額，新增講師費後仍未超過，就可能不需要繳納這筆補充保費。
+原本公司只支付 5 名員工薪資時，每月薪資總額為 170,000 元，比健保投保金額總額 174,000 元還少，所以不會產生這筆差額補充保費。但現在多了一筆屬於薪資所得（代碼50）的 100,000 元講師費，讓公司當月的薪資總額增加到 270,000 元。
+
+因此，<strong>公司除了原本約定的 100,000 元講師費，還要額外負擔 2,026 元補充保費，實際總支出為 102,026 元。</strong>
 
 #### （3）重新計算：公司實際需要支付多少錢？
 
@@ -168,13 +176,13 @@ tags:
     <tr><th scope="row">代繳薪資所得稅 5%</th><td class="tax-number">5,000 元</td><td>從講師費預扣</td></tr>
     <tr><th scope="row">代繳個人兼職薪資補充保費 2.11%</th><td class="tax-number">2,110 元</td><td>從講師費扣取</td></tr>
     <tr class="tax-subtotal-row"><th scope="row"><strong>原約定講師報酬合計</strong></th><td class="tax-number"><strong>100,000 元</strong></td><td>付款公司原約定支出</td></tr>
-    <tr><th scope="row">投保單位額外補充保費 2.11%</th><td class="tax-number">+2,110 元</td><td>付款公司額外負擔</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>付款公司實際總支出</strong></th><td class="tax-number"><strong>102,110 元</strong></td><td><strong>公司總成本</strong></td></tr>
+    <tr><th scope="row">投保單位額外補充保費 2.11%</th><td class="tax-number">+2,026 元</td><td>付款公司額外負擔</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>付款公司實際總支出</strong></th><td class="tax-number"><strong>102,026 元</strong></td><td><strong>公司總成本</strong></td></tr>
   </tbody>
 </table>
 </div>
 
-所以，同樣約定 100,000 元講師費，設計師實際收到 92,890 元，但付款公司需要支付的金額可能達到 102,110 元。這裡最值得注意的地方，就是<strong>個人被扣取的 2.11% 補充保費，和付款單位額外負擔的 2.11% 補充保費，是兩筆不同的費用</strong>。前者從講師原本的報酬中扣除；後者則是在符合條件時，由付款公司自己另外支付，不能直接從講師已約定的報酬中再扣一次。
+所以，同樣約定 100,000 元講師費，設計師實際收到 92,890 元，但付款公司需要支付的金額可能達到 102,026 元。這裡最值得注意的地方，就是<strong>個人被扣取的 2.11% 補充保費，和付款單位額外負擔的 2.11% 補充保費，是兩筆不同的費用</strong>。前者從講師原本的報酬中扣除；後者則是在符合條件時，由付款公司自己另外支付，不能直接從講師已約定的報酬中再扣一次。
 
 #### （4）同樣 100,000 元，設計委託與授課有什麼差別？
 
@@ -189,13 +197,13 @@ tags:
     <tr><th scope="row">預扣所得稅</th><td class="tax-number">10,000 元</td><td class="tax-number">5,000 元</td></tr>
     <tr><th scope="row">個人補充保費</th><td class="tax-number">2,110 元</td><td class="tax-number">2,110 元</td></tr>
     <tr class="tax-subtotal-row"><th scope="row"><strong>收款人實領</strong></th><td class="tax-number"><strong>87,890 元</strong></td><td class="tax-number"><strong>92,890 元</strong></td></tr>
-    <tr><th scope="row">投保單位因本案增加的補充保費</th><td class="tax-number">0 元</td><td class="tax-number">2,110 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>付款公司總支出</strong></th><td class="tax-number"><strong>100,000 元</strong></td><td class="tax-number"><strong>102,110 元</strong></td></tr>
+    <tr><th scope="row">投保單位因本案增加的補充保費</th><td class="tax-number">0 元</td><td class="tax-number">2,026 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>付款公司總支出</strong></th><td class="tax-number"><strong>100,000 元</strong></td><td class="tax-number"><strong>102,026 元</strong></td></tr>
   </tbody>
 </table>
 </div>
 
-以上比較建立在兩種所得分類確實適用、收款人符合個人補充保費扣取條件，以及付款公司當月新增的 100,000 元薪資全數形成投保金額差額的假設上。還有一件事需要釐清：表格中講師實領比較高，主要是因為兩種所得的<strong>預扣稅率不同</strong>。預扣較少不代表最終所得稅一定較低，仍要在年度所得稅申報時結算。
+以上比較建立在兩種所得分類確實適用、收款人符合個人補充保費扣取條件，以及上述公司有 5 名員工、每人月薪 34,000 元、健保投保金額為 34,800 元的假設上。還有一件事需要釐清：表格中講師實領比較高，主要是因為兩種所得的<strong>預扣稅率不同</strong>。預扣較少不代表最終所得稅一定較低，仍要在年度所得稅申報時結算。
 
 這個案例提醒我們：<strong>對付款單位而言，不同所得類別不只影響扣繳方式，也可能影響額外成本。</strong> 因此，規劃活動、編列講師費或設計費時，除了約定報酬，也要確認所得性質、個人補充保費，以及投保單位是否有額外負擔。詳細計算方式可搭配[〈二代健保補充保費〉](/local-practice-guide/entries/supplemental-premium/)閱讀。
 
