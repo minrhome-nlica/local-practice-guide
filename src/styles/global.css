@@ -1199,8 +1199,8 @@ strong, b,
 
 .chapter-jump {
   margin: 0 0 48px;
-  padding: 0 0 35px;
-  border-bottom: 1px solid #dfe5da;
+  padding: 0;
+  /* The following section heading already supplies the single divider. */
 }
 .chapter-jump-head {
   display: flex;
