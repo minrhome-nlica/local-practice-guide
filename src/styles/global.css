@@ -1503,7 +1503,8 @@ strong, b,
   margin-bottom: 20px;
 }
 .knowledge-group-head h3 {
-  font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  font-family: "GenSen Rounded Guide", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  font-weight: 700;
   color: #294638;
   font-size: clamp(23px, 2.5vw, 30px);
   line-height: 1.5;
