@@ -2212,3 +2212,75 @@ main table :is(th, td) p {
   .article .tax-table-summary {min-width:720px !important;}
   .article .tax-table-payment {min-width:700px !important;}
 }
+
+
+/* Tax-status nested section headings and prerequisite reading note.
+   H3: green section rail shared by all guides.
+   H4: smaller sand-colored rail and quiet tint so the hierarchy stays clear. */
+.article.guide-article.tax-status-article > h4 {
+  margin: 37px 0 20px 12px;
+  padding: 9px 16px;
+  border-left: 3px solid #bd9875;
+  border-radius: 0 7px 7px 0;
+  background: linear-gradient(90deg, #f5f1e9 0%, #f9f8f3 75%, transparent 100%);
+  color: #314c3d;
+  font-family: "GenSen Rounded Guide", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.75;
+  scroll-margin-top: 110px;
+}
+.article.guide-article.tax-status-article > h3 {
+  scroll-margin-top: 110px;
+}
+.article.guide-article.tax-status-article .tax-prerequisite-note {
+  margin: 30px 0 36px;
+  padding: 20px 24px;
+  border: 1px solid #d5e0d4;
+  border-left: 4px solid #75927d;
+  border-radius: 9px;
+  background: #f2f6f0;
+  box-shadow: 0 5px 16px rgba(48, 80, 58, .04);
+}
+.article.guide-article.tax-status-article .tax-prerequisite-note .tax-prerequisite-eyebrow {
+  display: block;
+  color: #627d68;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .045em;
+  margin-bottom: 6px;
+}
+.article.guide-article.tax-status-article .tax-prerequisite-note .tax-prerequisite-title {
+  display: block;
+  font-size: 18px;
+  line-height: 1.65;
+  color: #2b4837;
+}
+.article.guide-article.tax-status-article .tax-prerequisite-note p {
+  color: #485e4d;
+  font-size: 15px;
+  line-height: 1.85;
+  margin: 9px 0 0;
+}
+.article.guide-article.tax-status-article .tax-prerequisite-note a {
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+@media (max-width: 700px) {
+  .article.guide-article.tax-status-article > h4 {
+    margin: 29px 0 16px 5px;
+    padding: 9px 12px;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .article.guide-article.tax-status-article .tax-prerequisite-note {
+    margin: 24px 0 29px;
+    padding: 17px 17px;
+  }
+  .article.guide-article.tax-status-article .tax-prerequisite-note .tax-prerequisite-title {
+    font-size: 16px;
+  }
+  .article.guide-article.tax-status-article .tax-prerequisite-note p {
+    font-size: 14px;
+  }
+}
