@@ -1731,3 +1731,58 @@ main .notice,
 main table :is(th, td) p {
   text-align: left;
 }
+
+
+/* Compare 9A versus 9B income types without cramped mobile columns. */
+.insurance-article .insurance-income-compare-wrap {
+  margin: 24px 0 8px;
+}
+.insurance-article .insurance-income-compare-table {
+  width: 100%;
+  min-width: 690px;
+  margin: 0;
+  background: #fff;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.insurance-article .insurance-income-compare-table :is(th, td) {
+  padding: 15px 16px;
+  border-bottom: 1px solid #e0e8df;
+  vertical-align: top;
+  text-align: left;
+  color: #3b5443;
+  white-space: normal;
+  word-break: normal;
+  line-break: strict;
+  overflow-wrap: break-word;
+}
+.insurance-article .insurance-income-compare-table thead th {
+  background: #e7efe6;
+  color: #2c4a38;
+  font-weight: 700;
+}
+.insurance-article .insurance-income-compare-table thead th:first-child {
+  width: 18%;
+}
+.insurance-article .insurance-income-compare-table thead th:not(:first-child) {
+  width: 41%;
+}
+.insurance-article .insurance-income-compare-table tbody th {
+  background: #f6f8f4;
+  color: #385843;
+  font-weight: 700;
+}
+.insurance-article .insurance-income-compare-table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+@media (max-width: 700px) {
+  .insurance-article .insurance-income-compare-table {
+    min-width: 640px;
+    font-size: 13px;
+  }
+  .insurance-article .insurance-income-compare-table :is(th, td) {
+    padding: 12px 13px;
+  }
+}
