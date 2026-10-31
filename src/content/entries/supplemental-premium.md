@@ -47,7 +47,7 @@ tags:
 
 假設 A 單位聘用了 <strong>5 位員工</strong>，每個人的月薪都是 <strong>34,000 元</strong>，那麼這個月固定支付的薪資總額，就是 <strong>170,000 元</strong>。
 
-不過，依照 2026 年的健保投保級距，每位月薪 34,000 元的員工，適用的健保投保金額是 <strong>34,800 元</strong>。所以這 5 位員工的<strong>當月健保投保金額總額</strong>，其實是 <strong>174,000 元</strong>。
+不過，依照 [〈勞健保〉的 2026 年投保級距表](/local-practice-guide/entries/labor-health-insurance/)，每位月薪 34,000 元的員工，適用的健保投保金額是 <strong>34,800 元</strong>。所以這 5 位員工的<strong>當月健保投保金額總額</strong>，其實是 <strong>174,000 元</strong>。
 
 <div class="premium-example-grid" aria-label="A單位五名員工月薪與健保投保金額對照">
   <div class="premium-example-metric">
@@ -169,7 +169,7 @@ tags:
 
 這裡要注意的，是「投保金額」，也就是員工依照適用的健保級距，申報的投保金額。它不一定等於每個月實際領到的薪水。
 
-例如，一個人的月薪是 <strong>34,000 元</strong>，依 2026 年的健保級距表，投保金額是 <strong>34,800 元</strong>。所以四倍的門檻應該這樣算：
+例如，一個人的月薪是 <strong>34,000 元</strong>，依 [〈勞健保〉的 2026 年投保級距表](/local-practice-guide/entries/labor-health-insurance/)，投保金額是 <strong>34,800 元</strong>。所以四倍的門檻應該這樣算：
 
 <div class="insurance-formula">
   <span>獎金扣費門檻</span>
