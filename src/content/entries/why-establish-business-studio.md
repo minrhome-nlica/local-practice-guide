@@ -10,6 +10,7 @@ related:
   - legal-person-natural-person
   - labor-health-insurance
   - supplemental-premium
+  - which-status-saves-tax
 tags:
   - 商號
   - 工作室
@@ -29,7 +30,7 @@ tags:
 
 尤其對地方青年而言，許多人可能是從偶爾承接活動、攝影、設計、導覽、課程等工作開始，慢慢累積經驗與收入。當工作越來越穩定，開始需要對外簽約、購買設備、租用空間，甚至聘請其他人協助時，就會開始思考：是不是應該成立一間自己的工作室？
 
-不過，**個人本來就可以持續接案與工作**，成立商號究竟多了哪些實際用途？有哪些風險？這篇先從開立發票、對外合作、補助資格和法律責任談起。至於個人、商號與公司在勞健保、二代健保補充保費及稅務上的差異，留待其他詞條說明。
+不過，**個人本來就可以持續接案與工作**，成立商號究竟多了哪些實際用途？有哪些風險？這篇先從開立發票、對外合作、補助資格和法律責任談起。至於**不同經營身分的稅務差異**，可以繼續閱讀[〈什麼身分比較節稅？〉](/local-practice-guide/entries/which-status-saves-tax/)；勞健保與補充保費另有相關詞條說明。
 
 ## 一、商號、行號、工作室有什麼不同？
 
@@ -81,7 +82,7 @@ tags:
   <p>國稅局會依營業性質、規模等情況核定是否使用統一發票。部分小規模營業人可免用統一發票，依法開立普通收據；有需要時，也可依規定申請改用統一發票。申請是否核准及後續申報義務，要依個案確認。</p>
 </div>
 
-至於同樣一筆 30,000 元的設計費，用個人、商號或公司名義請款，在所得申報、勞健保及二代健保補充保費上有什麼不同，之後會另寫一篇比較，不在這裡展開。
+至於同樣一筆 30,000 元的設計費，使用個人、商號或公司名義請款，所得稅及成本認定有什麼不同，可接著閱讀[〈什麼身分比較節稅？〉](/local-practice-guide/entries/which-status-saves-tax/)。
 
 如果想先了解**個人領取勞務報酬時，什麼情況可能需要扣取二代健保補充保費，以及如何計算**，可以參考[〈二代健保補充保費〉](/local-practice-guide/entries/supplemental-premium/)詞條。
 
@@ -286,6 +287,6 @@ tags:
 
 <div class="org-source-note">
   <strong>參考資料與閱讀提醒</strong>
-  <p>本文案例均為方便理解而設定的假設情境；實際的稅籍登記、開立發票、契約責任與合夥清償，仍須看業務內容、契約、行政核定及適用法律。個人、商號與公司的勞健保、二代健保補充保費、扣繳和稅務差異，將在獨立詞條另行比較。</p>
+  <p>本文案例均為方便理解而設定的假設情境；實際的稅籍登記、開立發票、契約責任與合夥清償，仍須看業務內容、契約、行政核定及適用法律。個人與不同組織的所得稅差異，可參考<a href="/local-practice-guide/entries/which-status-saves-tax/">〈什麼身分比較節稅？〉</a>；勞健保、二代健保補充保費及扣繳則須依各項專門規定處理。</p>
   <p>官方參考：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080004" target="_blank" rel="noopener noreferrer">《商業登記法》第 3－5 條</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001" target="_blank" rel="noopener noreferrer">《民法》第 681 條</a>、<a href="https://www.gov.tw/News_Content_2_513467" target="_blank" rel="noopener noreferrer">財政部｜申請使用／免用統一發票</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/network-transaction-taxtation-area/seller/notice" target="_blank" rel="noopener noreferrer">財政部稅務入口網｜境內網路交易應注意事項</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/network-transaction-taxtation-area/press/PEwQK1V" target="_blank" rel="noopener noreferrer">財政部｜114 年起營業稅起徵點</a>。</p>
 </div>
