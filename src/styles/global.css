@@ -2037,3 +2037,58 @@ main table :is(th, td) p {
   .article.guide-article .org-case-result { padding: 14px 15px; }
   .article.guide-article .org-case-result strong { font-size: 15px; }
 }
+
+
+/* Income-tax withholding reminders in the tax-status entry. */
+.article .tax-withholding-note {
+  position:relative;
+  margin:22px 0 29px;
+  padding:21px 24px 20px;
+  background:#f7f8f5;
+  border:1px solid #d9e1d9;
+  border-left:4px solid #7b9688;
+  border-radius:10px;
+  box-shadow:0 5px 20px rgba(39,65,48,.04);
+}
+.article .tax-withholding-note[data-rate="5"] {
+  background:#faf8f4;
+  border-color:#e3ddd1;
+  border-left-color:#a69376;
+}
+.article .tax-withholding-note .tax-withholding-kicker {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#657a6b;
+  letter-spacing:.035em;
+  font-size:12px;
+  font-weight:700;
+  margin:0 0 8px;
+}
+.article .tax-withholding-note[data-rate="5"] .tax-withholding-kicker {color:#89775f;}
+.article .tax-withholding-note .tax-withholding-kicker::before {
+  content:'!';
+  display:inline-grid;
+  place-items:center;
+  width:19px;
+  height:19px;
+  border-radius:50%;
+  border:1px solid currentColor;
+  font-size:12px;
+  font-weight:700;
+  flex:none;
+}
+.article .tax-withholding-note strong.tax-withholding-title {
+  display:block;
+  color:#2d4b3c;
+  font-size:19px;
+  line-height:1.55;
+  margin:0 0 11px;
+}
+.article .tax-withholding-note p {margin:8px 0 0;font-size:15px;line-height:1.9;color:#4d6154;}
+.article .tax-withholding-note p strong {color:#314b3b;}
+@media(max-width:700px) {
+  .article .tax-withholding-note {padding:17px 17px 18px;}
+  .article .tax-withholding-note strong.tax-withholding-title {font-size:17px;}
+  .article .tax-withholding-note p {font-size:14px;}
+}
