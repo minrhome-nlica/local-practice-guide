@@ -2092,3 +2092,123 @@ main table :is(th, td) p {
   .article .tax-withholding-note strong.tax-withholding-title {font-size:17px;}
   .article .tax-withholding-note p {font-size:14px;}
 }
+
+
+/* Tax status guide: unified tables based on the organization chapters.
+   The earlier Markdown tables had inherited display:block and shrank to
+   content width. All 18 article tables now share the same native guide design. */
+.article .tax-table-wrap {
+  width:100%;
+  max-width:100%;
+  margin:22px 0 30px;
+  border:1px solid #d6e2d5;
+  border-radius:9px;
+  background:#fff;
+  box-shadow:0 4px 16px rgba(43,73,55,.035);
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.article .tax-guide-table {
+  display:table;
+  width:100%;
+  margin:0;
+  background:#fff;
+  border-collapse:collapse;
+  border-spacing:0;
+  table-layout:fixed;
+  font-size:14px;
+  line-height:1.85;
+  color:#384d3f;
+}
+.article .tax-guide-table :is(th,td) {
+  border:0;
+  border-bottom:1px solid #e3e9df;
+  padding:15px 17px;
+  vertical-align:middle;
+  text-align:left;
+  white-space:normal;
+  overflow-wrap:break-word;
+  word-break:normal;
+  line-break:strict;
+}
+.article .tax-guide-table thead th {
+  background:#e9f0e7;
+  color:#2e4c3b;
+  font-weight:700;
+  border-bottom:1px solid #d5e2d1;
+}
+.article .tax-guide-table tbody th {
+  background:#f7f9f5;
+  color:#2e5440;
+  font-weight:700;
+}
+.article .tax-guide-table tbody td {background:#fff;}
+.article .tax-guide-table tbody tr:nth-child(even):not(.tax-total-row):not(.tax-subtotal-row) th {background:#f0f5ee;}
+.article .tax-guide-table tbody tr:nth-child(even):not(.tax-total-row):not(.tax-subtotal-row) td {background:#fafbf8;}
+.article .tax-guide-table tbody tr:last-child :is(th,td) {border-bottom:0;}
+.article .tax-guide-table strong {color:inherit;font-weight:700;}
+.article .tax-guide-table .tax-number {
+  text-align:right;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+  letter-spacing:.005em;
+}
+.article .tax-guide-table tbody .tax-number {color:#385543;}
+.article .tax-guide-table .tax-total-row :is(th,td) {
+  background:#e6f0e4 !important;
+  color:#274b35 !important;
+  font-weight:700;
+  border-top:1px solid #c9dbca;
+}
+.article .tax-guide-table .tax-subtotal-row :is(th,td) {
+  background:#f1f6ed !important;
+  color:#365743 !important;
+  font-weight:700;
+}
+.article .tax-guide-table .tax-subtotal-row + .tax-total-row :is(th,td) {border-top:1px solid #c9dbca;}
+.article .tax-table-money {
+  min-width:0;
+  table-layout:fixed;
+}
+.article .tax-table-money thead th:first-child {width:64%;}
+.article .tax-table-money thead th:last-child {width:36%;}
+.article .tax-table-money tbody .tax-number {font-weight:600;}
+.article .tax-table-money .tax-total-row .tax-number {font-size:17px;}
+/* The old 24% first column was made for concept comparisons, not numeric ledgers. */
+.article .tax-table-topics thead th:first-child {width:43%;}
+.article .tax-table-topics thead th:nth-child(2) {width:28%;}
+.article .tax-table-topics thead th:nth-child(3) {width:29%;}
+.article .tax-table-payment thead th:first-child {width:45%;}
+.article .tax-table-payment thead th:nth-child(2) {width:23%;text-align:right;}
+.article .tax-table-payment thead th:nth-child(3) {width:32%;}
+.article .tax-table-side-by-side thead th:first-child {width:43%;}
+.article .tax-table-side-by-side thead th:nth-child(2),
+.article .tax-table-side-by-side thead th:nth-child(3) {width:28.5%;text-align:right;}
+.article .tax-table-guidance {min-width:0;}
+.article .tax-table-guidance thead th:first-child {width:41%;}
+.article .tax-table-guidance thead th:nth-child(2) {width:59%;}
+.article .tax-table-summary thead th:first-child {width:20%;}
+.article .tax-table-summary thead th:nth-child(2) {width:40%;}
+.article .tax-table-summary thead th:nth-child(3) {width:40%;}
+@media (min-width:701px) {
+  .article .tax-guide-table {font-size:14px;}
+  .article .tax-guide-table :is(th,td) {padding:14px 16px;line-height:1.85;}
+  .article .tax-table-wrap {overflow-x:visible;}
+}
+@media (max-width:700px) {
+  .article .tax-table-wrap {margin:19px 0 27px;border-radius:8px;}
+  .article .tax-guide-table {font-size:13px;}
+  .article .tax-guide-table :is(th,td) {padding:12px 12px;line-height:1.75;}
+  /* Two-column amount tables and agricultural guidance fit the mobile article. */
+  .article .tax-table-money,
+  .article .tax-table-guidance {min-width:0;width:100%;}
+  .article .tax-table-money thead th:first-child {width:62%;}
+  .article .tax-table-money thead th:last-child {width:38%;}
+  .article .tax-table-money .tax-total-row .tax-number {font-size:14px;}
+  /* Three-column comparisons retain readable columns, scroll only on phones. */
+  .article .tax-table-horizontal {overflow-x:auto;}
+  .article .tax-table-horizontal .tax-guide-table {min-width:660px;}
+  .article .tax-table-summary {min-width:720px !important;}
+  .article .tax-table-payment {min-width:700px !important;}
+}
