@@ -2284,3 +2284,106 @@ main table :is(th, td) p {
     font-size: 14px;
   }
 }
+
+/* Mobile reading audit: contain wide content without shrinking data tables. */
+.entry-grid,
+.entry-layout,
+.article,
+.hero-grid > *,
+.topic-card > *,
+.file-row > * {
+  min-width: 0;
+}
+.article :is(img, video, svg, iframe) {
+  max-width: 100%;
+}
+.article img,
+.article video {
+  height: auto;
+}
+.article pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.article :is(p, li, blockquote, figcaption),
+.page-hero p,
+.entry-card p,
+.topic-card p,
+.search-result p {
+  overflow-wrap: break-word;
+}
+@media (max-width: 950px) {
+  /* A 1fr track can otherwise keep the intrinsic width of a wide table. */
+  .entry-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* Plain tables scroll inside their article, not across the whole webpage. */
+  .article.guide-article > table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+@media (max-width: 700px) {
+  .article.guide-article,
+  .article.guide-article > :is(div, figure, section, blockquote) {
+    max-width: 100%;
+    min-width: 0;
+  }
+  /* Keep intentionally wide comparison/financial tables in their own
+     horizontal scroll containers instead of crushing columns. */
+  .article :is(
+    .tax-table-wrap,
+    .org-table-scroll,
+    .insurance-table-scroll,
+    .budget-table-scroll,
+    .budget-case-table-shell,
+    .report-table-scroll
+  ) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .article.guide-article :is(h2, h3, h4, p, li, strong, a, figcaption) {
+    overflow-wrap: break-word;
+  }
+  .article figure:not(.guide-figure) {
+    max-width: 100%;
+  }
+  .entry-list > *,
+  .entry-card,
+  .file-row,
+  .search-result {
+    min-width: 0;
+  }
+  .file-row a {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
+@media (max-width: 430px) {
+  .budget-article .budget-totals {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .budget-article .budget-totals > div {
+    min-width: 0;
+  }
+  .budget-article .budget-totals strong {
+    overflow-wrap: anywhere;
+  }
+  .article .tax-table-money thead th:first-child { width: 56%; }
+  .article .tax-table-money thead th:last-child { width: 44%; }
+  .article .tax-table-money .tax-number {
+    font-size: 12px;
+  }
+  .site-header .header-inner { gap: 12px; }
+  .site-header .brand { min-width: 0; }
+  .site-header .brand-logo { width: 90px; }
+  .site-header .brand strong { font-size: 14px; }
+  .mobile-panel { max-width: calc(100vw - 32px); }
+}
