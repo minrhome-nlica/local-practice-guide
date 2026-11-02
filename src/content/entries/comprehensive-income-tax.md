@@ -71,9 +71,8 @@ tags:
 
 <div class="org-explainer-note income-expense-note" role="note" aria-label="執行業務所得常見必要費用率提醒">
   <strong>小提醒｜什麼是依法可認列的業務成本與費用？</strong>
-  <p>許多自行接案的執行業務者，在工作過程中不一定有完整記帳，也可能很難提出足夠的憑證，說明一筆收入裡實際花了多少成本、最後賺了多少。其實，個人執行業務和公司、商號一樣，原則上都應該依法保存帳簿及憑證，依實際收入與必要費用計算所得。</p>
-  <p>為了處理沒有完整帳簿、憑證，難以核實計算所得的情況，財政部每年會公布「執行業務者費用標準」。如果執行業務者未依法申報、設帳保存憑證，或無法提供證明所得額的資料，國稅局就可以依照適用年度及職業類別，用公告的費用率推算必要成本，再算出所得。</p>
-  <p>簡單來說，符合規定的情況下，可以用<strong>「收入 × 費用率＝推算的必要費用」</strong>，再用<strong>「收入－必要費用＝所得」</strong>來計算。不過，這是國稅局在無法核實費用時的核定方式，並不是只要不想整理發票，就一定可以自行選擇費用率。</p>
+  <p>許多自行接案的執行業務所得者，他們可能在工作過程中比較難以舉證自己的實際支出，這也導致他們並沒有辦法像公司、行號那樣，跟國家說我這一筆收入，實際上有多少是成本，多少才是我真正的淨盈餘。</p>
+  <p>因此，每年財政部會公布「執行業務者費用標準」，就是針對不同執行業務所得者，按照一定的計算方式，直接訂出費用率，讓符合適用條件的執行業務所得收入，可以乘上費用率算出「成本」。</p>
   <p>以下整理已公告的<strong>114年度（2025年所得）</strong>幾項常見費用率，供理解不同收入性質的差異。<strong>這不是115年度（2026年所得）的費用率表</strong>，後續仍應依適用年度最新公告辦理。</p>
   <div class="org-table-scroll tax-table-wrap income-expense-table-wrap" role="region" aria-label="114年度執行業務者常見費用率表，手機版以逐列卡片顯示" tabindex="0">
     <table class="org-compare-table tax-guide-table income-expense-table">
@@ -90,7 +89,7 @@ tags:
       </tbody>
     </table>
   </div>
-  <p>實際分類要看<strong>做了什麼工作</strong>，不能只憑名片上寫「設計師」就自行套用30%或其他比例。若有依法保存的帳簿及憑證，仍要依適用規定核實計算；上述表格也不會自動取代前面30萬元的教學假設。完整規定可查閱<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=GL011721" target="_blank" rel="noopener noreferrer">財政部〈一百十四年度執行業務者費用標準〉</a>。</p>
+  <p>詳細的職業分類與適用規定，可以查閱<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=GL011721" target="_blank" rel="noopener noreferrer">財政部〈一百十四年度執行業務者費用標準〉</a>。</p>
 </div>
 
 ## 三、綜合所得稅究竟怎麼算？
