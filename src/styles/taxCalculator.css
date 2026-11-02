@@ -67,6 +67,13 @@
 .tc-metric small{font-size:12px;color:#738576;display:block;margin-bottom:11px}
 .tc-metric strong{display:block;font-size:clamp(17px,2vw,24px);line-height:1.4;color:#2d5640;overflow-wrap:anywhere}
 .tc-metric p{margin:7px 0 0;font-size:12px;color:#778776}
+.tc-quick{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px 20px;align-items:center;padding:19px 22px;margin:17px 0;border:1px solid #d8e4d6;border-radius:12px;background:#f4f8f1}
+.tc-quick .tc-field{gap:8px}
+.tc-quick .tc-field label{font-size:13px}
+.tc-quick>.tc-small{grid-column:1/-1;margin:0;font-size:12px}
+.tc-quick input[type=range]{padding:0;min-height:auto;accent-color:#557c5c}
+@media(max-width:680px){.tc-quick{grid-template-columns:1fr;padding:15px 14px}}
+@media print{.tc-quick{display:none!important}}
 .tc-plain-note{border:1px solid #e4e9e0;background:#f7f9f5;padding:15px 18px;border-radius:9px;color:#526959;font-size:13px;line-height:1.85;margin:18px 0}
 .tc-compare{background:#fff;border:1px solid #dde5da;border-radius:13px;overflow:hidden}
 .tc-compare-top{padding:20px 22px;border-bottom:1px solid #e0e8de}
