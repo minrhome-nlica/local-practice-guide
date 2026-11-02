@@ -40,7 +40,7 @@ tags:
 
 ## 一、預扣所得稅與綜合所得稅，有什麼不同？
 
-前面我們在〈預扣所得稅〉介紹過，付款單位支付個人報酬時，依所得類別和適用規定，可能需要先扣下10%或5%的所得稅。
+前面我們在<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅〉</a>介紹過，付款單位支付個人報酬時，依所得類別和適用規定，可能需要先扣下10%或5%的所得稅。
 
 但這些只是<strong>先扣繳的稅款</strong>，不代表個人最後真正需要繳的所得稅。
 
@@ -67,7 +67,30 @@ tags:
 
 也就是說，雖然實際收到100萬元，但在這個假設下，計算出的執行業務所得是70萬元。
 
-不過，不是所有私人支出都能列為業務成本，也不是每種所得都有同樣的費用認列方式。<strong>這裡的30萬元只是示範，不代表設計師一律可以用收入的30%當成成本。</strong>實際應依適用的所得類別、憑證及財政部規定辦理。
+不過，不是所有私人支出都能列為業務成本，也不是每種所得都有同樣的費用認列方式。<strong>這裡的30萬元是假設符合規定的實際業務支出，不代表所有設計師都能直接按收入的30%認列費用。</strong>
+
+<div class="org-explainer-note income-expense-note" role="note" aria-label="執行業務所得常見必要費用率提醒">
+  <strong>小提醒｜9A執行業務所得，也有依職業區分的費用標準</strong>
+  <p>財政部每年會公布「執行業務者費用標準」。例如未依法辦理結算申報、未依法設帳保存憑證，或無法提供證明所得額的帳簿文據時，稽徵機關會依適用的年度與職業類別，使用相關標準核算必要費用；若查得實際所得額較高，仍可能依查得資料核計。</p>
+  <p>以下整理已公告的<strong>114年度（2025年所得）</strong>幾項常見費用率，供理解不同收入性質的差異。<strong>這不是115年度（2026年所得）的費用率表</strong>，後續應依該所得年度最新公告辦理。</p>
+  <div class="org-table-scroll tax-table-wrap income-expense-table-wrap" role="region" aria-label="114年度執行業務者常見費用率表，手機版以逐列卡片顯示" tabindex="0">
+    <table class="org-compare-table tax-guide-table income-expense-table">
+      <thead><tr><th scope="col">9A收入類型／職業</th><th scope="col">費用率</th><th scope="col">說明</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">程式設計師</th><td class="income-expense-rate">20%</td><td class="income-expense-detail">程式開發、系統設計等符合該類別的業務收入</td></tr>
+        <tr><th scope="row">書畫家、版畫家</th><td class="income-expense-rate">30%</td><td class="income-expense-detail">符合書畫、版畫創作等該職業類別的收入</td></tr>
+        <tr><th scope="row">美術工藝家：工資收入</th><td class="income-expense-rate">20%</td><td class="income-expense-detail">以工藝製作或技術服務的工資為主</td></tr>
+        <tr><th scope="row">美術工藝家：工料收入</th><td class="income-expense-rate">62%</td><td class="income-expense-detail">報酬同時包含工資與材料費</td></tr>
+        <tr><th scope="row">工匠：工資收入</th><td class="income-expense-rate">20%</td><td class="income-expense-detail">僅收取工資或技術服務報酬</td></tr>
+        <tr><th scope="row">工匠：工料收入</th><td class="income-expense-rate">62%</td><td class="income-expense-detail">報酬同時包含工資與材料費</td></tr>
+        <tr><th scope="row">未具建築師資格辦理建築規劃設計者</th><td class="income-expense-rate">35%</td><td class="income-expense-detail">從事符合該項定義的建築規劃、設計或監造業務</td></tr>
+        <tr><th scope="row">其他未列明項目</th><td class="income-expense-rate">依個案</td><td class="income-expense-detail">由稽徵機關依查得資料或相近業別的費用率認定</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>例如適用114年度「程式設計師」20%費用標準、全年收入100萬元時，按該標準核算的必要費用是20萬元，所得為80萬元。這裡的20%是<strong>費用率，不是所得稅稅率</strong>。</p>
+  <p>實際分類要看<strong>做了什麼工作</strong>，不能只憑名片上寫「設計師」就自行套用30%或其他比例。若有依法保存的帳簿及憑證，仍要依適用規定核實計算；上述表格也不會自動取代前面30萬元的教學假設。完整規定可查閱<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=GL011721" target="_blank" rel="noopener noreferrer">財政部〈一百十四年度執行業務者費用標準〉</a>。</p>
+</div>
 
 因此，收到多少錢、賺到多少錢，以及最後要用多少所得計算稅額，是三件不同的事。
 
@@ -237,5 +260,5 @@ tags:
 <div class="org-source-note">
   <strong>資料與案例說明</strong>
   <p>本文以2026年度（民國115年度）臺灣境內居住的單身納稅義務人為例，除非另外註明，均假設沒有其他所得、扶養親屬或額外扣除項目。金額是教學試算，並非個別讀者的實際應納稅額。執行業務收入的所得分類與成本費用，仍須依適用法規及憑證認列；個人稅負也可能受家庭成員、股利、基本生活費差額及其他項目影響。</p>
-  <p>官方資料：<a href="https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg031224/ch04/type3/gov30/num12/Eg.htm" target="_blank" rel="noopener noreferrer">財政部｜115年度綜所稅免稅額、扣除額與稅率級距</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-saving-manual/national/individual-income-tax/gLA3Vax" target="_blank" rel="noopener noreferrer">財政部｜所得成本及費用認列</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/taxation-scope/which-income/YmDoYM2" target="_blank" rel="noopener noreferrer">財政部｜股利合併計稅</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/taxation-scope/which-income/zZzO3re" target="_blank" rel="noopener noreferrer">財政部｜股利分開計稅</a>。</p>
+  <p>官方資料：<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=GL011721" target="_blank" rel="noopener noreferrer">財政部｜114年度執行業務者費用標準</a>、<a href="https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg031224/ch04/type3/gov30/num12/Eg.htm" target="_blank" rel="noopener noreferrer">財政部｜115年度綜所稅免稅額、扣除額與稅率級距</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-saving-manual/national/individual-income-tax/gLA3Vax" target="_blank" rel="noopener noreferrer">財政部｜所得成本及費用認列</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/taxation-scope/which-income/YmDoYM2" target="_blank" rel="noopener noreferrer">財政部｜股利合併計稅</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/taxation-scope/which-income/zZzO3re" target="_blank" rel="noopener noreferrer">財政部｜股利分開計稅</a>。</p>
 </div>
