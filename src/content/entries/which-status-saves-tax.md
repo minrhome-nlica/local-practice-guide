@@ -12,6 +12,9 @@ related:
   - supplemental-premium
   - labor-health-insurance
   - reimbursement
+  - income-withholding
+  - business-income-tax
+  - comprehensive-income-tax
 tags:
   - 節稅
   - 個人接案
@@ -38,7 +41,7 @@ tags:
 <div class="tax-prerequisite-note" role="note" aria-label="閱讀前提醒：先閱讀二代健保補充保費">
   <span class="tax-prerequisite-eyebrow">閱讀前提醒</span>
   <strong class="tax-prerequisite-title">請先閱讀〈二代健保補充保費〉</strong>
-  <p>本篇會提到個人補充保費，以及付款單位可能增加的成本。建議先讀過<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>，再回來看不同身分的接案案例，會更容易理解。</p>
+  <p>本篇會提到個人補充保費，以及付款單位可能增加的成本。建議先讀過<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>。如果還不熟悉全年所得稅怎麼算，也可以先看<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>，再回來比較不同身分的接案案例。</p>
 </div>
 
 ## 一、個人身分接案
