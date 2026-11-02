@@ -2217,7 +2217,7 @@ main table :is(th, td) p {
 /* Tax-status nested section headings and prerequisite reading note.
    H3: green section rail shared by all guides.
    H4: smaller sand-colored rail and quiet tint so the hierarchy stays clear. */
-.article.guide-article.tax-status-article > h4 {
+.article.guide-article.tax-subhead-article > h4 {
   margin: 37px 0 20px 12px;
   padding: 9px 16px;
   border-left: 3px solid #bd9875;
@@ -2230,7 +2230,7 @@ main table :is(th, td) p {
   line-height: 1.75;
   scroll-margin-top: 110px;
 }
-.article.guide-article.tax-status-article > h3 {
+.article.guide-article.tax-subhead-article > h3 {
   scroll-margin-top: 110px;
 }
 .article.guide-article.tax-status-article .tax-prerequisite-note {
@@ -2267,7 +2267,7 @@ main table :is(th, td) p {
   text-underline-offset: 3px;
 }
 @media (max-width: 700px) {
-  .article.guide-article.tax-status-article > h4 {
+  .article.guide-article.tax-subhead-article > h4 {
     margin: 29px 0 16px 5px;
     padding: 9px 12px;
     font-size: 16px;
