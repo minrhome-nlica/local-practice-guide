@@ -2787,3 +2787,92 @@ main table :is(th, td) p {
     overflow-wrap: anywhere;
   }
 }
+
+/* 9A expense rate explainer: table stays legible without sideways scrolling on phones. */
+.article.guide-article .org-explainer-note.income-expense-note {
+  background: #f4f7f0;
+  border-color: #dce7d7;
+  border-left-color: #78957f;
+}
+.article.guide-article .income-expense-note > strong {
+  font-size: 17px;
+  line-height: 1.65;
+}
+.article.guide-article .income-expense-note .income-expense-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  margin: 17px 0 15px;
+  overflow: visible;
+  background: #fff;
+}
+.article.guide-article .income-expense-note .income-expense-table {
+  display: table;
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  font-size: 13.5px;
+  line-height: 1.8;
+}
+.article.guide-article .income-expense-note .income-expense-table thead th:nth-child(1) { width: 34%; }
+.article.guide-article .income-expense-note .income-expense-table thead th:nth-child(2) { width: 17%; }
+.article.guide-article .income-expense-note .income-expense-table thead th:nth-child(3) { width: 49%; }
+.article.guide-article .income-expense-note .income-expense-table :is(th,td) {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  padding: 12px 11px;
+}
+.article.guide-article .income-expense-note .income-expense-table .income-expense-rate {
+  white-space: nowrap;
+  text-align: center;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.article.guide-article .income-expense-note p + p { margin-top: 10px; }
+@media (max-width: 650px) {
+  .article.guide-article .income-expense-note .income-expense-table-wrap { overflow: visible; }
+  .article.guide-article .income-expense-note .income-expense-table,
+  .article.guide-article .income-expense-note .income-expense-table tbody,
+  .article.guide-article .income-expense-note .income-expense-table tbody tr {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  .article.guide-article .income-expense-note .income-expense-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .article.guide-article .income-expense-note .income-expense-table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 12px;
+    border-bottom: 1px solid #dce7db;
+  }
+  .article.guide-article .income-expense-note .income-expense-table tbody tr:last-child { border-bottom: 0; }
+  .article.guide-article .income-expense-note .income-expense-table tbody tr > th {
+    grid-column: 1;
+    border: 0;
+    padding: 12px 0 4px 12px;
+    background: transparent;
+  }
+  .article.guide-article .income-expense-note .income-expense-table tbody tr > td.income-expense-rate {
+    grid-column: 2;
+    border: 0;
+    padding: 12px 12px 4px 0;
+    background: transparent;
+  }
+  .article.guide-article .income-expense-note .income-expense-table tbody tr > td.income-expense-detail {
+    grid-column: 1 / -1;
+    border: 0;
+    padding: 0 12px 12px;
+    background: transparent;
+    color: #536558;
+    font-size: 12.5px;
+  }
+}
