@@ -2723,3 +2723,67 @@ main table :is(th, td) p {
   .footer-meta { width: 100%; }
   .footer-credits { font-size: 13px; }
 }
+
+
+/* Work-item reference table: keep every cost in the article width; never scroll sideways. */
+.article.guide-article.budget-article table.budget-work-table {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  margin: 26px 0 35px;
+  border: 1px solid #d8e3d8;
+  border-radius: 9px;
+  background: #fff;
+}
+.article.guide-article.budget-article .budget-work-table .budget-work-name { width: 27%; }
+.article.guide-article.budget-article .budget-work-table .budget-work-costs { width: 73%; }
+.article.guide-article.budget-article .budget-work-table :is(th,td) {
+  min-width: 0;
+  width: auto;
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: middle;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  line-break: strict;
+  border: 0;
+  border-bottom: 1px solid #dfe7dd;
+  border-right: 1px solid #dfe7dd;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.article.guide-article.budget-article .budget-work-table tr > :last-child { border-right: 0; }
+.article.guide-article.budget-article .budget-work-table tbody tr:last-child > * { border-bottom: 0; }
+.article.guide-article.budget-article .budget-work-table thead th {
+  background: #e9f0e7;
+  color: #294b3a;
+  font-weight: 700;
+}
+.article.guide-article.budget-article .budget-work-table tbody th {
+  background: #f7faf5;
+  color: #315a45;
+  font-weight: 700;
+}
+.article.guide-article.budget-article .budget-work-table tbody td { color: #384b40; }
+@media(max-width:650px) {
+  .article.guide-article.budget-article table.budget-work-table {
+    display: table;
+    width: 100%;
+    overflow: hidden;
+  }
+  .article.guide-article.budget-article .budget-work-table .budget-work-name { width: 33%; }
+  .article.guide-article.budget-article .budget-work-table .budget-work-costs { width: 67%; }
+  .article.guide-article.budget-article .budget-work-table :is(th,td) {
+    padding: 11px 10px;
+    font-size: 13px;
+    line-height: 1.8;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
