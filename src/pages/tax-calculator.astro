@@ -225,5 +225,7 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
     </section>
     <noscript><div class="tc-guidance">此計算機需要啟用瀏覽器 JavaScript 才能互動。也可以先閱讀<a href={root + '/entries/which-status-saves-tax/'}>〈什麼身分比較節稅？〉</a>了解固定案例。</div></noscript>
   </section>
-  <script src={root + '/tax-calculator.js'} defer is:inline></script>
+  <script>
+  import '../scripts/taxCalculator.js';
+</script>
 </BaseLayout>
