@@ -12,15 +12,15 @@ export const categoryName = (slug: string) =>
 // Maintain an editorial reading sequence for subjects that build on one another.
 // Other entries remain alphabetically ordered by their Traditional Chinese titles.
 const categoryFeaturedOrder: Record<string, string[]> = {
-  organizations: ['legal-person-natural-person', 'why-establish-legal-person', 'why-establish-business-studio', 'income-withholding', 'business-income-tax', 'which-status-saves-tax'],
-  finance: ['budget-planning', 'reimbursement', 'income-withholding', 'business-income-tax', 'which-status-saves-tax'],
+  organizations: ['legal-person-natural-person', 'why-establish-legal-person', 'why-establish-business-studio', 'income-withholding', 'business-income-tax', 'comprehensive-income-tax', 'which-status-saves-tax'],
+  finance: ['budget-planning', 'reimbursement', 'income-withholding', 'business-income-tax', 'comprehensive-income-tax', 'which-status-saves-tax'],
   people: ['labor-health-insurance', 'supplemental-premium']
 };
 
 // Some practical guides are discoverable from two categories while remaining a
 // single canonical article, so future corrections never diverge across copies.
 const categoryCrossListings: Record<string, string[]> = {
-  finance: ['income-withholding', 'business-income-tax', 'which-status-saves-tax']
+  finance: ['income-withholding', 'business-income-tax', 'comprehensive-income-tax', 'which-status-saves-tax']
 };
 export const entriesInCategory = <T extends { id: string; data: { category: string } }>(items: T[], slug: string): T[] =>
   items.filter((item) => item.data.category === slug || (categoryCrossListings[slug] ?? []).includes(item.id));
@@ -37,5 +37,5 @@ export const sortEntriesForCategory = <T extends { id: string; data: { title: st
 export const learningPaths = [
   { number: '01', title: '第一次開始地方實踐', desc: '先理解地方工作的目的，再學習尋找資源。', slugs: ['local-practice', 'community-building', 'local-revitalization', 'what-is-subsidy', 'subsidy-guide', 'proposal-writing'] },
   { number: '02', title: '第一次執行政府計畫', desc: '從閱讀規定、規劃經費，到完成核銷。', slugs: ['subsidy-guide', 'tender', 'proposal-writing', 'budget-planning', 'results-report-writing', 'reimbursement'] },
-  { number: '03', title: '開始整理組織的工作制度', desc: '先理解法律身分，再從聘人與行政實務建立可持續的工作方法。', slugs: ['legal-person-natural-person', 'why-establish-legal-person', 'why-establish-business-studio', 'income-withholding', 'business-income-tax', 'which-status-saves-tax', 'labor-health-insurance', 'supplemental-premium', 'reimbursement', 'proposal-writing'] }
+  { number: '03', title: '開始整理組織的工作制度', desc: '先理解法律身分，再從聘人與行政實務建立可持續的工作方法。', slugs: ['legal-person-natural-person', 'why-establish-legal-person', 'why-establish-business-studio', 'income-withholding', 'business-income-tax', 'comprehensive-income-tax', 'which-status-saves-tax', 'labor-health-insurance', 'supplemental-premium', 'reimbursement', 'proposal-writing'] }
 ];
