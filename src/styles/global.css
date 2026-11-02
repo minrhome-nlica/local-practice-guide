@@ -2705,3 +2705,21 @@ main table :is(th, td) p {
   .footer-bottom { gap: 20px; }
   .footer-meta { text-align: left; }
 }
+
+/* Copyright text: legible, distinct, and responsive in the shared footer. */
+.footer-credits {
+  flex: 1 1 auto;
+  color: #e5ede5;
+  font-size: 13px;
+  font-weight: 400;
+}
+.footer-credits > span {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.footer-meta { flex: 0 1 auto; }
+@media (max-width: 650px) {
+  .footer-credits,
+  .footer-meta { width: 100%; }
+  .footer-credits { font-size: 13px; }
+}
