@@ -13,8 +13,19 @@ export const categoryName = (slug: string) =>
 // Other entries remain alphabetically ordered by their Traditional Chinese titles.
 const categoryFeaturedOrder: Record<string, string[]> = {
   organizations: ['legal-person-natural-person', 'why-establish-legal-person', 'why-establish-business-studio', 'income-withholding', 'business-income-tax', 'which-status-saves-tax'],
+  finance: ['budget-planning', 'reimbursement', 'income-withholding', 'business-income-tax', 'which-status-saves-tax'],
   people: ['labor-health-insurance', 'supplemental-premium']
 };
+
+// Some practical guides are discoverable from two categories while remaining a
+// single canonical article, so future corrections never diverge across copies.
+const categoryCrossListings: Record<string, string[]> = {
+  finance: ['income-withholding', 'business-income-tax', 'which-status-saves-tax']
+};
+export const entriesInCategory = <T extends { id: string; data: { category: string } }>(items: T[], slug: string): T[] =>
+  items.filter((item) => item.data.category === slug || (categoryCrossListings[slug] ?? []).includes(item.id));
+export const otherCategoriesForEntry = (entryId: string, primaryCategory: string) =>
+  categories.filter((cat) => cat.slug !== primaryCategory && (categoryCrossListings[cat.slug] ?? []).includes(entryId));
 export const sortEntriesForCategory = <T extends { id: string; data: { title: string } }>(items: T[], categorySlug: string): T[] => {
   const order = categoryFeaturedOrder[categorySlug] ?? [];
   const rank = (id: string) => {

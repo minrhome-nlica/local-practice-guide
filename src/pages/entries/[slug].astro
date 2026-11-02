@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
-import { categoryName } from '../../data/catalog';
+import { categoryName, otherCategoriesForEntry } from '../../data/catalog';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 export async function getStaticPaths(){
   const entries = await getCollection('entries');
@@ -13,12 +13,13 @@ const { Content, headings } = await render(entry);
 const chapters = headings.filter((h) => h.depth === 2);
 const chapterTitle = (text) => text.replace(/^(?:[一二三四五六七八九十]+|[壹貳參肆伍陸柒捌玖拾]+|[0-9]{1,2})[、．.]\s*/, '');
 const reimbursementHints = ['確認期間與項目', '蒐集交易與付款證明', '整理每筆經費', '編號、歸檔與核章', '補齊活動與成果佐證', '依規定檢查並提交'];
+const additionalCategories = otherCategoriesForEntry(entry.id, entry.data.category);
 const relatedIds = entry.data.related || [];
 const allEntries = await getCollection('entries');
 const related = relatedIds.map((id) => allEntries.find((e) => e.id === id)).filter(Boolean);
 ---
 <BaseLayout title={entry.data.title} description={entry.data.summary}>
-  <section class="page-hero"><div class="wrap"><div class="breadcrumbs"><a href={root + '/'}>首頁</a> / <a href={root + '/knowledge/'}>知識百科</a> / <a href={root + '/knowledge/' + entry.data.category + '/'}>{categoryName(entry.data.category)}</a></div><span class="eyebrow">KNOWLEDGE ENTRY</span><h1 class="page-title">{entry.data.title}</h1><div class="tags"><span class="tag">{categoryName(entry.data.category)}</span><span class="tag">{entry.data.level}</span><span class="tag">{entry.data.status}</span></div><p class="entry-summary" data-pagefind-meta="summary">{entry.data.summary}</p></div></section>
+  <section class="page-hero"><div class="wrap"><div class="breadcrumbs"><a href={root + '/'}>首頁</a> / <a href={root + '/knowledge/'}>知識百科</a> / <a href={root + '/knowledge/' + entry.data.category + '/'}>{categoryName(entry.data.category)}</a></div><span class="eyebrow">KNOWLEDGE ENTRY</span><h1 class="page-title">{entry.data.title}</h1><div class="tags"><span class="tag">{categoryName(entry.data.category)}</span><span class="tag">{entry.data.level}</span><span class="tag">{entry.data.status}</span>{additionalCategories.map((cat) => <a class="tag tag-link" href={root + '/knowledge/' + cat.slug + '/'}>另收錄於 {cat.name}</a>)}</div><p class="entry-summary" data-pagefind-meta="summary">{entry.data.summary}</p></div></section>
   <div class="wrap entry-grid">
     <article class="entry-layout" data-pagefind-body>
       {chapters.length > 0 && <nav class="chapter-jump" aria-label="本篇章節快速導覽" data-pagefind-ignore>
@@ -50,6 +51,27 @@ const related = relatedIds.map((id) => allEntries.find((e) => e.id === id)).filt
       if (shortcuts && firstChapter) {
         firstChapter.before(shortcuts);
       }
+      // Give every plain Markdown table the same full-width design. Existing
+      // custom tables keep their own wrappers, widths, and editorial styling.
+      articleBody?.querySelectorAll(':scope > table:not([class])').forEach((table) => {
+        const headerRow = table.querySelector('thead tr') || table.querySelector('tr');
+        const columnCount = headerRow?.children.length || 0;
+        const frame = document.createElement('div');
+        frame.className = 'guide-table-frame';
+        if (columnCount >= 4) frame.classList.add('guide-table-wide');
+        if (columnCount === 2) frame.classList.add('guide-table-pair');
+        const lastHeading = table.querySelector('thead tr > :last-child')?.textContent?.trim() || '';
+        if (columnCount === 2 && /金額|稅額|費用|價額|款項/.test(lastHeading)) {
+          frame.classList.add('guide-table-ledger');
+        }
+        const lastRow = table.querySelector('tbody tr:last-child');
+        if (lastRow && lastRow.querySelector('strong') &&
+            /合計|總支出|實際|應繳|稅額|全年所得|淨額/.test(lastRow.textContent || '')) {
+          lastRow.classList.add('guide-table-total-row');
+        }
+        table.before(frame);
+        frame.append(table);
+      });
     })();
   </script>
 </BaseLayout>

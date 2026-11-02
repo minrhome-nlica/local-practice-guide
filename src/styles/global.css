@@ -2387,3 +2387,147 @@ main table :is(th, td) p {
   .site-header .brand strong { font-size: 14px; }
   .mobile-panel { max-width: calc(100vw - 32px); }
 }
+
+
+/* Universal article tables: use full content width and a shared visual rhythm.
+   Only unclassed (Markdown-generated) tables are wrapped by the article layout;
+   specialized diagrams and complex custom tables retain their own styles. */
+.article.guide-article .guide-table-frame {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 25px 0 34px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid #d8e3d8;
+  border-radius: 9px;
+  background: #fff;
+  box-shadow: 0 3px 14px rgba(43,73,55,.035);
+}
+.article.guide-article .guide-table-frame > table {
+  display: table;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  overflow: visible;
+  background: #fff;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.article.guide-article .guide-table-frame > table :is(th, td) {
+  padding: 13px 15px;
+  border: 0;
+  border-bottom: 1px solid #e5ebe3;
+  text-align: left;
+  vertical-align: top;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+.article.guide-article .guide-table-frame > table thead th {
+  background: #e9f0e7;
+  color: #2d4b3b;
+  font-weight: 700;
+  border-bottom-color: #d1ded1;
+}
+.article.guide-article .guide-table-frame > table tbody th {
+  background: #f6f9f4;
+  color: #355843;
+  font-weight: 700;
+}
+.article.guide-article .guide-table-frame > table tbody tr:nth-child(even) td {
+  background: #fafbf8;
+}
+.article.guide-article .guide-table-frame > table tbody tr:last-child :is(th,td) {
+  border-bottom: 0;
+}
+.article.guide-article .guide-table-frame > table tbody .guide-table-total-row :is(th,td) {
+  background: #eaf2e7;
+  color: #2c4d39;
+  font-weight: 700;
+}
+.article.guide-article .guide-table-frame.guide-table-pair > table tr > :first-child {
+  width: 53%;
+}
+.article.guide-article .guide-table-frame.guide-table-pair > table tr > :last-child {
+  width: 47%;
+}
+.article.guide-article .guide-table-frame.guide-table-ledger > table tr > :last-child {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.article.guide-article .guide-table-frame.guide-table-ledger > table tbody tr > :last-child {
+  white-space: nowrap;
+}
+/* Consistent fourth-level headings and note cards across every guide. */
+.article.guide-article h4 {
+  color: #315444;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 27px 0 13px;
+  font-weight: 700;
+}
+.article.guide-article .org-explainer-note {
+  border: 1px solid #e2e7d9;
+  border-left: 4px solid #9cb5a1;
+  border-radius: 8px;
+  margin: 26px 0 34px;
+  padding: 20px 22px;
+  background: #f6f7f1;
+  color: #486050;
+}
+.article.guide-article .org-explainer-note > strong {
+  display: block;
+  color: #2c4b39;
+  margin-bottom: 9px;
+  line-height: 1.65;
+}
+.article.guide-article .org-explainer-note p {
+  font-size: 14px;
+  line-height: 1.95;
+  margin: 0;
+}
+.tag-link {
+  text-decoration: none;
+  border: 1px solid #c6d7c7;
+  transition: background-color .18s, border-color .18s;
+}
+.tag-link:hover,
+.tag-link:focus-visible {
+  background: #d8e8d9;
+  border-color: #93ae98;
+}
+@media(max-width:700px) {
+  .article.guide-article .guide-table-frame {
+    margin: 20px 0 29px;
+    border-radius: 8px;
+  }
+  .article.guide-article .guide-table-frame > table {
+    display: table;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  .article.guide-article .guide-table-frame > table :is(th,td) {
+    padding: 11px 10px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .article.guide-article .guide-table-frame.guide-table-wide > table {
+    min-width: 620px;
+  }
+  .article.guide-article .guide-table-frame.guide-table-ledger > table tbody tr > :last-child {
+    white-space: normal;
+  }
+  .article.guide-article .org-explainer-note {
+    margin: 20px 0 29px;
+    padding: 17px 16px;
+  }
+}

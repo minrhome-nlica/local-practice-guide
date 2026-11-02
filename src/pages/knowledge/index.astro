@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { categories, categoryName, sortEntriesForCategory } from '../../data/catalog';
+import { categories, entriesInCategory, sortEntriesForCategory } from '../../data/catalog';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const entries = await getCollection('entries');
 const categoryGroups = categories.map((cat) => ({
   ...cat,
-  entries: sortEntriesForCategory(entries.filter((item) => item.data.category === cat.slug), cat.slug)
+  entries: sortEntriesForCategory(entriesInCategory(entries, cat.slug), cat.slug)
 }));
 ---
 <BaseLayout title="知識百科">
@@ -50,7 +50,7 @@ const categoryGroups = categories.map((cat) => ({
           </div>
           {cat.entries.length > 0
             ? <div class="entry-list">{cat.entries.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}>
-                <span class="meta">{categoryName(item.data.category)} ・ {item.data.status}</span>
+                <span class="meta">{cat.name} ・ {item.data.status}</span>
                 <h3>{item.data.title}</h3>
                 <p>{item.data.summary}</p>
               </a>)}</div>
