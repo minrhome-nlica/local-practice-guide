@@ -2599,3 +2599,28 @@ main table :is(th, td) p {
     background: #eaf2e7;
   }
 }
+
+/* Compact five-column status table; existing table cards handle mobile reading. */
+.article.guide-article.business-income-article .guide-table-frame.guide-table-wide > table {
+  font-size: 13px;
+  line-height: 1.75;
+}
+.article.guide-article.business-income-article .guide-table-frame.guide-table-wide > table :is(th, td) {
+  padding: 12px 9px;
+}
+.article.guide-article.business-income-article .guide-table-frame.guide-table-wide > table tr > :first-child {
+  width: 19%;
+  font-weight: 700;
+  color: #315444;
+}
+@media (max-width: 650px) {
+  .article.guide-article.business-income-article .guide-table-frame.guide-table-wide > table {
+    font-size: 14px;
+  }
+  .article.guide-article.business-income-article .guide-table-frame.guide-table-wide > table tbody tr > :is(td, th) {
+    padding: 11px 0;
+  }
+  .article.guide-article.business-income-article .guide-table-frame.guide-table-wide > table tbody tr > :first-child {
+    width: 100%;
+  }
+}
