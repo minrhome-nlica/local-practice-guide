@@ -117,6 +117,17 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
           <small>估算適用年度</small><strong>2026 年</strong><p>2026 年所得，原則於 2027 年申報</p>
         </div>
       </div>
+      <div class="tc-quick" aria-label="快速試算">
+        <div class="tc-field">
+          <label for="tc-quick-amount" id="tc-quick-amount-label">快速調整金額</label>
+          <div class="tc-unit-input"><input id="tc-quick-amount" type="number" min="1" max="1000000000" step="1" inputmode="decimal" /><span>元</span></div>
+        </div>
+        <div class="tc-field" id="tc-quick-cost-wrap">
+          <div class="tc-range-head"><label for="tc-quick-cost">工作成本假設</label><span id="tc-quick-cost-number">30%</span></div>
+          <input type="range" id="tc-quick-cost" min="0" max="90" step="5" value="30"/>
+        </div>
+        <p class="tc-small">修改後即時更新。更詳細的資料可以在下方「進階設定」補充。</p>
+      </div>
       <div class="tc-plain-note" id="tc-assumption-note" role="note"></div>
       <div class="tc-compare">
         <div class="tc-compare-top">
