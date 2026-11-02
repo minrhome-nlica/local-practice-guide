@@ -11,6 +11,7 @@ related:
   - why-establish-legal-person
   - which-status-saves-tax
   - reimbursement
+  - comprehensive-income-tax
 tags:
   - 營業稅
   - 營所稅
