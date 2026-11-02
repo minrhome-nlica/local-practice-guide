@@ -3,7 +3,7 @@ title: 什麼身分比較節稅？
 summary: 同樣一筆10萬元的設計案，用個人、工作室、公司、協會或合作社請款，收款人和付款方各要負擔什麼？再看農民自產自銷蔬果的免稅案例，學會比較不同身分的稅務差異。
 category: organizations
 level: 實務
-updated: 2026-10-31
+updated: 2026-11-02
 status: 編輯稿
 related:
   - legal-person-natural-person
@@ -231,7 +231,73 @@ tags:
 
 所以，個人接案不一定最省稅，也不一定最有利於長期經營。如果已經有穩定的案源，就值得進一步思考，是否應該成立自己的工作室。
 
-## 二、商號／工作室接案
+## 二、成立組織後，一定要開統一發票嗎？
+
+前面我們看到，設計師用個人身分承接 100,000 元的設計案，付款公司可能需要代扣所得稅與健保補充保費。但如果今天設計師成立了一間工作室，付款方式就一定不一樣嗎？
+
+其實，<strong>完成登記，不代表一定要使用統一發票。</strong>有些工作室依法使用統一發票，有些則是經國稅局核定免用統一發票。而這個差別，會直接影響接下來的案例。
+
+### 1. 使用統一發票與免用統一發票，有什麼不同？
+
+我們先從三種常見的請款情況來比較：
+
+<div class="org-table-scroll tax-table-wrap tax-table-horizontal" role="region" aria-label="三種常見請款憑證的差別" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-summary">
+  <thead><tr><th scope="col">請款方式</th><th scope="col">誰可能使用？</th><th scope="col">付款單位需要注意什麼？</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">個人勞務報酬領據</th><td>以個人名義提供勞務的設計師</td><td>依所得性質辦理扣繳與相關申報</td></tr>
+    <tr><th scope="row">普通收據</th><td>經國稅局核定免用統一發票的營業人</td><td>可依法認列支出，但一般不能用普通收據扣抵進項營業稅</td></tr>
+    <tr><th scope="row">統一發票</th><td>依法核定使用統一發票的營業人</td><td>符合規定的應稅發票，其進項稅額可能可以扣抵</td></tr>
+  </tbody>
+</table>
+</div>
+
+因此，同樣是成立工作室，有沒有使用統一發票，會影響客戶取得的憑證，以及營業稅的處理方式。
+
+### 2. 什麼情況可以免用統一發票？
+
+依 2026 年適用的規定，部分小規模營業人每月查定銷售額未達 200,000 元，仍可以經國稅局核定免用統一發票。不過，<strong>免用統一發票，不等於不用繳營業稅。</strong>
+
+以小規模營業人的營業稅起徵點來說，自 2025 年起，技術與設計業等業別為每月 50,000 元，買賣業、一般飲食業等部分業別則為每月 100,000 元。這與是否核定使用統一發票，是不同的門檻。
+
+例如設計工作室經核定為免用統一發票的小規模營業人，且國稅局查定每月銷售額為 100,000 元，通常按 1% 計算營業稅：
+
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="免用發票設計工作室每月查定營業稅試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">假設每月查定銷售額</th><td class="tax-number">100,000 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>查定課徵營業稅 1%</strong></th><td class="tax-number"><strong>1,000 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+這裡的 1,000 元是用假設的<strong>每月查定銷售額</strong>試算，不代表只要收到一筆 100,000 元的款項，國稅局就一定會課徵 1,000 元營業稅。實際仍須依國稅局核定結果辦理。
+
+### 3. 如果工作室使用統一發票呢？
+
+如果工作室已經依法使用統一發票，提供適用 5% 營業稅的設計服務，並和客戶約定設計費 100,000 元、營業稅另外計算：
+
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="使用統一發票的設計工作室10萬元請款試算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">設計服務費</th><td class="tax-number">100,000 元</td></tr>
+    <tr><th scope="row">營業稅 5%</th><td class="tax-number">+5,000 元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>客戶付款金額</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+工作室雖然收到 105,000 元，但其中 5,000 元是銷項營業稅，不應直接當成工作室的獲利。工作室還要依規定計算銷項稅額、可扣抵的進項稅額，以及實際應繳納的營業稅。
+
+而付款公司如果取得合法發票，並符合進項稅額扣抵規定，這 5,000 元可能可以用來扣抵自己的銷項稅額。<strong>所以開立統一發票，不一定代表客戶的最終稅務成本增加 5,000 元。</strong>
+
+另外，本篇均先假設 100,000 元是未稅的服務價格。如果雙方約定的是含稅總價 100,000 元，就不能直接再加收 5,000 元，必須依實際約定計算。
+
+接下來，我們就分別看看成立商號、公司、社團法人及合作社之後，會產生哪些差別。
+
+## 三、商號／工作室接案
 
 ### 1. 假設我成立了自己的設計工作室
 
@@ -283,7 +349,7 @@ tags:
 
 但成立工作室不代表所有私人支出都能拿來節稅，也不代表一定比個人接案少繳稅。<strong>對長期經營的接案工作者來說，商號真正的優勢，是讓營業活動、收入與成本逐漸建立制度。</strong>
 
-## 三、公司接案
+## 四、公司接案
 
 ### 1. 假設我成立了一間有限公司
 
@@ -337,7 +403,7 @@ tags:
 
 如果把公司繳納的營所稅、股東未來可能繳納的股利所得稅，以及經營成本全部算進去，就會發現：<strong>成立公司不一定比較省稅，但對持續經營、聘用人員與擴大事業規模的人而言，可能是更適合的組織形式。</strong>
 
-## 四、社團法人接案
+## 五、社團法人接案
 
 ### 1. 假設我在一間地方文化協會工作
 
@@ -376,7 +442,7 @@ tags:
 
 但<strong>協會依法支付薪資、設計費，不等於可以把年底的結餘分紅給會員</strong>。因此，社團法人的稅務優勢並不是讓個人把自己的設計收入轉進協會後，再免稅領回。它更重要的意義，是能將資源留在組織內，持續投入符合宗旨的公共事業。
 
-## 五、合作社接案
+## 六、合作社接案
 
 ### 1. 假設我和其他設計師成立合作社
 
@@ -415,7 +481,7 @@ tags:
 
 <strong>合作社的優勢，是讓有共同需求的人可以共同經營、分享資源與成果；稅務優惠是其中的一項可能利益，而不是唯一目的。</strong>
 
-## 六、農民自產自銷，為什麼可能享有不同的稅務待遇？
+## 七、農民自產自銷的稅務，有什麼不同？
 
 ### 1. 假設我是一名種植蔬菜的農民
 
@@ -495,7 +561,7 @@ tags:
 
 所以，免稅的關鍵不只是「我賣的東西是農產品」，還包括<strong>是不是自己生產、農產品有沒有經過加工，以及法律實際規定的交易性質</strong>。這也是為什麼農民、農產運銷合作社、一般蔬果批發商與農產加工公司，雖然可能都在販售農產品，稅務處理卻不一定相同。
 
-## 七、結語：什麼身分比較節稅？
+## 八、結語：什麼身分比較節稅？
 
 回到最初的問題：同樣一筆 100,000 元的交易，用不同身分收款，可能有以下差別：
 
@@ -530,5 +596,5 @@ tags:
 <div class="org-source-note">
   <strong>資料與案例說明</strong>
   <p>本文案例均為教學假設。個別交易的所得分類、扣繳、稅籍登記、發票使用、免稅資格及保險身分，仍須依實際事實與適用年度規定判斷。10 萬元設計案、講師費、投保單位補充保費與自力耕作等金額，均是在文中明列條件下的試算。</p>
-  <p>官方資料：<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/withheld-rule/rule/a7BB6R9" target="_blank" rel="noopener noreferrer">財政部｜執行業務所得扣繳</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/withheld-rule/rule/NM11BZY" target="_blank" rel="noopener noreferrer">財政部｜薪資所得扣繳</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/withheld-rule/rule/n3x6znM" target="_blank" rel="noopener noreferrer">財政部｜非每月給付薪資扣繳</a>、<a href="https://www.nhi.gov.tw/ch/cp-4516-74b0f-2613-1.html" target="_blank" rel="noopener noreferrer">健保署｜補充保險費計算公式</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">合作社法</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340012" target="_blank" rel="noopener noreferrer">教育文化公益慈善機關或團體免納所得稅適用標準</a>、<a href="https://gazette.nat.gov.tw/egFront/eguploadpubWrapper?file=%2FEG_FileManager%2Feguploadpub%2Feg032009%2Fch04%2Ftype2%2Fgov30%2Fnum6%2FEg.htm&amp;metaid=162994" target="_blank" rel="noopener noreferrer">財政部｜114 年度自力耕作成本及必要費用標準</a>。</p>
+  <p>官方資料：<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=FL006090" target="_blank" rel="noopener noreferrer">財政部｜小規模營業人營業稅起徵點</a>、<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=3ee59a0b82a94e35a7cfc684d8e12d0d" target="_blank" rel="noopener noreferrer">財政部｜免用統一發票規定</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050200" target="_blank" rel="noopener noreferrer">合作社業務提供非社員使用辦法</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/withheld-rule/rule/a7BB6R9" target="_blank" rel="noopener noreferrer">財政部｜執行業務所得扣繳</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/withheld-rule/rule/NM11BZY" target="_blank" rel="noopener noreferrer">財政部｜薪資所得扣繳</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/withheld-rule/rule/n3x6znM" target="_blank" rel="noopener noreferrer">財政部｜非每月給付薪資扣繳</a>、<a href="https://www.nhi.gov.tw/ch/cp-4516-74b0f-2613-1.html" target="_blank" rel="noopener noreferrer">健保署｜補充保險費計算公式</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">合作社法</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340012" target="_blank" rel="noopener noreferrer">教育文化公益慈善機關或團體免納所得稅適用標準</a>、<a href="https://gazette.nat.gov.tw/egFront/eguploadpubWrapper?file=%2FEG_FileManager%2Feguploadpub%2Feg032009%2Fch04%2Ftype2%2Fgov30%2Fnum6%2FEg.htm&amp;metaid=162994" target="_blank" rel="noopener noreferrer">財政部｜114 年度自力耕作成本及必要費用標準</a>。</p>
 </div>
