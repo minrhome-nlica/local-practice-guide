@@ -221,7 +221,7 @@ tags:
 
 這裡的 <strong>633 元是講師個人負擔</strong>。至於協會有沒有要額外繳一筆「單位補充保費」，仍要按第一節的每月薪資差額計算，兩件事應該分開看。
 
-## 五、執行業務所得（代碼9A、9B）
+## 五、執行業務所得（代碼9A）與講演、稿費等收入（代碼9B）
 
 這項跟前面的「兼職薪資所得」最大的差別，是所得性質不同。常見的所得稅代碼是 <strong>9A、9B</strong>，個人補充保費的一般門檻是<strong>單次給付達 20,000 元</strong>。
 
@@ -229,7 +229,7 @@ tags:
 
 ### 所得稅代碼 9A、9B，有什麼不同？
 
-9A 與 9B 都是常見的執行業務收入所得代碼，但適用的<strong>所得性質</strong>不同。先從下表對照定義、常見對象與實際判斷方式：
+執行業務所得（代碼9A）與講演、稿費等收入（代碼9B）在實務上常一起討論，但兩者的<strong>所得性質</strong>並不相同。先從下表對照定義、常見對象與實際判斷方式：
 
 <div class="insurance-table-scroll insurance-income-compare-wrap" role="region" aria-label="所得代碼9A與9B比較表；窄螢幕可左右滑動" tabindex="0">
   <table class="insurance-income-compare-table">
