@@ -431,6 +431,11 @@
       "先比較付款方的總支出、承接對象的憑證與可能的扣繳義務。薪資型給付的單位額外成本可能需補充資料。":
       "先比較這筆工作當下的匯款、發票與預扣差異。要知道真正的全年稅額，還需要收入、成本及其他個人條件。";
     $("tc-result-lead").textContent=lead;
+    $("tc-quick-amount-label").textContent=state.goal==="future"?"快速調整全年收入":"快速調整這筆案件金額";
+    $("tc-quick-amount").value=String(state.amount);
+    $("tc-quick-cost-wrap").hidden=state.goal!=="future";
+    $("tc-quick-cost").value=String(state.costPct);
+    $("tc-quick-cost-number").textContent=state.costPct+"%";
     $("tc-assumption-note").textContent=state.goal==="future"?
       "本次先假設工作成本占營收 "+state.costPct+"%（只是示例，不是法定費用率）、單身且未額外申報扶養或其他扣除。個人與獨資商號按可適用的情況示範2026年綜所稅；公司按全年獲利示範營所稅。未提供的行政費用、營業稅可扣抵進項、股利及個人補充保費均未計入。":
       "單筆交易以臺灣境內付款及收款為示範。設計委託暫假設符合9A（可在進階設定調整）；其他工作若性質不明則保留待確認。預扣所得稅只是預繳，不是最後稅負。";
@@ -567,6 +572,24 @@
   }));
   $("tc-run").addEventListener("click",run);
   $("tc-amount").addEventListener("keydown",(ev)=>{if(ev.key==="Enter")run()});
+  $("tc-quick-amount").addEventListener("change",()=>{
+    const value=positiveMoney($("tc-quick-amount").value);
+    if(value===null){
+      feedback("金額需介於1元至10億元，已保留先前的有效金額。");
+      $("tc-quick-amount").value=String(state.amount);
+      return;
+    }
+    state.amount=value;
+    $("tc-amount").value=String(value);
+    render();
+    feedback("已依新的金額重新計算。");
+  });
+  $("tc-quick-cost").addEventListener("input",()=>{
+    state.costPct=Number($("tc-quick-cost").value);
+    $("tc-cost-pct").value=String(state.costPct);
+    $("tc-cost-value").textContent=state.costPct+"%";
+    render();
+  });
   $("tc-edit").addEventListener("click",()=>{
     $("tc-results").hidden=true;$("tc-setup").hidden=false;
     renderInputState();progress(3);$("tc-setup").scrollIntoView({behavior:"smooth",block:"start"});
