@@ -2531,3 +2531,71 @@ main table :is(th, td) p {
     padding: 17px 16px;
   }
 }
+
+
+/* Four-or-more-column plain tables become labeled, stacked rows on phones.
+   This avoids sideways scrolling and keeps each figure's meaning visible. */
+@media (max-width: 650px) {
+  .article.guide-article .guide-table-frame.guide-table-wide {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .article.guide-article .guide-table-frame.guide-table-wide > table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+    background: transparent;
+  }
+  .article.guide-article .guide-table-frame.guide-table-wide > table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .article.guide-article .guide-table-frame.guide-table-wide > table tbody {
+    display: grid;
+    grid-template-columns: minmax(0,1fr);
+    gap: 12px;
+  }
+  .article.guide-article .guide-table-frame.guide-table-wide > table tbody tr {
+    display: block;
+    background: #fff;
+    border: 1px solid #d8e3d8;
+    border-radius: 8px;
+    padding: 3px 13px;
+    box-shadow: 0 3px 12px rgba(43,73,55,.03);
+  }
+  .article.guide-article .guide-table-frame.guide-table-wide > table tbody tr > :is(td,th) {
+    display: grid;
+    grid-template-columns: minmax(0,43%) minmax(0,57%);
+    gap: 10px;
+    width: 100%;
+    padding: 11px 0;
+    border: 0;
+    border-bottom: 1px solid #e6ece3;
+    color: #334c3c;
+    text-align: left;
+    white-space: normal;
+    background: transparent !important;
+    overflow-wrap: anywhere;
+  }
+  .article.guide-article .guide-table-frame.guide-table-wide > table tbody tr > :is(td,th)::before {
+    content: attr(data-guide-label);
+    color: #55715d;
+    font-weight: 700;
+    line-height: 1.7;
+  }
+  .article.guide-article .guide-table-frame.guide-table-wide > table tbody tr > :is(td,th):last-child {
+    border-bottom: 0;
+  }
+  .article.guide-article .guide-table-frame.guide-table-wide > table tbody tr.guide-table-total-row {
+    border-color: #b6d3b7;
+    background: #eaf2e7;
+  }
+}

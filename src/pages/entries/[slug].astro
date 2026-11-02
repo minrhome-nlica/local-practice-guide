@@ -58,7 +58,16 @@ const related = relatedIds.map((id) => allEntries.find((e) => e.id === id)).filt
         const columnCount = headerRow?.children.length || 0;
         const frame = document.createElement('div');
         frame.className = 'guide-table-frame';
-        if (columnCount >= 4) frame.classList.add('guide-table-wide');
+        if (columnCount >= 4) {
+          frame.classList.add('guide-table-wide');
+          const labels = Array.from(headerRow?.children || [], (cell, index) =>
+            cell.textContent?.trim() || '欄位 ' + (index + 1));
+          table.querySelectorAll('tbody tr').forEach((row) => {
+            Array.from(row.children).forEach((cell, index) => {
+              cell.setAttribute('data-guide-label', labels[index] || '欄位 ' + (index + 1));
+            });
+          });
+        }
         if (columnCount === 2) frame.classList.add('guide-table-pair');
         const lastHeading = table.querySelector('thead tr > :last-child')?.textContent?.trim() || '';
         if (columnCount === 2 && /金額|稅額|費用|價額|款項/.test(lastHeading)) {
