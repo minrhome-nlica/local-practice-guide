@@ -95,3 +95,87 @@ tags:
 
 所以，<strong>不是挑一個稅率最低的所得代碼來用，而是先看真正做了什麼工作</strong>。完整案例可以接著閱讀<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅〉</a>和<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>。
 
+
+## 三、年收入130萬元，成立有限公司就比較節稅嗎？
+
+地方工作者常會想知道：「我一年接案到多少，成立公司比較有利？」
+
+<strong>130萬元可以是重新檢視工作方式的提醒，但不是法定的節稅分界線。</strong>真正要看的是收入減掉依法可認列的費用後，剩下多少所得；個人還有哪些收入與扣除額；成立公司後，錢要留在公司還是依法支付薪資、分配股利。
+
+### 1. 年營收和所得，是兩個不同數字
+
+假設一位設計工作者全年收到130萬元，工作成本40萬元，而且全部符合認列規定：
+
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="年收入130萬元示範" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">全年設計收入</th><td class="tax-number">1,300,000元</td></tr>
+    <tr><th scope="row">假設依法可認列的工作成本與費用</th><td class="tax-number">−400,000元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>所得計算的初步基礎</strong></th><td class="tax-number"><strong>900,000元</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+如果再假設這900,000元是他全年唯一的執行業務所得、單身申報、沒有扶養親屬，也沒有其他額外扣除，減去2026年（民國115年）個人免稅額101,000元與標準扣除額136,000元，綜合所得淨額是<strong>663,000元</strong>。
+
+依115年度累進稅率，前610,000元課5%，超過的53,000元課12%，示範所得稅為<strong>36,860元</strong>。
+
+<div class="org-explainer-note tax-roadmap-important">
+  <strong>小提醒｜不是年收入130萬元，就要繳20%的個人所得稅</strong>
+  <p>2026年度個人所得稅的20%級距，是<strong>綜合所得淨額超過138萬元的部分</strong>才進入，不是年營收達130萬元就整筆課20%。這只是單身、單一所得來源的教學示例；實際情況還要看其他所得、家人及成本認列方式。更完整的算法可閱讀<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈綜合所得稅〉</a>。</p>
+</div>
+
+### 2. 公司20%營所稅，跟個人20%級距不是同一回事
+
+有限公司是以<strong>公司的課稅所得額</strong>來算營所稅；超過適用門檻時，一般常見20%。但公司繳完營所稅，錢仍是公司的。股東若再取得薪資或股利，可能還有個人的稅務要計算。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="獨資商號與有限公司年度經營差異" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">比較</th><th scope="col">個人／獨資商號</th><th scope="col">有限公司</th><th scope="col">要注意什麼？</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">所得稅</th><td data-label="個人／獨資商號">依所得類別計算個人綜所稅；獨資營利所得歸入負責人個人</td><td data-label="有限公司">公司營所稅；股東領薪資或股利時另計個人所得稅</td><td data-label="要注意">不能直接把兩邊的稅率相比就認定哪個比較省</td></tr>
+    <tr><th scope="row">工作成本</th><td data-label="個人／獨資商號">依實際所得性質與規定認列</td><td data-label="有限公司">依公司帳務與稅法認列</td><td data-label="要注意">不是所有私人支出都能當業務成本</td></tr>
+    <tr><th scope="row">營業稅進項</th><td data-label="個人／獨資商號">使用統一發票的商號，符合條件也可能扣抵</td><td data-label="有限公司">一般應稅交易按銷項減合法可扣抵進項計算</td><td data-label="要注意">進項抵稅不是公司的專利</td></tr>
+    <tr><th scope="row">固定行政成本</th><td data-label="個人／獨資商號">依是否登記、開票、申報等而不同</td><td data-label="有限公司">設立、記帳、申報及組織維護費用</td><td data-label="要注意">增加的成本可能超過當年省下的稅</td></tr>
+    <tr><th scope="row">收入歸誰？</th><td data-label="個人／獨資商號">獨資事業營利所得歸負責人個人</td><td data-label="有限公司">公司收入屬公司，不能直接當個人錢花</td><td data-label="要注意">也要看未來要不要聘人、留存公司資產</td></tr>
+  </tbody>
+</table>
+</div>
+
+所以，<strong>不是「超過某個營收就必須成立公司」</strong>。當案子已經變成固定事業、需要聘人、持有設備、承接較大的合約、和夥伴分工時，即使短期沒有省稅，公司也可能有長期經營價值。
+
+## 四、先成立商號／工作室，可能更容易開始嗎？
+
+從個人接案走向正式經營，不一定要一步就成立有限公司。<strong>商號／工作室可能是先整理帳戶、請款、報稅及交易憑證的選擇。</strong>
+
+但是「工作室」只是日常稱呼，實際身分要看是否完成商業登記、稅籍登記等程序；也不要把「免用發票」理解成「不用繳任何稅」。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="商號使用或免用統一發票比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">項目</th><th scope="col">商號：免用統一發票</th><th scope="col">商號：使用統一發票</th><th scope="col">先記住</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">請款憑證</th><td data-label="免用統一發票">依規定提供普通收據等憑證</td><td data-label="使用統一發票">依規定開立統一發票</td><td data-label="先記住">付款單位需要什麼憑證，也會影響合作方式</td></tr>
+    <tr><th scope="row">營業稅</th><td data-label="免用統一發票">經核定查定課徵者，常見1%</td><td data-label="使用統一發票">一般應稅交易常見5%，可依法扣抵進項</td><td data-label="先記住">查定1%不是每張收據直接扣1%</td></tr>
+    <tr><th scope="row">所得稅</th><td data-label="免用統一發票">獨資營利所得併入負責人綜所稅</td><td data-label="使用統一發票">獨資營利所得仍併入負責人綜所稅</td><td data-label="先記住">使用發票不會讓商號變成公司</td></tr>
+    <tr><th scope="row">能自己選嗎？</th><td data-label="免用統一發票">須符合條件並經國稅局核定</td><td data-label="使用統一發票">依營業規模、性質及規定辦理</td><td data-label="先記住">每月20萬元是常見門檻，但部分營業型態或情況另有規定</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="tax-roadmap-example"><span class="tax-roadmap-example-label">地方情境｜原本偶爾拍活動的攝影師</span><p>一位攝影師原本偶爾接案，後來固定承接商業攝影、販售照片，開始添購鏡頭、燈具及其他設備。他可以重新檢視是否已形成持續的營業活動、是否需要登記、能否依法認列成本，以及客戶需要何種請款憑證。</p><p><strong>成立商號是經營方式的選擇；能否免用統一發票，仍要依稅捐機關核定。</strong>詳細程序可接著看<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>。</p></div>
+
+## 五、什麼情況下，有限公司會值得考慮？
+
+如果你已經不只是自己接案，而是想讓一個事業持續經營，有限公司可能值得認真評估。
+
+<div class="tax-roadmap-cards">
+  <div><span>01｜工作開始固定</span><strong>想把客戶與契約留在事業裡</strong><p>不再只是個人之間一次一次請款，而是逐步建立組織帳戶、設備與工作制度。</p></div>
+  <div><span>02｜工作風險變高</span><strong>開始採購、聘人或承接較大的案子</strong><p>獨立法人與有限責任可能有幫助，但個人保證、違法及其他法定例外仍要注意。</p></div>
+  <div><span>03｜想長期累積資產</span><strong>希望收入投入未來的發展</strong><p>例如添購設備、聘用夥伴、擴大工作團隊，但也需要承擔帳務與申報等行政成本。</p></div>
+</div>
+
+公司可以依法聘請負責人、支付合理薪資，也可依規定分配盈餘，但都需要實際的勞務、帳務、憑證與合法程序，不是把個人請款改成公司戶頭就完成。
+
+<div class="org-explainer-note"><strong>小提醒｜公司不一定省稅，卻可能適合下一個階段</strong><p>如果只看今年少繳多少稅，很容易忽略公司增加的記帳與管理費用。當你需要正式聘人、持續簽約、讓資產與工作制度留在事業裡，<strong>成立組織的價值可能是讓工作能夠持續</strong>。不過，成立公司並不保證一定能取得政府補助或標案，仍要看各計畫的申請資格。</p></div>
+
