@@ -60,43 +60,164 @@ tags:
 
 ## 二、個人、商號與有限公司，哪一種比較適合我？
 
-假設你是一名插畫設計師，**一年接案收入100萬元，實際工作成本20萬元**。以下都以115年度（2026年）單身、沒有扶養親屬或其他所得為例，讓四種身分放在同一張表裡看。
+先假設你是一名插畫設計師，準備從個人接案開始，逐漸經營自己的工作室。每當一筆設計費進來，**對方要付多少、你當下收到多少、隔年還會不會再繳稅**，會因經營身分不同而改變。
+
+以下分成四種身分，先用**單筆10萬元**說明收款，再看**全年收入100萬元和200萬元**的所得稅。全年試算共同假設：115年度（2026年）、臺灣境內居住、單身、沒有扶養親屬及其他所得，實際工作成本為收入的20%（年收100萬花20萬；年收200萬花40萬）。個人免稅額與標準扣除額合計**237,000元**；只有符合薪資所得條件的情境，才另計**227,000元薪資特別扣除額**。
 
 <div class="org-explainer-note">
-  <strong>共同條件</strong>
-  <p>年收入<strong>1,000,000元</strong>－實際成本<strong>200,000元</strong>＝扣除實際成本後<strong>800,000元</strong>。個人報稅的「認列費用」與真實花費可能不同；收入、所得、扣除額的差別另見<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>。</p>
+  <strong>先分清楚三種錢</strong>
+  <p><strong>當下實領：</strong>這次付款匯到帳戶多少。<strong>全年所得稅：</strong>把一整年的應稅所得和扣除額算完，最後確定應負擔多少稅。<strong>營業稅：</strong>商號或公司可能向客戶代收，再扣抵合法進項後申報。預扣所得稅、個人補充保費與營業稅的用途不同，不能全部當作同一筆稅加總。</p>
 </div>
 
-### 1. 四種身分放在一起比較
+### 1. 個人接案：10萬元先扣多少？年收100萬、200萬又怎麼算？
 
-下表把「怎麼算」、「所得稅額」及「全年繳到國庫的金額」分開呈現。**第三欄的「核定稅額」只是本例模擬，並非國稅局已正式核定。**
+假設你用**個人名義**承接插畫設計委託，付款方依實際業務內容將報酬列為**執行業務所得（代碼9A）**，且符合個人二代健保補充保費的扣取條件。
 
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="四種經營身分四欄稅額比較" tabindex="0">
+**先看：接到一筆10萬元的案子。**
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="個人9A單次10萬元報酬實領試算" tabindex="0">
 <table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">身分</th><th scope="col">怎麼算</th><th scope="col">核定稅額<small>本例試算所得稅</small></th><th scope="col">繳稅金額<small>所得稅＋營業稅</small></th></tr></thead>
+  <thead><tr><th scope="col">給付項目</th><th scope="col">計算</th><th scope="col">金額</th></tr></thead>
   <tbody>
-    <tr><th scope="row">① 個人接案<small>假設9A、30%費用率</small></th><td data-label="怎麼算">（100萬－30萬－23.7萬）×5%</td><td data-label="核定稅額"><strong>23,150元</strong><small>個人綜所稅</small></td><td data-label="繳稅金額"><strong>23,150元</strong><small>不含預扣稅先繳後抵</small></td></tr>
-    <tr><th scope="row">② 商號／工作室<small>免用統一發票</small></th><td data-label="怎麼算">查定營業額100萬×1%；營利所得假設100萬×7%</td><td data-label="核定稅額"><strong>0元</strong><small>個人綜所稅</small></td><td data-label="繳稅金額"><strong>10,000元</strong><small>營業稅</small></td></tr>
-    <tr><th scope="row">③ 商號／工作室<small>使用統一發票</small></th><td data-label="怎麼算">所得（100萬－20萬－23.7萬）×5%；銷項5萬－進項1萬</td><td data-label="核定稅額"><strong>28,150元</strong><small>個人綜所稅</small></td><td data-label="繳稅金額"><strong>68,150元</strong><small>所得稅28,150＋營業稅40,000</small></td></tr>
-    <tr><th scope="row">④ 有限公司<small>70萬合理薪資＋10萬股利</small></th><td data-label="怎麼算">公司所得10萬免營所稅；個人薪資與股利計稅後8,300；銷項5萬－進項1萬</td><td data-label="核定稅額"><strong>8,300元</strong><small>個人綜所稅；公司營所稅0</small></td><td data-label="繳稅金額"><strong>48,300元</strong><small>所得稅8,300＋營業稅40,000</small></td></tr>
+    <tr><th scope="row">設計報酬</th><td data-label="計算">約定報酬</td><td data-label="金額">100,000元</td></tr>
+    <tr><th scope="row">預扣所得稅</th><td data-label="計算">100,000 × 10%</td><td data-label="金額">−10,000元</td></tr>
+    <tr><th scope="row">個人補充保費</th><td data-label="計算">100,000 × 2.11%</td><td data-label="金額">−2,110元</td></tr>
+    <tr><th scope="row">當下實際入帳</th><td data-label="計算">100,000 − 10,000 − 2,110</td><td data-label="金額"><strong>87,890元</strong></td></tr>
   </tbody>
 </table>
 </div>
 
-<p class="org-table-hint"><strong>怎麼看：</strong>第三欄是本例所得稅試算，第四欄再加上營業稅。使用發票的兩列，假設100萬元是未稅價、另向客戶收取5萬元營業稅，並有1萬元可扣抵進項稅額。<strong>向國庫繳4萬元營業稅，不等於從100萬元收入額外損失4萬元</strong>。本表未統一計入補充保費、勞健保、雇主成本、公司維護費；9A預扣款在年度所得稅結算時抵繳或退還。公司股利的實際分配年度也可能不同。</p>
+這裡的**10,000元不是另外多繳一次所得稅**，而是付款方先幫你繳的預扣稅；隔年辦理所得稅結算時，可以拿來抵稅，超扣的部分可能退回。**2,110元個人補充保費**則是另一種保險費，並非所得稅預付款。詳細規定分別見<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅：9A、9B、50怎麼扣？〉</a>及<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>。
 
-以原本「減掉20萬元實際工作成本及所得稅後」的口徑比較，四者依序為：**個人776,850元、免用發票商號790,000元、使用發票商號771,850元、有限公司薪資加股利791,700元**。這些都還不是扣完全部保費及維持成本的實際到手金額。
+**再看：一整年收入100萬元或200萬元。**
 
-### 2. 看表格時，還要確認四件事
+假設全年分別收到10筆或20筆、每筆10萬元的9A報酬，並**僅為示範，假設該工作確實適用30%執行業務費用率**：
 
-- **個人9A：** 30%是這個例子的假設，不是所有插畫或商業設計都適用。個人接案的所得類別與預扣規則，可看<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅：9A、9B、50怎麼扣？〉</a>；單次或其他符合條件的報酬，還要看<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>。
-- **免用統一發票商號：** 必須由國稅局核定；表中7%所得率只是教學假設，實際要看業別與年度規定。成立和登記的差別，請看<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>。
-- **使用統一發票商號：** 本例用實際20萬元成本核實計算。若向客戶另收5萬元銷項營業稅、可扣抵進項稅1萬元，應申報繳納4萬元；這筆稅額由代收稅款扣抵後支付，不能從未稅收入再扣一次。詳見<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。
-- **有限公司：** 發給自己的薪水必須合理、真實且依法處理；還有雇主保費、勞退及公司維護成本。若完全不發薪水、僅將80萬元獲利在繳16萬元營所稅後全數分配股利，本例股東含可抵減稅額的簡化結果約為<strong>674,250元</strong>。想理解薪資、股利與保費，可讀<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>和<a href="/local-practice-guide/entries/labor-health-insurance/">〈勞健保〉</a>。
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="個人9A年收入100萬元及200萬元綜所稅比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">計算項目</th><th scope="col">全年100萬元</th><th scope="col">全年200萬元</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">全年收到的設計報酬</th><td data-label="全年100萬元">1,000,000元</td><td data-label="全年200萬元">2,000,000元</td></tr>
+    <tr><th scope="row">認列費用（假設30%）</th><td data-label="全年100萬元">−300,000元</td><td data-label="全年200萬元">−600,000元</td></tr>
+    <tr><th scope="row">執行業務所得</th><td data-label="全年100萬元">700,000元</td><td data-label="全年200萬元">1,400,000元</td></tr>
+    <tr><th scope="row">個人免稅額＋標準扣除額</th><td data-label="全年100萬元">−237,000元</td><td data-label="全年200萬元">−237,000元</td></tr>
+    <tr><th scope="row">課稅所得淨額</th><td data-label="全年100萬元">463,000元</td><td data-label="全年200萬元">1,163,000元</td></tr>
+    <tr><th scope="row">全年綜合所得稅</th><td data-label="全年100萬元"><strong>23,150元</strong></td><td data-label="全年200萬元"><strong>96,860元</strong></td></tr>
+    <tr><th scope="row">全年已預扣所得稅（10%）</th><td data-label="全年100萬元">100,000元</td><td data-label="全年200萬元">200,000元</td></tr>
+    <tr><th scope="row">假設無其他因素，結算可退預扣稅</th><td data-label="全年100萬元"><strong>76,850元</strong></td><td data-label="全年200萬元"><strong>103,140元</strong></td></tr>
+  </tbody>
+</table>
+</div>
 
-**決定經營方式，除了表上的稅額，也要考慮是否需要聘人、長期簽約、累積事業資金，以及由誰承擔責任。** 法人和獨資商號的責任差異，接著可看<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
+年收200萬元的課稅所得淨額是116.3萬元，超過61萬元的部分進入12%級距，所以所得稅為：**610,000 × 5% ＋ 553,000 × 12% ＝ 96,860元**，不是把116.3萬元全部乘12%。
 
-### 3. 對方支付給你的成本，有什麼差別？
+<div class="org-explainer-note">
+  <strong>小提醒｜9A不代表所有插畫設計師都可以扣30%費用</strong>
+  <p>財政部已公布的114年度費用標準，書畫家、版畫家有30%規定，但不同的商業設計、插畫、著作工作，實際分類與標準不一定相同；115年度費用標準也應以正式公告為準。若稽徵機關查得實際所得較高，仍可能依查得資料核定。上表只是先沿用30%的條件教學，<strong>不能直接認定所有設計師的年所得都是收入的70%</strong>。費用認列、所得稅級距及年度退補稅，可延伸閱讀<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>。</p>
+</div>
+
+### 2. 商號／工作室：免用統一發票
+
+如果你持續接案、想以工作室名義經營，可以評估辦理獨資商號及稅籍登記。這裡假設國稅局**已核定免用統一發票，採查定課徵營業稅**。
+
+**接到一筆10萬元設計案：** 客戶原則上支付約定價款**100,000元**給商號，不會因為是個人9A而直接預扣10%所得稅，也沒有前一例的個人9A補充保費扣取方式。商號須依核定的銷售額**按1%繳納查定營業稅**；不是每收一筆10萬元，就立即自行決定繳1,000元。
+
+**一整年收入100萬、200萬時：**
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="免用統一發票商號年收入比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">試算項目</th><th scope="col">全年100萬元</th><th scope="col">全年200萬元</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">月平均營業額</th><td data-label="全年100萬元">約83,333元</td><td data-label="全年200萬元">約166,667元</td></tr>
+    <tr><th scope="row">全年查定營業稅（1%）</th><td data-label="全年100萬元"><strong>10,000元</strong></td><td data-label="全年200萬元"><strong>20,000元</strong></td></tr>
+    <tr><th scope="row">假設依7%純益率計算營利所得</th><td data-label="全年100萬元">70,000元</td><td data-label="全年200萬元">140,000元</td></tr>
+    <tr><th scope="row">只有這筆所得時，負責人綜所稅</th><td data-label="全年100萬元"><strong>0元</strong></td><td data-label="全年200萬元"><strong>0元</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+**為什麼所得稅可能是0元？** 小規模獨資商號按核定營業額與適用純益率計算營利所得，再併入**負責人的個人綜合所得稅**。這裡暫參考114年度「商業設計」7%純益率做教學試算；兩個例子的營利所得分別是7萬及14萬元，皆低於本例個人免稅額與標準扣除額合計23.7萬元。
+
+但**每月未達20萬元不代表一定能免用統一發票**。設計服務的營業稅起徵點一般是每月5萬元；是否查定課徵、是否須開立統一發票，仍由國稅局依實際業務及經營情況核定。尤其年收200萬元的設計工作室，不能只靠平均每月未達20萬元，就保證可以使用這一列。進貨若取得合法憑證並依限申報，亦有進項稅額10%扣減查定稅額的規定，此表先不計入。
+
+更多有關登記與適用條件，請看<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。
+
+### 3. 商號／工作室：使用統一發票
+
+工作室若被核定使用統一發票，或本來就符合應使用發票的條件，對一般應稅設計委託，要依規定開立發票。
+
+**接到一筆10萬元設計案：**
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="使用統一發票工作室單筆10萬元報價" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">項目</th><th scope="col">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">設計費（未稅）</th><td data-label="金額">100,000元</td></tr>
+    <tr><th scope="row">向客戶收取5%營業稅</th><td data-label="金額">5,000元</td></tr>
+    <tr><th scope="row">客戶實際支付</th><td data-label="金額"><strong>105,000元</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+客戶付的105,000元中，**5,000元是要申報的銷項營業稅，不是工作室自己多賺的5,000元**。日後可扣除符合規定的進項稅額，再申報繳納差額。
+
+**一整年收入100萬、200萬時：** 假設收入是未稅金額，實際業務成本占20%，這些成本可以核實認列，而且都取得合法可扣抵進項發票（另計5%進項稅）：
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="開發票獨資工作室年收入比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">計算項目</th><th scope="col">全年100萬元</th><th scope="col">全年200萬元</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">未稅營業收入</th><td data-label="全年100萬元">1,000,000元</td><td data-label="全年200萬元">2,000,000元</td></tr>
+    <tr><th scope="row">實際可認列成本</th><td data-label="全年100萬元">−200,000元</td><td data-label="全年200萬元">−400,000元</td></tr>
+    <tr><th scope="row">併入負責人綜所稅的營利所得</th><td data-label="全年100萬元">800,000元</td><td data-label="全年200萬元">1,600,000元</td></tr>
+    <tr><th scope="row">負責人全年綜合所得稅</th><td data-label="全年100萬元"><strong>28,150元</strong></td><td data-label="全年200萬元"><strong>120,860元</strong></td></tr>
+    <tr><th scope="row">向客戶收取銷項營業稅</th><td data-label="全年100萬元">50,000元</td><td data-label="全年200萬元">100,000元</td></tr>
+    <tr><th scope="row">可扣抵進項營業稅</th><td data-label="全年100萬元">−10,000元</td><td data-label="全年200萬元">−20,000元</td></tr>
+    <tr><th scope="row">申報繳納營業稅</th><td data-label="全年100萬元"><strong>40,000元</strong></td><td data-label="全年200萬元"><strong>80,000元</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+**營業稅4萬或8萬元，是由代收的銷項稅扣掉進項稅後繳納**，不能再從未稅收入重複扣一次。以上是按實際成本核實認列的試算；其他合法申報方式及適用所得額標準，仍應依帳務與國稅局規定判斷。
+
+**使用統一發票的商號，所得仍是併入負責人的個人綜所稅**，不是另外再繳一層20%的公司營所稅。可延伸閱讀<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>與<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>。
+
+### 4. 有限公司：收到的錢先屬於公司，如何再進入自己口袋？
+
+有限公司具有獨立法人格，適合想擴大事業、聘人、持續簽約或累積公司資產的工作者。**公司收到的款項是公司的，不會因為你是唯一股東，就自動成為個人收入。**
+
+**接到一筆10萬元設計案：** 公司對一般應稅服務開立發票，客戶支付**105,000元**，其中100,000元是未稅營業收入，5,000元是代收銷項營業稅。之後公司可以依法支付你的薪資，也可以在完成結算與法定程序後分配股利。
+
+**一整年收入100萬、200萬時：** 以下先示範同一位設計師實際在公司工作、公司依法支付你**全年70萬元的合理薪資**；業務成本分別為20萬和40萬，剩餘可分配盈餘全數在合法程序完成後分給唯一股東。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="有限公司年收入100萬元及200萬元薪資股利試算" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">計算項目</th><th scope="col">全年100萬元</th><th scope="col">全年200萬元</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">公司未稅營業收入</th><td data-label="全年100萬元">1,000,000元</td><td data-label="全年200萬元">2,000,000元</td></tr>
+    <tr><th scope="row">實際業務成本</th><td data-label="全年100萬元">−200,000元</td><td data-label="全年200萬元">−400,000元</td></tr>
+    <tr><th scope="row">公司給你的年薪</th><td data-label="全年100萬元">−700,000元</td><td data-label="全年200萬元">−700,000元</td></tr>
+    <tr><th scope="row">公司課稅所得</th><td data-label="全年100萬元">100,000元</td><td data-label="全年200萬元">900,000元</td></tr>
+    <tr><th scope="row">公司營所稅</th><td data-label="全年100萬元"><strong>0元</strong><small>未超過12萬元</small></td><td data-label="全年200萬元"><strong>180,000元</strong><small>90萬元×20%</small></td></tr>
+    <tr><th scope="row">假設全數分配的稅後股利</th><td data-label="全年100萬元">100,000元</td><td data-label="全年200萬元">720,000元</td></tr>
+    <tr><th scope="row">個人薪資＋股利所得稅<small>簡化同年度試算</small></th><td data-label="全年100萬元"><strong>8,300元</strong></td><td data-label="全年200萬元"><strong>10,820元</strong></td></tr>
+    <tr><th scope="row">公司營所稅＋個人所得稅</th><td data-label="全年100萬元"><strong>8,300元</strong></td><td data-label="全年200萬元"><strong>190,820元</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+**200萬元這一欄怎麼算？** 公司營收200萬，扣掉40萬成本及70萬薪資，剩90萬元課稅所得，先繳18萬元營所稅，還有72萬元股利可以依法分配。假設你在同一個個人課稅年度取得70萬元薪資與72萬元股利，扣掉免稅額、標準扣除額與薪資特別扣除額後，所得淨額95.6萬元；綜所稅72,020元，再減股利可抵減稅額61,200元，個人所得稅為**10,820元**。
+
+另外，公司一般應稅設計服務的營業稅也是**銷項5%減可扣抵進項稅額**；假設收入200萬元、成本40萬元均符合前例的發票條件，銷項10萬元、進項2萬元，繳納營業稅8萬元。這是公司代收銷項稅額扣抵後繳納，不能再把8萬元當成你的個人所得稅。
+
+<div class="org-explainer-note">
+  <strong>有限公司不能單憑這張表就說比較節稅</strong>
+  <p>公司支付你的薪資必須是真實工作的合理報酬，並依規定處理。表格尚未計入公司設立、記帳、雇主勞健保、勞退、個人保險費等成本；實際支付這些成本後，公司的課稅所得也會改變。股利常在後續年度才決議分配，這裡把薪資與股利假設放在同一個人課稅年度，<strong>只是比較所得稅計算方式，不是實際分配時程</strong>。若公司不分配盈餘，也要留意未分配盈餘稅。薪資與保費請看<a href="/local-practice-guide/entries/labor-health-insurance/">〈勞健保〉</a>；股利與營所稅另見<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。</p>
+</div>
+
+**把四種身分的差異讀懂後，再回頭看「客戶的付款成本」與「補助、貸款及合作機會」，就會比較容易選擇適合自己的經營方式。** 法律責任與法人地位另見<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
+
+### 5. 對方支付給你的成本，有什麼差別？
 
 同樣是**100萬元的設計委託**，假設付款方是一家能夠依法全額扣抵相關進項稅額的公司：
 
@@ -118,7 +239,7 @@ tags:
 
 <p class="org-table-hint">本例未加計額外行政、人事或契約成本。能否列作所得稅的業務費用，與能否扣抵5%營業稅是兩回事。詳細規定請看<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅：9A、9B、50怎麼扣？〉</a>、<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。</p>
 
-### 4. 補助計畫、貸款與合作，個人、商號、公司有什麼不同？
+### 6. 補助計畫、貸款與合作，個人、商號、公司有什麼不同？
 
 身分的選擇也影響<strong>哪些計畫能申請、貸款以誰的名義辦理、能否開發票及簽約</strong>。但不代表有限公司的資格一定比商號或個人更多。
 
