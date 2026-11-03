@@ -56,6 +56,8 @@ tags:
 
 <p class="org-table-hint">「工作室」只是常見稱呼，實際可能以個人、商號或公司經營。人民團體立案和取得社團法人資格是不同程序；有限責任合作社則具有法人地位。有限公司的股東若有個人保證或其他依法須負責的情形，仍可能承擔個人責任。</p>
 
+如果想先理解「什麼是法人、自然人」和獨資商號的責任差別，可分別閱讀<a href="/local-practice-guide/entries/legal-person-natural-person/">〈什麼是法人、自然人？〉</a>、<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>及<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
+
 ## 二、個人、商號與有限公司，哪一種比較適合我？
 
 假設你是一名插畫設計師，**一年接案收入100萬元，實際工作成本20萬元**。以下都以115年度（2026年）單身、沒有扶養親屬或其他所得為例，讓四種身分放在同一張表裡看。
