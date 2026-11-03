@@ -166,3 +166,69 @@ tags:
   <strong>地方情境｜從攝影接案到攝影工作室</strong>
   <p>攝影師原本一個人拍攝活動，後來固定接婚禮、商業攝影，開始添購燈光、鏡頭及聘請助理。這時候可以先整理商業登記、稅籍、發票與帳務；當團隊、設備和合約規模繼續擴大，再評估有限公司。這樣的選擇同時考慮稅務、經營成本與長期責任。</p>
 </div>
+
+
+## 六、社團法人，讓公共工作有共同經營的制度
+
+社團法人適合長期推動文化、教育、社區照顧與公共議題。透過會員、理監事、章程與共同決策，讓公共工作可以持續進行。
+
+例如幾位青年長期辦理村落兒童活動、地方知識整理與長者照顧，可以依需求成立社會團體，再依法辦理法人登記。<strong>社會團體立案與取得社團法人資格，是兩個程序。</strong>
+
+<div class="tax-roadmap-cards tax-roadmap-cards-two">
+  <div><span>適合的工作</span><strong>文化保存、親子共學、社區照顧</strong><p>讓會員共同參與、分擔工作及決策，並把經費用於組織宗旨。</p></div>
+  <div><span>需要維持的制度</span><strong>會務、帳務、人事與共同治理</strong><p>協會可以支付實際工作的薪資與勞務費用；結餘留給組織繼續使用，不以會員分紅處理。</p></div>
+</div>
+
+協會的會費、捐款、補助與收費服務，會有不同的稅務處理。前面10萬元案例中，<strong>單純捐款收100,000元</strong>；承接一般應稅設計服務則可能<strong>收105,000元，其中5,000元為營業稅</strong>。組織所得是否適用免稅規定，仍須依收入性質與適用條件辦理。
+
+## 七、合作社，讓農友與夥伴共同經營
+
+合作社的核心是社員合作。農友可以共同運銷、採購、使用冷藏與加工設備；提供技術或勞務的工作者，也可以依合作社業務類型共同承接工作。
+
+對農民而言，銷售符合規定的自產農產品，本來就可能適用農業稅務優惠。<strong>成立合作社的主要價值，是降低共同成本、建立穩定運銷與合作制度。</strong>
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="農民個別經營到合作社比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">工作情況</th><th scope="col">經營方式</th><th scope="col">主要好處</th><th scope="col">需要負擔</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">自己種、自己賣</th><td data-label="經營方式">農民自產自銷</td><td data-label="主要好處">經營簡單；依規定適用農業優惠</td><td data-label="需要負擔">個人運輸與銷售成本</td></tr>
+    <tr><th scope="row">幾戶農友一起出貨</th><td data-label="經營方式">共同運銷</td><td data-label="主要好處">集貨、分級、共同議價</td><td data-label="需要負擔">共同約定貨款、分工與費用</td></tr>
+    <tr><th scope="row">一起經營設備與通路</th><td data-label="經營方式">合作社</td><td data-label="主要好處">共購資材、共用冷鏈、長期合作</td><td data-label="需要負擔">社員管理、帳務與設備成本</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="org-explainer-note">
+  <strong>地方情境｜農友共同安排冷藏、運送與銷售</strong>
+  <p>幾戶農友原本每週自行找車、租冷藏空間、聯繫店家。共同經營後，可以一起集貨、採購資材、使用設備並談通路。當規模穩定擴大，合作社能把社員分工、資產與決策建立成持續運作的制度。</p>
+  <p>合作社依法向社員提供符合規定的貨物或服務，可能免徵營業稅；對外提供服務則有業務與使用比例等限制。社員的財務責任依合作社登記類型辦理。</p>
+</div>
+
+## 八、依照目前的工作，安排下一個經營階段
+
+經營身分的選擇可以配合工作逐步調整。個人能開始一件事，正式立案則能讓持續發生的工作有清楚的帳務、契約、分工與責任。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="地方工作者經營身分與下一步比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">現在的工作</th><th scope="col">優先了解的身分</th><th scope="col">下一步重點</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">偶爾獨立接案</th><td data-label="優先了解">個人</td><td data-label="下一步">所得分類、必要登記</td></tr>
+    <tr><th scope="row">固定接案、請款</th><td data-label="優先了解">商號／工作室</td><td data-label="下一步">商業登記、發票、成本紀錄</td></tr>
+    <tr><th scope="row">聘人、添設備、簽合約</th><td data-label="優先了解">有限公司</td><td data-label="下一步">公司財產、長期責任與成本</td></tr>
+    <tr><th scope="row">持續推動公共事務</th><td data-label="優先了解">社會團體／社團法人</td><td data-label="下一步">共同宗旨、會員及組織治理</td></tr>
+    <tr><th scope="row">農友、工作夥伴共同經營</th><td data-label="優先了解">合作社</td><td data-label="下一步">社員分工、共同設備與運銷</td></tr>
+  </tbody>
+</table>
+</div>
+
+<strong>節稅是經營選擇的一部分，讓工作能夠持續則是更長遠的考量。</strong>當案件逐漸固定、與夥伴合作增加，正式立案能讓收入、成本與責任更加清楚，也讓事業或公共組織有機會繼續發展。
+
+延伸閱讀：<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>、<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>、<a href="/local-practice-guide/entries/legal-person-natural-person/">〈自然人與法人〉</a>。
+
+---
+
+<div class="org-source-note">
+  <strong>資料與案例說明</strong>
+  <p>本文採2026年（民國115年）臺灣常見工作情境作教學比較。實際所得分類、費用認列、營業稅、合作社業務與法人免稅資格，以個別交易及最新規定為準。</p>
+  <p>官方資料：<a href="https://gazette.nat.gov.tw/egFront/eguploadpubWrapper?file=%2FEG_FileManager%2Feguploadpub%2Feg031224%2Fch04%2Ftype3%2Fgov30%2Fnum12%2FEg.htm&amp;metaid=161826" target="_blank" rel="noopener noreferrer">財政部｜115年度綜所稅公告</a>、<a href="https://www.gov.tw/News_Content_26_597260" target="_blank" rel="noopener noreferrer">我的E政府｜創業與稅務</a>、<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=7924e0bceadd45d69661c515ecd659a8" target="_blank" rel="noopener noreferrer">財政部｜非營利團體銷售勞務</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/business-tax/exemption-scope/lGmA07A" target="_blank" rel="noopener noreferrer">財政部｜營業稅免稅項目</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">合作社法</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050200" target="_blank" rel="noopener noreferrer">合作社對外服務規定</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340012" target="_blank" rel="noopener noreferrer">公益慈善團體免稅規定</a>。</p>
+</div>
