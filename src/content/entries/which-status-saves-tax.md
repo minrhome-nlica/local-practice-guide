@@ -102,60 +102,88 @@ tags:
 </table>
 </div>
 
-**社團法人收捐款**，款項用於協會的公共事務，不涉及這筆銷售的營業稅。**協會承接企業設計委託**，一般應稅服務則須處理營業稅。偶爾承接、尚未辦稅籍登記的協會，可依規定用「407繳款書」報繳；固定對外收費則須另外確認稅籍與申報方式。
+**社團法人收捐款**，款項用於協會的公共事務，不涉及這筆銷售的營業稅。
 
-**合作社向社員提供符合免稅規定的服務**，本例營業稅為0元。**合作社依法對非社員提供一般應稅服務**，本例則有5,000元營業稅；對外服務範圍仍以登記業務及相關限制為準。
+**協會承接企業設計委託**，一般應稅服務則須處理營業稅。偶爾承接、尚未辦稅籍登記的協會，可依規定用「407繳款書」報繳；固定對外收費則須另外確認稅籍與申報方式。
+
+**合作社向社員提供符合免稅規定的服務**，本例營業稅為0元。
+
+**合作社依法對非社員提供一般應稅服務**，本例則有5,000元營業稅；對外服務範圍仍以登記業務及相關限制為準。
 
 <div class="org-explainer-note">
   <strong>十萬元收入，最後怎麼使用</strong>
-  <p>協會收到的款項歸協會使用，可以支付合法的工作報酬與業務成本；結餘留在組織，不分紅給會員。合作社的款項歸合作社，支付成本、依法提撥公積金等之後，結餘可依規定按社員交易額分配。上述表格只計收款與營業稅，年度所得稅及實際成本另外計算。</p>
+  <p>協會收到的款項歸協會使用，可以支付合法的工作報酬與業務成本；結餘留在組織，<strong>不得分紅給會員</strong>。合作社的款項歸合作社，支付成本、依法提撥公積金等之後，結餘可依規定按社員交易額分配。上述表格只計收款與營業稅，年度所得稅及實際成本另外計算。</p>
 </div>
 
-## 三、年營收130萬元：個人或商號的所得稅較低
+## 三、商號改成有限公司，什麼情況比較節稅？
 
-**成立有限公司沒有固定的年收入節稅門檻。** 稅額主要看收入扣掉可認列成本後，還剩多少所得，以及獲利最後要由個人使用或留在公司。
+**獨資商號的全年獲利，併入負責人的個人綜合所得稅。** 有限公司的獲利，則先由公司計算所得稅，一般稅率為20%。當商號獲利增加，讓負責人的個人綜所稅進入30%或40%的級距時，成立公司便可能出現稅務上的優勢。
 
-以全年收入<strong>1,300,000元</strong>、可認列工作成本<strong>400,000元</strong>為例，所得計算基礎為：
+比較的金額是<strong>收入扣除成本後的「獲利」</strong>，不是營業額。例如全年營收130萬元，扣掉符合規定的40萬元成本，獲利是90萬元。若以單身、全年只有這筆所得為例，商號的個人所得稅為<strong>36,860元</strong>；同額公司獲利的營所稅為<strong>180,000元</strong>。**這組數字由商號較節稅。**
 
-<div class="tax-roadmap-cards tax-roadmap-cards-two" aria-label="年收入130萬元所得計算">
-  <div><span>全年收入</span><strong>1,300,000元</strong><p>全年承接工作收取的價款</p></div>
-  <div><span>扣除工作成本</span><strong>−400,000元</strong><p>本例假設皆符合費用認列規定</p></div>
-</div>
+### 1. 商號獲利增加，個人所得稅會進入較高級距
 
-<strong>剩餘所得：1,300,000－400,000＝900,000元。</strong>
+115年度（2026年）的個人綜所稅分為5%、12%、20%、30%、40%五級，依<strong>扣除免稅額及扣除額後的所得淨額</strong>計算。超過前一個級距的部分，才適用較高稅率。
 
-再以這90萬元比較個人、獨資商號和有限公司的所得稅：
+- **所得淨額超過277萬元**：超過的部分進入30%級距。
+- **所得淨額超過519萬元**：超過的部分進入40%級距。
 
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="130萬元營收扣除成本後的所得稅比較" tabindex="0">
+以單身、未滿70歲、全年只有獨資商號這筆營利所得、採標準扣除額的人為例，先扣免稅額101,000元及標準扣除額136,000元，共237,000元。因此，<strong>商號全年獲利超過約300.7萬元時，部分所得進入30%級距；超過約542.7萬元時，部分所得進入40%級距</strong>。
+
+這是進入較高稅率級距的起點，**還不是改成公司就一定較節稅的金額**。
+
+### 2. 同樣的全年獲利，商號與公司的稅額比較
+
+為了能直接比較，以下假設只有一名臺灣居住、單身且未滿70歲的經營者；商號獲利是其全年唯一所得，公司也是同一人持有、沒有支付股東薪資，且公司與商號有同額的可課稅獲利。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="商號與有限公司三種全年獲利稅額比較" tabindex="0">
 <table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">身分</th><th scope="col">本例所得稅</th><th scope="col">扣稅後剩餘</th><th scope="col">這筆錢歸誰</th></tr></thead>
+  <thead><tr><th scope="col">全年獲利</th><th scope="col">獨資商號<small>個人所得稅</small></th><th scope="col">有限公司<small>20%公司所得稅</small></th><th scope="col">公司獲利全留<small>另估未分配盈餘稅</small></th></tr></thead>
   <tbody>
-    <tr><th scope="row">個人／獨資商號</th><td data-label="本例所得稅"><strong>36,860元</strong></td><td data-label="扣稅後剩餘"><strong>863,140元</strong></td><td data-label="這筆錢歸誰">個人／負責人</td></tr>
-    <tr><th scope="row">有限公司</th><td data-label="本例所得稅"><strong>180,000元</strong></td><td data-label="扣稅後剩餘"><strong>720,000元</strong></td><td data-label="這筆錢歸誰">公司；股東領取另計稅</td></tr>
+    <tr><th scope="row">90萬元</th><td data-label="商號個人所得稅"><strong>36,860元</strong></td><td data-label="公司20%所得稅">180,000元</td><td data-label="公司獲利全留"><strong>216,000元</strong></td></tr>
+    <tr><th scope="row">300萬元</th><td data-label="商號個人所得稅"><strong>399,500元</strong></td><td data-label="公司20%所得稅">600,000元</td><td data-label="公司獲利全留"><strong>720,000元</strong></td></tr>
+    <tr><th scope="row">700萬元</th><td data-label="商號個人所得稅"><strong>1,756,100元</strong></td><td data-label="公司20%所得稅">1,400,000元</td><td data-label="公司獲利全留"><strong>1,680,000元</strong></td></tr>
   </tbody>
 </table>
 </div>
 
-<p class="org-table-hint">115年度教學試算。個人欄假設臺灣境內居住、單身、未滿70歲，全年只有這筆90萬元所得，扣免稅額101,000元及標準扣除額136,000元後，按5%及12%級距計算，共36,860元。個人接案與獨資商號均假設依法計得90萬元所得，實務上的費用認列方式各自適用規定。公司欄假設課稅所得90萬元，按20%計得180,000元。未列營業稅、補充保費、公司記帳管理成本、股東個人所得稅及公司未分配盈餘稅。</p>
+<p class="org-table-hint">115年度教學試算，商號以獲利減237,000元後適用累進稅率。公司欄以所得稅20%計算；最後一欄則進一步假設公司稅後獲利全數保留，均須按5%加徵未分配盈餘稅，例如700萬元先繳140萬元，公司稅後560萬元再估28萬元，合計168萬元。實際未分配盈餘稅另有法定減除項目，表中暫不計其他優惠、行政費用及股東個人所得稅。</p>
 
-**在這組假設中，個人與獨資商號的所得稅較低。** 個人扣稅後的863,140元歸個人；有限公司扣稅後的720,000元仍是公司的錢。公司將錢分配給股東時，股東還有個人稅務要處理。
+**在這組假設下，獲利90萬元、300萬元時，商號的所得稅較低；獲利700萬元、且公司稅後盈餘全部留在公司的情況，有限公司的稅額較低。**
 
-## 四、開公司的稅務比較，要把獲利的用途算進去
+依這組單身、無其他所得的假設繼續計算，<strong>若只比較商號的個人所得稅與公司20%營所稅，全年獲利超過約501.2萬元後，公司稅額開始較低</strong>；若將全數保留獲利、另外估算5%未分配盈餘稅的情況也算進去，則約在<strong>652.4萬元</strong>後，公司合計稅額開始較低。
 
-年營收相同，獲利可以差很多。例如兩間工作室年營收都為300萬元，一間成本230萬元、所得70萬元；另一間成本80萬元、所得220萬元。所得稅比較必須從各自的所得開始。
+以上兩個數字是<strong>特定假設下的試算分界</strong>，不是成立公司的法定門檻。公司增加的記帳、管理與申報成本，以及股東領取薪資、股利的稅，都還要一起計算。
 
-**有限公司較值得評估的情況，是事業需要長期持有設備、聘用員工、承接合約，或累積資金繼續投入工作。** 開公司同時增加公司登記、記帳、申報及管理成本。
-
-公司的稅務分成兩個階段：
-
-<div class="tax-roadmap-cards tax-roadmap-cards-two">
-  <div><span>第一階段｜公司獲利</span><strong>公司先計算所得稅</strong><p>一般課稅所得以20%試算。公司資金可以依法用於設備、人事與營運。</p></div>
-  <div><span>第二階段｜股東領錢</span><strong>個人薪資、股利另外計算</strong><p>公司把股利分配給個人，須納入股東的個人稅務；盈餘保留在公司，也可能涉及5%的未分配盈餘稅。</p></div>
+<div class="org-explainer-note">
+  <strong>負責人本來就有其他所得，商號可能更早進入高稅率級距</strong>
+  <p>例如負責人原本已有其他綜合所得<strong>淨額130萬元</strong>，另有商號全年獲利<strong>300萬元</strong>。把這300萬元併入個人所得後，增加的個人所得稅約為<strong>746,600元</strong>。同額公司獲利先繳20%所得稅為<strong>600,000元</strong>；若再按前述簡化假設，把稅後獲利全數保留並估算5%未分配盈餘稅，合計為<strong>720,000元</strong>，相差26,600元。這仍是公司層級的比較，股東個人領取報酬的稅務另計。</p>
 </div>
 
-**個人、商號或公司哪個較節稅，要比較整年所得、其他個人收入、公司預計保留的資金，以及未來的薪資和股利。** 高營收本身不構成開公司必然節稅的條件。
+## 四、公司獲利留在公司與分給股東，節稅結果不同
 
-關於開發票、進貨成本扣抵及公司所得稅，可閱讀<a href="/local-practice-guide/entries/business-income-tax/">〈營業稅與營所稅〉</a>；所得與報稅的差異可閱讀<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈綜合所得稅〉</a>。
+**有限公司的稅額必須分成公司階段與個人階段計算。** 公司獲利先繳營所稅；未分配的盈餘可能再加徵5%未分配盈餘稅。如果將稅後獲利分給股東，股東收到的股利也要依個人所得稅規定計算。
+
+以<strong>全年獲利700萬元</strong>為例，沿用前節的單身、沒有其他所得、一人持有公司等假設，分成三種情況：
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="700萬元獲利商號與有限公司留存分配稅務差異" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">獲利如何使用</th><th scope="col">合計所得稅</th><th scope="col">扣稅後剩下</th><th scope="col">錢歸誰</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">獨資商號<small>併入個人所得</small></th><td data-label="合計所得稅"><strong>1,756,100元</strong></td><td data-label="扣稅後剩下">5,243,900元</td><td data-label="錢歸誰">個人</td></tr>
+    <tr><th scope="row">有限公司<small>稅後獲利全部留存</small></th><td data-label="合計所得稅"><strong>1,680,000元</strong></td><td data-label="扣稅後剩下">5,320,000元</td><td data-label="錢歸誰">公司</td></tr>
+    <tr><th scope="row">有限公司<small>稅後獲利全數分給股東</small></th><td data-label="合計所得稅"><strong>2,516,100元</strong></td><td data-label="扣稅後剩下">4,483,900元</td><td data-label="錢歸誰">個人</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="org-table-hint">第三列的股利示範：公司先繳20%營所稅140萬元，將稅後560萬元全數分給同一位臺灣居住股東。股東沒有其他所得，採股利併入綜所稅、可抵減稅額8.5%且以8萬元為上限，個人稅額約1,116,100元，與公司稅相加共2,516,100元；因全數分配，本例未加計未分配盈餘稅。公司全留那一列則以簡化估算加計未分配盈餘稅。兩種公司情境不計額外營運、會計成本與其他減除。</p>
+
+**這個例子中，公司留下獲利用於未來經營，合計所得稅可能比商號少；若將稅後獲利全部轉成股東個人的錢，整體稅負反而高於商號。**
+
+有限公司適合的時機，也與工作型態有關。當事業開始聘人、擁有設備、長期簽約、持續留存資金，可以把公司的責任與管理制度一起納入考量。<strong>只為了把20%與個人30%、40%兩個稅率相比，就決定轉公司，無法反映實際總稅負。</strong>
+
+更多稅務計算可閱讀<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈綜合所得稅〉</a>與<a href="/local-practice-guide/entries/business-income-tax/">〈營業稅與營所稅〉</a>。
 
 ## 五、社團法人與合作社，分別適合公共工作與共同經營
 
@@ -163,7 +191,7 @@ tags:
 
 社團法人適合文化保存、親子共學、社區照顧等長期公共工作。協會透過會員、理監事、章程和共同決策經營，收入用於組織宗旨與實際工作。
 
-例如青年共同辦理村落兒童課程，成立協會後，可以用協會名義承接計畫、管理經費、聘請工作人員及支付合法報酬。<strong>年度結餘留給協會繼續使用，不分配給會員。</strong>
+例如青年共同辦理村落兒童課程，成立協會後，可以用協會名義承接計畫、管理經費、聘請工作人員及支付合法報酬。<strong>年度結餘留給協會繼續使用，不得分紅給會員。</strong>
 
 社會團體先完成立案；若要取得社團法人資格，還須依法辦理法人登記。協會的捐款、補助及對外收費服務，各有不同的稅務處理；前一節10萬元案例已分別呈現。
 
@@ -201,6 +229,6 @@ tags:
 
 <div class="org-source-note">
   <strong>資料與案例說明</strong>
-  <p>本文採2026年（民國115年）臺灣常見地方工作情境作教學比較。各表中的收款金額是依明示假設的示例，最終所得稅、營業稅、健保及個人責任，依實際交易與法定條件計算。</p>
-  <p>官方資料：<a href="https://www.ntbt.gov.tw/multiplehtml/1b82b380e1a34de9afd204d39b007db2" target="_blank" rel="noopener noreferrer">財政部臺北國稅局｜115年度綜所稅級距</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-saving-manual/national/profit-seeking-enterprise-income-tax/7KLMbzD" target="_blank" rel="noopener noreferrer">財政部｜獨資、合夥與公司稅務</a>、<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=7924e0bceadd45d69661c515ecd659a8" target="_blank" rel="noopener noreferrer">財政部｜非營利團體銷售勞務</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/business-tax/exemption-scope/lGmA07A" target="_blank" rel="noopener noreferrer">財政部｜營業稅免稅項目</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">合作社法</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050200" target="_blank" rel="noopener noreferrer">合作社對外服務規定</a>。</p>
+  <p>本文依2026年（民國115年）臺灣規定及國稅局實務簡報整理。試算已明示所得、單身身分、扣除額與盈餘使用等假設；實際稅額還須看負責人其他所得、公司分配、帳務成本及適用的稅務優惠。115年度所得在116年5月申報。</p>
+  <p>官方資料：<a href="https://www.ntbt.gov.tw/multiplehtml/1b82b380e1a34de9afd204d39b007db2" target="_blank" rel="noopener noreferrer">財政部臺北國稅局｜115年度綜所稅級距</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-saving-manual/national/profit-seeking-enterprise-income-tax/7KLMbzD" target="_blank" rel="noopener noreferrer">財政部｜獨資、合夥與公司稅務</a>、<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=7924e0bceadd45d69661c515ecd659a8" target="_blank" rel="noopener noreferrer">財政部｜非營利團體銷售勞務</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/business-tax/exemption-scope/lGmA07A" target="_blank" rel="noopener noreferrer">財政部｜營業稅免稅項目</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">合作社法</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050200" target="_blank" rel="noopener noreferrer">合作社對外服務規定</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/taxation-scope/which-income/YmDoYM2" target="_blank" rel="noopener noreferrer">財政部｜股利合併計稅8.5%抵減</a>、<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=FL005935" target="_blank" rel="noopener noreferrer">財政部｜所得稅法未分配盈餘課稅</a>。</p>
 </div>
