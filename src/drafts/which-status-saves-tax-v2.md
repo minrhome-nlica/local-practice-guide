@@ -179,3 +179,85 @@ tags:
 
 <div class="org-explainer-note"><strong>小提醒｜公司不一定省稅，卻可能適合下一個階段</strong><p>如果只看今年少繳多少稅，很容易忽略公司增加的記帳與管理費用。當你需要正式聘人、持續簽約、讓資產與工作制度留在事業裡，<strong>成立組織的價值可能是讓工作能夠持續</strong>。不過，成立公司並不保證一定能取得政府補助或標案，仍要看各計畫的申請資格。</p></div>
 
+
+## 六、社團法人還是合作社？我們為什麼要一起成立組織？
+
+地方工作的目的，不一定是讓某個人賺錢。有時候是幾位青年想保存地方文化、讓孩子有更多活動空間；有時候則是一群農友希望共同採購、共用設備、一起把農產品賣得更好。
+
+這兩件事都需要合作，但適合的組織並不相同。<strong>社團法人通常著重公共或非營利目的；合作社著重社員透過共同經營改善經濟與生活條件。</strong>
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="社團法人與合作社經營比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+<thead><tr><th scope="col">比較</th><th scope="col">社團法人／協會</th><th scope="col">合作社</th><th scope="col">要問自己的事</th></tr></thead>
+<tbody>
+<tr><th scope="row">為何成立？</th><td data-label="社團法人">文化教育、公益、社區照顧及其他共同目的</td><td data-label="合作社">社員共同生產、運銷、採購、勞動或共用資源</td><td data-label="思考問題">是在推動公共目標，還是改善社員的經濟需求？</td></tr>
+<tr><th scope="row">錢如何使用？</th><td data-label="社團法人">結餘留在組織，不得直接當會員分紅</td><td data-label="合作社">依法提撥及處理結餘，符合規定時可依社員交易等原則分配</td><td data-label="思考問題">收入是為了組織宗旨，還是共同經營後回饋社員？</td></tr>
+<tr><th scope="row">如何決策？</th><td data-label="社團法人">會員大會、理監事、章程</td><td data-label="合作社">社員民主治理與合作社章程</td><td data-label="思考問題">誰能參與決策？誰負責記帳和執行？</td></tr>
+<tr><th scope="row">稅務</th><td data-label="社團法人">部分所得符合條件可免稅；銷售勞務仍可能應稅</td><td data-label="合作社">符合規定的社員交易可能享有優惠，非社員交易另有規則</td><td data-label="思考問題">不是所有協會或合作社收入都免稅</td></tr>
+<tr><th scope="row">責任</th><td data-label="社團法人">組織有法人格，相關負責人仍有法定義務</td><td data-label="合作社">有法人格；社員責任可分有限、保證、無限等類型</td><td data-label="思考問題">要看實際登記、章程和交易，不能一概而論</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="tax-roadmap-cards tax-roadmap-cards-two">
+<div><span>情境一｜社區文化與照顧</span><strong>讓地方工作不只靠一個人</strong><p>幾位青年持續辦理文化保存、親子共學與社區照顧，開始需要會員參與、理監事分工、組織治理與公共討論。這時可以思考先成立社會團體，再依規定取得社團法人資格。</p><p>但成立協會不代表接案收入自動免稅。若有商品或勞務銷售，仍須看交易性質。</p></div>
+<div><span>情境二｜農友或工作者共同經營</span><strong>一起降低成本、共用資源</strong><p>農友原本各自找運輸、買資材、談通路；若共同集貨、冷藏、銷售及議價，合作社可能更能符合需求。工作者也可能透過合作社共同提供符合業務範圍的勞務。</p><p>重點是社員彼此合作，而不是讓個人的工作一律變成免稅交易。</p></div>
+</div>
+
+### 1. 協會不能分紅，就不能聘人嗎？
+
+不是。協會可以因實際業務需要，依法聘用員工、委託工作及支付合理報酬，但要有真正的工作、憑證及符合組織規定的程序。<strong>支付工作報酬，和把結餘當作會員分紅，是兩件不同的事。</strong>
+
+### 2. 合作社是法人，是不是一定有限責任？
+
+也不是。合作社法有有限、保證及無限責任等類型，要看實際登記。合作社也不是想接任何外部業務都可以；社員與非社員交易、政府或公益團體委託等，都可能有不同限制與課稅規定。
+
+## 七、我是農民，既然自產自銷有優惠，為什麼要成立合作社？
+
+如果只是自己耕作、出售自己生產且符合法規的農產品，原本就有相關營業稅或所得稅規定可以適用。<strong>不需要為了看起來比較正式，就一定成立合作社。</strong>
+
+但如果困難已經是大家一起才能解決的成本或市場問題，就值得換個角度。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="農民自產自銷與合作社比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+<thead><tr><th scope="col">農民遇到的情況</th><th scope="col">可以先考慮</th><th scope="col">可能的幫助</th><th scope="col">要先確認</th></tr></thead>
+<tbody>
+<tr><th scope="row">自己種、自己賣</th><td data-label="考慮方式">農民自產自銷</td><td data-label="可能幫助">保留簡單經營方式，適用規定的農業收入優惠</td><td data-label="需要確認">是否為自行生產；轉售、加工可能不同</td></tr>
+<tr><th scope="row">好幾戶共同出貨</th><td data-label="考慮方式">共同運銷、農民團體合作</td><td data-label="可能幫助">集貨、分級、運輸與議價</td><td data-label="需要確認">代辦費、貨款、委託及各方責任</td></tr>
+<tr><th scope="row">共同經營設備與通路</th><td data-label="考慮方式">評估農業合作社</td><td data-label="可能幫助">共購資材、共用冷鏈與設備、長期社員合作</td><td data-label="需要確認">社員資格、業務、稅務優惠及持續營運成本</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="org-explainer-note"><strong>小提醒｜合作社的價值，未必只表現在少繳稅</strong><p>原本每戶都需要自己找車載貨、找通路談價格；透過合作制度，大家可能一起安排集貨、冷藏與採購。這些價值包括<strong>降低長期成本、提升議價能力、讓合作有制度可以延續</strong>。不過，合作社的商品銷售、加工與非社員交易並非一律免稅，仍須依適用規定確認。</p></div>
+
+## 八、結語：從這筆錢怎麼請，思考未來怎麼走下去
+
+我們希望地方實踐者漸漸找到一種<strong>不再只靠個人身分、個人關係和個人承擔</strong>的方式，讓已經持續發生的工作，成為可以被接續、合作及負責的事業或組織。
+
+這不代表大家都必須成立公司，也不代表公共工作一定要成立協會。真正要問的是：你想要經營的是什麼？幾年後，它還要怎麼存在？
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="不同地方工作需求與適合研究的身分" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+<thead><tr><th scope="col">現在最在意……</th><th scope="col">可以先認識</th><th scope="col">先問自己</th><th scope="col">下一步</th></tr></thead>
+<tbody>
+<tr><th scope="row">偶爾靠專長接案</th><td data-label="先認識">個人接案</td><td data-label="先問自己">只是零星工作，還是已經長期營業？</td><td data-label="下一步">釐清所得與登記義務</td></tr>
+<tr><th scope="row">固定請款與服務客戶</th><td data-label="先認識">商號／工作室</td><td data-label="先問自己">帳務、稅籍、發票如何處理？</td><td data-label="下一步">評估辦理登記與維護成本</td></tr>
+<tr><th scope="row">要聘人、買設備、簽大合約</th><td data-label="先認識">有限公司</td><td data-label="先問自己">有哪些責任與資產要留在事業裡？</td><td data-label="下一步">評估風險、稅務與行政成本</td></tr>
+<tr><th scope="row">推動長期文化、教育與公益工作</th><td data-label="先認識">社會團體／社團法人</td><td data-label="先問自己">共同宗旨及會員治理是什麼？</td><td data-label="下一步">確認章程、立案及法人登記</td></tr>
+<tr><th scope="row">農友與工作夥伴一起經營</th><td data-label="先認識">合作社</td><td data-label="先問自己">社員合作要改善什麼需求？</td><td data-label="下一步">確認業務資格、社員與經營規模</td></tr>
+</tbody>
+</table>
+</div>
+
+如果現在還是一個人接案，我們鼓勵你慢慢思考：<strong>什麼時候值得整理成工作室？何時需要讓公司來承擔事業？什麼時候應該和夥伴一起成立協會或合作社？</strong>
+
+節稅是選擇的一部分，但不該是唯一的答案。想繼續了解，可閱讀<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>、<a href="/local-practice-guide/entries/legal-person-natural-person/">〈自然人與法人〉</a>、<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>，以及<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈綜合所得稅〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈營業稅與營所稅〉</a>。
+
+---
+
+<div class="org-source-note">
+<strong>資料與案例說明</strong>
+<p>本文以2026年（民國115年）臺灣常見情境進行概念比較，不是正式報稅、扣繳或成立組織的法律意見。商號登記與發票、所得與費用認列、社團法人免稅、合作社社員及非社員交易，以及農業稅務優惠，都須依實際事實與當年度規定確認。</p>
+<p>官方來源：<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-saving-manual/national/profit-seeking-enterprise-income-tax/7KLMbzD" target="_blank" rel="noopener noreferrer">財政部｜營利事業組織型態比較</a>、<a href="https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg031224/ch04/type3/gov30/num12/Eg.htm" target="_blank" rel="noopener noreferrer">財政部｜115年度綜所稅級距公告</a>、<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=3ee59a0b82a94e35a7cfc684d8e12d0d" target="_blank" rel="noopener noreferrer">財政部｜小規模營業人發票規定</a>、<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=7924e0bceadd45d69661c515ecd659a8" target="_blank" rel="noopener noreferrer">財政部｜非營利團體銷售勞務</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340012" target="_blank" rel="noopener noreferrer">公益慈善團體免稅標準</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">合作社法</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/business-tax/exemption-scope/lGmA07A" target="_blank" rel="noopener noreferrer">營業稅免稅規定</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0020001" target="_blank" rel="noopener noreferrer">農業發展條例</a>。</p>
+</div>
