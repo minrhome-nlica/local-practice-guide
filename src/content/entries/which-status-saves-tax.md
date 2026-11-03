@@ -1,602 +1,263 @@
 ---
-title: 什麼身分比較節稅？
-summary: 同樣一筆10萬元的設計案，用個人、工作室、公司、協會或合作社請款，收款人和付款方各要負擔什麼？再看農民自產自銷蔬果的免稅案例，學會比較不同身分的稅務差異。
+title: 什麼身分比較節稅？從個人接案到成立組織，怎麼選？
+summary: 一個人在地方接案久了，該繼續個人接案、成立工作室或公司，還是和夥伴組成協會、合作社？用十萬元請款、年度收入及農友合作等案例，比較稅務、風險、成本與未來經營方向。
 category: organizations
 level: 實務
-updated: 2026-11-02
+updated: 2026-11-03
 status: 編輯稿
 related:
   - legal-person-natural-person
   - why-establish-business-studio
   - why-establish-legal-person
-  - supplemental-premium
-  - labor-health-insurance
-  - reimbursement
   - income-withholding
+  - supplemental-premium
   - business-income-tax
   - comprehensive-income-tax
+  - labor-health-insurance
+  - reimbursement
 tags:
   - 節稅
+  - 經營身分
   - 個人接案
-  - 預扣所得稅
-  - 營業稅
-  - 營利事業所得稅
-  - 綜合所得稅
   - 商號
   - 工作室
   - 公司
-  - 合作社
   - 社團法人
+  - 合作社
   - 農民
-  - 自力耕作
-  - 二代健保
+  - 營業稅
+  - 綜合所得稅
 ---
 
-假設我是一名設計工作者，平常承接活動海報、主視覺及品牌設計等工作。今天有一間公司委託我製作活動主視覺，雙方約定設計費為 <strong>100,000 元</strong>。
+在地方工作幾年後，你可能發現，原本偶爾幫忙設計海報、辦活動、販售農產品，漸漸變成固定的工作。有時候，合作單位會問：「你有沒有工作室？可不可以開發票？」也可能有夥伴想加入，一起經營。
 
-如果我用個人身分接案，與成立工作室、公司後接案，稅務上會有什麼不同？如果工作由社團法人或合作社承接，情況又會如何？同樣一筆 100,000 元的設計費，因為承接案件的身分不同，收款方式、所得認定，以及付款單位需要處理的事情，都可能不一樣。接下來就從六種情境，看看不同身分在稅務上的差別。
+這時候我們很容易先問：<strong>用哪一種身分最節稅？</strong>但其實還有另一個更重要的問題：<strong>這份工作要怎麼走得更長久？</strong>
 
+本文不再重複每一種稅的詳細規定，而是把先備知識放在一起，從個人、商號／工作室、有限公司、社團法人與合作社，看看不同的身分適合什麼情況、錢歸誰、又有哪些成本與責任。
 
-為了方便比較，前五個案例都以同一筆 100,000 元的設計服務為基礎。假設付款方是臺灣境內公司，100,000 元為未含應外加營業稅的服務價格；若承接者依法須開立 5% 應稅發票，則另加營業稅 5,000 元。
-
-<div class="tax-prerequisite-note" role="note" aria-label="閱讀前提醒：先閱讀二代健保補充保費">
-  <span class="tax-prerequisite-eyebrow">閱讀前提醒</span>
-  <strong class="tax-prerequisite-title">請先閱讀〈二代健保補充保費〉</strong>
-  <p>本篇會提到個人補充保費，以及付款單位可能增加的成本。建議先讀過<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>。如果還不熟悉全年所得稅怎麼算，也可以先看<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>，再回來比較不同身分的接案案例。</p>
+<div class="tax-prerequisite-note" role="note" aria-label="閱讀前提醒">
+  <span class="tax-prerequisite-eyebrow">先看比較，再慢慢理解</span>
+  <strong class="tax-prerequisite-title">不必先懂所有稅法，也能從這篇開始</strong>
+  <p>想知道預扣10%與最後應納稅額有什麼不同，可閱讀<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅〉</a>、<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>；想比較全年稅額，可閱讀<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈綜合所得稅〉</a>與<a href="/local-practice-guide/entries/business-income-tax/">〈營業稅與營所稅〉</a>。這一篇要談的是：<strong>如何選擇適合現在、也適合未來的經營方式。</strong></p>
 </div>
 
-## 一、個人身分接案
+## 一、先看懂：五種身分，最大的差別是什麼？
 
-### 1. 假設我是一名自由接案的設計師
+先不要急著算稅。因為即使稅額差不多，<strong>誰擁有收入、誰承擔債務、能不能分配結餘</strong>，可能完全不同。我們把商號依是否使用統一發票分開列，因此表中共有六種情況。
 
-我沒有成立工作室，平常就是自己接案。某間公司找我製作活動主視覺，約定支付 100,000 元，完成工作後由我以個人名義請款。但對方在匯款之前告訴我，必須先扣除所得稅，還可能扣除二代健保補充保費。<strong>明明談好 100,000 元，為什麼實際匯進戶頭的錢卻變少了？</strong>
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="六種身分的稅務、責任與經營方向比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">身分</th><th scope="col">稅務怎麼看？</th><th scope="col">責任與收入歸屬</th><th scope="col">適合考慮的情況</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">個人接案</th><td data-label="稅務怎麼看">依實際所得性質，可能屬薪資或執行業務所得等，併入個人綜所稅</td><td data-label="責任與收入">收入歸個人，相關契約與債務也由個人承擔</td><td data-label="適合情況">偶爾接案、個人獨立提供服務</td></tr>
+    <tr><th scope="row">商號／工作室<small>免用發票</small></th><td data-label="稅務怎麼看">可能採查定課營業稅；獨資營利所得併入負責人綜所稅</td><td data-label="責任與收入">獨資商號不是獨立法人，負責人仍可能以個人財產負責</td><td data-label="適合情況">規模較小、已固定經營，且符合免用發票規定</td></tr>
+    <tr><th scope="row">商號／工作室<small>使用發票</small></th><td data-label="稅務怎麼看">一般應稅交易有5%銷項與可扣抵進項；獨資所得仍併入個人綜所稅</td><td data-label="責任與收入">不會因為開發票，就成為有獨立法人格的有限公司</td><td data-label="適合情況">經常服務企業、需依規定開立統一發票</td></tr>
+    <tr><th scope="row">有限公司</th><td data-label="稅務怎麼看">公司依課稅所得計算營所稅；股東取得薪資、股利時另有個人稅務</td><td data-label="責任與收入">公司為獨立法人；股東原則上以出資額為限負責，另有法定例外</td><td data-label="適合情況">長期經營、聘請團隊、持有設備或承擔較大契約</td></tr>
+    <tr><th scope="row">社團法人<small>協會</small></th><td data-label="稅務怎麼看">部分所得符合條件可免稅；銷售商品或勞務仍可能課稅</td><td data-label="責任與收入">收入屬協會，不能把結餘直接分配會員個人</td><td data-label="適合情況">公共議題、文化教育、社區照顧與長期集體行動</td></tr>
+    <tr><th scope="row">合作社</th><td data-label="稅務怎麼看">符合規定的社員交易等可能有優惠；其他交易仍要依性質確認</td><td data-label="責任與收入">合作社是法人；社員責任類型與結餘處理依法律、章程而定</td><td data-label="適合情況">農友共同運銷、設備共用、勞動合作與社員互助</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="org-table-hint">以上是常見概念比較；商號以獨資型態為主，合夥規定另有差異。手機版將各身分改為逐張閱讀，不須橫向捲動。</p>
 
-### 2. 個人接案會被扣多少錢？
+<div class="org-explainer-note"><strong>小提醒｜成立組織，不等於所得稅一定比較低</strong><p>成立商號或公司，除了稅率不同，還涉及帳務、契約責任、對外信任及將工作留在組織內的可能性。經營方式已經變成持續營業時，值得考慮逐步正式登記；但也不是每個人都必須立即成立公司。</p></div>
 
-假設這筆設計報酬依法認定為執行業務所得（代碼9A），而且我是臺灣境內居住者，並符合應扣取二代健保補充保費的條件：
+## 二、同樣10萬元，個人、商號、公司請款差多少？
 
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="2. 個人接案會被扣多少錢？的金額試算" tabindex="0">
+假設某間公司委託製作活動主視覺，約定<strong>未稅設計報價100,000元</strong>；如果依法應開立5%應稅統一發票，就在報價外另加5,000元營業稅。
+
+我們特別把「付款方花多少」和「承接者當下收到多少」分開，因為預扣所得稅、營業稅和全年所得稅不是同一件事。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="十萬元設計案六種請款情況比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">承接身分</th><th scope="col">付款方總額</th><th scope="col">當下收到多少？</th><th scope="col">後續還要注意</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">個人接案<small>假設屬9A，且符合扣費條件</small></th><td data-label="付款方總額"><strong>100,000元</strong></td><td data-label="當下收到"><strong>87,890元</strong>；預扣稅10,000元、補充保費2,110元</td><td data-label="後續注意">領據、扣繳及所得申報；預扣可抵繳年度應納所得稅</td></tr>
+    <tr><th scope="row">商號<small>免用發票</small></th><td data-label="付款方總額"><strong>100,000元</strong></td><td data-label="當下收到"><strong>商號收100,000元</strong>，尚未扣營業稅與工作成本</td><td data-label="後續注意">合法收據、查定營業稅與負責人綜所稅</td></tr>
+    <tr><th scope="row">商號<small>使用發票</small></th><td data-label="付款方總額"><strong>105,000元</strong></td><td data-label="當下收到"><strong>商號收105,000元</strong>，其中5,000元為銷項稅</td><td data-label="後續注意">發票、進銷項、營業稅申報及負責人綜所稅</td></tr>
+    <tr><th scope="row">有限公司</th><td data-label="付款方總額"><strong>105,000元</strong></td><td data-label="當下收到"><strong>公司收105,000元</strong>，其中5,000元為銷項稅</td><td data-label="後續注意">公司營業稅、年度營所稅；不等於股東個人實領</td></tr>
+    <tr><th scope="row">社團法人</th><td data-label="付款方總額">視交易性質與憑證</td><td data-label="當下收到">屬協會收入，不能當作會員分紅</td><td data-label="後續注意">章程宗旨、是否銷售勞務、稅籍及免稅條件</td></tr>
+    <tr><th scope="row">合作社</th><td data-label="付款方總額">視業務及交易性質</td><td data-label="當下收到">屬合作社收入，不等於某位社員所得</td><td data-label="後續注意">社員或非社員交易、業務資格及適用稅制</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="org-table-hint">此為臺灣境內單次付款、單一設計委託的教學假設。個人欄以依法屬9A且符合補充保費扣費條件為例，若屬薪資50或其他所得，規則可能不同。組織當下收取的含稅價款，不代表最後的稅後所得。</p>
+
+### 1. 公司是不是比較喜歡對方開發票？
+
+對有應稅營業的付款公司來說，若取得合法的5%應稅統一發票，符合規定的進項稅額可能可以扣抵。但<strong>不是任何發票都能抵，也不是付了105,000元，對方就多賺5,000元</strong>。
+
+而且，<strong>依法使用統一發票的獨資商號，也可能扣抵合法進項</strong>，並非只有有限公司才有這個制度。真正要看的是交易與憑證是否符合規定。
+
+### 2. 換成教課或講座，扣繳可能就不同
+
+如果工作不是製作海報，而是受邀教授一系列設計課程，依法認定屬兼職薪資（代碼50），就可能以5%預扣薪資所得稅，而不是照前面的9A範例扣10%。符合條件時還可能有個人補充保費；付款方也可能依其薪資與投保條件產生額外成本。
+
+所以，<strong>不是挑一個稅率最低的所得代碼來用，而是先看真正做了什麼工作</strong>。完整案例可以接著閱讀<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅〉</a>和<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>。
+
+
+## 三、年收入130萬元，成立有限公司就比較節稅嗎？
+
+地方工作者常會想知道：「我一年接案到多少，成立公司比較有利？」
+
+<strong>130萬元可以是重新檢視工作方式的提醒，但不是法定的節稅分界線。</strong>真正要看的是收入減掉依法可認列的費用後，剩下多少所得；個人還有哪些收入與扣除額；成立公司後，錢要留在公司還是依法支付薪資、分配股利。
+
+### 1. 年營收和所得，是兩個不同數字
+
+假設一位設計工作者全年收到130萬元，工作成本40萬元，而且全部符合認列規定：
+
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="年收入130萬元示範" tabindex="0">
 <table class="org-compare-table tax-guide-table tax-table-money">
   <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
   <tbody>
-    <tr><th scope="row">設計報酬</th><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">預扣所得稅 10%</th><td class="tax-number">−10,000 元</td></tr>
-    <tr><th scope="row">二代健保補充保費 2.11%</th><td class="tax-number">−2,110 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>實際匯入帳戶</strong></th><td class="tax-number"><strong>87,890 元</strong></td></tr>
+    <tr><th scope="row">全年設計收入</th><td class="tax-number">1,300,000元</td></tr>
+    <tr><th scope="row">假設依法可認列的工作成本與費用</th><td class="tax-number">−400,000元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>所得計算的初步基礎</strong></th><td class="tax-number"><strong>900,000元</strong></td></tr>
   </tbody>
 </table>
 </div>
 
-<div class="tax-withholding-note" data-rate="10" role="note" aria-label="小提醒：為什麼設計費要預扣10%所得稅">
-  <span class="tax-withholding-kicker">小提醒｜什麼是「所得稅扣繳」？</span>
-  <strong class="tax-withholding-title">為什麼這筆設計費要先扣 10% 所得稅？</strong>
-  <p>這個制度的正式名稱是<strong>「所得稅扣繳」</strong>。</p>
-  <p>臺灣境內居住的個人，如果收入屬於<strong>執行業務所得（代碼9A）或講演與稿費等收入（代碼9B）</strong>，<strong>單次給付達 20,010 元</strong>，付款單位就需要先扣繳 <strong>10% 所得稅</strong>。這筆設計費是 100,000 元，所以付款公司先扣下 10,000 元，代繳給國稅局。</p>
-  <p>因此，設計師實際收到的錢會先被扣掉 10%，但<strong>這不代表最後一定繳 10% 的所得稅</strong>。隔年申報綜合所得稅時，仍要依全年所得、必要費用、免稅額及扣除額等，結算真正應納的稅額；先前扣繳的稅款可以用來抵繳。</p>
-  <p>例如最後應納稅額是 8,000 元，若只預扣過這 10,000 元，就可能退回 2,000 元；若應納稅額是 15,000 元，就可能再補繳 5,000 元。</p>
+如果再假設這900,000元是他全年唯一的執行業務所得、單身申報、沒有扶養親屬，也沒有其他額外扣除，減去2026年（民國115年）個人免稅額101,000元與標準扣除額136,000元，綜合所得淨額是<strong>663,000元</strong>。
+
+依115年度累進稅率，前610,000元課5%，超過的53,000元課12%，示範所得稅為<strong>36,860元</strong>。
+
+<div class="org-explainer-note tax-roadmap-important">
+  <strong>小提醒｜不是年收入130萬元，就要繳20%的個人所得稅</strong>
+  <p>2026年度個人所得稅的20%級距，是<strong>綜合所得淨額超過138萬元的部分</strong>才進入，不是年營收達130萬元就整筆課20%。這只是單身、單一所得來源的教學示例；實際情況還要看其他所得、家人及成本認列方式。更完整的算法可閱讀<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈綜合所得稅〉</a>。</p>
 </div>
 
-<p>至於表格中扣除的 2,110 元，是<strong>二代健保補充保險費</strong>。我們在<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>的篇章有提到：如果個人領取的是<strong>執行業務收入（代碼9A）</strong>，<strong>單次給付達 20,000 元</strong>，且不屬於免扣取的情況，付款單位就需要<strong>就源扣取 2.11%</strong>。</p>
+### 2. 公司20%營所稅，跟個人20%級距不是同一回事
 
-<p>本例一次給付 100,000 元，因此會扣取 2,110 元，繳交給健保署。另外，如果收入不是執行業務所得（代碼9A），可以接著看下方<strong>薪資所得（代碼50）</strong>的授課案例。</p>
+有限公司是以<strong>公司的課稅所得額</strong>來算營所稅；超過適用門檻時，一般常見20%。但公司繳完營所稅，錢仍是公司的。股東若再取得薪資或股利，可能還有個人的稅務要計算。
 
-### 3. 那付款公司要付出多少錢？
-
-這是比較容易被忽略的地方：雖然設計師實際領到 87,890 元，但付款公司並不是只花了 87,890 元。
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 那付款公司要付出多少錢？的金額試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">付款去向</th><th scope="col" class="tax-number">金額</th></tr></thead>
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="獨資商號與有限公司年度經營差異" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">比較</th><th scope="col">個人／獨資商號</th><th scope="col">有限公司</th><th scope="col">要注意什麼？</th></tr></thead>
   <tbody>
-    <tr><th scope="row">匯給設計師</th><td class="tax-number">87,890 元</td></tr>
-    <tr><th scope="row">代繳國稅局所得稅</th><td class="tax-number">10,000 元</td></tr>
-    <tr><th scope="row">代繳健保署補充保費</th><td class="tax-number">2,110 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>付款公司合計支出</strong></th><td class="tax-number"><strong>100,000 元</strong></td></tr>
+    <tr><th scope="row">所得稅</th><td data-label="個人／獨資商號">依所得類別計算個人綜所稅；獨資營利所得歸入負責人個人</td><td data-label="有限公司">公司營所稅；股東領薪資或股利時另計個人所得稅</td><td data-label="要注意">不能直接把兩邊的稅率相比就認定哪個比較省</td></tr>
+    <tr><th scope="row">工作成本</th><td data-label="個人／獨資商號">依實際所得性質與規定認列</td><td data-label="有限公司">依公司帳務與稅法認列</td><td data-label="要注意">不是所有私人支出都能當業務成本</td></tr>
+    <tr><th scope="row">營業稅進項</th><td data-label="個人／獨資商號">使用統一發票的商號，符合條件也可能扣抵</td><td data-label="有限公司">一般應稅交易按銷項減合法可扣抵進項計算</td><td data-label="要注意">進項抵稅不是公司的專利</td></tr>
+    <tr><th scope="row">固定行政成本</th><td data-label="個人／獨資商號">依是否登記、開票、申報等而不同</td><td data-label="有限公司">設立、記帳、申報及組織維護費用</td><td data-label="要注意">增加的成本可能超過當年省下的稅</td></tr>
+    <tr><th scope="row">收入歸誰？</th><td data-label="個人／獨資商號">獨資事業營利所得歸負責人個人</td><td data-label="有限公司">公司收入屬公司，不能直接當個人錢花</td><td data-label="要注意">也要看未來要不要聘人、留存公司資產</td></tr>
   </tbody>
 </table>
 </div>
 
-在這個案例中，公司支付的是設計師的<strong>執行業務所得（代碼9A）</strong>，因此公司總共還是支出 <strong>100,000 元</strong>。設計師少領到的錢，並沒有被公司拿走，而是由公司代扣後，繳交給國稅局及健保署。
+所以，<strong>不是「超過某個營收就必須成立公司」</strong>。當案子已經變成固定事業、需要聘人、持有設備、承接較大的合約、和夥伴分工時，即使短期沒有省稅，公司也可能有長期經營價值。
 
-但下一個案例就不一樣了，<strong>公司可能因為付錢給個人，而需要額外負擔費用。</strong>
+## 四、先成立商號／工作室，可能更容易開始嗎？
 
-### 4. 如果今天設計師的案例是薪資所得（代碼50），公司付多少錢？
+從個人接案走向正式經營，不一定要一步就成立有限公司。<strong>商號／工作室可能是先整理帳戶、請款、報稅及交易憑證的選擇。</strong>
 
-現在換一個情境：我還是同一名設計師，但公司不是委託我製作海報，而是邀請我為員工開設一系列設計課程，教授視覺設計、排版與軟體操作，雙方同樣約定報酬 100,000 元。
+但是「工作室」只是日常稱呼，實際身分要看是否完成商業登記、稅籍登記等程序；也不要把「免用發票」理解成「不用繳任何稅」。
 
-這時我的所得不再是<strong>執行業務所得（代碼9A）</strong>，而是<strong>薪資所得（代碼50）</strong>。如果還不了解兩者的差別，可以回頭閱讀[〈二代健保補充保費〉](/local-practice-guide/entries/supplemental-premium/)。
-
-工作內容從設計委託變成授課，所得分類與付款公司的實際成本可能也跟著改變。
-
-在這筆報酬屬於<strong>薪資所得（代碼50）</strong>的情境下：
-
-#### （1）設計師實際可以領到多少錢？
-
-假設我是臺灣境內居住者，這筆 100,000 元屬於一次給付的兼職授課薪資，並符合個人兼職薪資補充保費的扣取條件，試算如下：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="（1）設計師實際可以領到多少錢？的金額試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="商號使用或免用統一發票比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">項目</th><th scope="col">商號：免用統一發票</th><th scope="col">商號：使用統一發票</th><th scope="col">先記住</th></tr></thead>
   <tbody>
-    <tr><th scope="row">設計課程講師費</th><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">預扣薪資所得稅 5%</th><td class="tax-number">−5,000 元</td></tr>
-    <tr><th scope="row">個人兼職薪資補充保費 2.11%</th><td class="tax-number">−2,110 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>講師實際收到</strong></th><td class="tax-number"><strong>92,890 元</strong></td></tr>
+    <tr><th scope="row">請款憑證</th><td data-label="免用統一發票">依規定提供普通收據等憑證</td><td data-label="使用統一發票">依規定開立統一發票</td><td data-label="先記住">付款單位需要什麼憑證，也會影響合作方式</td></tr>
+    <tr><th scope="row">營業稅</th><td data-label="免用統一發票">經核定查定課徵者，常見1%</td><td data-label="使用統一發票">一般應稅交易常見5%，可依法扣抵進項</td><td data-label="先記住">查定1%不是每張收據直接扣1%</td></tr>
+    <tr><th scope="row">所得稅</th><td data-label="免用統一發票">獨資營利所得併入負責人綜所稅</td><td data-label="使用統一發票">獨資營利所得仍併入負責人綜所稅</td><td data-label="先記住">使用發票不會讓商號變成公司</td></tr>
+    <tr><th scope="row">能自己選嗎？</th><td data-label="免用統一發票">須符合條件並經國稅局核定</td><td data-label="使用統一發票">依營業規模、性質及規定辦理</td><td data-label="先記住">每月20萬元是常見門檻，但部分營業型態或情況另有規定</td></tr>
   </tbody>
 </table>
 </div>
 
-<div class="tax-withholding-note" data-rate="5" role="note" aria-label="小提醒：為什麼講師費要預扣5%所得稅">
-  <span class="tax-withholding-kicker">小提醒｜什麼是「所得稅扣繳」？</span>
-  <strong class="tax-withholding-title">為什麼這筆講師費要先扣 5% 所得稅？</strong>
-  <p>這個制度同樣稱為<strong>「所得稅扣繳」</strong>。</p>
-  <p>臺灣境內居住的個人，如果收入屬於<strong>薪資所得（代碼50）</strong>，而且是兼職或非每月給付的薪資，原則上會先扣繳 <strong>5% 所得稅</strong>。不過，依照 2026 年（民國 115 年）規定，<strong>單次給付未達 90,501 元</strong>，符合規定可免予扣繳。本案例一次給付 100,000 元，因此付款公司會先扣下 5,000 元，代繳給國稅局。</p>
-  <p>因此，設計師實際收到的講師費會先被扣掉 5%，但<strong>這不代表最後一定繳 5% 的所得稅</strong>。隔年申報綜合所得稅時，仍要依全年所得、免稅額及扣除額等結算真正應納稅額，先前被扣繳的稅款可以用來抵繳。</p>
-  <p>例如最後應納稅額是 3,000 元，若只預扣過這 5,000 元，就可能退回 2,000 元；若應納稅額是 8,000 元，就可能再補繳 3,000 元。</p>
+<div class="tax-roadmap-example"><span class="tax-roadmap-example-label">地方情境｜原本偶爾拍活動的攝影師</span><p>一位攝影師原本偶爾接案，後來固定承接商業攝影、販售照片，開始添購鏡頭、燈具及其他設備。他可以重新檢視是否已形成持續的營業活動、是否需要登記、能否依法認列成本，以及客戶需要何種請款憑證。</p><p><strong>成立商號是經營方式的選擇；能否免用統一發票，仍要依稅捐機關核定。</strong>詳細程序可接著看<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>。</p></div>
+
+## 五、什麼情況下，有限公司會值得考慮？
+
+如果你已經不只是自己接案，而是想讓一個事業持續經營，有限公司可能值得認真評估。
+
+<div class="tax-roadmap-cards">
+  <div><span>01｜工作開始固定</span><strong>想把客戶與契約留在事業裡</strong><p>不再只是個人之間一次一次請款，而是逐步建立組織帳戶、設備與工作制度。</p></div>
+  <div><span>02｜工作風險變高</span><strong>開始採購、聘人或承接較大的案子</strong><p>獨立法人與有限責任可能有幫助，但個人保證、違法及其他法定例外仍要注意。</p></div>
+  <div><span>03｜想長期累積資產</span><strong>希望收入投入未來的發展</strong><p>例如添購設備、聘用夥伴、擴大工作團隊，但也需要承擔帳務與申報等行政成本。</p></div>
 </div>
 
-與前面不一樣，大家還記得嗎？前面設計師領取的是<strong>執行業務所得（代碼9A）</strong>，因此需要預扣 10% 所得稅。但這次設計師受邀開設設計課程，領取的變成<strong>薪資所得（代碼50）</strong>，所以這筆講師費改為預扣 5% 所得稅。也就是說，<strong>雖然都是同一位設計師，但因為工作內容不同，所得分類與扣繳方式也跟著改變。</strong>
+公司可以依法聘請負責人、支付合理薪資，也可依規定分配盈餘，但都需要實際的勞務、帳務、憑證與合法程序，不是把個人請款改成公司戶頭就完成。
 
-#### （2）付款公司需要支付的費用，會因為薪資所得（代碼50）而提高
+<div class="org-explainer-note"><strong>小提醒｜公司不一定省稅，卻可能適合下一個階段</strong><p>如果只看今年少繳多少稅，很容易忽略公司增加的記帳與管理費用。當你需要正式聘人、持續簽約、讓資產與工作制度留在事業裡，<strong>成立組織的價值可能是讓工作能夠持續</strong>。不過，成立公司並不保證一定能取得政府補助或標案，仍要看各計畫的申請資格。</p></div>
 
-因為這筆講師費屬於<strong>薪資所得（代碼50）</strong>，不再是前面的<strong>執行業務所得（代碼9A）</strong>，所以公司便可能需要額外支付二代健保的「雇主額外負擔」。
 
-計算公式如下：
+## 六、社團法人還是合作社？我們為什麼要一起成立組織？
 
-<strong>投保單位補充保費＝（當月支付薪資所得總額－當月受僱者健保投保金額總額）× 2.11%</strong>
+地方工作的目的，不一定是讓某個人賺錢。有時候是幾位青年想保存地方文化、讓孩子有更多活動空間；有時候則是一群農友希望共同採購、共用設備、一起把農產品賣得更好。
 
-如果還不清楚這項規定，可以回頭閱讀[〈二代健保補充保費〉](/local-practice-guide/entries/supplemental-premium/)的篇章。
+這兩件事都需要合作，但適合的組織並不相同。<strong>社團法人通常著重公共或非營利目的；合作社著重社員透過共同經營改善經濟與生活條件。</strong>
 
-以下我們以公司有 5 名員工，每人的月薪都是 34,000 元來看，這間公司會實際多付多少錢。
-
-依照 2026 年的健保投保金額分級表，月薪 34,000 元對應的健保投保金額為 <strong>34,800 元</strong>。這個月除了原本的員工薪資，公司又額外支付設計講師 100,000 元的<strong>薪資所得（代碼50）</strong>：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="雇主有5名月薪34000元員工，另支付10萬元講師費的補充保費試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">5 名員工每人月薪 34,000 元</th><td class="tax-number">170,000 元</td></tr>
-    <tr><th scope="row">5 名員工每人健保投保金額 34,800 元</th><td class="tax-number">174,000 元</td></tr>
-    <tr><th scope="row">額外支付設計講師費／薪資所得（代碼50）</th><td class="tax-number">+100,000 元</td></tr>
-    <tr class="tax-subtotal-row"><th scope="row"><strong>當月支付薪資所得總額</strong></th><td class="tax-number"><strong>270,000 元</strong></td></tr>
-    <tr><th scope="row">扣除 5 名員工健保投保金額總額</th><td class="tax-number">−174,000 元</td></tr>
-    <tr class="tax-subtotal-row"><th scope="row"><strong>需要計算補充保費的差額</strong></th><td class="tax-number"><strong>96,000 元</strong></td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>投保單位額外負擔 2.11%</strong></th><td class="tax-number"><strong>2,026 元</strong></td></tr>
-  </tbody>
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="社團法人與合作社經營比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+<thead><tr><th scope="col">比較</th><th scope="col">社團法人／協會</th><th scope="col">合作社</th><th scope="col">要問自己的事</th></tr></thead>
+<tbody>
+<tr><th scope="row">為何成立？</th><td data-label="社團法人">文化教育、公益、社區照顧及其他共同目的</td><td data-label="合作社">社員共同生產、運銷、採購、勞動或共用資源</td><td data-label="思考問題">是在推動公共目標，還是改善社員的經濟需求？</td></tr>
+<tr><th scope="row">錢如何使用？</th><td data-label="社團法人">結餘留在組織，不得直接當會員分紅</td><td data-label="合作社">依法提撥及處理結餘，符合規定時可依社員交易等原則分配</td><td data-label="思考問題">收入是為了組織宗旨，還是共同經營後回饋社員？</td></tr>
+<tr><th scope="row">如何決策？</th><td data-label="社團法人">會員大會、理監事、章程</td><td data-label="合作社">社員民主治理與合作社章程</td><td data-label="思考問題">誰能參與決策？誰負責記帳和執行？</td></tr>
+<tr><th scope="row">稅務</th><td data-label="社團法人">部分所得符合條件可免稅；銷售勞務仍可能應稅</td><td data-label="合作社">符合規定的社員交易可能享有優惠，非社員交易另有規則</td><td data-label="思考問題">不是所有協會或合作社收入都免稅</td></tr>
+<tr><th scope="row">責任</th><td data-label="社團法人">組織有法人格，相關負責人仍有法定義務</td><td data-label="合作社">有法人格；社員責任可分有限、保證、無限等類型</td><td data-label="思考問題">要看實際登記、章程和交易，不能一概而論</td></tr>
+</tbody>
 </table>
 </div>
 
-計算方式為：
+<div class="tax-roadmap-cards tax-roadmap-cards-two">
+<div><span>情境一｜社區文化與照顧</span><strong>讓地方工作不只靠一個人</strong><p>幾位青年持續辦理文化保存、親子共學與社區照顧，開始需要會員參與、理監事分工、組織治理與公共討論。這時可以思考先成立社會團體，再依規定取得社團法人資格。</p><p>但成立協會不代表接案收入自動免稅。若有商品或勞務銷售，仍須看交易性質。</p></div>
+<div><span>情境二｜農友或工作者共同經營</span><strong>一起降低成本、共用資源</strong><p>農友原本各自找運輸、買資材、談通路；若共同集貨、冷藏、銷售及議價，合作社可能更能符合需求。工作者也可能透過合作社共同提供符合業務範圍的勞務。</p><p>重點是社員彼此合作，而不是讓個人的工作一律變成免稅交易。</p></div>
+</div>
 
-（員工薪資總額 170,000 元＋額外支付薪資所得 100,000 元－當月健保投保金額總額 174,000 元）× 2.11%
+### 1. 協會不能分紅，就不能聘人嗎？
 
-也就是 <strong>96,000 元 × 2.11%＝2,025.6 元，四捨五入後為 2,026 元。</strong>
+不是。協會可以因實際業務需要，依法聘用員工、委託工作及支付合理報酬，但要有真正的工作、憑證及符合組織規定的程序。<strong>支付工作報酬，和把結餘當作會員分紅，是兩件不同的事。</strong>
 
-因此，公司除了原本約定的 100,000 元講師費，<strong>還要額外負擔 2,026 元補充保費，實際總支出為 102,026 元。</strong>
+### 2. 合作社是法人，是不是一定有限責任？
 
-#### （3）重新計算：公司實際需要支付多少錢？
+也不是。合作社法有有限、保證及無限責任等類型，要看實際登記。合作社也不是想接任何外部業務都可以；社員與非社員交易、政府或公益團體委託等，都可能有不同限制與課稅規定。
 
-我們沿用剛才的假設，將付款去向整理如下：
+## 七、我是農民，既然自產自銷有優惠，為什麼要成立合作社？
 
-<div class="org-table-scroll tax-table-wrap tax-table-horizontal" role="region" aria-label="講師費十萬元及付款公司額外補充保費試算表" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-payment">
-  <thead><tr><th scope="col">付款項目</th><th scope="col">金額</th><th scope="col">由誰負擔</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">實際匯給設計講師</th><td class="tax-number">92,890 元</td><td>原講師費的一部分</td></tr>
-    <tr><th scope="row">代繳薪資所得稅 5%</th><td class="tax-number">5,000 元</td><td>從講師費預扣</td></tr>
-    <tr><th scope="row">代繳個人兼職薪資補充保費 2.11%</th><td class="tax-number">2,110 元</td><td>從講師費扣取</td></tr>
-    <tr class="tax-subtotal-row"><th scope="row"><strong>原約定講師報酬合計</strong></th><td class="tax-number"><strong>100,000 元</strong></td><td>付款公司原約定支出</td></tr>
-    <tr><th scope="row">投保單位額外補充保費 2.11%</th><td class="tax-number">+2,026 元</td><td>付款公司額外負擔</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>付款公司實際總支出</strong></th><td class="tax-number"><strong>102,026 元</strong></td><td><strong>公司總成本</strong></td></tr>
-  </tbody>
+如果只是自己耕作、出售自己生產且符合法規的農產品，原本就有相關營業稅或所得稅規定可以適用。<strong>不需要為了看起來比較正式，就一定成立合作社。</strong>
+
+但如果困難已經是大家一起才能解決的成本或市場問題，就值得換個角度。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="農民自產自銷與合作社比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+<thead><tr><th scope="col">農民遇到的情況</th><th scope="col">可以先考慮</th><th scope="col">可能的幫助</th><th scope="col">要先確認</th></tr></thead>
+<tbody>
+<tr><th scope="row">自己種、自己賣</th><td data-label="考慮方式">農民自產自銷</td><td data-label="可能幫助">保留簡單經營方式，適用規定的農業收入優惠</td><td data-label="需要確認">是否為自行生產；轉售、加工可能不同</td></tr>
+<tr><th scope="row">好幾戶共同出貨</th><td data-label="考慮方式">共同運銷、農民團體合作</td><td data-label="可能幫助">集貨、分級、運輸與議價</td><td data-label="需要確認">代辦費、貨款、委託及各方責任</td></tr>
+<tr><th scope="row">共同經營設備與通路</th><td data-label="考慮方式">評估農業合作社</td><td data-label="可能幫助">共購資材、共用冷鏈與設備、長期社員合作</td><td data-label="需要確認">社員資格、業務、稅務優惠及持續營運成本</td></tr>
+</tbody>
 </table>
 </div>
 
-所以，同樣約定 100,000 元講師費，設計師實際收到 92,890 元，但付款公司需要支付的金額可能達到 102,026 元。這裡最值得注意的地方，就是<strong>個人被扣取的 2.11% 補充保費，和付款單位額外負擔的 2.11% 補充保費，是兩筆不同的費用</strong>。前者從講師原本的報酬中扣除；後者則是在符合條件時，由付款公司自己另外支付，不能直接從講師已約定的報酬中再扣一次。
+<div class="org-explainer-note"><strong>小提醒｜合作社的價值，未必只表現在少繳稅</strong><p>原本每戶都需要自己找車載貨、找通路談價格；透過合作制度，大家可能一起安排集貨、冷藏與採購。這些價值包括<strong>降低長期成本、提升議價能力、讓合作有制度可以延續</strong>。不過，合作社的商品銷售、加工與非社員交易並非一律免稅，仍須依適用規定確認。</p></div>
 
-#### （4）同樣 100,000 元，設計委託與授課有什麼差別？
+## 八、結語：從這筆錢怎麼請，思考未來怎麼走下去
 
-最後，將兩種情境放在一起比較：
+我們希望地方實踐者漸漸找到一種<strong>不再只靠個人身分、個人關係和個人承擔</strong>的方式，讓已經持續發生的工作，成為可以被接續、合作及負責的事業或組織。
 
-<div class="org-table-scroll tax-table-wrap tax-table-horizontal" role="region" aria-label="設計委託與設計課程十萬元付款成本對照表" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-side-by-side">
-  <thead><tr><th scope="col">比較項目</th><th scope="col">設計委託</th><th scope="col">開設設計課程</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">假設所得代碼</th><td class="tax-number">9A</td><td class="tax-number">50</td></tr>
-    <tr><th scope="row">約定報酬</th><td class="tax-number">100,000 元</td><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">預扣所得稅</th><td class="tax-number">10,000 元</td><td class="tax-number">5,000 元</td></tr>
-    <tr><th scope="row">個人補充保費</th><td class="tax-number">2,110 元</td><td class="tax-number">2,110 元</td></tr>
-    <tr class="tax-subtotal-row"><th scope="row"><strong>收款人實領</strong></th><td class="tax-number"><strong>87,890 元</strong></td><td class="tax-number"><strong>92,890 元</strong></td></tr>
-    <tr><th scope="row">投保單位因本案增加的補充保費</th><td class="tax-number">0 元</td><td class="tax-number">2,026 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>付款公司總支出</strong></th><td class="tax-number"><strong>100,000 元</strong></td><td class="tax-number"><strong>102,026 元</strong></td></tr>
-  </tbody>
+這不代表大家都必須成立公司，也不代表公共工作一定要成立協會。真正要問的是：你想要經營的是什麼？幾年後，它還要怎麼存在？
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="不同地方工作需求與適合研究的身分" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+<thead><tr><th scope="col">現在最在意……</th><th scope="col">可以先認識</th><th scope="col">先問自己</th><th scope="col">下一步</th></tr></thead>
+<tbody>
+<tr><th scope="row">偶爾靠專長接案</th><td data-label="先認識">個人接案</td><td data-label="先問自己">只是零星工作，還是已經長期營業？</td><td data-label="下一步">釐清所得與登記義務</td></tr>
+<tr><th scope="row">固定請款與服務客戶</th><td data-label="先認識">商號／工作室</td><td data-label="先問自己">帳務、稅籍、發票如何處理？</td><td data-label="下一步">評估辦理登記與維護成本</td></tr>
+<tr><th scope="row">要聘人、買設備、簽大合約</th><td data-label="先認識">有限公司</td><td data-label="先問自己">有哪些責任與資產要留在事業裡？</td><td data-label="下一步">評估風險、稅務與行政成本</td></tr>
+<tr><th scope="row">推動長期文化、教育與公益工作</th><td data-label="先認識">社會團體／社團法人</td><td data-label="先問自己">共同宗旨及會員治理是什麼？</td><td data-label="下一步">確認章程、立案及法人登記</td></tr>
+<tr><th scope="row">農友與工作夥伴一起經營</th><td data-label="先認識">合作社</td><td data-label="先問自己">社員合作要改善什麼需求？</td><td data-label="下一步">確認業務資格、社員與經營規模</td></tr>
+</tbody>
 </table>
 </div>
 
-透過前面<strong>執行業務所得（代碼9A）</strong>與<strong>薪資所得（代碼50）</strong>的比較，我們可以發現，即使都是個人接案，因為工作內容不同，也可能適用不同的所得稅扣繳方式與健保補充保費規定。
+如果現在還是一個人接案，我們鼓勵你慢慢思考：<strong>什麼時候值得整理成工作室？何時需要讓公司來承擔事業？什麼時候應該和夥伴一起成立協會或合作社？</strong>
 
-這個案例也提醒我們：<strong>對付款單位而言，不同所得類別不只影響扣繳方式，也可能增加實際支出。</strong>
-
-這也是為什麼部分公司會更傾向與能夠依法開立發票的商號或公司合作。除了請款與報帳較方便，也可能減少支付個人報酬時需要處理的扣繳程序。
-
-如果對上述規定還不清楚，可以搭配[〈二代健保補充保費〉](/local-practice-guide/entries/supplemental-premium/)閱讀。
-
-### 5. 個人接案真的比較划算嗎？
-
-如果只是偶爾承接幾件設計案，用個人身分接案可能相對簡單。但如果已經開始固定接案，甚至需要找其他人一起工作，就必須注意相關的營業登記與稅務規定。
-
-另外，還有一點很重要：個人接案對自己來說可能比較方便，但對付款的公司而言，不一定如此。
-
-像前面的案例，同樣支付 100,000 元給設計師，如果所得屬於<strong>薪資所得（代碼50）</strong>，公司可能還需要額外負擔二代健保補充保費。此外，公司支付個人報酬，也需要處理領據、所得稅扣繳及相關申報程序。
-
-同時，相較於取得合法統一發票，個人領據通常無法用來扣抵進項營業稅，對於公司來說在稅務上也可能造成額外的支出。
-
-這也是為什麼有些公司更傾向與能夠開立發票的工作室或公司合作。除了帳務處理比較方便，也能減少部分行政程序，甚至可能降低實際支出。
-
-所以，個人接案不一定最省稅，也不一定最有利於長期經營。如果已經有穩定的案源，就值得進一步思考，是否應該成立自己的工作室。
-
-## 二、成立組織後，一定要開統一發票嗎？
-
-前面我們看到，設計師用個人身分承接 100,000 元的設計案，付款公司可能需要代扣所得稅與健保補充保費。但如果今天設計師成立了一間工作室，付款方式就一定不一樣嗎？
-
-其實，<strong>完成登記，不代表一定要使用統一發票。</strong>有些工作室依法使用統一發票，有些則是經國稅局核定免用統一發票。而這個差別，會直接影響接下來的案例。
-
-### 1. 使用統一發票與免用統一發票，有什麼不同？
-
-我們先從三種常見的請款情況來比較：
-
-<div class="org-table-scroll tax-table-wrap tax-table-horizontal" role="region" aria-label="三種常見請款憑證的差別" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-summary">
-  <thead><tr><th scope="col">請款方式</th><th scope="col">誰可能使用？</th><th scope="col">付款單位需要注意什麼？</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">個人勞務報酬領據</th><td>以個人名義提供勞務的設計師</td><td>依所得性質辦理扣繳與相關申報</td></tr>
-    <tr><th scope="row">普通收據</th><td>經國稅局核定免用統一發票的營業人</td><td>可依法認列支出，但一般不能用普通收據扣抵進項營業稅</td></tr>
-    <tr><th scope="row">統一發票</th><td>依法核定使用統一發票的營業人</td><td>符合規定的應稅發票，其進項稅額可能可以扣抵</td></tr>
-  </tbody>
-</table>
-</div>
-
-因此，同樣是成立工作室，有沒有使用統一發票，會影響客戶取得的憑證，以及營業稅的處理方式。
-
-### 2. 什麼情況可以免用統一發票？
-
-依 2026 年適用的規定，部分小規模營業人每月查定銷售額未達 200,000 元，仍可以經國稅局核定免用統一發票。不過，<strong>免用統一發票，不等於不用繳營業稅。</strong>
-
-以小規模營業人的營業稅起徵點來說，自 2025 年起，技術與設計業等業別為每月 50,000 元，買賣業、一般飲食業等部分業別則為每月 100,000 元。這與是否核定使用統一發票，是不同的門檻。
-
-例如設計工作室經核定為免用統一發票的小規模營業人，且國稅局查定每月銷售額為 100,000 元，通常按 1% 計算營業稅：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="免用發票設計工作室每月查定營業稅試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">假設每月查定銷售額</th><td class="tax-number">100,000 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>查定課徵營業稅 1%</strong></th><td class="tax-number"><strong>1,000 元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-這裡的 1,000 元是用假設的<strong>每月查定銷售額</strong>試算，不代表只要收到一筆 100,000 元的款項，國稅局就一定會課徵 1,000 元營業稅。實際仍須依國稅局核定結果辦理。
-
-### 3. 如果工作室使用統一發票呢？
-
-如果工作室已經依法使用統一發票，提供適用 5% 營業稅的設計服務，並和客戶約定設計費 100,000 元、營業稅另外計算：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="使用統一發票的設計工作室10萬元請款試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">設計服務費</th><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">營業稅 5%</th><td class="tax-number">+5,000 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>客戶付款金額</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-工作室雖然收到 105,000 元，但其中 5,000 元是銷項營業稅，不應直接當成工作室的獲利。工作室還要依規定計算銷項稅額、可扣抵的進項稅額，以及實際應繳納的營業稅。
-
-而付款公司如果取得合法發票，並符合進項稅額扣抵規定，這 5,000 元可能可以用來扣抵自己的銷項稅額。<strong>所以開立統一發票，不一定代表客戶的最終稅務成本增加 5,000 元。</strong>
-
-另外，本篇均先假設 100,000 元是未稅的服務價格。如果雙方約定的是含稅總價 100,000 元，就不能直接再加收 5,000 元，必須依實際約定計算。
-
-接下來，我們就分別看看成立商號、公司、社團法人及合作社之後，會產生哪些差別。
-
-## 三、商號／工作室接案
-
-### 1. 假設我成立了自己的設計工作室
-
-隨著接案逐漸穩定，我成立「豐田設計工作室」，並依法完成相關登記。這次一樣承接 100,000 元的設計案，但由工作室與客戶簽約、收款。客戶希望取得統一發票，假設工作室已經由國稅局核定使用統一發票，且這筆設計服務適用 5% 營業稅，請款金額如下：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="1. 假設我成立了自己的設計工作室的金額試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">設計服務費</th><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">營業稅 5%</th><td class="tax-number">5,000 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>客戶付款金額</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-工作室實際收到 105,000 元，其中 5,000 元是銷項營業稅，不應直接當成利潤。但如果工作室是經國稅局核定免用統一發票的小規模營業人，則可能改以普通收據請款，不能直接套用另加 5% 營業稅的算法。<strong>成立工作室之後，要先確認國稅局核定它如何處理營業稅與發票。</strong>
-
-### 2. 成立工作室，所得稅怎麼算？
-
-假設我成立的是獨資商號，它和有限公司的所得稅處理方式並不一樣。在現行制度下，獨資商號的營利所得，原則上歸入負責人的個人綜合所得稅計算。
-
-例如工作室一年有 100 萬元營業收入，扣除依法可認列的成本與費用後，核定營利所得為 60 萬元。這 60 萬元原則上會歸入我的個人綜合所得稅，而不是先像一般有限公司一樣繳納 20% 營所稅，再將股利分配給自己。
-
-<strong>成立獨資工作室，不代表自己的所得稅就變成公司的所得稅。</strong>商號仍須依核定情形處理營業稅、帳務及適用的申報程序。
-
-### 3. 付款公司要付出多少錢？
-
-假設工作室依法開立 105,000 元的應稅統一發票：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 付款公司要付出多少錢？的金額試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">支付工作室設計費</th><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">支付營業稅</th><td class="tax-number">5,000 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>實際付款</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-和個人領據不同，付款公司取得依法開立的營業人發票後，通常不需要就這筆一般營業交易，再把這筆交易當成個人的執行業務所得（代碼9A），預扣 10% 所得稅或扣取 2.11% 個人補充保費。而且，如果付款公司本身是依法適用一般加值型營業稅的營業人，這筆設計費是供其應稅業務使用，且取得符合規定的進項憑證，<strong>其中 5,000 元營業稅可能可以申報扣抵銷項稅額</strong>。
-
-也就是說，雖然付款時匯出 105,000 元，但其中 5,000 元可能不是最終的營業稅負擔。不過，如果付款單位的業務不能扣抵進項稅額，這 5,000 元就可能成為實際成本。
-
-### 4. 成立工作室真的比較划算嗎？
-
-工作室的好處，不只是能夠依法申請使用統一發票。當我開始長期經營，有固定的設備租賃、委外設計、交通及其他經營成本時，完整的帳務管理可以幫助我依法計算營利所得。
-
-但成立工作室不代表所有私人支出都能拿來節稅，也不代表一定比個人接案少繳稅。<strong>對長期經營的接案工作者來說，商號真正的優勢，是讓營業活動、收入與成本逐漸建立制度。</strong>
-
-## 四、公司接案
-
-### 1. 假設我成立了一間有限公司
-
-後來，設計業務越來越穩定，我開始聘請其他設計師、購買設備，也希望承接更大的活動與品牌專案，於是成立了一間有限公司。
-
-同樣是 100,000 元的設計案，這次由公司開立應稅發票，客戶支付 105,000 元並匯入公司帳戶。<strong>這筆款項是公司的收入及銷項稅額，不是我的個人收入</strong>；即使公司股份全由我持有，我和公司在法律上仍是不同的主體。
-
-### 2. 公司需要繳多少稅？
-
-公司對外提供應稅設計服務，原則上需要依法處理 5% 營業稅。此外，公司還需要計算年度營利事業所得稅。
-
-例如，我的公司一年營業收入 100 萬元，依法認列的成本與費用合計 40 萬元。假設最後課稅所得額為 60 萬元，適用 20% 營所稅率：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="2. 公司需要繳多少稅？的金額試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">年度營業收入</th><td class="tax-number">1,000,000 元</td></tr>
-    <tr><th scope="row">假設可認列成本與費用</th><td class="tax-number">−400,000 元</td></tr>
-    <tr><th scope="row">課稅所得額</th><td class="tax-number">600,000 元</td></tr>
-    <tr><th scope="row">公司營所稅 20%</th><td class="tax-number">120,000 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>公司階段稅後所得</strong></th><td class="tax-number"><strong>480,000 元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-但不能因為公司繳完 120,000 元營所稅，就認為剩下 480,000 元已經是我個人的免稅收入。如果我要從公司取得收入，可能透過合理薪資或依法分配股利。這些款項還涉及個人所得稅；公司保留盈餘也有相應的稅務規定。
-
-### 3. 付款公司需要付出多少錢？
-
-在這筆 100,000 元設計案中：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 付款公司需要付出多少錢？的金額試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">公司設計服務費</th><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">營業稅 5%</th><td class="tax-number">5,000 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>付款公司合計支出</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-付款方依發票及交易資料辦理帳務，符合條件的 5,000 元進項稅額可以申報扣抵。一般而言，這種公司對公司、依法開立發票的境內營業交易，不會像支付個人執行業務報酬一樣，代扣 10% 個人所得稅與 2.11% 個人補充保費。
-
-因此，這裡比較的是公司間的設計委託，與前面設計師以個人身分授課、領取薪資所得（代碼50）的案例不同。
-
-### 4. 成立公司真的比較划算嗎？
-
-公司可能有更完整的營運彈性，例如依法支付工作人員薪資、保留盈餘與投入設備。但公司也有記帳、申報、人事及管理成本。
-
-如果把公司繳納的營所稅、股東未來可能繳納的股利所得稅，以及經營成本全部算進去，就會發現：<strong>成立公司不一定比較省稅，但對持續經營、聘用人員與擴大事業規模的人而言，可能是更適合的組織形式。</strong>
-
-## 五、社團法人接案
-
-### 1. 假設我在一間地方文化協會工作
-
-假設我是一名設計師，也在一間推動地方文化保存、社區活動及青年培力的協會工作。某間公司委託協會辦理文化推廣計畫，其中包含主視覺設計，約定支付 100,000 元。這次由協會簽約、收款，因此即使我是協會的理事長、會員或工作人員，也不能把這筆錢直接當作自己的收入。
-
-<strong>協會的收入是組織收入，而不是會員或負責人的個人收入。</strong>
-
-### 2. 協會是非營利組織，收到的錢就不用繳稅嗎？
-
-社團法人確實可能適用特定的所得稅免稅規定，但仍需要看收入性質。會員會費、捐款、政府補助，以及協會對外提供服務取得的報酬，不一定適用相同的稅務規定。
-
-但如果協會對外提供設計、活動執行或其他收費服務，仍要看交易性質，判斷是否需要繳納營業稅，以及如何處理相關所得稅。<strong>不能因為收款的是協會，就認為 100,000 元一定免稅。</strong>此外，政府補助、會員會費、捐款，以及提供勞務取得的服務費，性質也可能不同，需要分別處理。
-
-### 3. 付款公司要付出多少錢？
-
-假設這筆委託屬於協會依法應課徵 5% 營業稅、並須開立統一發票的服務：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 付款公司要付出多少錢？的金額試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">設計服務費</th><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">營業稅 5%</th><td class="tax-number">5,000 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>付款公司合計支出</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-付款公司取得合法發票後，依相關規定辦理成本、費用與營業稅扣抵。但如果委託的是符合特定免稅規定的活動或服務，發票及營業稅處理就可能不同。另外，如果付款方是一個不能扣抵進項營業稅的單位，即使取得 105,000 元的應稅發票，也不代表能把其中 5,000 元抵掉。
-
-### 4. 協會收到的錢，可以分給工作人員嗎？
-
-可以依法取得合理的工作報酬。例如協會聘請我擔任設計人員，依法支付薪資；或是協會委託外部設計師完成工作，依契約給付報酬。這些支出需要依實際工作關係，處理所得申報、扣繳及可能適用的勞健保費用。
-
-但<strong>協會依法支付薪資、設計費，不等於可以把年底的結餘分紅給會員</strong>。因此，社團法人的稅務優勢並不是讓個人把自己的設計收入轉進協會後，再免稅領回。它更重要的意義，是能將資源留在組織內，持續投入符合宗旨的公共事業。
-
-## 六、合作社接案
-
-### 1. 假設我和其他設計師成立合作社
-
-假設我和幾位設計師希望一起經營事業，便成立合作社，共同分享設備、承接案件，並透過社員合作降低成本。這次一樣有公司委託製作活動主視覺，報酬 100,000 元。
-
-如果合作社的章程與業務範圍允許承接這項委託，便可以由合作社簽約、收款，再由社員依約分工完成。但是，合作社有免稅優惠，這筆設計費就一定免稅嗎？
-
-### 2. 合作社有哪些稅務優惠？
-
-《合作社法》第 7 條規定，合作社得免徵所得稅及營業稅。但<strong>這並不是說，只要成立合作社，所有對外交易都自動免稅</strong>。例如合作社依法經營特定社員內部業務，符合營業稅法規定時，可能適用免稅。
-
-不過，今天委託設計的公司不是合作社社員，因此這筆 100,000 元的對外設計服務，不能直接套用社員內部交易的營業稅免稅規定。而且依《合作社法》第 3-1 條，合作社為發展需要提供非社員服務，另有營業額比例及相關限制；符合規定取得的非社員服務收益，也有提列公積金、公益金及不得分配社員的要求。<strong>合作社不能只是因為有稅務優惠，就直接當成一般設計公司的替代品。</strong>
-
-### 3. 付款公司需要付出多少錢？
-
-假設合作社依法提供這項設計服務，交易適用 5% 營業稅並開立應稅發票：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 付款公司需要付出多少錢？的金額試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">合作社設計服務費</th><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">營業稅 5%</th><td class="tax-number">5,000 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>付款公司合計支出</strong></th><td class="tax-number"><strong>105,000 元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-付款公司取得合法發票後，依規定認列費用，並判斷進項稅額是否可以扣抵。但如果合作社提供的是依法免徵營業稅的特定貨物或服務，就不能直接套用這個加收 5% 的算法。
-
-### 4. 合作社收到的錢，最後怎麼處理？
-
-合作社和社團法人有一個重要差別：合作社依法可以依其制度處理結餘分配。例如涉及社員提供勞務、共同使用設備、分配股息或按交易量分配結餘時，都有不同的規定。
-
-但不能把合作社收到的 100,000 元直接當作我的個人所得，也不能認為只要按照社員工作量分配，就完全不用申報個人所得稅。社員實際取得的款項，仍要依給付性質判斷所得稅處理。
-
-<strong>合作社的優勢，是讓有共同需求的人可以共同經營、分享資源與成果；稅務優惠是其中的一項可能利益，而不是唯一目的。</strong>
-
-## 七、農民自產自銷的稅務，有什麼不同？
-
-### 1. 假設我是一名種植蔬菜的農民
-
-最後換成農民的情境。假設我在花蓮種植高麗菜等季節蔬菜，今年有間餐飲公司要向我購買 100,000 元的高麗菜；這些菜由我自己種植、採收，並未加工，買方也是直接向我購買。我不需要為了這筆交易成立公司，但<strong>收到 100,000 元農產品收入，究竟要不要繳營業稅？</strong>
-
-### 2. 自產自銷的生鮮農產品，可以免徵營業稅
-
-依《加值型及非加值型營業稅法》第 8 條相關規定，未經加工的生鮮農產品，以及農民銷售自身收穫的農作物，符合適用條件時，可以免徵營業稅。因此，在這個案例裡，我直接販售自己種植、未經加工的高麗菜，符合規定時：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="2. 自產自銷的生鮮農產品，可以免徵營業稅的金額試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">高麗菜銷售金額</th><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">營業稅</th><td class="tax-number">0 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>農民收款金額</strong></th><td class="tax-number"><strong>100,000 元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-這和一般設計公司提供應稅服務、另外加收 5% 營業稅的情況不同。但要注意，這裡討論的是<strong>農民出售自己生產的農作物</strong>，以及未加工生鮮農產品的免稅規定。如果是向其他農民收購蔬菜再轉賣，符合規定的未加工生鮮農產品仍可能免徵營業稅，但所得稅的認定不一定和農民自力耕作相同。若將農產品加工成其他商品，就要另外判斷適用的營業稅與所得稅規定。
-
-### 3. 農民取得的收入，個人所得稅怎麼算？
-
-農民以自己勞力從事農業生產所取得的收入，可能屬於綜合所得稅中的「自力耕作所得」。它不是在法律上完全不存在的所得類別。不過，財政部對自力耕作收入另訂有成本及必要費用標準。
-
-例如依 <strong>114 年度（2025 年）自力耕作漁林牧收入成本及必要費用標準</strong>，符合規定的農業收入，其成本及必要費用得按收入的 100% 減除。假設符合該年度標準的自力耕作收入為 100,000 元：
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="3. 農民取得的收入，個人所得稅怎麼算？的金額試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">自力耕作收入</th><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">依該年度標準減除成本及必要費用 100%</th><td class="tax-number">−100,000 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>計算所得額</strong></th><td class="tax-number"><strong>0 元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-這就是為什麼一般農民從事真正的農業生產，在所得稅上也可能享有相當特殊的待遇。不過，必要費用標準按年度公告，115 年度（2026 年）收入應以該年度發布的規定為準，不能直接把前一年度標準當成永久不變的規定。
-
-### 4. 那購買農產品的餐飲公司要付出多少錢？
-
-從付款方的角度，這筆交易也和委託設計師不同。
-
-<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="4. 那購買農產品的餐飲公司要付出多少錢？的金額試算" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-money">
-  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">向農民購買高麗菜</th><td class="tax-number">100,000 元</td></tr>
-    <tr><th scope="row">營業稅</th><td class="tax-number">0 元</td></tr>
-    <tr class="tax-total-row"><th scope="row"><strong>餐飲公司合計支出</strong></th><td class="tax-number"><strong>100,000 元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-餐飲公司並不是把這 100,000 元當成支付設計師的執行業務報酬，因此不能直接套用個人設計師的 10% 所得稅扣繳及 2.11% 補充保費計算。不過，餐飲公司仍然需要取得合法的進貨憑證。
-
-例如農民可以依實際交易開立收據，記載購買日期、農產品名稱、數量、單價、總金額及相關簽章資料。公司據此記錄進貨成本，也應保存付款及進貨紀錄。<strong>農民不需要開立應稅統一發票，不代表購買方就可以完全不留下任何憑證。</strong>
-
-此外，因為這筆生鮮農產品交易免徵營業稅，付款公司並沒有另外支付 5,000 元的進項營業稅，自然也不能憑這筆交易扣抵不存在的 5,000 元進項稅額。
-
-### 5. 如果把蔬菜、水果加工，還能享有一樣的免稅規定嗎？
-
-<div class="org-table-scroll tax-table-wrap" role="region" aria-label="不同農產品販售情境的營業稅判斷" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-guidance">
-  <thead><tr><th scope="col">販售情況</th><th scope="col">營業稅判斷</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">農民販售自己種植的高麗菜</th><td>符合規定可免營業稅</td></tr>
-    <tr><th scope="row">農民販售自己收穫的生鮮水果</th><td>符合規定可免營業稅</td></tr>
-    <tr><th scope="row">販售未經加工的生鮮蔬果</th><td>依法可能適用免稅</td></tr>
-    <tr><th scope="row">將水果製成果醬、罐頭等加工商品</th><td>需另依商品及經營性質判斷，不能直接套用生鮮免稅</td></tr>
-    <tr><th scope="row">收購他人農產品再販售</th><td>不能直接套用農民自產自銷的所得稅待遇，須另依營業及所得性質判斷</td></tr>
-  </tbody>
-</table>
-</div>
-
-所以，免稅的關鍵不只是「我賣的東西是農產品」，還包括<strong>是不是自己生產、農產品有沒有經過加工，以及法律實際規定的交易性質</strong>。這也是為什麼農民、農產運銷合作社、一般蔬果批發商與農產加工公司，雖然可能都在販售農產品，稅務處理卻不一定相同。
-
-## 八、結語：什麼身分比較節稅？
-
-回頭看看前面的案例，同樣是 100,000 元的交易，可能出現很不一樣的付款結果。
-
-<div class="org-table-scroll tax-table-wrap tax-table-horizontal" role="region" aria-label="十萬元交易中不同身分與付款單位成本比較" tabindex="0">
-<table class="org-compare-table tax-guide-table tax-table-summary">
-  <thead><tr><th scope="col">接案或交易情境</th><th scope="col">付款方支付金額</th><th scope="col">重要差別</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">個人設計師／執行業務所得（代碼9A）</th><td>100,000 元</td><td>依法處理個人所得稅與補充保費扣繳</td></tr>
-    <tr><th scope="row">個人設計師授課／薪資所得（代碼50）</th><td>102,026 元</td><td>本篇5名員工的假設下，公司增加雇主補充保費</td></tr>
-    <tr><th scope="row">免用統一發票的工作室</th><td>100,000 元</td><td>假設約定價款為10萬元，開普通收據，無該筆5%進項稅額</td></tr>
-    <tr><th scope="row">使用統一發票的工作室</th><td>105,000 元</td><td>未稅價款10萬元另加5%營業稅；符合條件可扣抵</td></tr>
-    <tr><th scope="row">公司提供應稅設計服務</th><td>105,000 元</td><td>公司收入與股東個人所得分開處理</td></tr>
-    <tr><th scope="row">社團法人提供應稅設計服務</th><td>105,000 元</td><td>依服務與免稅資格處理，收入歸屬協會</td></tr>
-    <tr><th scope="row">合作社依法提供對外應稅設計服務</th><td>105,000 元</td><td>另須符合非社員服務及收益使用限制</td></tr>
-    <tr><th scope="row">農民販售自產未加工高麗菜</th><td>100,000 元</td><td>本例符合生鮮農產品免徵營業稅條件</td></tr>
-  </tbody>
-</table>
-</div>
-
-這張表比較的是<strong>不同交易條件下的付款金額</strong>，不代表表中付款較少的一種身分，最後的整體稅負就一定比較低。
-
-例如公司收到 105,000 元設計費，不代表多賺 5,000 元；個人收到 87,890 元，也不代表原本的 100,000 元就被課徵了 12.11% 的最終所得稅。
-
-如果把收入、成本、扣繳、營業稅，以及付款單位的額外負擔一起考慮，就會發現：<strong>什麼身分比較節稅，並沒有一個適用所有人的答案。</strong>
-
-對偶爾接案的人而言，個人身分可能比較方便；對長期接案的人而言，成立工作室可能有助於處理請款與帳務；當經營規模繼續成長，成立公司又有不同的制度優勢。至於社團法人、合作社與農民，則各有不同的組織目的與稅務規定，不能只因為其中某些收入可以免稅，就認為一定比公司或工作室有利。
-
-所以，當我們開始有穩定的收入與合作機會時，除了考慮自己要繳多少稅，也可以試著站在付款單位的角度思考：哪一種合作方式，對雙方更容易處理，並且適合未來的工作發展？
+節稅是選擇的一部分，但不該是唯一的答案。想繼續了解，可閱讀<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>、<a href="/local-practice-guide/entries/legal-person-natural-person/">〈自然人與法人〉</a>、<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>，以及<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈綜合所得稅〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈營業稅與營所稅〉</a>。
 
 ---
 
 <div class="org-source-note">
-  <strong>資料與案例說明</strong>
-  <p>本文案例均為教學假設。個別交易的所得分類、扣繳、稅籍登記、發票使用、免稅資格及保險身分，仍須依實際事實與適用年度規定判斷。10 萬元設計案、講師費、投保單位補充保費與自力耕作等金額，均是在文中明列條件下的試算。</p>
-  <p>官方資料：<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=FL006090" target="_blank" rel="noopener noreferrer">財政部｜小規模營業人營業稅起徵點</a>、<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=3ee59a0b82a94e35a7cfc684d8e12d0d" target="_blank" rel="noopener noreferrer">財政部｜免用統一發票規定</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050200" target="_blank" rel="noopener noreferrer">合作社業務提供非社員使用辦法</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/withheld-rule/rule/a7BB6R9" target="_blank" rel="noopener noreferrer">財政部｜執行業務所得扣繳</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/withheld-rule/rule/NM11BZY" target="_blank" rel="noopener noreferrer">財政部｜薪資所得扣繳</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/withheld-rule/rule/n3x6znM" target="_blank" rel="noopener noreferrer">財政部｜非每月給付薪資扣繳</a>、<a href="https://www.nhi.gov.tw/ch/cp-4516-74b0f-2613-1.html" target="_blank" rel="noopener noreferrer">健保署｜補充保險費計算公式</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">合作社法</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340012" target="_blank" rel="noopener noreferrer">教育文化公益慈善機關或團體免納所得稅適用標準</a>、<a href="https://gazette.nat.gov.tw/egFront/eguploadpubWrapper?file=%2FEG_FileManager%2Feguploadpub%2Feg032009%2Fch04%2Ftype2%2Fgov30%2Fnum6%2FEg.htm&amp;metaid=162994" target="_blank" rel="noopener noreferrer">財政部｜114 年度自力耕作成本及必要費用標準</a>。</p>
+<strong>資料與案例說明</strong>
+<p>本文以2026年（民國115年）臺灣常見情境進行概念比較，不是正式報稅、扣繳或成立組織的法律意見。商號登記與發票、所得與費用認列、社團法人免稅、合作社社員及非社員交易，以及農業稅務優惠，都須依實際事實與當年度規定確認。</p>
+<p>官方來源：<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-saving-manual/national/profit-seeking-enterprise-income-tax/7KLMbzD" target="_blank" rel="noopener noreferrer">財政部｜營利事業組織型態比較</a>、<a href="https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg031224/ch04/type3/gov30/num12/Eg.htm" target="_blank" rel="noopener noreferrer">財政部｜115年度綜所稅級距公告</a>、<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=3ee59a0b82a94e35a7cfc684d8e12d0d" target="_blank" rel="noopener noreferrer">財政部｜小規模營業人發票規定</a>、<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=7924e0bceadd45d69661c515ecd659a8" target="_blank" rel="noopener noreferrer">財政部｜非營利團體銷售勞務</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340012" target="_blank" rel="noopener noreferrer">公益慈善團體免稅標準</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">合作社法</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/business-tax/exemption-scope/lGmA07A" target="_blank" rel="noopener noreferrer">營業稅免稅規定</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0020001" target="_blank" rel="noopener noreferrer">農業發展條例</a>。</p>
 </div>
