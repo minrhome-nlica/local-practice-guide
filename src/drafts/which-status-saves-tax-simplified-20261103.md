@@ -116,3 +116,53 @@ tags:
 </div>
 
 無論是協會或合作社，<strong>組織收到的款項都屬於組織</strong>。可以依規定支付實際工作報酬、支應業務成本，但不能直接把整筆收款視為某個會員或社員的個人實領。
+
+
+## 四、收入增加後，個人、商號與公司的稅務比較
+
+<strong>成立公司沒有固定的年收入節稅門檻。</strong>比較的重點是扣掉工作成本後剩下多少所得，以及賺到的錢要留在事業裡，還是成為負責人的個人收入。
+
+以全年營收<strong>130萬元</strong>為例，假設40萬元工作成本都符合認列規定，收入減去成本後，所得為<strong>90萬元</strong>。
+
+<div class="org-table-scroll tax-table-wrap tax-table-money-wrap" role="region" aria-label="130萬元營收的所得計算" tabindex="0">
+<table class="org-compare-table tax-guide-table tax-table-money">
+  <thead><tr><th scope="col">項目</th><th scope="col" class="tax-number">金額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">全年收入</th><td class="tax-number">1,300,000元</td></tr>
+    <tr><th scope="row">符合規定的工作成本（假設）</th><td class="tax-number">−400,000元</td></tr>
+    <tr class="tax-total-row"><th scope="row"><strong>所得計算基礎</strong></th><td class="tax-number"><strong>900,000元</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+在相同所得的假設下，個人或獨資商號與有限公司的所得稅大致如下：
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="900000元所得的個人商號與公司稅務試算" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">經營方式</th><th scope="col">示範所得稅</th><th scope="col">怎麼計算</th><th scope="col">稅後的錢</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">個人／獨資商號</th><td data-label="示範所得稅"><strong>36,860元</strong></td><td data-label="計算方式">單身、僅這筆所得；減免稅額與標準扣除額，再按5%、12%分段算</td><td data-label="稅後歸屬">屬個人／負責人</td></tr>
+    <tr><th scope="row">有限公司</th><td data-label="示範所得稅"><strong>180,000元</strong></td><td data-label="計算方式">公司課稅所得90萬元，營所稅以20%試算</td><td data-label="稅後歸屬">屬公司；個人薪資、股利另計</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="org-table-hint">2026年度教學試算：個人欄假設所得90萬元為全年唯一所得，僅扣單身免稅額101,000元及標準扣除額136,000元；不計其他扣除、健保與已扣繳稅款。公司欄假設90萬元即為可課稅所得，尚未扣公司行政費，也未計股東個人稅務。實際費用認列、營業稅及各種所得分類仍依規定處理。兩欄的稅後款項歸屬不同，不能直接當作個人實領金額比較。</p>
+
+在這組收入與成本下，<strong>個人或獨資商號的所得稅較低</strong>。隨著營收與獲利增加，評估有限公司時，還要納入個人其他所得、負責人薪資、股利及行政費用，才能看出整體稅負。
+
+使用統一發票的商號與一般應稅的有限公司，都可能扣抵符合規定的進項營業稅。<strong>進項扣抵的關鍵在發票及實際交易，不在公司或商號的名稱。</strong>
+
+## 五、從個人接案到正式經營，依工作規模逐步立案
+
+固定的客戶、需要管理的設備、共同工作的夥伴，會讓原本的個人接案逐漸轉變為持續經營的事業。正式登記可以讓帳務、請款、資產與契約更加清楚。
+
+<div class="tax-roadmap-cards">
+  <div><span>個人接案</span><strong>以自己的專長完成工作</strong><p>適合由個人完成的零星案件。若已形成持續營業，仍須依業務情況辦理必要登記。</p></div>
+  <div><span>商號／工作室</span><strong>固定接案，建立帳務與請款制度</strong><p>適合穩定經營與小型團隊。可依規定辦理登記、開立憑證、整理工作成本；營業責任由負責人承擔。</p></div>
+  <div><span>有限公司</span><strong>聘人、簽長期合約、累積設備</strong><p>由公司持有資產、對外簽約並承擔經營責任；個人保證等特定情況仍可能產生負責人的責任。</p></div>
+</div>
+
+<div class="org-explainer-note">
+  <strong>地方情境｜從攝影接案到攝影工作室</strong>
+  <p>攝影師原本一個人拍攝活動，後來固定接婚禮、商業攝影，開始添購燈光、鏡頭及聘請助理。這時候可以先整理商業登記、稅籍、發票與帳務；當團隊、設備和合約規模繼續擴大，再評估有限公司。這樣的選擇同時考慮稅務、經營成本與長期責任。</p>
+</div>
