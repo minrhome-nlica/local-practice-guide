@@ -69,19 +69,23 @@ tags:
 
 ### 1. 四種身分放在一起比較
 
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="年收入一百萬元四種身分比較表" tabindex="0">
+下表把「怎麼算」、「所得稅額」及「全年繳到國庫的金額」分開呈現。**第三欄的「核定稅額」只是本例模擬，並非國稅局已正式核定。**
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="四種經營身分四欄稅額比較" tabindex="0">
 <table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">身分</th><th scope="col">稅額怎麼算</th><th scope="col">扣除實際成本與列示稅額後</th></tr></thead>
+  <thead><tr><th scope="col">身分</th><th scope="col">怎麼算</th><th scope="col">核定稅額<small>本例試算所得稅</small></th><th scope="col">繳稅金額<small>所得稅＋營業稅</small></th></tr></thead>
   <tbody>
-    <tr><th scope="row">① 個人接案<small>假設9A適用30%費用率</small></th><td data-label="稅額怎麼算">100萬－30萬費用－23.7萬個人扣除額；綜所稅<strong>23,150元</strong></td><td data-label="扣除實際成本與列示稅額後"><strong>776,850元</strong></td></tr>
-    <tr><th scope="row">② 商號／工作室<small>免用統一發票</small></th><td data-label="稅額怎麼算">假設核定營業稅1%：<strong>10,000元</strong>；按假設7%所得率，綜所稅0元</td><td data-label="扣除實際成本與列示稅額後"><strong>790,000元</strong></td></tr>
-    <tr><th scope="row">③ 商號／工作室<small>使用統一發票</small></th><td data-label="稅額怎麼算">核實所得80萬元，綜所稅<strong>28,150元</strong>；營業稅另向客戶收取並申報</td><td data-label="扣除實際成本與列示稅額後"><strong>771,850元</strong></td></tr>
-    <tr><th scope="row">④ 有限公司<small>示範合理薪資＋股利</small></th><td data-label="稅額怎麼算">假設支付本人70萬元年薪、依法分配剩餘10萬元股利；簡化個人所得稅<strong>8,300元</strong></td><td data-label="扣除實際成本與列示稅額後"><strong>791,700元</strong></td></tr>
+    <tr><th scope="row">① 個人接案<small>假設9A、30%費用率</small></th><td data-label="怎麼算">（100萬－30萬－23.7萬）×5%</td><td data-label="核定稅額"><strong>23,150元</strong><small>個人綜所稅</small></td><td data-label="繳稅金額"><strong>23,150元</strong><small>不含預扣稅先繳後抵</small></td></tr>
+    <tr><th scope="row">② 商號／工作室<small>免用統一發票</small></th><td data-label="怎麼算">查定營業額100萬×1%；營利所得假設100萬×7%</td><td data-label="核定稅額"><strong>0元</strong><small>個人綜所稅</small></td><td data-label="繳稅金額"><strong>10,000元</strong><small>營業稅</small></td></tr>
+    <tr><th scope="row">③ 商號／工作室<small>使用統一發票</small></th><td data-label="怎麼算">所得（100萬－20萬－23.7萬）×5%；銷項5萬－進項1萬</td><td data-label="核定稅額"><strong>28,150元</strong><small>個人綜所稅</small></td><td data-label="繳稅金額"><strong>68,150元</strong><small>所得稅28,150＋營業稅40,000</small></td></tr>
+    <tr><th scope="row">④ 有限公司<small>70萬合理薪資＋10萬股利</small></th><td data-label="怎麼算">公司所得10萬免營所稅；個人薪資與股利計稅後8,300；銷項5萬－進項1萬</td><td data-label="核定稅額"><strong>8,300元</strong><small>個人綜所稅；公司營所稅0</small></td><td data-label="繳稅金額"><strong>48,300元</strong><small>所得稅8,300＋營業稅40,000</small></td></tr>
   </tbody>
 </table>
 </div>
 
-<p class="org-table-hint">這不是「哪種身分一定最省」的排名：四列都有不同的適用前提。未統一計入個人二代健保補充保費、雇主及個人勞健保、勞退、設立與記帳費等；使用發票者假設應稅服務的5%營業稅另向客戶收取，不能把代收的營業稅當作個人收入。有限公司股利與薪資的示範是將兩種所得假設在同一個人課稅年度取得，實際分配年度可能不同。</p>
+<p class="org-table-hint"><strong>怎麼看：</strong>第三欄是本例所得稅試算，第四欄再加上營業稅。使用發票的兩列，假設100萬元是未稅價、另向客戶收取5萬元營業稅，並有1萬元可扣抵進項稅額。<strong>向國庫繳4萬元營業稅，不等於從100萬元收入額外損失4萬元</strong>。本表未統一計入補充保費、勞健保、雇主成本、公司維護費；9A預扣款在年度所得稅結算時抵繳或退還。公司股利的實際分配年度也可能不同。</p>
+
+以原本「減掉20萬元實際工作成本及所得稅後」的口徑比較，四者依序為：**個人776,850元、免用發票商號790,000元、使用發票商號771,850元、有限公司薪資加股利791,700元**。這些都還不是扣完全部保費及維持成本的實際到手金額。
 
 ### 2. 看表格時，還要確認四件事
 
