@@ -58,90 +58,37 @@ tags:
 
 ## 二、個人、商號與有限公司，哪一種比較適合我？
 
-**假設你是一名插畫設計師，今年接案收入100萬元。** 實際花在軟體、器材、工作空間及材料上的成本為20萬元，沒有其他收入。個人所得稅試算採115年度（2026年）單身、沒有扶養親屬、使用標準扣除額的情況。
-
-這裡先固定三個數字：年收入100萬元、實際成本20萬元、扣除成本後剩80萬元。**報稅時認列的費用，不一定等於實際付出去的成本。**
-
-### 1. 個人接案：9A執行業務所得
-
-假設這位設計師的工作經認定屬9A，**而且確實適用30%執行業務費用率**：
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="個人接案百萬元試算" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">項目</th><th scope="col">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">全年報酬</th><td data-label="金額">1,000,000元</td></tr>
-    <tr><th scope="row">報稅認列費用（30%）</th><td data-label="金額">−300,000元</td></tr>
-    <tr><th scope="row">執行業務所得</th><td data-label="金額">700,000元</td></tr>
-    <tr><th scope="row">免稅額＋標準扣除額</th><td data-label="金額">−237,000元</td></tr>
-    <tr><th scope="row">綜合所得稅（5%）</th><td data-label="金額"><strong>23,150元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-實際花費只有20萬元，所以100萬元扣掉真實成本20萬元、綜所稅23,150元後，**剩776,850元**；若全年給付也符合個人二代健保補充保費扣取條件，還要另外計算補充保費。預扣所得稅則是先繳、次年結算抵扣，不要把它再當一次最終稅負。
+假設你是一名插畫設計師，**一年接案收入100萬元，實際工作成本20萬元**。以下都以115年度（2026年）單身、沒有扶養親屬或其他所得為例，讓四種身分放在同一張表裡看。
 
 <div class="org-explainer-note">
-  <strong>30%不是所有設計案都能使用</strong>
-  <p>這裡的30%是為了示範而設定。已公布的114年度執行業務者費用標準，部分藝術工作有30%標準，但插畫、商業設計的實際所得分類與可用費用率，仍須依工作性質及115年度正式標準確認。30萬元只是稅務上認列的費用，並不是政府給的補助。</p>
+  <strong>共同條件</strong>
+  <p>年收入<strong>1,000,000元</strong>－實際成本<strong>200,000元</strong>＝扣除實際成本後<strong>800,000元</strong>。個人報稅的「認列費用」與真實花費可能不同；收入、所得、扣除額的差別另見<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>。</p>
 </div>
 
-### 2. 獨資商號／工作室：免用統一發票
+### 1. 四種身分放在一起比較
 
-如果成立獨資工作室，全年營收100萬元、每月平均約83,333元，**假設經國稅局核定為免用統一發票的小規模營業人**，且全年查定銷售額也為100萬元：
-
-- 營業稅按查定銷售額1%示範，全年約**10,000元**。
-- 小規模獨資商號的營利所得，由國稅局依查定銷售額與適用業別所得額標準核算，併入負責人的個人綜所稅。
-- 假設以7%的所得額標準作純示範，營利所得為70,000元；若沒有其他所得，扣除個人免稅額及標準扣除額後，綜所稅為**0元**。
-
-所以這組假設中，扣除20萬元實際成本與1萬元營業稅後，**剩790,000元**。
-
-但**免用統一發票不是自己選的**。技術與設計業起徵點原則為每月5萬元；即使月營業額未達20萬元，仍可能因營業性質被核定使用統一發票。表中的7%只是參考既有業別標準的教學假設，不代表115年度已公布的適用率。
-
-### 3. 獨資商號／工作室：使用統一發票
-
-如果商號使用統一發票，假設提供100萬元的應稅設計服務，**另向客戶收取5萬元營業稅**。若20萬元成本均取得符合規定的進項憑證、另有1萬元可扣抵進項稅額，則銷項5萬元減進項1萬元，應繳營業稅約**40,000元**。
-
-這4萬元是由收取的銷項稅額扣除可抵進項後繳納，**不能再從未稅的100萬元收入重複扣一次**。
-
-再假設依法以實際成本核實計算營利所得：100萬減20萬，營利所得80萬元，併入負責人綜所稅後，扣除237,000元免稅額與標準扣除額，所得稅為**28,150元**。扣除實際成本與所得稅，**剩771,850元**。
-
-這是「以實際成本核實認列」的比較；如果實際適用其他合法申報方式，稅額可能不同。
-
-### 4. 有限公司：股利與薪資是兩種不同的領錢方式
-
-公司賺的錢屬於公司，不是負責人的個人存款。假設同樣收入100萬元、成本20萬元，由一人持有有限公司：
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="有限公司將收入分配為股利或薪資的試算" tabindex="0">
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="年收入一百萬元四種身分比較表" tabindex="0">
 <table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">情境</th><th scope="col">公司如何處理</th><th scope="col">最後結果</th></tr></thead>
+  <thead><tr><th scope="col">身分</th><th scope="col">稅額怎麼算</th><th scope="col">扣除實際成本與列示稅額後</th></tr></thead>
   <tbody>
-    <tr><th scope="row">全部分配股利</th><td data-label="公司如何處理">80萬元獲利先繳16萬元營所稅，稅後64萬元再依法分配給股東</td><td data-label="最後結果">假設股利併入個人綜所稅並適用8.5%抵減，股東含抵減退稅約<strong>674,250元</strong></td></tr>
-    <tr><th scope="row">實際工作，發合理薪資</th><td data-label="公司如何處理">另假設全年依法支付本人70萬元薪資，剩餘10萬元公司所得免徵營所稅，再依法分配10萬元股利</td><td data-label="最後結果">假設70萬薪資與10萬股利在同一個人課稅年度取得，扣個人所得稅後約<strong>791,700元</strong></td></tr>
+    <tr><th scope="row">① 個人接案<small>假設9A適用30%費用率</small></th><td data-label="稅額怎麼算">100萬－30萬費用－23.7萬個人扣除額；綜所稅<strong>23,150元</strong></td><td data-label="扣除實際成本與列示稅額後"><strong>776,850元</strong></td></tr>
+    <tr><th scope="row">② 商號／工作室<small>免用統一發票</small></th><td data-label="稅額怎麼算">假設核定營業稅1%：<strong>10,000元</strong>；按假設7%所得率，綜所稅0元</td><td data-label="扣除實際成本與列示稅額後"><strong>790,000元</strong></td></tr>
+    <tr><th scope="row">③ 商號／工作室<small>使用統一發票</small></th><td data-label="稅額怎麼算">核實所得80萬元，綜所稅<strong>28,150元</strong>；營業稅另向客戶收取並申報</td><td data-label="扣除實際成本與列示稅額後"><strong>771,850元</strong></td></tr>
+    <tr><th scope="row">④ 有限公司<small>示範合理薪資＋股利</small></th><td data-label="稅額怎麼算">假設支付本人70萬元年薪、依法分配剩餘10萬元股利；簡化個人所得稅<strong>8,300元</strong></td><td data-label="扣除實際成本與列示稅額後"><strong>791,700元</strong></td></tr>
   </tbody>
 </table>
 </div>
 
-<p class="org-table-hint">兩列均為簡化的所得稅示範，未計公司設立與記帳成本、雇主及個人保費、可能的退休金提繳等。薪資須為真實工作且合理、依法決定並實際給付，不能隨意將盈餘改列薪資。公司股利通常要在後續年度決議分配，第二列把薪資與股利列在同一個個人年度，僅為說明計算方式。公司如保留盈餘，還可能涉及未分配盈餘稅。</p>
+<p class="org-table-hint">這不是「哪種身分一定最省」的排名：四列都有不同的適用前提。未統一計入個人二代健保補充保費、雇主及個人勞健保、勞退、設立與記帳費等；使用發票者假設應稅服務的5%營業稅另向客戶收取，不能把代收的營業稅當作個人收入。有限公司股利與薪資的示範是將兩種所得假設在同一個人課稅年度取得，實際分配年度可能不同。</p>
 
-<div class="org-explainer-note">
-  <strong>同樣年收入100萬元，先比較一個人實際留下多少</strong>
-  <p>在這組假設下，免用統一發票的商號，和公司支付合理薪資的試算數字都相對有利；但兩者都仰賴各自的法定條件。公司多出的帳務、保險及維護成本，可能讓原本很小的稅額差距消失。選公司時，也應考慮聘員工、簽較大的契約、累積資金及責任區隔，而不只看一張稅額表。</p>
-</div>
+### 2. 看表格時，還要確認四件事
 
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="年收入一百萬元四種身分試算總覽" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">接案身分</th><th scope="col">教學試算主要稅額</th><th scope="col">扣20萬真實成本及列示稅額後</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">個人9A<small>假設30%費用率</small></th><td data-label="教學試算主要稅額">綜所稅23,150元</td><td data-label="扣20萬真實成本及列示稅額後"><strong>776,850元</strong></td></tr>
-    <tr><th scope="row">商號：免用發票<small>假設核定1%及7%所得率</small></th><td data-label="教學試算主要稅額">營業稅10,000元；綜所稅0元</td><td data-label="扣20萬真實成本及列示稅額後"><strong>790,000元</strong></td></tr>
-    <tr><th scope="row">商號：使用發票<small>假設核實認列成本</small></th><td data-label="教學試算主要稅額">綜所稅28,150元；營業稅另向客戶收取並申報</td><td data-label="扣20萬真實成本及列示稅額後"><strong>771,850元</strong></td></tr>
-    <tr><th scope="row">有限公司<small>70萬薪資＋10萬股利</small></th><td data-label="教學試算主要稅額">簡化個人所得稅8,300元</td><td data-label="扣20萬真實成本及列示稅額後"><strong>791,700元</strong></td></tr>
-  </tbody>
-</table>
-</div>
+- **個人9A：** 30%是這個例子的假設，不是所有插畫或商業設計都適用。個人接案的所得類別與預扣規則，可看<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅：9A、9B、50怎麼扣？〉</a>；單次或其他符合條件的報酬，還要看<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>。
+- **免用統一發票商號：** 必須由國稅局核定；表中7%所得率只是教學假設，實際要看業別與年度規定。成立和登記的差別，請看<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>。
+- **使用統一發票商號：** 本例用實際20萬元成本核實計算。若向客戶另收5萬元銷項營業稅、可扣抵進項稅1萬元，應申報繳納4萬元；這筆稅額由代收稅款扣抵後支付，不能從未稅收入再扣一次。詳見<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。
+- **有限公司：** 發給自己的薪水必須合理、真實且依法處理；還有雇主保費、勞退及公司維護成本。若完全不發薪水、僅將80萬元獲利在繳16萬元營所稅後全數分配股利，本例股東含可抵減稅額的簡化結果約為<strong>674,250元</strong>。想理解薪資、股利與保費，可讀<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>和<a href="/local-practice-guide/entries/labor-health-insurance/">〈勞健保〉</a>。
 
-<p class="org-table-hint">這不是節稅排行榜：各列適用前提不同，且未統一計入個人補充保費、勞健保、雇主成本及行政費用；開發票商號與有限公司的營業稅依另收另繳處理。不能用這張表直接決定登記身分。</p>
+**決定經營方式，除了表上的稅額，也要考慮是否需要聘人、長期簽約、累積事業資金，以及由誰承擔責任。** 法人和獨資商號的責任差異，接著可看<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
 
 ## 三、人民團體：設計師領固定薪資，結餘留在協會
 
