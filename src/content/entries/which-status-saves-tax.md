@@ -96,6 +96,55 @@ tags:
 
 **決定經營方式，除了表上的稅額，也要考慮是否需要聘人、長期簽約、累積事業資金，以及由誰承擔責任。** 法人和獨資商號的責任差異，接著可看<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
 
+### 3. 對方支付給你的成本，有什麼差別？
+
+同樣是**100萬元的設計委託**，假設付款方是一家能夠依法全額扣抵相關進項稅額的公司：
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="付款方採購成本比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">你的身分</th><th scope="col">付款方付出</th><th scope="col">可扣抵營業稅</th><th scope="col">扣抵後成本</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">個人9A</th><td data-label="付款方付出">1,000,000元</td><td data-label="可扣抵營業稅">0元</td><td data-label="扣抵後成本"><strong>1,000,000元</strong></td></tr>
+    <tr><th scope="row">商號：免用發票</th><td data-label="付款方付出">1,000,000元</td><td data-label="可扣抵營業稅">0元</td><td data-label="扣抵後成本"><strong>1,000,000元</strong></td></tr>
+    <tr><th scope="row">商號：使用發票</th><td data-label="付款方付出">1,050,000元</td><td data-label="可扣抵營業稅">50,000元</td><td data-label="扣抵後成本"><strong>1,000,000元</strong></td></tr>
+    <tr><th scope="row">有限公司：使用發票</th><td data-label="付款方付出">1,050,000元</td><td data-label="可扣抵營業稅">50,000元</td><td data-label="扣抵後成本"><strong>1,000,000元</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+**開發票讓對方多付5萬元，不代表對方最後多花5萬元。** 對方若取得可扣抵的進項發票，這5萬元可用於扣抵自身的銷項稅額。相反地，若付款方不能扣抵進項稅額，則可能必須負擔含稅105萬元。
+
+個人9A的**預扣所得稅**與符合條件時代扣的**個人補充保費**，都從約定報酬100萬元內扣取，並不是付款方要另外再加的設計費。付款方仍要辦理相應的憑證、扣繳及申報工作。
+
+<p class="org-table-hint">本例未加計額外行政、人事或契約成本。能否列作所得稅的業務費用，與能否扣抵5%營業稅是兩回事。詳細規定請看<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅：9A、9B、50怎麼扣？〉</a>、<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。</p>
+
+### 4. 補助計畫、貸款與合作，個人、商號、公司有什麼不同？
+
+身分的選擇也影響<strong>哪些計畫能申請、貸款以誰的名義辦理、能否開發票及簽約</strong>。但不代表有限公司的資格一定比商號或個人更多。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="身分與補助貸款合作機會比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">身分</th><th scope="col">補助／獎勵</th><th scope="col">貸款</th><th scope="col">合作與請款</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">個人</th><td data-label="補助／獎勵">可參加開放自然人提案的計畫；部分計畫以個人為申請主體</td><td data-label="貸款">可評估個人貸款；不符合要求商業或公司登記的企業貸款資格</td><td data-label="合作與請款">可個人簽約、承攬勞務；須提供合適憑證及處理所得扣繳</td></tr>
+    <tr><th scope="row">獨資商號／工作室</th><td data-label="補助／獎勵">可評估開放登記商業、中小企業的計畫；是否符合看簡章</td><td data-label="貸款">符合條件可申請青年創業貸款等；由負責人承擔商號債務</td><td data-label="合作與請款">可使用商號名稱承接工作、請款；發票依國稅局核定</td></tr>
+    <tr><th scope="row">有限公司</th><td data-label="補助／獎勵">可評估開放公司或法人事業的補助；仍受產業及其他條件限制</td><td data-label="貸款">可申請符合條件的企業貸款；銀行仍審核信用與還款能力</td><td data-label="合作與請款">以公司名義簽約、聘人、開發票；有獨立法人格，也有較多管理成本</td></tr>
+  </tbody>
+</table>
+</div>
+
+**以兩個政府計畫為例：**
+
+- **文化部116年青年村落文化行動計畫**：依當年度公告，採符合年齡等條件的**個人**提出行動計畫；不是先成立公司才能申請。可閱讀<a href="https://www.culture.ntpc.gov.tw/xceventsnews/cont?sid=0Q244499152703248954&amp;sq=&amp;xsmsid=0G295700334178642420" target="_blank" rel="noopener noreferrer">徵件公告</a>。
+- **青年創業貸款**：以符合資格、已辦理公司、商業或有限合夥登記的**事業體**申請；獨資商號與公司都有可能符合，最後仍須銀行核貸。可閱讀<a href="https://startup.sme.gov.tw/home/modules/funding/detail/index.php?sId=15" target="_blank" rel="noopener noreferrer">經濟部申請說明</a>。
+
+**參與政府標案也不一定非得成立公司。**《政府採購法》第8條所稱廠商，也包括得提供勞務的自然人；仍要符合實際招標文件所列的資格。可以接著看<a href="/local-practice-guide/entries/tender/">〈尋找標案〉</a>、<a href="/local-practice-guide/entries/subsidy-guide/">〈補助案〉</a>及<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>。
+
+<div class="org-explainer-note">
+  <strong>身分不是申請成功的保證</strong>
+  <p>補助、貸款和合作，應先看申請資格、案型與實際需求。銀行還會評估財務和信用；公司具有獨立法人格，也不代表借款時負責人一定不須提供個人保證。關於責任差異，可閱讀<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。</p>
+</div>
+
 ## 三、人民團體：設計師領固定薪資，結餘留在協會
 
 假設一個**已完成法人登記的文化協會**承接100萬元設計委託，聘請你擔任設計師，**月薪42,000元**。這裡重點不是哪種身分更省稅，而是協會能如何支付報酬、留下結餘。
