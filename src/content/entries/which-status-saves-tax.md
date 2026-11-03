@@ -145,102 +145,138 @@ tags:
   <p>補助、貸款和合作，應先看申請資格、案型與實際需求。銀行還會評估財務和信用；公司具有獨立法人格，也不代表借款時負責人一定不須提供個人保證。關於責任差異，可閱讀<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。</p>
 </div>
 
-## 三、人民團體：設計師領固定薪資，結餘留在協會
+## 三、社團法人（人民團體）：一起推動公共事務
 
-假設一個**已完成法人登記的文化協會**承接100萬元設計委託，聘請你擔任設計師，**月薪42,000元**。這裡重點不是哪種身分更省稅，而是協會能如何支付報酬、留下結餘。
+如果你想做的事與**公共利益**有關，例如與居民共同管理公共空間、部落希望與林業及自然保育署合作推動山林共管，或持續改善鄉村地區孩子的教育與照顧環境，那麼成立**非營利性人民團體**，並視需要辦理社團法人登記，就是可以考慮的選擇。
 
-### 1. 協會的100萬元，最後怎麼使用？
+這類工作通常需要多位成員共同討論、作決定，也可能透過**會員會費、捐款、政府補助**等方式取得經費。協會能以組織名義長期推動工作、管理共同資源和聘請專職人員，而不必把所有事情都放在某一個人的名下。
 
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="社團法人薪資支出與結餘分配" tabindex="0">
+<p class="org-table-hint">成立協會不代表自動取得公共空間管理權、山林使用權或政府補助；實際共管仍須與土地、空間管理機關或相關權利人依法協議，並取得必要許可。人民團體完成立案也不等於已取得法人資格，差別可讀<a href="/local-practice-guide/entries/legal-person-natural-person/">〈什麼是法人、自然人？〉</a>。</p>
+
+### 1. 協會的經費從哪裡來？又能怎麼使用？
+
+以下假設一個推動鄉村兒童教育的文化協會，全年收到**40萬元捐款、60萬元政府補助**，並聘請一名專職工作者，每月薪資**42,000元**。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="文化協會年度經費收支範例" tabindex="0">
 <table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">項目</th><th scope="col">金額</th></tr></thead>
+  <thead><tr><th scope="col">收入來源</th><th scope="col">金額</th><th scope="col">支出與結餘</th><th scope="col">金額</th></tr></thead>
   <tbody>
-    <tr><th scope="row">全年設計委託收入</th><td data-label="金額">1,000,000元</td></tr>
-    <tr><th scope="row">你領取的年薪（42,000×12）</th><td data-label="金額">−504,000元</td></tr>
-    <tr><th scope="row">其他合法業務支出（假設）</th><td data-label="金額">−96,000元</td></tr>
-    <tr><th scope="row">銷售勞務所得（簡化）</th><td data-label="金額">400,000元</td></tr>
-    <tr><th scope="row">營所稅（假設20%）</th><td data-label="金額">−80,000元</td></tr>
-    <tr><th scope="row">留在協會的結餘</th><td data-label="金額"><strong>320,000元</strong></td></tr>
-    <tr><th scope="row">會員可分紅</th><td data-label="金額"><strong>0元</strong></td></tr>
+    <tr><th scope="row">社會捐款</th><td data-label="收入金額">400,000元</td><td data-label="支出與結餘">專職人員年薪（42,000×12）</td><td data-label="支出金額">504,000元</td></tr>
+    <tr><th scope="row">政府補助</th><td data-label="收入金額">600,000元</td><td data-label="支出與結餘">兒童教育與共學活動</td><td data-label="支出金額">300,000元</td></tr>
+    <tr><th scope="row">全年收入合計</th><td data-label="收入金額"><strong>1,000,000元</strong></td><td data-label="支出與結餘">空間維護與業務行政</td><td data-label="支出金額">96,000元</td></tr>
+    <tr><th scope="row">—</th><td data-label="收入金額">—</td><td data-label="支出與結餘">留在協會的結餘</td><td data-label="支出金額"><strong>100,000元</strong></td></tr>
   </tbody>
 </table>
 </div>
 
-**你領的是薪水，不是協會分紅。** 年薪504,000元，依115年度單身、無其他所得的簡化計算，個人綜所稅為2,000元；扣稅後502,000元，另有個人應負擔的勞健保費。
+這一年協會共支出**90萬元（收入的90%）**，最後留下10萬元作為未來工作的資源，**不能分紅給會員**。本例假設各筆支出均符合協會宗旨及補助用途，補助款也已依核定計畫使用、核銷；實際結餘若屬應繳回的補助款，仍須依補助規定繳回，不能直接留存。
 
-### 2. 社團法人要遵守哪些稅務與分配規定？
+**協會可以有收入、可以聘人、可以支付合理薪資，但結餘屬於協會，不是會員的私人獲利。**
 
-- **可以支付合理報酬：** 協會可依法聘人、支付實際工作所需的薪資與成本，但不能將盈餘分給會員。
-- **有收入不代表都免稅：** 捐款與銷售設計服務的稅務不同。本例的設計委託屬銷售勞務，原則上涉及營業稅與所得稅。
-- **60%不是一律必花的比例：** 所得稅免稅標準原則要求與創設目的相關的支出達一定比例，但當年度結餘不超過50萬元等情形有例外；銷售勞務所得仍須另按規定判斷。
+### 2. 社團法人什麼情況可以免稅？
+
+**非營利組織不是所有收入都免稅。** 要先分清楚收到的是捐款、真正的補助，還是提供商品或服務換取的報酬。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="社團法人收入性質與稅務對照" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">款項性質</th><th scope="col">稅務重點</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">會員會費、無對價捐款、符合補助性質的款項</th><td data-label="稅務重點">符合公益團體所得稅免稅標準時，相關非銷售所得得免納所得稅；沒有銷售商品或服務的對價，也不因單純收款產生該筆營業稅</td></tr>
+    <tr><th scope="row">承接設計委託、售票演出、對外收費服務</th><td data-label="稅務重點">屬銷售貨物或勞務時，原則上須依法判斷及申報營業稅；銷售所得也須依所得稅規定計算，不因協會宗旨是公益就一律免稅</td></tr>
+  </tbody>
+</table>
+</div>
+
+符合免納所得稅標準，**不是只要支出達60%就好**，還包含組織登記、不得變相分配盈餘、符合宗旨的活動、財務紀錄及合法憑證等條件。支出用於創設目的相關活動，原則上不得低於一定收入的**60%**；但**當年度結餘不超過50萬元**，或超過50萬元並依規定提出未來四年使用計畫且獲主管機關同意等，有例外規定。
 
 <div class="org-explainer-note">
-  <strong>組織留下的32萬元，不能再當作你的收入</strong>
-  <p>這筆錢留在協會，用於符合宗旨的工作。上面的試算未計營業稅、雇主保費及支出分攤等細節。想了解團體立案與法人登記，可讀<a href="/local-practice-guide/entries/legal-person-natural-person/">〈什麼是法人、自然人？〉</a>；收入課稅請看<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>；薪資的所得稅及勞健保另見<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>與<a href="/local-practice-guide/entries/labor-health-insurance/">〈勞健保〉</a>。</p>
+  <strong>小提醒｜政府補助和政府委託，性質可能不同</strong>
+  <p>政府給協會的款項如果是支持其公益計畫的補助，與政府購買協會提供的設計、活動執行等勞務不同。不能只看付款單位是不是政府，就認定全部免稅。協會非經常性銷售勞務、尚未辦稅籍登記時，也有依規定使用407繳款書的情形。詳細可閱讀<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>及<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=7924e0bceadd45d69661c515ecd659a8" target="_blank" rel="noopener noreferrer">財政部非營利團體銷售勞務說明</a>。</p>
 </div>
 
-## 四、合作社：十五位藝文工作者共享案源與專業
+### 3. 協會會員可以成為專職工作人員嗎？
 
-假設十五位插畫、舞台、網頁、表演及木作工作者成立**有限責任藝文勞動合作社**。A、B、C分別帶進表演、設計及典禮製作等案源，合作社讓不同專業的社員共同承接工作。
+**可以。** 協會的普通會員如果實際承辦會務或業務，符合聘僱資格與程序，就可以受聘為專職人員、依法領取薪資。例如前例每月42,000元的工作者，即使同時是協會會員，也不因此失去受聘資格。
 
-### 1. 用一個135萬元的案件看懂報酬怎麼分
+但有重要界線：**選任的理事、監事等職員，不得同時擔任協會的聘僱工作人員**。社會團體另有關於現任理事長配偶及三親等內血親、姻親聘僱的限制及例外。工作人員應依資格條件由理事會通過聘僱，薪資與保險制度也要符合規定，而不是以會員身分自行分配協會盈餘。
 
-假設A帶入一件**135萬元的表演製作案**，由四位社員共同完成。以下均為個人勞務報酬，不包含木材買賣、設備出租等貨物或其他應另行計稅的項目。
+<p class="org-table-hint">參考<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050096" target="_blank" rel="noopener noreferrer">《社會團體工作人員管理辦法》第3至7條</a>及<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340012" target="_blank" rel="noopener noreferrer">《教育文化公益慈善機關或團體免納所得稅適用標準》</a>。薪資的勞健保、個人所得稅與聘僱成本，可再看<a href="/local-practice-guide/entries/labor-health-insurance/">〈勞健保〉</a>、<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>及<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。</p>
 
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="合作社社員工作報酬分配" tabindex="0">
+## 四、有限責任合作社：讓不同專業的工作者一起經營
+
+如果你想做的事情是**和其他工作者共同接案、共用設備、整合專業、降低各自經營的成本**，例如插畫師、舞台設計師、表演者、木工師傅或網頁工程師想長期組成藝文團隊，那麼**有限責任合作社**就是可以考慮的身分。
+
+合作社是社員共同參與的組織，重點在於**大家共同使用服務、共同經營、依交易關係分享成果**，而不只是讓出資最多的人決定分配。有限責任合作社的社員原則上以認股金額為限負責；組織仍須遵守登記業務、社員治理及對外交易的規定。
+
+### 1. 藝文合作社如何讓大家一起接案？
+
+假設15位不同專業的工作者成立一個**有限責任藝文勞動合作社**，由A社員帶入一件135萬元的表演製作案，再由四名社員分工。
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="藝文勞動合作社案件報酬示範" tabindex="0">
 <table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">工作社員</th><th scope="col">工作報酬</th><th scope="col">繳交5%管理費後</th></tr></thead>
+  <thead><tr><th scope="col">參與社員</th><th scope="col">實際工作報酬</th><th scope="col">繳交5%管理費後</th></tr></thead>
   <tbody>
-    <tr><th scope="row">A：表演統籌</th><td data-label="工作報酬">600,000元</td><td data-label="繳交5%管理費後">570,000元</td></tr>
-    <tr><th scope="row">你：舞台設計</th><td data-label="工作報酬">350,000元</td><td data-label="繳交5%管理費後"><strong>332,500元</strong></td></tr>
-    <tr><th scope="row">E：網頁工程</th><td data-label="工作報酬">150,000元</td><td data-label="繳交5%管理費後">142,500元</td></tr>
-    <tr><th scope="row">F：舞台木作勞務</th><td data-label="工作報酬">250,000元</td><td data-label="繳交5%管理費後">237,500元</td></tr>
-    <tr><th scope="row">合計</th><td data-label="工作報酬"><strong>1,350,000元</strong></td><td data-label="繳交5%管理費後"><strong>1,282,500元</strong></td></tr>
+    <tr><th scope="row">A：表演統籌</th><td data-label="實際工作報酬">600,000元</td><td data-label="繳交5%管理費後">570,000元</td></tr>
+    <tr><th scope="row">你：舞台設計</th><td data-label="實際工作報酬">350,000元</td><td data-label="繳交5%管理費後"><strong>332,500元</strong></td></tr>
+    <tr><th scope="row">E：網頁工程</th><td data-label="實際工作報酬">150,000元</td><td data-label="繳交5%管理費後">142,500元</td></tr>
+    <tr><th scope="row">F：木作勞務</th><td data-label="實際工作報酬">250,000元</td><td data-label="繳交5%管理費後">237,500元</td></tr>
+    <tr><th scope="row">合計</th><td data-label="實際工作報酬"><strong>1,350,000元</strong></td><td data-label="繳交5%管理費後"><strong>1,282,500元</strong></td></tr>
   </tbody>
 </table>
 </div>
 
-合作社先將**135萬元全額轉付實際提供勞務的個人社員**，再另向社員收取合計67,500元管理費。社員繳交的管理費留在合作社，支付社務與共同行政成本。你拿到的332,500元是**工作報酬扣管理費後的金額**，不是年底分紅，仍須依法申報個人所得稅。
+5%是**合作社自行向社員收取的管理費**，不是政府的營業稅。合作社收取的67,500元用於共同帳務、行政及其他合法業務。你的332,500元是**工作報酬扣管理費**，不是合作社的年底盈餘分配。這些報酬仍須依個人所得稅規定申報。
 
-### 2. 哪些交易有營業稅優惠？
+<p class="org-table-hint">本例假設135萬元均為社員個人提供的勞務報酬，社員與合作社沒有僱傭關係，合作社依法代收並全額轉付，再另向社員收管理費。木材、印刷品、設備買賣或租賃等交易，不能直接當成同一種勞務代收轉付。</p>
 
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="合作社兩種營業稅規定" tabindex="0">
+### 2. 合作社有哪些稅務優點？
+
+**合作社的免稅制度有適用條件，不能理解成所有交易都免稅。**
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="合作社營業稅免稅與不課稅的適用情形" tabindex="0">
 <table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">情況</th><th scope="col">營業稅處理</th></tr></thead>
+  <thead><tr><th scope="col">交易情況</th><th scope="col">營業稅如何處理</th></tr></thead>
   <tbody>
-    <tr><th scope="row">合作社代收，再全額轉付社員勞務報酬</th><td data-label="營業稅處理">符合勞動合作社無僱傭關係等規定：<strong>不課營業稅</strong></td></tr>
-    <tr><th scope="row">合作社向社員收取管理費／依法提供社員服務</th><td data-label="營業稅處理">符合銷售予社員的規定：<strong>免徵營業稅</strong></td></tr>
-    <tr><th scope="row">合作社向非社員提供一般應稅服務</th><td data-label="營業稅處理">原則依法課徵，<strong>不是一律免稅</strong></td></tr>
+    <tr><th scope="row">合作社依法提供服務、銷售貨物給社員</th><td data-label="營業稅如何處理">符合營業稅法第8條第1項第10款規定，<strong>免徵營業稅</strong></td></tr>
+    <tr><th scope="row">勞動合作社向外部收款，全額代收轉付個人社員勞務報酬</th><td data-label="營業稅如何處理">符合社員無僱傭關係及相關憑證條件時，該筆<strong>代收轉付報酬不課營業稅</strong></td></tr>
+    <tr><th scope="row">上述模式中，合作社另向社員收取管理費</th><td data-label="營業稅如何處理">符合提供社員服務的規定時，管理費<strong>免徵營業稅</strong></td></tr>
+    <tr><th scope="row">合作社向非社員提供一般應稅商品或服務</th><td data-label="營業稅如何處理">原則仍依法課稅，<strong>不是成立合作社就免稅</strong></td></tr>
   </tbody>
 </table>
 </div>
 
-**例如合作社依法向社員提供10萬元設計服務，符合免稅規定時營業稅為0元；一般應稅設計公司相同未稅報價則另有5,000元銷項營業稅。** 這是說明營業稅的差別，實際節省多少仍須看買方能否扣抵進項、報價與成本。
+例如合作社在登記業務範圍內，依法向社員提供**10萬元設計服務**且符合免稅條件時，營業稅是**0元**；一般應稅設計公司同樣以未稅10萬元報價，則會另計**5,000元銷項營業稅**。這是稅額差異的示範，買方的最終成本仍受進項抵扣資格等因素影響。
 
 <div class="org-explainer-note">
-  <strong>注意：不課稅、免稅與個人免繳所得稅是三件事</strong>
-  <p>財政部對勞動合作社「全額代收轉付」有特別規定，前提包括個人社員和合作社<strong>沒有僱傭關係</strong>、依規定開立憑證及編製收付明細。社員領取的此類勞務報酬<strong>屬薪資所得</strong>，仍須申報綜合所得稅；若由合作社向外部買方另外收取管理費，或社員與合作社具有僱傭關係，營業稅處理也不同。相關稅目可對照<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>、<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅：9A、9B、50怎麼扣？〉</a>及<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>。</p>
+  <strong>小提醒｜農業合作社販售生鮮蔬果，不用先看買方是不是社員</strong>
+  <p>《營業稅法》第8條第1項第19款本來就規定，**符合條件的未經加工生鮮蔬菜、水果等農產品免徵營業稅**。因此農業合作社銷售這類蔬果時，<strong>不因買方是社員或非社員而改變這項商品本身的免稅性質</strong>；其他符合規定的銷售者，也可能適用同一免稅規定。這和第10款「合作社依法銷售給社員免稅」是<strong>兩種不同依據</strong>。若改成加工食品、代銷服務、運輸費等，還是要另外確認課稅性質。農業合作社對非社員使用的業務限制，也不會因蔬果商品免稅而自動取消。</p>
 </div>
 
-### 3. 合作社年底有結餘，如何分配？
+財政部對勞動合作社另有<a href="https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg025042/ch04/type2/gov30/num9/Eg.htm" target="_blank" rel="noopener noreferrer">108年3月7日解釋令</a>：符合代收轉付規定的社員勞務報酬，屬**社員個人的薪資所得**，轉付時依令免予扣繳，但仍須列單申報及填發免扣繳憑單；如果社員是合作社聘僱的員工，或管理費改向外部買方收取，稅務處理就不同。免稅品項可查<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/business-tax/exemption-scope/lGmA07A" target="_blank" rel="noopener noreferrer">財政部營業稅免稅項目</a>。
 
-**工作報酬先依實際工作給付；年底結餘再依合作社法處理。** 假設前述67,500元管理費支付行政成本47,500元後，合作社稅後尚有20,000元結餘，沒有累積虧損，也不發社股年息、不另提酬勞金：
+### 3. 合作社的結餘怎麼分配？
 
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="合作社年底兩萬元結餘分配" tabindex="0">
+**社員先領實際工作的報酬；年底若有結餘，才依合作社法處理。**
+
+假設合作社收了前面的67,500元管理費，支付行政等費用後，全年稅後結餘剛好20,000元，沒有累積虧損、沒有分配社股年息，也不另提酬勞金：
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="合作社稅後結餘提撥與分配" tabindex="0">
 <table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">處理方式</th><th scope="col">金額</th></tr></thead>
+  <thead><tr><th scope="col">分配規定</th><th scope="col">本例金額</th></tr></thead>
   <tbody>
-    <tr><th scope="row">稅後結餘</th><td data-label="金額">20,000元</td></tr>
-    <tr><th scope="row">提撥公積金10%</th><td data-label="金額">−2,000元</td></tr>
-    <tr><th scope="row">提撥公益金5%</th><td data-label="金額">−1,000元</td></tr>
-    <tr><th scope="row">剩餘依社員交易額比例分配</th><td data-label="金額"><strong>17,000元</strong></td></tr>
+    <tr><th scope="row">全年稅後結餘</th><td data-label="本例金額">20,000元</td></tr>
+    <tr><th scope="row">提撥公積金至少10%</th><td data-label="本例金額">−2,000元</td></tr>
+    <tr><th scope="row">提撥公益金至少5%</th><td data-label="本例金額">−1,000元</td></tr>
+    <tr><th scope="row">剩餘依社員交易額比例分配</th><td data-label="本例金額"><strong>17,000元</strong></td></tr>
   </tbody>
 </table>
 </div>
 
-假設合作社章程及實際交易紀錄允許按這件案子的社員勞務交易額分配，你占35萬／135萬，則可另分得**約4,407元**。這筆是年底社員交易分配，不同於前面332,500元的工作報酬。社股年息依法最高10%，公積金原則至少10%、公益金至少5%；實際可分配金額還須看章程、社員大會決議、其他交易及所得稅。
+如果這就是合作社全年的社員交易，你的工作報酬占這次社員交易額**35萬／135萬**，年底還可以分得約**4,407元**。這筆是交易分配，**不是把17,000元平均分給15個社員，也不是依誰出資最多來分**。實際仍以合法的交易額紀錄、章程及社員大會決議為準。
 
-**合作社的優點是共同接案、共享專業與行政服務；稅務優惠只適用符合條件的特定交易。** 15位社員不是把全部收入平均分成15份，社員的工作報酬及年底交易分配各有規則。合作社法人地位及社員責任可再閱讀<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
+合作社社股年息依法不得超過**10%**，結餘須先依法處理累積短絀、社股年息及法定提撥；**提供非社員使用的收益不得分配給社員**，須依規定提列公積金、公益金，也另有對外業務比例限制。
+
+<p class="org-table-hint">參考<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">《合作社法》第3-1、22至24條</a>。合作社有自身的會計、所得稅與申報義務；社員報酬與年底分配仍應分開處理。延伸閱讀：<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅：9A、9B、50怎麼扣？〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>及<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。</p>
 
 ## 五、結語：依照自己的工作需求選擇身分
 
