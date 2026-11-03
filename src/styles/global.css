@@ -2876,3 +2876,207 @@ main table :is(th, td) p {
     font-size: 12.5px;
   }
 }
+
+
+/* 2026 tax status roadmap: responsive identity comparison tables (no horizontal drag). */
+.article.guide-article.tax-status-article .tax-roadmap-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  margin: 23px 0 13px;
+  border: 1px solid #dae4d7;
+  border-radius: 9px;
+  overflow: visible;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(35, 68, 49, .045);
+}
+.article.guide-article.tax-status-article .tax-roadmap-table {
+  display: table;
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 0;
+  background: #fff;
+  font-size: 13.3px;
+  line-height: 1.8;
+}
+.article.guide-article.tax-status-article .tax-roadmap-table thead th:first-child { width: 19%; }
+.article.guide-article.tax-status-article .tax-roadmap-table thead th:nth-child(2) { width: 27%; }
+.article.guide-article.tax-status-article .tax-roadmap-table thead th:nth-child(3) { width: 28%; }
+.article.guide-article.tax-status-article .tax-roadmap-table thead th:nth-child(4) { width: 26%; }
+.article.guide-article.tax-status-article .tax-roadmap-table :is(th, td) {
+  min-width: 0;
+  padding: 14px 12px;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  border-bottom: 1px solid #e3e9df;
+  text-align: left;
+}
+.article.guide-article.tax-status-article .tax-roadmap-table thead th {
+  background: #eaf1e7;
+  color: #31513f;
+  font-size: 13px;
+  font-weight: 700;
+}
+.article.guide-article.tax-status-article .tax-roadmap-table tbody th {
+  background: #f5f8f2;
+  font-weight: 700;
+  color: #2d503d;
+}
+.article.guide-article.tax-status-article .tax-roadmap-table tbody th small {
+  display: block;
+  margin-top: 4px;
+  color: #6d806f;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.article.guide-article.tax-status-article .tax-roadmap-table tbody tr:last-child :is(th,td) { border-bottom: 0; }
+.article.guide-article.tax-status-article .tax-roadmap-table td strong { color: #2c513d; }
+.article.guide-article.tax-status-article .org-table-hint {
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 7px 0 28px;
+  color: #6a7d6c;
+}
+.article.guide-article.tax-status-article .tax-roadmap-important {
+  margin: 24px 0 30px;
+  background: #f2f6ec;
+  border-left-color: #7b9b80;
+}
+.article.guide-article.tax-status-article .tax-roadmap-example {
+  padding: 22px 25px;
+  margin: 24px 0 29px;
+  border: 1px solid #dbe5d7;
+  border-left: 4px solid #9eb4a0;
+  border-radius: 9px;
+  background: #f6f8f4;
+}
+.article.guide-article.tax-status-article .tax-roadmap-example-label {
+  display: block;
+  color: #9b7559;
+  letter-spacing: .08em;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 9px;
+}
+.article.guide-article.tax-status-article .tax-roadmap-example p {
+  font-size: 14px;
+  line-height: 1.95;
+  margin: 8px 0 0;
+}
+.article.guide-article.tax-status-article .tax-roadmap-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0 30px;
+}
+.article.guide-article.tax-status-article .tax-roadmap-cards-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.article.guide-article.tax-status-article .tax-roadmap-cards > div {
+  background: #f5f8f3;
+  border: 1px solid #dde7dc;
+  border-radius: 9px;
+  padding: 20px 18px;
+  min-width: 0;
+}
+.article.guide-article.tax-status-article .tax-roadmap-cards span {
+  color: #a07859;
+  font-size: 11px;
+  line-height: 1.7;
+  display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.article.guide-article.tax-status-article .tax-roadmap-cards strong {
+  display: block;
+  color: #2c513c;
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 10px;
+}
+.article.guide-article.tax-status-article .tax-roadmap-cards p {
+  margin: 0 0 10px;
+  color: #536959;
+  font-size: 13px;
+  line-height: 1.85;
+}
+.article.guide-article.tax-status-article .tax-roadmap-cards p:last-child { margin-bottom: 0; }
+.article.guide-article.tax-status-article .org-explainer-note p + p { margin-top: 10px; }
+@media (max-width: 850px) {
+  .article.guide-article.tax-status-article .tax-roadmap-cards {
+    grid-template-columns: 1fr;
+  }
+  .article.guide-article.tax-status-article .tax-roadmap-cards-two {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 720px) {
+  .article.guide-article.tax-status-article .tax-roadmap-table-wrap {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+    margin: 22px 0 10px;
+  }
+  .article.guide-article.tax-status-article .tax-roadmap-table,
+  .article.guide-article.tax-status-article .tax-roadmap-table tbody,
+  .article.guide-article.tax-status-article .tax-roadmap-table tbody tr {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  .article.guide-article.tax-status-article .tax-roadmap-table thead { display: none; }
+  .article.guide-article.tax-status-article .tax-roadmap-table tbody tr {
+    border: 1px solid #d9e4d8;
+    border-radius: 8px;
+    margin: 0 0 13px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 3px 13px rgba(28,62,39,.04);
+  }
+  .article.guide-article.tax-status-article .tax-roadmap-table tbody th {
+    display: block;
+    width: 100%;
+    padding: 13px 15px 12px;
+    background: #eaf1e8;
+    border: 0;
+    font-size: 15px;
+  }
+  .article.guide-article.tax-status-article .tax-roadmap-table tbody th small {
+    display: inline-block;
+    margin: 0 0 0 9px;
+  }
+  .article.guide-article.tax-status-article .tax-roadmap-table tbody td {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 11px 15px;
+    border: 0;
+    border-bottom: 1px solid #e9eee7;
+    background: #fff;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+  .article.guide-article.tax-status-article .tax-roadmap-table tbody td::before {
+    content: attr(data-label);
+    display: block;
+    color: #78897a;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.7;
+    margin-bottom: 3px;
+  }
+  .article.guide-article.tax-status-article .tax-roadmap-table tbody td:last-child {
+    border-bottom: 0;
+  }
+  .article.guide-article.tax-status-article .tax-roadmap-example {
+    padding: 18px 16px;
+  }
+  .article.guide-article.tax-status-article .tax-roadmap-cards > div {
+    padding: 17px 16px;
+  }
+}
