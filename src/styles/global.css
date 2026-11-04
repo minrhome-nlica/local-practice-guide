@@ -2932,6 +2932,29 @@ main table :is(th, td) p {
   font-weight: 400;
   line-height: 1.6;
 }
+.article.guide-article.tax-status-article .tax-roadmap-table tbody td small {
+  display: block;
+  margin-top: 5px;
+  color: #657b69;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+.article.guide-article.tax-status-article .tax-roadmap-table .tax-rate-note {
+  font-size: 11px;
+  line-height: 1.65;
+  color: #667c69;
+}
+.article.guide-article.tax-status-article .tax-roadmap-table tbody .tax-total-row th,
+.article.guide-article.tax-status-article .tax-roadmap-table tbody .tax-total-row td {
+  background: #edf5e9;
+  border-top: 2px solid #bdd1bb;
+  font-weight: 700;
+}
+.article.guide-article.tax-status-article .tax-roadmap-table tbody .tax-total-row td strong {
+  color: #205237;
+  font-size: 15px;
+}
 .article.guide-article.tax-status-article .tax-roadmap-table tbody tr:last-child :is(th,td) { border-bottom: 0; }
 .article.guide-article.tax-status-article .tax-roadmap-table td strong { color: #2c513d; }
 .article.guide-article.tax-status-article .org-table-hint {
