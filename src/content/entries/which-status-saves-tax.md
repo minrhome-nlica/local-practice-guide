@@ -142,7 +142,8 @@ tags:
 
 <div class="org-explainer-note">
   <strong>重要提醒｜設計服務業的營業稅起徵點與發票核定</strong>
-  <p>設計服務業每月營業額達<strong>5萬元</strong>，原則上已達營業稅起徵點。<strong>統一發票使用與否，由國稅局依營業性質、規模與申報情況核定</strong>；月營業額未達20萬元的商號，也可能須使用統一發票。<strong>本例年收100萬與200萬元的免開發票試算，僅適用於已獲核定的小規模商號</strong>；實際長期接設計案，請特別參考下一節「使用統一發票」的案例。進貨取得合法憑證並依限申報時，另可能有進項稅額10%扣減查定稅額的規定，這裡先不計。</p>
+  <p>設計相關業有兩個重要金額：<strong>每月銷售額達5萬元</strong>，原則上已達營業稅起徵點；<strong>平均每月銷售額達20萬元（全年約240萬元）</strong>，除法定例外，原則上須使用統一發票，按5%稅率申報營業稅。<strong>平均每月未達20萬元，也可能因營業性質、經營規模或帳務設備等條件，被國稅局核定使用統一發票。</strong></p>
+  <p>本例年收100萬元（月均約8.3萬元）及200萬元（月均約16.7萬元）的<strong>免用統一發票試算，僅適用經國稅局核定的小規模商號</strong>；實際須使用統一發票者，請看下一節「商號／工作室：使用統一發票」。符合規定的進項憑證另可能扣減查定稅額，本例先不計入。相關規定可參考<a href="https://startup.sme.gov.tw/home/modules/faq/detial.php?sId=63" target="_blank" rel="noopener noreferrer">經濟部新創圓夢網：使用統一發票條件</a>。</p>
 </div>
 
 更多有關登記與適用條件，請看<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。
