@@ -103,8 +103,6 @@ tags:
     <tr><th scope="row">個人免稅額＋標準扣除額</th><td data-label="全年100萬元">−237,000元</td><td data-label="全年200萬元">−237,000元</td></tr>
     <tr><th scope="row">課稅所得淨額</th><td data-label="全年100萬元">463,000元</td><td data-label="全年200萬元">1,163,000元</td></tr>
     <tr><th scope="row">全年綜合所得稅</th><td data-label="全年100萬元"><strong>23,150元</strong><small class="tax-rate-note">所得淨額0～610,000元級距，適用5%</small></td><td data-label="全年200萬元"><strong>96,860元</strong><small class="tax-rate-note">所得淨額610,001～1,380,000元級距，超額適用12%</small></td></tr>
-    <tr><th scope="row">全年已預扣所得稅（10%）</th><td data-label="全年100萬元">100,000元</td><td data-label="全年200萬元">200,000元</td></tr>
-    <tr><th scope="row">假設無其他因素，結算可退預扣稅</th><td data-label="全年100萬元"><strong>76,850元</strong></td><td data-label="全年200萬元"><strong>103,140元</strong></td></tr>
   </tbody>
 </table>
 </div>
