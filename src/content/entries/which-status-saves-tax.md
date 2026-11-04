@@ -223,7 +223,60 @@ tags:
 
 **把四種身分的差異讀懂後，再回頭看「客戶的付款成本」與「補助、貸款及合作機會」，就會比較容易選擇適合自己的經營方式。** 法律責任與法人地位另見<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
 
-### 5. 對方支付給你的成本，有什麼差別？
+### 5. 四種身分：單筆10萬元、年收100萬元、200萬元的稅額比較
+
+以下把前面四種情境放在一起看。**單筆10萬元是收款當下的扣繳或營業稅概算；全年100萬元、200萬元則是全年應負擔或申報的稅額**，不能把單筆預扣稅再加進全年所得稅一次。
+
+**第一張表｜單筆10萬元設計委託**
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="四種身分單筆10萬元稅費比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">身分</th><th scope="col">當次的稅費處理</th><th scope="col">當下入帳</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">個人9A</th><td data-label="當次的稅費處理">預扣所得稅10,000元、個人補充保費2,110元</td><td data-label="當下入帳"><strong>87,890元</strong></td></tr>
+    <tr><th scope="row">商號：免用發票</th><td data-label="當次的稅費處理">不逐筆扣繳；若查定銷售額10萬元，1%營業稅約1,000元，實際按期核定</td><td data-label="當下入帳"><strong>100,000元</strong></td></tr>
+    <tr><th scope="row">商號：使用發票</th><td data-label="當次的稅費處理">銷項稅5,000元；假設相應成本可扣進項稅1,000元，營業稅淨額約4,000元</td><td data-label="當下入帳"><strong>105,000元</strong><small>含代收營業稅5,000元</small></td></tr>
+    <tr><th scope="row">有限公司</th><td data-label="當次的稅費處理">同上，營業稅淨額約4,000元；所得稅要按全年公司損益、薪資及股利處理</td><td data-label="當下入帳"><strong>公司105,000元</strong><small>不是股東個人實領</small></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="org-table-hint">單筆案例的4,000元只是示範「銷項－進項」，實際營業稅按申報期全部銷項與合法進項計算。免用發票商號的1,000元也不是當次自動扣除。個人9A的2,110元是<strong>保費而非所得稅</strong>；以上均未扣其他實際營業成本。</p>
+
+**第二張表｜全年收入100萬元**
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="四種身分全年100萬元稅額比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">身分</th><th scope="col">全年所得稅</th><th scope="col">申報營業稅</th><th scope="col">合計繳納稅額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">個人9A<small>假設30%必要費用</small></th><td data-label="全年所得稅">23,150元</td><td data-label="申報營業稅">本例不另計</td><td data-label="合計繳納稅額"><strong>23,150元</strong></td></tr>
+    <tr><th scope="row">商號：免用發票<small>假設核定1%、純益率7%</small></th><td data-label="全年所得稅">0元</td><td data-label="申報營業稅">10,000元</td><td data-label="合計繳納稅額"><strong>10,000元</strong></td></tr>
+    <tr><th scope="row">商號：使用發票</th><td data-label="全年所得稅">28,150元</td><td data-label="申報營業稅">40,000元</td><td data-label="合計繳納稅額"><strong>68,150元</strong></td></tr>
+    <tr><th scope="row">有限公司<small>年薪70萬＋稅後股利</small></th><td data-label="全年所得稅">8,300元<small>公司0＋個人8,300</small></td><td data-label="申報營業稅">40,000元</td><td data-label="合計繳納稅額"><strong>48,300元</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+**第三張表｜全年收入200萬元**
+
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="四種身分全年200萬元稅額比較" tabindex="0">
+<table class="org-compare-table tax-roadmap-table">
+  <thead><tr><th scope="col">身分</th><th scope="col">全年所得稅</th><th scope="col">申報營業稅</th><th scope="col">合計繳納稅額</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">個人9A<small>假設30%必要費用</small></th><td data-label="全年所得稅">96,860元</td><td data-label="申報營業稅">本例不另計</td><td data-label="合計繳納稅額"><strong>96,860元</strong></td></tr>
+    <tr><th scope="row">商號：免用發票<small>僅限確實獲國稅局核定</small></th><td data-label="全年所得稅">0元</td><td data-label="申報營業稅">20,000元</td><td data-label="合計繳納稅額"><strong>20,000元</strong></td></tr>
+    <tr><th scope="row">商號：使用發票</th><td data-label="全年所得稅">120,860元</td><td data-label="申報營業稅">80,000元</td><td data-label="合計繳納稅額"><strong>200,860元</strong></td></tr>
+    <tr><th scope="row">有限公司<small>年薪70萬＋稅後股利</small></th><td data-label="全年所得稅">190,820元<small>公司180,000＋個人10,820</small></td><td data-label="申報營業稅">80,000元</td><td data-label="合計繳納稅額"><strong>270,820元</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="org-explainer-note">
+  <strong>這是稅款繳納總額，不是四種身分的「實際節稅排名」</strong>
+  <p>使用統一發票者，<strong>營業稅通常另向客戶收取後依法申報</strong>，不宜直接當作負責人自行負擔的所得稅；個人9A的<strong>補充保費</strong>也沒有算入全年「稅額」。本例假設實際成本占收入20%、開發票者可合法扣抵進項稅，並且個人沒有其他所得；有限公司另假設每年合法支付70萬元薪資、依法分配稅後股利。尚未計入完整勞健保、人事、記帳及公司維護成本。尤其<strong>年收200萬元的設計商號不能自行認定免用統一發票</strong>，應以國稅局核定為準。相關計算可搭配<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>、<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>和<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>閱讀。</p>
+</div>
+
+### 6. 對方支付給你的成本，有什麼差別？
 
 同樣是**100萬元的設計委託**，假設付款方是一家能夠依法全額扣抵相關進項稅額的公司：
 
@@ -245,7 +298,7 @@ tags:
 
 <p class="org-table-hint">本例未加計額外行政、人事或契約成本。能否列作所得稅的業務費用，與能否扣抵5%營業稅是兩回事。詳細規定請看<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅：9A、9B、50怎麼扣？〉</a>、<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。</p>
 
-### 6. 補助計畫、貸款與合作，個人、商號、公司有什麼不同？
+### 7. 補助計畫、貸款與合作，個人、商號、公司有什麼不同？
 
 身分的選擇也影響<strong>哪些計畫能申請、貸款以誰的名義辦理、能否開發票及簽約</strong>。但不代表有限公司的資格一定比商號或個人更多。
 
