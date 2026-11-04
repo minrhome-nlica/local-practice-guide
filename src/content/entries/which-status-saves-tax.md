@@ -167,25 +167,25 @@ tags:
 
 客戶支付的105,000元包含**設計收入100,000元**及**銷項營業稅5,000元**。工作室依法扣抵合法進項稅額後，申報繳納差額。
 
-**一整年收入100萬、200萬時：** 假設收入是未稅金額，實際業務成本占20%，這些成本可以核實認列，而且都取得合法可扣抵進項發票（另計5%進項稅）：
+**一整年收入100萬、300萬時：** 假設收入是未稅金額，實際業務成本占20%，這些成本可以核實認列，而且都取得合法可扣抵進項發票（另計5%進項稅）：
 
 <div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="開發票獨資工作室年收入比較" tabindex="0">
 <table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">計算項目</th><th scope="col">全年100萬元</th><th scope="col">全年200萬元</th></tr></thead>
+  <thead><tr><th scope="col">計算項目</th><th scope="col">全年100萬元</th><th scope="col">全年300萬元</th></tr></thead>
   <tbody>
-    <tr><th scope="row">未稅營業收入</th><td data-label="全年100萬元">1,000,000元</td><td data-label="全年200萬元">2,000,000元</td></tr>
-    <tr><th scope="row">實際可認列成本</th><td data-label="全年100萬元">−200,000元</td><td data-label="全年200萬元">−400,000元</td></tr>
-    <tr><th scope="row">併入負責人綜所稅的營利所得</th><td data-label="全年100萬元">800,000元</td><td data-label="全年200萬元">1,600,000元</td></tr>
-    <tr><th scope="row">負責人全年綜合所得稅</th><td data-label="全年100萬元"><strong>28,150元</strong></td><td data-label="全年200萬元"><strong>120,860元</strong></td></tr>
-    <tr><th scope="row">向客戶收取銷項營業稅</th><td data-label="全年100萬元">50,000元</td><td data-label="全年200萬元">100,000元</td></tr>
-    <tr><th scope="row">可扣抵進項營業稅</th><td data-label="全年100萬元">−10,000元</td><td data-label="全年200萬元">−20,000元</td></tr>
-    <tr><th scope="row">申報繳納營業稅</th><td data-label="全年100萬元"><strong>40,000元</strong></td><td data-label="全年200萬元"><strong>80,000元</strong></td></tr>
-    <tr class="tax-total-row"><th scope="row">全年所得稅＋營業稅合計</th><td data-label="全年100萬元"><strong>68,150元</strong></td><td data-label="全年200萬元"><strong>200,860元</strong></td></tr>
+    <tr><th scope="row">未稅營業收入</th><td data-label="全年100萬元">1,000,000元</td><td data-label="全年300萬元">3,000,000元</td></tr>
+    <tr><th scope="row">實際可認列成本</th><td data-label="全年100萬元">−200,000元</td><td data-label="全年300萬元">−600,000元</td></tr>
+    <tr><th scope="row">併入負責人綜所稅的營利所得</th><td data-label="全年100萬元">800,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,000,000 − 200,000 ＝ 800,000元</div></details></td><td data-label="全年300萬元">2,400,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>3,000,000 − 600,000 ＝ 2,400,000元</div></details></td></tr>
+    <tr><th scope="row">負責人全年綜合所得稅</th><td data-label="全年100萬元"><strong>28,150元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>(800,000 − 237,000) × 5% ＝ 28,150元</div></details></td><td data-label="全年300萬元"><strong>279,500元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>(2,400,000 − 237,000) × 20% − 153,100 ＝ 279,500元<span class="tax-calc-tip">20%級距累進差額153,100元</span></div></details></td></tr>
+    <tr><th scope="row">向客戶收取銷項營業稅</th><td data-label="全年100萬元">50,000元</td><td data-label="全年300萬元">150,000元</td></tr>
+    <tr><th scope="row">可扣抵進項營業稅</th><td data-label="全年100萬元">−10,000元</td><td data-label="全年300萬元">−30,000元</td></tr>
+    <tr><th scope="row">申報繳納營業稅</th><td data-label="全年100萬元"><strong>40,000元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>50,000 − 10,000 ＝ 40,000元</div></details></td><td data-label="全年300萬元"><strong>120,000元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>150,000 − 30,000 ＝ 120,000元</div></details></td></tr>
+    <tr class="tax-total-row"><th scope="row">全年所得稅＋營業稅合計</th><td data-label="全年100萬元"><strong>68,150元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>28,150 ＋ 40,000 ＝ 68,150元</div></details></td><td data-label="全年300萬元"><strong>399,500元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>279,500 ＋ 120,000 ＝ 399,500元<span class="tax-calc-tip">其中營業稅為向客戶另收後依法申報的稅款</span></div></details></td></tr>
   </tbody>
 </table>
 </div>
 
-**本例商號年收100萬元合計申報68,150元稅款；年收200萬元合計200,860元。** 其中營業稅4萬元或8萬元由代收的銷項稅扣抵合法進項稅後繳納，個人所得稅則由負責人負擔。以上依實際成本核實認列；其他合法申報方式與所得額標準仍要依帳務及國稅局規定判斷。
+**本例商號年收100萬元合計申報68,150元稅款；年收300萬元合計399,500元。** 其中營業稅4萬元或12萬元由代收的銷項稅扣抵合法進項稅後繳納，個人所得稅則由負責人負擔。以上依實際成本核實認列；其他合法申報方式與所得額標準仍要依帳務及國稅局規定判斷。
 
 **使用統一發票的獨資商號，營利所得併入負責人的個人綜所稅**，不適用公司的20%營所稅課徵方式。可延伸閱讀<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>與<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>。
 
@@ -195,29 +195,29 @@ tags:
 
 **接到一筆10萬元設計案：** 公司對一般應稅服務開立發票，客戶支付**105,000元**，其中100,000元是未稅營業收入，5,000元是代收銷項營業稅。之後公司可以依法支付你的薪資，也可以在完成結算與法定程序後分配股利。
 
-**一整年收入100萬、200萬時：** 以下先示範同一位設計師實際在公司工作、公司依法支付你**全年70萬元的合理薪資**；業務成本分別為20萬和40萬，剩餘可分配盈餘全數在合法程序完成後分給唯一股東。
+**一整年收入100萬、300萬時：** 以下先示範同一位設計師實際在公司工作、公司依法支付你**全年70萬元的合理薪資**；業務成本分別為20萬和60萬，剩餘可分配盈餘全數在合法程序完成後分給唯一股東。
 
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="有限公司年收入100萬元及200萬元薪資股利試算" tabindex="0">
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="有限公司年收入100萬元及300萬元薪資股利試算" tabindex="0">
 <table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">計算項目</th><th scope="col">全年100萬元</th><th scope="col">全年200萬元</th></tr></thead>
+  <thead><tr><th scope="col">計算項目</th><th scope="col">全年100萬元</th><th scope="col">全年300萬元</th></tr></thead>
   <tbody>
-    <tr><th scope="row">公司未稅營業收入</th><td data-label="全年100萬元">1,000,000元</td><td data-label="全年200萬元">2,000,000元</td></tr>
-    <tr><th scope="row">實際業務成本</th><td data-label="全年100萬元">−200,000元</td><td data-label="全年200萬元">−400,000元</td></tr>
-    <tr><th scope="row">公司給你的年薪</th><td data-label="全年100萬元">−700,000元</td><td data-label="全年200萬元">−700,000元</td></tr>
-    <tr><th scope="row">公司課稅所得</th><td data-label="全年100萬元">100,000元</td><td data-label="全年200萬元">900,000元</td></tr>
-    <tr><th scope="row">公司營所稅</th><td data-label="全年100萬元"><strong>0元</strong><small>未超過12萬元</small></td><td data-label="全年200萬元"><strong>180,000元</strong><small>90萬元×20%</small></td></tr>
-    <tr><th scope="row">假設全數分配的稅後股利</th><td data-label="全年100萬元">100,000元</td><td data-label="全年200萬元">720,000元</td></tr>
-    <tr><th scope="row">個人薪資＋股利所得稅<small>簡化同年度試算</small></th><td data-label="全年100萬元"><strong>8,300元</strong></td><td data-label="全年200萬元"><strong>10,820元</strong></td></tr>
-    <tr><th scope="row">全年公司＋個人所得稅</th><td data-label="全年100萬元"><strong>8,300元</strong></td><td data-label="全年200萬元"><strong>190,820元</strong></td></tr>
-    <tr><th scope="row">申報繳納營業稅</th><td data-label="全年100萬元">40,000元</td><td data-label="全年200萬元">80,000元</td></tr>
-    <tr class="tax-total-row"><th scope="row">全年所得稅＋營業稅合計</th><td data-label="全年100萬元"><strong>48,300元</strong></td><td data-label="全年200萬元"><strong>270,820元</strong></td></tr>
+    <tr><th scope="row">公司未稅營業收入</th><td data-label="全年100萬元">1,000,000元</td><td data-label="全年300萬元">3,000,000元</td></tr>
+    <tr><th scope="row">實際業務成本</th><td data-label="全年100萬元">−200,000元</td><td data-label="全年300萬元">−600,000元</td></tr>
+    <tr><th scope="row">公司給你的年薪</th><td data-label="全年100萬元">−700,000元</td><td data-label="全年300萬元">−700,000元</td></tr>
+    <tr><th scope="row">公司課稅所得</th><td data-label="全年100萬元">100,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,000,000 − 200,000 − 700,000 ＝ 100,000元</div></details></td><td data-label="全年300萬元">1,700,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>3,000,000 − 600,000 − 700,000 ＝ 1,700,000元</div></details></td></tr>
+    <tr><th scope="row">公司營所稅</th><td data-label="全年100萬元"><strong>0元</strong><small>未超過12萬元</small><details class="tax-calc-disclosure"><summary>查看算式</summary><div>所得100,000元未超過免徵營所稅的120,000元門檻</div></details></td><td data-label="全年300萬元"><strong>340,000元</strong><small>170萬元×20%</small><details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,700,000 × 20% ＝ 340,000元</div></details></td></tr>
+    <tr><th scope="row">假設全數分配的稅後股利</th><td data-label="全年100萬元">100,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>100,000 − 0 ＝ 100,000元</div></details></td><td data-label="全年300萬元">1,360,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,700,000 − 340,000 ＝ 1,360,000元</div></details></td></tr>
+    <tr><th scope="row">個人薪資＋股利所得稅<small>簡化同年度試算</small></th><td data-label="全年100萬元"><strong>8,300元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>(700,000 ＋ 100,000 − 464,000) × 5% − 100,000 × 8.5% ＝ 8,300元<span class="tax-calc-tip">464,000元為個人免稅額、標準扣除額和薪資特別扣除額合計</span></div></details></td><td data-label="全年300萬元"><strong>86,100元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>(700,000 ＋ 1,360,000 − 464,000) × 20% − 153,100 − 80,000 ＝ 86,100元<span class="tax-calc-tip">股利8.5%原可抵減115,600元，但每戶最多抵減80,000元</span></div></details></td></tr>
+    <tr><th scope="row">全年公司＋個人所得稅</th><td data-label="全年100萬元"><strong>8,300元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>0 ＋ 8,300 ＝ 8,300元</div></details></td><td data-label="全年300萬元"><strong>426,100元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>340,000 ＋ 86,100 ＝ 426,100元</div></details></td></tr>
+    <tr><th scope="row">申報繳納營業稅</th><td data-label="全年100萬元">40,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>50,000 − 10,000 ＝ 40,000元</div></details></td><td data-label="全年300萬元">120,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>150,000 − 30,000 ＝ 120,000元</div></details></td></tr>
+    <tr class="tax-total-row"><th scope="row">全年所得稅＋營業稅合計</th><td data-label="全年100萬元"><strong>48,300元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>0 ＋ 8,300 ＋ 40,000 ＝ 48,300元</div></details></td><td data-label="全年300萬元"><strong>546,100元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>340,000 ＋ 86,100 ＋ 120,000 ＝ 546,100元</div></details></td></tr>
   </tbody>
 </table>
 </div>
 
-**年收200萬元的稅額計算：** 公司營收200萬，扣掉40萬成本及70萬薪資，剩90萬元課稅所得，先繳18萬元營所稅，還有72萬元股利可以依法分配。假設你在同一個個人課稅年度取得70萬元薪資與72萬元股利，扣掉免稅額、標準扣除額與薪資特別扣除額後，所得淨額95.6萬元；綜所稅72,020元，再減股利可抵減稅額61,200元，個人所得稅為**10,820元**。
+**年收300萬元的稅額計算：** 公司收入300萬元，扣除60萬元成本及70萬元薪資，課稅所得為170萬元，營所稅340,000元，稅後可分配股利136萬元。假設個人在同一課稅年度取得70萬元薪資及136萬元股利，扣除個人免稅額、標準扣除額與薪資特別扣除額合計46.4萬元，課稅所得淨額為159.6萬元，綜所稅原額166,100元。股利8.5%抵減額原為115,600元，因每戶抵減上限為80,000元，實際個人所得稅為**86,100元**。
 
-**這間有限公司，年收100萬元合計申報48,300元稅款；年收200萬元合計270,820元。** 其中年收200萬元的公司營所稅180,000元、股東個人所得稅10,820元，另有向客戶代收並扣抵進項後的營業稅80,000元。營業稅由代收的銷項稅扣除合法進項後繳納，**不等於股東額外負擔8萬元個人所得稅**；年收100萬元的營業稅則為40,000元。
+**本例有限公司年收100萬元的所得稅及營業稅合計48,300元；年收300萬元合計546,100元。** 年收300萬元包含公司營所稅340,000元、股東個人所得稅86,100元及營業稅120,000元。營業稅由向客戶另收的銷項稅額扣抵合法進項稅額後申報，不屬於股東個人所得稅。
 
 <div class="org-explainer-note">
   <strong>有限公司的薪資、股利與營運成本</strong>
