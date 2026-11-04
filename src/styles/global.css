@@ -2955,6 +2955,50 @@ main table :is(th, td) p {
   color: #205237;
   font-size: 15px;
 }
+/* Expandable arithmetic: concise amounts by default, details on demand. */
+.article.guide-article.tax-status-article .tax-roadmap-table .tax-calc-disclosure {
+  display: block;
+  margin-top: 6px;
+  max-width: 100%;
+  font-weight: 400;
+}
+.article.guide-article.tax-status-article .tax-roadmap-table .tax-calc-disclosure > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 7px;
+  border: 1px solid #d3e2d2;
+  border-radius: 5px;
+  background: #f4f8f1;
+  color: #37634b;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.6;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+.article.guide-article.tax-status-article .tax-roadmap-table .tax-calc-disclosure > summary::-webkit-details-marker { display: none; }
+.article.guide-article.tax-status-article .tax-roadmap-table .tax-calc-disclosure > summary::before { content: '+'; font-size: 14px; line-height: 1; }
+.article.guide-article.tax-status-article .tax-roadmap-table .tax-calc-disclosure[open] > summary::before { content: '−'; }
+.article.guide-article.tax-status-article .tax-roadmap-table .tax-calc-disclosure > summary:focus-visible { outline: 2px solid #447c59; outline-offset: 2px; }
+.article.guide-article.tax-status-article .tax-roadmap-table .tax-calc-disclosure > div {
+  margin-top: 7px;
+  padding: 8px 9px;
+  border-left: 2px solid #9ab79d;
+  border-radius: 3px;
+  background: #f5f8f3;
+  color: #3f5947;
+  font-size: 11px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.article.guide-article.tax-status-article .tax-roadmap-table .tax-calc-disclosure .tax-calc-tip {
+  display: block;
+  margin-top: 4px;
+  color: #6a7b6c;
+  font-size: 10.5px;
+}
 .article.guide-article.tax-status-article .tax-roadmap-table tbody tr:last-child :is(th,td) { border-bottom: 0; }
 .article.guide-article.tax-status-article .tax-roadmap-table td strong { color: #2c513d; }
 .article.guide-article.tax-status-article .org-table-hint {
