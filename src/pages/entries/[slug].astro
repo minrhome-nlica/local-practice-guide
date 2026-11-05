@@ -51,6 +51,28 @@ const related = [...new Set(relatedIds)].filter((id) => id !== entry.id).map((id
       if (shortcuts && firstChapter) {
         firstChapter.before(shortcuts);
       }
+      // Some legacy raw-HTML paragraphs contain literal Markdown emphasis marks.
+      // Repair only visible text nodes, leaving code samples and existing HTML intact.
+      if (articleBody) {
+        const candidates = [];
+        const walker = document.createTreeWalker(articleBody, NodeFilter.SHOW_TEXT);
+        for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+          if (node.textContent?.includes('**') && !node.parentElement?.closest('code, pre, kbd, samp, script, style')) candidates.push(node);
+        }
+        candidates.forEach((node) => {
+          const pieces = (node.textContent || '').split(/(\\*\\*[^*\\n]{1,300}\\*\\*)/g);
+          if (pieces.length < 2) return;
+          const frag = document.createDocumentFragment();
+          pieces.forEach((piece) => {
+            if (piece.startsWith('**') && piece.endsWith('**')) {
+              const strong = document.createElement('strong');
+              strong.textContent = piece.slice(2, -2);
+              frag.append(strong);
+            } else if (piece) frag.append(document.createTextNode(piece));
+          });
+          node.replaceWith(frag);
+        });
+      }
       // Give every plain Markdown table the same full-width design. Existing
       // custom tables keep their own wrappers, widths, and editorial styling.
       articleBody?.querySelectorAll(':scope > table:not([class])').forEach((table) => {

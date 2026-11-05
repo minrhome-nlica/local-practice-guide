@@ -260,7 +260,7 @@ tags:
 
 下表把每一項費用的單價、數量、總價、申請補助、自籌款及編列說明放在同一張表中，讓讀者不必來回對照，便能了解這個計畫需要哪些經費。
 
-<div class="budget-case-table-shell" role="region" aria-label="豐田三村街區藝術展完整經費編列表，可左右捲動" tabindex="0">
+<div class="budget-case-table-shell" role="region" aria-label="豐田三村街區藝術展完整經費編列示例" tabindex="0">
   <table class="budget-case-table">
     <caption>豐田三村街區藝術展｜經費編列示例（單位：新臺幣元）</caption>
     <colgroup><col class="case-col-item" /><col class="case-col-price" /><col class="case-col-quantity" /><col class="case-col-total" /><col class="case-col-grant" /><col class="case-col-self" /><col class="case-col-description" /></colgroup>
@@ -293,7 +293,7 @@ tags:
     </tfoot>
   </table>
 </div>
-<p class="budget-case-scroll-hint">如果使用手機閱讀，可以左右滑動表格，查看補助款、自籌款與編列說明。</p>
+<p class="budget-case-scroll-hint">手機閱讀會依經費項目分組顯示單價、數量、補助款、自籌款及說明。</p>
 <p class="budget-case-footnote">「—」表示該項沒有編列自籌款。例如授權費總價 7,500 元，其中 5,000 元編列申請補助、2,500 元為自籌款。這是依工作項目分配經費的示例，實際可補助項目仍應以申請年度規定為準。</p>
 
 這張示範表有三件事值得注意。

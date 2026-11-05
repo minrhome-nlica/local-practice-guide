@@ -3314,3 +3314,58 @@ main table :is(th, td) p {
   .article .coop-income-table tbody td small {font-size:10px;white-space:nowrap;}
   .article .coop-income-table tbody .studio-tax-total-row strong {font-size:12px;}
 }
+
+
+/* 2026 site-wide reading audit: allow content columns to use the actual space. */
+@media (min-width:701px) {
+  .article .studio-guide-table:has(thead th:nth-child(5)) thead th:first-child {width:12%;}
+  .article .studio-guide-table:has(thead th:nth-child(7)) thead th:first-child {width:9%;}
+  .article .studio-guide-table:has(thead th:nth-child(5)) :is(th,td) {padding:10px 7px;font-size:12px;}
+  .article .studio-guide-table:has(thead th:nth-child(7)) tbody strong {font-size:12px;}
+  .article .studio-tax-compare thead th:first-child {width:22%;}
+  .article .studio-tax-compare thead th:nth-child(n+2) {width:39%;}
+  .article .studio-tax-300-table thead th:first-child,
+  .article .studio-tax-300-table tbody th:first-child {width:27%;}
+  .article .studio-tax-300-table thead th:nth-child(n+2) {width:36.5%;}
+  .article.guide-article .guide-table-frame.guide-table-pair > table {table-layout:auto;}
+  .article.guide-article .guide-table-frame.guide-table-pair > table tr > :first-child {width:40%;}
+  .article.guide-article .guide-table-frame.guide-table-pair > table tr > :last-child {width:60%;}
+  .article.guide-article .guide-table-frame.guide-table-ledger > table tr > :first-child {width:64%;}
+  .article.guide-article .guide-table-frame.guide-table-ledger > table tr > :last-child {width:36%;}
+}
+/* Keep four-tier budget classifications readable without forcing sideways movement. */
+@media (max-width:700px) {
+  .budget-article .budget-table-scroll {overflow-x:visible;}
+  .budget-article .budget-layered-table {width:100%;min-width:0;table-layout:fixed;}
+  .budget-article .budget-layered-table :is(th,td) {min-width:0;padding:9px 5px;font-size:12px;line-height:1.65;overflow-wrap:break-word;word-break:normal;}
+  .budget-article .budget-layered-table :is(.budget-table-door,.budget-table-first) {padding-inline:3px;}
+}
+/* The seven-column budget example becomes compact item cards on phones. */
+@media (max-width:700px) {
+  .budget-article .budget-case-table-shell {border:0;overflow-x:visible;background:transparent;}
+  .budget-article .budget-case-table {display:block;width:100%;min-width:0;border:0;background:transparent;}
+  .budget-article .budget-case-table colgroup,.budget-article .budget-case-table thead {display:none;}
+  .budget-article .budget-case-table caption {display:block;border:1px solid #d9e3d8;border-radius:7px;padding:10px 13px;margin-bottom:10px;font-size:12px;}
+  .budget-article .budget-case-table tbody {display:grid;grid-template-columns:minmax(0,1fr);gap:10px;}
+  .budget-article .budget-case-table tbody tr {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:5px 10px;border:1px solid #d9e3d8;border-radius:8px;background:#fff;}
+  .budget-article .budget-case-table tbody th {display:block;grid-column:1/-1;padding:9px 5px;border-bottom:1px solid #d9e3d8;background:#eef4ea;font-size:14px;}
+  .budget-article .budget-case-table tbody td {display:block;min-width:0;width:auto;padding:9px 6px;border:0!important;background:transparent!important;text-align:left!important;font-size:13px;white-space:normal;overflow-wrap:break-word;}
+  .budget-article .budget-case-table tbody td::before {display:block;font-size:11px;line-height:1.5;color:#6c8272;font-weight:700;margin-bottom:3px;}
+  .budget-article .budget-case-table tbody td:nth-child(2)::before {content:"單價";}
+  .budget-article .budget-case-table tbody td:nth-child(3)::before {content:"數量";}
+  .budget-article .budget-case-table tbody td:nth-child(4)::before {content:"總價";}
+  .budget-article .budget-case-table tbody td:nth-child(5)::before {content:"申請補助";}
+  .budget-article .budget-case-table tbody td:nth-child(6)::before {content:"自籌款";}
+  .budget-article .budget-case-table tbody td:nth-child(7) {grid-column:1/-1;border-top:1px solid #e6ece3!important;}
+  .budget-article .budget-case-table tbody td:nth-child(7)::before {content:"編列說明";}
+  .budget-article .budget-case-table tfoot {display:block;margin-top:10px;border-radius:8px;overflow:hidden;}
+  .budget-article .budget-case-table tfoot tr {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));background:#315644;padding:8px 11px;}
+  .budget-article .budget-case-table tfoot tr > :is(th,td) {display:block;min-width:0;padding:8px 5px;border:0;color:#fff;white-space:normal;text-align:left!important;font-size:13px;}
+  .budget-article .budget-case-table tfoot th {grid-column:1/-1;font-size:15px!important;}
+  .budget-article .budget-case-table tfoot td:nth-child(2)::before {content:"總價";}
+  .budget-article .budget-case-table tfoot td:nth-child(3)::before {content:"申請補助";}
+  .budget-article .budget-case-table tfoot td:nth-child(4)::before {content:"自籌款";}
+  .budget-article .budget-case-table tfoot td:nth-child(5) {grid-column:1/-1;font-size:12px;}
+  .budget-article .budget-case-table tfoot td::before {display:block;color:#bed1c2;font-size:11px;margin-bottom:3px;}
+  .budget-article .budget-case-scroll-hint {display:none;}
+}
