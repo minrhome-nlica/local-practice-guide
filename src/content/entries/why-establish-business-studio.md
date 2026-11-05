@@ -63,8 +63,6 @@ tags:
   </div>
 </div>
 
-**獨資與合夥商號都不是獨立法人，經營者仍須依法承擔事業責任。** 有限公司則具有獨立法人格。詳細可閱讀<a href="/local-practice-guide/entries/why-establish-company/">〈為什麼要成立公司？〉</a>及<a href="/local-practice-guide/entries/legal-person-natural-person/">〈什麼是法人、自然人？〉</a>。
-
 ## 二、依法需要辦理商業或稅籍登記的情形
 
 辦理商業或稅籍登記，很常就是民間說的成立商號或工作室。以下說明哪些情形依法需要辦理登記。
