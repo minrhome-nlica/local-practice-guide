@@ -32,24 +32,37 @@ tags:
 
 本文依序介紹商號的意義、依法需要辦理登記的情形、成立商號的實際好處，以及經營身分的選擇。
 
-## 一、商號、行號、工作室有什麼不同？
+## 一、什麼是工作室、商號、行號與企業社？
 
-**商號**是以營利為目的、採取獨資或合夥方式經營的事業。依《商業登記法》完成登記的「商行」、「企業社」、「工作室」，雖然名稱不同，仍可能屬於相同的商業經營形式。
+**「工作室」、「商行」、「行號」、「企業社」常是對外使用的名稱，真正要區分的是經營者採取什麼法律身分。**
 
-<div class="org-concept-pair" aria-label="獨資商號與合夥商號">
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="工作室、商號、行號與企業社的意思" tabindex="0">
+<table class="org-compare-table studio-guide-table">
+<thead><tr><th scope="col">名稱</th><th scope="col">簡單來說</th></tr></thead>
+<tbody>
+<tr><th scope="row">工作室</th><td data-label="簡單來說">常見於設計、攝影、藝術等工作。可以只是個人使用的名稱，也可以依法登記為商號或公司。</td></tr>
+<tr><th scope="row">商號</th><td data-label="簡單來說">以營利為目的，採獨資或合夥方式經營的商業形式；依規定辦理商業登記。</td></tr>
+<tr><th scope="row">行號／商行</th><td data-label="簡單來說">一般對商業或店家的稱呼，例如「○○商行」，不是另一種獨立法人。</td></tr>
+<tr><th scope="row">企業社</th><td data-label="簡單來說">常見的商業名稱，例如「○○企業社」，可以採獨資或合夥形式登記。</td></tr>
+</tbody></table>
+</div>
+
+商號主要有兩種經營方式：
+
+<div class="org-concept-pair" aria-label="獨資與合夥商號">
   <div>
-    <span>形式 01｜獨資商號</span>
+    <span>形式 01｜獨資</span>
     <strong>一個人出資、自己經營</strong>
-    <p>例如攝影師成立攝影工作室，自己承接案件、購買設備與管理收支。事業債務由負責人依法承擔。</p>
+    <p>例如攝影師成立攝影工作室，自己接案、購買設備及管理收支。</p>
   </div>
   <div>
-    <span>形式 02｜合夥商號</span>
+    <span>形式 02｜合夥</span>
     <strong>兩人以上共同經營</strong>
-    <p>例如攝影師與剪輯師共同經營影像工作室，依合夥契約出資、分工及分享損益，並依法承擔合夥債務。</p>
+    <p>例如攝影師與剪輯師共同經營工作室，依合夥契約出資、分工與分配收益。</p>
   </div>
 </div>
 
-**「工作室」是名稱，不是單獨的法律身分。** 有些只是個人的工作品牌，有些登記成商號，也有些採公司形式。獨資及合夥商號均**不是獨立法人**，其責任與有限公司不同。詳細可閱讀<a href="/local-practice-guide/entries/legal-person-natural-person/">〈什麼是法人、自然人？〉</a>。
+**獨資與合夥商號都不是獨立法人，經營者仍須依法承擔事業責任。** 有限公司則具有獨立法人格。詳細可閱讀<a href="/local-practice-guide/entries/why-establish-company/">〈為什麼要成立公司？〉</a>及<a href="/local-practice-guide/entries/legal-person-natural-person/">〈什麼是法人、自然人？〉</a>。
 
 ## 二、依法需要辦理商業或稅籍登記的情形
 
