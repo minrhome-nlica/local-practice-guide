@@ -1,515 +1,167 @@
 ---
 title: 從個人到商號、組織或公司，什麼身分對我最合適？
-summary: 一個人接案，可以比較個人、商號與有限公司的稅負和責任；想推動公共事務或和其他工作者共同經營，則從社團法人與合作社的實際案例理解差異。
+summary: 商號、公司、合作社與人民團體各有不同功能。從營業登記、資金與股份、社員互助到公共事務，認識什麼時候需要哪一種組織，以及為什麼可以同時成立不同組織。
 category: organizations
-level: 實務
-updated: 2026-11-03
+level: 入門
+updated: 2026-11-05
 status: 編輯稿
 related:
-  - legal-person-natural-person
   - why-establish-business-studio
+  - why-establish-company
+  - why-establish-limited-cooperative
+  - legal-person-natural-person
   - why-establish-legal-person
-  - income-withholding
   - supplemental-premium
   - business-income-tax
-  - comprehensive-income-tax
-  - labor-health-insurance
+  - income-withholding
 tags:
-  - 經營身分
-  - 個人接案
+  - 身分選擇
   - 商號
   - 工作室
+  - 公司
   - 有限公司
+  - 旅行社
+  - 合作社
   - 人民團體
   - 社團法人
-  - 合作社
-  - 營業稅
-  - 綜合所得稅
+  - 公共空間
+  - 稅籍登記
+  - 地方實踐
 ---
 
-地方工作者可以個人接案、成立工作室或公司，也可以透過社團法人推動公共事務，或成立合作社共同經營。**不同身分涉及稅負、收入歸屬、工作分配與法律責任。**
+對於很多人來說，都會遇到一個問題：**我到底該成立公司、人民團體、商號，或者合作社？**
 
-本文分成三類經營方式：**個人、商號與有限公司**，用同一位插畫設計師的年收入比較；**社團法人**，用一名固定領薪的設計師介紹非營利組織；**合作社**，用十五位藝文工作者共同接案的案例說明社員互助與營業稅的特殊規定。
+**這些組織不是只能四選一。** 同一個人可以依照不同需求，經營商號或公司、參與合作社，也可以和其他居民一起成立人民團體。例如，一名地方導覽工作者可以經營自己的工作室，同時是藝文合作社的社員，並參與推動社區公共事務的協會。
 
-<div class="tax-prerequisite-note" role="note" aria-label="閱讀提醒">
-  <span class="tax-prerequisite-eyebrow">閱讀提醒</span>
-  <strong class="tax-prerequisite-title">依工作方式判斷經營身分</strong>
-  <p>本文金額為教學試算。實際稅額依工作內容、所得類別、登記情況與主管機關核定辦理。所得扣繳與保費規定另見<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅〉</a>、<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>及<a href="/local-practice-guide/entries/business-income-tax/">〈營業稅與營所稅〉</a>。</p>
+真正重要的是：**每種組織的功能不同。** 經營商品或服務、擴大事業投資、讓工作者共同分配勞務收入，以及管理公共事務，適合的法律身分與管理方式也不一樣。不同組織可以並存，但**契約、財產、收入與帳務必須依各自的身分分開處理**。
+
+以下依照四種常見需求，說明什麼時候適合成立不同的組織。
+
+## 一、什麼時候該成立商號？
+
+**當工作開始以營利為目的，持續對外提供商品或勞務，而且依法需要辦理營業登記時，就應評估成立商號或工作室。**
+
+### 1. 經營收入達到營業稅起徵點
+
+以115年（2026年）現行規定來說，小規模營業人的營業稅起徵點依業別分為：
+
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="小規模營業人每月銷售額起徵點">
+<table class="org-compare-table studio-guide-table">
+<thead><tr><th scope="col">經營類型</th><th scope="col">每月銷售額起徵點</th><th scope="col">常見例子</th></tr></thead>
+<tbody>
+<tr><th scope="row">銷售貨物等業別</th><td data-label="起徵點"><strong>10萬元</strong></td><td data-label="例子">買賣、印刷、照相等業別</td></tr>
+<tr><th scope="row">銷售勞務等業別</th><td data-label="起徵點"><strong>5萬元</strong></td><td data-label="例子">設計、廣告、勞務承攬等業別</td></tr>
+</tbody></table>
 </div>
 
-## 一、先認識不同身分的差別
+這裡看的不是單筆案子的報酬，也不是扣掉成本後的淨利，而是**實際營業的每月銷售額**。依法經營商業，除符合《商業登記法》第5條等免辦商業登記情形外，須辦理商業登記；稅籍登記則另依國稅局規定處理。
 
-下表整理五種身分的適用工作方式、收入歸屬與法律責任。
+**個人憑專業技能取得的執行業務所得（9A），與以營利為目的持續銷售勞務的營業收入，並不是同一種情形。** 不能單憑年收入多少，就認定每個接案者都必須成立商號；應先確認實際工作的性質。
 
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="五種經營身分的用途與責任" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">身分</th><th scope="col">適合的工作方式</th><th scope="col">收入與責任</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">個人接案</th><td data-label="適合的工作方式">自己提供專業服務</td><td data-label="收入與責任">收入歸個人；自己承擔</td></tr>
-    <tr><th scope="row">獨資商號／工作室</th><td data-label="適合的工作方式">以事業名義持續經營</td><td data-label="收入與責任">所得併入負責人綜所稅；由負責人承擔</td></tr>
-    <tr><th scope="row">有限公司</th><td data-label="適合的工作方式">聘人、簽約、保留資金擴大事業</td><td data-label="收入與責任">錢屬公司；股東原則以出資額為限負責</td></tr>
-    <tr><th scope="row">人民團體<small>以社團法人為例</small></th><td data-label="適合的工作方式">會員共同推動組織宗旨</td><td data-label="收入與責任">錢屬團體；結餘不得分紅給會員</td></tr>
-    <tr><th scope="row">有限責任合作社</th><td data-label="適合的工作方式">社員共同經營、共享資源與工作機會</td><td data-label="收入與責任">錢屬合作社；社員依合作社法及章程參與經營與分配</td></tr>
-  </tbody>
-</table>
+### 2. 商號可能比個人接案更適合處理稅務與保費
+
+對於需要長期採購設備、支付業務成本、固定向客戶請款的工作者，商號可以依適用規定處理營業收入、成本與稅務。
+
+個人取得符合規定的執行業務收入時，可能涉及**2.11%的二代健保補充保費**；依法經營商號所取得的營業收入，則須依商號的營業稅、營利所得及負責人投保情形分別判斷。**在部分情況下，商號的整體稅費負擔可能較低，但並非成立商號就一定節稅或免繳補充保費。**
+
+同樣的工作，也不能只為了省稅就任意改變收入類別；應依實際經營方式及稅務認定辦理。
+
+詳細內容可閱讀<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈營業稅與營所稅〉</a>及<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>。
+
+## 二、什麼時候該成立公司？
+
+公司適合需要**長期經營、擴大投資、引進股東，或依法必須採公司組織**的事業。有限公司具有獨立法人格，可以由一名股東設立，公司財產原則上與股東個人分開。
+
+### 1. 經營法律規定必須採公司形式的業務
+
+例如，地方青年原本以個人身分提供村落導覽解說，後來準備進一步經營旅行社，替旅客安排旅遊、交通、住宿及相關行程。
+
+**單純導覽解說，不等於經營旅行社。** 但是開始經營《旅行業管理規則》規定的旅行業務時，**旅行業依法必須採公司組織**，並依規定申請籌設、公司登記及旅行業執照，不能只成立一般商號就直接經營旅行社。
+
+### 2. 希望擴大投資，讓其他人共同出資
+
+當事業需要購買大量設備、擴充工作團隊或開設新據點，公司可以透過股東出資、增資等方式引進資金，依法安排各出資者的權益。
+
+例如地方設計工作室擴大為整合展場、印刷與影像製作的公司，原本的經營者可以邀請新的股東投入資本。**有限公司可以增加股東與調整出資額；如要透過股份、股票安排投資，還須依實際需求評估股份有限公司等公司形式。**
+
+### 3. 希望以公司財務紀錄申請融資
+
+公司可以累積自己的合約、營收及財務報表，以公司名義申請營運或設備貸款，也能透過增資取得不必按貸款契約償還的股東資本。
+
+**商號同樣可以依法申請企業貸款**；成立公司並不保證貸款額度更高或比較容易核准。銀行仍會審查信用、財務及擔保條件，必要時也可能要求負責人提供個人保證。
+
+詳細內容可閱讀<a href="/local-practice-guide/entries/why-establish-company/">〈為什麼要成立公司？〉</a>及<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
+
+## 三、什麼時候該成立合作社？
+
+**當一群工作者希望共同取得工作機會、共享設備與行政資源，並依實際勞務或交易貢獻分配收入時，可以評估成立合作社。**
+
+### 1. 用社員互助代替各自單打獨鬥
+
+例如七位地方藝文工作者分別擅長設計、攝影、木工、舞台及活動執行。由一人獨自接案，再臨時找其他人協作，容易讓行政、設備與議價能力集中在少數人身上。
+
+成立符合業務需求的**有限責任勞動合作社**後，社員可以透過共同組織整合工作、設備與行政服務，並依章程共同決策。合作社至少需要七名社員，原則上採**一社員一票**的決策方式。
+
+### 2. 依實際工作與交易貢獻分配，而非只看持股
+
+在一般公司，股東即使沒有直接參與工作，也可能依持股分得股利；在合作社，**社員實際提供的勞務可以依約定取得報酬**，依法可分配的年度結餘則主要依社員與合作社的交易額分配。
+
+例如七名藝文社員共同承接1,190萬元案件，可以事先約定由主責者取得部分勞務報酬，另外一部分依全體社員的協作紀錄分配；合作社則保留管理經費。**大家的收入取決於實際工作與約定，不必按出資多寡分配。**
+
+合作社依法銷售給社員的特定貨物或勞務，也可能適用免徵營業稅規定；但對外承攬、管理費與社員勞務報酬，仍要按實際交易處理，並遵守非社員使用業務的限制。
+
+詳細的七人案例可閱讀<a href="/local-practice-guide/entries/why-establish-limited-cooperative/">〈為什麼要成立有限責任合作社？〉</a>。
+
+## 四、什麼時候該成立人民團體？
+
+**當工作的目的主要是公共利益，而不是把經營盈餘分給個人時，人民團體是重要的組織選擇。** 例如社區照顧、地方文化保存、親子教育、公共空間活化及居民參與等事務，適合由依法立案的協會持續推動。
+
+### 1. 以非營利方式推動公共事務，接受捐款
+
+人民團體可以依法向外界接受捐贈，將資源用在章程所定的公益活動；符合教育、文化、公益、慈善團體免納所得稅的條件時，**部分非銷售性質的所得可以免納所得稅**。
+
+**非營利不代表所有收入都免稅。** 協會對外銷售商品、承接設計案或提供收費服務，仍須按收入性質處理稅務。接受他人主動捐款與主動向社會公開發起勸募，也有不同規定；正式公開募款須確認是否具備勸募資格及需要申請許可。
+
+協會的收入與財產應用於組織目的，**可以依法聘請工作人員、支付合理工作報酬，但結餘不得直接當作會員分紅**。
+
+### 2. 以公共組織身分參與空間共管
+
+例如村落有一處閒置的公有空間，居民希望把它改為親子活動、長者共餐與地方課程的共同據點。
+
+如果空間由某個人直接承租並經營，相關設備、收入及使用決策容易集中在私人事業。若由具有共同決策與財務管理制度的協會提出公共使用計畫，便能讓**管理目的、參與方式、經費用途與使用規則**更加明確，並由會員與理監事制度持續監督。
+
+這也是人民團體參與公共空間共管的一項優勢：**能清楚說明空間是服務社區，而非供某個人私用或獨占利益。**
+
+但成立協會**不會自動取得公有空間的使用權，也不代表合作案必然沒有圖利或利益衝突問題**。公有空間仍須依主管機關的出租、委託經營、公開徵選或其他適用程序辦理，並符合公平與公共利益原則。
+
+### 3. 團體立案與法人登記是兩回事
+
+依法立案的人民團體，**不一定已完成社團法人登記**。若未來要以社團法人資格持有財產、承接契約或符合特定申請資格，應依規定確認是否須完成法院法人登記。
+
+可延伸閱讀<a href="/local-practice-guide/entries/legal-person-natural-person/">〈什麼是法人、自然人？〉</a>，了解兩者法律身分的差別。
+
+## 五、總結
+
+**選擇組織，先看想要完成的工作。** 四種形式的主要功能可以這樣理解：
+
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="商號公司合作社人民團體的核心功能比較" tabindex="0">
+<table class="org-compare-table studio-guide-table">
+<thead><tr><th scope="col">組織形式</th><th scope="col">主要目的</th><th scope="col">適合的情況</th></tr></thead>
+<tbody>
+<tr><th scope="row">商號／工作室</th><td data-label="主要目的">持續經營商品與勞務</td><td data-label="適合的情況">需要登記營業、固定接案與請款</td></tr>
+<tr><th scope="row">公司</th><td data-label="主要目的">經營事業、投資與擴張</td><td data-label="適合的情況">法令要求公司、引進股東、購置設備與融資</td></tr>
+<tr><th scope="row">合作社</th><td data-label="主要目的">社員互助、共同經營</td><td data-label="適合的情況">共同取得工作、共享資源、依勞務與交易分配</td></tr>
+<tr><th scope="row">人民團體</th><td data-label="主要目的">推動公共利益</td><td data-label="適合的情況">文化保存、社區服務、捐款支持與公共空間共管</td></tr>
+</tbody></table>
 </div>
 
-<p class="org-table-hint">「工作室」只是常見稱呼，實際可能以個人、商號或公司經營。人民團體立案和取得社團法人資格是不同程序；有限責任合作社則具有法人地位。有限公司的股東若有個人保證或其他依法須負責的情形，仍可能承擔個人責任。</p>
+**同一個人不必只選一種身分。** 可以用商號處理自己的商業活動，透過公司擴大經營，與其他工作者組成合作社，也可以和居民成立協會推動公共事務。
 
-法人資格、商號登記與責任差異，可延伸閱讀<a href="/local-practice-guide/entries/legal-person-natural-person/">〈什麼是法人、自然人？〉</a>、<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>及<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
-
-## 二、個人、商號與有限公司的經營及稅務比較
-
-以插畫設計師從個人接案到經營工作室為例，比較**付款方支出、當次入帳金額與年度所得稅**在不同身分下的處理方式。
-
-以下分成四種身分，先用**單筆10萬元**說明收款，再看**全年收入100萬元和300萬元**的所得稅。
-
-全年試算共同假設：115年度（2026年）、臺灣境內居住、單身、沒有扶養親屬及其他所得，實際工作成本為收入的20%（年收100萬花20萬；年收300萬花60萬）。個人免稅額與標準扣除額合計**237,000元**；只有符合薪資所得條件的情境，才另計**227,000元薪資特別扣除額**。
-
-<div class="org-explainer-note">
-  <strong>三種收款及稅務項目</strong>
-  <p><strong>當下實領：</strong>這次付款匯到帳戶多少。<strong>全年所得稅：</strong>把一整年的應稅所得和扣除額算完，最後確定應負擔多少稅。<strong>營業稅：</strong>商號或公司可能向客戶代收，再扣抵合法進項後申報。預扣所得稅、個人補充保費與營業稅的用途不同，不能全部當作同一筆稅加總。</p>
-</div>
-
-### 1. 個人接案：單筆10萬元實領與全年100萬、300萬元所得稅
-
-假設你用**個人名義**承接插畫設計委託，付款方依實際業務內容將報酬列為**執行業務所得（代碼9A）**，且符合個人二代健保補充保費的扣取條件。
-
-**單筆10萬元設計報酬的收款計算**
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="個人9A單次10萬元報酬實領試算" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">給付項目</th><th scope="col">計算</th><th scope="col">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">設計報酬</th><td data-label="計算">約定報酬</td><td data-label="金額">100,000元</td></tr>
-    <tr><th scope="row">預扣所得稅</th><td data-label="計算">100,000 × 10%</td><td data-label="金額">−10,000元</td></tr>
-    <tr><th scope="row">個人補充保費</th><td data-label="計算">100,000 × 2.11%</td><td data-label="金額">−2,110元</td></tr>
-    <tr><th scope="row">當下實際入帳</th><td data-label="計算">100,000 − 10,000 − 2,110</td><td data-label="金額"><strong>87,890元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-**10,000元是付款方代繳的預扣所得稅**，隔年申報所得稅時可以抵繳，超扣部分可依規定退稅。**2,110元為個人補充保費**，屬於保險費，不抵繳所得稅。詳細規定分別見<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅：9A、9B、50怎麼扣？〉</a>及<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>。
-
-**全年100萬元與300萬元所得稅試算**
-
-假設全年分別收到10筆或30筆、每筆10萬元的9A報酬，並**僅為示範，假設該工作確實適用30%執行業務費用率**：
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="個人9A年收入100萬元及300萬元綜所稅比較" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">計算項目</th><th scope="col">全年100萬元</th><th scope="col">全年300萬元</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">全年收到的設計報酬</th><td data-label="全年100萬元">1,000,000元</td><td data-label="全年300萬元">3,000,000元</td></tr>
-    <tr><th scope="row">認列成本（假設30%）</th><td data-label="全年100萬元">−300,000元</td><td data-label="全年300萬元">−900,000元</td></tr>
-    <tr><th scope="row">執行業務所得</th><td data-label="全年100萬元">700,000元</td><td data-label="全年300萬元">2,100,000元</td></tr>
-    <tr><th scope="row">個人免稅額＋標準扣除額</th><td data-label="全年100萬元">−237,000元</td><td data-label="全年300萬元">−237,000元</td></tr>
-    <tr><th scope="row">課稅所得淨額</th><td data-label="全年100萬元">463,000元</td><td data-label="全年300萬元">1,863,000元</td></tr>
-    <tr><th scope="row">全年綜合所得稅</th><td data-label="全年100萬元"><strong>23,150元</strong><small class="tax-rate-note">所得淨額0～610,000元級距，適用5%</small><details class="tax-calc-disclosure"><summary>查看算式</summary><div>463,000 × 5% ＝ 23,150元</div></details></td><td data-label="全年300萬元"><strong>219,500元</strong><small class="tax-rate-note">所得淨額1,380,001～2,770,000元級距，超額適用20%</small><details class="tax-calc-disclosure"><summary>查看算式</summary><div>610,000 × 5% ＋ 770,000 × 12% ＋ 483,000 × 20% ＝ 219,500元</div></details></td></tr>
-  </tbody>
-</table>
-</div>
-
-年收300萬元的課稅所得淨額為186.3萬元：前61萬元按5%、接下來77萬元按12%、其餘48.3萬元按20%計算，全年所得稅為**219,500元**。
-
-本表的「認列成本」是方便閱讀的說法，稅法上指**執行業務必要費用**，不等於你真的支付了這麼多成本。
-
-上述兩個案例皆為試算。**個人若持續以營利為目的經營貨物或勞務銷售**，一般貨物每月銷售額達10萬元、設計等勞務每月達5萬元，已達營業稅起徵點，應依實際經營情況判斷稅籍及商業登記義務；個別9A報酬不因此自動等同於須辦理兩種登記的營業額。
-
-<div class="org-explainer-note">
-  <strong>小提醒｜9A必要費用率</strong>
-  <p>必要費用率是國稅局按執行業務者的<strong>實際工作類別與適用年度</strong>，訂定可認列必要費用的標準。符合標準核定條件時，可按收入乘上適用費用率計算費用，再從收入扣除以計算執行業務所得。上表以<strong>30%</strong>示範，參考的是<strong>114年度書畫家、版畫家</strong>的標準；其他商業設計、插畫、著作工作不一定適用30%，115年度應以正式公布標準為準。若國稅局查得實際所得較高，仍可能依查得資料核定。詳細可閱讀<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>及<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=GL011721" target="_blank" rel="noopener noreferrer">財政部114年度執行業務者費用標準</a>。</p>
-</div>
-
-<div class="org-explainer-note">
-  <strong>小提醒｜個人經營業務的商業登記與稅籍登記</strong>
-  <p>個人持續以營利為目的銷售貨物或勞務，<strong>一般貨物每月達10萬元、設計等勞務每月達5萬元</strong>，原則上達到營業稅起徵點，應評估並依規定辦理稅籍登記。商業登記須依《商業登記法》另行判斷；符合免辦商業登記的類型則有例外。<strong>上述金額不是統一發票強制開立門檻，也不是所有領取9A報酬的人都必須同時辦兩種登記。</strong></p>
-  <p>未經設立登記而以商業名義經營，經主管機關命限期登記仍未辦理，得處<strong>10,000～50,000元</strong>罰鍰；未依規定辦理稅籍登記，經通知補辦外，並得處<strong>3,000～30,000元</strong>罰鍰，且可能依規定補徵稅款，是否加計其他負擔依個案認定。詳細可閱讀<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080004" target="_blank" rel="noopener noreferrer">《商業登記法》第5、31條</a>與<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340080" target="_blank" rel="noopener noreferrer">《營業稅法》第28、45條</a>。</p>
-</div>
-
-### 2. 商號／工作室：免用統一發票
-
-如果你持續接案、想以工作室名義經營，可以評估辦理獨資商號及稅籍登記。這裡假設國稅局**已核定免用統一發票，採查定課徵營業稅**。
-
-**接到一筆10萬元設計案：** 客戶支付約定價款**100,000元**給商號。這筆款項不適用前述個人9A所得的10%預扣所得稅及2.11%個人補充保費扣取方式。
-
-假設國稅局核定的銷售額為**100,000元**，按1%計算營業稅，須繳納**1,000元**。因此，**收到100,000元，扣除1,000元營業稅後，還剩99,000元**。這筆金額尚未扣除實際工作成本及其他費用。
-
-<p class="org-table-hint">小規模營業人的1%營業稅依國稅局查定銷售額計算，通常按季課徵，並非逐筆收入直接扣稅；實際查定金額可能不同，符合規定的進項憑證亦可能扣減查定稅額。本例以查定銷售額10萬元、未計進項扣減作示範。</p>
-
-**一整年收入100萬、300萬時：**
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="免用統一發票商號年收入比較" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">試算項目</th><th scope="col">全年100萬元</th><th scope="col">全年300萬元</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">月平均營業額</th><td data-label="全年100萬元">約83,333元</td><td data-label="全年300萬元">約250,000元</td></tr>
-    <tr><th scope="row">全年查定營業稅（1%）</th><td data-label="全年100萬元"><strong>10,000元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,000,000 × 1% ＝ 10,000元<span class="tax-calc-tip">以查定全年銷售額100萬元、未計進項減抵為例</span></div></details></td><td data-label="全年300萬元"><strong>不適用</strong><small>月均25萬元，一般設計業原則須開發票</small></td></tr>
-    <tr><th scope="row">假設依7%純益率計算營利所得</th><td data-label="全年100萬元">70,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,000,000 × 7% ＝ 70,000元<span class="tax-calc-tip">7%為教學假設</span></div></details></td><td data-label="全年300萬元"><strong>不適用</strong></td></tr>
-    <tr><th scope="row">只有這筆所得時，負責人綜所稅</th><td data-label="全年100萬元"><strong>0元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>70,000 − 237,000 ＜ 0，課稅所得淨額為0元</div></details></td><td data-label="全年300萬元"><strong>不適用</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-**本例綜合所得稅為0元的計算：** 小規模獨資商號按核定營業額與適用純益率計算營利所得，再併入**負責人的個人綜合所得稅**。這裡暫參考114年度「商業設計」7%純益率做教學試算；年收100萬元的營利所得為7萬元，低於個人免稅額及標準扣除額合計23.7萬元，綜所稅為0元。年收300萬元的設計工作室月均25萬元，原則須使用統一發票，因此不列入1%查定營業稅案例。
-
-<div class="org-explainer-note">
-  <strong>重要提醒｜什麼時候需要使用統一發票</strong>
-  <p>一般小規模營業人<strong>平均每月銷售額達20萬元</strong>，原則上須使用統一發票；國稅局也可能依營業性質、規模及帳務設備核定未達20萬元的營業人使用統一發票。<strong>每月5萬元與10萬元則是營業稅起徵點，不是強制開發票門檻。</strong></p>
-  <ul>
-    <li><strong>20萬元｜使用統一發票：</strong>一般營業人平均每月營業額達20萬元，原則上須開立統一發票，特定營業性質及優惠規定另有例外。</li>
-    <li><strong>5萬元｜勞務起徵點：</strong>廣告、技術與設計、勞務承攬等業別，月銷售額達5萬元，原則上開始課徵營業稅，仍須另外確認發票使用資格。</li>
-    <li><strong>10萬元｜貨物等起徵點：</strong>商品買賣、雜貨店、一般餐飲、照相業等，月銷售額達10萬元，原則上開始課徵營業稅，開立統一發票仍依核定結果辦理。</li>
-  </ul>
-  <p>本例年收100萬元、月均約8.3萬元的商號，<strong>只有經國稅局核定免用統一發票，才能採前面的1%案例</strong>；年收300萬元、月均25萬元的設計工作室，原則上須使用統一發票，因此表格標示不適用。符合規定的進項憑證可能另可扣減查定稅額，本例先不計入。更多內容請看<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>第二節，或<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=FL006090" target="_blank" rel="noopener noreferrer">財政部小規模營業人營業稅起徵點</a>。</p>
-</div>
-
-更多有關登記與適用條件，請看<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。
-
-### 3. 商號／工作室：使用統一發票
-
-工作室若被核定使用統一發票，或本來就符合應使用發票的條件，對一般應稅設計委託，要依規定開立發票。
-
-**接到一筆10萬元設計案：**
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="使用統一發票工作室單筆10萬元報價" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">項目</th><th scope="col">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">設計費（未稅）</th><td data-label="金額">100,000元</td></tr>
-    <tr><th scope="row">向客戶收取5%營業稅</th><td data-label="金額">5,000元</td></tr>
-    <tr><th scope="row">客戶實際支付</th><td data-label="金額"><strong>105,000元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-客戶支付的105,000元包含**設計收入100,000元**及**銷項營業稅5,000元**。工作室依法扣抵合法進項稅額後，申報繳納差額。
-
-**一整年收入100萬、300萬時：** 假設收入是未稅金額，實際業務成本占20%，這些成本可以核實認列，而且都取得合法可扣抵進項發票（另計5%進項稅）：
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="開發票獨資工作室年收入比較" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">計算項目</th><th scope="col">全年100萬元</th><th scope="col">全年300萬元</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">未稅營業收入</th><td data-label="全年100萬元">1,000,000元</td><td data-label="全年300萬元">3,000,000元</td></tr>
-    <tr><th scope="row">實際可認列成本</th><td data-label="全年100萬元">−200,000元</td><td data-label="全年300萬元">−600,000元</td></tr>
-    <tr><th scope="row">併入負責人綜所稅的營利所得</th><td data-label="全年100萬元">800,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,000,000 − 200,000 ＝ 800,000元</div></details></td><td data-label="全年300萬元">2,400,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>3,000,000 − 600,000 ＝ 2,400,000元</div></details></td></tr>
-    <tr><th scope="row">負責人全年綜合所得稅</th><td data-label="全年100萬元"><strong>28,150元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>(800,000 − 237,000) × 5% ＝ 28,150元</div></details></td><td data-label="全年300萬元"><strong>279,500元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>(2,400,000 − 237,000) × 20% − 153,100 ＝ 279,500元<span class="tax-calc-tip">20%級距累進差額153,100元</span></div></details></td></tr>
-    <tr><th scope="row">向客戶收取銷項營業稅</th><td data-label="全年100萬元">50,000元</td><td data-label="全年300萬元">150,000元</td></tr>
-    <tr><th scope="row">可扣抵進項營業稅</th><td data-label="全年100萬元">−10,000元</td><td data-label="全年300萬元">−30,000元</td></tr>
-    <tr><th scope="row">申報繳納營業稅</th><td data-label="全年100萬元"><strong>40,000元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>50,000 − 10,000 ＝ 40,000元</div></details></td><td data-label="全年300萬元"><strong>120,000元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>150,000 − 30,000 ＝ 120,000元</div></details></td></tr>
-    <tr class="tax-total-row"><th scope="row">全年所得稅＋營業稅合計</th><td data-label="全年100萬元"><strong>68,150元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>28,150 ＋ 40,000 ＝ 68,150元</div></details></td><td data-label="全年300萬元"><strong>399,500元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>279,500 ＋ 120,000 ＝ 399,500元<span class="tax-calc-tip">其中營業稅為向客戶另收後依法申報的稅款</span></div></details></td></tr>
-  </tbody>
-</table>
-</div>
-
-**本例商號年收100萬元合計申報68,150元稅款；年收300萬元合計399,500元。** 其中營業稅4萬元或12萬元由代收的銷項稅扣抵合法進項稅後繳納，個人所得稅則由負責人負擔。以上依實際成本核實認列；其他合法申報方式與所得額標準仍要依帳務及國稅局規定判斷。
-
-**使用統一發票的獨資商號，營利所得併入負責人的個人綜所稅**，不適用公司的20%營所稅課徵方式。可延伸閱讀<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>與<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>。
-
-### 4. 有限公司：負責人領薪水與分配30%股利
-
-**你是一名設計師，也是自己成立的一人有限公司負責人與唯一股東。** 有限公司具有獨立法人格，公司的收入歸公司所有，不能直接視為負責人的個人收入。負責人實際替公司工作，可以依法領取合理薪資；公司獲利後，則依法律、章程及相關程序分配股利。**公司資金與個人資金須分開管理**，擅自將公司款項作為個人使用，可能產生稅務、帳務與法律責任。
-
-**接到一筆10萬元設計案：** 公司對一般應稅服務開立統一發票，客戶支付**105,000元**，其中100,000元是公司未稅營業收入，5,000元是代收銷項營業稅。這筆收入先進入公司，不是負責人個人當次實領。
-
-**全年收入100萬元、300萬元的試算條件：** 由負責人實際完成設計工作，公司每年支付他**70萬元合理薪資**；其他業務成本為營收的20%（分別20萬元、60萬元）。公司先計算營所稅、依法提列法定盈餘公積，最後將**可分配盈餘的30%作為股利付給自己，其餘70%留在公司**。
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="有限公司負責人年薪70萬及分配30%股利年收入試算" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">計算項目</th><th scope="col">全年100萬元</th><th scope="col">全年300萬元</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">公司未稅營業收入</th><td data-label="全年100萬元">1,000,000元</td><td data-label="全年300萬元">3,000,000元</td></tr>
-    <tr><th scope="row">設計業務成本</th><td data-label="全年100萬元">−200,000元</td><td data-label="全年300萬元">−600,000元</td></tr>
-    <tr><th scope="row">支付負責人的年薪</th><td data-label="全年100萬元">−700,000元</td><td data-label="全年300萬元">−700,000元</td></tr>
-    <tr><th scope="row">公司課稅所得</th><td data-label="全年100萬元">100,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,000,000 − 200,000 − 700,000 ＝ 100,000元</div></details></td><td data-label="全年300萬元">1,700,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>3,000,000 − 600,000 − 700,000 ＝ 1,700,000元</div></details></td></tr>
-    <tr><th scope="row">公司營所稅</th><td data-label="全年100萬元"><strong>0元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>課稅所得100,000元未超過免徵營所稅的120,000元門檻</div></details></td><td data-label="全年300萬元"><strong>340,000元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,700,000 × 20% ＝ 340,000元</div></details></td></tr>
-    <tr><th scope="row">公司稅後盈餘</th><td data-label="全年100萬元">100,000元</td><td data-label="全年300萬元">1,360,000元</td></tr>
-    <tr><th scope="row">法定盈餘公積（10%）</th><td data-label="全年100萬元">−10,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>100,000 × 10% ＝ 10,000元</div></details></td><td data-label="全年300萬元">−136,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,360,000 × 10% ＝ 136,000元</div></details></td></tr>
-    <tr><th scope="row">可分配盈餘</th><td data-label="全年100萬元">90,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>100,000 − 10,000 ＝ 90,000元</div></details></td><td data-label="全年300萬元">1,224,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,360,000 − 136,000 ＝ 1,224,000元</div></details></td></tr>
-    <tr><th scope="row">分配給自己的股利（30%）</th><td data-label="全年100萬元"><strong>27,000元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>90,000 × 30% ＝ 27,000元</div></details></td><td data-label="全年300萬元"><strong>367,200元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,224,000 × 30% ＝ 367,200元</div></details></td></tr>
-    <tr><th scope="row">留在公司的未分配餘額（70%）</th><td data-label="全年100萬元">63,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>90,000 × 70% ＝ 63,000元</div></details></td><td data-label="全年300萬元">856,800元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,224,000 × 70% ＝ 856,800元</div></details></td></tr>
-    <tr><th scope="row">負責人個人薪資＋股利所得</th><td data-label="全年100萬元">727,000元</td><td data-label="全年300萬元">1,067,200元</td></tr>
-    <tr><th scope="row">個人綜合所得稅（股利抵減前）</th><td data-label="全年100萬元">13,150元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>(727,000 − 464,000) × 5% ＝ 13,150元</div></details></td><td data-label="全年300萬元">30,160元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>(1,067,200 − 464,000) × 5% ＝ 30,160元</div></details></td></tr>
-    <tr><th scope="row">個人股利可抵減稅額</th><td data-label="全年100萬元">−2,295元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>27,000 × 8.5% ＝ 2,295元</div></details></td><td data-label="全年300萬元">−31,212元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>367,200 × 8.5% ＝ 31,212元</div></details></td></tr>
-    <tr><th scope="row">負責人最後個人所得稅</th><td data-label="全年100萬元"><strong>10,855元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>13,150 − 2,295 ＝ 10,855元</div></details></td><td data-label="全年300萬元"><strong>退稅1,052元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>30,160 − 31,212 ＝ −1,052元<span class="tax-calc-tip">股利抵減後有超額1,052元，符合規定可退稅</span></div></details></td></tr>
-    <tr><th scope="row">公司營所稅＋個人所得稅淨額</th><td data-label="全年100萬元"><strong>10,855元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>0 ＋ 10,855 ＝ 10,855元</div></details></td><td data-label="全年300萬元"><strong>338,948元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>340,000 − 1,052 ＝ 338,948元</div></details></td></tr>
-    <tr><th scope="row">公司申報營業稅</th><td data-label="全年100萬元">40,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>銷項50,000 − 可扣抵進項10,000 ＝ 40,000元</div></details></td><td data-label="全年300萬元">120,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>銷項150,000 − 可扣抵進項30,000 ＝ 120,000元</div></details></td></tr>
-    <tr class="tax-total-row"><th scope="row">公司＋負責人所得稅與營業稅合計</th><td data-label="全年100萬元"><strong>50,855元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>公司營所稅0 ＋ 個人綜所稅10,855 ＋ 營業稅40,000 ＝ 50,855元</div></details></td><td data-label="全年300萬元"><strong>458,948元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>公司營所稅340,000 − 個人退稅1,052 ＋ 營業稅120,000 ＝ 458,948元</div></details></td></tr>
-  </tbody>
-</table>
-</div>
-
-**年收100萬元的結果：** 公司支付70萬元年薪後，課稅所得10萬元，營所稅0元。提列1萬元法定盈餘公積後，可分配9萬元，其中**27,000元股利給負責人**，其餘63,000元留在公司。負責人當年度假設取得70萬元薪資與27,000元股利，個人綜所稅為**10,855元**。加計公司申報繳納的4萬元營業稅，合計**50,855元**。
-
-**年收300萬元的結果：** 公司支付70萬元年薪後，課稅所得170萬元、營所稅34萬元。稅後盈餘136萬元，提列13.6萬元法定盈餘公積，剩122.4萬元可分配；其中**367,200元股利給負責人**，856,800元留在公司。負責人假設同一個人課稅年度取得70萬元薪資與367,200元股利，綜所稅抵減股利可抵減額後為**退稅1,052元**。公司營所稅34萬元，合併個人退稅與公司營業稅12萬元，淨額合計為**458,948元**。
-
-<div class="org-explainer-note">
-  <strong>小提醒｜公司留存盈餘、法定公積與實際股利年度</strong>
-  <p>本例假設公司沒有以前年度虧損，且法定盈餘公積尚未達實收資本額，所以先依《公司法》第237條提列<strong>10%法定盈餘公積</strong>，再以剩餘可分配盈餘的30%發放股利。股利應依法決議分配，通常在產生盈餘後的後續年度才進入個人所得；本表把薪資與股利放在<strong>同一個人課稅年度</strong>，僅為說明計算方式。</p>
-  <p>公司保留的未分配盈餘，符合課稅條件時，後續年度還可能<strong>加徵5%未分配盈餘稅</strong>；以上未計入該筆稅額。假設保留餘額全數構成應加徵基礎，100萬元及300萬元兩個案例可能另有3,150元、42,840元的加徵稅額，實際應依法律允許的扣除、投資與調整項目計算。公司維護、雇主及個人勞健保、勞退、股利補充保費等也未納入比較。</p>
-  <p>稅制與操作可延伸閱讀<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>、<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>、<a href="/local-practice-guide/entries/labor-health-insurance/">〈勞健保〉</a>及<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080001" target="_blank" rel="noopener noreferrer">《公司法》第237條</a>。</p>
-</div>
-
-**本例將薪資、股利與留存盈餘分開計算，公司的保留資金不屬於負責人當年的實領收入。** 法人責任及資金管理規定，另見<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
-
-### 5. 四種身分：單筆10萬元、年收100萬元、300萬元的稅額比較
-
-下表整理前述四種身分。**單筆10萬元是收款當下的扣繳或營業稅概算；全年100萬元、300萬元則是全年應負擔或申報的稅額**，不能把單筆預扣稅再加進全年所得稅一次。
-
-**第一張表｜單筆10萬元設計委託**
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="四種身分單筆10萬元稅費比較" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">身分</th><th scope="col">當次的稅費處理</th><th scope="col">當下入帳</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">個人9A</th><td data-label="當次的稅費處理">預扣所得稅10,000元、個人補充保費2,110元</td><td data-label="當下入帳"><strong>87,890元</strong></td></tr>
-    <tr><th scope="row">商號：免用發票</th><td data-label="當次的稅費處理">不逐筆扣繳；若查定銷售額10萬元，1%營業稅約1,000元，實際按期核定</td><td data-label="當下入帳"><strong>100,000元</strong></td></tr>
-    <tr><th scope="row">商號：使用發票</th><td data-label="當次的稅費處理">銷項稅5,000元；假設相應成本可扣進項稅1,000元，營業稅淨額約4,000元</td><td data-label="當下入帳"><strong>105,000元</strong><small>含代收營業稅5,000元</small></td></tr>
-    <tr><th scope="row">有限公司</th><td data-label="當次的稅費處理">同上，營業稅淨額約4,000元；所得稅要按全年公司損益、薪資及股利處理</td><td data-label="當下入帳"><strong>公司105,000元</strong><small>不是股東個人實領</small></td></tr>
-  </tbody>
-</table>
-</div>
-
-<p class="org-table-hint">單筆案例的4,000元只是示範「銷項－進項」，實際營業稅按申報期全部銷項與合法進項計算。免用發票商號的1,000元也不是當次自動扣除。個人9A的2,110元是<strong>保費而非所得稅</strong>；以上均未扣其他實際營業成本。</p>
-
-**第二張表｜全年收入100萬元**
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="四種身分全年100萬元稅額比較" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">身分</th><th scope="col">全年所得稅</th><th scope="col">申報營業稅</th><th scope="col">合計繳納稅額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">個人9A<small>假設30%必要費用</small></th><td data-label="全年所得稅">23,150元</td><td data-label="申報營業稅">本例不另計</td><td data-label="合計繳納稅額"><strong>23,150元</strong></td></tr>
-    <tr><th scope="row">商號：免用發票<small>假設核定1%、純益率7%</small></th><td data-label="全年所得稅">0元</td><td data-label="申報營業稅">10,000元</td><td data-label="合計繳納稅額"><strong>10,000元</strong></td></tr>
-    <tr><th scope="row">商號：使用發票</th><td data-label="全年所得稅">28,150元</td><td data-label="申報營業稅">40,000元</td><td data-label="合計繳納稅額"><strong>68,150元</strong></td></tr>
-    <tr><th scope="row">有限公司<small>負責人年薪70萬＋可分配盈餘30%股利</small></th><td data-label="全年所得稅">10,855元<small>公司0＋個人10,855</small></td><td data-label="申報營業稅">40,000元</td><td data-label="合計繳納稅額"><strong>50,855元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-**第三張表｜全年收入300萬元**
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="四種身分全年300萬元稅額比較" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">身分</th><th scope="col">全年所得稅</th><th scope="col">申報營業稅</th><th scope="col">合計繳納稅額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">個人9A<small>假設30%必要費用</small></th><td data-label="全年所得稅">219,500元</td><td data-label="申報營業稅">本例不另計</td><td data-label="合計繳納稅額"><strong>219,500元</strong></td></tr>
-    <tr><th scope="row">商號：免用發票<small>月均25萬元，一般設計業原則應開發票</small></th><td data-label="全年所得稅">不適用</td><td data-label="申報營業稅">不適用</td><td data-label="合計繳納稅額"><strong>不適用</strong></td></tr>
-    <tr><th scope="row">商號：使用發票</th><td data-label="全年所得稅">279,500元</td><td data-label="申報營業稅">120,000元</td><td data-label="合計繳納稅額"><strong>399,500元</strong></td></tr>
-    <tr><th scope="row">有限公司<small>負責人年薪70萬＋可分配盈餘30%股利</small></th><td data-label="全年所得稅">338,948元<small>公司340,000－個人退稅1,052</small></td><td data-label="申報營業稅">120,000元</td><td data-label="合計繳納稅額"><strong>458,948元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-<div class="org-explainer-note">
-  <strong>全年稅款合計與實際經營成本分開計算</strong>
-  <p>使用統一發票者，<strong>營業稅通常另向客戶收取後依法申報</strong>，不宜直接當作負責人自行負擔的所得稅；個人9A的<strong>補充保費</strong>也沒有算入全年「稅額」。本例假設實際成本占收入20%、開發票者可合法扣抵進項稅，並且個人沒有其他所得；有限公司另假設設計師是負責人與唯一股東，每年依法支付自己70萬元薪資，先提列10%法定盈餘公積，再分配剩餘可分配盈餘的30%股利。個人股利抵減可依法退稅；本表未計公司後續年度可能的5%未分配盈餘加徵稅、完整勞健保、人事、記帳與公司維護成本，股利實際取得年度也可能與本年薪資不同。尤其<strong>年收300萬元、平均月營業額25萬元的設計商號，原則上須使用統一發票</strong>；特定營業性質或符合優惠條件者可能適用其他規定，仍應以國稅局核定為準。相關計算可搭配<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>、<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>和<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>閱讀。</p>
-</div>
-
-### 6. 付款方的實際成本與進項營業稅
-
-同樣是**100萬元的設計委託**，假設付款方是一家能夠依法全額扣抵相關進項稅額的公司：
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="付款方採購成本比較" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">你的身分</th><th scope="col">付款方付出</th><th scope="col">可扣抵營業稅</th><th scope="col">扣抵後成本</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">個人9A</th><td data-label="付款方付出">1,000,000元</td><td data-label="可扣抵營業稅">0元</td><td data-label="扣抵後成本"><strong>1,000,000元</strong></td></tr>
-    <tr><th scope="row">商號：免用發票</th><td data-label="付款方付出">1,000,000元</td><td data-label="可扣抵營業稅">0元</td><td data-label="扣抵後成本"><strong>1,000,000元</strong></td></tr>
-    <tr><th scope="row">商號：使用發票</th><td data-label="付款方付出">1,050,000元</td><td data-label="可扣抵營業稅">50,000元</td><td data-label="扣抵後成本"><strong>1,000,000元</strong></td></tr>
-    <tr><th scope="row">有限公司：使用發票</th><td data-label="付款方付出">1,050,000元</td><td data-label="可扣抵營業稅">50,000元</td><td data-label="扣抵後成本"><strong>1,000,000元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-**使用統一發票的報價為105萬元，包含100萬元設計費及5萬元營業稅。** 付款方取得符合規定的進項發票時，可用5萬元扣抵自身銷項營業稅；無法扣抵時，含稅支出為105萬元。
-
-個人9A的**預扣所得稅**與符合條件時代扣的**個人補充保費**，都從約定報酬100萬元內扣取，並不是付款方要另外再加的設計費。付款方仍要辦理相應的憑證、扣繳及申報工作。
-
-<p class="org-table-hint">本例未加計額外行政、人事或契約成本。能否列作所得稅的業務費用，與能否扣抵5%營業稅是兩回事。詳細規定請看<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅：9A、9B、50怎麼扣？〉</a>、<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。</p>
-
-### 7. 補助計畫、貸款與合作的身分資格
-
-不同身分的<strong>補助申請資格、貸款主體、發票與簽約方式</strong>各有規定，應依個別計畫及業務需求選擇。
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="身分與補助貸款合作機會比較" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">身分</th><th scope="col">補助／獎勵</th><th scope="col">貸款</th><th scope="col">合作與請款</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">個人</th><td data-label="補助／獎勵">可參加開放自然人提案的計畫；部分計畫以個人為申請主體</td><td data-label="貸款">可評估個人貸款；不符合要求商業或公司登記的企業貸款資格</td><td data-label="合作與請款">可個人簽約、承攬勞務；須提供合適憑證及處理所得扣繳</td></tr>
-    <tr><th scope="row">獨資商號／工作室</th><td data-label="補助／獎勵">可評估開放登記商業、中小企業的計畫；是否符合看簡章</td><td data-label="貸款">符合條件可申請青年創業貸款等；由負責人承擔商號債務</td><td data-label="合作與請款">可使用商號名稱承接工作、請款；發票依國稅局核定</td></tr>
-    <tr><th scope="row">有限公司</th><td data-label="補助／獎勵">可評估開放公司或法人事業的補助；仍受產業及其他條件限制</td><td data-label="貸款">可申請符合條件的企業貸款；銀行仍審核信用與還款能力</td><td data-label="合作與請款">以公司名義簽約、聘人、開發票；有獨立法人格，也有較多管理成本</td></tr>
-  </tbody>
-</table>
-</div>
-
-**以兩個政府計畫為例：**
-
-- **文化部116年青年村落文化行動計畫**：依當年度公告，採符合年齡等條件的**個人**提出行動計畫；依個人申請資格提出。可閱讀<a href="https://www.culture.ntpc.gov.tw/xceventsnews/cont?sid=0Q244499152703248954&amp;sq=&amp;xsmsid=0G295700334178642420" target="_blank" rel="noopener noreferrer">徵件公告</a>。
-- **青年創業貸款**：以符合資格、已辦理公司、商業或有限合夥登記的**事業體**申請；獨資商號與公司都有可能符合，最後仍須銀行核貸。可閱讀<a href="https://startup.sme.gov.tw/home/modules/funding/detail/index.php?sId=15" target="_blank" rel="noopener noreferrer">經濟部申請說明</a>。
-
-**自然人也可依法參與政府標案。**《政府採購法》第8條所稱廠商，包括得提供勞務的自然人；仍要符合實際招標文件所列的資格。可以接著看<a href="/local-practice-guide/entries/tender/">〈尋找標案〉</a>、<a href="/local-practice-guide/entries/subsidy-guide/">〈補助案〉</a>及<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>。
-
-<div class="org-explainer-note">
-  <strong>補助資格與貸款核准條件</strong>
-  <p>補助、貸款和合作，應先看申請資格、案型與實際需求。銀行會評估財務和信用，必要時也可能要求公司負責人提供個人保證。關於責任差異，可閱讀<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。</p>
-</div>
-
-## 三、社團法人（人民團體）：一起推動公共事務
-
-**公共空間共管、部落與林業及自然保育署合作山林共管、鄉村兒童教育與照顧**等公共事務，適合評估成立非營利性人民團體，並依實際需求辦理社團法人登記。
-
-這類工作通常需要多位成員共同討論、作決定，也可能透過**會員會費、捐款、政府補助**等方式取得經費。協會能以組織名義長期推動工作、管理共同資源和聘請專職人員，而不必把所有事情都放在某一個人的名下。
-
-<p class="org-table-hint">公共空間與山林共管須與管理機關、土地或其他權利人依法協議，取得必要許可；政府補助須依個別計畫申請。人民團體立案後，仍須另外辦理法人登記才能取得社團法人資格，差別可讀<a href="/local-practice-guide/entries/legal-person-natural-person/">〈什麼是法人、自然人？〉</a>。</p>
-
-### 1. 協會的經費來源、支出與結餘
-
-以下假設一個推動鄉村兒童教育的文化協會，全年收到**40萬元捐款、60萬元政府補助**，並聘請一名專職工作者，每月薪資**42,000元**。
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="文化協會年度經費收支範例" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">收入來源</th><th scope="col">金額</th><th scope="col">支出與結餘</th><th scope="col">金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">社會捐款</th><td data-label="收入金額">400,000元</td><td data-label="支出與結餘">專職人員年薪（42,000×12）</td><td data-label="支出金額">504,000元</td></tr>
-    <tr><th scope="row">政府補助</th><td data-label="收入金額">600,000元</td><td data-label="支出與結餘">兒童教育與共學活動</td><td data-label="支出金額">300,000元</td></tr>
-    <tr><th scope="row">全年收入合計</th><td data-label="收入金額"><strong>1,000,000元</strong></td><td data-label="支出與結餘">空間維護與業務行政</td><td data-label="支出金額">96,000元</td></tr>
-    <tr><th scope="row">—</th><td data-label="收入金額">—</td><td data-label="支出與結餘">留在協會的結餘</td><td data-label="支出金額"><strong>100,000元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-這一年協會共支出**90萬元（收入的90%）**，最後留下10萬元作為未來工作的資源，**不能分紅給會員**。本例假設各筆支出均符合協會宗旨及補助用途，補助款也已依核定計畫使用、核銷；實際結餘若屬應繳回的補助款，仍須依補助規定繳回，不能直接留存。
-
-**協會可以取得收入、聘用人員並支付合理薪資；結餘歸協會所有，依法留在組織運用。**
-
-### 2. 社團法人的收入分類與免稅條件
-
-**非營利組織的稅務依收入性質分別認定。** 會費、無對價捐款、符合補助性質的款項及對外提供服務的報酬，各有適用條件。
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="社團法人收入性質與稅務對照" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">款項性質</th><th scope="col">稅務重點</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">會員會費、無對價捐款、符合補助性質的款項</th><td data-label="稅務重點">符合公益團體所得稅免稅標準時，相關非銷售所得得免納所得稅；沒有銷售商品或服務的對價，也不因單純收款產生該筆營業稅</td></tr>
-    <tr><th scope="row">承接設計委託、售票演出、對外收費服務</th><td data-label="稅務重點">屬銷售貨物或勞務時，原則上須依法判斷及申報營業稅；銷售所得也須依所得稅規定計算，不因協會宗旨是公益就一律免稅</td></tr>
-  </tbody>
-</table>
-</div>
-
-免納所得稅的適用條件包括**組織登記、禁止變相分配盈餘、符合宗旨的活動、財務紀錄及合法憑證**等規定，並有相關活動支出比例要求。支出用於創設目的相關活動，原則上不得低於一定收入的**60%**；但**當年度結餘不超過50萬元**，或超過50萬元並依規定提出未來四年使用計畫且獲主管機關同意等，有例外規定。
-
-<div class="org-explainer-note">
-  <strong>小提醒｜政府補助和政府委託，性質可能不同</strong>
-  <p>政府給協會的款項如果是支持其公益計畫的補助，與政府購買協會提供的設計、活動執行等勞務不同。款項應依實際補助或委託性質分別認定稅務。協會非經常性銷售勞務、尚未辦稅籍登記時，也有依規定使用407繳款書的情形。詳細可閱讀<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>及<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=7924e0bceadd45d69661c515ecd659a8" target="_blank" rel="noopener noreferrer">財政部非營利團體銷售勞務說明</a>。</p>
-</div>
-
-### 3. 協會會員受聘為專職工作人員的條件
-
-**普通會員符合聘僱資格與程序，並實際承辦會務或業務，可以受聘為專職人員、依法領取薪資。**例如前例每月42,000元的工作者，即使同時是協會會員，也不因此失去受聘資格。
-
-**選任的理事、監事等職員，不得同時擔任協會的聘僱工作人員。**社會團體另有關於現任理事長配偶及三親等內血親、姻親聘僱的限制及例外。工作人員應依資格條件由理事會通過聘僱，薪資與保險制度也要符合規定，協會盈餘依法不得以會員身分分配。
-
-<p class="org-table-hint">參考<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050096" target="_blank" rel="noopener noreferrer">《社會團體工作人員管理辦法》第3至7條</a>及<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340012" target="_blank" rel="noopener noreferrer">《教育文化公益慈善機關或團體免納所得稅適用標準》</a>。薪資的勞健保、個人所得稅與聘僱成本，可再看<a href="/local-practice-guide/entries/labor-health-insurance/">〈勞健保〉</a>、<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>及<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。</p>
-
-## 四、有限責任合作社：讓不同專業的工作者一起經營
-
-**不同工作者共同接案、共用設備、整合專業與分擔經營成本**，適合評估有限責任合作社。例如插畫師、舞台設計師、表演者、木工師傅與網頁工程師，可透過合作社長期組成藝文工作團隊。
-
-合作社是社員共同參與的組織，重點在於**社員共同使用服務、共同經營，並依交易關係分享成果**。有限責任合作社的社員原則上以認股金額為限負責；組織仍須遵守登記業務、社員治理及對外交易的規定。
-
-### 1. 藝文合作社的共同接案與工作分配
-
-假設15位不同專業的工作者成立一個**有限責任藝文勞動合作社**，由A社員帶入一件135萬元的表演製作案，再由四名社員分工。
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="藝文勞動合作社案件報酬示範" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">參與社員</th><th scope="col">實際工作報酬</th><th scope="col">繳交5%管理費後</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">A：表演統籌</th><td data-label="實際工作報酬">600,000元</td><td data-label="繳交5%管理費後">570,000元</td></tr>
-    <tr><th scope="row">你：舞台設計</th><td data-label="實際工作報酬">350,000元</td><td data-label="繳交5%管理費後"><strong>332,500元</strong></td></tr>
-    <tr><th scope="row">E：網頁工程</th><td data-label="實際工作報酬">150,000元</td><td data-label="繳交5%管理費後">142,500元</td></tr>
-    <tr><th scope="row">F：木作勞務</th><td data-label="實際工作報酬">250,000元</td><td data-label="繳交5%管理費後">237,500元</td></tr>
-    <tr><th scope="row">合計</th><td data-label="實際工作報酬"><strong>1,350,000元</strong></td><td data-label="繳交5%管理費後"><strong>1,282,500元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-5%是**合作社自行向社員收取的行政管理費**，與政府課徵的營業稅分開計算。合作社收取的67,500元用於共同帳務、行政及其他合法業務。你的332,500元屬於**工作報酬扣除管理費後的金額**，年底盈餘另依規定分配。這些報酬仍須依個人所得稅規定申報。
-
-<p class="org-table-hint">本例假設135萬元均為社員個人提供的勞務報酬，社員與合作社沒有僱傭關係，合作社依法代收並全額轉付，再另向社員收管理費。木材、印刷品、設備買賣或租賃等交易，不能直接當成同一種勞務代收轉付。</p>
-
-### 2. 合作社營業稅的優惠與適用條件
-
-**合作社依法提供社員服務、特定勞動代收轉付與對外一般應稅銷售，分別適用不同的營業稅規定。**
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="合作社營業稅免稅與不課稅的適用情形" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">交易情況</th><th scope="col">營業稅如何處理</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">合作社依法提供服務、銷售貨物給社員</th><td data-label="營業稅如何處理">符合營業稅法第8條第1項第10款規定，<strong>免徵營業稅</strong></td></tr>
-    <tr><th scope="row">勞動合作社向外部收款，全額代收轉付個人社員勞務報酬</th><td data-label="營業稅如何處理">符合社員無僱傭關係及相關憑證條件時，該筆<strong>代收轉付報酬不課營業稅</strong></td></tr>
-    <tr><th scope="row">上述模式中，合作社另向社員收取管理費</th><td data-label="營業稅如何處理">符合提供社員服務的規定時，管理費<strong>免徵營業稅</strong></td></tr>
-    <tr><th scope="row">合作社向非社員提供一般應稅商品或服務</th><td data-label="營業稅如何處理">原則仍依法課稅，<strong>不是成立合作社就免稅</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-例如合作社在登記業務範圍內，依法向社員提供**10萬元設計服務**且符合免稅條件時，營業稅是**0元**；一般應稅設計公司同樣以未稅10萬元報價，則會另計**5,000元銷項營業稅**。這是稅額差異的示範，買方的最終成本仍受進項抵扣資格等因素影響。
-
-<div class="org-explainer-note">
-  <strong>小提醒｜生鮮蔬果免稅不以社員交易為限</strong>
-  <p>《營業稅法》第8條第1項第19款本來就規定，**符合條件的未經加工生鮮蔬菜、水果等農產品免徵營業稅**。因此農業合作社銷售這類蔬果時，<strong>不因買方是社員或非社員而改變這項商品本身的免稅性質</strong>；其他符合規定的銷售者，也可能適用同一免稅規定。這和第10款「合作社依法銷售給社員免稅」是<strong>兩種不同依據</strong>。若改成加工食品、代銷服務、運輸費等，還是要另外確認課稅性質。農業合作社對非社員使用的業務限制，也不會因蔬果商品免稅而自動取消。</p>
-</div>
-
-財政部對勞動合作社另有<a href="https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg025042/ch04/type2/gov30/num9/Eg.htm" target="_blank" rel="noopener noreferrer">108年3月7日解釋令</a>：符合代收轉付規定的社員勞務報酬，屬**社員個人的薪資所得**，轉付時依令免予扣繳，但仍須列單申報及填發免扣繳憑單；如果社員是合作社聘僱的員工，或管理費改向外部買方收取，稅務處理就不同。免稅品項可查<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/business-tax/exemption-scope/lGmA07A" target="_blank" rel="noopener noreferrer">財政部營業稅免稅項目</a>。
-
-### 3. 合作社的公積金、公益金與結餘分配
-
-**社員先領實際工作的報酬；年底若有結餘，才依合作社法處理。**
-
-假設合作社收了前面的67,500元管理費，支付行政等費用後，全年稅後結餘剛好20,000元，沒有累積虧損、沒有分配社股年息，也不另提酬勞金：
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="合作社稅後結餘提撥與分配" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">分配規定</th><th scope="col">本例金額</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">全年稅後結餘</th><td data-label="本例金額">20,000元</td></tr>
-    <tr><th scope="row">提撥公積金至少10%</th><td data-label="本例金額">−2,000元</td></tr>
-    <tr><th scope="row">提撥公益金至少5%</th><td data-label="本例金額">−1,000元</td></tr>
-    <tr><th scope="row">剩餘依社員交易額比例分配</th><td data-label="本例金額"><strong>17,000元</strong></td></tr>
-  </tbody>
-</table>
-</div>
-
-如果這就是合作社全年的社員交易，你的工作報酬占這次社員交易額**35萬／135萬**，年底還可以分得約**4,407元**。這筆屬於社員交易分配，**依社員交易額比例計算，並非按15名社員人數平均或出資比例分配**。實際仍以合法的交易額紀錄、章程及社員大會決議為準。
-
-合作社社股年息依法不得超過**10%**，結餘須先依法處理累積短絀、社股年息及法定提撥；**提供非社員使用的收益不得分配給社員**，須依規定提列公積金、公益金，也另有對外業務比例限制。
-
-<p class="org-table-hint">參考<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">《合作社法》第3-1、22至24條</a>。合作社有自身的會計、所得稅與申報義務；社員報酬與年底分配仍應分開處理。延伸閱讀：<a href="/local-practice-guide/entries/income-withholding/">〈預扣所得稅：9A、9B、50怎麼扣？〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>及<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。</p>
-
-## 五、結語：依照自己的工作需求選擇身分
-
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="依工作需求選擇身分" tabindex="0">
-<table class="org-compare-table tax-roadmap-table">
-  <thead><tr><th scope="col">你現在的需求</th><th scope="col">可以先研究的身分</th><th scope="col">要考慮的事</th></tr></thead>
-  <tbody>
-    <tr><th scope="row">主要是自己接案</th><td data-label="可以先研究的身分">個人</td><td data-label="要考慮的事">所得分類、報稅及接案責任</td></tr>
-    <tr><th scope="row">想長期經營工作室</th><td data-label="可以先研究的身分">獨資商號</td><td data-label="要考慮的事">稅籍、發票、成本帳務及個人責任</td></tr>
-    <tr><th scope="row">準備聘人、擴張或留存事業資金</th><td data-label="可以先研究的身分">有限公司</td><td data-label="要考慮的事">公司管理、薪資股利及法律責任</td></tr>
-    <tr><th scope="row">希望長期推動公共事務</th><td data-label="可以先研究的身分">人民團體／社團法人</td><td data-label="要考慮的事">會員治理、合理薪資、結餘使用</td></tr>
-    <tr><th scope="row">希望不同工作者共享案源與資源</th><td data-label="可以先研究的身分">合作社</td><td data-label="要考慮的事">社員治理、共同服務、收付及稅務條件</td></tr>
-  </tbody>
-</table>
-</div>
-
-對一名插畫設計師而言，個人、商號與有限公司可以放在一起計算；但**社團法人與合作社的選擇，應從想完成什麼工作、需要哪些人共同參與，以及收入如何用於組織出發**。
-
-延伸閱讀：<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>、<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>、<a href="/local-practice-guide/entries/legal-person-natural-person/">〈自然人與法人〉</a>、<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈綜合所得稅〉</a>。
+重要的是**不同組織各自做什麼、由誰決策、收入與財產歸誰，以及依法須負什麼責任**。各組織即使由相同的人參與，也須分別管理契約與帳務，不能把商業收入、會員捐款或政府補助混在一起使用。
 
 ---
 
 <div class="org-source-note">
-  <strong>資料與試算說明</strong>
-  <p>本文為115年度（2026年）的教學示範；個人免稅額101,000元、標準扣除額136,000元、薪資特別扣除額227,000元。實際適用所得類別、費用率、各業所得額標準及主管機關核定內容，以正式法令和個案資料為準。所有虛構活動案例都不是實際承攬紀錄。</p>
-  <p>官方參考：<a href="https://www.etax.nat.gov.tw/etwmain/en/announcement/alien-individual-income-tax/exemption-deduction-table" target="_blank" rel="noopener noreferrer">財政部｜2026年個人免稅額與扣除額</a>、<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=FL006090" target="_blank" rel="noopener noreferrer">財政部｜小規模營業人營業稅起徵點</a>、<a href="https://www.gov.tw/News_Content_26_597260" target="_blank" rel="noopener noreferrer">我的E政府｜新手創業稅務</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?PCode=G0340012" target="_blank" rel="noopener noreferrer">非營利團體所得稅免稅標準</a>、<a href="https://www.mof.gov.tw/singlehtml/384fb3077bb349ea973e7fc6f13b6974?cntId=7924e0bceadd45d69661c515ecd659a8" target="_blank" rel="noopener noreferrer">財政部｜非營利組織銷售勞務申報</a>、<a href="https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg025042/ch04/type2/gov30/num9/Eg.htm" target="_blank" rel="noopener noreferrer">財政部108年｜勞動合作社代收轉付解釋令</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/business-tax/exemption-scope/lGmA07A" target="_blank" rel="noopener noreferrer">財政部｜營業稅免稅範圍</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">合作社法</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050200" target="_blank" rel="noopener noreferrer">合作社非社員使用辦法</a>。</p>
+<strong>法規與延伸資料</strong>
+<p><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080004" target="_blank" rel="noopener noreferrer">《商業登記法》</a>、<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=FL006090&media=print" target="_blank" rel="noopener noreferrer">財政部小規模營業人營業稅起徵點</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=K0110002" target="_blank" rel="noopener noreferrer">《旅行業管理規則》</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">《合作社法》</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340012" target="_blank" rel="noopener noreferrer">《教育文化公益慈善機關或團體免納所得稅適用標準》</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050138" target="_blank" rel="noopener noreferrer">《公益勸募條例》</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030057" target="_blank" rel="noopener noreferrer">《政府採購法》</a>。本文說明一般經營情形；個別組織資格、營業項目、稅負及公共空間委託，依實際案件及主管機關規定辦理。</p>
 </div>
