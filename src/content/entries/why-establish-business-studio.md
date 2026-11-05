@@ -8,6 +8,7 @@ status: 編輯稿
 related:
   - income-withholding
   - why-establish-legal-person
+  - why-establish-company
   - legal-person-natural-person
   - supplemental-premium
   - business-income-tax
@@ -199,7 +200,7 @@ tags:
 
 ### 4. 多人共同經營，清楚約定分工與收益
 
-兩名以上工作者可評估合夥商號，透過合夥契約約定出資、設備歸屬、接案分工、收益及退出方式。商號本身不是獨立法人，責任差異可另讀<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
+兩名以上工作者可評估合夥商號，透過合夥契約約定出資、設備歸屬、接案分工、收益及退出方式。商號本身不是獨立法人，責任差異可另讀<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>；公司與商號的經營方式可閱讀<a href="/local-practice-guide/entries/why-establish-company/">〈為什麼要成立公司？〉</a>。
 
 ## 四、結語：先確認工作性質，再選擇經營身分
 
