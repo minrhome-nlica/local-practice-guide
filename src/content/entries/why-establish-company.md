@@ -6,6 +6,7 @@ level: 入門
 updated: 2026-11-05
 status: 編輯稿
 related:
+  - why-establish-limited-cooperative
   - why-establish-business-studio
   - legal-person-natural-person
   - why-establish-legal-person
