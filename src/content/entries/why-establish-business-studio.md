@@ -26,6 +26,7 @@ tags:
   - 合夥
 ---
 
+
 個人可以憑專業接案，也可以成立商號，以固定事業的方式提供服務、販售商品或與他人共同經營。**兩者的主要差別，在於實際工作的性質、經營方式、登記義務及法律責任，而不只是收入高低。**
 
 本文依序介紹商號的意義、依法需要辦理登記的情形、成立商號的實際好處，以及經營身分的選擇。
@@ -34,7 +35,7 @@ tags:
 
 **商號**是以營利為目的、採取獨資或合夥方式經營的事業。依《商業登記法》完成登記的「商行」、「企業社」、「工作室」，雖然名稱不同，仍可能屬於相同的商業經營形式。
 
-<div class="org-concept-pair" aria-label="獨資商號和合夥商號">
+<div class="org-concept-pair" aria-label="獨資商號與合夥商號">
   <div>
     <span>形式 01｜獨資商號</span>
     <strong>一個人出資、自己經營</strong>
@@ -55,48 +56,56 @@ tags:
 
 ### 1. 執行業務所得（代碼9A）與營業性勞務的差別
 
-**個人專業接案：** 例如插畫家以個人專業為地方展覽繪製主視覺，假設依實際工作內容被認定為9A執行業務所得，付款單位依法申報所得並辦理扣繳。依《營業稅法》第3條，執行業務者提供的專業性勞務，不屬於營業稅所稱的銷售勞務，因此不會單純因年收入較高就自動需要成立商號。
+**個人專業接案：** 例如插畫家以個人專業為地方展覽繪製主視覺，依實際工作內容被認定為執行業務所得（代碼9A），付款單位依法申報所得並辦理扣繳。依《營業稅法》第3條，執行業務者提供的專業性勞務，不屬於營業稅所稱的銷售勞務。
 
 **營業性勞務銷售：** 例如工作室長期承接展覽整體製作，包含視覺設計、印刷、木作及場地布置，採購材料、安排協作者並對外承攬整案。若依法認定屬營業性勞務銷售，則須依經營情況辦理營業稅及必要登記。
 
-<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="執行業務所得（代碼9A）與營業性勞務比較" tabindex="0">
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="執行業務所得與營業性勞務比較" tabindex="0">
 <table class="org-compare-table studio-guide-table">
-<thead><tr><th scope="col">比較</th><th scope="col">執行業務所得（代碼9A）專業性勞務</th><th scope="col">營業性勞務</th></tr></thead>
+<thead><tr><th scope="col">比較</th><th scope="col">執行業務所得（代碼9A）</th><th scope="col">營業性勞務</th></tr></thead>
 <tbody>
-<tr><th scope="row">收入認定</th><td data-label="執行業務所得（代碼9A）">依實際專業工作，符合條件時列執行業務所得（代碼9A）所得</td><td data-label="營業性勞務">以事業方式銷售服務，列營業收入</td></tr>
+<tr><th scope="row">收入認定</th><td data-label="執行業務所得（代碼9A）">以個人專業技藝提供創作服務，取得專業報酬。</td><td data-label="營業性勞務">以營業方式提供設計、製作、施工等整合服務，向客戶收取專案費用。</td></tr>
 <tr><th scope="row">營業稅</th><td data-label="執行業務所得（代碼9A）">依法屬專業性勞務排除範圍時，不課營業稅</td><td data-label="營業性勞務">依業別、營業額及發票核定方式計稅</td></tr>
-<tr><th scope="row">登記</th><td data-label="執行業務所得（代碼9A）">單憑年收入增加，不會自動產生商業登記義務</td><td data-label="營業性勞務">依商業登記法及稅法分別判斷</td></tr>
-<tr><th scope="row">案例</th><td data-label="執行業務所得（代碼9A）">個人插畫家自行為展覽創作主視覺，與主辦單位以本人名義簽約，符合條件時列執行業務所得（代碼9A）。</td><td data-label="營業性勞務">文史工作室以商號名義與旅行社簽約，安排導覽活動並開立合法請款憑證；或設計工作室承接展場整體製作。</td></tr>
+<tr><th scope="row">登記</th><td data-label="執行業務所得（代碼9A）">單憑年收入增加，不會自動產生商業登記義務</td><td data-label="營業性勞務">可查閱下一小節，小規模營業人的現行營業稅起徵點。</td></tr>
+<tr><th scope="row">案例</th><td data-label="執行業務所得（代碼9A）">設計師以個人名義承接展覽主視覺設計，運用自身專業獨立完成創作，交付設計作品並取得報酬，符合條件時列為9A執行業務所得。</td><td data-label="營業性勞務">設計師以工作室名義，持續承接展覽整體設計製作案，包含主視覺設計、展板輸出、施工及現場布置，並統籌廠商與人員，以整體專案價格向主辦單位收費，屬營業性勞務銷售。</td></tr>
 </tbody></table>
 </div>
-
-**「勞務承攬」是契約類型，不是所得代碼。** 個人可以透過承攬契約取得9A所得；付款方申報9A，也不能直接決定這筆交易是否符合營業稅排除規定。實際仍依工作內容與法律分類認定。參考<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/taxation-scope/which-income/kWraV93" target="_blank" rel="noopener noreferrer">財政部〈什麼是執行業務所得〉</a>。
 
 ### 2. 小規模營業人的現行營業稅起徵點
 
 自114年（2025年）1月1日起，小規模營業人的起徵點調整如下：
 
-<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="營業稅起徵點與使用發票標準" tabindex="0">
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="小規模營業人營業稅起徵點" tabindex="0">
 <table class="org-compare-table studio-guide-table">
-<thead><tr><th scope="col">每月營業額</th><th scope="col">適用業別</th><th scope="col">主要規定</th></tr></thead>
+<thead><tr><th scope="col">適用業別</th><th scope="col">每月營業額</th><th scope="col">主要規定</th></tr></thead>
 <tbody>
-<tr><th scope="row">5萬元</th><td data-label="適用業別">技術與設計、廣告、勞務承攬等</td><td data-label="主要規定">營業稅起徵點</td></tr>
-<tr><th scope="row">10萬元</th><td data-label="適用業別">商品買賣、一般餐飲、照相等</td><td data-label="主要規定">營業稅起徵點</td></tr>
-<tr><th scope="row">平均20萬元</th><td data-label="適用業別">一般小規模營業人</td><td data-label="主要規定">原則上須使用統一發票；未達此額仍可能被核定使用</td></tr>
+<tr><th scope="row">技術與設計、廣告、勞務承攬等</th><td data-label="每月營業額"><strong>5萬元</strong></td><td data-label="主要規定">營業稅起徵點</td></tr>
+<tr><th scope="row">商品買賣、一般餐飲、照相等</th><td data-label="每月營業額"><strong>10萬元</strong></td><td data-label="主要規定">營業稅起徵點</td></tr>
+<tr><th scope="row">一般小規模營業人</th><td data-label="每月營業額"><strong>平均20萬元</strong></td><td data-label="主要規定">原則上須使用統一發票；未達此額仍可能被核定使用</td></tr>
 </tbody></table>
 </div>
 
-**5萬元、10萬元是營業稅起徵點。** 以營業方式銷售勞務或貨物，達到適用起徵點時，原則上須依法辦理稅籍登記及繳納營業稅。若國稅局核定屬小規模營業人、**免用統一發票**，通常由國稅局按查定銷售額以1%稅率課徵，而不是收到款項時自行開立統一發票。**辦理稅籍登記不等於一定須另行辦理商業登記**，是否應成立登記的獨資或合夥商號，仍依《商業登記法》的義務及免辦規定判斷。
+**5萬元、10萬元是營業稅起徵點。** 以營業方式銷售勞務或貨物，達到適用起徵點時，原則上須依法辦理稅籍登記及繳納營業稅。換而言之，必須要成立工作室或商號，並且使用**免用統一發票**。
+
+什麼情況不能再使用「免用統一發票」，而需要開立「統一發票」？
 
 **一般小規模營業人平均月銷售額達20萬元，原則上須使用統一發票**；部分特定行業及符合規定的例外，另依主管機關核定辦理。平均月收未達20萬元的營業人，也可能依經營性質及規模被核定使用統一發票。
 
-**本段金額是營業性貨物、勞務的門檻。** 依法認定屬執行業務所得（代碼9A）的專業性勞務，符合《營業稅法》第3條排除規定時，不會因每月收入超過5萬元，就自動需要成立商號或使用統一發票。
+但若，許多個人接案工作者，其工作內容性質屬前一小節的執行業務所得（代碼9A），依《營業稅法》第3條：「執行業務者提供的專業性勞務，不屬於營業稅所稱的銷售勞務。」因此，即使月收入超過20萬元，原則上也不必因此辦理稅籍或商業登記。若同時經營設計製作、商品銷售或其他營業性服務，則需要另外判斷登記及營業稅義務。
 
 ### 3. 商業登記與稅籍登記
 
-<div class="org-step-grid" aria-label="商業登記與稅籍登記差異">
-<div><span>地方政府主管機關</span><strong>商業登記</strong><p>登記獨資或合夥商業的名稱、負責人與營業項目。依《商業登記法》第5條，部分攤販、家庭產業、營業額未達起徵點的小規模商業，依法得免辦。</p></div>
-<div><span>國稅局</span><strong>稅籍登記</strong><p>將實際營業活動納入營業稅管理，原則上營業前應辦理；個別法定例外另依規定。辦了稅籍登記，也不代表一定要開立統一發票。</p></div>
+<div class="org-step-grid" aria-label="商業登記與稅籍登記">
+  <div>
+    <span>地方政府主管機關</span>
+    <strong>商業登記</strong>
+    <p>登記獨資或合夥商業的名稱、負責人與營業項目。依《商業登記法》第5條，部分攤販、家庭產業、營業額未達起徵點的小規模商業，依法得免辦。</p>
+  </div>
+  <div>
+    <span>國稅局</span>
+    <strong>稅籍登記</strong>
+    <p>將實際營業活動納入營業稅管理，原則上營業前應辦理；個別法定例外另依規定。辦了稅籍登記，也不代表一定要開立統一發票。</p>
+  </div>
 </div>
 
 **依法免辦商業登記，仍可能需要稅籍登記。** 未依法辦商業登記、經主管機關限期辦理仍未完成者，得處**1萬～5萬元**罰鍰；未依規定辦理稅籍登記者，得處**3,000～30,000元**罰鍰，並可能依個案補稅。詳細參考<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080004" target="_blank" rel="noopener noreferrer">《商業登記法》</a>與<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340080" target="_blank" rel="noopener noreferrer">《營業稅法》</a>。
@@ -107,52 +116,54 @@ tags:
 
 ### 1. 符合條件時，節省稅務
 
-個人取得**執行業務所得（代碼9A）**，單次給付達**20,000元**，原則上按**2.11%**扣取個人二代健保補充保費，符合免扣規定者除外。
+個人取得**執行業務所得（代碼9A）**，單次給付達**20,000元**，原則上按2.11%扣取個人二代健保補充保費，符合免扣規定者除外。
 
-商號依法取得的營業收入，不按執行業務所得（代碼9A）的個人報酬方式扣取補充保費；**獨資商號負責人的營利所得，也不是須扣取股利補充保費的收入**。負責人仍需依健保投保身分繳納一般保費，其他保費義務另依實際情況辦理。
+商號依法取得的營業收入，不按執行業務所得（代碼9A）的個人報酬方式扣取補充保費（但負責人仍需依健保投保身分繳納一般保費，其他保費義務另依實際情況辦理）。
 
 以下以**115年度（2026年）、單身、沒有扶養親屬及其他所得**的工作者為例，假設全年有**10筆、每筆10萬元，共100萬元**的設計收入。兩欄各自假設符合適用制度，試算所得稅、個人補充保費與營業稅：
 
-<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="年收入100萬元執行業務所得與獨資商號稅費比較" tabindex="0">
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="年收100萬元個人執行業務所得及商號稅費比較" tabindex="0">
 <table class="org-compare-table studio-guide-table studio-tax-compare">
-<thead><tr><th scope="col">項目</th><th scope="col">執行業務所得（代碼9A）</th><th scope="col">商號（假設免用統一發票）</th></tr></thead>
+<thead><tr><th scope="col">項目</th><th scope="col">執行業務所得（代碼9A）</th><th scope="col">商號（免用統一發票情形）</th></tr></thead>
 <tbody>
-<tr><th scope="row">全年收入</th><td data-label="執行業務所得（代碼9A）">1,000,000元</td><td data-label="商號">1,000,000元</td></tr>
-<tr><th scope="row">所得認定</th><td data-label="執行業務所得（代碼9A）">假設適用30%必要費用率，所得700,000元</td><td data-label="商號">假設依法適用商業設計7%純益率，所得70,000元</td></tr>
-<tr><th scope="row">全年綜合所得稅</th><td data-label="執行業務所得（代碼9A）"><strong>23,150元</strong></td><td data-label="商號"><strong>0元</strong></td></tr>
-<tr><th scope="row">個人二代健保補充保費</th><td data-label="執行業務所得（代碼9A）"><strong>21,100元</strong><small>1,000,000 × 2.11%</small></td><td data-label="商號"><strong>0元</strong><small>本例並非執行業務所得（代碼9A）報酬給付</small></td></tr>
-<tr><th scope="row">營業稅</th><td data-label="執行業務所得（代碼9A）">0元<small>假設符合專業性勞務排除規定</small></td><td data-label="商號"><strong>10,000元</strong><small>假設全年核定銷售額100萬、查定稅率1%</small></td></tr>
-<tr class="studio-tax-total-row"><th scope="row">本例列示稅費合計</th><td data-label="執行業務所得（代碼9A）"><strong>44,250元</strong></td><td data-label="商號"><strong>10,000元</strong></td></tr>
+<tr><th scope="row">全年收入</th><td data-label="執行業務所得（代碼9A）">1,000,000元</td><td data-label="商號（免用統一發票情形）">1,000,000元</td></tr>
+<tr><th scope="row">所得認定</th><td data-label="執行業務所得（代碼9A）">假設適用30%必要費用率<small>所得700,000元</small></td><td data-label="商號（免用統一發票情形）">假設依法適用商業設計7%純益率<small>所得70,000元</small></td></tr>
+<tr><th scope="row">全年綜合所得稅</th><td data-label="執行業務所得（代碼9A）"><strong>23,150元</strong></td><td data-label="商號（免用統一發票情形）"><strong>0元</strong></td></tr>
+<tr><th scope="row">個人二代健保補充保費</th><td data-label="執行業務所得（代碼9A）"><strong>21,100元</strong><small>1,000,000 × 2.11%</small></td><td data-label="商號（免用統一發票情形）"><strong>0元</strong><small>單位給付單位，並不需要支付補充保費</small></td></tr>
+<tr><th scope="row">營業稅</th><td data-label="執行業務所得（代碼9A）">0元<small>假設符合專業性勞務排除規定</small></td><td data-label="商號（免用統一發票情形）"><strong>10,000元</strong><small>假設全年核定銷售額100萬、查定稅率1%</small></td></tr>
+<tr class="studio-tax-total-row"><th scope="row">本例列示稅費合計</th><td data-label="執行業務所得（代碼9A）"><strong>44,250元</strong></td><td data-label="商號（免用統一發票情形）"><strong>10,000元</strong></td></tr>
 </tbody></table>
 </div>
 
-**本例列示的稅費相差34,250元，其中個人補充保費相差21,100元。** 這是兩套合法收入與申報方式的條件式試算，**不表示原本屬於執行業務所得（代碼9A）的個人收入，可以僅透過成立商號就重新分類。** 表格未計一般健保費、工作室行政費與實際營業成本；9A的30%必要費用率、商號的7%純益率，也各有行業及申報條件。
+**本例列示的稅費相差34,250元，其中個人補充保費相差21,100元。**
+
+這是兩套合法收入與申報方式的條件式試算，實際可能還會有不同的情形，但就以上的案例，大家應該能發現工作室跟個人身分在相關的稅務與健保費用的差異。
+
+但，聰明的你可能也會想到，那我是不是可以成立工作室、商號，來讓自己節稅？實務上是可以，但要注意以下幾個案例。
 
 <div class="studio-case-panel studio-case-positive">
   <h4>案例一｜導覽解說轉型為文史工作室</h4>
-  <p>社區導覽解說員原本以個人名義提供服務，假設報酬依法列為<strong>執行業務所得（代碼9A）</strong>。後來成立文史工作室，改由<strong>工作室與旅行社簽約、安排導覽與相關服務、收款並提供合法憑證</strong>。</p>
-  <p>這可能是正常的商業模式轉型，<strong>前提是服務與契約主體確實改為商號，並完成依法應辦的登記</strong>。經核定免用統一發票的工作室，提供的是<strong>普通收據</strong>，而不是「免用統一發票」。</p>
+  <p>我原本是社區的導覽解說員，領取執行業務所得（代碼9A）的費用；後來我成立個文史工作室，開始承接導覽解說，與旅行社的簽約也不再是我個人，而是工作室，也透過工作室開立收據。</p>
+  <p>這部分是通常為合規的商業模式轉型。</p>
 </div>
 
 <div class="studio-case-panel">
   <h4>案例二｜個人創作，卻由工作室掛名請款</h4>
-  <p>設計師與客戶由<strong>本人簽約</strong>，約定本人創作、報酬歸本人；在交易條件不變時，只為降低稅負，要求改匯款到工作室帳戶，並由工作室開收據。</p>
-  <p><strong>契約、實際所得歸屬與請款名義不一致，可能涉及以商號名義掩飾個人所得的風險。</strong> 著作權可依法另外約定，不以智慧財產權歸屬單獨判斷所得種類；仍須綜合契約、付款和履約事實認定。</p>
+  <p>設計師與客戶由本人簽約，約定本人創作、報酬歸本人；在交易條件不變時，只為降低稅負，要求改匯款到工作室帳戶，並由工作室開收據。</p>
+  <p><strong>契約、實際所得歸屬與請款名義不一致，可能涉及以商號名義掩飾個人所得的風險。</strong></p>
 </div>
 
 <div class="studio-case-panel">
   <h4>案例三｜受僱設計師被要求成立工作室請款</h4>
-  <p>設計公司原本聘用設計師並支付薪資，後來改要求設計師成立工作室，每月用商號收據向公司請領固定費用。</p>
-  <p>工作者若仍固定打卡、接受公司指揮監督，且工作條件與原本僱傭關係相同，就可能是<strong>「假承攬、真僱傭」</strong>。主管機關依實際從屬性及工作安排認定，不只看契約或收據名稱；經查明違反規定時，可能涉及保費補繳、勞動權益、所得分類調整及依法裁罰。參考<a href="https://www.mol.gov.tw/1607/28690/2282/2326/2288/82220/post" target="_blank" rel="noopener noreferrer">勞動部的承攬契約說明</a>。</p>
+  <p>我原本在某家設計公司上班領薪水（50 類所得），公司為了幫自己省勞健保或稅負，要求我成立一間工作室，每個月由你的工作室開收據給公司領取固定「薪水」。</p>
+  <p>如果你每天還是要到該公司打卡、接受該公司的指揮監督、沒有自主承接其他客戶的自由，國稅局與勞工局會認定這屬於「偽裝成商業承攬的假承攬、真雇傭」，公司與你都會面臨勞基法與稅法的裁罰。</p>
 </div>
 
 **上述5萬元、10萬元等門檻指營業性收入。** 依法認定符合執行業務所得（代碼9A）及專業性勞務排除規定的個人，不會因為個人收入增加，就自動被強制要求成立商號。個人所得稅與補充保費仍須依法處理。
 
 <div class="org-explainer-note">
-<strong>小提醒｜年收300萬元，還能使用工作室嗎？</strong>
-<p><strong>可以繼續以工作室經營，但原則上不能一直採「免用統一發票、查定1%營業稅」的方式。</strong> 一般設計工作室年收300萬元、平均每月25萬元，已超過一般小規模營業人平均每月20萬元的標準，原則上須開立統一發票，按一般應稅服務5%計算銷項營業稅，再扣抵符合法規的進項稅額。特定行業及優惠規定另有例外。</p>
-<p><strong>統一發票與「擴大書面審核」是不同的制度。</strong> 開立統一發票，<strong>不會自動失去採用擴大書審純益率的資格</strong>。以財政部114年度商業設計（行業代號7409-12）7%純益率為例：年收100萬元按7%為7萬元營利所得；年收300萬元按7%為21萬元，均低於本例單身、無其他所得者115年度免稅額及標準扣除額合計23.7萬元，<strong>若依法符合該申報方式及行業標準，單看這筆營利所得的個人綜所稅可以是0元</strong>。但這不包含營業稅，也不是所有設計業別或年度都能使用7%。</p>
-<p>即使適用擴大書審，仍須依規定記帳、取得及保存憑證；實際可否使用、當年度純益率以及所得認列，都應依財政部規定。另見<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>第二節、<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>、<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=GL011710" target="_blank" rel="noopener noreferrer">財政部114年度擴大書審實施要點</a>與<a href="https://www.ntbt.gov.tw/singlehtml/564aefd5ece540fdb311a46b83292574?cntId=c71b96eaa7964251814702a4ec2262c3" target="_blank" rel="noopener noreferrer">各業所得額與純益率標準</a>。</p>
+  <strong>小提醒｜年收300萬元，還能使用工作室嗎？</strong>
+  <p>可以繼續以工作室經營，但原則上不能一直採「免用統一發票、查定1%營業稅」的方式。一般設計工作室年收300萬元、平均每月25萬元，已超過一般小規模營業人平均每月20萬元的標準，原則上須開立統一發票，按一般應稅服務5%計算銷項營業稅，再扣抵符合法規的進項稅額。特定行業及優惠規定另有例外。</p>
 </div>
 
 ### 2. 合法開立統一發票或收據，方便請款
@@ -174,11 +185,3 @@ tags:
 **以事業方式持續銷售商品或服務**，須依法判斷商業登記、稅籍登記、發票及營業稅；再依請款方式、工作成本與合作需求選擇獨資、合夥或公司。
 
 **成立商號有經營上的便利及可能適用的稅務制度，但不能把不同法律性質的收入任意互換。** 建議搭配閱讀<a href="/local-practice-guide/entries/which-status-saves-tax/">〈從個人到商號、組織或公司，什麼身分對我最合適？〉</a>。
-
----
-
-<div class="org-source-note">
-<strong>參考資料與試算前提</strong>
-<p>本文以115年度（2026年）個人免稅額與扣除額試算，7%商業設計純益率參照114年度規定，執行業務所得（代碼9A）的30%必要費用率僅為示範。實際所得分類、工作類別、補充保費、商號登記與營業稅，以法規及國稅局、健保署依個案認定為準。比較表未計所有一般健保、人事、記帳及其他營業成本。</p>
-<p>官方參考：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080004" target="_blank" rel="noopener noreferrer">《商業登記法》</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340080" target="_blank" rel="noopener noreferrer">《營業稅法》</a>、<a href="https://law-out.mof.gov.tw/LawContent.aspx?KeyWord=%E5%B0%8F%E8%A6%8F%E6%A8%A1&id=FL006090&media=print" target="_blank" rel="noopener noreferrer">小規模營業人營業稅起徵點</a>、<a href="https://www.nhi.gov.tw/ch/cp-4516-74b0f-2613-1.html" target="_blank" rel="noopener noreferrer">健保署補充保費計算</a>、<a href="https://www.nhi.gov.tw/ch/cp-2837-2ee1d-3150-1.html" target="_blank" rel="noopener noreferrer">健保署獨資負責人補充保費</a>、<a href="https://www.ntbt.gov.tw/singlehtml/564aefd5ece540fdb311a46b83292574?cntId=c71b96eaa7964251814702a4ec2262c3" target="_blank" rel="noopener noreferrer">財政部各業所得額與純益率</a>、<a href="https://www.dot.gov.tw/singlehtml/ch26?cntId=cf5db69f558d42409aa56c70838e8802" target="_blank" rel="noopener noreferrer">115年度綜所稅免稅額</a>。</p>
-</div>
