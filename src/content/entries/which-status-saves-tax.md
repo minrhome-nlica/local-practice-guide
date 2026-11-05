@@ -206,42 +206,51 @@ tags:
 
 **使用統一發票的獨資商號，營利所得併入負責人的個人綜所稅**，不適用公司的20%營所稅課徵方式。可延伸閱讀<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>與<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>。
 
-### 4. 有限公司：公司收入、薪資與股利分配
+### 4. 有限公司：負責人領薪水與分配30%股利
 
-有限公司具有獨立法人格，適合擴大事業、聘人、持續簽約或累積事業資產。**公司收入歸公司所有，股東透過合法薪資或股利取得個人收入。**
+**你是一名設計師，也是自己成立的一人有限公司負責人與唯一股東。** 有限公司具有獨立法人格，公司的收入歸公司所有，不能直接視為負責人的個人收入。負責人實際替公司工作，可以依法領取合理薪資；公司獲利後，則依法律、章程及相關程序分配股利。**公司資金與個人資金須分開管理**，擅自將公司款項作為個人使用，可能產生稅務、帳務與法律責任。
 
-**接到一筆10萬元設計案：** 公司對一般應稅服務開立發票，客戶支付**105,000元**，其中100,000元是未稅營業收入，5,000元是代收銷項營業稅。之後公司可以依法支付你的薪資，也可以在完成結算與法定程序後分配股利。
+**接到一筆10萬元設計案：** 公司對一般應稅服務開立統一發票，客戶支付**105,000元**，其中100,000元是公司未稅營業收入，5,000元是代收銷項營業稅。這筆收入先進入公司，不是負責人個人當次實領。
 
-**一整年收入100萬、300萬時：** 以下先示範同一位設計師實際在公司工作、公司依法支付你**全年70萬元的合理薪資**；業務成本分別為20萬和60萬，剩餘可分配盈餘全數在合法程序完成後分給唯一股東。
+**全年收入100萬元、300萬元的試算條件：** 由負責人實際完成設計工作，公司每年支付他**70萬元合理薪資**；其他業務成本為營收的20%（分別20萬元、60萬元）。公司先計算營所稅、依法提列法定盈餘公積，最後將**可分配盈餘的30%作為股利付給自己，其餘70%留在公司**。
 
-<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="有限公司年收入100萬元及300萬元薪資股利試算" tabindex="0">
+<div class="org-table-scroll tax-roadmap-table-wrap" role="region" aria-label="有限公司負責人年薪70萬及分配30%股利年收入試算" tabindex="0">
 <table class="org-compare-table tax-roadmap-table">
   <thead><tr><th scope="col">計算項目</th><th scope="col">全年100萬元</th><th scope="col">全年300萬元</th></tr></thead>
   <tbody>
     <tr><th scope="row">公司未稅營業收入</th><td data-label="全年100萬元">1,000,000元</td><td data-label="全年300萬元">3,000,000元</td></tr>
-    <tr><th scope="row">實際業務成本</th><td data-label="全年100萬元">−200,000元</td><td data-label="全年300萬元">−600,000元</td></tr>
-    <tr><th scope="row">公司給你的年薪</th><td data-label="全年100萬元">−700,000元</td><td data-label="全年300萬元">−700,000元</td></tr>
+    <tr><th scope="row">設計業務成本</th><td data-label="全年100萬元">−200,000元</td><td data-label="全年300萬元">−600,000元</td></tr>
+    <tr><th scope="row">支付負責人的年薪</th><td data-label="全年100萬元">−700,000元</td><td data-label="全年300萬元">−700,000元</td></tr>
     <tr><th scope="row">公司課稅所得</th><td data-label="全年100萬元">100,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,000,000 − 200,000 − 700,000 ＝ 100,000元</div></details></td><td data-label="全年300萬元">1,700,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>3,000,000 − 600,000 − 700,000 ＝ 1,700,000元</div></details></td></tr>
-    <tr><th scope="row">公司營所稅</th><td data-label="全年100萬元"><strong>0元</strong><small>未超過12萬元</small><details class="tax-calc-disclosure"><summary>查看算式</summary><div>所得100,000元未超過免徵營所稅的120,000元門檻</div></details></td><td data-label="全年300萬元"><strong>340,000元</strong><small>170萬元×20%</small><details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,700,000 × 20% ＝ 340,000元</div></details></td></tr>
-    <tr><th scope="row">假設全數分配的稅後股利</th><td data-label="全年100萬元">100,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>100,000 − 0 ＝ 100,000元</div></details></td><td data-label="全年300萬元">1,360,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,700,000 − 340,000 ＝ 1,360,000元</div></details></td></tr>
-    <tr><th scope="row">個人薪資＋股利所得稅<small>簡化同年度試算</small></th><td data-label="全年100萬元"><strong>8,300元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>(700,000 ＋ 100,000 − 464,000) × 5% − 100,000 × 8.5% ＝ 8,300元<span class="tax-calc-tip">464,000元為個人免稅額、標準扣除額和薪資特別扣除額合計</span></div></details></td><td data-label="全年300萬元"><strong>86,100元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>(700,000 ＋ 1,360,000 − 464,000) × 20% − 153,100 − 80,000 ＝ 86,100元<span class="tax-calc-tip">股利8.5%原可抵減115,600元，但每戶最多抵減80,000元</span></div></details></td></tr>
-    <tr><th scope="row">全年公司＋個人所得稅</th><td data-label="全年100萬元"><strong>8,300元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>0 ＋ 8,300 ＝ 8,300元</div></details></td><td data-label="全年300萬元"><strong>426,100元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>340,000 ＋ 86,100 ＝ 426,100元</div></details></td></tr>
-    <tr><th scope="row">申報繳納營業稅</th><td data-label="全年100萬元">40,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>50,000 − 10,000 ＝ 40,000元</div></details></td><td data-label="全年300萬元">120,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>150,000 − 30,000 ＝ 120,000元</div></details></td></tr>
-    <tr class="tax-total-row"><th scope="row">全年所得稅＋營業稅合計</th><td data-label="全年100萬元"><strong>48,300元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>0 ＋ 8,300 ＋ 40,000 ＝ 48,300元</div></details></td><td data-label="全年300萬元"><strong>546,100元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>340,000 ＋ 86,100 ＋ 120,000 ＝ 546,100元</div></details></td></tr>
+    <tr><th scope="row">公司營所稅</th><td data-label="全年100萬元"><strong>0元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>課稅所得100,000元未超過免徵營所稅的120,000元門檻</div></details></td><td data-label="全年300萬元"><strong>340,000元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,700,000 × 20% ＝ 340,000元</div></details></td></tr>
+    <tr><th scope="row">公司稅後盈餘</th><td data-label="全年100萬元">100,000元</td><td data-label="全年300萬元">1,360,000元</td></tr>
+    <tr><th scope="row">法定盈餘公積（10%）</th><td data-label="全年100萬元">−10,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>100,000 × 10% ＝ 10,000元</div></details></td><td data-label="全年300萬元">−136,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,360,000 × 10% ＝ 136,000元</div></details></td></tr>
+    <tr><th scope="row">可分配盈餘</th><td data-label="全年100萬元">90,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>100,000 − 10,000 ＝ 90,000元</div></details></td><td data-label="全年300萬元">1,224,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,360,000 − 136,000 ＝ 1,224,000元</div></details></td></tr>
+    <tr><th scope="row">分配給自己的股利（30%）</th><td data-label="全年100萬元"><strong>27,000元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>90,000 × 30% ＝ 27,000元</div></details></td><td data-label="全年300萬元"><strong>367,200元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,224,000 × 30% ＝ 367,200元</div></details></td></tr>
+    <tr><th scope="row">留在公司的未分配餘額（70%）</th><td data-label="全年100萬元">63,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>90,000 × 70% ＝ 63,000元</div></details></td><td data-label="全年300萬元">856,800元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>1,224,000 × 70% ＝ 856,800元</div></details></td></tr>
+    <tr><th scope="row">負責人個人薪資＋股利所得</th><td data-label="全年100萬元">727,000元</td><td data-label="全年300萬元">1,067,200元</td></tr>
+    <tr><th scope="row">個人綜合所得稅（股利抵減前）</th><td data-label="全年100萬元">13,150元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>(727,000 − 464,000) × 5% ＝ 13,150元</div></details></td><td data-label="全年300萬元">30,160元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>(1,067,200 − 464,000) × 5% ＝ 30,160元</div></details></td></tr>
+    <tr><th scope="row">個人股利可抵減稅額</th><td data-label="全年100萬元">−2,295元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>27,000 × 8.5% ＝ 2,295元</div></details></td><td data-label="全年300萬元">−31,212元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>367,200 × 8.5% ＝ 31,212元</div></details></td></tr>
+    <tr><th scope="row">負責人最後個人所得稅</th><td data-label="全年100萬元"><strong>10,855元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>13,150 − 2,295 ＝ 10,855元</div></details></td><td data-label="全年300萬元"><strong>退稅1,052元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>30,160 − 31,212 ＝ −1,052元<span class="tax-calc-tip">股利抵減後有超額1,052元，符合規定可退稅</span></div></details></td></tr>
+    <tr><th scope="row">公司營所稅＋個人所得稅淨額</th><td data-label="全年100萬元"><strong>10,855元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>0 ＋ 10,855 ＝ 10,855元</div></details></td><td data-label="全年300萬元"><strong>338,948元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>340,000 − 1,052 ＝ 338,948元</div></details></td></tr>
+    <tr><th scope="row">公司申報營業稅</th><td data-label="全年100萬元">40,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>銷項50,000 − 可扣抵進項10,000 ＝ 40,000元</div></details></td><td data-label="全年300萬元">120,000元<details class="tax-calc-disclosure"><summary>查看算式</summary><div>銷項150,000 − 可扣抵進項30,000 ＝ 120,000元</div></details></td></tr>
+    <tr class="tax-total-row"><th scope="row">公司＋負責人所得稅與營業稅合計</th><td data-label="全年100萬元"><strong>50,855元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>公司營所稅0 ＋ 個人綜所稅10,855 ＋ 營業稅40,000 ＝ 50,855元</div></details></td><td data-label="全年300萬元"><strong>458,948元</strong><details class="tax-calc-disclosure"><summary>查看算式</summary><div>公司營所稅340,000 − 個人退稅1,052 ＋ 營業稅120,000 ＝ 458,948元</div></details></td></tr>
   </tbody>
 </table>
 </div>
 
-**年收300萬元的稅額計算：** 公司收入300萬元，扣除60萬元成本及70萬元薪資，課稅所得為170萬元，營所稅340,000元，稅後可分配股利136萬元。假設個人在同一課稅年度取得70萬元薪資及136萬元股利，扣除個人免稅額、標準扣除額與薪資特別扣除額合計46.4萬元，課稅所得淨額為159.6萬元，綜所稅原額166,100元。股利8.5%抵減額原為115,600元，因每戶抵減上限為80,000元，實際個人所得稅為**86,100元**。
+**年收100萬元的結果：** 公司支付70萬元年薪後，課稅所得10萬元，營所稅0元。提列1萬元法定盈餘公積後，可分配9萬元，其中**27,000元股利給負責人**，其餘63,000元留在公司。負責人當年度假設取得70萬元薪資與27,000元股利，個人綜所稅為**10,855元**。加計公司申報繳納的4萬元營業稅，合計**50,855元**。
 
-**本例有限公司年收100萬元的所得稅及營業稅合計48,300元；年收300萬元合計546,100元。** 年收300萬元包含公司營所稅340,000元、股東個人所得稅86,100元及營業稅120,000元。營業稅由向客戶另收的銷項稅額扣抵合法進項稅額後申報，不屬於股東個人所得稅。
+**年收300萬元的結果：** 公司支付70萬元年薪後，課稅所得170萬元、營所稅34萬元。稅後盈餘136萬元，提列13.6萬元法定盈餘公積，剩122.4萬元可分配；其中**367,200元股利給負責人**，856,800元留在公司。負責人假設同一個人課稅年度取得70萬元薪資與367,200元股利，綜所稅抵減股利可抵減額後為**退稅1,052元**。公司營所稅34萬元，合併個人退稅與公司營業稅12萬元，淨額合計為**458,948元**。
 
 <div class="org-explainer-note">
-  <strong>有限公司的薪資、股利與營運成本</strong>
-  <p>公司支付你的薪資必須是真實工作的合理報酬，並依規定處理。表格尚未計入公司設立、記帳、雇主勞健保、勞退、個人保險費等成本；實際支付這些成本後，公司的課稅所得也會改變。股利常在後續年度才決議分配，這裡把薪資與股利假設放在同一個人課稅年度，<strong>只是比較所得稅計算方式，不是實際分配時程</strong>。若公司不分配盈餘，也要留意未分配盈餘稅。薪資與保費請看<a href="/local-practice-guide/entries/labor-health-insurance/">〈勞健保〉</a>；股利與營所稅另見<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。</p>
+  <strong>小提醒｜公司留存盈餘、法定公積與實際股利年度</strong>
+  <p>本例假設公司沒有以前年度虧損，且法定盈餘公積尚未達實收資本額，所以先依《公司法》第237條提列<strong>10%法定盈餘公積</strong>，再以剩餘可分配盈餘的30%發放股利。股利應依法決議分配，通常在產生盈餘後的後續年度才進入個人所得；本表把薪資與股利放在<strong>同一個人課稅年度</strong>，僅為說明計算方式。</p>
+  <p>公司保留的未分配盈餘，符合課稅條件時，後續年度還可能<strong>加徵5%未分配盈餘稅</strong>；以上未計入該筆稅額。假設保留餘額全數構成應加徵基礎，100萬元及300萬元兩個案例可能另有3,150元、42,840元的加徵稅額，實際應依法律允許的扣除、投資與調整項目計算。公司維護、雇主及個人勞健保、勞退、股利補充保費等也未納入比較。</p>
+  <p>稅制與操作可延伸閱讀<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>、<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>、<a href="/local-practice-guide/entries/labor-health-insurance/">〈勞健保〉</a>及<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080001" target="_blank" rel="noopener noreferrer">《公司法》第237條</a>。</p>
 </div>
 
-**以下另比較付款方的實際成本，以及補助、貸款與合作資格的差異。** 法律責任與法人地位另見<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
+**本例將薪資、股利與留存盈餘分開計算，公司的保留資金不屬於負責人當年的實領收入。** 法人責任及資金管理規定，另見<a href="/local-practice-guide/entries/why-establish-legal-person/">〈為什麼要成立法人？〉</a>。
 
 ### 5. 四種身分：單筆10萬元、年收100萬元、300萬元的稅額比較
 
