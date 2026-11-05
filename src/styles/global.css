@@ -3204,3 +3204,60 @@ main table :is(th, td) p {
     font-weight:700;
   }
 }
+
+
+/* Business/studio guide: readable tax rows and three distinct practical cases. */
+.article .studio-guide-table tbody td small {
+  display: block;
+  margin-top: 4px;
+  color: #687b6c;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+.article .studio-guide-table tbody .studio-tax-total-row th,
+.article .studio-guide-table tbody .studio-tax-total-row td {
+  background: #ecf4e9;
+  border-top: 2px solid #bad1bc;
+  font-weight: 700;
+}
+.article .studio-guide-table tbody .studio-tax-total-row strong {
+  color: #28553b;
+  font-size: 15px;
+}
+.article .studio-case-panel {
+  margin: 18px 0 20px;
+  padding: 18px 21px;
+  background: #f8f8f5;
+  border: 1px solid #dfe6dc;
+  border-left: 3px solid #879b88;
+  border-radius: 8px;
+}
+.article .studio-case-panel.studio-case-positive {
+  background: #f3f8f0;
+  border-color: #d4e4d2;
+  border-left-color: #78a183;
+}
+.article .studio-case-panel h4 {
+  margin: 0 0 10px;
+  color: #2e503c;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.article .studio-case-panel p {
+  margin: 10px 0 0;
+  line-height: 1.85;
+}
+@media (max-width: 700px) {
+  .article .studio-guide-table tbody .studio-tax-total-row td {
+    background: #f5faf2;
+  }
+  .article .studio-case-panel {
+    padding: 16px 15px;
+    margin: 15px 0;
+  }
+  .article .studio-case-panel h4 {
+    font-size: 15px;
+  }
+}
