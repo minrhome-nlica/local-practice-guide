@@ -3,15 +3,13 @@ title: 什麼是營業稅與營所稅？
 summary: 以10萬元設計委託比較個人、免用發票商號、使用發票商號與公司，再說明營業稅、營所稅、統一發票、進銷項及協會補助的稅務差異。
 category: organizations
 level: 實務
-updated: 2026-11-02
+updated: 2026-11-05
 status: 編輯稿
 related:
-  - income-withholding
   - why-establish-business-studio
-  - why-establish-legal-person
-  - which-status-saves-tax
-  - reimbursement
   - comprehensive-income-tax
+  - income-withholding
+  - which-status-saves-tax
 tags:
   - 營業稅
   - 營所稅
@@ -304,3 +302,5 @@ tags:
 - 財政部北區國稅局花蓮分局，2026年4月14日《加值型及非加值型營業稅法令介紹》，尤其第16～24、31～34頁。
 - 財政部北區國稅局花蓮分局《營利事業所得稅申報法令及實務介紹》，尤其第4～5、19～20頁。
 - [財政部稅務入口網](https://www.etax.nat.gov.tw/)；另依當年度公告與主管國稅局核定資料辦理。
+
+若要比較個人接案與商號的具體稅費差異，可閱讀[〈為什麼要成立商號／工作室？〉](/local-practice-guide/entries/why-establish-business-studio/)。

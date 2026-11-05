@@ -3,14 +3,13 @@ title: 計畫撰寫
 summary: 計畫書不是作文。從問題、脈絡、策略與工作項目開始，讓不熟悉地方的人也能理解你為什麼要做、準備怎麼做，以及如何完成。
 category: plans
 level: 入門
-updated: 2026-10-29
+updated: 2026-11-05
 status: 編輯稿
 related:
   - subsidy-guide
-  - tender
   - budget-planning
   - results-report-writing
-  - reimbursement
+  - tender
 tags:
   - 計畫撰寫
   - 計畫書
@@ -243,3 +242,5 @@ tags:
   <p>這份計畫是否說清楚了「為什麼要做、想做到什麼、準備怎麼做、誰來做、什麼時候做、要花多少錢、最後留下什麼」？</p>
   <p>尤其要確認：問題能否對應策略、策略能否對應工作項目、工作項目是否有足夠的經費與人力，而預期效益能否在期限內真正完成。</p>
 </aside>
+
+計畫執行完成後，可接著參考[〈成果報告撰寫〉](/local-practice-guide/entries/results-report-writing/)，對照原先目標整理實際成果。

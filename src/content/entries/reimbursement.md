@@ -3,14 +3,13 @@ title: 怎麼核銷
 summary: 從核定函確認經費、認識原始憑證、製作領款憑單，到填寫經費支出明細與黏貼憑證，一步一步整理補助案的核銷文件。
 category: finance
 level: 實務
-updated: 2026-10-30
+updated: 2026-11-05
 status: 編輯稿
 related:
   - budget-planning
   - results-report-writing
+  - income-withholding
   - supplemental-premium
-  - proposal-writing
-  - which-status-saves-tax
 tags:
   - 核銷
   - 核定函
@@ -172,6 +171,8 @@ tags:
 
 無論最後採紙本黏貼或電子憑證整理，最重要的都是<strong>憑證編號、經費支出明細與核定項目能夠互相對應</strong>。實際需要送交哪些文件、是否須提供正本、如何保存，仍要以補助機關的要求為準。
 
+
+支付講師費、稿費或其他個人勞務報酬時，可搭配[〈預扣所得稅〉](/local-practice-guide/entries/income-withholding/)確認所得代碼與扣繳資料。
 
 ## 五、憑證附件
 

@@ -3,13 +3,13 @@ title: 勞健保
 summary: 看不懂薪資單上的勞保、健保與勞退？以2026年勞健保級距表和月薪34,000元為例，教你看懂員工自付、雇主負擔，以及「月薪34,000」與「實領34,000」為何不同。
 category: people
 level: 實務
-updated: 2026-10-30
+updated: 2026-11-05
 status: 編輯稿
 related:
   - supplemental-premium
   - budget-planning
+  - income-withholding
   - reimbursement
-  - which-status-saves-tax
 tags:
   - 勞健保
   - 勞保

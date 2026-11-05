@@ -3,11 +3,12 @@ title: 地方實踐
 summary: 從人文主義地理學的「地方」與「空間」出發，理解人們如何透過經驗、情感及行動，讓一處空間成為地方。
 category: basics
 level: 入門
-updated: 2026-10-29
+updated: 2026-11-05
 status: 編輯稿
 related:
-  - local-revitalization
   - community-building
+  - local-revitalization
+  - what-is-subsidy
 tags:
   - 地方實踐
   - 地方

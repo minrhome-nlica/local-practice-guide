@@ -3,11 +3,12 @@ title: 地方創生
 summary: 從日本的「地方消滅」危機，到臺灣少子化、高齡化與生活機能流失，理解地方創生如何從產業發展逐漸走向地方韌性。
 category: basics
 level: 入門
-updated: 2026-10-29
+updated: 2026-11-05
 status: 編輯稿
 related:
   - local-practice
   - community-building
+  - what-is-subsidy
 tags:
   - 地方創生
   - 人口減少
@@ -70,3 +71,5 @@ tags:
 因此，地方創生走到後來，真正要創造的或許不只是「地方的新產業」。
 
 它所試圖創造的，是一個地方繼續讓人生活下去的可能。
+
+若想了解居民參與及公共治理的實踐方式，可以接著閱讀[〈社區營造〉](/local-practice-guide/entries/community-building/)。

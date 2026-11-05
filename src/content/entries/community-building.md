@@ -3,11 +3,12 @@ title: 社區營造
 summary: 臺灣社區營造源自民主化與地方自治的歷史脈絡；從日本造町經驗到公民培育，核心始終是讓人關心、討論並參與公共事務。
 category: basics
 level: 入門
-updated: 2026-10-29
+updated: 2026-11-05
 status: 編輯稿
 related:
   - local-practice
   - local-revitalization
+  - what-is-subsidy
 tags:
   - 社區營造
   - 社區總體營造
@@ -54,7 +55,7 @@ tags:
 1. **公共治理：** 深化公私協力，落實「行政社造化」，建立有利於公民參與的支持體系。
 2. **世代前進：** 賦權青年，促進跨世代對話與協力共好。
 3. **多元平權：** 尊重性別、族群與階級差異，結合在地知識學保存多元歷史。
-4. **社會共創：** 引入社會設計與公民科技，對接聯合國永續發展目標（SDGs），並與地方創生進行跨域共創。
+4. **社會共創：** 引入社會設計與公民科技，對接聯合國永續發展目標（SDGs），並與[地方創生](/local-practice-guide/entries/local-revitalization/)進行跨域共創。
 
 ## 三、範疇演變
 

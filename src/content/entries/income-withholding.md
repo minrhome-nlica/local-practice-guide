@@ -3,15 +3,13 @@ title: 預扣所得稅：9A、9B、50怎麼扣？
 summary: 社區協會支付講師費、設計費、稿費，什麼時候需要先扣稅？從9A、9B、50的單次與單月給付、2026年門檻、實領試算到付款單位的申報，一次講清楚。
 category: organizations
 level: 實務
-updated: 2026-11-02
+updated: 2026-11-05
 status: 編輯稿
 related:
   - supplemental-premium
-  - business-income-tax
-  - reimbursement
-  - why-establish-business-studio
-  - which-status-saves-tax
   - comprehensive-income-tax
+  - reimbursement
+  - business-income-tax
 tags:
   - 預扣所得稅
   - 9A
@@ -155,3 +153,5 @@ tags:
 - [財政部：薪資所得如何辦理扣繳？](https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/withheld-rule/rule/NM11BZY)
 - [《薪資所得扣繳辦法》](https://law-out.mof.gov.tw/LawContent.aspx?id=FL005945)
 - [國立臺南大學：2026年各類所得扣繳實務整理](https://oga.nutn.edu.tw/mode05_02.asp?num=20180508113554055&page=1&t=list)
+
+年度報稅時，另可參考[〈綜合所得稅〉](/local-practice-guide/entries/comprehensive-income-tax/)，確認預扣稅款如何抵繳。

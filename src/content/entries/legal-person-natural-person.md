@@ -7,11 +7,9 @@ updated: 2026-11-05
 status: 編輯稿
 related:
   - why-establish-legal-person
-  - why-establish-company
-  - local-practice
-  - what-is-subsidy
-  - labor-health-insurance
   - which-status-saves-tax
+  - why-establish-business-studio
+  - why-establish-company
 tags:
   - 自然人
   - 法人

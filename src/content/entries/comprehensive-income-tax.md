@@ -3,15 +3,13 @@ title: 什麼是綜合所得稅？
 summary: 一年收了100萬元，究竟要繳多少所得稅？從個人設計師的收入、成本與扣除額開始，讀懂2026年綜合所得稅、累進稅率、預扣稅款的退補，以及工作室與公司所得的不同。
 category: finance
 level: 實務
-updated: 2026-11-02
+updated: 2026-11-05
 status: 編輯稿
 related:
   - income-withholding
-  - supplemental-premium
   - business-income-tax
+  - supplemental-premium
   - which-status-saves-tax
-  - why-establish-business-studio
-  - labor-health-insurance
 tags:
   - 綜合所得稅
   - 所得稅

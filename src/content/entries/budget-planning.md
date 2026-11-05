@@ -3,16 +3,13 @@ title: 經費編列
 summary: 第一次寫計畫，不知道工作坊、市集或展覽要編哪些錢？從工作項目拆解、經費依據與經常門／資本門，到勻支、流用及豐田街區藝術展案例，一步一步認識預算表。
 category: finance
 level: 實務
-updated: 2026-10-30
+updated: 2026-11-05
 status: 編輯稿
 related:
   - proposal-writing
-  - results-report-writing
-  - subsidy-guide
-  - tender
   - reimbursement
+  - results-report-writing
   - labor-health-insurance
-  - supplemental-premium
 tags:
   - 經費編列
   - 經常門
