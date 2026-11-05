@@ -3,7 +3,7 @@ title: 什麼是法人、自然人？
 summary: 一個人接案、成立工作室、設立公司或協會，法律上究竟有什麼不同？從自然人與法人的權利義務出發，看懂獨立財產、組織責任，以及團體立案不等於法人登記。
 category: organizations
 level: 入門
-updated: 2026-10-31
+updated: 2026-11-05
 status: 編輯稿
 related:
   - why-establish-legal-person
