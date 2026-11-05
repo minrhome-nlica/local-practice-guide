@@ -3147,3 +3147,60 @@ main table :is(th, td) p {
     padding: 17px 16px;
   }
 }
+
+/* Business/studio guide tables: compact desktop tables, mobile stacked rows. */
+.article .studio-guide-table-wrap {
+  max-width:100%;
+}
+.article .studio-guide-table {
+  min-width:0;
+  table-layout:fixed;
+}
+@media (max-width:700px) {
+  .article .studio-guide-table-wrap {
+    border:0;
+    overflow-x:hidden;
+    overflow-y:visible;
+    background:transparent;
+  }
+  .article .studio-guide-table,
+  .article .studio-guide-table tbody,
+  .article .studio-guide-table tbody tr,
+  .article .studio-guide-table tbody th,
+  .article .studio-guide-table tbody td {
+    display:block;
+    width:100%;
+    min-width:0;
+    box-sizing:border-box;
+  }
+  .article .studio-guide-table thead { display:none; }
+  .article .studio-guide-table tbody tr {
+    margin:0 0 10px;
+    border:1px solid #d9e4d7;
+    border-radius:8px;
+    overflow:hidden;
+    background:#fff;
+  }
+  .article .studio-guide-table tbody th {
+    border:0;
+    padding:12px 14px;
+    font-size:14px;
+    background:#eef4ea;
+  }
+  .article .studio-guide-table tbody td {
+    border:0;
+    border-top:1px solid #e5ece2;
+    padding:10px 14px;
+    font-size:13px;
+    line-height:1.7;
+    overflow-wrap:anywhere;
+  }
+  .article .studio-guide-table tbody td::before {
+    content:attr(data-label);
+    display:block;
+    margin-bottom:3px;
+    color:#718574;
+    font-size:11px;
+    font-weight:700;
+  }
+}
