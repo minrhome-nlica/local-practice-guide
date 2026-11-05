@@ -120,7 +120,7 @@ tags:
 <tr><th scope="row">全年收入</th><td data-label="執行業務所得（代碼9A）">1,000,000元</td><td data-label="商號">1,000,000元</td></tr>
 <tr><th scope="row">所得認定</th><td data-label="執行業務所得（代碼9A）">假設適用30%必要費用率，所得700,000元</td><td data-label="商號">假設依法適用商業設計7%純益率，所得70,000元</td></tr>
 <tr><th scope="row">全年綜合所得稅</th><td data-label="執行業務所得（代碼9A）"><strong>23,150元</strong></td><td data-label="商號"><strong>0元</strong></td></tr>
-<tr><th scope="row">個人二代健保補充保費</th><td data-label="執行業務所得（代碼9A）"><strong>21,100元</strong><small>1,000,000 × 2.11%</small></td><td data-label="商號"><strong>0元</strong><small>本例並非個人9A報酬給付</small></td></tr>
+<tr><th scope="row">個人二代健保補充保費</th><td data-label="執行業務所得（代碼9A）"><strong>21,100元</strong><small>1,000,000 × 2.11%</small></td><td data-label="商號"><strong>0元</strong><small>本例並非執行業務所得（代碼9A）報酬給付</small></td></tr>
 <tr><th scope="row">營業稅</th><td data-label="執行業務所得（代碼9A）">0元<small>假設符合專業性勞務排除規定</small></td><td data-label="商號"><strong>10,000元</strong><small>假設全年核定銷售額100萬、查定稅率1%</small></td></tr>
 <tr class="studio-tax-total-row"><th scope="row">本例列示稅費合計</th><td data-label="執行業務所得（代碼9A）"><strong>44,250元</strong></td><td data-label="商號"><strong>10,000元</strong></td></tr>
 </tbody></table>
@@ -128,23 +128,23 @@ tags:
 
 **本例列示的稅費相差34,250元，其中個人補充保費相差21,100元。** 這是兩套合法收入與申報方式的條件式試算，**不表示原本屬於執行業務所得（代碼9A）的個人收入，可以僅透過成立商號就重新分類。** 表格未計一般健保費、工作室行政費與實際營業成本；9A的30%必要費用率、商號的7%純益率，也各有行業及申報條件。
 
-#### 案例一｜導覽解說轉為真正的文史工作室
+<div class="studio-case-panel studio-case-positive">
+  <h4>案例一｜導覽解說轉型為文史工作室</h4>
+  <p>社區導覽解說員原本以個人名義提供服務，假設報酬依法列為<strong>執行業務所得（代碼9A）</strong>。後來成立文史工作室，改由<strong>工作室與旅行社簽約、安排導覽與相關服務、收款並提供合法憑證</strong>。</p>
+  <p>這可能是正常的商業模式轉型，<strong>前提是服務與契約主體確實改為商號，並完成依法應辦的登記</strong>。經核定免用統一發票的工作室，提供的是<strong>普通收據</strong>，而不是「免用統一發票」。</p>
+</div>
 
-一名社區導覽解說員原本以個人名義提供解說服務，假設其報酬依法列為**執行業務所得（代碼9A）**。後來成立文史工作室，改由**工作室與旅行社簽約、安排導覽與相關服務，並以工作室名義收款及依法提供憑證**。
+<div class="studio-case-panel">
+  <h4>案例二｜個人創作，卻由工作室掛名請款</h4>
+  <p>設計師與客戶由<strong>本人簽約</strong>，約定本人創作、報酬歸本人；在交易條件不變時，只為降低稅負，要求改匯款到工作室帳戶，並由工作室開收據。</p>
+  <p><strong>契約、實際所得歸屬與請款名義不一致，可能涉及以商號名義掩飾個人所得的風險。</strong> 著作權可依法另外約定，不以智慧財產權歸屬單獨判斷所得種類；仍須綜合契約、付款和履約事實認定。</p>
+</div>
 
-這類經營模式可屬正常的商業轉型；**前提是服務與契約主體確實改為商號，完成應有登記並依國稅局核定的方式請款**。若經核定免用統一發票，提供的是依法開立的**普通收據**，而不是「免用統一發票」。
-
-#### 案例二｜個人創作卻改由工作室掛名請款
-
-設計師與客戶的合約由**設計師本人**簽署，約定由本人創作、報酬也歸本人；但在其他條件不變的情況下，為降低稅負，要求客戶改匯款到工作室帳戶，並由工作室開收據。
-
-**實際交易、契約主體與請款名義不一致，可能涉及以商號名義掩飾個人所得的稅務風險。** 智慧財產權可以依法另行約定，並非單憑著作權歸屬就能判定所得種類；國稅局仍會綜合契約、付款與履約事實認定。
-
-#### 案例三｜要求受僱設計師成立工作室請款
-
-設計公司原本聘用設計師，按月支付薪資並依法投保，之後要求設計師成立工作室，每月以商號名義向公司請領固定費用。
-
-如果工作者仍固定打卡、接受公司指揮監督，主要工作條件與原本僱傭關係相同，**就可能構成「假承攬、真僱傭」**。是否為僱傭關係，須依實際從屬性、指揮監督及工作安排等事實判斷，而非只看契約或收據名稱。經查明違反規定時，可能涉及補繳保險費、勞動權益、稅務調整與依法裁罰。詳見<a href="https://www.mol.gov.tw/1607/28690/2282/2326/2288/82220/post" target="_blank" rel="noopener noreferrer">勞動部〈雇主可以要求簽承攬契約嗎？〉</a>。
+<div class="studio-case-panel">
+  <h4>案例三｜受僱設計師被要求成立工作室請款</h4>
+  <p>設計公司原本聘用設計師並支付薪資，後來改要求設計師成立工作室，每月用商號收據向公司請領固定費用。</p>
+  <p>工作者若仍固定打卡、接受公司指揮監督，且工作條件與原本僱傭關係相同，就可能是<strong>「假承攬、真僱傭」</strong>。主管機關依實際從屬性及工作安排認定，不只看契約或收據名稱；經查明違反規定時，可能涉及保費補繳、勞動權益、所得分類調整及依法裁罰。參考<a href="https://www.mol.gov.tw/1607/28690/2282/2326/2288/82220/post" target="_blank" rel="noopener noreferrer">勞動部的承攬契約說明</a>。</p>
+</div>
 
 **上述5萬元、10萬元等門檻指營業性收入。** 依法認定符合執行業務所得（代碼9A）及專業性勞務排除規定的個人，不會因為個人收入增加，就自動被強制要求成立商號。個人所得稅與補充保費仍須依法處理。
 
@@ -179,6 +179,6 @@ tags:
 
 <div class="org-source-note">
 <strong>參考資料與試算前提</strong>
-<p>本文以115年度（2026年）個人免稅額與扣除額試算，7%商業設計純益率參照114年度規定，9A個人30%必要費用率僅為示範。實際所得分類、工作類別、補充保費、商號登記與營業稅，以法規及國稅局、健保署依個案認定為準。比較表未計所有一般健保、人事、記帳及其他營業成本。</p>
+<p>本文以115年度（2026年）個人免稅額與扣除額試算，7%商業設計純益率參照114年度規定，執行業務所得（代碼9A）的30%必要費用率僅為示範。實際所得分類、工作類別、補充保費、商號登記與營業稅，以法規及國稅局、健保署依個案認定為準。比較表未計所有一般健保、人事、記帳及其他營業成本。</p>
 <p>官方參考：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080004" target="_blank" rel="noopener noreferrer">《商業登記法》</a>、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340080" target="_blank" rel="noopener noreferrer">《營業稅法》</a>、<a href="https://law-out.mof.gov.tw/LawContent.aspx?KeyWord=%E5%B0%8F%E8%A6%8F%E6%A8%A1&id=FL006090&media=print" target="_blank" rel="noopener noreferrer">小規模營業人營業稅起徵點</a>、<a href="https://www.nhi.gov.tw/ch/cp-4516-74b0f-2613-1.html" target="_blank" rel="noopener noreferrer">健保署補充保費計算</a>、<a href="https://www.nhi.gov.tw/ch/cp-2837-2ee1d-3150-1.html" target="_blank" rel="noopener noreferrer">健保署獨資負責人補充保費</a>、<a href="https://www.ntbt.gov.tw/singlehtml/564aefd5ece540fdb311a46b83292574?cntId=c71b96eaa7964251814702a4ec2262c3" target="_blank" rel="noopener noreferrer">財政部各業所得額與純益率</a>、<a href="https://www.dot.gov.tw/singlehtml/ch26?cntId=cf5db69f558d42409aa56c70838e8802" target="_blank" rel="noopener noreferrer">115年度綜所稅免稅額</a>。</p>
 </div>
