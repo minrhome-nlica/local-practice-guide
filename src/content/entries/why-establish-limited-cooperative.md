@@ -88,7 +88,13 @@ tags:
 
 **免稅的是符合規定的合作社對社員交易**；不是只要交易雙方有社員身分就全部免稅。對非社員提供服務仍有業務範圍、比例及收益處理的限制。
 
-### 3. 七名社員共同接案：主責20%、管理費10%、共同勞務70%
+### 3. 更平均的盈餘分配機制
+
+以一般股份有限公司來說，公司的獲利往往來自全體員工共同付出。假設公司今年有5,000萬元盈餘，員工可能依勞動契約、公司制度取得年終獎金或工作獎金；但公司依法分配給股東的股利，原則上仍依持有股份及相關規定計算。**有些股東即使沒有直接參與公司的日常工作，也可能因持股而分得股利。**
+
+**合作社的分配方式不同。** 社員可以依實際提供的勞務取得報酬；合作社若有依法可以分配的年度結餘，還能依社員與合作社的交易額比例分配。社員認購的社股則可能取得股息，但**社股年息依法最高10%，這是社股金額的10%，不是盈餘的10%**。合作社重視的是社員參與及交易貢獻，並不代表所有人都平均領取相同金額。
+
+**我們透過以下案例來看：**
 
 今年合作社共承接**1,190萬元的藝文勞務案件**。七名社員A至G分別主責200萬、190萬、180萬、170萬、160萬、150萬、140萬元的案件。因為每個案件都難以由單一社員獨力完成，大家事先約定：
 
@@ -161,7 +167,28 @@ tags:
 </tbody></table>
 </div>
 
-這48,025元仍須按社員與合作社的交易額比例及社員大會決議依法辦理，並非直接按照前面的主責20%或協作70%分配。上述只是簡化例子，實際依章程、決算及法定提列規定辦理。
+**七名社員各自分得多少股息與交易分配金？**
+
+本例七人各繳社股金10,000元，並假設這筆**社員內服務**的交易額比例，剛好與前面示範的協作貢獻比例相同：A為20%，B至E各15%，F與G各10%。這只是為了方便對照；**實際社員交易分配金應依社員與合作社的合法交易額計算，不是直接用前面833萬元的共同勞務報酬比例套算。**
+
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="七名社員分得社股股息與社員交易分配金比較">
+<table class="org-compare-table studio-guide-table">
+<thead><tr><th scope="col">社員</th><th scope="col">社員內服務交易比例</th><th scope="col">社股股息</th><th scope="col">社員交易分配金</th><th scope="col">兩項合計</th></tr></thead>
+<tbody>
+<tr><th scope="row">社員A</th><td data-label="社員內服務交易比例">20%</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">9,605元</td><td data-label="兩項合計"><strong>10,105元</strong></td></tr>
+<tr><th scope="row">社員B</th><td data-label="社員內服務交易比例">15%</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">7,204元</td><td data-label="兩項合計"><strong>7,704元</strong></td></tr>
+<tr><th scope="row">社員C</th><td data-label="社員內服務交易比例">15%</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">7,204元</td><td data-label="兩項合計"><strong>7,704元</strong></td></tr>
+<tr><th scope="row">社員D</th><td data-label="社員內服務交易比例">15%</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">7,204元</td><td data-label="兩項合計"><strong>7,704元</strong></td></tr>
+<tr><th scope="row">社員E</th><td data-label="社員內服務交易比例">15%</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">7,204元</td><td data-label="兩項合計"><strong>7,704元</strong></td></tr>
+<tr><th scope="row">社員F</th><td data-label="社員內服務交易比例">10%</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">4,802元</td><td data-label="兩項合計"><strong>5,302元</strong></td></tr>
+<tr><th scope="row">社員G</th><td data-label="社員內服務交易比例">10%</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">4,802元</td><td data-label="兩項合計"><strong>5,302元</strong></td></tr>
+<tr class="studio-tax-total-row"><th scope="row">七人合計</th><td data-label="社員內服務交易比例"><strong>100%</strong></td><td data-label="社股股息"><strong>3,500元</strong></td><td data-label="社員交易分配金"><strong>48,025元</strong></td><td data-label="兩項合計"><strong>51,525元</strong></td></tr>
+</tbody></table>
+</div>
+
+<small>單位為新臺幣元，社員交易分配金按元四捨五入後調整尾差。金額尚未計算個人適用的所得稅，亦不代表每人實際領取的全部收入。</small>
+
+**這張表的重點是：七人因社股相同，每人股息都是500元；但交易分配金會因實際與合作社交易的比例不同而有所差異。** 這51,525元來自另一筆合法社員內服務的結餘分配，**不是把前面1,190萬元的案件報酬或119萬元對外管理費拿來發股利**。
 
 **原先1,190萬元的藝文案件屬對外承攬；合作社向外部客戶收取119萬元管理費後所形成的非社員業務收益，不得直接拿來作為社員股息或交易分配金。** 依《合作社法》第3-1條及《合作社業務提供非社員使用辦法》，這類收益要依規定提列公積金及公益金。本小節的60,000元特別假設來自另一筆合法的**社員內服務結餘**。
 
