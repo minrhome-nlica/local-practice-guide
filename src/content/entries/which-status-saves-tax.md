@@ -64,6 +64,27 @@ tags:
 
 個人取得符合規定的執行業務收入時，可能涉及**2.11%的二代健保補充保費**；依法經營商號所取得的營業收入，則須依商號的營業稅、營利所得及負責人投保情形分別判斷。**在部分情況下，商號的整體稅費負擔可能較低，但並非成立商號就一定節稅或免繳補充保費。**
 
+### 3. 同樣年收100萬元，個人與商號的稅費差多少？
+
+以115年度（2026年）為例，假設一名**單身、沒有扶養親屬及其他所得**的設計工作者，全年接10件、每件10萬元，共取得**100萬元**收入。分別以符合規定的個人執行業務所得（9A），及依法經營且核定免用統一發票的商號試算：
+
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="年收100萬元個人執行業務所得及商號稅費比較" tabindex="0">
+<table class="org-compare-table studio-guide-table studio-tax-compare">
+<thead><tr><th scope="col">項目</th><th scope="col">執行業務所得（代碼9A）</th><th scope="col">商號（免用統一發票情形）</th></tr></thead>
+<tbody>
+<tr><th scope="row">全年收入</th><td data-label="執行業務所得（代碼9A）">1,000,000元</td><td data-label="商號（免用統一發票情形）">1,000,000元</td></tr>
+<tr><th scope="row">所得認定</th><td data-label="執行業務所得（代碼9A）">假設適用30%必要費用率<small>所得700,000元</small></td><td data-label="商號（免用統一發票情形）">假設依法適用商業設計7%純益率<small>所得70,000元</small></td></tr>
+<tr><th scope="row">全年綜合所得稅</th><td data-label="執行業務所得（代碼9A）"><strong>23,150元</strong></td><td data-label="商號（免用統一發票情形）"><strong>0元</strong></td></tr>
+<tr><th scope="row">個人二代健保補充保費</th><td data-label="執行業務所得（代碼9A）"><strong>21,100元</strong><small>1,000,000 × 2.11%</small></td><td data-label="商號（免用統一發票情形）"><strong>0元</strong><small>單位給付單位，並不需要支付補充保費</small></td></tr>
+<tr><th scope="row">營業稅</th><td data-label="執行業務所得（代碼9A）">0元<small>假設符合專業性勞務排除規定</small></td><td data-label="商號（免用統一發票情形）"><strong>10,000元</strong><small>假設全年核定銷售額100萬、查定稅率1%</small></td></tr>
+<tr class="studio-tax-total-row"><th scope="row">本例列示稅費合計</th><td data-label="執行業務所得（代碼9A）"><strong>44,250元</strong></td><td data-label="商號（免用統一發票情形）"><strong>10,000元</strong></td></tr>
+</tbody></table>
+</div>
+
+**本例列示稅費，個人接案44,250元、商號10,000元，相差34,250元。** 其中個人二代健保補充保費相差21,100元。
+
+這只是兩種**不同合法經營與所得認定情況**的比較，並不是同一筆個人報酬可以自行改開商號收據。實際稅費仍取決於國稅局核定的業別、純益率、收入性質及健保投保狀況。
+
 同樣的工作，也不能只為了省稅就任意改變收入類別；應依實際經營方式及稅務認定辦理。
 
 詳細內容可閱讀<a href="/local-practice-guide/entries/why-establish-business-studio/">〈為什麼要成立商號／工作室？〉</a>、<a href="/local-practice-guide/entries/business-income-tax/">〈營業稅與營所稅〉</a>及<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>。
