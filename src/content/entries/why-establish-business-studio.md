@@ -6,15 +6,10 @@ level: 入門
 updated: 2026-11-05
 status: 編輯稿
 related:
-  - why-establish-limited-cooperative
-  - income-withholding
-  - why-establish-legal-person
-  - why-establish-company
-  - legal-person-natural-person
-  - supplemental-premium
-  - business-income-tax
   - which-status-saves-tax
-  - comprehensive-income-tax
+  - business-income-tax
+  - supplemental-premium
+  - why-establish-company
 tags:
   - 商號
   - 工作室

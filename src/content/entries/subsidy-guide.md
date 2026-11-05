@@ -3,14 +3,13 @@ title: 補助案
 summary: 看到補助案，先不要急著寫計畫。真正要先看懂的，是補助宗旨、申請資格、執行期程（含撥款方式）與經費規定，判斷這筆資源是否真的適合你。
 category: plans
 level: 入門
-updated: 2026-10-29
+updated: 2026-11-05
 status: 編輯稿
 related:
   - what-is-subsidy
-  - tender
   - proposal-writing
   - budget-planning
-  - reimbursement
+  - tender
 tags:
   - 補助
   - 補助案
@@ -155,3 +154,5 @@ tags:
   <p>如果你能先把補助宗旨、申請資格、執行期程與經費規定看懂，後面的計畫撰寫、經費編列與執行管理，才會比較穩。</p>
   <p class="subsidy-note-source">文中所引用之資格條件、撥款比例與經費處理方式，係以 115 年教育部青年發展署「青聚點」與 115 年國發會地方創生青年培力工作站等簡章為例，實際仍應以各年度正式公告為準。</p>
 </aside>
+
+確認資格與規定後，可接著閱讀[〈計畫撰寫〉](/local-practice-guide/entries/proposal-writing/)，把想做的工作整理成可執行的計畫。

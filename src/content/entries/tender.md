@@ -3,13 +3,13 @@ title: 標案
 summary: 從履約標的、總包價法、撥款程序到投標文件，讀懂政府究竟要購買什麼服務、要完成多少工作，以及團隊有沒有能力履約與週轉。
 category: plans
 level: 實務
-updated: 2026-10-29
+updated: 2026-11-05
 status: 編輯稿
 related:
   - subsidy-guide
   - proposal-writing
   - budget-planning
-  - reimbursement
+  - results-report-writing
 tags:
   - 標案
   - 政府採購
@@ -187,3 +187,5 @@ tags:
   <p>真正送件以前，還要確認資格、證件、聲明、印章、標價與封裝方式都符合這個標案的要求。</p>
   <p>內容寫得很好，但少了一份文件、金額互相對不起來，或該簽章的位置沒有完成，都可能讓前面花在服務建議書上的努力失去意義。</p>
 </aside>
+
+準備服務建議書時，可參考[〈計畫撰寫〉](/local-practice-guide/entries/proposal-writing/)，依履約要求安排工作項目與成果。

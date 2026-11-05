@@ -10,10 +10,6 @@ related:
   - why-establish-company
   - why-establish-limited-cooperative
   - legal-person-natural-person
-  - why-establish-legal-person
-  - supplemental-premium
-  - business-income-tax
-  - income-withholding
 tags:
   - 身分選擇
   - 商號

@@ -6,12 +6,9 @@ level: 入門
 updated: 2026-11-05
 status: 編輯稿
 related:
+  - which-status-saves-tax
   - why-establish-legal-person
-  - legal-person-natural-person
   - why-establish-business-studio
-  - why-establish-company
-  - income-withholding
-  - business-income-tax
   - supplemental-premium
 tags:
   - 合作社
@@ -257,3 +254,5 @@ tags:
 <strong>相關法規與資料</strong>
 <p><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050112" target="_blank" rel="noopener noreferrer">《合作社法》</a>（第2、3、3-1、4、8、9、22至24條）、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=G0340080" target="_blank" rel="noopener noreferrer">《加值型及非加值型營業稅法》</a>第8條第1項第10款、<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0050200" target="_blank" rel="noopener noreferrer">《合作社業務提供非社員使用辦法》</a>、<a href="https://law-out.mof.gov.tw/LawContent.aspx?id=GL010592&media=print" target="_blank" rel="noopener noreferrer">財政部108年3月7日勞動合作社課稅令</a>。本篇為案例說明；設立、對外承攬、分配及課稅仍以實際交易及主管機關規定為準。</p>
 </div>
+
+如需比較合作社、商號、公司及人民團體的用途，可閱讀[〈什麼身分對我最合適？〉](/local-practice-guide/entries/which-status-saves-tax/)。

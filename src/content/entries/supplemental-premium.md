@@ -3,13 +3,13 @@ title: 二代健保補充保費
 summary: 以社區講師費、表演費、稿費和部落耆老搭建工寮為例，完整說明雇主額外負擔、個人代扣補充保費、六類所得、50／9A／9B，以及 2026 年的扣費與試算方式。
 category: people
 level: 實務
-updated: 2026-10-30
+updated: 2026-11-05
 status: 編輯稿
 related:
   - labor-health-insurance
+  - income-withholding
   - reimbursement
-  - budget-planning
-  - which-status-saves-tax
+  - why-establish-business-studio
 tags:
   - 二代健保
   - 補充保險費
@@ -356,3 +356,5 @@ tags:
   <p>本文以社區協會與地方實踐的常見給付案例說明，補充保費率為 2.11%，2026 年最低工資月額為 29,500 元。不同健保身分、特定免扣資格及其他所得可能有例外；實際申報仍以主管機關規定為準。</p>
   <p>參考：<a href="https://www.nhi.gov.tw/ch/cp-4516-74b0f-2613-1.html" target="_blank" rel="noopener noreferrer">健保署｜補充保費計算與門檻</a>、<a href="https://www.nhi.gov.tw/ch/cp-2864-3afb2-3150-1.html" target="_blank" rel="noopener noreferrer">健保署｜投保單位按月計費</a>、<a href="https://www.nhi.gov.tw/ch/cp-2947-71ec6-3150-1.html" target="_blank" rel="noopener noreferrer">健保署｜保費四捨五入方式</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/taxation-scope/which-income/mMBJgxb" target="_blank" rel="noopener noreferrer">財政部｜講演與授課鐘點費差異</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/taxation-scope/which-income/kWraV93" target="_blank" rel="noopener noreferrer">財政部｜執行業務所得</a>。</p>
 </div>
+
+若還需要區分9A、9B、50類所得的預扣稅額，可以接著閱讀[〈預扣所得稅〉](/local-practice-guide/entries/income-withholding/)。

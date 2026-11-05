@@ -6,12 +6,10 @@ level: 入門
 updated: 2026-11-05
 status: 編輯稿
 related:
-  - why-establish-limited-cooperative
+  - which-status-saves-tax
   - why-establish-business-studio
   - legal-person-natural-person
   - why-establish-legal-person
-  - business-income-tax
-  - comprehensive-income-tax
 tags:
   - 公司
   - 有限公司
@@ -120,3 +118,5 @@ tags:
 <strong>相關法規與資料</strong>
 <p><a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0080001" target="_blank" rel="noopener noreferrer">《公司法》</a>（公司種類、有限公司股東責任、盈餘分配）、<a href="https://gcis.nat.gov.tw/mainNew/subclassNAction.do?method=getFile&pk=179" target="_blank" rel="noopener noreferrer">經濟部限公司組織型態經營營業項目一覽表</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-saving-manual/national/profit-seeking-enterprise-income-tax/7KLMbzD" target="_blank" rel="noopener noreferrer">財政部〈如何慎選營利事業組織型態〉</a>。特殊行業須依現行許可及專業法規辦理。</p>
 </div>
+
+若要和商號、合作社與人民團體比較組織功能，可閱讀[〈什麼身分對我最合適？〉](/local-practice-guide/entries/which-status-saves-tax/)。

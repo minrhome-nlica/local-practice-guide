@@ -3,11 +3,12 @@ title: 什麼是補助？
 summary: 補助不是向政府要錢，而是透過民間行動，共同實現公共目的。從補助與標案的差異開始，理解如何找到真正適合地方工作的資源。
 category: basics
 level: 入門
-updated: 2026-10-29
+updated: 2026-11-05
 status: 編輯稿
 related:
   - subsidy-guide
-  - local-practice
+  - proposal-writing
+  - tender
 tags:
   - 補助
   - 公共政策

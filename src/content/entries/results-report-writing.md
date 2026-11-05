@@ -3,14 +3,13 @@ title: 成果報告撰寫
 summary: 計畫做完了，成果報告該怎麼寫？從核定計畫、執行進度、量化與質化成果，到遭遇困境、經費結報及附件佐證，讓完成的工作被清楚理解，也能接受檢核。
 category: plans
 level: 實務
-updated: 2026-10-30
+updated: 2026-11-05
 status: 編輯稿
 related:
   - proposal-writing
-  - budget-planning
   - reimbursement
+  - budget-planning
   - subsidy-guide
-  - tender
 tags:
   - 成果報告
   - 期中報告

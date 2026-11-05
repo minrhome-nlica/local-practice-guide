@@ -3,15 +3,13 @@ title: 為什麼要成立法人？
 summary: 法人除了分清欠款責任，還能代表團隊簽約、協商並共同處理法律爭議。從地方工作案例看懂這些好處，以及什麼情況下個人仍須負責。
 category: organizations
 level: 入門
-updated: 2026-10-31
+updated: 2026-11-05
 status: 編輯稿
 related:
   - legal-person-natural-person
-  - why-establish-business-studio
-  - why-establish-company
-  - local-practice
-  - what-is-subsidy
   - which-status-saves-tax
+  - why-establish-company
+  - why-establish-limited-cooperative
 tags:
   - 法人
   - 有限責任
