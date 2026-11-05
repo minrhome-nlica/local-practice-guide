@@ -162,8 +162,29 @@ tags:
 **上述5萬元、10萬元等門檻指營業性收入。** 依法認定符合執行業務所得（代碼9A）及專業性勞務排除規定的個人，不會因為個人收入增加，就自動被強制要求成立商號。個人所得稅與補充保費仍須依法處理。
 
 <div class="org-explainer-note">
-  <strong>小提醒｜年收300萬元，還能使用工作室嗎？</strong>
-  <p>可以繼續以工作室經營，但原則上不能一直採「免用統一發票、查定1%營業稅」的方式。一般設計工作室年收300萬元、平均每月25萬元，已超過一般小規模營業人平均每月20萬元的標準，原則上須開立統一發票，按一般應稅服務5%計算銷項營業稅，再扣抵符合法規的進項稅額。特定行業及優惠規定另有例外。</p>
+  <strong>小提醒｜平均月收入超過20萬，工作室會有不同情形</strong>
+  <p>平均月收入超過20萬，基本上就不再適用小規模營業人的規定，需要開立統一發票，按一般應稅服務5%計算銷項營業稅，稅務就不會再如同上表的差異，可以參考以下：</p>
+</div>
+
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="年收300萬元個人接案9A與使用統一發票工作室稅費比較" tabindex="0">
+<table class="org-compare-table studio-guide-table studio-tax-300-table">
+<thead><tr><th scope="col">比較項目</th><th scope="col">個人接案（9A）</th><th scope="col">工作室（使用統一發票）</th></tr></thead>
+<tbody>
+<tr><th scope="row">全年收入</th><td data-label="個人接案（9A）">3,000,000元</td><td data-label="工作室（使用統一發票）">3,000,000元</td></tr>
+<tr><th scope="row">營業稅</th><td data-label="個人接案（9A）">0元</td><td data-label="工作室（使用統一發票）">150,000元<small>另向客戶收取</small></td></tr>
+<tr><th scope="row">業務成本</th><td data-label="個人接案（9A）">900,000元</td><td data-label="工作室（使用統一發票）">900,000元</td></tr>
+<tr><th scope="row">業務所得</th><td data-label="個人接案（9A）">2,100,000元</td><td data-label="工作室（使用統一發票）">2,100,000元</td></tr>
+<tr><th scope="row">個人綜合所得稅</th><td data-label="個人接案（9A）">219,500元</td><td data-label="工作室（使用統一發票）">219,500元</td></tr>
+<tr><th scope="row">個人二代健保補充保費</th><td data-label="個人接案（9A）">63,300元</td><td data-label="工作室（使用統一發票）">0元</td></tr>
+<tr><th scope="row">繳稅總額與二代健保費用</th><td data-label="個人接案（9A）"><strong>282,800元</strong></td><td data-label="工作室（使用統一發票）"><strong>369,500元</strong></td></tr>
+<tr class="studio-tax-total-row"><th scope="row">最終實際收入</th><td data-label="個人接案（9A）"><strong>1,817,200元</strong></td><td data-label="工作室（使用統一發票）"><strong>1,880,500元</strong></td></tr>
+</tbody></table>
+</div>
+
+<div class="org-explainer-note">
+  <strong>小提醒｜這張表的比較條件與進項抵稅</strong>
+  <p><strong>比較前提：</strong>兩者都以全年未稅收入300萬元、業務成本90萬元計算，個人為單身、沒有其他所得。個人接案須依法屬執行業務所得（代碼9A），且符合2.11%補充保費扣取條件；工作室須依法使用統一發票，並有合法憑證可認列90萬元成本。個人實際所得分類、保費及成本認列不同，結果也會改變。</p>
+  <p><strong>工作室可扣抵進項營業稅：</strong>表中的15萬元是向客戶另收的<strong>銷項營業稅</strong>，不是工作室額外賺到或自行負擔的收入。工作室購買業務所需商品或服務，取得符合規定的進項發票，就能依法抵扣銷項稅額。假設90萬元成本均為<strong>未稅且可全額扣抵</strong>的支出，進項稅額為45,000元，營業稅實際申報繳納則是<strong>150,000－45,000＝105,000元</strong>。表中的369,500元尚未扣除進項稅額，也不應直接當作工作室自行負擔的成本。詳細規定可參考<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>。</p>
 </div>
 
 ### 2. 合法開立統一發票或收據，方便請款
