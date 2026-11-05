@@ -281,7 +281,7 @@ tags:
     <tr><th scope="row">個人9A<small>假設30%必要費用</small></th><td data-label="全年所得稅">23,150元</td><td data-label="申報營業稅">本例不另計</td><td data-label="合計繳納稅額"><strong>23,150元</strong></td></tr>
     <tr><th scope="row">商號：免用發票<small>假設核定1%、純益率7%</small></th><td data-label="全年所得稅">0元</td><td data-label="申報營業稅">10,000元</td><td data-label="合計繳納稅額"><strong>10,000元</strong></td></tr>
     <tr><th scope="row">商號：使用發票</th><td data-label="全年所得稅">28,150元</td><td data-label="申報營業稅">40,000元</td><td data-label="合計繳納稅額"><strong>68,150元</strong></td></tr>
-    <tr><th scope="row">有限公司<small>年薪70萬＋稅後股利</small></th><td data-label="全年所得稅">8,300元<small>公司0＋個人8,300</small></td><td data-label="申報營業稅">40,000元</td><td data-label="合計繳納稅額"><strong>48,300元</strong></td></tr>
+    <tr><th scope="row">有限公司<small>負責人年薪70萬＋可分配盈餘30%股利</small></th><td data-label="全年所得稅">10,855元<small>公司0＋個人10,855</small></td><td data-label="申報營業稅">40,000元</td><td data-label="合計繳納稅額"><strong>50,855元</strong></td></tr>
   </tbody>
 </table>
 </div>
@@ -295,14 +295,14 @@ tags:
     <tr><th scope="row">個人9A<small>假設30%必要費用</small></th><td data-label="全年所得稅">219,500元</td><td data-label="申報營業稅">本例不另計</td><td data-label="合計繳納稅額"><strong>219,500元</strong></td></tr>
     <tr><th scope="row">商號：免用發票<small>月均25萬元，一般設計業原則應開發票</small></th><td data-label="全年所得稅">不適用</td><td data-label="申報營業稅">不適用</td><td data-label="合計繳納稅額"><strong>不適用</strong></td></tr>
     <tr><th scope="row">商號：使用發票</th><td data-label="全年所得稅">279,500元</td><td data-label="申報營業稅">120,000元</td><td data-label="合計繳納稅額"><strong>399,500元</strong></td></tr>
-    <tr><th scope="row">有限公司<small>年薪70萬＋稅後股利</small></th><td data-label="全年所得稅">426,100元<small>公司340,000＋個人86,100</small></td><td data-label="申報營業稅">120,000元</td><td data-label="合計繳納稅額"><strong>546,100元</strong></td></tr>
+    <tr><th scope="row">有限公司<small>負責人年薪70萬＋可分配盈餘30%股利</small></th><td data-label="全年所得稅">338,948元<small>公司340,000－個人退稅1,052</small></td><td data-label="申報營業稅">120,000元</td><td data-label="合計繳納稅額"><strong>458,948元</strong></td></tr>
   </tbody>
 </table>
 </div>
 
 <div class="org-explainer-note">
   <strong>全年稅款合計與實際經營成本分開計算</strong>
-  <p>使用統一發票者，<strong>營業稅通常另向客戶收取後依法申報</strong>，不宜直接當作負責人自行負擔的所得稅；個人9A的<strong>補充保費</strong>也沒有算入全年「稅額」。本例假設實際成本占收入20%、開發票者可合法扣抵進項稅，並且個人沒有其他所得；有限公司另假設每年合法支付70萬元薪資、依法分配稅後股利。尚未計入完整勞健保、人事、記帳及公司維護成本。尤其<strong>年收300萬元、平均月營業額25萬元的設計商號，原則上須使用統一發票</strong>；特定營業性質或符合優惠條件者可能適用其他規定，仍應以國稅局核定為準。相關計算可搭配<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>、<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>和<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>閱讀。</p>
+  <p>使用統一發票者，<strong>營業稅通常另向客戶收取後依法申報</strong>，不宜直接當作負責人自行負擔的所得稅；個人9A的<strong>補充保費</strong>也沒有算入全年「稅額」。本例假設實際成本占收入20%、開發票者可合法扣抵進項稅，並且個人沒有其他所得；有限公司另假設設計師是負責人與唯一股東，每年依法支付自己70萬元薪資，先提列10%法定盈餘公積，再分配剩餘可分配盈餘的30%股利。個人股利抵減可依法退稅；本表未計公司後續年度可能的5%未分配盈餘加徵稅、完整勞健保、人事、記帳與公司維護成本，股利實際取得年度也可能與本年薪資不同。尤其<strong>年收300萬元、平均月營業額25萬元的設計商號，原則上須使用統一發票</strong>；特定營業性質或符合優惠條件者可能適用其他規定，仍應以國稅局核定為準。相關計算可搭配<a href="/local-practice-guide/entries/business-income-tax/">〈什麼是營業稅與營所稅？〉</a>、<a href="/local-practice-guide/entries/supplemental-premium/">〈二代健保補充保費〉</a>和<a href="/local-practice-guide/entries/comprehensive-income-tax/">〈什麼是綜合所得稅？〉</a>閱讀。</p>
 </div>
 
 ### 6. 付款方的實際成本與進項營業稅
