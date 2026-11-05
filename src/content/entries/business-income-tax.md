@@ -295,7 +295,7 @@ tags:
 
 看似相同的一筆10萬元設計費，個人、免用發票商號、使用發票商號與公司，實際處理方式都可能不同。但**預扣10%、查定1%、銷項5%、營所稅20%不能直接排在一起比較哪個最省稅**，因為它們的課稅基礎和申報時間都不一樣。
 
-如果想進一步了解個人報酬的預扣規則，可以閱讀[〈預扣所得稅〉](/local-practice-guide/entries/income-withholding/)；若要比較不同身分的經營與稅務選擇，再接著閱讀[〈什麼身分比較節稅？〉](/local-practice-guide/entries/which-status-saves-tax/)。
+如果想進一步了解個人報酬的預扣規則，可以閱讀[〈預扣所得稅〉](/local-practice-guide/entries/income-withholding/)；若要依工作目的選擇商號、公司、合作社或人民團體，可接著閱讀[〈從個人到商號、組織或公司，什麼身分對我最合適？〉](/local-practice-guide/entries/which-status-saves-tax/)。
 
 ---
 
