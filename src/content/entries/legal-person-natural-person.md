@@ -7,6 +7,7 @@ updated: 2026-10-31
 status: 編輯稿
 related:
   - why-establish-legal-person
+  - why-establish-company
   - local-practice
   - what-is-subsidy
   - labor-health-insurance
