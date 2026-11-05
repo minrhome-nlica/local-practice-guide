@@ -92,57 +92,61 @@ tags:
 
 以一般股份有限公司來說，公司的獲利往往來自全體員工共同付出。假設公司今年有5,000萬元盈餘，員工可能依勞動契約、公司制度取得年終獎金或工作獎金；但公司依法分配給股東的股利，原則上仍依持有股份及相關規定計算。**有些股東即使沒有直接參與公司的日常工作，也可能因持股而分得股利。**
 
-**合作社的分配方式不同。** 社員可以依實際提供的勞務取得報酬；合作社若有依法可以分配的年度結餘，還能依社員與合作社的交易額比例分配。社員認購的社股則可能取得股息，但**社股年息依法最高10%，這是社股金額的10%，不是盈餘的10%**。合作社重視的是社員參與及交易貢獻，並不代表所有人都平均領取相同金額。
+**合作社的分配方式不同。** 社員可以依實際提供的勞務取得報酬；合作社若有依法可以分配的年度結餘，還能依社員與合作社的交易額比例分配。社員認購的社股則可能取得股息，但**社股年息依法最高10%，這是社股金額的10%，不是盈餘的10%**。合作社重視社員參與及交易貢獻，並不代表所有人都平均領取相同金額。
 
 **我們透過以下案例來看：**
 
-今年合作社共承接**1,190萬元的藝文勞務案件**。七名社員A至G分別主責200萬、190萬、180萬、170萬、160萬、150萬、140萬元的案件。因為每個案件都難以由單一社員獨力完成，大家事先約定：
+今年合作社共承接**1,190萬元的藝文勞務案件**。七名社員A至G分別主責200萬、190萬、180萬、170萬、160萬、150萬、140萬元的案件，並假設**每個案子總金額的30%是業務成本**，用於材料、外包及其他必要支出。
 
-- **20%給主責社員：** 支付該案統籌、規劃、溝通及主責工作報酬。
-- **10%作為合作社管理費：** 支應行政、帳務、共同設備及日常營運。
-- **70%作為共同勞務報酬：** 先交由合作社統一管理，案件結束後依社員實際工作紀錄、工時、分工與事先議定的勞務計分方式分配。
+因為每個案件都難以由單一社員獨力完成，大家事先約定：**先扣除每案30%的成本，再將剩下的70%，依20%／20%／60%分配。**
 
-<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="七名藝文社員1190萬元案件按20%10%70%分配" tabindex="0">
+- **20%給主責社員：** 支付該案統籌、規劃、溝通及主責工作的勞務報酬。
+- **20%作為合作社管理費：** 支應行政、帳務、共同設備及日常營運。
+- **60%作為共同勞務報酬：** 先交由合作社統一管理，案件結束後依社員實際工作紀錄、工時、分工與事先議定的勞務計分方式分配。
+
+例如，A主責200萬元案件，先扣除60萬元成本，剩下140萬元；主責報酬28萬元、管理費28萬元、共同勞務報酬84萬元。**20%／20%／60%是扣除成本後的分配比例，不是直接以200萬元原始案款計算。**
+
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="七名藝文社員1190萬元案件先扣30%成本再分20%20%60%的試算">
 <table class="org-compare-table studio-guide-table">
-<thead><tr><th>主責社員</th><th>案件金額</th><th>主責報酬20%</th><th>管理費10%</th><th>共同勞務70%</th></tr></thead>
+<thead><tr><th>主責社員</th><th>案件金額</th><th>成本30%</th><th>可分配70%</th><th>主責20%</th><th>管理20%</th><th>共同60%</th></tr></thead>
 <tbody>
-<tr><th scope="row">A｜平面設計</th><td data-label="案件金額">200萬元</td><td data-label="主責報酬20%">40萬元</td><td data-label="管理費10%">20萬元</td><td data-label="共同勞務70%">140萬元</td></tr>
-<tr><th scope="row">B｜舞台設計</th><td data-label="案件金額">190萬元</td><td data-label="主責報酬20%">38萬元</td><td data-label="管理費10%">19萬元</td><td data-label="共同勞務70%">133萬元</td></tr>
-<tr><th scope="row">C｜攝影製作</th><td data-label="案件金額">180萬元</td><td data-label="主責報酬20%">36萬元</td><td data-label="管理費10%">18萬元</td><td data-label="共同勞務70%">126萬元</td></tr>
-<tr><th scope="row">D｜木作施工</th><td data-label="案件金額">170萬元</td><td data-label="主責報酬20%">34萬元</td><td data-label="管理費10%">17萬元</td><td data-label="共同勞務70%">119萬元</td></tr>
-<tr><th scope="row">E｜影像剪輯</th><td data-label="案件金額">160萬元</td><td data-label="主責報酬20%">32萬元</td><td data-label="管理費10%">16萬元</td><td data-label="共同勞務70%">112萬元</td></tr>
-<tr><th scope="row">F｜活動執行</th><td data-label="案件金額">150萬元</td><td data-label="主責報酬20%">30萬元</td><td data-label="管理費10%">15萬元</td><td data-label="共同勞務70%">105萬元</td></tr>
-<tr><th scope="row">G｜印刷輸出</th><td data-label="案件金額">140萬元</td><td data-label="主責報酬20%">28萬元</td><td data-label="管理費10%">14萬元</td><td data-label="共同勞務70%">98萬元</td></tr>
-<tr class="studio-tax-total-row"><th scope="row">合計</th><td data-label="案件金額"><strong>1,190萬元</strong></td><td data-label="主責報酬20%"><strong>238萬元</strong></td><td data-label="管理費10%"><strong>119萬元</strong></td><td data-label="共同勞務70%"><strong>833萬元</strong></td></tr>
+<tr><th scope="row">A｜平面設計</th><td data-label="案件金額">200萬元</td><td data-label="案件成本30%">60萬元</td><td data-label="扣成本後">140萬元</td><td data-label="主責20%">28萬元</td><td data-label="管理20%">28萬元</td><td data-label="共同60%">84萬元</td></tr>
+<tr><th scope="row">B｜舞台設計</th><td data-label="案件金額">190萬元</td><td data-label="案件成本30%">57萬元</td><td data-label="扣成本後">133萬元</td><td data-label="主責20%">26.6萬元</td><td data-label="管理20%">26.6萬元</td><td data-label="共同60%">79.8萬元</td></tr>
+<tr><th scope="row">C｜攝影製作</th><td data-label="案件金額">180萬元</td><td data-label="案件成本30%">54萬元</td><td data-label="扣成本後">126萬元</td><td data-label="主責20%">25.2萬元</td><td data-label="管理20%">25.2萬元</td><td data-label="共同60%">75.6萬元</td></tr>
+<tr><th scope="row">D｜木作施工</th><td data-label="案件金額">170萬元</td><td data-label="案件成本30%">51萬元</td><td data-label="扣成本後">119萬元</td><td data-label="主責20%">23.8萬元</td><td data-label="管理20%">23.8萬元</td><td data-label="共同60%">71.4萬元</td></tr>
+<tr><th scope="row">E｜影像剪輯</th><td data-label="案件金額">160萬元</td><td data-label="案件成本30%">48萬元</td><td data-label="扣成本後">112萬元</td><td data-label="主責20%">22.4萬元</td><td data-label="管理20%">22.4萬元</td><td data-label="共同60%">67.2萬元</td></tr>
+<tr><th scope="row">F｜活動執行</th><td data-label="案件金額">150萬元</td><td data-label="案件成本30%">45萬元</td><td data-label="扣成本後">105萬元</td><td data-label="主責20%">21萬元</td><td data-label="管理20%">21萬元</td><td data-label="共同60%">63萬元</td></tr>
+<tr><th scope="row">G｜印刷輸出</th><td data-label="案件金額">140萬元</td><td data-label="案件成本30%">42萬元</td><td data-label="扣成本後">98萬元</td><td data-label="主責20%">19.6萬元</td><td data-label="管理20%">19.6萬元</td><td data-label="共同60%">58.8萬元</td></tr>
+<tr class="studio-tax-total-row"><th scope="row">合計</th><td data-label="案件金額"><strong>1,190萬元</strong></td><td data-label="案件成本30%"><strong>357萬元</strong></td><td data-label="扣成本後"><strong>833萬元</strong></td><td data-label="主責20%"><strong>166.6萬元</strong></td><td data-label="管理20%"><strong>166.6萬元</strong></td><td data-label="共同60%"><strong>499.8萬元</strong></td></tr>
 </tbody></table>
 </div>
 
-**833萬元共同勞務報酬，最後如何分給七人？**
+**499.8萬元共同勞務報酬，最後如何分給七人？**
 
 假設依全年實際協作紀錄核對後，A至G在共同工作中的貢獻分別為20%、15%、15%、15%、15%、10%、10%。以下只是示範，真實比例應來自工作紀錄及社員共同議定的分配辦法，**不一定和主責案量相同**。
 
-<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="七名社員按實際協作勞務分配833萬元報酬" tabindex="0">
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="七名社員按實際協作勞務分配499.8萬元報酬">
 <table class="org-compare-table studio-guide-table">
-<thead><tr><th>社員</th><th>主責報酬20%</th><th>協作勞務比例</th><th>分得共同勞務70%</th><th>全年勞務報酬合計</th></tr></thead>
+<thead><tr><th>社員</th><th>主責報酬</th><th>協作勞務比例</th><th>共同勞務報酬</th><th>全年勞務報酬合計</th></tr></thead>
 <tbody>
-<tr><th scope="row">A</th><td data-label="主責報酬">40萬元</td><td data-label="協作比例">20%</td><td data-label="共同報酬">166.60萬元</td><td data-label="勞務合計"><strong>206.60萬元</strong></td></tr>
-<tr><th scope="row">B</th><td data-label="主責報酬">38萬元</td><td data-label="協作比例">15%</td><td data-label="共同報酬">124.95萬元</td><td data-label="勞務合計"><strong>162.95萬元</strong></td></tr>
-<tr><th scope="row">C</th><td data-label="主責報酬">36萬元</td><td data-label="協作比例">15%</td><td data-label="共同報酬">124.95萬元</td><td data-label="勞務合計"><strong>160.95萬元</strong></td></tr>
-<tr><th scope="row">D</th><td data-label="主責報酬">34萬元</td><td data-label="協作比例">15%</td><td data-label="共同報酬">124.95萬元</td><td data-label="勞務合計"><strong>158.95萬元</strong></td></tr>
-<tr><th scope="row">E</th><td data-label="主責報酬">32萬元</td><td data-label="協作比例">15%</td><td data-label="共同報酬">124.95萬元</td><td data-label="勞務合計"><strong>156.95萬元</strong></td></tr>
-<tr><th scope="row">F</th><td data-label="主責報酬">30萬元</td><td data-label="協作比例">10%</td><td data-label="共同報酬">83.30萬元</td><td data-label="勞務合計"><strong>113.30萬元</strong></td></tr>
-<tr><th scope="row">G</th><td data-label="主責報酬">28萬元</td><td data-label="協作比例">10%</td><td data-label="共同報酬">83.30萬元</td><td data-label="勞務合計"><strong>111.30萬元</strong></td></tr>
-<tr class="studio-tax-total-row"><th scope="row">合計</th><td data-label="主責報酬"><strong>238萬元</strong></td><td data-label="協作比例"><strong>100%</strong></td><td data-label="共同報酬"><strong>833萬元</strong></td><td data-label="勞務合計"><strong>1,071萬元</strong></td></tr>
+<tr><th scope="row">A</th><td data-label="主責報酬">28萬元</td><td data-label="協作比例">20%</td><td data-label="共同勞務報酬">99.96萬元</td><td data-label="勞務報酬合計"><strong>127.96萬元</strong></td></tr>
+<tr><th scope="row">B</th><td data-label="主責報酬">26.6萬元</td><td data-label="協作比例">15%</td><td data-label="共同勞務報酬">74.97萬元</td><td data-label="勞務報酬合計"><strong>101.57萬元</strong></td></tr>
+<tr><th scope="row">C</th><td data-label="主責報酬">25.2萬元</td><td data-label="協作比例">15%</td><td data-label="共同勞務報酬">74.97萬元</td><td data-label="勞務報酬合計"><strong>100.17萬元</strong></td></tr>
+<tr><th scope="row">D</th><td data-label="主責報酬">23.8萬元</td><td data-label="協作比例">15%</td><td data-label="共同勞務報酬">74.97萬元</td><td data-label="勞務報酬合計"><strong>98.77萬元</strong></td></tr>
+<tr><th scope="row">E</th><td data-label="主責報酬">22.4萬元</td><td data-label="協作比例">15%</td><td data-label="共同勞務報酬">74.97萬元</td><td data-label="勞務報酬合計"><strong>97.37萬元</strong></td></tr>
+<tr><th scope="row">F</th><td data-label="主責報酬">21萬元</td><td data-label="協作比例">10%</td><td data-label="共同勞務報酬">49.98萬元</td><td data-label="勞務報酬合計"><strong>70.98萬元</strong></td></tr>
+<tr><th scope="row">G</th><td data-label="主責報酬">19.6萬元</td><td data-label="協作比例">10%</td><td data-label="共同勞務報酬">49.98萬元</td><td data-label="勞務報酬合計"><strong>69.58萬元</strong></td></tr>
+<tr class="studio-tax-total-row"><th scope="row">合計</th><td data-label="主責報酬"><strong>166.6萬元</strong></td><td data-label="協作比例"><strong>100%</strong></td><td data-label="共同勞務報酬"><strong>499.8萬元</strong></td><td data-label="勞務報酬合計"><strong>666.4萬元</strong></td></tr>
 </tbody></table>
 </div>
 
-這樣A雖然主責200萬元的案子，仍只先取得40萬元主責報酬，另外按協作工作得到166.6萬元；其他社員也依各自的協作投入取得報酬。**不是主責者獨占全案收入，也不是七人平均分錢。**
+這樣A雖然主責200萬元的案子，仍只先取得28萬元主責報酬，再按其協作投入取得99.96萬元，共127.96萬元。其他社員也依各自實際的工作取得報酬。**不是主責者獨占全案收入，也不是七人平均分錢。**
 
-**重要：共同勞務報酬不是股利。** 238萬元主責報酬加上833萬元共同勞務報酬，共1,071萬元，若要依財政部108年3月7日令採用無僱傭關係、代收轉付社員勞務報酬的方式，必須確實全數轉付給社員，保存個人社員名冊及收付明細，不能留在合作社年底以股利名義發放。
+**重要：共同勞務報酬不是股利。** 166.6萬元主責報酬加上499.8萬元共同勞務報酬，共666.4萬元，若要依財政部108年3月7日令採用無僱傭關係、代收轉付社員勞務報酬的方式，必須確實全數轉付給社員並保存名冊及收付明細，不能留在合作社年底以股利名義發放。
 
-若依法符合代收轉付條件，這1,071萬元社員報酬不課營業稅；**向外部客戶收取的119萬元管理費**屬一般應稅勞務收入，假設適用5%稅率，銷項營業稅為**59,500元**（另依規定處理進項稅額）。本例1,190萬元均為未稅價款，若管理費營業稅另向客戶收取，總付款為**11,959,500元**。
+**營業稅須按實際交易方式判斷。** 若合作社與社員無僱傭關係，向客戶分別收取管理費和社員勞務報酬，並把社員報酬全數代收轉付，符合財政部函令時，666.4萬元社員勞務報酬屬代收轉付，不課徵營業稅。若向**外部客戶收取166.6萬元管理費**，假設適用5%一般稅率，僅這筆管理費的銷項營業稅為**83,300元**。但本例另有**357萬元案件成本**，若由合作社自行採購材料、轉售或承攬整體製作，可能另外涉及應稅銷售與進項扣抵，**不能直接認定全部1,190萬元的營業稅只有83,300元**。應依實際合約、發票、帳務及主管機關認定處理。
 
-社員的勞務報酬依該財政部規定列為**薪資所得**。無僱傭關係且符合代收轉付條件時，轉付得免預扣所得稅，仍須列單申報並填發免扣繳憑單，社員需依法申報個人綜合所得稅及適用保費。有僱傭關係或未符合代收轉付條件者，課稅方式不同。
+社員勞務報酬在上述財政部函令適用情形下列為**薪資所得**。無僱傭關係且符合代收轉付條件時，轉付得免預扣所得稅，仍須列單申報並填發免扣繳憑單，社員需依法申報個人綜合所得稅及適用保費；若有僱傭關係或不符合代收轉付條件，處理方式就會不同。
 
 ### 4. 社員除了勞務報酬，也可能領取社股股息及年度結餘分配
 
