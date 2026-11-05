@@ -2,12 +2,28 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const items = [
- ['想開始做地方工作，該先了解什麼？','local-practice'],
- ['第一次申請補助，要怎麼看簡章？','subsidy-guide'],
- ['補助計畫書要怎麼開始寫？','proposal-writing'],
- ['活動經費應該如何編列？','budget-planning'],
- ['什麼是二代健保補充保費？','supplemental-premium'],
- ['活動辦完，經費該如何核銷？','reimbursement']
+  { title:'第一次申請補助，我或我的團隊有資格嗎？',desc:'申請身分、期程及計畫規定',id:'subsidy-guide' },
+  { title:'政府補助與政府標案有什麼差別？',desc:'補助、履約及投標文件',id:'tender' },
+  { title:'計畫書要從哪裡開始寫？',desc:'問題分析、策略及成果指標',id:'proposal-writing' },
+  { title:'講師費、人事費與自籌款怎麼編列？',desc:'科目分類、單價及預算編列',id:'budget-planning' },
+  { title:'經費不足，可以勻支或流用嗎？',desc:'核定經費調整與限制',id:'budget-planning' },
+  { title:'活動辦完，需要準備哪些核銷文件？',desc:'發票、領據、簽到表與附件',id:'reimbursement' },
+  { title:'成果報告怎麼寫，才能看出成效？',desc:'量化指標、質性成果及佐證',id:'results-report-writing' },
+  { title:'工作室、公司、合作社與協會怎麼選？',desc:'不同組織功能與適用時機',id:'which-status-saves-tax' },
+  { title:'個人接案與成立商號，稅費差多少？',desc:'100萬元接案案例與稅務差異',id:'why-establish-business-studio' },
+  { title:'設計費或講師費，需要預扣所得稅嗎？',desc:'9A、9B、50所得代碼與扣繳',id:'income-withholding' },
+  { title:'哪些收入會被扣二代健保補充保費？',desc:'個人代扣與投保單位負擔',id:'supplemental-premium' },
+  { title:'聘請一名員工，實際人事成本有多少？',desc:'勞健保、職災與勞退',id:'labor-health-insurance' },
+  { title:'協會立案後，就已經是社團法人嗎？',desc:'立案與法人登記不同',id:'legal-person-natural-person' },
+  { title:'七名工作者一起接案，適合成立合作社嗎？',desc:'社員互助、勞務與收益分配',id:'why-establish-limited-cooperative' },
+  { title:'社區營造與地方創生有什麼不同？',desc:'理解地方工作的目標與脈絡',id:'community-building' }
 ];
 ---
-<BaseLayout title="依問題找答案"><section class="page-hero"><div class="wrap"><span class="eyebrow">PROBLEMS & ANSWERS</span><h1 class="page-title">你遇到了什麼問題？</h1><p>不必先知道正確的專業名詞。選一個接近你當下情況的問題，直接進入相關詞條。</p></div></section><section class="section-spacer"><div class="wrap"><div class="entry-list">{items.map((item,i) => <a class="entry-card" href={root + '/entries/' + item[1] + '/'}><span class="meta">常見問題 {String(i+1).padStart(2,'0')}</span><h3>{item[0]}</h3><p>閱讀說明、實際案例及延伸知識 ↗</p></a>)}</div></div></section></BaseLayout>
+<BaseLayout title="依問題找答案">
+  <section class="page-hero"><div class="wrap"><span class="eyebrow">PROBLEMS & ANSWERS</span><h1 class="page-title">依問題找答案</h1><p>從當下遇到的問題開始，找到對應的指南與實例。</p></div></section>
+  <section class="section-spacer"><div class="wrap"><div class="entry-list">
+    {items.map((item,i) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}>
+      <span class="meta">常見問題 {String(i+1).padStart(2,'0')}</span><h3>{item.title}</h3><p>{item.desc}</p>
+    </a>)}
+  </div></div></section>
+</BaseLayout>

@@ -5,12 +5,15 @@ import { categories, learningPaths } from '../data/catalog';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const entries = await getCollection('entries');
 const questions = [
-  { number: '01', title: '我想申請補助', description: '先弄懂簡章、申請資格與計畫目標。', id: 'subsidy-guide' },
-  { number: '02', title: '我要撰寫計畫', description: '從問題、策略到經費，完成計畫架構。', id: 'proposal-writing' },
-  { number: '03', title: '我不會編列經費', description: '理解經費項目、預算與隱形成本。', id: 'budget-planning' },
-  { number: '04', title: '我要辦理核銷', description: '整理領據、憑證與經費結報。', id: 'reimbursement' },
-  { number: '05', title: '我遇到勞健保問題', description: '先看投保級距與雇主成本，再理解二代健保。', id: 'labor-health-insurance' },
-  { number: '06', title: '我想理解地方實踐', description: '理解社區營造與地方創生的脈絡。', id: 'local-practice' }
+  { number: '01', title: '第一次申請補助，我有資格嗎？', description: '確認申請身分、期程與應注意的規定。', id: 'subsidy-guide' },
+  { number: '02', title: '計畫書應該怎麼寫？', description: '從問題分析到工作方法與成果指標。', id: 'proposal-writing' },
+  { number: '03', title: '補助經費與自籌款怎麼編？', description: '了解預算項目、單價與經費分類。', id: 'budget-planning' },
+  { number: '04', title: '辦完活動，要準備哪些核銷憑證？', description: '整理領據、發票、簽到表及成果附件。', id: 'reimbursement' },
+  { number: '05', title: '應該成立工作室、公司還是協會？', description: '依工作功能認識商號、公司及合作社。', id: 'which-status-saves-tax' },
+  { number: '06', title: '個人接案要扣多少所得稅？', description: '用9A、9B、50的案例理解扣繳。', id: 'income-withholding' },
+  { number: '07', title: '二代健保補充保費誰要繳？', description: '區分單位負擔、個人代扣及門檻。', id: 'supplemental-premium' },
+  { number: '08', title: '聘請員工，勞健保要怎麼算？', description: '計算級距、雇主負擔與人事成本。', id: 'labor-health-insurance' },
+  { number: '09', title: '成果報告怎麼寫出成效？', description: '核對原定目標、實際成果與附件。', id: 'results-report-writing' }
 ];
 ---
 <BaseLayout>

@@ -12,15 +12,15 @@ export const categoryName = (slug: string) =>
 // Maintain an editorial reading sequence for subjects that build on one another.
 // Other entries remain alphabetically ordered by their Traditional Chinese titles.
 const categoryFeaturedOrder: Record<string, string[]> = {
-  organizations: ['legal-person-natural-person', 'why-establish-legal-person', 'why-establish-business-studio', 'why-establish-company', 'why-establish-limited-cooperative', 'income-withholding', 'business-income-tax', 'which-status-saves-tax'],
-  finance: ['budget-planning', 'reimbursement', 'income-withholding', 'business-income-tax', 'comprehensive-income-tax', 'which-status-saves-tax'],
+  organizations: ['legal-person-natural-person', 'which-status-saves-tax', 'why-establish-business-studio', 'why-establish-company', 'why-establish-limited-cooperative', 'why-establish-legal-person', 'income-withholding', 'business-income-tax'],
+  finance: ['budget-planning', 'reimbursement', 'income-withholding', 'business-income-tax', 'comprehensive-income-tax'],
   people: ['labor-health-insurance', 'supplemental-premium', 'comprehensive-income-tax']
 };
 
 // Some practical guides are discoverable from two categories while remaining a
 // single canonical article, so future corrections never diverge across copies.
 const categoryCrossListings: Record<string, string[]> = {
-  finance: ['income-withholding', 'business-income-tax', 'which-status-saves-tax'],
+  finance: ['income-withholding', 'business-income-tax'],
   people: ['comprehensive-income-tax']
 };
 export const entriesInCategory = <T extends { id: string; data: { category: string } }>(items: T[], slug: string): T[] =>
@@ -36,7 +36,7 @@ export const sortEntriesForCategory = <T extends { id: string; data: { title: st
   return [...items].sort((a, b) => rank(a.id) - rank(b.id) || a.data.title.localeCompare(b.data.title, 'zh-Hant'));
 };
 export const learningPaths = [
-  { number: '01', title: '第一次開始地方實踐', desc: '先理解地方工作的目的，再學習尋找資源。', slugs: ['local-practice', 'community-building', 'local-revitalization', 'what-is-subsidy', 'subsidy-guide', 'proposal-writing'] },
+  { number: '01', title: '第一次開始地方實踐', desc: '從地方、社區營造與地方創生出發，再了解資源和補助。', slugs: ['local-practice', 'community-building', 'local-revitalization', 'what-is-subsidy', 'subsidy-guide'] },
   { number: '02', title: '第一次執行政府計畫', desc: '從閱讀規定、規劃經費，到完成核銷。', slugs: ['subsidy-guide', 'tender', 'proposal-writing', 'budget-planning', 'results-report-writing', 'reimbursement'] },
-  { number: '03', title: '開始整理組織的工作制度', desc: '先理解法律身分，再從聘人與行政實務建立可持續的工作方法。', slugs: ['legal-person-natural-person', 'why-establish-legal-person', 'why-establish-business-studio', 'why-establish-company', 'why-establish-limited-cooperative', 'income-withholding', 'business-income-tax', 'comprehensive-income-tax', 'which-status-saves-tax', 'labor-health-insurance', 'supplemental-premium', 'reimbursement', 'proposal-writing'] }
+  { number: '03', title: '開始整理組織的工作制度', desc: '先選擇經營身分與組織形式，再建立聘人、所得給付與財務管理制度。', slugs: ['legal-person-natural-person', 'which-status-saves-tax', 'why-establish-business-studio', 'why-establish-company', 'why-establish-limited-cooperative', 'why-establish-legal-person', 'labor-health-insurance', 'income-withholding', 'supplemental-premium', 'business-income-tax', 'comprehensive-income-tax'] }
 ];

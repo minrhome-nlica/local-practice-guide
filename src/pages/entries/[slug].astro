@@ -16,7 +16,7 @@ const reimbursementHints = ['確認期間與項目', '蒐集交易與付款證�
 const additionalCategories = otherCategoriesForEntry(entry.id, entry.data.category);
 const relatedIds = entry.data.related || [];
 const allEntries = await getCollection('entries');
-const related = relatedIds.map((id) => allEntries.find((e) => e.id === id)).filter(Boolean);
+const related = [...new Set(relatedIds)].filter((id) => id !== entry.id).map((id) => allEntries.find((e) => e.id === id)).filter(Boolean).slice(0, 4);
 ---
 <BaseLayout title={entry.data.title} description={entry.data.summary}>
   <section class="page-hero"><div class="wrap"><div class="breadcrumbs"><a href={root + '/'}>首頁</a> / <a href={root + '/knowledge/'}>知識百科</a> / <a href={root + '/knowledge/' + entry.data.category + '/'}>{categoryName(entry.data.category)}</a></div><span class="eyebrow">KNOWLEDGE ENTRY</span><h1 class="page-title">{entry.data.title}</h1><div class="tags"><span class="tag">{categoryName(entry.data.category)}</span><span class="tag">{entry.data.level}</span><span class="tag">{entry.data.status}</span>{additionalCategories.map((cat) => <a class="tag tag-link" href={root + '/knowledge/' + cat.slug + '/'}>另收錄於 {cat.name}</a>)}</div><p class="entry-summary" data-pagefind-meta="summary">{entry.data.summary}</p></div></section>
