@@ -324,7 +324,7 @@ tags:
 
 延伸閱讀：[〈什麼是法人、自然人？〉](/local-practice-guide/entries/legal-person-natural-person/)說明法律上的身分差異；[〈為什麼要成立公司？〉](/local-practice-guide/entries/why-establish-company/)則介紹公司與商號的經營方式和成立時機。
 
-至於**法人與個人適用的所得稅、營業稅及免稅規定**，可接著閱讀[〈什麼身分比較節稅？〉](/local-practice-guide/entries/which-status-saves-tax/)。
+若要依團隊的工作目的選擇**商號、公司、合作社或人民團體**，可接著閱讀[〈從個人到商號、組織或公司，什麼身分對我最合適？〉](/local-practice-guide/entries/which-status-saves-tax/)。
 
 <div class="org-source-note">
   <strong>參考資料與閱讀提醒</strong>
