@@ -196,26 +196,26 @@ tags:
 <p><strong>公益金：</strong>專門用於社會福利、公益事業，以及合作社教育訓練與宣導的經費，不能拿來分紅。本例提列5%。</p>
 </div>
 
-**七個人各能另外分到多少？**
+**七名社員全年總共可以拿到多少？**
 
-股金相同，所以在本例假設下，七人每人股息都是**500元**。至於986,850元社員交易分配金，必須按各人與合作社的實際交易額分配。為了延續前面的案例，這裡假設**七名社員繳納的行政管理費，與各自本年取得的勞務收入成相同比例**，因此用上表的勞務收入比例作為本例社員內服務的交易額比例。
+把前面的**主責報酬、共同勞務報酬**，加上每人**500元股息**及依法分配的**社員交易分配金**，就能看到每個人的全年收入合計。本例假設七名社員繳納的管理費與各自勞務收入成相同比例，因此以此計算社員交易分配金。
 
-<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="7名社員同股金及按交易額分配合作社結餘">
+<div class="org-table-scroll studio-guide-table-wrap" role="region" aria-label="七名社員主責報酬、協作比例、共同勞務報酬、社股股息、交易分配金及全年收入總額">
 <table class="org-compare-table studio-guide-table">
-<thead><tr><th scope="col">社員</th><th scope="col">前述勞務收入</th><th scope="col">股息</th><th scope="col">社員交易分配金</th><th scope="col">另外可分配合計</th></tr></thead>
+<thead><tr><th scope="col">社員</th><th scope="col">主責報酬</th><th scope="col">共同勞務報酬（協作比例）</th><th scope="col">全年勞務收入</th><th scope="col">股息</th><th scope="col">交易分配金</th><th scope="col">全年收入合計</th></tr></thead>
 <tbody>
-<tr><th scope="row">社員A</th><td data-label="本例勞務收入">1,196,300元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">188,967元</td><td data-label="兩項合計"><strong>189,467元</strong></td></tr>
-<tr><th scope="row">社員B</th><td data-label="本例勞務收入">953,225元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">150,571元</td><td data-label="兩項合計"><strong>151,071元</strong></td></tr>
-<tr><th scope="row">社員C</th><td data-label="本例勞務收入">939,225元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">148,359元</td><td data-label="兩項合計"><strong>148,859元</strong></td></tr>
-<tr><th scope="row">社員D</th><td data-label="本例勞務收入">925,225元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">146,148元</td><td data-label="兩項合計"><strong>146,648元</strong></td></tr>
-<tr><th scope="row">社員E</th><td data-label="本例勞務收入">911,225元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">143,936元</td><td data-label="兩項合計"><strong>144,436元</strong></td></tr>
-<tr><th scope="row">社員F</th><td data-label="本例勞務收入">668,150元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">105,540元</td><td data-label="兩項合計"><strong>106,040元</strong></td></tr>
-<tr><th scope="row">社員G</th><td data-label="本例勞務收入">654,150元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">103,329元</td><td data-label="兩項合計"><strong>103,829元</strong></td></tr>
-<tr class="studio-tax-total-row"><th scope="row">七人合計</th><td data-label="本例勞務收入"><strong>6,247,500元</strong></td><td data-label="社股股息"><strong>3,500元</strong></td><td data-label="社員交易分配金"><strong>986,850元</strong></td><td data-label="兩項合計"><strong>990,350元</strong></td></tr>
+<tr><th scope="row">社員A</th><td data-label="主責報酬">280,000元</td><td data-label="共同勞務報酬">916,300元<small>協作比例20%</small></td><td data-label="全年勞務收入">1,196,300元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">188,967元</td><td data-label="全年收入合計"><strong>1,385,767元</strong></td></tr>
+<tr><th scope="row">社員B</th><td data-label="主責報酬">266,000元</td><td data-label="共同勞務報酬">687,225元<small>協作比例15%</small></td><td data-label="全年勞務收入">953,225元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">150,571元</td><td data-label="全年收入合計"><strong>1,104,296元</strong></td></tr>
+<tr><th scope="row">社員C</th><td data-label="主責報酬">252,000元</td><td data-label="共同勞務報酬">687,225元<small>協作比例15%</small></td><td data-label="全年勞務收入">939,225元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">148,359元</td><td data-label="全年收入合計"><strong>1,088,084元</strong></td></tr>
+<tr><th scope="row">社員D</th><td data-label="主責報酬">238,000元</td><td data-label="共同勞務報酬">687,225元<small>協作比例15%</small></td><td data-label="全年勞務收入">925,225元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">146,148元</td><td data-label="全年收入合計"><strong>1,071,873元</strong></td></tr>
+<tr><th scope="row">社員E</th><td data-label="主責報酬">224,000元</td><td data-label="共同勞務報酬">687,225元<small>協作比例15%</small></td><td data-label="全年勞務收入">911,225元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">143,936元</td><td data-label="全年收入合計"><strong>1,055,661元</strong></td></tr>
+<tr><th scope="row">社員F</th><td data-label="主責報酬">210,000元</td><td data-label="共同勞務報酬">458,150元<small>協作比例10%</small></td><td data-label="全年勞務收入">668,150元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">105,540元</td><td data-label="全年收入合計"><strong>774,190元</strong></td></tr>
+<tr><th scope="row">社員G</th><td data-label="主責報酬">196,000元</td><td data-label="共同勞務報酬">458,150元<small>協作比例10%</small></td><td data-label="全年勞務收入">654,150元</td><td data-label="社股股息">500元</td><td data-label="社員交易分配金">103,329元</td><td data-label="全年收入合計"><strong>757,979元</strong></td></tr>
+<tr class="studio-tax-total-row"><th scope="row">七人合計</th><td data-label="主責報酬"><strong>1,666,000元</strong></td><td data-label="共同勞務報酬"><strong>4,581,500元</strong><small>協作比例100%</small></td><td data-label="全年勞務收入"><strong>6,247,500元</strong></td><td data-label="社股股息"><strong>3,500元</strong></td><td data-label="社員交易分配金"><strong>986,850元</strong></td><td data-label="全年收入合計"><strong>7,237,850元</strong></td></tr>
 </tbody></table>
 </div>
 
-<small>單位：新臺幣元；社員交易分配金依比例計算並按元四捨五入，合計與試算額一致。這是分配算法示範，不是實際稅後實領金額；個人所得稅與相關保費仍須另行處理。</small>
+<small>單位：新臺幣元。全年收入合計＝主責報酬＋共同勞務報酬＋股息＋交易分配金。這是簡化試算，尚未扣除個人所得稅及適用保費，不代表實際稅後實領金額。</small>
 
 **分配方式的重點：** 社股相同，七人拿到的股息都相同；但是按社員交易額計算的分配金不同。這就是合作社與一般公司以持股權益分配股利的重要差異。
 
