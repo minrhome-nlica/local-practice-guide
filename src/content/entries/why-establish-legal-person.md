@@ -8,6 +8,7 @@ status: 編輯稿
 related:
   - legal-person-natural-person
   - why-establish-business-studio
+  - why-establish-company
   - local-practice
   - what-is-subsidy
   - which-status-saves-tax
@@ -321,7 +322,7 @@ tags:
 
 不一定每個地方工作者都要立刻成立法人。但當你開始長期租借空間、共同買設備、聘請工作人員，或希望把大家的努力延續下去，就值得仔細思考：**我們需要的，是否是一個能共同代表、共同管理，也能清楚承擔權利與責任的組織？**
 
-延伸閱讀：[〈什麼是法人、自然人？〉](/local-practice-guide/entries/legal-person-natural-person/)可以幫助你確認公司、商號、協會與合作社在法律上的差異。
+延伸閱讀：[〈什麼是法人、自然人？〉](/local-practice-guide/entries/legal-person-natural-person/)說明法律上的身分差異；[〈為什麼要成立公司？〉](/local-practice-guide/entries/why-establish-company/)則介紹公司與商號的經營方式和成立時機。
 
 至於**法人與個人適用的所得稅、營業稅及免稅規定**，可接著閱讀[〈什麼身分比較節稅？〉](/local-practice-guide/entries/which-status-saves-tax/)。
 
