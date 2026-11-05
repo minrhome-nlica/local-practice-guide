@@ -47,5 +47,12 @@ const questions = [
       <div class="topic-grid">{categories.map((cat) => <a class="topic-card" href={root + '/knowledge/' + cat.slug + '/'}><span class="topic-no">{cat.number}</span><div><div class="english">{cat.english}</div><h3>{cat.name}</h3><p>{cat.description}</p></div></a>)}</div>
     </div>
   </section>
+  <section class="section" style="padding-top:26px"><div class="wrap">
+    <div class="section-head"><div><span class="eyebrow">PRACTICAL CALCULATORS</span><h2 class="section-title">算一算，再決定怎麼付錢。</h2></div><a class="text-link" href={root + '/tools/'}>查看實用工具 ↗</a></div>
+    <a class="action-card" href={root + '/tools/nhi-calculator/'} style="display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <div><span class="action-no">TOOLS / 01</span><h3>二代健保補充保費計算機</h3><p>從付給誰、工作性質與健保身分，試算個人代扣與單位負擔，還能複製公版說明。</p></div>
+      <strong style="color:#315847">立即試算 ↗</strong>
+    </a>
+  </div></section>
   <section class="section kraft"><div class="wrap"><div class="download-banner"><div><span class="eyebrow" style="color:#dfbaa2">DOCUMENTS & TEMPLATES</span><h3>知識之外，也要能真正使用。</h3><p>從計畫架構到經費表，取得可編輯的實務文件與檢查表。</p></div><a class="white-button" href={root + '/downloads/'}>前往文件工具箱 ↗</a></div></div></section>
 </BaseLayout>

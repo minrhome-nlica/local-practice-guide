@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/nhi-calculator.css';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title="二代健保補充保費計算機" description="2026年二代健保計算機：依付款人、收款人、所得性質、健保身分與金額，試算個人代扣與投保單位補充保費，並取得可複製的付款說明。">
+  <section class="page-hero nhi-hero"><div class="wrap">
+    <div class="breadcrumbs"><a href={root + '/'}>首頁</a> / <a href={root + '/tools/'}>工作工具</a> / 二代健保補充保費計算機</div>
+    <span class="eyebrow">TOOLS / PAYMENT & INSURANCE</span>
+    <h1 class="page-title">二代健保補充保費計算機</h1>
+    <p>輸入實際付款情況，分別判斷「要不要代扣領款人的補充保費」與「付款單位是否另外負擔補充保費」，並產出可複製的說明。</p>
+    <div class="nhi-version"><strong>2026年（民國115年）</strong><span>補充保費率 2.11%</span><span>兼職薪資門檻 29,500元</span><span>9A／9B門檻 20,000元</span></div>
+  </div></section>
+  <section class="nhi-body-section"><div class="wrap nhi-layout">
+    <div class="nhi-main">
+      <form id="nhi-calc-form" class="nhi-panel" novalidate>
+        <div class="nhi-panel-heading"><span class="nhi-step">01</span><div><h2>這筆錢由誰付給誰？</h2><p>先確認付款者是否有扣費義務，以及領款者是否是以營業人身分收款。</p></div></div>
+        <div class="nhi-grid">
+          <label class="nhi-field"><span>你是誰？（付款方）</span><select id="nhi-payer" name="payer">
+            <option value="organization">有稅籍登記的公司、商號或立案團體</option>
+            <option value="person">個人（私人生活支出）</option>
+            <option value="individualBusiness">個人（以雇主、執行業務者身分付款）</option>
+          </select></label>
+          <label class="nhi-field"><span>給誰錢？（收款方）</span><select id="nhi-recipient" name="recipient">
+            <option value="outside">個人：健保不在付款單位投保</option>
+            <option value="inside">個人：健保在付款單位投保</option>
+            <option value="business">有稅籍登記的公司、商號或團體（依法開立銷售憑證）</option>
+          </select></label>
+        </div>
+        <p id="nhi-party-hint" class="nhi-inline-hint" aria-live="polite"></p>
+        <div class="nhi-panel-heading"><span class="nhi-step">02</span><div><h2>給什麼費用、多少錢？</h2><p>同樣叫「講師費」或「工作費」，可能因工作性質不同，適用不同所得代碼。</p></div></div>
+        <div class="nhi-grid">
+          <label class="nhi-field"><span>費用項目</span><select id="nhi-item" name="item">
+            <optgroup label="薪資與人事">
+              <option value="salary">固定薪資（月薪、工資）</option>
+              <option value="temporary">臨時工資、活動工作人員</option>
+              <option value="class">課程／訓練班／工作坊授課鐘點費</option>
+              <option value="controlled">工作費：單位提供材料並指揮工作</option>
+              <option value="attendance">出席費、會議或評審出席報酬</option>
+              <option value="bonus">年終獎金、節金、績效獎金</option>
+              <option value="host">活動主持費（受單位安排與指揮）</option>
+            </optgroup>
+            <optgroup label="獨立專業勞務與創作">
+              <option value="independent">工作費：獨立承接、自負成本與盈虧</option>
+              <option value="consultant">專業設計、攝影、工藝或顧問服務（獨立執業）</option>
+              <option value="performance">個人獨立演出／表演費</option>
+              <option value="speech">單次專題演講（講演鐘點費）</option>
+              <option value="manuscript">純稿費、翻譯稿費、編撰費</option>
+              <option value="royalty">版稅、依法認定的著作報酬</option>
+            </optgroup>
+            <optgroup label="其他常見給付">
+              <option value="rent">支付個人租金</option>
+              <option value="interest">支付個人利息</option>
+              <option value="dividend">公司分配股東股利</option>
+              <option value="reimbursement">憑單據核實報支／代墊費用（非額外報酬）</option>
+              <option value="other">其他項目（需要先確認所得分類）</option>
+            </optgroup>
+          </select></label>
+          <label class="nhi-field"><span>本次給付金額（新臺幣元）</span><input id="nhi-amount" name="amount" type="number" min="1" step="1" inputmode="numeric" value="30000" required /><small>填寫給付總額，不預先扣除所得稅、材料費或其他成本。</small></label>
+        </div>
+        <p id="nhi-item-hint" class="nhi-inline-hint" aria-live="polite"></p>
+        <details class="nhi-advanced"><summary>已向國稅局確認所得代碼？可在此更正</summary>
+          <label class="nhi-field"><span>所得分類（須符合實際工作性質）</span><select id="nhi-code" name="code">
+            <option value="auto">依上方費用項目的建議分類</option>
+            <option value="50">已確認：薪資所得（50）</option>
+            <option value="9A">已確認：執行業務所得（9A）</option>
+            <option value="9B">已確認：講演／稿費等（9B）</option>
+            <option value="unknown">尚未確認，先不要計算確定金額</option>
+          </select><small>這項是修正實際分類，不是為了省保費自行選擇代碼。</small></label>
+        </details>
+        <div class="nhi-panel-heading"><span class="nhi-step">03</span><div><h2>領款人的健保身分</h2><p>同樣金額，健保投保身分不同，也可能有免扣規定。</p></div></div>
+        <div id="nhi-person-box">
+          <label class="nhi-field"><span>領款人目前的健保身分</span><select id="nhi-insurance" name="insurance">
+            <option value="general">一般健保身分（公司、機關、眷屬、區公所等）</option>
+            <option value="union">第二類被保險人：本人於職業工會投保</option>
+            <option value="professional">以執行業務所得為健保投保金額的自行執業者</option>
+            <option value="lowincome">第五類低收入戶被保險人</option>
+            <option value="disadvantaged">符合規定的中低收入／弱勢身分（有有效證明）</option>
+            <option value="uninsured">無健保投保資格（已確認）</option>
+            <option value="unknown">尚不清楚</option>
+          </select></label>
+          <label class="nhi-checkline"><input type="checkbox" id="nhi-union-professional" /><span>領款人是第二類工會被保險人，且這項執行業務所得已用於申報健保投保金額</span></label>
+          <p class="nhi-foot-hint">「第二類本人」與「依附第二類的眷屬」不同；若只知道家人在工會投保，請選一般身分再確認。</p>
+        </div>
+        <div class="nhi-conditional" id="nhi-bonus-box" hidden>
+          <h3>年終獎金的額外資料</h3><p>僅當領款人已在付款單位投保，且本筆屬未納入投保金額的獎勵性給付時使用。</p>
+          <div class="nhi-grid">
+            <label class="nhi-field"><span>領款人本月健保投保金額</span><input id="nhi-bonus-insured" type="number" min="0" step="1" placeholder="例如 34800"/></label>
+            <label class="nhi-field"><span>本年度此前已計入的同類獎金累計</span><input id="nhi-bonus-prior" type="number" min="0" step="1" value="0"/></label>
+          </div>
+        </div>
+        <div class="nhi-panel-heading"><span class="nhi-step">04</span><div><h2>付款單位有沒有另外負擔保費？</h2><p>這不是每筆付款直接乘2.11%，而是單位**每月所有薪資**的差額。</p></div></div>
+        <div id="nhi-employer-box">
+          <label class="nhi-field"><span>付款方是否為有員工加保的健保投保單位？</span><select id="nhi-employer" name="employer">
+            <option value="unknown">尚未確認</option>
+            <option value="yes">是，有員工在本單位投保健保</option>
+            <option value="no">否，未成立有受僱員工加保的投保單位</option>
+          </select></label>
+          <div class="nhi-conditional" id="nhi-employer-details" hidden>
+            <div class="nhi-grid">
+              <label class="nhi-field"><span>本月其他薪資所得總額（不含這一筆）</span><input id="nhi-month-wages" type="number" min="0" step="1" placeholder="例如 170000"/><small>包含本月支付的各類薪資、兼職工作費及獎金。</small></label>
+              <label class="nhi-field"><span>本月受僱員工的健保投保金額總額</span><input id="nhi-insured-total" type="number" min="0" step="1" placeholder="例如 174000"/><small>請填所有受僱員工投保金額合計，不是實發薪水。</small></label>
+            </div>
+          </div>
+        </div>
+        <div id="nhi-private-note" class="nhi-inline-hint" hidden>私人日常支出通常不涉及投保單位薪資差額計算；若你實際聘僱員工或以執業者身分付款，請更改「你是誰」後重新計算。</div>
+        <div class="nhi-controls"><button class="nhi-primary" type="submit">計算這筆補充保費 →</button><button class="nhi-secondary" id="nhi-reset" type="reset">重新填寫</button></div>
+      </form>
+      <section class="nhi-result" id="nhi-result" aria-live="polite" hidden>
+        <span class="eyebrow">CALCULATION RESULT</span>
+        <h2 id="nhi-result-title">試算結果</h2>
+        <div class="nhi-result-grid">
+          <div class="nhi-metric"><span>從領款者報酬代扣</span><strong id="nhi-person-amount">—</strong><small id="nhi-person-status"></small></div>
+          <div class="nhi-metric"><span>付款單位本月應自行繳納</span><strong id="nhi-unit-amount">—</strong><small id="nhi-unit-status"></small></div>
+          <div class="nhi-metric"><span>本筆扣除個人補充保費後</span><strong id="nhi-takehome">—</strong><small>未扣所得稅、一般保費及其他款項</small></div>
+        </div>
+        <div class="nhi-result-copy">
+          <h3>判斷原因與算式</h3><p id="nhi-result-code"></p><div id="nhi-reasons"></div>
+          <h3>公版說明文字</h3><p>可複製到付款簽收紀錄、計畫憑證附件或單位內部確認資料。</p>
+          <div id="nhi-public-text" class="nhi-copy-text" tabindex="0"></div>
+          <button class="nhi-secondary" id="nhi-copy" type="button">複製公版說明</button><span id="nhi-copy-status" class="nhi-copy-status" role="status"></span>
+        </div>
+      </section>
+    </div>
+    <aside class="nhi-side">
+      <div class="nhi-side-card"><h2>先記住三個門檻</h2><div><span>個人9A、9B</span><strong>20,000元</strong><small>一般每次達此金額計收</small></div><div><span>兼職薪資50</span><strong>29,500元</strong><small>2026年每次給付門檻</small></div><div><span>補充保費率</span><strong>2.11%</strong><small>單次一般計費上限1,000萬元</small></div></div>
+      <div class="nhi-side-card"><h2>容易弄錯的地方</h2><p><strong>上課不等於演講。</strong>有課表的訓練班鐘點費一般為50；專題講演可能為9B。</p><p><strong>表演不等於稿費。</strong>獨立表演者常屬9A，受僱演出可能屬50。</p><p><strong>組織已立案，不等於免扣。</strong>扣費義務與成立健保投保單位是不同的判斷。</p><p><strong>領款人有例外身分。</strong>職業工會本人、低收入戶、以執行業務所得投保等，可能免扣。</p></div>
+      <div class="nhi-side-card"><h2>相關文章</h2><p><a href={root + '/entries/supplemental-premium/'}>二代健保補充保費完整說明 ↗</a></p><p><a href={root + '/entries/income-withholding/'}>預扣所得稅：9A、9B、50 ↗</a></p><p><a href={root + '/entries/labor-health-insurance/'}>勞健保投保級距 ↗</a></p></div>
+    </aside>
+  </div></section>
+  <section class="nhi-references"><div class="wrap"><h2>計算依據與適用範圍</h2><p>本工具以<strong>2026年11月核對的115年度規定</strong>作示範。它不是國稅局所得分類認定，也不取代健保署扣費資格查核。不同健保身分、扣費義務人、受僱關係、拆分給付、居留資格或已納入一般保費等情形，必須按實際資料處理。</p><p>資料來源：<a href="https://www.nhi.gov.tw/ch/cp-4516-74b0f-2613-1.html" target="_blank" rel="noopener noreferrer">健保署｜補充保險費公式</a>、<a href="https://www.nhi.gov.tw/ch/cp-2880-f3b2d-3150-1.html" target="_blank" rel="noopener noreferrer">健保署｜扣費義務人</a>、<a href="https://www.etax.nat.gov.tw/etwmain/tax-info/understanding/tax-q-and-a/national/individual-income-tax/taxation-scope/which-income/mMBJgxb" target="_blank" rel="noopener noreferrer">財政部｜授課與講演</a>、<a href="https://www.mol.gov.tw/1607/28162/28166/28180/70460/76761/76833/post" target="_blank" rel="noopener noreferrer">勞動部｜歷年最低工資</a>。</p><p class="nhi-foot-hint">本計算機只試算二代健保補充保費，不包括個人綜合所得稅預扣、一般健保費、勞保與勞退。下一年度最低工資及其他規定有變動時，必須更新計算門檻。</p></div></section>
+  <script is:inline src={root + '/scripts/nhi-calculator.js'} defer></script>
+</BaseLayout>
