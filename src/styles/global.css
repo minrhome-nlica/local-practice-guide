@@ -3261,3 +3261,33 @@ main table :is(th, td) p {
     font-size: 15px;
   }
 }
+
+/* Business studio: annual 3m comparison follows article table style. */
+.article .studio-tax-300-table {
+  table-layout: fixed;
+  width: 100%;
+}
+.article .studio-tax-300-table thead th:first-child,
+.article .studio-tax-300-table tbody th:first-child {
+  width: 34%;
+}
+.article .studio-tax-300-table thead th:not(:first-child) {
+  width: 33%;
+}
+.article .studio-tax-300-table tbody th,
+.article .studio-tax-300-table tbody td {
+  padding-top: 13px;
+  padding-bottom: 13px;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+.article .studio-tax-300-table tbody tr:not(.studio-tax-total-row):nth-last-child(2) strong {
+  color: #28553b;
+}
+@media (max-width:700px) {
+  .article .studio-tax-300-table thead { display: none; }
+  .article .studio-tax-300-table tbody th:first-child,
+  .article .studio-tax-300-table tbody td {
+    width: 100%;
+  }
+}
