@@ -15,6 +15,12 @@ const showCalculator = category.slug === 'tools';
   <section class="page-hero"><div class="wrap"><p class="breadcrumbs"><a href={root + '/knowledge/'}>知識百科</a> / {category.name}</p><span class="eyebrow">{category.english}</span><h1 class="page-title">{category.name}</h1><p>{category.description}</p></div></section>
   <section class="section-spacer"><div class="wrap">{(entries.length > 0 || showCalculator) ? (
   <div class="entry-list">
+    {showCalculator && <a class="entry-card guide-tool-entry" href={root + '/tools/insurance-2026/'}>
+      <span class="meta">2026 年正式資料 ・ 薪資即時試算</span>
+      <h3>2026 勞健保級距表與薪資試算</h3>
+      <p>輸入約定月薪，查看員工自付、雇主額外負擔及勞退提繳，並查閱勞保、健保與勞退完整級距。</p>
+      <span class="text-link">開啟試算與級距表 ↗</span>
+    </a>}
     {showCalculator && <a class="entry-card guide-tool-entry" href={root + '/tools/nhi-calculator/'}>
       <span class="meta">互動計算工具 ・ 民國115年適用</span>
       <h3>二代健保補充保費計算機</h3>

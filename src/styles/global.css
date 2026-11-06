@@ -3683,3 +3683,13 @@ main table :is(th, td) p {
   .guide-downloads-section .file-row{flex-direction:column;align-items:stretch;gap:12px;padding:17px}
   .guide-downloads-section .file-actions{justify-content:flex-start}
 }
+
+/* Related standalone calculators on associated knowledge articles. */
+.guide-related-tools{margin:47px 0 35px;padding-top:23px;border-top:1px solid #dce7dd}
+.guide-related-tools h2{font-size:24px;color:#31543f;margin:0 0 18px}
+.guide-related-tools-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:13px}
+.guide-related-tools-list a{display:block;min-width:0;padding:17px;background:#fff;border:1px solid #d9e5d9;border-radius:9px}
+.guide-related-tools-list a:hover{border-color:#82a88c}
+.guide-related-tools-list strong{display:block;color:#2f543c;line-height:1.65}
+.guide-related-tools-list span{display:block;font-size:13px;color:#637866;line-height:1.8;margin:5px 0}
+.guide-related-tools-list small{color:#3b7153;font-weight:700;font-size:12px}

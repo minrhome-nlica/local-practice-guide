@@ -24,6 +24,8 @@ tags:
 
 **經費表不是先把補助金額填滿，而是把想做的事情，轉換成可以估算、執行與核銷的支出。** 如果你還沒有概念，可以先從不同工作項目的需求開始對照。
 
+若計畫需要編列專職人員薪資，可先用[〈2026 勞健保級距表與薪資試算〉](/local-practice-guide/tools/insurance-2026/)估算勞保、健保、勞退及雇主成本，再依投保身分、行業職災費率和計畫規範調整。
+
 <div class="budget-route" aria-label="經費編列的四個步驟">
   <div><span>01</span><strong>確認工作</strong><small>要辦什麼、辦幾場、多少人</small></div>
   <div><span>02</span><strong>拆解資源</strong><small>人力、場地、材料、行政</small></div>

@@ -17,6 +17,23 @@ const reimbursementHints = ['確認期間與項目', '蒐集交易與付款證�
 const additionalCategories = otherCategoriesForEntry(entry.id, entry.data.category);
 const relatedIds = entry.data.related || [];
 const allEntries = await getCollection('entries');
+const practicalTools = {
+  'labor-health-insurance': [
+    { title: '2026 勞健保級距表與薪資試算', description: '輸入月薪查看員工與雇主負擔，並查詢正式級距。', path:'/tools/insurance-2026/' },
+    { title: '二代健保補充保費計算機', description: '確認其他所得與雇主的二代健保補充保費。', path:'/tools/nhi-calculator/' }
+  ],
+  'supplemental-premium': [
+    { title: '二代健保補充保費計算機', description: '依給付款項判斷補充保費。', path:'/tools/nhi-calculator/' },
+    { title: '2026 勞健保級距表與薪資試算', description: '區分一般勞健保與補充保費。', path:'/tools/insurance-2026/' }
+  ],
+  'budget-planning': [
+    { title: '2026 勞健保級距表與薪資試算', description: '編列聘僱人員的勞健保及勞退成本。', path:'/tools/insurance-2026/' }
+  ],
+  'income-withholding': [
+    { title: '二代健保補充保費計算機', description: '所得扣繳之外，確認補充保費扣費義務。', path:'/tools/nhi-calculator/' }
+  ]
+};
+const entryTools = practicalTools[entry.id] ?? [];
 const related = [...new Set(relatedIds)].filter((id) => id !== entry.id).map((id) => allEntries.find((e) => e.id === id)).filter(Boolean).slice(0, 4);
 ---
 <BaseLayout title={entry.data.title} description={entry.data.summary}>
@@ -38,6 +55,14 @@ const related = [...new Set(relatedIds)].filter((id) => id !== entry.id).map((id
       {!isConceptEntry && !['subsidy-guide', 'tender', 'proposal-writing', 'budget-planning', 'results-report-writing', 'reimbursement'].includes(entry.id) && <aside class="notice">資料查核提醒：補助、稅務、勞健保及法律規定可能隨年度調整，請以主管機關當年度公告及個案規定為準。</aside>}
       {entry.id !== 'local-practice' && <div style="margin-top:20px" class="muted small">最後更新：{entry.data.updated.toLocaleDateString('zh-TW')}　｜　編輯狀態：{entry.data.status}</div>}
       {related.length > 0 && <div style="margin-top:55px"><h2 class="section-title" style="font-size:27px">延伸閱讀</h2><div class="entry-list" style="margin-top:22px">{related.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}><h3>{item.data.title}</h3><p>{item.data.summary}</p></a>)}</div></div>}
+      {entryTools.length > 0 && <section class="guide-related-tools" aria-label="相關試算工具">
+        <h2>相關工作工具</h2>
+        <div class="guide-related-tools-list">
+          {entryTools.map(item => <a href={root+item.path}>
+            <strong>{item.title}</strong><span>{item.description}</span><small>開啟工具 ↗</small>
+          </a>)}
+        </div>
+      </section>}
       <FeedbackWidget entryId={entry.id} entryTitle={entry.data.title} />
     </article>
     <aside class="side-box"><h3>本篇目錄</h3>{[...headings.filter((h) => h.depth === 2), ...(entry.id === 'subsidy-guide' ? [{ text: '小提醒', slug: 'subsidy-note-heading' }] : []), ...(entry.id === 'tender' ? [{ text: '小提醒', slug: 'tender-note-heading' }] : []), ...(entry.id === 'proposal-writing' ? [{ text: '寫完計畫，再回頭檢查', slug: 'plan-note-heading' }] : []), ...(entry.id === 'budget-planning' ? [{ text: '編完經費表，再回頭看一次計畫書', slug: 'budget-note-heading' }] : []), ...(entry.id === 'results-report-writing' ? [{ text: '寫完以後，換成審查者的角度讀一次', slug: 'report-final-note-heading' }] : [])].map((h) => <a href={'#' + h.slug}>{h.text}</a>)}<a href={root + '/knowledge/'} style="margin-top:20px;font-weight:700">← 返回百科總覽</a></aside>

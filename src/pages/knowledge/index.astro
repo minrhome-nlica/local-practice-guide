@@ -27,7 +27,7 @@ const categoryGroups = categories.map((cat) => ({
             <div class="english">{cat.english}</div>
             <h3>{cat.name}</h3>
             <p>{cat.description}</p>
-            {cat.slug === 'tools' && <span class="topic-entry-preview">收錄：二代健保補充保費計算機、實務文件與範本</span>}
+            {cat.slug === 'tools' && <span class="topic-entry-preview">收錄：2026 勞健保級距表、二代健保計算機、實務文件與範本</span>}
             {cat.slug !== 'tools' && cat.entries.length > 0 && <span class="topic-entry-preview">收錄：{cat.entries.slice(0, 2).map((entry) => entry.data.title).join('、')}{cat.entries.length > 2 ? '等詞條' : ''}</span>}
           </div>
         </a>)}
@@ -52,6 +52,12 @@ const categoryGroups = categories.map((cat) => ({
           </div>
           {(cat.entries.length > 0 || cat.slug === 'tools')
             ? <div class="entry-list">
+              {cat.slug === 'tools' && <a class="entry-card guide-tool-entry" href={root + '/tools/insurance-2026/'}>
+                <span class="meta">2026 年正式資料 ・ 薪資試算</span>
+                <h3>2026 勞健保級距表與薪資試算</h3>
+                <p>快速查看勞健保、勞退與員工及雇主各項負擔。</p>
+                <span class="text-link">開啟薪資試算 ↗</span>
+              </a>}
               {cat.slug === 'tools' && <a class="entry-card guide-tool-entry" href={root + '/tools/nhi-calculator/'}>
                 <span class="meta">工作工具與技能 ・ 互動計算工具</span>
                 <h3>二代健保補充保費計算機</h3>

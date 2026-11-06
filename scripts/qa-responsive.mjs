@@ -8,7 +8,7 @@ const entryNames = (await readdir('src/content/entries'))
   .map(name => name.slice(0,-3));
 const routes = [
   '/', '/questions/', '/knowledge/', '/search/', '/learn/', '/feedback/',
-  '/about/', '/downloads/', '/tools/', '/tools/nhi-calculator/', '/admin/feedback/',
+  '/about/', '/downloads/', '/tools/', '/tools/nhi-calculator/', '/tools/insurance-2026/', '/admin/feedback/',
   '/knowledge/basics/', '/knowledge/organizations/', '/knowledge/plans/',
   '/knowledge/finance/', '/knowledge/people/', '/knowledge/tools/',
   ...entryNames.map(name => '/entries/'+name+'/')
@@ -37,7 +37,26 @@ try {
           if(!await page.locator('.guide-about-support').getByText('地方創生青年培力工作站').count())
             failures.push('About guide missing funding acknowledgment');
         }
+        if(width===390 && route==='/tools/insurance-2026/') {
+          const displayed=await page.locator('#out-employee-total').innerText();
+          const employer=await page.locator('#out-employer-total').innerText();
+          if(displayed!=='1,410 元'||employer!=='6,817 元')
+            failures.push('2026 salary calculator 34k default mismatch: '+displayed+' / '+employer);
+          await page.locator('#wage-monthly').fill('45801');
+          const cap=await page.locator('#out-labor-grade').innerText();
+          if(cap!=='45,800 元') failures.push('Labor insurance 45,800 upper bound failed: '+cap);
+          await page.locator('#wage-monthly').fill('34000');
+          await page.locator('#wage-dependents').selectOption('1');
+          const dep=await page.locator('#out-employee-health').innerText();
+          if(dep!=='1,080 元')failures.push('Health dependent multiplier failed: '+dep);
+          await page.locator('#wage-dependents').selectOption('0');
+          await page.locator('#wage-accident-choice').selectOption('0.12');
+          const occ=await page.locator('#out-employer-accident').innerText();
+          if(occ!=='42 元')failures.push('Accident insurance calculation failed: '+occ);
+        }
         if(width===390 && route==='/knowledge/tools/') {
+          if(!await page.locator('a[href$="/tools/insurance-2026/"]').count())
+            failures.push('2026 insurance calculator not listed in Tools & Skills');
           const pdf=page.locator('a[download][href$="/downloads/youth-workstation-proposal-114.pdf"]');
           const xlsx=page.locator('a[download][href$="/經費案例.xlsx"]');
           if(!(await pdf.count()) || !(await xlsx.count())) failures.push('Practical downloads missing from tools category');
