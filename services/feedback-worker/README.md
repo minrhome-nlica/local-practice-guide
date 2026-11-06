@@ -39,3 +39,27 @@ Cloudflare 官方說明：
 - https://developers.cloudflare.com/workers/get-started/dashboard/
 - https://developers.cloudflare.com/d1/best-practices/remote-development/
 - https://developers.cloudflare.com/turnstile/get-started/
+
+## 2026-11-06：文章「有幫助／還沒解決」回饋功能
+
+這是獨立的回饋統計，不會改變既有的讀者留言、審核與回覆資料。**正式啟用務必先更新 D1，再發布 Worker**；Astro 前端會呼叫 `/api/ratings/availability`，只有兩者已正確安裝才會顯示投票按鈕與後台統計。
+
+### 已有留言系統的正式站部署（一次性）
+
+1. 先在 Cloudflare D1 控制台備份目前的 `guide-feedback` 資料庫。
+2. 到 **D1 → guide-feedback → Console**，執行 [migrations/2026-11-06-article-ratings.sql](migrations/2026-11-06-article-ratings.sql) 的**完整 SQL**。原有 `feedback` 和 `feedback_rate` 不會被刪除或變更；新建 `article_ratings` 與 `article_rating_rate`。此 migration 可重複執行。
+3. 在現有 Cloudflare Worker 的 **Edit code**，以 [src/index.js](src/index.js) 最新完整內容取代並 **Deploy**。**不要建立新的 Worker**，應保留原有 D1 綁定 `DB`、`ALLOWED_ORIGINS`、`RATE_SALT`、`ADMIN_TOKEN`、`TURNSTILE_SECRET`，也不要分享任何 Secret。
+4. 在瀏覽器開啟 `https://<你的-worker>.workers.dev/api/ratings/availability`，應收到 `{"ok":true,"enabled":true}`；原本 `/health` 與 `/api/comments` 也應可用。
+5. 到任一知識百科詞條重新整理。選擇「有幫助」會直接送出，選擇「還沒解決」須先選原因。到 `/admin/feedback/` 使用原本管理金鑰登入，原本留言管理下方會出現「文章回饋分析」。
+6. 用兩篇詞條實際測試：同一瀏覽器在同一篇先選「有幫助」再改成「還沒解決」，後台該篇應只算 **1 筆**有效回饋；另一篇應分開計算。也要檢查手機版、留言審核操作與安全連線。
+
+### 資料與安全說明
+
+- `GET /api/ratings/availability`：檢查新資料表存在、服務可用，才顯示讀者投票。
+- `POST /api/ratings`：提交文章 ID、標題、`helpful` 或 `unresolved`、未解決原因與瀏覽器隨機權杖。不接受任意留言文字。
+- `GET /api/admin/ratings?period=30` 或 `period=all`：須帶原本管理權杖，只回傳**各文章彙總**，不傳個別權杖或雜湊識別。
+- 訪客不需要登入。前端將隨機產生的權杖留在本機 `localStorage`；後端只保存加鹽的**每篇文章獨立雜湊值**，不保存明文 IP、姓名或電子郵件。同一瀏覽器／文章的重複提交會更新最新選擇；無法保證不同瀏覽器、不同裝置一定是不同的人。
+- 為避免灌票，後端以每小時加鹽 IP 指紋限制最多 80 次文章評分提交；**不會**動到原有讀者留言每小時 5 筆的限制。使用密集的活動現場或共享 IP 的團體需留意此上限。
+- 可以定期在 D1 Console 執行 `DELETE FROM article_rating_rate WHERE expires_at < unixepoch();` 清理過期的限流紀錄。
+- 後台「最近 30 天」是指每篇文章的回饋**最後更新時間**落在這段期間，不是獨立的歷史投票事件時間序列。比例需搭配樣本數判讀；要精確比較修改前後的趨勢，下一階段應加事件紀錄和版本標記。
+- 如果資料庫尚未遷移、Worker 尚未更新，新的投票與統計面板會維持隱藏。**不需要額外設定新的 GitHub Actions 變數或公開金鑰**，因為網站會自動檢查服務可用性。
