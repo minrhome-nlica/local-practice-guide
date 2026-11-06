@@ -30,6 +30,12 @@ try {
           failures.push(width+'px '+route+': HTTP '+response?.status());
           continue;
         }
+        if([390,1440].includes(width) && (route==='/' || route==='/entries/labor-health-insurance/' || route==='/admin/feedback/')){
+          const beacons=await page.locator('script[src="https://static.cloudflareinsights.com/beacon.min.js"]').count();
+          const expected=route==='/admin/feedback/' ? 0 : 1;
+          if(beacons!==expected)
+            failures.push(width+'px '+route+': expected '+expected+' Cloudflare analytics tag(s), found '+beacons);
+        }
         if([390,1440].includes(width) && route==='/about/') {
           const photo=page.locator('.guide-about-photo img');
           if(await photo.count()!==1) failures.push('About-page team photo is missing');

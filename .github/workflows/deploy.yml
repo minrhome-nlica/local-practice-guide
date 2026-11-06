@@ -57,6 +57,27 @@ jobs:
               raise SystemExit('Feedback index widget missing.')
           print('Feedback widget, script URL and public index verified in generated HTML.')
           PY
+      - name: Verify private Cloudflare Web Analytics instrumentation
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          token='b4d574a93baa4b5f9d7dc7fc504e19db'
+          beacon='https://static.cloudflareinsights.com/beacon.min.js'
+          pages=[
+              Path('dist/index.html'),
+              Path('dist/about/index.html'),
+              Path('dist/feedback/index.html'),
+              Path('dist/entries/labor-health-insurance/index.html')
+          ]
+          for path in pages:
+              text=path.read_text(encoding='utf-8')
+              assert text.count(beacon)==1, f'{path}: expected exactly one Cloudflare beacon'
+              assert token in text, f'{path}: missing analytics site token'
+          admin=Path('dist/admin/feedback/index.html').read_text(encoding='utf-8')
+          assert beacon not in admin and token not in admin, 'Administration must not be tracked'
+          assert 'noindex,nofollow,noarchive' in admin
+          print('Cloudflare Web Analytics installed once per public page; excluded from staff admin.')
+          PY
       - name: Verify admin moderation page in built output
         env:
           PUBLIC_FEEDBACK_API_URL: ${{ vars.FEEDBACK_API_URL }}
