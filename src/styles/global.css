@@ -3369,3 +3369,21 @@ main table :is(th, td) p {
   .budget-article .budget-case-table tfoot td::before {display:block;color:#bed1c2;font-size:11px;margin-bottom:3px;}
   .budget-article .budget-case-scroll-hint {display:none;}
 }
+
+
+/* Homepage: concise six-at-a-time question exploration and portable reading list. */
+.home-more-actions{display:flex;justify-content:center;margin-top:29px}
+.home-more-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #9ab09e;background:#fff;color:#315847;border-radius:7px;padding:13px 28px;min-height:48px;font:700 14px/1.5 "GenSen Rounded Guide","Noto Sans TC",sans-serif;text-decoration:none;transition:background .18s,border-color .18s,transform .18s}
+.home-more-button:hover,.home-more-button:focus-visible{background:#e9f1e8;border-color:#54765b;transform:translateY(-1px)}
+.home-more-button:focus-visible{outline:2px solid #315847;outline-offset:3px}
+#home-questions [hidden],#home-questions-more[hidden]{display:none!important}
+.home-recommended{background:#f6f5ef;border-top:1px solid #e5e8dd;border-bottom:1px solid #e5e8dd}
+.home-recommended .section-head{margin-bottom:14px}
+.home-recommended .muted{max-width:790px;margin:0 0 27px;text-align:justify}
+.home-entry-card{min-width:0}
+.home-entry-card h3{overflow-wrap:anywhere}
+.home-entry-card p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+@media(max-width:700px){
+  .home-more-button{width:min(100%,360px);padding:14px 18px}
+  .home-recommended .muted{margin-bottom:21px}
+}
