@@ -1,0 +1,50 @@
+name: Check Admin Console
+on:
+  pull_request:
+    paths:
+      - 'services/admin-worker/**'
+      - '.github/workflows/admin-console-check.yml'
+  push:
+    branches: [feature/admin-console-phase1-20261106]
+    paths:
+      - 'services/admin-worker/**'
+      - '.github/workflows/admin-console-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  security-and-schema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Check Worker and browser scripts
+        run: |
+          node --check services/admin-worker/src/index.js
+          node --check services/admin-worker/src/ui.js
+          node --test services/admin-worker/tests/admin.test.mjs
+      - name: Validate additive D1 migration
+        run: |
+          python3 - <<'PY'
+          import sqlite3
+          from pathlib import Path
+          connection = sqlite3.connect(':memory:')
+          feedback = Path('services/feedback-worker/schema.sql').read_text()
+          migration = Path('services/admin-worker/migrations/2026-11-06-admin-console.sql').read_text()
+          connection.executescript(feedback)
+          connection.execute("""INSERT INTO feedback
+            (id,entry_id,entry_title,kind,body,created_at,updated_at)
+            VALUES ('test','reimbursement','怎麼核銷','question','測試留言','now','now')""")
+          connection.executescript(migration)
+          connection.executescript(migration)
+          connection.execute("""INSERT INTO admin_users
+            (email,role,active,created_at,updated_at)
+            VALUES ('staff@example.org','owner',1,'now','now')""")
+          assert connection.execute("SELECT count(*) FROM feedback").fetchone()[0] == 1
+          assert connection.execute("SELECT count(*) FROM admin_users").fetchone()[0] == 1
+          assert connection.execute("SELECT count(*) FROM article_ratings").fetchone()[0] == 0
+          print('Migration is repeatable and preserves existing feedback and ratings.')
+          PY
