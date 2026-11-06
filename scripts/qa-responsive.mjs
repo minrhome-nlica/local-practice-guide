@@ -268,6 +268,86 @@ try {
     console.log('Checked '+width+'px on '+routes.length+' routes');
   }
 
+  // Site-wide notes: POST without choosing an entry, using the EXISTING
+  // Cloudflare Worker schema and the same Turnstile verification action.
+  // Tests mock responses locally; no real D1 records or secrets are touched.
+  for(const width of [390,1440]){
+    const context=await browser.newContext({
+      viewport:{width,height:900},deviceScaleFactor:width===390?2:1,
+      isMobile:width===390,hasTouch:width===390
+    });
+    const page=await context.newPage();
+    const outgoing=[];
+    try{
+      await page.addInitScript(()=>{
+        window.turnstile={
+          render:()=>3,getResponse:()=> 'fake-local-qa-turnstile-token',
+          reset:()=>{}
+        };
+      });
+      const sample={
+        id:'33333333-3333-4333-8333-333333333333',
+        entry_id:'site-feedback',entry_title:'網站整體留言與新主題建議',
+        section_id:'',quote:'',author:'讀者建議',kind:'supplement',
+        body:'【希望新增的主題】\n建議主題：社區活動中心\n想學習如何申請使用社區活動中心與相關文件。',
+        status:'approved',created_at:'2026-11-06T00:00:00.000Z',admin_reply:''
+      };
+      await page.route('**/api/comments?*',async route=>{
+        await route.fulfill({status:200,
+          headers:{'Content-Type':'application/json','Access-Control-Allow-Origin':'*'},
+          body:JSON.stringify({ok:true,items:[sample],has_more:false})});
+      });
+      await page.route('**/api/comments',async route=>{
+        if(route.request().method()==='POST') {
+          outgoing.push(route.request().postDataJSON());
+          await route.fulfill({status:201,
+            headers:{'Content-Type':'application/json','Access-Control-Allow-Origin':'*'},
+            body:JSON.stringify({ok:true,status:'pending',message:'已收到留言，審核通過後會公開。'})});
+        }else{
+          await route.fulfill({status:405,body:'{"ok":false}'});
+        }
+      });
+      await page.goto(origin+'/feedback/',{waitUntil:'domcontentloaded'});
+      const form=page.locator('#guide-direct-form');
+      await form.waitFor({state:'visible',timeout:10000});
+      const proposed=page.locator('.guide-feedback-note-kind').filter({hasText:'新主題建議'});
+      await proposed.waitFor({state:'visible',timeout:10000});
+      if(await proposed.count()!==1)failures.push(width+'px: published site suggestion not tagged correctly');
+      const publicLink=page.locator('.guide-feedback-note-entry').first();
+      const href=await publicLink.getAttribute('href');
+      if(href!=='/feedback/#guide-feedback-direct')
+        failures.push(width+'px: published site suggestion points to invalid entry '+href);
+      await form.locator('select[name="topic_kind"]').selectOption('topic');
+      await form.locator('input[name="subject"]').fill('地方課程經費核銷');
+      await form.locator('textarea[name="body"]').fill('希望有社區親子課程經費編列和實際核銷的對照案例。');
+      await form.locator('[data-direct-submit]').click();
+      await page.waitForFunction(()=>document.querySelector('#guide-direct-message')
+        ?.textContent?.includes('已收到你的留言'),{timeout:5000});
+      if(outgoing.length!==1)failures.push(width+'px: expected one site suggestion request, got '+outgoing.length);
+      const sent=outgoing[0]||{};
+      if(sent.entry_id!=='site-feedback'||sent.entry_title!=='網站整體留言與新主題建議'||
+         sent.kind!=='supplement'||!sent.body?.startsWith('【希望新增的主題】\n')||
+         !sent.body?.includes('地方課程經費核銷')||
+         sent.turnstile_token!=='fake-local-qa-turnstile-token'||
+         sent.section_id!==''||sent.quote!=='')
+        failures.push(width+'px: site suggestion request not compatible with Worker schema '+JSON.stringify(sent).slice(0,240));
+      await form.locator('select[name="topic_kind"]').selectOption('site');
+      const title=page.locator('#guide-direct-subject-wrap');
+      if(await title.isVisible()) failures.push(width+'px: topic-only title still visible for general website feedback');
+      await form.locator('textarea[name="body"]').fill('我覺得手機上的詞條搜尋結果可以讓標題和預覽更容易辨識。');
+      await form.locator('[data-direct-submit]').click();
+      await page.waitForFunction(()=>document.querySelector('#guide-direct-message')
+        ?.textContent?.includes('已收到你的留言'),{timeout:5000});
+      if(outgoing.length!==2||outgoing[1]?.kind!=='supplement'||
+         !outgoing[1]?.body?.startsWith('【網站使用建議】\n'))
+        failures.push(width+'px: general website suggestion incorrectly serialized');
+      await page.screenshot({path:'qa-screenshots/feedback-direct-'+width+'.png',fullPage:false});
+      console.log('Direct moderated feedback tested at '+width+'px: two kinds, two POST requests, no D1 writes.');
+    }catch(error){
+      failures.push(width+'px direct site feedback functional test: '+error.message);
+    }finally{await page.close();await context.close();}
+  }
+
   // Text selection itself must never display the feedback popup.
   // Only hovering the highlighted characters may reveal it.
   for(const width of [390,1440]){
