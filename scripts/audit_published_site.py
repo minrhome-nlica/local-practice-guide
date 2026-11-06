@@ -141,6 +141,9 @@ def main():
     for term in ['免責聲明：', '主管機關最新公告', '© 2026', '社團法人花蓮縣牛犁社區交流協會']:
         if term not in homepage_html:
             problems.append('V1.1 footer legal notice missing: '+term)
+    for static_file in ['sitemap.xml','robots.txt']:
+        if not (DIST / static_file).is_file():
+            problems.append('Search engine release asset missing: '+static_file)
     for doc in ['經費案例.xlsx', 'downloads/youth-workstation-proposal-114.pdf']:
         if not (DIST / doc).exists():
             problems.append(f'Download asset missing: {doc}')

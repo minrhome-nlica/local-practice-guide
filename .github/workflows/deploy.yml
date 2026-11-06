@@ -110,6 +110,20 @@ jobs:
           PY
       - name: Audit all generated pages, downloads and image assets
         run: python3 scripts/audit_published_site.py
+      - name: Verify V1.1 search metadata, sitemap and robots policy
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          about = Path('dist/about/index.html').read_text(encoding='utf-8')
+          sitemap = Path('dist/sitemap.xml').read_text(encoding='utf-8')
+          robots = Path('dist/robots.txt').read_text(encoding='utf-8')
+          assert 'rel="canonical"' in about
+          assert 'property="og:title"' in about
+          assert 'https://guide.mountcounty.com/about/' in sitemap
+          assert '/admin/feedback/' not in sitemap
+          assert 'Disallow: /admin/' in robots
+          print('V1.1 search engine and social sharing metadata verified.')
+          PY
       - name: Check knowledge article relationships and tool links
         run: node scripts/check-entry-links.mjs
       - name: Check feedback scripts and D1 schema
@@ -132,3 +146,22 @@ jobs:
     steps:
       - name: Publish site
         uses: actions/deploy-pages@v5
+      - name: Check live site HTTPS and public endpoints
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import subprocess
+          urls = {
+              'homepage':'https://guide.mountcounty.com/',
+              'about':'https://guide.mountcounty.com/about/',
+              'team-photo':'https://guide.mountcounty.com/images/about/nlica-team-2026.avif',
+              'social-organization-site':'https://www.nlica.org/'
+          }
+          for name, url in urls.items():
+              args=['curl','-fLsS','--max-time','25','-o','/dev/null','-w','%{http_code} TLS_verify=%{ssl_verify_result}',url]
+              result=subprocess.run(args,text=True,capture_output=True)
+              if result.returncode:
+                  print('::warning::HTTPS verification failed for '+name+': '+result.stderr.strip()[:180])
+              else:
+                  print('HTTPS '+name+': '+result.stdout)
+          PY
