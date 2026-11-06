@@ -34,6 +34,18 @@ jobs:
           node-version: 24
           package-manager: npm
           cache: 'false'
+      - name: Check feedback scripts and D1 schema
+        run: |
+          node --check services/feedback-worker/src/index.js
+          node --check public/scripts/feedback.js
+          python - <<'PY'
+          import sqlite3
+          from pathlib import Path
+          connection = sqlite3.connect(":memory:")
+          connection.executescript(Path("services/feedback-worker/schema.sql").read_text())
+          assert connection.execute("SELECT count(*) FROM feedback").fetchone()[0] == 0
+          print("Feedback API and D1 schema validated.")
+          PY
   deploy:
     needs: build
     runs-on: ubuntu-latest
