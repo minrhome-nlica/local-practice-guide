@@ -1,14 +1,15 @@
 // Browser-based layout smoke test for the public guide.
 import { chromium } from 'playwright';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readdir } from 'node:fs/promises';
 const origin = process.env.QA_BASE || 'http://127.0.0.1:4173';
 const widths = [320,360,390,430,768,1024,1440];
+const entryNames = (await readdir('src/content/entries'))
+  .filter(name => name.endsWith('.md'))
+  .map(name => name.slice(0,-3));
 const routes = [
-  '/', '/questions/', '/knowledge/', '/search/', '/learn/',
-  '/entries/why-establish-legal-person/', '/entries/budget-planning/',
-  '/entries/reimbursement/', '/entries/supplemental-premium/',
-  '/entries/which-status-saves-tax/', '/feedback/',
-  '/tools/nhi-calculator/', '/admin/feedback/'
+  '/', '/questions/', '/knowledge/', '/search/', '/learn/', '/feedback/',
+  '/tools/', '/tools/nhi-calculator/', '/admin/feedback/',
+  ...entryNames.map(name => '/entries/'+name+'/')
 ];
 const browser = await chromium.launch({channel:'chrome',headless:true,args:['--no-sandbox']});
 const failures=[], warnings=[],records=[];
