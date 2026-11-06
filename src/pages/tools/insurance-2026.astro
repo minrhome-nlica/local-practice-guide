@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/insurance-salary-2026.css';
+import {
+  laborGrades2026, healthGrades2026, pensionGrades2026, accidentGrades2026
+} from '../../data/insurance-2026';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fmt = (number) => Number(number).toLocaleString('zh-TW');
+const band = (grades, index) => index === 0 ? '29,500 以下（全時最低 29,500）' :
+  (index === grades.length - 1 ? fmt(grades[index - 1] + 1) + ' 元以上' :
+  fmt(grades[index - 1] + 1) + '～' + fmt(grades[index]));
+const employeeLabor = (w) => Math.round(w * .115 * .2) + Math.round(w * .01 * .2);
+const employerLabor = (w) => Math.round(w * .115 * .7) + Math.round(w * .01 * .7);
+const employeeHealth = (w) => Math.round(w * .0517 * .3);
+const employerHealth = (w) => Math.round(w * .0517 * .6 * 1.56);
+---
+<BaseLayout title="2026 勞健保級距表與薪資試算" description="輸入2026年月薪，查看員工與雇主的勞保、就業保險、健保、勞退與職災保險負擔，並查詢完整級距表。">
+  <section class="page-hero wage-hero">
+    <div class="wrap">
+      <p class="breadcrumbs"><a href={root + '/'}>首頁</a> / <a href={root + '/knowledge/'}>知識百科</a> / <a href={root + '/knowledge/tools/'}>工作工具與技能</a> / 2026 勞健保級距表</p>
+      <span class="eyebrow">2026 / LABOR & HEALTH INSURANCE</span>
+      <h1 class="page-title">2026 勞健保級距表與薪資試算</h1>
+      <p>先輸入約定月薪，查看員工要負擔多少，以及雇主需要另外準備多少錢。下方可查詢各制度的正式級距。</p>
+      <div class="wage-hero-tags"><span>民國 115 年</span><span>一般全時受僱者</span><span>以整月投保試算</span></div>
+    </div>
+  </section>
+
+  <section class="wage-main-section">
+    <div class="wrap">
+      <div class="wage-calculator" id="wage-calculator-2026"
+        data-labor={laborGrades2026.join(',')}
+        data-health={healthGrades2026.join(',')}
+        data-pension={pensionGrades2026.join(',')}
+        data-accident={accidentGrades2026.join(',')}>
+        <div class="wage-calculator-heading">
+          <span class="eyebrow">SALARY CALCULATOR</span>
+          <h2>一、輸入月薪，直接算出各項負擔</h2>
+          <p>預設為一般受僱者、同時參加勞保和就保、健保無眷屬、適用勞退新制。</p>
+        </div>
+        <form id="wage-form-2026" class="wage-form" autocomplete="off" novalidate>
+          <label class="wage-field wage-field-main">
+            <span>約定月薪（新臺幣元）</span>
+            <input id="wage-monthly" type="text" inputmode="numeric" value="34,000" aria-describedby="wage-monthly-hint" required/>
+            <small id="wage-monthly-hint">輸入扣除勞健保自付額以前的月薪，而不是實領薪資。</small>
+          </label>
+          <label class="wage-field">
+            <span>勞保、就保投保情形</span>
+            <select id="wage-coverage">
+              <option value="both">一般受僱者（勞保＋就保）</option>
+              <option value="labor">僅參加勞保（不適用就保）</option>
+              <option value="employment">僅參加就保（未加勞保）</option>
+            </select>
+          </label>
+          <label class="wage-field">
+            <span>健保依附眷屬人數</span>
+            <select id="wage-dependents">
+              <option value="0">0 人（僅本人）</option>
+              <option value="1">1 人</option>
+              <option value="2">2 人</option>
+              <option value="3">3 人以上（最多計 3 人）</option>
+            </select>
+          </label>
+          <label class="wage-field">
+            <span>員工勞退自願提繳</span>
+            <select id="wage-voluntary">
+              <option value="0">不自提（0%）</option>
+              <option value="1">自提 1%</option><option value="2">自提 2%</option>
+              <option value="3">自提 3%</option><option value="4">自提 4%</option>
+              <option value="5">自提 5%</option><option value="6">自提 6%</option>
+            </select>
+          </label>
+          <label class="wage-field">
+            <span>職災保險費率（雇主全額負擔）</span>
+            <select id="wage-accident-choice">
+              <option value="">尚未確認（先不併入雇主合計）</option>
+              <option value="0.12">0.12%（最低費率示例）</option>
+              <option value="0.2">0.20%（示例）</option>
+              <option value="0.3">0.30%（示例）</option>
+              <option value="custom">自行輸入實際行業費率</option>
+            </select>
+          </label>
+          <label class="wage-field" id="wage-accident-custom-wrap" hidden>
+            <span>實際職災保險費率（%）</span>
+            <input id="wage-accident-custom" type="number" inputmode="decimal" min="0.12" max="0.96" step="0.01" placeholder="例如 0.18"/>
+          </label>
+        </form>
+        <p class="wage-error" id="wage-error" role="status" aria-live="polite" hidden></p>
+        <div class="wage-output" id="wage-output" aria-live="polite">
+          <div class="wage-grade-row">
+            <div><span>勞保／就保投保薪資</span><strong id="out-labor-grade">—</strong></div>
+            <div><span>健保投保金額</span><strong id="out-health-grade">—</strong></div>
+            <div><span>勞退月提繳工資</span><strong id="out-pension-grade">—</strong></div>
+            <div><span>職災投保薪資</span><strong id="out-accident-grade">—</strong></div>
+          </div>
+          <div class="wage-result-grid">
+            <section class="wage-result-card wage-result-person" aria-labelledby="wage-employee-title">
+              <h3 id="wage-employee-title">員工每月自付</h3>
+              <dl>
+                <div><dt>勞保普通事故</dt><dd id="out-employee-labor">—</dd></div>
+                <div><dt>就業保險</dt><dd id="out-employee-job">—</dd></div>
+                <div><dt>健保一般保費（含眷屬）</dt><dd id="out-employee-health">—</dd></div>
+                <div><dt>勞退個人自提</dt><dd id="out-employee-pension">—</dd></div>
+                <div class="wage-total"><dt>員工負擔合計</dt><dd id="out-employee-total">—</dd></div>
+                <div><dt>扣除上述費用後實領</dt><dd id="out-takehome">—</dd></div>
+              </dl>
+            </section>
+            <section class="wage-result-card" aria-labelledby="wage-employer-title">
+              <h3 id="wage-employer-title">雇主每月額外負擔</h3>
+              <dl>
+                <div><dt>勞保普通事故</dt><dd id="out-employer-labor">—</dd></div>
+                <div><dt>就業保險</dt><dd id="out-employer-job">—</dd></div>
+                <div><dt>健保一般保費（含平均眷口）</dt><dd id="out-employer-health">—</dd></div>
+                <div><dt>勞退新制提繳 6%</dt><dd id="out-employer-pension">—</dd></div>
+                <div><dt>職災保險</dt><dd id="out-employer-accident">未計入</dd></div>
+                <div class="wage-total"><dt>雇主額外支出合計</dt><dd id="out-employer-total">—</dd></div>
+                <div><dt>雇主月薪＋額外支出</dt><dd id="out-company-cost">—</dd></div>
+              </dl>
+              <p id="wage-cost-note" class="wage-cost-note"></p>
+            </section>
+          </div>
+        </div>
+        <aside class="wage-qualifier">
+          <strong>試算適用範圍</strong>
+          <p>本工具以一般受僱者、整月投保及勞退新制為前提。員工與雇主負擔依官方分級、費率及各項保費分別四捨五入。職災依行業別費率計算，未選費率時不列入合計。其他如部分工時、月中加退保、身障保費補助、職業工會、自營作業者、舊制勞退、政府補助、二代健保補充保費及所得稅，均不在此試算範圍。</p>
+          <p>注意：「實領」只表示扣除本工具列出的員工自付費用後的金額，並非保證實際入帳數字；「雇主支出」不包含可能發生的其他人事費用。</p>
+        </aside>
+      </div>
+
+      <section class="wage-tables-section" id="wage-tables" aria-labelledby="wage-tables-title">
+        <div class="wage-section-head">
+          <span class="eyebrow">2026 OFFICIAL GRADES</span>
+          <h2 id="wage-tables-title">二、2026 年各項投保級距表</h2>
+          <p>不同制度有不同級距上限。表格在電腦使用傳統欄位，在手機改為分項卡片，不需要橫向拖動。</p>
+        </div>
+        <details class="wage-grade-details" open>
+          <summary>勞保與就保投保薪資（一般全時 11 級）</summary>
+          <div class="wage-table-scroll" role="region" aria-label="2026 勞保和就保級距">
+            <table><thead><tr><th>等級</th><th>月薪範圍（元）</th><th>投保薪資（元）</th><th>員工勞就保（元）</th><th>雇主勞就保（元）</th></tr></thead>
+              <tbody>{laborGrades2026.map((w,i)=><tr>
+                <th scope="row" data-label="等級">{i+1}</th>
+                <td data-label="月薪範圍">{i===laborGrades2026.length-1 ? '43,901 以上（最高級距）' : band(laborGrades2026,i)}</td>
+                <td data-label="投保薪資">{fmt(w)}</td>
+                <td data-label="員工勞就保">{fmt(employeeLabor(w))}</td>
+                <td data-label="雇主勞就保">{fmt(employerLabor(w))}</td>
+              </tr>)}</tbody>
+            </table>
+          </div>
+          <p class="wage-table-caption">以上合計包含普通事故 11.5% 與就業保險 1%，個別計算後四捨五入；僅有勞保或僅有就保者，應分開計算。勞保最高級距為 45,800 元。</p>
+        </details>
+        <details class="wage-grade-details">
+          <summary>全民健保投保金額（完整 58 級）</summary>
+          <div class="wage-table-scroll" role="region" aria-label="2026 健保投保金額級距">
+            <table><thead><tr><th>等級</th><th>實際月薪範圍（元）</th><th>投保金額（元）</th><th>員工本人（元）</th><th>雇主（元）</th></tr></thead>
+              <tbody>{healthGrades2026.map((w,i)=><tr>
+                <th scope="row" data-label="等級">{i+1}</th><td data-label="月薪範圍">{band(healthGrades2026,i)}</td>
+                <td data-label="投保金額">{fmt(w)}</td>
+                <td data-label="員工本人">{fmt(employeeHealth(w))}</td>
+                <td data-label="雇主">{fmt(employerHealth(w))}</td>
+              </tr>)}</tbody>
+            </table>
+          </div>
+          <p class="wage-table-caption">表中員工負擔只計本人，不含眷屬；雇主負擔採一般企業 60% ×（1＋平均眷口數 0.56）。健保最高投保金額 313,000 元。</p>
+        </details>
+        <details class="wage-grade-details">
+          <summary>勞退新制月提繳工資（一般全時常用 38 級）</summary>
+          <div class="wage-table-scroll" role="region" aria-label="2026 勞工退休金月提繳工資">
+            <table><thead><tr><th>等級</th><th>月薪範圍（元）</th><th>月提繳工資（元）</th><th>雇主提繳 6%（元）</th></tr></thead>
+              <tbody>{pensionGrades2026.map((w,i)=><tr>
+                <th scope="row" data-label="等級">{i+1}</th>
+                <td data-label="月薪範圍">{band(pensionGrades2026,i)}</td>
+                <td data-label="月提繳工資">{fmt(w)}</td><td data-label="雇主提繳 6%">{fmt(Math.round(w*.06))}</td>
+              </tr>)}</tbody>
+            </table>
+          </div>
+          <p class="wage-table-caption">此表整理一般全時工作者使用的 29,500 元以上級距。部分工時與低月薪特殊級距不包含在此表，仍應按勞保局完整公告辦理。月提繳工資上限 150,000 元。</p>
+        </details>
+      </section>
+
+      <section class="wage-future-section" aria-labelledby="wage-future-title">
+        <h2 id="wage-future-title">三、2027 年的級距表進度</h2>
+        <p>勞動部已公告自 <strong>2027 年 1 月 1 日起，月最低工資為 30,900 元、時薪為 205 元</strong>。截至本站 2026 年 11 月 6 日查核時，尚未確認勞保、健保與勞退完整 2027 年分級表已正式公告。因此本站不提供推估的 2027 年試算結果；待官方公布後再建立獨立年度頁面。</p>
+      </section>
+
+      <section class="wage-sources-section" aria-labelledby="wage-sources-title">
+        <h2 id="wage-sources-title">官方來源與相關文章</h2>
+        <p>資料查核：2026 年 11 月 6 日。適用年度為 2026 年（民國 115 年）。法規、級距及費率變動時，請依主管機關最新公告核對。</p>
+        <ul>
+          <li><a href="https://www.bli.gov.tw/0102606.html" target="_blank" rel="noopener noreferrer">勞保局｜一般單位保險費分擔金額表</a></li>
+          <li><a href="https://www.nhi.gov.tw/ch/cp-19421-f9533-2569-1.html" target="_blank" rel="noopener noreferrer">健保署｜2026 年投保金額分級表</a></li>
+          <li><a href="https://www.nhi.gov.tw/ch/cp-19418-9eefb-2576-1.html" target="_blank" rel="noopener noreferrer">健保署｜一般受僱者保費負擔表</a></li>
+          <li><a href="https://www.bli.gov.tw/0007801.html" target="_blank" rel="noopener noreferrer">勞保局｜勞保及職災投保薪資上下限</a></li>
+          <li><a href="https://www.bli.gov.tw/0014162.html" target="_blank" rel="noopener noreferrer">勞保局｜職災保險費率與官方試算</a></li>
+          <li><a href="https://www.bli.gov.tw/0101851.html" target="_blank" rel="noopener noreferrer">勞保局｜勞退月提繳工資</a></li>
+          <li><a href="https://www.mol.gov.tw/1607/28162/28166/28180/70460/76761/76833/post" target="_blank" rel="noopener noreferrer">勞動部｜歷年最低工資（含 2027）</a></li>
+        </ul>
+        <div class="wage-related">
+          <a href={root+'/entries/labor-health-insurance/'}>〈勞健保〉：認識投保與實領金額 ↗</a>
+          <a href={root+'/entries/supplemental-premium/'}>〈二代健保補充保費〉：一般保費以外的扣費 ↗</a>
+          <a href={root+'/tools/nhi-calculator/'}>二代健保補充保費計算機 ↗</a>
+          <a href={root+'/entries/budget-planning/'}>〈經費編列〉：編列完整人事成本 ↗</a>
+        </div>
+      </section>
+    </div>
+  </section>
+  <script src={root+'/scripts/insurance-salary-2026.js'} is:inline defer></script>
+</BaseLayout>

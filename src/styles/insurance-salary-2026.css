@@ -1,0 +1,78 @@
+/* Insurance grade tool. Mobile tables become readable labeled cards. */
+.wage-hero p{max-width:870px;line-height:1.95}
+.wage-hero-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.wage-hero-tags span{padding:7px 12px;background:#e9f2e8;border:1px solid #d8e4d6;border-radius:99px;font-size:12px;color:#385c42;font-weight:700}
+.wage-main-section{padding:37px 0 75px}
+.wage-calculator{background:#fff;border:1px solid #d9e5d9;padding:clamp(16px,3vw,34px);border-radius:14px;box-shadow:0 5px 26px #183d2011}
+.wage-calculator-heading h2,.wage-section-head h2,.wage-future-section h2,.wage-sources-section h2{font-size:clamp(21px,2.5vw,29px);margin:8px 0 10px;line-height:1.55;color:#2e543e}
+.wage-calculator-heading p,.wage-section-head p{font-size:14px;color:#657968;line-height:1.85;margin:0 0 22px}
+.wage-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;align-items:start;margin:23px 0}
+.wage-field{display:grid;gap:8px;min-width:0}
+.wage-field-main{grid-column:1/-1;max-width:550px}
+.wage-field>span{font-size:14px;font-weight:700;color:#335642}
+.wage-field :is(input,select){font:inherit;font-size:16px;min-width:0;width:100%;height:47px;border:1px solid #bfcebf;border-radius:7px;background:#fff;color:#263e30;padding:10px 12px}
+.wage-field input:focus-visible,.wage-field select:focus-visible{outline:2px solid #6f9e7b;outline-offset:2px}
+.wage-field-main input{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;min-height:58px}
+.wage-field small{font-size:12px;line-height:1.65;color:#77887c}
+.wage-field[hidden],.wage-output[hidden],.wage-error[hidden]{display:none!important}
+.wage-error{padding:13px 16px;background:#fff1ea;color:#914c3f;border-radius:8px;line-height:1.8}
+.wage-grade-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;background:#f5f8f3;border-radius:11px;padding:13px;margin-top:24px}
+.wage-grade-row>div{min-width:0;padding:9px 10px}
+.wage-grade-row span{display:block;font-size:12px;color:#637d6b;line-height:1.6}
+.wage-grade-row strong{display:block;color:#2b553e;font-size:clamp(16px,2vw,21px);margin-top:4px;white-space:normal;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.wage-result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:16px}
+.wage-result-card{background:#fcfdfb;border:1px solid #d9e4d7;border-radius:11px;padding:20px;min-width:0}
+.wage-result-card.wage-result-person{background:#f7f9f6}
+.wage-result-card h3{margin:0 0 14px;color:#2a523c;font-size:19px}
+.wage-result-card dl{margin:0}
+.wage-result-card dl>div{display:flex;align-items:flex-start;justify-content:space-between;gap:13px;border-bottom:1px solid #e5ebe3;padding:10px 0}
+.wage-result-card dt{font-size:13px;color:#566f5e;line-height:1.6}
+.wage-result-card dd{font-size:14px;font-weight:700;color:#2b4c38;margin:0;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.wage-result-card dl>div.wage-total{border-bottom:0;padding-top:15px}
+.wage-result-card .wage-total dt,.wage-result-card .wage-total dd{font-size:16px;font-weight:800;color:#28543a}
+.wage-cost-note{font-size:12px;line-height:1.8;color:#827154;background:#fff5e8;padding:12px 13px;border-radius:7px;margin:13px 0 0}
+.wage-qualifier{margin-top:19px;background:#f4f7f2;border-left:3px solid #a3bfa7;padding:14px 18px;color:#4d6855}
+.wage-qualifier strong{display:block;margin-bottom:7px}
+.wage-qualifier p{font-size:13px;line-height:1.85;margin:4px 0}
+.wage-tables-section{margin-top:64px}
+.wage-grade-details{margin:15px 0;border:1px solid #dae5d9;border-radius:11px;background:#fff;padding:0 19px}
+.wage-grade-details summary{cursor:pointer;padding:20px 4px;color:#2c563c;font-weight:800;font-size:16px;line-height:1.6}
+.wage-grade-details[open] summary{border-bottom:1px solid #e1e9e0}
+.wage-table-scroll{width:100%;max-width:100%;overflow-x:auto;padding-top:16px}
+.wage-table-scroll table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.55;table-layout:auto}
+.wage-table-scroll th,.wage-table-scroll td{border-bottom:1px solid #e3eae2;padding:10px 12px;white-space:nowrap;text-align:left}
+.wage-table-scroll th{font-weight:700;color:#2f5b40}
+.wage-table-scroll thead th{background:#edf4eb}
+.wage-table-scroll tbody tr:nth-child(even){background:#fafcf9}
+.wage-table-scroll tbody tr:hover{background:#edf5ec}
+.wage-table-caption{font-size:12px;line-height:1.85;color:#6e826f;margin:14px 3px 18px}
+.wage-future-section,.wage-sources-section{margin-top:52px;border-top:1px solid #dce4d8;padding-top:24px}
+.wage-future-section p,.wage-sources-section p{line-height:1.85;color:#536a59;max-width:960px}
+.wage-sources-section ul{line-height:1.9;padding-left:22px}
+.wage-sources-section li{margin:5px 0}
+.wage-sources-section a{color:#306446;text-decoration:underline;text-underline-offset:3px}
+.wage-related{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.wage-related a{border:1px solid #cfddcf;border-radius:7px;background:#fff;padding:9px 12px;font-size:13px}
+@media(max-width:900px){.wage-grade-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){
+  .wage-main-section{padding:25px 0 50px}
+  .wage-form{grid-template-columns:1fr;gap:14px}
+  .wage-field-main{grid-column:auto}
+  .wage-result-grid{grid-template-columns:1fr}
+  .wage-result-card{padding:16px}
+  .wage-grade-row{padding:8px;gap:4px}
+  .wage-grade-row>div{padding:7px}
+  .wage-grade-details{padding:0 13px}
+  .wage-grade-details summary{padding:16px 3px}
+  .wage-table-scroll{overflow:visible;padding-top:12px}
+  .wage-table-scroll table{display:block;width:100%}
+  .wage-table-scroll thead{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+  .wage-table-scroll tbody{display:grid;grid-template-columns:minmax(0,1fr);gap:9px}
+  .wage-table-scroll tbody tr{display:block;border:1px solid #dae6d9;border-radius:9px;padding:5px 13px;background:#fff!important}
+  .wage-table-scroll tbody :is(td,th){display:grid;grid-template-columns:minmax(0,40%) minmax(0,1fr);gap:10px;padding:9px 0;border-bottom:1px solid #edf0ec;white-space:normal;overflow-wrap:anywhere;min-width:0;font-size:13px;text-align:left}
+  .wage-table-scroll tbody :is(td,th)::before{content:attr(data-label);color:#708573;font-weight:700;font-size:12px;line-height:1.65}
+  .wage-table-scroll tbody tr :is(td,th):last-child{border:0}
+  .wage-result-card dl>div{gap:8px}
+  .wage-result-card dt{font-size:12px}
+  .wage-result-card dd{font-size:13px}
+}
