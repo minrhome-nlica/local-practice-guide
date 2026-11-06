@@ -68,6 +68,8 @@ try {
         if(route==='/' && [390,1440].includes(width)){
           if(await page.locator('.footer-social-group').count()!==2)
             failures.push('Footer is missing two organization groups');
+          if(await page.locator('.footer-grid > .footer-social').count()!==1)
+            failures.push('Social links must be a distinct third footer column');
           if(await page.locator('.footer-social-group a').count()!==6)
             failures.push('Footer must link to six organization destinations');
           if(!(await page.locator('.footer-copyright').innerText()).includes('© 2026'))

@@ -52,7 +52,8 @@ const nav = [
           <a href={root + '/knowledge/'}>探索知識百科 ↗</a>
           <a href={root + '/knowledge/tools/'}>工作工具與技能 ↗</a>
           <a href="https://mountcounty.com/shop/" target="_blank" rel="noopener noreferrer">支持我們 ↗</a>
-          <div class="footer-social" aria-label="牛犁協會與山下線社群">
+        </div>
+        <div class="footer-social" aria-label="牛犁協會與山下線社群">
           <h3>與我們保持聯繫</h3>
           {organizations.map((org) => <div class="footer-social-group">
             <strong>{org.shortName}</strong>
@@ -61,7 +62,6 @@ const nav = [
             </div>
           </div>)}
         </div>
-      </div>
       </div>
       <div class="wrap footer-bottom">
         <div class="footer-credits">
