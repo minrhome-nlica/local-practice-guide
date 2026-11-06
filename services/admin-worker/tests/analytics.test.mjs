@@ -11,7 +11,7 @@ const endpoint='https://admin.guide.mountcounty.com/api/analytics';
 
 test('analytics query scopes account + site tag and uses grouped Web Analytics RUM data',()=>{
   assert.match(WEB_ANALYTICS_QUERY,/rumPageloadEventsAdaptiveGroups/);
-  assert.match(WEB_ANALYTICS_QUERY,/siteTag/); // siteTag from filter variable
+  assert.match(WEB_ANALYTICS_QUERY,/filter: \$filter/); // siteTag is sent in variables.filter
   assert.match(WEB_ANALYTICS_QUERY,/requestPath/);
   assert.match(WEB_ANALYTICS_QUERY,/date_ASC/);
 });
