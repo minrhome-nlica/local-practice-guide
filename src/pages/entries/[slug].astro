@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 import { categoryName, otherCategoriesForEntry } from '../../data/catalog';
 import FeedbackWidget from '../../components/FeedbackWidget.astro';
+import ArticleRating from '../../components/ArticleRating.astro';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 export async function getStaticPaths(){
   const entries = await getCollection('entries');
@@ -54,6 +55,7 @@ const related = [...new Set(relatedIds)].filter((id) => id !== entry.id).map((id
       <div class:list={['article', 'guide-article', { 'subsidy-article': entry.id === 'subsidy-guide', 'tender-article': entry.id === 'tender', 'plan-article': entry.id === 'proposal-writing', 'budget-article': entry.id === 'budget-planning', 'report-article': entry.id === 'results-report-writing', 'reimburse-article': entry.id === 'reimbursement', 'insurance-article': ['labor-health-insurance', 'supplemental-premium'].includes(entry.id), 'tax-status-article': entry.id === 'which-status-saves-tax', 'tax-subhead-article': ['which-status-saves-tax','business-income-tax'].includes(entry.id), 'business-income-article': entry.id === 'business-income-tax' }]} style={`--guide-total: "${String(chapters.length).padStart(2, '0')}"; --guide-name: "${entry.data.title.replace(/"/g, '')}";`}><Content /></div>
       {!isConceptEntry && !['subsidy-guide', 'tender', 'proposal-writing', 'budget-planning', 'results-report-writing', 'reimbursement'].includes(entry.id) && <aside class="notice">資料查核提醒：補助、稅務、勞健保及法律規定可能隨年度調整，請以主管機關當年度公告及個案規定為準。</aside>}
       {entry.id !== 'local-practice' && <div style="margin-top:20px" class="muted small">最後更新：{entry.data.updated.toLocaleDateString('zh-TW')}　｜　編輯狀態：{entry.data.status}</div>}
+      <ArticleRating entryId={entry.id} entryTitle={entry.data.title} />
       {related.length > 0 && <div style="margin-top:55px"><h2 class="section-title" style="font-size:27px">延伸閱讀</h2><div class="entry-list" style="margin-top:22px">{related.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}><h3>{item.data.title}</h3><p>{item.data.summary}</p></a>)}</div></div>}
       {entryTools.length > 0 && <section class="guide-related-tools" aria-label="相關試算工具">
         <h2>相關工作工具</h2>
