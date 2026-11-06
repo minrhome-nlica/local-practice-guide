@@ -28,6 +28,8 @@ jobs:
         uses: withastro/action@v6
         env:
           GUIDE_CUSTOM_DOMAIN: ${{ vars.GUIDE_CUSTOM_DOMAIN }}
+          PUBLIC_FEEDBACK_API_URL: ${{ vars.FEEDBACK_API_URL }}
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
         with:
           node-version: 24
           package-manager: npm

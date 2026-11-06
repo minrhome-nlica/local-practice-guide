@@ -1,0 +1,61 @@
+---
+import '../styles/feedback.css';
+const { entryId, entryTitle } = Astro.props;
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const api = (import.meta.env.PUBLIC_FEEDBACK_API_URL || '').replace(/\/$/, '');
+const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api) && sitekey.length > 10;
+---
+{ready && (
+  <section class="guide-feedback" id="guide-feedback" data-api={api} data-sitekey={sitekey}
+    data-entry-id={entryId} data-entry-title={entryTitle} data-root={root} aria-label="讀者提問與內容勘誤" data-pagefind-ignore>
+    <div class="guide-feedback-head">
+      <div>
+        <span class="eyebrow">READER NOTES</span>
+        <h2>讀者提問與內容勘誤</h2>
+        <p>可以反白文章中的文字直接提問，也能對整篇文章提供補充或更正。</p>
+      </div>
+      <button class="guide-feedback-primary" type="button" data-feedback-open>針對本篇留言 ＋</button>
+    </div>
+    <div class="guide-feedback-status" data-feedback-status role="status" aria-live="polite"></div>
+    <div class="guide-feedback-comments" data-feedback-items aria-live="polite">
+      <p class="muted small">正在載入已公開的留言……</p>
+    </div>
+    <div class="guide-feedback-foot"><span>留言通過審核後公開，內容僅供交流，不取代正式法令解釋。</span>
+      <a href={root + '/feedback/'}>查看所有讀者留言 ↗</a></div>
+
+    <button type="button" id="guide-feedback-select" class="guide-feedback-select" hidden>＋ 針對這段提問／更正</button>
+
+    <dialog id="guide-feedback-dialog" class="guide-feedback-dialog" aria-labelledby="guide-feedback-dialog-title">
+      <form id="guide-feedback-form" novalidate>
+        <div class="guide-feedback-dialog-head">
+          <div><span class="eyebrow">SEND A READER NOTE</span><h2 id="guide-feedback-dialog-title">針對文章留言</h2></div>
+          <button type="button" data-feedback-close class="guide-feedback-close" aria-label="關閉留言視窗">✕</button>
+        </div>
+        <p class="guide-feedback-quote" data-feedback-quote hidden></p>
+        <label>留言類型
+          <select name="kind" required>
+            <option value="question">詢問問題</option>
+            <option value="correction">內容更正</option>
+            <option value="supplement">補充案例或資訊</option>
+          </select>
+        </label>
+        <label>稱呼（可留空）
+          <input name="author" maxlength="40" autocomplete="nickname" placeholder="讀者"/>
+        </label>
+        <label>想說的內容（至少 10 字）
+          <textarea name="body" minlength="10" maxlength="2000" rows="5" required placeholder="請描述想詢問、補充或更正的地方。"></textarea>
+        </label>
+        <div class="guide-feedback-trap" aria-hidden="true"><label>請勿填寫此欄 <input name="website" tabindex="-1" autocomplete="off"/></label></div>
+        <p class="guide-feedback-privacy">請勿填入身分證、電話、住址等個人資料。留言經人工審核後才公開。</p>
+        <div class="guide-feedback-turnstile" id="guide-feedback-turnstile"></div>
+        <p class="guide-feedback-message" id="guide-feedback-message" role="status" aria-live="polite"></p>
+        <div class="guide-feedback-dialog-actions">
+          <button type="button" data-feedback-close class="guide-feedback-secondary">取消</button>
+          <button type="submit" class="guide-feedback-primary" data-feedback-submit>送出留言，等待審核 ↗</button>
+        </div>
+      </form>
+    </dialog>
+    <script src={root + '/scripts/feedback.js'} is:inline defer></script>
+  </section>
+)}

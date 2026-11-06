@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/feedback.css';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const api = (import.meta.env.PUBLIC_FEEDBACK_API_URL || '').replace(/\/$/, '');
+const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api) && sitekey.length > 10;
+---
+<BaseLayout title="讀者提問與內容勘誤">
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="breadcrumbs"><a href={root + '/'}>首頁</a> / 讀者提問與內容勘誤</div>
+      <span class="eyebrow">COMMUNITY FEEDBACK</span>
+      <h1 class="page-title">讀者提問與內容勘誤</h1>
+      <p>來自不同詞條的提問、更正與補充。只有經管理員確認的留言才會出現在這裡。</p>
+    </div>
+  </section>
+  <section class="section-spacer">
+    <div class="wrap guide-feedback-feed-wrap">
+      {ready ? (
+        <div class="guide-feedback-feed" id="guide-feedback-feed" data-api={api} data-root={root}>
+          <p class="guide-feedback-feed-status" data-feed-status role="status" aria-live="polite">正在讀取留言……</p>
+          <div class="guide-feedback-feed-list" data-feed-items></div>
+          <div class="home-more-actions"><button type="button" class="home-more-button" data-feed-more hidden>顯示更多留言 ＋</button></div>
+        </div>
+      ) : (
+        <div class="guide-feedback-standby"><h2>讀者留言功能正在準備中</h2>
+          <p>我們正在建立留言保存與審核機制，目前尚未開放公開留言。本站的文章與知識百科仍可以正常閱讀。</p>
+          <a class="text-link" href={root + '/knowledge/'}>返回知識百科 ↗</a>
+        </div>
+      )}
+      {ready && <script src={root + '/scripts/feedback.js'} is:inline defer></script>}
+    </div>
+  </section>
+</BaseLayout>

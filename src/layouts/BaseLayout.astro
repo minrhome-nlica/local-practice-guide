@@ -2,12 +2,14 @@
 import '../styles/global.css';
 const { title = '地方實踐指南', description = '地方工作的知識、方法與實務工具，從這裡開始。' } = Astro.props;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const feedbackReady = Boolean(import.meta.env.PUBLIC_FEEDBACK_API_URL && import.meta.env.PUBLIC_TURNSTILE_SITE_KEY);
 const nav = [
   { label: '依問題找答案', url: root + '/questions/' },
   { label: '學習路徑', url: root + '/learn/' },
   { label: '知識百科', url: root + '/knowledge/' },
   { label: '實用工具', url: root + '/tools/' },
-  { label: '文件與範本', url: root + '/downloads/' }
+  { label: '文件與範本', url: root + '/downloads/' },
+  ...(feedbackReady ? [{ label: '讀者留言', url: root + '/feedback/' }] : [])
 ];
 ---
 <!doctype html>
