@@ -21,12 +21,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: npm
       - name: Install project and browser automation
         run: |
-          npm ci
+          npm install --no-audit --no-fund
           npm install --no-save --ignore-scripts playwright
           google-chrome --version
+      - name: Prepare same webfonts as the production build
+        run: |
+          python3 -m pip install --disable-pip-version-check 'fonttools[woff]'
+          python3 scripts/build_webfonts.py
       - name: Build public site
         env:
           GUIDE_CUSTOM_DOMAIN: 'true'
