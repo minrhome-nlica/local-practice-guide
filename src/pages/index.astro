@@ -77,7 +77,37 @@ const selected = selectedIds.map(id => entries.find(e => e.id === id)).filter(Bo
       <div class="topic-grid">{categories.map((cat) => <a class="topic-card" href={root + '/knowledge/' + cat.slug + '/'}><span class="topic-no">{cat.number}</span><div><div class="english">{cat.english}</div><h3>{cat.name}</h3><p>{cat.description}</p></div></a>)}</div>
     </div>
   </section>
+  <section class="section home-exam-section" aria-labelledby="home-exam-title">
+    <div class="wrap">
+      <div class="home-exam-banner">
+        <div class="home-exam-copy">
+          <span class="eyebrow home-exam-kicker">INTERACTIVE SKILLS QUIZ</span>
+          <h2 id="home-exam-title">行政技能小考試｜報到第一天</h2>
+          <p>走進馬鞍社區協會，化身出納、人事與計畫專員，在工作情境中練習所得分類、二代健保補充保費與行政判斷。</p>
+          <div class="home-exam-tags"><span>情境闖關</span><span>三種工作角色</span><span>13 項任務</span></div>
+          <p class="home-exam-author">製作者：<strong>石竣旻</strong>　｜　依 2026 年（民國 115 年）規定設計</p>
+        </div>
+        <a class="home-exam-cta" href={root + '/tools/admin-skills-exam/'}>立即開始考試 ↗</a>
+      </div>
+    </div>
+  </section>
   <section class="section kraft"><div class="wrap"><div class="download-banner"><div><span class="eyebrow" style="color:#dfbaa2">DOCUMENTS & TEMPLATES</span><h3>知識之外，也要能真正使用。</h3><p>從計畫架構到經費表，取得可編輯的實務文件與檢查表。</p></div><a class="white-button" href={root + '/knowledge/tools/'}>前往工作工具與技能 ↗</a></div></div></section>
+
+  <style>
+    .home-exam-section{padding-top:0}
+    .home-exam-banner{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:34px 40px;background:linear-gradient(125deg,#29463b,#365a48);color:#fff;border-radius:10px}
+    .home-exam-copy{max-width:740px;min-width:0}
+    .home-exam-kicker{color:#e5c6a5}
+    .home-exam-banner h2{font-size:clamp(24px,2.8vw,31px);line-height:1.4;margin:9px 0 13px}
+    .home-exam-banner p{font-size:15px;line-height:1.85;color:#e5eee6;margin:0}
+    .home-exam-tags{display:flex;flex-wrap:wrap;gap:8px;margin:17px 0 12px}
+    .home-exam-tags span{font-size:12px;padding:5px 10px;border:1px solid #9db8aa;border-radius:99px;color:#e8efe9}
+    .home-exam-banner .home-exam-author{font-size:13px;color:#d6e0d8}
+    .home-exam-author strong{color:#fff}
+    .home-exam-cta{display:inline-flex;align-items:center;justify-content:center;flex:none;background:#fff;color:#294936;padding:15px 21px;border-radius:5px;font-weight:700;transition:background .2s,transform .2s}
+    .home-exam-cta:hover,.home-exam-cta:focus-visible{background:#f6e9d4;transform:translateY(-2px)}
+    @media(max-width:740px){.home-exam-banner{flex-direction:column;align-items:stretch;padding:26px 23px;gap:22px}.home-exam-cta{width:100%}}
+  </style>
 
   <script is:inline>
     (() => {
