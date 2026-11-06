@@ -87,7 +87,11 @@
 .wage-swatch-current{background:#f7d18f;border-color:#e9b354}
 .wage-combined-small{font-size:12px;line-height:1.85;color:#607465;margin:0 0 13px}
 .wage-combined-scroll{max-width:100%;border:1px solid #d5e1d3;border-radius:10px;overflow-x:auto;background:#fff}
-.wage-combined-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:auto;font-variant-numeric:tabular-nums;font-size:12px;line-height:1.5}
+.wage-combined-table{width:100%;min-width:1140px;border-collapse:separate;border-spacing:0;table-layout:fixed;font-variant-numeric:tabular-nums;font-size:12px;line-height:1.5}
+.wage-combined-table col.wage-grade-col{width:59px}
+.wage-combined-table col.wage-salary-col{width:125px}
+.wage-range-value{display:block;line-height:1.5}
+.wage-range-first-note{display:block;font-size:11px;color:#6a786d;font-weight:500;white-space:nowrap}
 .wage-combined-table caption{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .wage-combined-table :is(th,td){padding:9px 7px;border-right:1px solid #e7ede6;border-bottom:1px solid #e3eae2;white-space:nowrap;text-align:right}
 .wage-combined-table :is(th,td):last-child{border-right:0}
@@ -100,7 +104,7 @@
 .wage-combined-table thead .wage-combined-subheads .wage-group-employee{background:#f9f0e8;color:#7d593d}
 .wage-combined-table tbody :is(th,td){font-weight:500;color:#314c3b}
 .wage-combined-table tbody th{font-weight:800;text-align:center;color:#315d42}
-.wage-combined-table tbody td:nth-child(2){text-align:left;white-space:normal;min-width:118px}
+.wage-combined-table tbody td:nth-child(2){text-align:left;white-space:normal;overflow-wrap:break-word}
 .wage-combined-table tbody tr:nth-child(even)>*{background:#fafcf9}
 .wage-combined-table tbody tr:hover>*{background:#edf5ec}
 .wage-combined-table tbody .wage-employer-cell{background:#f6f9f5}
@@ -118,6 +122,8 @@
 @media(max-width:700px){
   .wage-combined-scroll{border:0;background:transparent;overflow:visible}
   .wage-combined-table{display:block;min-width:0;width:100%;font-size:14px}
+  .wage-combined-table colgroup{display:none}
+  .wage-range-first-note{white-space:normal}
   .wage-combined-table thead{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%)}
   .wage-combined-table tbody{display:grid;grid-template-columns:minmax(0,1fr);gap:11px;width:100%}
   .wage-combined-table tbody tr{display:block;min-width:0;border:1px solid #d5e1d3;border-radius:9px;overflow:hidden;padding:0 13px;background:#fff}

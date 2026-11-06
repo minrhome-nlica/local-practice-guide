@@ -37,6 +37,21 @@ try {
           if(!await page.locator('.guide-about-support').getByText('地方創生青年培力工作站').count())
             failures.push('About guide missing funding acknowledgment');
         }
+        if(route==='/tools/insurance-2026/' && [390,1440].includes(width)) {
+          const rangeCell=page.locator('.wage-combined-table tbody tr:first-child td:nth-child(2)');
+          const note=rangeCell.locator('.wage-range-first-note');
+          if(!await note.count()) failures.push('First insurance grade explanatory line is missing');
+          else {
+            const geometry=await rangeCell.evaluate(node=>{
+              const main=node.querySelector('.wage-range-value span:first-child').getBoundingClientRect();
+              const note=node.querySelector('.wage-range-first-note').getBoundingClientRect();
+              return {lineBreak:note.top>=main.bottom-1,width:node.getBoundingClientRect().width};
+            });
+            if(!geometry.lineBreak) failures.push(width+'px salary first-grade note should occupy second line');
+            if(width===1440 && geometry.width>145)
+              failures.push('Salary range column is wider than neighboring grade ranges: '+geometry.width+'px');
+          }
+        }
         if(width===390 && route==='/tools/insurance-2026/') {
           const fullTable = page.locator('.wage-combined-table');
           const rows = fullTable.locator('tbody tr');

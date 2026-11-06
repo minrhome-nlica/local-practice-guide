@@ -159,6 +159,11 @@ const combinedGrades2026 = healthGrades2026.map((healthAmount, i) => {
         <p class="wage-combined-small">金額單位：新臺幣元／月。以一般全時受僱者、勞保＋就保、健保僅計員工本人、雇主勞退 6% 計算；<strong>雇主合計不含依行業費率計收的職災保險</strong>。</p>
         <div class="wage-combined-scroll" role="region" aria-label="2026 勞保、健保與勞退整合級距及員工雇主負擔表" tabindex="0">
           <table class="wage-combined-table">
+            <colgroup>
+              <col class="wage-grade-col" />
+              <col class="wage-salary-col" />
+              <col span="10" />
+            </colgroup>
             <caption>2026 年（民國 115 年）勞、健、退級距與雇主、員工負擔整合表（完整 58 個健保級距）</caption>
             <thead>
               <tr class="wage-combined-groups">
@@ -184,7 +189,9 @@ const combinedGrades2026 = healthGrades2026.map((healthAmount, i) => {
             <tbody>
               {combinedGrades2026.map(row => <tr data-insurance-grade={row.healthAmount}>
                 <th scope="row" data-label="健保級數">{row.level}</th>
-                <td data-label="實際月薪範圍">{row.range}</td>
+                <td data-label="實際月薪範圍">{row.level === 1
+                  ? <span class="wage-range-value"><span>29,500 以下</span><span class="wage-range-first-note">（全時最低 29,500）</span></span>
+                  : row.range}</td>
                 <td data-label="勞、就保投保金額">{fmt(row.laborAmount)}</td>
                 <td data-label="健保投保金額">{fmt(row.healthAmount)}</td>
                 <td data-label="勞退提繳金額">{fmt(row.pensionAmount)}</td>
