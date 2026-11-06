@@ -59,6 +59,28 @@ const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api);
             </div>
             <p id="staff-list-status" class="staff-message" role="status" aria-live="polite"></p>
             <div class="staff-items" id="staff-items"></div>
+            <section class="staff-rating-insights" id="staff-rating-insights" aria-labelledby="staff-rating-title" hidden>
+              <div class="staff-rating-header">
+                <div>
+                  <span class="eyebrow">ARTICLE USEFULNESS</span>
+                  <h2 id="staff-rating-title">文章回饋分析</h2>
+                  <p>查看各篇文章是否解決讀者的問題，並依原因安排修訂順序。</p>
+                </div>
+                <div class="staff-rating-controls">
+                  <label for="staff-rating-period">統計期間
+                    <select id="staff-rating-period">
+                      <option value="30">最近 30 天有更新的回饋</option>
+                      <option value="all">全部時間</option>
+                    </select>
+                  </label>
+                  <button class="staff-secondary" type="button" id="staff-rating-refresh">更新統計</button>
+                </div>
+              </div>
+              <p class="staff-rating-note">每個瀏覽器對同一篇文章只保留最新一筆回饋。此統計不代表實際不重複人數；「近 30 天」是依回饋最近更新時間篩選。</p>
+              <div class="staff-rating-overview" id="staff-rating-overview"></div>
+              <p class="staff-message" id="staff-rating-status" role="status" aria-live="polite"></p>
+              <div class="staff-rating-list" id="staff-rating-list"></div>
+            </section>
             <p class="staff-hint">每次最多載入目前狀態的前 100 則留言；若留言量增加，可再擴充分頁與個別工作人員帳號。</p>
           </section>
         </>
