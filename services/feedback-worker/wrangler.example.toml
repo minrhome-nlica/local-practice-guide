@@ -1,0 +1,16 @@
+# Example configuration for local Wrangler workflow (dashboard creation also supported).
+# Do NOT put real secret keys in this file or commit them to Git.
+name = "guide-feedback-api"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://guide.mountcounty.com,https://minrhome-nlica.github.io"
+
+# Add your real database_id after creating a D1 database.
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "guide-feedback"
+# database_id = "PUT-YOUR-D1-DATABASE-ID-HERE"
+
+# Worker Secrets (NOT plain vars): TURNSTILE_SECRET, RATE_SALT, ADMIN_TOKEN
