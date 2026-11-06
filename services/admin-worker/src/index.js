@@ -273,14 +273,14 @@ export default {
         if (path === '/api/me') return json({ ok: true, user,
           site_url: clean(env.SITE_URL || 'https://guide.mountcounty.com', 200) });
         if (path === '/api/overview') return overview(env);
-        if (path === '/api/comments') return commentsList(env, url);
+        if (path === '/api/comments') return requireRole(user, 'owner', 'moderator') || commentsList(env, url);
         if (path === '/api/ratings') return ratingStats(env, url);
         if (path === '/api/users') return requireRole(user, 'owner') || usersList(env);
         if (path === '/api/audit') return requireRole(user, 'owner') || auditList(env);
       }
       if (request.method === 'POST') {
         if (path.startsWith('/api/comments/')) {
-          return moderate(env, user, request, path.slice('/api/comments/'.length));
+          return requireRole(user, 'owner', 'moderator') || moderate(env, user, request, path.slice('/api/comments/'.length));
         }
         if (path === '/api/users') {
           return requireRole(user, 'owner') || addUser(env, user, request);
