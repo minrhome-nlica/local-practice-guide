@@ -27,6 +27,13 @@ const showCalculator = category.slug === 'tools';
       <p>輸入付款金額、所得性質及健保身分，試算個人代扣與付款單位負擔的補充保費。</p>
       <span class="text-link">開啟計算機 ↗</span>
     </a>}
+    {showCalculator && <a class="entry-card guide-tool-entry" href={root + '/tools/admin-skills-exam/'}>
+      <span class="meta">互動情境小考試 ・ 2026 年行政實務</span>
+      <h3>行政技能小考試｜報到第一天</h3>
+      <p>化身馬鞍社區協會的出納、人事與計畫專員，透過任務練習二代健保補充保費、所得分類與付款判斷。</p>
+      <p class="small" style="margin-top:8px">製作者：石竣旻</p>
+      <span class="text-link">開始情境闖關 ↗</span>
+    </a>}
     {entries.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}>
       <span class="meta">{item.data.level} ・ {item.data.status}</span><h3>{item.data.title}</h3><p>{item.data.summary}</p>
     </a>)}
