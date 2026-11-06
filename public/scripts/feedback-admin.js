@@ -155,11 +155,14 @@
         setBusy(false);
       }
     };
-    if (comment.status !== 'approved') {
+    if (comment.status === 'pending' || comment.status === 'rejected') {
       actions.append(makeAction('通過並公開', 'approve', 'staff-primary', () => update('approved')));
     }
-    if (comment.status !== 'resolved') {
+    if (comment.status === 'approved') {
       actions.append(makeAction('標記已處理', 'resolve', 'staff-secondary', () => update('resolved')));
+    }
+    if (comment.status === 'resolved') {
+      actions.append(makeAction('恢復已公開', 'approve', 'staff-secondary', () => update('approved')));
     }
     if (comment.status !== 'pending') {
       actions.append(makeAction('退回待審', 'pending', 'staff-secondary', () => update('pending')));
