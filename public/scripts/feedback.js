@@ -98,6 +98,7 @@
     };
     runButton?.addEventListener('click', runDiagnosis);
     if (diagnosis && new URLSearchParams(location.search).get('diagnose') === '1') {
+      diagnosis.hidden = false;
       diagnosis.open = true;
       runDiagnosis();
     }

@@ -56,3 +56,10 @@
 
 /* Whole NT-dollar inputs retain thousands separators while typing. */
 .nhi-field input[data-money-input]{font-variant-numeric:tabular-nums;letter-spacing:.015em}
+
+/* Keep 計算機 together and avoid a lonely final glyph on phones. */
+.nhi-title-tail{white-space:nowrap}
+@media(max-width:650px){
+  .nhi-hero .page-title{font-size:clamp(28px,7.5vw,36px);text-wrap:balance}
+  .nhi-field :is(input,select){font-size:16px}
+}

@@ -126,3 +126,11 @@
   .guide-feedback-notes-dialog{padding:18px}
   .guide-article .guide-annotation-marker{max-width:100%;white-space:normal}
 }
+
+/* Reader-only pages should not show connection/debugging tools by default. */
+.guide-feedback-diagnostic[hidden]{display:none!important}
+@media(max-width:700px){
+  /* Prevent Safari/iOS from zooming the whole page when focusing form fields. */
+  .guide-feedback-dialog :is(input,textarea,select){font-size:16px}
+  .guide-article .guide-annotation-marker{min-height:36px;padding:6px 12px}
+}

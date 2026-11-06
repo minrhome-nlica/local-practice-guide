@@ -3567,3 +3567,6 @@ main table :is(th, td) p {
 @media (prefers-reduced-motion:reduce) {
   html{scroll-behavior:auto;}
 }
+
+/* Balance long knowledge titles when the browser supports it. */
+.page-hero .page-title{text-wrap:balance}

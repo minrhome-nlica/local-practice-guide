@@ -49,3 +49,7 @@
 .staff-standby h2{font-size:21px;color:#355a42}
 .staff-standby p{line-height:1.8}
 @media(max-width:700px){.staff-login,.staff-dashboard,.staff-standby{padding:17px}.staff-login-row{flex-direction:column}.staff-dashboard-top{flex-direction:column}.staff-item{padding:15px}.staff-item-head{flex-direction:column}.staff-toolbar{width:100%}.staff-toolbar button{flex:1}.staff-tabs{gap:6px}.staff-tab{padding:9px 11px}}
+
+@media(max-width:700px){
+  .staff-login-row input,.staff-reply{font-size:16px}
+}
