@@ -156,6 +156,109 @@ async function adminModerate(request, env, url) {
   if (!result.meta?.changes) return bad(request, env, '找不到留言', 404);
   return json(request, env, { ok: true });
 }
+// Article usefulness feedback is separate from moderated reader comments.
+// One salted pseudonymous browser token per article, with no raw IP or email stored.
+const RATING_REASONS = [
+  'missing_answer', 'unclear', 'needs_examples', 'possibly_outdated', 'layout_issue', 'other'
+];
+async function ratingsAvailable(request, env) {
+  if (!env.DB || !env.RATE_SALT) return bad(request, env, '文章回饋功能尚未啟用', 503);
+  try {
+    // Also confirms the D1 migration was applied before exposing any buttons.
+    await env.DB.prepare('SELECT id FROM article_ratings LIMIT 1').first();
+    return json(request, env, { ok: true, enabled: true });
+  } catch {
+    return bad(request, env, '文章回饋功能尚未啟用', 503);
+  }
+}
+async function submitRating(request, env) {
+  const origin = request.headers.get('Origin') || '';
+  if (!allowedOrigins(env).includes(origin)) return bad(request, env, '來源網站未授權', 403);
+  if (!env.DB || !env.RATE_SALT) return bad(request, env, '文章回饋功能尚未啟用', 503);
+  if (!(request.headers.get('Content-Type') || '').includes('application/json')) {
+    return bad(request, env, '資料格式不正確', 415);
+  }
+  const raw = await request.text();
+  if (raw.length > 3000) return bad(request, env, '資料超過限制', 413);
+  let input;
+  try { input = JSON.parse(raw); } catch { return bad(request, env, '資料格式錯誤'); }
+  if (!input || typeof input !== 'object' || Array.isArray(input)) {
+    return bad(request, env, '資料格式錯誤');
+  }
+  const entryId = clean(input.entry_id, 100);
+  const entryTitle = clean(input.entry_title, 140);
+  const vote = clean(input.vote, 30);
+  const reason = clean(input.reason, 40);
+  const visitorToken = clean(input.visitor_token, 80);
+  if (!validId(entryId) || !entryTitle ||
+      !['helpful', 'unresolved'].includes(vote) ||
+      !/^[a-f0-9]{64}$/.test(visitorToken) ||
+      (vote === 'helpful' && reason !== '') ||
+      (vote === 'unresolved' && !RATING_REASONS.includes(reason))) {
+    return bad(request, env, '請重新確認文章與回饋內容');
+  }
+  // The per-article hash does not let administrators link a browser across entries.
+  const voterHash = await digest(String(env.RATE_SALT) + ':article:' + entryId + ':' + visitorToken);
+  const hour = Math.floor(Date.now() / 3600000);
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  const bucket = await digest(String(env.RATE_SALT) + ':rating-rate:' + ip + ':' + hour);
+  const now = new Date().toISOString();
+  // A separate 80/hour/IP limit reduces abuse without blocking large workshops.
+  // It is not a guarantee of one person one vote.
+  const rate = await env.DB.prepare(
+    'INSERT INTO article_rating_rate (bucket, count, expires_at) VALUES (?, 1, ?) ' +
+    'ON CONFLICT(bucket) DO UPDATE SET count = count + 1 WHERE count < 80 RETURNING count'
+  ).bind(bucket, Math.floor(Date.now() / 1000) + 7200).first();
+  if (!rate) return bad(request, env, '回饋次數較多，請稍後再試', 429);
+  await env.DB.prepare(
+    'INSERT INTO article_ratings ' +
+    '(id, entry_id, entry_title, voter_hash, vote, reason, created_at, updated_at) ' +
+    'VALUES (?, ?, ?, ?, ?, ?, ?, ?) ' +
+    'ON CONFLICT(entry_id, voter_hash) DO UPDATE SET ' +
+    'entry_title = excluded.entry_title, vote = excluded.vote, ' +
+    'reason = excluded.reason, updated_at = excluded.updated_at'
+  ).bind(crypto.randomUUID(), entryId, entryTitle, voterHash, vote, reason, now, now).run();
+  return json(request, env, { ok: true, message: '已收到回饋', vote });
+}
+async function adminRatings(request, env, url) {
+  if (!isAuthorized(request, env)) return bad(request, env, '未授權', 401);
+  if (!env.DB) return bad(request, env, '資料庫尚未設定', 503);
+  const period = url.searchParams.get('period') || '30';
+  if (!['30', 'all'].includes(period)) return bad(request, env, '統計期間不正確');
+  const cutoff = new Date(Date.now() - 30 * 86400000).toISOString();
+  const filter = period === '30' ? ' WHERE updated_at >= ?' : '';
+  const sql = 'SELECT entry_id, MAX(entry_title) AS entry_title, COUNT(*) AS total, ' +
+    "SUM(CASE WHEN vote = 'helpful' THEN 1 ELSE 0 END) AS helpful, " +
+    "SUM(CASE WHEN vote = 'unresolved' THEN 1 ELSE 0 END) AS unresolved " +
+    'FROM article_ratings' + filter + ' GROUP BY entry_id ' +
+    'ORDER BY unresolved DESC, total DESC, entry_id ASC LIMIT 500';
+  const sqlReasons = 'SELECT entry_id, reason, COUNT(*) AS total FROM article_ratings ' +
+    "WHERE vote = 'unresolved' AND reason <> ''" +
+    (period === '30' ? ' AND updated_at >= ?' : '') +
+    ' GROUP BY entry_id, reason';
+  const query = env.DB.prepare(sql);
+  const queryReasons = env.DB.prepare(sqlReasons);
+  const [ratingRows, reasonRows] = await Promise.all([
+    (period === '30' ? query.bind(cutoff) : query).all(),
+    (period === '30' ? queryReasons.bind(cutoff) : queryReasons).all()
+  ]);
+  const byEntry = new Map();
+  for (const row of reasonRows.results || []) {
+    const group = byEntry.get(row.entry_id) || {};
+    group[row.reason] = Number(row.total) || 0;
+    byEntry.set(row.entry_id, group);
+  }
+  const items = (ratingRows.results || []).map(row => ({
+    entry_id: row.entry_id,
+    entry_title: row.entry_title,
+    total: Number(row.total) || 0,
+    helpful: Number(row.helpful) || 0,
+    unresolved: Number(row.unresolved) || 0,
+    reasons: byEntry.get(row.entry_id) || {}
+  }));
+  return json(request, env, { ok: true, period, items });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -169,6 +272,15 @@ export default {
       return json(request, env, { ok: true, service: 'guide-feedback' });
     }
     try {
+      if (url.pathname === '/api/ratings/availability' && request.method === 'GET') {
+        return await ratingsAvailable(request, env);
+      }
+      if (url.pathname === '/api/ratings' && request.method === 'POST') {
+        return await submitRating(request, env);
+      }
+      if (url.pathname === '/api/admin/ratings' && request.method === 'GET') {
+        return await adminRatings(request, env, url);
+      }
       if (url.pathname === '/api/comments' && request.method === 'GET') {
         if (!env.DB) return bad(request, env, '資料庫尚未設定', 503);
         return await publicComments(request, env, url);
