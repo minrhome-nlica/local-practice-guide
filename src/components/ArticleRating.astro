@@ -44,7 +44,7 @@ const reasons = [
     </form>
     <p class="guide-rating-status" data-rating-status role="status" aria-live="polite"></p>
     <p class="guide-rating-correction" data-rating-correction hidden>如果發現規定有誤，歡迎到下方的<a href="#guide-feedback">「讀者提問與內容勘誤」</a>提供具體更正建議。</p>
-    <p class="guide-rating-foot">回饋不會公開顯示，也不需要登入；同一瀏覽器可以修改之前的選擇。請勿在其他留言欄填寫個人資料。</p>
+    <p class="guide-rating-foot">回饋不公開、不需登入。本機會儲存隨機識別碼以更新同一篇文章的回饋；後端只保存匿名化識別資料，不保存姓名或電子郵件。</p>
   </section>
 )}
 {ready && <script is:inline src={root + '/scripts/article-rating.js'} defer></script>}
