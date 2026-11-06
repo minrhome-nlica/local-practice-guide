@@ -60,7 +60,21 @@ try {
           await page.locator('#wage-monthly').fill('45801');
           const cap=await page.locator('#out-labor-grade').innerText();
           if(cap!=='45,800 元') failures.push('Labor insurance 45,800 upper bound failed: '+cap);
+          const activeAfterChange = page.locator('.wage-combined-table tbody tr.wage-current-row');
+          if((await activeAfterChange.count())!==1 ||
+            await activeAfterChange.first().getAttribute('data-insurance-grade')!=='48200')
+            failures.push('Changing salary must highlight only the new 48,200 grade');
+          const oldGrade=page.locator('.wage-combined-table tr[data-insurance-grade="34800"]');
+          if(await oldGrade.evaluate(row=>row.classList.contains('wage-current-row') ||
+            row.classList.contains('wage-example-row')))
+            failures.push('34,800 grade retains obsolete highlight after salary change');
+          if(await page.locator('.wage-combined-table .wage-example-row').count()!==0)
+            failures.push('Static original 34,800 highlight must not exist');
           await page.locator('#wage-monthly').fill('34000');
+          const activeAfterReset=page.locator('.wage-combined-table tbody tr.wage-current-row');
+          if((await activeAfterReset.count())!==1 ||
+            await activeAfterReset.first().getAttribute('data-insurance-grade')!=='34800')
+            failures.push('Returning salary to 34,000 must restore only the 34,800 highlight');
           await page.locator('#wage-dependents').selectOption('1');
           const dep=await page.locator('#out-employee-health').innerText();
           if(dep!=='1,080 元')failures.push('Health dependent multiplier failed: '+dep);

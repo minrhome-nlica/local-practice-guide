@@ -182,7 +182,7 @@ const combinedGrades2026 = healthGrades2026.map((healthAmount, i) => {
               </tr>
             </thead>
             <tbody>
-              {combinedGrades2026.map(row => <tr data-insurance-grade={row.healthAmount} class={row.healthAmount===34800?'wage-example-row':undefined}>
+              {combinedGrades2026.map(row => <tr data-insurance-grade={row.healthAmount}>
                 <th scope="row" data-label="健保級數">{row.level}</th>
                 <td data-label="實際月薪範圍">{row.range}</td>
                 <td data-label="勞、就保投保金額">{fmt(row.laborAmount)}</td>

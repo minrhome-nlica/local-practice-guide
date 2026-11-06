@@ -106,7 +106,6 @@
 .wage-combined-table tbody .wage-employer-cell{background:#f6f9f5}
 .wage-combined-table tbody .wage-employee-cell{background:#fcf9f5}
 .wage-combined-table tbody .wage-total-cell{font-weight:800;color:#28513a}
-.wage-combined-table tbody .wage-example-row>*{background:#fff1d6!important}
 .wage-combined-table tbody .wage-current-row>*{background:#ffe1a9!important;box-shadow:inset 0 1px 0 #e9bb67,inset 0 -1px 0 #e9bb67}
 .wage-combined-table thead .wage-group-total{font-weight:900}
 .wage-table-notes{display:grid;gap:8px;margin-top:16px}
