@@ -1,0 +1,47 @@
+name: Responsive site audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/pages/**"
+      - "src/styles/**"
+      - "src/components/**"
+      - "public/scripts/**"
+      - "scripts/qa-responsive.mjs"
+      - ".github/workflows/responsive-audit.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  viewport-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install project and browser automation
+        run: |
+          npm ci
+          npm install --no-save --ignore-scripts playwright
+          google-chrome --version
+      - name: Build public site
+        env:
+          GUIDE_CUSTOM_DOMAIN: 'true'
+          PUBLIC_FEEDBACK_API_URL: ${{ vars.FEEDBACK_API_URL }}
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
+        run: npm run build
+      - name: Run phone, tablet, and desktop viewport audit
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory dist > /tmp/guide-qa-http.log 2>&1 &
+          sleep 2
+          node scripts/qa-responsive.mjs
+      - name: Upload visual comparison screenshots and metrics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: responsive-layout-audit
+          path: qa-screenshots/
+          if-no-files-found: warn
