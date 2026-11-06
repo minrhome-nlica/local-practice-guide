@@ -19,7 +19,7 @@
 ## 二、第一階段尚未實作
 
 - **文章草稿／發布**：已預留角色與入口，但尚無可用的文章編輯／發布 API；目前文章仍以 GitHub Markdown 為正式版本。下一階段才接入草稿 → 預覽 → 管理員核准 → GitHub 發布，並建立版本差異與還原。
-- **Web Analytics**：已預留入口，目前尚未串接 Cloudflare GraphQL Analytics API，尚無真實瀏覽數據顯示。不可把留言數冒充瀏覽量。
+- **Web Analytics**：後台已加入 GraphQL API 查詢、7／30 天瀏覽量、訪問次數、每日趨勢與熱門頁面。須由帳戶管理員設定唯讀 API Token 才會顯示真實流量，未設定時畫面會清楚顯示說明，不會填入假數據。
 - **重大更新紀錄**：已預留入口，下一階段接上 GitHub commits/PR，重要更新須人工核定後對外發布。
 - **讀者帳號**：預留未來方向，這次不開放註冊。
 - 舊的 \`/admin/feedback/\`、\`ADMIN_TOKEN\` 與頁尾入口在新後台經過完整驗證以前**維持原狀**。
@@ -83,7 +83,32 @@ Cloudflare Access 內的允許名單與 D1 \`admin_users\` **都要**通過。�
 
 **通過以上流程後**，才把公開網站頁尾的「工作人員留言管理」改指向後台、逐步停用原本的 \`ADMIN_TOKEN\` 登入。不能先切掉舊系統。
 
-## 四、權限矩陣
+## 四、網站分析 Web Analytics：最後一項手動授權
+
+網站的 Cloudflare Web Analytics 瀏覽器追蹤已經在公開網頁上執行。後台用 Cloudflare 的 `rumPageloadEventsAdaptiveGroups` GraphQL API 查詢同一個 siteTag，包含：
+- 最近 7 天／30 天的頁面瀏覽量（Pageviews）
+- 訪問次數（Visits；**不是不重複訪客**）
+- 每日瀏覽趨勢，以及熱門頁面路徑
+- 未授權或 API 出錯時，顯示明確提示，不顯示虛構數據
+
+**已透過 wrangler.toml 設定的識別資料（不是秘密）：**
+- `CLOUDFLARE_ACCOUNT_ID`：與指南 Web Analytics 所在帳戶一致
+- `WEB_ANALYTICS_SITE_TAG`：與公開網站載入的 Cloudflare beacon `data-cf-beacon` token 一致
+
+**尚需由 Cloudflare 帳戶管理員自行完成的一件事：**
+
+1. 在 Cloudflare 控制台的「帳戶 API Tokens」建立自訂權杖，名稱例如 `guide-admin-analytics-read`。
+2. 權限選 **Account → Account Analytics → Read**；Resource 範圍儘量限制成指南所在的 Cloudflare 帳戶，不要使用 Global API Key 或 Edit 權限。
+3. 到 Workers 和 Pages → `guide-admin-console` → Settings → Variables and Secrets → Add secret。
+4. Secret 名稱填 `CLOUDFLARE_ANALYTICS_TOKEN`，Secret 內容貼入剛才建立的 token 並儲存；**絕對不要貼入 GitHub、聊天、網址或 public 變數**。
+5. 登入 `https://guide-admin-console.e7968.workers.dev/`，打開「網站分析 Web Analytics」。
+6. 查看 7 天與 30 天。若顯示讀取錯誤，確認 token 具有該帳戶 Analytics Read 權限和 siteTag 是否一致；如果 Cloudflare API 版本或資料集權限不同，可能需要調整查詢，不要自行擴權到 Edit。
+
+Cloudflare 官方權杖設定指南：https://developers.cloudflare.com/analytics/graphql-api/getting-started/authentication/api-token-auth/
+
+**安全設計**：Access 驗證與 D1 的 admin_users 白名單仍是必須條件；權杖只會在 Worker 伺服器端送往 Cloudflare，不進入瀏覽器或回應內容。查詢有短時間快取與錯誤降級機制。尚無帳戶權杖時，後台分析功能可開啟，但不會有實際瀏覽量。
+
+## 五、權限矩陣
 
 | 功能 | owner | editor | moderator |
 |---|---|---|---|
@@ -94,17 +119,18 @@ Cloudflare Access 內的允許名單與 D1 \`admin_users\` **都要**通過。�
 | 文章草稿編輯（下一階段） | ✅ | ✅ | ❌ |
 | 正式發布文章（下一階段） | ✅ | ❌ | ❌ |
 
-## 五、檢查指令
+## 六、檢查指令
 
 \`\`\`bash
 node --check services/admin-worker/src/index.js
 node --check services/admin-worker/src/ui.js
-node --test services/admin-worker/tests/admin.test.mjs
+node --check services/admin-worker/src/analytics.js
+node --test services/admin-worker/tests/*.test.mjs
 \`\`\`
 
 GitHub Actions \`.github/workflows/admin-console-check.yml\` 同時測試認證、角色隔離、跨站修改、更新衝突、稽核，以及 D1 遷移可重複執行。
 
-## 六、架構方向與後續整合
+## 七、架構方向與後續整合
 
 \`\`\`text
 [讀者公開網站 / GitHub Pages]
