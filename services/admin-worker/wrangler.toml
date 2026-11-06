@@ -1,4 +1,5 @@
 # Worker-specific config. No credentials, only public resource identifiers.
+# Analytics token MUST be added as secret CLOUDFLARE_ANALYTICS_TOKEN in Worker Settings.
 # This must be deployed to the Access-protected guide-admin-console Worker.
 name = "guide-admin-console"
 main = "src/index.js"
@@ -8,6 +9,8 @@ preview_urls = false
 
 [vars]
 SITE_URL = "https://guide.mountcounty.com"
+CLOUDFLARE_ACCOUNT_ID = "38bda38ac85e2040c2bd4da34fefd29b"
+WEB_ANALYTICS_SITE_TAG = "b4d574a93baa4b5f9d7dc7fc504e19db"
 ACCESS_AUD = "4c23b434eb9c26431458cc9cff097fa0f7117089c8d4d4d77a418bc519de4aad"
 
 [[d1_databases]]
