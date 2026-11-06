@@ -149,49 +149,68 @@
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
 
   function hideAction() { action.hidden = true; }
+  let selectionCheck = null;
   function captureSelection() {
     if (!article || dialog.open) return hideAction();
     const selection = window.getSelection();
     if (!selection || selection.rangeCount !== 1 || selection.isCollapsed) return hideAction();
     const range = selection.getRangeAt(0);
-    const parent = range.startContainer.nodeType === Node.ELEMENT_NODE
-      ? range.startContainer : range.startContainer.parentElement;
-    const endParent = range.endContainer.nodeType === Node.ELEMENT_NODE
-      ? range.endContainer : range.endContainer.parentElement;
+    const startNode = range.startContainer;
+    const endNode = range.endContainer;
+    const parent = startNode.nodeType === Node.ELEMENT_NODE ? startNode : startNode.parentElement;
+    const endParent = endNode.nodeType === Node.ELEMENT_NODE ? endNode : endNode.parentElement;
+    // Allow headings, tables and formatted spans, too. Exclude only controls,
+    // links and non-reading content, where selection can be accidental.
+    const blocked = 'button, input, textarea, select, a, pre, code, script, style, [contenteditable], .chapter-jump';
     if (!article.contains(parent) || !article.contains(endParent) ||
-      parent?.closest('a, button, input, textarea, table, pre, code, .chapter-jump, h2, h3') ||
-      endParent?.closest('a, button, input, textarea, table, pre, code, .chapter-jump, h2, h3')) {
-      return hideAction();
-    }
+        parent?.closest(blocked) || endParent?.closest(blocked)) return hideAction();
     const quote = selection.toString().replace(/\s+/g, ' ').trim();
-    if (quote.length < 3 || quote.length > 300) return hideAction();
+    if (quote.length < 2) return hideAction();
+    // Long selections still work: cite the beginning, limited to the DB schema.
+    const excerpt = quote.slice(0, 300);
     const headings = [...article.querySelectorAll('h2[id],h3[id],h4[id]')];
     let section = '';
     for (const heading of headings) {
-      if (heading === parent || (heading.compareDocumentPosition(parent) & Node.DOCUMENT_POSITION_FOLLOWING)) {
+      const relation = heading.compareDocumentPosition(startNode);
+      if (heading === startNode || heading.contains(startNode) || (relation & Node.DOCUMENT_POSITION_FOLLOWING)) {
         section = heading.id;
       } else {
         break;
       }
     }
-    const text = parent?.textContent || '';
-    const offset = Math.max(0, Math.min(text.length, range.startOffset || 0));
-    current = { quote, section_id: section,
-      context_before: text.slice(Math.max(0, offset - 60), offset),
-      context_after: text.slice(offset, offset + 60) };
-    const rect = range.getBoundingClientRect();
-    action.style.top = Math.max(65, Math.min(window.innerHeight - 62, rect.bottom + 9)) + 'px';
-    action.style.left = Math.max(8, Math.min(window.innerWidth - 240, rect.left)) + 'px';
+    const context = parent?.textContent || '';
+    const at = Math.max(0, Math.min(context.length, startNode.nodeType === Node.TEXT_NODE ? range.startOffset : 0));
+    current = {
+      quote: excerpt, section_id: section,
+      context_before: context.slice(Math.max(0, at - 60), at),
+      context_after: context.slice(at, at + 60)
+    };
+    const rects = range.getClientRects();
+    const rect = rects.length ? rects[rects.length - 1] : range.getBoundingClientRect();
+    if (!rect || rect.width === 0 && rect.height === 0) return hideAction();
+    action.style.top = Math.max(12, Math.min(window.innerHeight - 70, rect.bottom + 10)) + 'px';
+    action.style.left = Math.max(10, Math.min(window.innerWidth - 244, rect.left)) + 'px';
     action.hidden = false;
   }
-  document.addEventListener('mouseup', () => setTimeout(captureSelection, 30));
-  document.addEventListener('touchend', () => setTimeout(captureSelection, 170), { passive:true });
+  function scheduleSelectionCheck() {
+    if (selectionCheck !== null) clearTimeout(selectionCheck);
+    selectionCheck = setTimeout(() => {
+      selectionCheck = null;
+      captureSelection();
+    }, 130);
+  }
+  document.addEventListener('selectionchange', scheduleSelectionCheck);
+  document.addEventListener('mouseup', scheduleSelectionCheck);
+  document.addEventListener('touchend', scheduleSelectionCheck, { passive:true });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') hideAction();
-    else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') setTimeout(captureSelection, 30);
+    else if (event.key.startsWith('Arrow') || event.key === 'Shift') scheduleSelectionCheck();
   });
-  document.addEventListener('scroll', hideAction, { passive:true });
-  action.addEventListener('mousedown', event => event.preventDefault());
+  document.addEventListener('scroll', () => {
+    if (!window.getSelection()?.isCollapsed) scheduleSelectionCheck();
+    else hideAction();
+  }, { passive:true });
+  action.addEventListener('pointerdown', event => event.preventDefault());
   action.addEventListener('click', () => openForm({ ...current }));
   form.addEventListener('submit', async event => {
     event.preventDefault();

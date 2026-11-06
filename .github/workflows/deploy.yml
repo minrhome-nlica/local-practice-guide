@@ -34,6 +34,29 @@ jobs:
           node-version: 24
           package-manager: npm
           cache: 'false'
+      - name: Verify feedback widgets in built pages
+        env:
+          PUBLIC_FEEDBACK_API_URL: ${{ vars.FEEDBACK_API_URL }}
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+          import re
+          api = os.getenv('PUBLIC_FEEDBACK_API_URL', '')
+          sitekey = os.getenv('PUBLIC_TURNSTILE_SITE_KEY', '')
+          if not api or not sitekey:
+              raise SystemExit('Missing feedback deployment variables.')
+          html = Path('dist/entries/income-withholding/index.html').read_text()
+          feed = Path('dist/feedback/index.html').read_text()
+          required = ['id="guide-feedback"', 'data-api=', 'data-sitekey=', 'guide-feedback-select', '/scripts/feedback.js']
+          for token in required:
+              if token not in html:
+                  raise SystemExit('Feedback widget missing from article: ' + token)
+          if 'id="guide-feedback-feed"' not in feed:
+              raise SystemExit('Feedback index widget missing.')
+          print('Feedback widget, script URL and public index verified in generated HTML.')
+          PY
       - name: Check feedback scripts and D1 schema
         run: |
           node --check services/feedback-worker/src/index.js

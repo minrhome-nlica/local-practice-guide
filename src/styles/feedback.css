@@ -57,3 +57,5 @@
   .guide-feedback-dialog{padding:18px}
   .guide-feedback-note{padding:15px}
 }
+
+.guide-feedback-select{cursor:pointer;touch-action:manipulation;z-index:1000;white-space:normal;line-height:1.45}
