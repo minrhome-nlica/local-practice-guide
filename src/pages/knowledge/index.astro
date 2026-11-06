@@ -27,7 +27,7 @@ const categoryGroups = categories.map((cat) => ({
             <div class="english">{cat.english}</div>
             <h3>{cat.name}</h3>
             <p>{cat.description}</p>
-            {cat.slug === 'tools' && <span class="topic-entry-preview">收錄：2026 勞健保級距表、二代健保計算機、實務文件與範本</span>}
+            {cat.slug === 'tools' && <span class="topic-entry-preview">收錄：2026 勞健保級距表、二代健保計算機、行政技能小考試及實務文件</span>}
             {cat.slug !== 'tools' && cat.entries.length > 0 && <span class="topic-entry-preview">收錄：{cat.entries.slice(0, 2).map((entry) => entry.data.title).join('、')}{cat.entries.length > 2 ? '等詞條' : ''}</span>}
           </div>
         </a>)}
@@ -63,6 +63,12 @@ const categoryGroups = categories.map((cat) => ({
                 <h3>二代健保補充保費計算機</h3>
                 <p>依付款與健保身分試算補充保費，並產出可複製的說明。</p>
                 <span class="text-link">開啟計算機 ↗</span>
+              </a>}{cat.slug === 'tools' && <a class="entry-card guide-tool-entry" href={root + '/tools/admin-skills-exam/'}>
+                <span class="meta">互動情境小考試 ・ 2026 年行政實務</span>
+                <h3>行政技能小考試｜報到第一天</h3>
+                <p>擔任出納、人事與計畫專員，在工作情境中練習二代健保、所得分類與付款判斷。</p>
+                <p class="small" style="margin-top:8px">製作者：石竣旻</p>
+                <span class="text-link">開始情境闖關 ↗</span>
               </a>}{cat.entries.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}>
                 <span class="meta">{cat.name} ・ {item.data.status}</span>
                 <h3>{item.data.title}</h3>
