@@ -38,7 +38,7 @@ assert src.index("<ArticleRating") < src.index("{related.length"), "Feedback sho
 assert "<FeedbackWidget" in src, "Existing moderated reader notes must remain"
 component = Path("src/components/ArticleRating.astro").read_text(encoding="utf-8")
 assert "data-article-rating" in component and 'data-pagefind-ignore' in component
-assert "public/scripts/article-rating.js" in "public/scripts/article-rating.js"
+assert Path("public/scripts/article-rating.js").is_file(), "Missing client voting script"
 admin = Path("src/pages/admin/feedback.astro").read_text(encoding="utf-8")
 assert 'id="staff-rating-insights"' in admin and 'id="staff-items"' in admin
 worker = (base / "src/index.js").read_text(encoding="utf-8")
@@ -48,7 +48,7 @@ for route in ("/api/ratings/availability", "/api/ratings", "/api/admin/ratings",
 page = Path("dist/entries/reimbursement/index.html")
 assert page.is_file(), "Build must generate the reimbursement entry"
 html = page.read_text(encoding="utf-8")
-if re.match(r"^https://[a-z0-9.-]+(?::\\d+)?$", os.getenv("PUBLIC_FEEDBACK_API_URL",""), re.I):
+if re.match(r"^https://[a-z0-9.-]+(?::\d+)?$", os.getenv("PUBLIC_FEEDBACK_API_URL",""), re.I):
     assert "data-article-rating" in html, "Configured API should render the availability-gated widget"
 else:
     assert "data-article-rating" not in html, "Without an API, do not show an unusable widget"
