@@ -112,8 +112,17 @@ const related = [...new Set(relatedIds)].filter((id) => id !== entry.id).map((id
           .map(cell => (cell.textContent || '').replace(/\s+/g, ' ').trim());
         table.querySelectorAll('tbody tr').forEach((row) => {
           [...row.children].forEach((cell, index) => {
-            if (cell.matches('td, th')) cell.setAttribute('data-guide-label',
-              headers[index] || '欄位 ' + (index + 1));
+            if (cell.matches('td, th')) {
+              cell.setAttribute('data-guide-label', headers[index] || '欄位 ' + (index + 1));
+              // Preserve mixed plain text and nested <strong>/<a> as one
+              // value, rather than letting CSS grid split each inline node.
+              if (!cell.querySelector(':scope > .guide-mobile-cell-value')) {
+                const value = document.createElement('span');
+                value.className = 'guide-mobile-cell-value';
+                while (cell.firstChild) value.append(cell.firstChild);
+                cell.append(value);
+              }
+            }
           });
         });
       });

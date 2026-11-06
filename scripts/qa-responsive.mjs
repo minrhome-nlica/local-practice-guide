@@ -79,7 +79,8 @@ try {
               [...document.querySelectorAll('.guide-mobile-stack > table')].every(table =>
                 [...table.querySelectorAll('tbody tr')].every(row =>
                   [...row.children].every(cell => cell.matches('td,th')
-                    ? Boolean(cell.getAttribute('data-guide-label')) : true))));
+                    ? Boolean(cell.getAttribute('data-guide-label')) &&
+                    Boolean(cell.querySelector(':scope > .guide-mobile-cell-value')) : true))));
             if(!labelled) failures.push(width+'px '+route+': stacked table has unlabeled data cells');
           }
         }

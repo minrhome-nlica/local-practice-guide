@@ -3644,3 +3644,12 @@ main table :is(th, td) p {
     gap:8px;font-size:13px!important;
   }
 }
+
+/* Keep rich inline text and emphasis inside the same value column. */
+.guide-mobile-cell-value{display:inline}
+@media(max-width:700px){
+  .article.guide-article .guide-mobile-stack > table > tbody > tr > :is(th,td) > .guide-mobile-cell-value{
+    display:block;min-width:0;max-width:100%;
+    overflow-wrap:anywhere;white-space:normal;line-height:inherit;
+  }
+}
