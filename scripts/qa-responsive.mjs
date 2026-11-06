@@ -71,6 +71,29 @@ try {
           failures.push(width+'px '+route+': inner horizontal scrollers '+
             data.innerScrollers.map(x=>x.tag+'.'+x.className+' ('+x.width+'/'+x.scrollWidth+')').join(', '));
         }
+        // Every responsive table card must preserve an explicit source-column label.
+        if(width<=430) {
+          const tables = await page.locator('.guide-mobile-stack > table').count();
+          if(tables>0) {
+            const labelled = await page.evaluate(() =>
+              [...document.querySelectorAll('.guide-mobile-stack > table')].every(table =>
+                [...table.querySelectorAll('tbody tr')].every(row =>
+                  [...row.children].every(cell => cell.matches('td,th')
+                    ? Boolean(cell.getAttribute('data-guide-label')) : true))));
+            if(!labelled) failures.push(width+'px '+route+': stacked table has unlabeled data cells');
+          }
+        }
+        if(width===390&&route.startsWith('/entries/')) {
+          const stacks=page.locator('.guide-mobile-stack');
+          if(await stacks.count()) {
+            const closed=page.locator('.insurance-grade-details');
+            if(await closed.count()) await closed.evaluate(node=>{node.open=true;});
+            await stacks.first().scrollIntoViewIfNeeded({timeout:5000});
+            await page.screenshot({
+              path:'qa-screenshots/table-'+route.split('/')[2]+'.png',fullPage:false
+            });
+          }
+        }
         const shots={'/':'home','/entries/why-establish-legal-person/':'entry',
           '/feedback/':'feedback','/tools/nhi-calculator/':'calculator'};
         if(shots[route]&&[390,768,1440].includes(width)) {
