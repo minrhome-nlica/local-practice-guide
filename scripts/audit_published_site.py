@@ -127,9 +127,20 @@ def main():
     about = DIST / 'about/index.html'
     if not about.exists() or '社團法人花蓮縣牛犁社區交流協會2026' not in about.read_text(encoding='utf-8'):
         problems.append('V1.1 team photo caption not in About page')
+    about_html=about.read_text(encoding='utf-8') if about.exists() else ''
+    for item in ['https://www.nlica.org/', 'https://mountcounty.com/',
+                 'https://www.facebook.com/e7968', 'https://www.facebook.com/mountcounty',
+                 'https://www.instagram.com/e7968e7968/',
+                 'https://www.instagram.com/mountcounty/']:
+        if item not in about_html:
+            problems.append('Missing organization link from About: '+item)
     homepage = DIST / 'index.html'
     if not homepage.exists() or '地方實踐指南・V1.1' not in homepage.read_text(encoding='utf-8'):
         problems.append('V1.1 footer label missing from homepage')
+    homepage_html=homepage.read_text(encoding='utf-8') if homepage.exists() else ''
+    for term in ['免責聲明：', '主管機關最新公告', '© 2026', '社團法人花蓮縣牛犁社區交流協會']:
+        if term not in homepage_html:
+            problems.append('V1.1 footer legal notice missing: '+term)
     for doc in ['經費案例.xlsx', 'downloads/youth-workstation-proposal-114.pdf']:
         if not (DIST / doc).exists():
             problems.append(f'Download asset missing: {doc}')

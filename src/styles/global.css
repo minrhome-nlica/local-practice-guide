@@ -3711,3 +3711,50 @@ main table :is(th, td) p {
   .guide-about-photo img{border-radius:7px}
   .guide-about-photo figcaption{font-size:12px;padding-inline:6px}
 }
+
+
+/* V1.1 community websites and social profiles, shared by About + footer. */
+.guide-about-community{margin-top:34px;padding-top:24px;border-top:1px solid #dce5da}
+.guide-about-community h3{font-size:clamp(19px,2.2vw,24px);color:#2e513c;margin:0 0 7px;line-height:1.6}
+.guide-about-community>p{font-size:14px;line-height:1.85;color:#617966;margin:0 0 16px}
+.guide-about-community-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.guide-about-community-card{min-width:0;background:#fff;border:1px solid #d9e5d8;border-radius:10px;padding:19px 20px}
+.guide-about-community-card h4{margin:0 0 12px;color:#305741;font-size:17px;line-height:1.65}
+.guide-about-community-card nav{display:flex;flex-wrap:wrap;gap:9px}
+.guide-about-community-card nav a{display:inline-flex;align-items:center;justify-content:space-between;
+  min-height:40px;padding:9px 12px;gap:12px;border:1px solid #d9e6dc;border-radius:7px;
+  background:#f6f9f5;color:#315b41;text-decoration:none;font-size:13px;font-weight:700;
+  transition:background .15s ease,border-color .15s ease}
+.guide-about-community-card nav a:hover{background:#eaf2e8;border-color:#a8c2ad}
+.guide-about-community-card nav a:focus-visible,.footer-social a:focus-visible{outline:2px solid #85ae92;outline-offset:3px}
+.site-footer .footer-grid{grid-template-columns:minmax(0,1.4fr) minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(20px,3vw,48px)}
+.site-footer .footer-grid>*{min-width:0}
+.site-footer .footer-social{padding-top:28px}
+.site-footer .footer-social h3{font-size:15px;color:#e4eee4;margin:0 0 19px;line-height:1.6}
+.site-footer .footer-social-group{margin:0 0 18px}
+.site-footer .footer-social-group strong{font-size:13px;font-weight:700;color:#e4efe6}
+.site-footer .footer-social-group>div{display:flex;align-items:center;flex-wrap:wrap;gap:7px 12px;margin-top:9px}
+.site-footer .footer-social a{color:#b9d1bd;text-decoration:underline;text-underline-offset:4px;font-size:12px;line-height:1.8}
+.site-footer .footer-social a:hover{color:#fff}
+.site-footer .footer-legal{margin-top:19px;padding-top:18px;border-top:1px solid #516657}
+.site-footer .footer-legal p{max-width:100%;margin:5px 0;color:#bfcec0;font-size:12px;line-height:1.9}
+.site-footer .footer-legal .footer-copyright{color:#ecf3eb;font-weight:700}
+.site-footer .footer-legal .footer-disclaimer strong{color:#ebf0e7;font-weight:700}
+@media(max-width:950px){
+  .site-footer .footer-grid{grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:28px}
+  .site-footer .footer-social{grid-column:1/-1;padding-top:0}
+  .site-footer .footer-social-group{display:inline-block;vertical-align:top;margin-right:34px}
+}
+@media(max-width:650px){
+  .guide-about-community-grid{grid-template-columns:minmax(0,1fr)}
+  .guide-about-community-card{padding:16px}
+  .guide-about-community-card nav a{flex:1;min-width:calc(33% - 8px)}
+  .site-footer .footer-grid{grid-template-columns:minmax(0,1fr)}
+  .site-footer .footer-social{grid-column:auto}
+  .site-footer .footer-social-group{display:block;margin-right:0;margin-bottom:18px}
+  .site-footer .footer-legal{margin-top:17px;padding-top:18px}
+  .site-footer .footer-legal p{font-size:12px;line-height:1.85}
+}
+@media(max-width:360px){
+  .guide-about-community-card nav a{min-width:calc(50% - 8px);flex:1}
+}

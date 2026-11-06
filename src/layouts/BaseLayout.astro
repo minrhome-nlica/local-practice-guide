@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { organizations } from '../data/organizationLinks';
 const { title = '地方實踐指南', description = '地方工作的知識、方法與實務工具，從這裡開始。', noindex = false } = Astro.props;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const feedbackReady = Boolean(import.meta.env.PUBLIC_FEEDBACK_API_URL && import.meta.env.PUBLIC_TURNSTILE_SITE_KEY);
@@ -51,11 +52,20 @@ const nav = [
           <a href={root + '/knowledge/'}>探索知識百科 ↗</a>
           <a href={root + '/knowledge/tools/'}>工作工具與技能 ↗</a>
           <a href="https://mountcounty.com/shop/" target="_blank" rel="noopener noreferrer">支持我們 ↗</a>
+          <div class="footer-social" aria-label="牛犁協會與山下線社群">
+          <h3>與我們保持聯繫</h3>
+          {organizations.map((org) => <div class="footer-social-group">
+            <strong>{org.shortName}</strong>
+            <div>
+              {org.links.map((link) => <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label + '（另開新分頁）'}>{link.type}</a>)}
+            </div>
+          </div>)}
         </div>
+      </div>
       </div>
       <div class="wrap footer-bottom">
         <div class="footer-credits">
-          <span>版權所有：社團法人花蓮縣牛犁社區交流協會</span>
+
           <span>指導單位：文化部、國家發展委員會青年培力工作站</span>
         </div>
         <div class="footer-meta">
@@ -63,6 +73,10 @@ const nav = [
           {feedbackReady && <a class="footer-staff-link" href={root + '/admin/feedback/'}>工作人員留言管理 ↗</a>}
           <span>字體：<a href="https://github.com/ButTaiwan/gensen-font" target="_blank" rel="noopener noreferrer">源泉圓體</a>・<a href={root + '/fonts/SIL_Open_Font_License_1.1.txt'}>OFL 1.1</a></span>
         </div>
+      </div>
+      <div class="wrap footer-legal" aria-label="版權與免責聲明">
+        <p class="footer-copyright">© 2026 社團法人花蓮縣牛犁社區交流協會。版權所有。</p>
+        <p class="footer-disclaimer"><strong>免責聲明：</strong>本網站內容供一般資訊與學習參考，實際適用仍以各主管機關最新公告、相關法令及個案規定為準。</p>
       </div>
     </footer>
   </body>

@@ -53,6 +53,29 @@ try {
           if(caption!=='社團法人花蓮縣牛犁社區交流協會2026')
             failures.push('Team photo caption changed');
         }
+        if(route==='/about/' && [390,1440].includes(width)){
+          const orgs=page.locator('.guide-about-community-card');
+          if(await orgs.count()!==2) failures.push('Expected two organizations in About');
+          const links=page.locator('.guide-about-community-card nav a');
+          if(await links.count()!==6) failures.push('Expected six organization links on About');
+          for(const link of await links.all()){
+            if(await link.getAttribute('target')!=='_blank')
+              failures.push('Organization link must open safely in a new tab');
+            if(!(await link.getAttribute('rel')||'').includes('noopener'))
+              failures.push('Organization link missing noopener');
+          }
+        }
+        if(route==='/' && [390,1440].includes(width)){
+          if(await page.locator('.footer-social-group').count()!==2)
+            failures.push('Footer is missing two organization groups');
+          if(await page.locator('.footer-social-group a').count()!==6)
+            failures.push('Footer must link to six organization destinations');
+          if(!(await page.locator('.footer-copyright').innerText()).includes('© 2026'))
+            failures.push('Footer missing explicit copyright notice');
+          const legal=await page.locator('.footer-disclaimer').innerText();
+          if(!legal.includes('主管機關最新公告')||!legal.includes('相關法令'))
+            failures.push('Footer disclaimer not published');
+        }
         if(route==='/' && [390,1440].includes(width)){
           if(await page.getByText('地方實踐指南・V1.1',{exact:true}).count()!==1)
             failures.push('Footer V1.1 version label missing at '+width+'px');

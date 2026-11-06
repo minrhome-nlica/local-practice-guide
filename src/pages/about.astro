@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { organizations } from '../data/organizationLinks';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout title="關於這份指南" description="認識地方實踐指南的緣起、知識傳承與新人培力理念，以及牛犁協會的編輯工作。">
@@ -45,6 +46,20 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
             <p><strong>國家發展委員會</strong><span>地方創生青年培力工作站</span></p>
           </div>
           <p>網站內容編輯及網站建置的部分經費，來自上述計畫補助。</p>
+          <div class="guide-about-community" aria-label="牛犁協會與山下線網站及社群">
+            <h3>更多關於我們</h3>
+            <p>從協會網站及山下線的社群，認識我們的日常工作、活動與地方故事。</p>
+            <div class="guide-about-community-grid">
+              {organizations.map((org) => <div class="guide-about-community-card">
+                <h4>{org.shortName}</h4>
+                <nav aria-label={org.name + '相關網站'}>
+                  {org.links.map((link) => <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label + '（另開新分頁）'}>
+                    <span>{link.type}</span><span aria-hidden="true">↗</span>
+                  </a>)}
+                </nav>
+              </div>)}
+            </div>
+          </div>
         </section>
       </article>
     </div>
