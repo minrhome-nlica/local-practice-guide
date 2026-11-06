@@ -1,14 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 import { commonQuestions } from '../data/commonQuestions';
-const items = commonQuestions;
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout title="依問題找答案">
-  <section class="page-hero"><div class="wrap"><span class="eyebrow">PROBLEMS & ANSWERS</span><h1 class="page-title">依問題找答案</h1><p>從當下遇到的問題開始，找到對應的指南與實例。</p></div></section>
-  <section class="section-spacer"><div class="wrap"><div class="entry-list">
-    {items.map((item,i) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}>
-      <span class="meta">常見問題</span><h3>{item.title}</h3><p>{item.desc}</p>
-    </a>)}
-  </div></div></section>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">PROBLEMS &amp; ANSWERS</span>
+      <h1 class="page-title">依問題找答案</h1>
+      <p>從當下遇到的問題開始，找到對應的指南與實例。</p>
+    </div>
+  </section>
+  <section class="section-spacer">
+    <div class="wrap">
+      <div class="entry-list">
+        {commonQuestions.map((item) => (
+          <a class="entry-card" href={root + '/entries/' + item.id + '/'}>
+            <span class="meta">常見問題</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 </BaseLayout>
