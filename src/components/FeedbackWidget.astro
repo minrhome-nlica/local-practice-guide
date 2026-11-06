@@ -22,7 +22,8 @@ const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api) && sitekey.length > 
       <p class="muted small">正在載入已公開的留言……</p>
     </div>
     <div class="guide-feedback-foot"><span>留言通過審核後公開，內容僅供交流，不取代正式法令解釋。</span>
-      <a href={root + '/feedback/'}>查看所有讀者留言 ↗</a></div>
+      <a href={root + '/feedback/'}>查看所有讀者留言 ↗</a>
+      <a href={root + '/feedback/?diagnose=1'} class="guide-feedback-debug-link" data-feedback-debug hidden>留言無法送出？檢查連線 ↗</a></div>
 
     <button type="button" id="guide-feedback-select" class="guide-feedback-select" hidden>＋ 針對這段提問／更正</button>
 

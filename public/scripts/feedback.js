@@ -51,6 +51,56 @@
     return item;
   };
   if (feed) {
+    const diagnosis = feed.querySelector('#guide-feedback-diagnostic');
+    const runButton = diagnosis?.querySelector('[data-diagnostic-run]');
+    const report = diagnosis?.querySelector('[data-diagnostic-result]');
+    const runDiagnosis = async () => {
+      runButton.disabled = true;
+      const rows = [
+        '頁面來源：' + window.location.origin,
+        '留言服務：' + apiRoot,
+        '安全連線：' + (window.location.protocol === 'https:' ? 'HTTPS' : '非 HTTPS，需要修正'),
+        ''
+      ];
+      const flush = () => { report.textContent = rows.join('\n'); };
+      const check = async (label, url, options, predicate) => {
+        try {
+          const response = await fetch(url, { mode:'cors', cache:'no-store', ...options });
+          const data = await response.json().catch(() => null);
+          const result = predicate(response, data);
+          rows.push(label + '：' + (result ? '通過' : '異常') + '（HTTP ' + response.status + '）');
+          flush();
+          return result;
+        } catch (error) {
+          rows.push(label + '：連線失敗（瀏覽器阻擋或無法連線）');
+          flush();
+          return false;
+        }
+      };
+      flush();
+      const originOK = await check('① 連接 Worker', apiRoot + '/health', { method:'GET' },
+        (response, data) => response.ok && data?.ok === true);
+      if (originOK) {
+        await check('② 讀取 D1 留言', apiRoot + '/api/comments?entry=income-withholding', { method:'GET' },
+          (response, data) => response.ok && data?.ok === true && Array.isArray(data?.items));
+        // Intentionally invalid request: should return HTTP 400 without writing any data.
+        await check('③ 送出前置驗證（不存留言）', apiRoot + '/api/comments', {
+          method:'POST', headers: { 'Content-Type': 'application/json' }, body: '{}'
+        }, (response, data) => response.status === 400 && data?.ok === false);
+      }
+      rows.push('');
+      rows.push(originOK
+        ? '如果 ③ 失敗而 ① 成功，常見原因是跨網域 POST 預檢（OPTIONS）未通過。'
+        : '若 Worker 網址直接打開正常，但此處失敗，請檢查 HTTPS 和 Worker ALLOWED_ORIGINS。');
+      rows.push('以上資訊不包含驗證金鑰或留言內容，可提供截圖協助排查。');
+      flush();
+      runButton.disabled = false;
+    };
+    runButton?.addEventListener('click', runDiagnosis);
+    if (diagnosis && new URLSearchParams(location.search).get('diagnose') === '1') {
+      diagnosis.open = true;
+      runDiagnosis();
+    }
     const list = feed.querySelector('[data-feed-items]');
     const status = feed.querySelector('[data-feed-status]');
     const more = feed.querySelector('[data-feed-more]');
@@ -239,7 +289,19 @@
       success.textContent = '已收到留言，待管理員審核後公開。感謝協助讓知識更加清楚。';
       window.getSelection()?.removeAllRanges();
     } catch (error) {
-      showMessage(error.message || '留言暫時無法送出，請稍後重試。', true);
+      const isNetworkError = error instanceof TypeError ||
+        /failed to fetch|networkerror|load failed|network request failed/i.test(String(error?.message || ''));
+      if (isNetworkError) {
+        const insecure = location.protocol !== 'https:';
+        showMessage(insecure
+          ? '目前網站使用非 HTTPS 連線，留言服務僅允許安全網址。請改用 https://guide.mountcounty.com/ 再試。'
+          : '留言 API 連線失敗，可能是跨網域權限（CORS）或暫時的網路問題。可點選「檢查留言連線」找出是哪一步失敗。',
+          true);
+        const debug = entry.querySelector('[data-feedback-debug]');
+        if (debug) debug.hidden = false;
+      } else {
+        showMessage(error.message || '留言暫時無法送出，請稍後重試。', true);
+      }
     } finally {
       if (widgetId !== null && window.turnstile) window.turnstile.reset(widgetId);
       submitButton.disabled = false;

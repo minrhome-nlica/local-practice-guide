@@ -59,3 +59,11 @@
 }
 
 .guide-feedback-select{cursor:pointer;touch-action:manipulation;z-index:1000;white-space:normal;line-height:1.45}
+
+/* Self-service connection check: no secrets or submitted comments displayed. */
+.guide-feedback-diagnostic{border:1px solid #d8e4d8;border-radius:10px;background:#fbfcf9;padding:14px 18px;margin-top:26px;color:#42624c}
+.guide-feedback-diagnostic summary{font-size:14px;font-weight:700;cursor:pointer}
+.guide-feedback-diagnostic p{font-size:13px;line-height:1.8;color:#677f6b}
+.guide-feedback-diagnostic-result{white-space:pre-wrap;overflow-wrap:anywhere;background:#eef5ed;color:#294932;border-radius:7px;padding:14px;font:12px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace}
+.guide-feedback-debug-link[hidden]{display:none}
+.guide-feedback-debug-link{color:#a24e3b}
