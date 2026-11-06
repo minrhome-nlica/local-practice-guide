@@ -129,7 +129,9 @@
         directWidgetId = window.turnstile.render('#guide-direct-turnstile', {
           sitekey:feed.dataset.sitekey,
           action:'guide_feedback',
-          theme:'light'
+          theme:'light',
+          // Cloudflare's compact challenge fits 320px phones without squeezing the form.
+          size:window.matchMedia('(max-width:360px)').matches ? 'compact' : 'normal'
         });
       } catch(error) {
         directLoading = null;
