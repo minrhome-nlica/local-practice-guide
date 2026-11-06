@@ -7,7 +7,7 @@
     const value = new Date(date);
     return isNaN(value.getTime()) ? '' : value.toLocaleDateString('zh-TW', { year:'numeric', month:'short', day:'numeric' });
   };
-  const kindLabels = { question:'提問', correction:'內容更正', supplement:'補充資訊' };
+  const kindLabels = { question:'提問諮詢', correction:'內容更正', supplement:'補充留言' };
   const create = (tag, className, text) => {
     const el = document.createElement(tag);
     if (className) el.className = className;
@@ -101,30 +101,70 @@
       diagnosis.open = true;
       runDiagnosis();
     }
-    const list = feed.querySelector('[data-feed-items]');
+    const cards = ['supplement', 'question', 'correction'].map(kind => {
+      const section = feed.querySelector('[data-feedback-kind="' + kind + '"]');
+      return { kind, section, list: section.querySelector('[data-kind-items]'),
+        count: section.querySelector('[data-kind-count]'), more: section.querySelector('[data-kind-more]') };
+    });
     const status = feed.querySelector('[data-feed-status]');
-    const more = feed.querySelector('[data-feed-more]');
-    let offset = 0;
-    let loading = false;
-    async function loadMore() {
-      if (loading) return;
+    const groups = { supplement:[], question:[], correction:[] };
+    const visible = { supplement:5, question:5, correction:5 };
+    let offset = 0, hasMore = true, loading = false, failed = false;
+
+    async function fetchNext() {
+      if (!hasMore || loading) return false;
       loading = true;
-      more.hidden = true;
-      status.textContent = '正在載入留言……';
+      status.textContent = '正在整理各類留言……';
       try {
-        const result = await requestList(null, offset, 12);
-        result.items.forEach(note => list.append(renderNote(note, true)));
+        const result = await requestList(null, offset, 30);
+        result.items.forEach(note => {
+          if (groups[note.kind]) groups[note.kind].push(note);
+        });
         offset += result.items.length;
-        status.textContent = offset ? '目前顯示 ' + offset + ' 則已審核留言' : '目前還沒有已公開的留言。';
-        more.hidden = !result.has_more;
-      } catch (error) {
-        status.textContent = '留言暫時無法讀取，請稍後重新整理。';
+        hasMore = result.has_more && result.items.length > 0;
+        failed = false;
+        return true;
+      } catch {
+        failed = true;
+        status.textContent = '留言暫時無法讀取，請稍後再試。';
+        return false;
       } finally {
         loading = false;
       }
     }
-    more.addEventListener('click', loadMore);
-    loadMore();
+    function renderCategories() {
+      cards.forEach(({kind, list, count, more}) => {
+        const matching = groups[kind];
+        const show = matching.slice(0, visible[kind]);
+        list.replaceChildren();
+        if (!show.length) {
+          list.append(create('p','guide-feedback-category-empty',
+            hasMore ? '目前載入的留言尚無此類，可繼續載入查找。' : '目前沒有已公開的相關留言。'));
+        } else {
+          show.forEach(note => list.append(renderNote(note, true)));
+        }
+        count.textContent = '已載入 ' + matching.length + ' 則';
+        more.hidden = !hasMore && matching.length <= visible[kind];
+        more.textContent = matching.length > visible[kind] ? '顯示更多留言 ＋' : '繼續載入留言 ＋';
+        more.disabled = loading;
+      });
+      if (!failed) {
+        status.textContent = '目前已整理 ' + offset + ' 則公開留言，依留言類型分類顯示。' +
+          (hasMore ? '可點各欄下方載入更多。' : '');
+      }
+    }
+    cards.forEach(({kind, more}) => {
+      more.addEventListener('click', async () => {
+        if (loading) return;
+        visible[kind] += 5;
+        more.disabled = true;
+        while (hasMore && groups[kind].length < visible[kind]) {
+          if (!(await fetchNext())) break;
+        }
+        renderCategories();
+      });
+    });
+    fetchNext().then(renderCategories);
     return;
   }
   const article = document.querySelector('.article.guide-article');
@@ -143,16 +183,95 @@
     message.textContent = text;
     message.classList.toggle('is-error', isError);
   };
+  const notesDialog = entry.querySelector('#guide-feedback-notes-dialog');
+  const notesText = entry.querySelector('[data-feedback-paragraph-text]');
+  const notesList = entry.querySelector('[data-feedback-paragraph-notes]');
+  entry.querySelectorAll('[data-feedback-notes-close]').forEach(button =>
+    button.addEventListener('click', () => notesDialog.close()));
+  notesDialog.addEventListener('click', event => {
+    if (event.target === notesDialog) notesDialog.close();
+  });
+
+  // A single annotated paragraph is the grouping unit. Each reader's
+  // original selected quote remains visible inside the grouped notes dialog.
+  const normal = text => String(text || '').replace(/\s+/g, ' ').trim();
+  const headings = article ? [...article.querySelectorAll('h2[id],h3[id],h4[id]')] : [];
+  const blocks = article ? [...article.querySelectorAll('p,li,td,th,h2,h3,h4,blockquote')]
+    .filter(node => !node.closest('.chapter-jump,pre,code,script,style') &&
+      !node.closest('.guide-feedback') &&
+      !node.querySelector('p,li,td,th') &&
+      normal(node.textContent).length > 3)
+    .map(node => {
+      let section = '';
+      for (const heading of headings) {
+        const relation = heading.compareDocumentPosition(node);
+        if (heading === node || heading.contains(node) ||
+            (relation & Node.DOCUMENT_POSITION_FOLLOWING)) section = heading.id;
+        else break;
+      }
+      return {node, text:normal(node.textContent), section};
+    }) : [];
+
+  function locateParagraph(note) {
+    const quote = normal(note.quote);
+    if (!quote || !blocks.length) return null;
+    const fragments = [quote, quote.slice(0, Math.min(75, quote.length))]
+      .filter((fragment, index, all) => fragment.length >= 3 && all.indexOf(fragment) === index);
+    let matched = [];
+    for (const fragment of fragments) {
+      matched = blocks.filter(block => block.text.includes(fragment));
+      if (matched.length) break;
+    }
+    if (!matched.length) return null;
+    // Prefer the recorded chapter and the tightest matching text block.
+    matched.sort((a, b) =>
+      Number(b.section === note.section_id) - Number(a.section === note.section_id) ||
+      a.text.length - b.text.length);
+    return matched[0].node;
+  }
+  function placeParagraphMarkers(notes) {
+    const grouped = new Map();
+    notes.forEach(note => {
+      const node = locateParagraph(note);
+      if (!node) return;
+      if (!grouped.has(node)) grouped.set(node, []);
+      grouped.get(node).push(note);
+    });
+    grouped.forEach((items, node) => {
+      node.classList.add('guide-annotated-paragraph');
+      const mark = create('button', 'guide-annotation-marker',
+        '💬 ' + items.length + ' 則留言');
+      mark.type = 'button';
+      mark.setAttribute('aria-haspopup', 'dialog');
+      mark.setAttribute('aria-label','查看這一段的 ' + items.length + ' 則讀者留言');
+      mark.addEventListener('click', event => {
+        event.stopPropagation();
+        notesText.textContent = normal(node.textContent.replace(mark.textContent, '')).slice(0, 450);
+        notesList.replaceChildren(...items.map(item => renderNote(item)));
+        notesDialog.showModal();
+      });
+      node.append(mark);
+    });
+  }
   async function loadComments() {
     try {
-      const result = await requestList(entry.dataset.entryId, 0, 20);
+      const notes = [];
+      let offset = 0, hasMore = true, pages = 0;
+      while (hasMore && pages < 20) {
+        const result = await requestList(entry.dataset.entryId, offset, 30);
+        notes.push(...result.items);
+        offset += result.items.length;
+        hasMore = result.has_more && result.items.length > 0;
+        pages++;
+      }
       list.replaceChildren();
-      if (!result.items.length) {
+      if (!notes.length) {
         list.append(create('p', 'guide-feedback-empty', '還沒有公開的留言，歡迎提出第一個問題或補充。'));
       } else {
-        result.items.forEach(note => list.append(renderNote(note)));
+        notes.slice(0, 20).forEach(note => list.append(renderNote(note)));
+        placeParagraphMarkers(notes);
       }
-      if (result.has_more) {
+      if (notes.length > 20 || hasMore) {
         const link = create('a', 'text-link', '查看更多留言 ↗');
         link.href = root + '/feedback/';
         list.append(link);
@@ -211,7 +330,7 @@
     const endParent = endNode.nodeType === Node.ELEMENT_NODE ? endNode : endNode.parentElement;
     // Allow headings, tables and formatted spans, too. Exclude only controls,
     // links and non-reading content, where selection can be accidental.
-    const blocked = 'button, input, textarea, select, a, pre, code, script, style, [contenteditable], .chapter-jump';
+    const blocked = 'button, input, textarea, select, a, pre, code, script, style, [contenteditable], .chapter-jump, .guide-annotation-marker';
     if (!article.contains(parent) || !article.contains(endParent) ||
         parent?.closest(blocked) || endParent?.closest(blocked)) return hideAction();
     const quote = selection.toString().replace(/\s+/g, ' ').trim();

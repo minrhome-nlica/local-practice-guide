@@ -67,3 +67,64 @@
 .guide-feedback-diagnostic-result{white-space:pre-wrap;overflow-wrap:anywhere;background:#eef5ed;color:#294932;border-radius:7px;padding:14px;font:12px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace}
 .guide-feedback-debug-link[hidden]{display:none}
 .guide-feedback-debug-link{color:#a24e3b}
+
+
+/* Highlight the WHOLE paragraph, not the individual selected character range. */
+.guide-article .guide-annotated-paragraph{
+  border-left:3px solid #93b79b;
+  background:linear-gradient(90deg,rgba(226,238,224,.65),rgba(244,249,242,.42));
+  border-radius:0 7px 7px 0;
+  padding-left:12px;
+  scroll-margin-top:110px;
+}
+.guide-article .guide-annotation-marker{
+  display:inline-flex;align-items:center;gap:5px;
+  margin:5px 0 3px 9px;padding:4px 10px;
+  border-radius:999px;border:1px solid #b9d4be;
+  background:#edf5e9;color:#315e43;
+  font:700 11px/1.5 "GenSen Rounded Guide","Noto Sans TC",sans-serif;
+  cursor:pointer;vertical-align:middle;white-space:nowrap;
+  box-shadow:0 1px 4px #23553c13;
+}
+.guide-article .guide-annotation-marker:hover,
+.guide-article .guide-annotation-marker:focus-visible{
+  background:#dcebdc;border-color:#739b7f;outline-offset:2px;
+}
+.guide-feedback-notes-dialog{width:min(640px,calc(100% - 24px));max-height:88vh;overflow:auto;
+  padding:25px;border:1px solid #d3e1d1;border-radius:15px;background:#fff;
+  color:#334b38;box-shadow:0 20px 65px #1a392b55}
+.guide-feedback-notes-dialog::backdrop{background:#1d302996}
+.guide-feedback-notes-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.guide-feedback-notes-head h2{font:700 22px/1.5 "GenSen Rounded Guide","Noto Sans TC",sans-serif;margin:7px 0 15px;color:#2b553d}
+.guide-feedback-notes-original{border-left:3px solid #93b69d;background:#f4f8f2;padding:13px 16px;
+  color:#526b59;font-size:13px;line-height:1.8;overflow-wrap:anywhere;white-space:pre-wrap;margin:0 0 18px}
+.guide-feedback-notes-list{display:grid;gap:12px}
+.guide-feedback-notes-actions{display:flex;justify-content:flex-end;margin-top:19px}
+.guide-feedback-feed-wrap{max-width:1160px}
+.guide-feedback-categories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start;margin-top:22px}
+.guide-feedback-category{min-width:0;background:#fbfcf9;border:1px solid #dae7d9;border-radius:13px;
+  padding:20px 16px 18px;min-height:250px}
+.guide-feedback-category-head{display:flex;align-items:start;gap:10px}
+.guide-feedback-category-head h2{font:700 21px/1.5 "GenSen Rounded Guide","Noto Sans TC",sans-serif;margin:0;color:#2f573d}
+.guide-feedback-category-head p{font-size:12px;color:#728374;line-height:1.7;margin:4px 0 0}
+.guide-feedback-category-symbol{display:grid;place-items:center;flex:none;width:35px;height:35px;
+  border-radius:10px;background:#e6f0e4;color:#366248;font-size:18px;font-weight:700}
+.guide-feedback-category[data-feedback-kind="question"] .guide-feedback-category-symbol{background:#eff0e8;color:#787146}
+.guide-feedback-category[data-feedback-kind="correction"] .guide-feedback-category-symbol{background:#f4ede4;color:#996448}
+.guide-feedback-category-count{font-size:12px;color:#8a998c;margin:13px 0}
+.guide-feedback-category-list{display:grid;gap:11px}
+.guide-feedback-category-list .guide-feedback-note{padding:14px 13px;background:#fff}
+.guide-feedback-category-list .guide-feedback-note-entry{font-size:13px}
+.guide-feedback-category-list .guide-feedback-note-body{font-size:14px}
+.guide-feedback-category-empty{font-size:13px;line-height:1.85;color:#849185;padding:12px 4px}
+.guide-feedback-category-more{width:100%;margin-top:15px;border:1px solid #c8dbc9;border-radius:8px;
+  background:#fff;color:#365d45;padding:11px 14px;font:700 13px/1.5 "GenSen Rounded Guide",sans-serif;cursor:pointer}
+.guide-feedback-category-more:hover{background:#edf4ed}
+.guide-feedback-category-more:disabled{opacity:.55;cursor:wait}
+@media(max-width:950px){.guide-feedback-categories{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){
+  .guide-feedback-categories{grid-template-columns:1fr;gap:14px}
+  .guide-feedback-category{padding:17px 15px;min-height:0}
+  .guide-feedback-notes-dialog{padding:18px}
+  .guide-article .guide-annotation-marker{max-width:100%;white-space:normal}
+}

@@ -22,7 +22,7 @@
 
   const labels = {
     pending: '待審核', approved: '已公開', rejected: '已拒絕', resolved: '已處理',
-    question: '詢問問題', correction: '內容更正', supplement: '補充資訊'
+    question: '提問諮詢', correction: '內容更正', supplement: '補充留言'
   };
   function el(tag, className, content) {
     const element = document.createElement(tag);

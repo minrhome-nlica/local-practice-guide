@@ -13,7 +13,7 @@ const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api) && sitekey.length > 
       <div>
         <span class="eyebrow">READER NOTES</span>
         <h2>讀者提問與內容勘誤</h2>
-        <p>選取文章中的文字，就會出現「針對這段提問／更正」；也能直接針對整篇留言。</p>
+        <p>選取文字即可提出留言。已公開留言的段落會有整段標示與留言數量，點擊即可閱讀相關討論。</p>
       </div>
       <button class="guide-feedback-primary" type="button" data-feedback-open>針對本篇留言 ＋</button>
     </div>
@@ -26,6 +26,19 @@ const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api) && sitekey.length > 
       <a href={root + '/feedback/?diagnose=1'} class="guide-feedback-debug-link" data-feedback-debug hidden>留言無法送出？檢查連線 ↗</a></div>
 
     <button type="button" id="guide-feedback-select" class="guide-feedback-select" hidden>＋ 針對這段提問／更正</button>
+    <dialog class="guide-feedback-notes-dialog" id="guide-feedback-notes-dialog"
+      aria-labelledby="guide-feedback-notes-title">
+      <div class="guide-feedback-notes-head">
+        <div><span class="eyebrow">PARAGRAPH NOTES</span>
+          <h2 id="guide-feedback-notes-title">這一段的讀者留言</h2></div>
+        <button type="button" class="guide-feedback-close" data-feedback-notes-close aria-label="關閉留言">✕</button>
+      </div>
+      <p class="guide-feedback-notes-original" data-feedback-paragraph-text></p>
+      <div class="guide-feedback-notes-list" data-feedback-paragraph-notes></div>
+      <div class="guide-feedback-notes-actions">
+        <button type="button" class="guide-feedback-secondary" data-feedback-notes-close>關閉</button>
+      </div>
+    </dialog>
 
     <dialog id="guide-feedback-dialog" class="guide-feedback-dialog" aria-labelledby="guide-feedback-dialog-title">
       <form id="guide-feedback-form" novalidate>
@@ -36,9 +49,9 @@ const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api) && sitekey.length > 
         <p class="guide-feedback-quote" data-feedback-quote hidden></p>
         <label>留言類型
           <select name="kind" required>
-            <option value="question">詢問問題</option>
+            <option value="question">提問諮詢</option>
             <option value="correction">內容更正</option>
-            <option value="supplement">補充案例或資訊</option>
+            <option value="supplement">補充留言</option>
           </select>
         </label>
         <label>稱呼（可留空）

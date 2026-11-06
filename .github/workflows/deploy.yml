@@ -73,6 +73,23 @@ jobs:
                   raise SystemExit('Admin moderation page is missing: ' + key)
           print('Admin moderation page built and checked without embedded credentials.')
           PY
+      - name: Verify grouped reader notes and formatted calculator
+        run: |
+          node --check public/scripts/nhi-calculator.js
+          python - <<'PY'
+          from pathlib import Path
+          note = Path('dist/entries/income-withholding/index.html').read_text()
+          feed = Path('dist/feedback/index.html').read_text()
+          calc = Path('dist/tools/nhi-calculator/index.html').read_text()
+          for token in ['guide-feedback-notes-dialog', 'data-feedback-paragraph-notes']:
+              assert token in note, token
+          for kind in ['supplement', 'question', 'correction']:
+              assert f'data-feedback-kind="{kind}"' in feed, kind
+          assert '單位<strong>每月所有薪資</strong>的差額' in calc
+          assert calc.count('data-money-input') == 5, 'expected five money fields'
+          assert 'type="number"' not in calc, 'unformatted numeric field in calculator'
+          print('Comment grouping UI, three category columns, and calculator fields verified.')
+          PY
       - name: Check feedback scripts and D1 schema
         run: |
           node --check services/feedback-worker/src/index.js

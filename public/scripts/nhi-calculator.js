@@ -8,9 +8,37 @@
   var $ = function (id) { return document.getElementById(id); };
   var fmt = function (number) { return Math.round(number).toLocaleString("zh-TW") + "元"; };
   var positiveNumber = function (id) {
-    var v = $(id).value.trim();
+    var v = $(id).value.trim().replace(/,/g, "");
     return v === "" ? null : (Number.isFinite(Number(v)) && Number(v) >= 0 && Number.isSafeInteger(Number(v)) ? Number(v) : null);
   };
+  // Whole NT dollars: format as the user types, but always compute using raw digits.
+  var moneyInputs = [...form.querySelectorAll("[data-money-input]")];
+  var formatMoneyValue = function (value) {
+    var normalized = String(value).replace(/[\uFF10-\uFF19]/g, function (digit) {
+      return String.fromCharCode(digit.charCodeAt(0) - 0xFEE0);
+    });
+    var digits = normalized.replace(/\D/g, "");
+    return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+  function wireMoneyInput(input) {
+    function update() {
+      var previous = input.value;
+      var selection = input.selectionStart === null ? previous.length : input.selectionStart;
+      var numbersBeforeCaret = previous.slice(0, selection).replace(/[\uFF10-\uFF19]/g, "0").replace(/\D/g, "").length;
+      var formatted = formatMoneyValue(previous);
+      input.value = formatted;
+      var nextCaret = 0, count = 0;
+      while (nextCaret < formatted.length && count < numbersBeforeCaret) {
+        if (/\d/.test(formatted[nextCaret])) count++;
+        nextCaret++;
+      }
+      input.setSelectionRange(nextCaret, nextCaret);
+    }
+    input.addEventListener("input", update);
+    input.addEventListener("blur", function () { input.value = formatMoneyValue(input.value); });
+    input.value = formatMoneyValue(input.value);
+  }
+  moneyInputs.forEach(wireMoneyInput);
   var expenses = {
     salary: { code: "50", desc: "固定薪資一般屬薪資所得50；在原單位加保者，固定薪資本身通常不另扣兼職薪資補充保費。" },
     temporary: { code: "50", desc: "臨時工資一般屬薪資所得50。是否應依法加保，仍要看實際受僱關係。" },
@@ -210,6 +238,6 @@
       $("nhi-copy-status").textContent = "已選取文字，請按 Ctrl+C 複製。";
     }
   });
-  form.addEventListener("reset", function () { window.setTimeout(function () { syncFields(); $("nhi-result").hidden = true; }, 0); });
+  form.addEventListener("reset", function () { window.setTimeout(function () { moneyInputs.forEach(function (input) { input.value = formatMoneyValue(input.value); }); syncFields(); $("nhi-result").hidden = true; }, 0); });
   syncFields();
 })();

@@ -56,7 +56,7 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
               <option value="other">其他項目（需要先確認所得分類）</option>
             </optgroup>
           </select></label>
-          <label class="nhi-field"><span>本次給付金額（新臺幣元）</span><input id="nhi-amount" name="amount" type="number" min="1" step="1" inputmode="numeric" value="30000" required /><small>填寫給付總額，不預先扣除所得稅、材料費或其他成本。</small></label>
+          <label class="nhi-field"><span>本次給付金額（新臺幣元）</span><input id="nhi-amount" name="amount" type="text" inputmode="numeric" pattern="[0-9,]*" data-money-input autocomplete="off" inputmode="numeric" value="30,000" required /><small>填寫給付總額，不預先扣除所得稅、材料費或其他成本。</small></label>
         </div>
         <p id="nhi-item-hint" class="nhi-inline-hint" aria-live="polite"></p>
         <details class="nhi-advanced"><summary>已向國稅局確認所得代碼？可在此更正</summary>
@@ -85,11 +85,11 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
         <div class="nhi-conditional" id="nhi-bonus-box" hidden>
           <h3>年終獎金的額外資料</h3><p>僅當領款人已在付款單位投保，且本筆屬未納入投保金額的獎勵性給付時使用。</p>
           <div class="nhi-grid">
-            <label class="nhi-field"><span>領款人本月健保投保金額</span><input id="nhi-bonus-insured" type="number" min="0" step="1" placeholder="例如 34800"/></label>
-            <label class="nhi-field"><span>本年度此前已計入的同類獎金累計</span><input id="nhi-bonus-prior" type="number" min="0" step="1" value="0"/></label>
+            <label class="nhi-field"><span>領款人本月健保投保金額</span><input id="nhi-bonus-insured" type="text" inputmode="numeric" pattern="[0-9,]*" data-money-input autocomplete="off" placeholder="例如 34,800"/></label>
+            <label class="nhi-field"><span>本年度此前已計入的同類獎金累計</span><input id="nhi-bonus-prior" type="text" inputmode="numeric" pattern="[0-9,]*" data-money-input autocomplete="off" value="0"/></label>
           </div>
         </div>
-        <div class="nhi-panel-heading"><span class="nhi-step">04</span><div><h2>付款單位有沒有另外負擔保費？</h2><p>這不是每筆付款直接乘2.11%，而是單位**每月所有薪資**的差額。</p></div></div>
+        <div class="nhi-panel-heading"><span class="nhi-step">04</span><div><h2>付款單位有沒有另外負擔保費？</h2><p>這不是每筆付款直接乘2.11%，而是單位<strong>每月所有薪資</strong>的差額。</p></div></div>
         <div id="nhi-employer-box">
           <label class="nhi-field"><span>付款方是否為有員工加保的健保投保單位？</span><select id="nhi-employer" name="employer">
             <option value="unknown">尚未確認</option>
@@ -98,8 +98,8 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
           </select></label>
           <div class="nhi-conditional" id="nhi-employer-details" hidden>
             <div class="nhi-grid">
-              <label class="nhi-field"><span>本月其他薪資所得總額（不含這一筆）</span><input id="nhi-month-wages" type="number" min="0" step="1" placeholder="例如 170000"/><small>包含本月支付的各類薪資、兼職工作費及獎金。</small></label>
-              <label class="nhi-field"><span>本月受僱員工的健保投保金額總額</span><input id="nhi-insured-total" type="number" min="0" step="1" placeholder="例如 174000"/><small>請填所有受僱員工投保金額合計，不是實發薪水。</small></label>
+              <label class="nhi-field"><span>本月其他薪資所得總額（不含這一筆）</span><input id="nhi-month-wages" type="text" inputmode="numeric" pattern="[0-9,]*" data-money-input autocomplete="off" placeholder="例如 170,000"/><small>包含本月支付的各類薪資、兼職工作費及獎金。</small></label>
+              <label class="nhi-field"><span>本月受僱員工的健保投保金額總額</span><input id="nhi-insured-total" type="text" inputmode="numeric" pattern="[0-9,]*" data-money-input autocomplete="off" placeholder="例如 174,000"/><small>請填所有受僱員工投保金額合計，不是實發薪水。</small></label>
             </div>
           </div>
         </div>

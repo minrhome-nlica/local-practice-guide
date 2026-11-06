@@ -12,7 +12,7 @@ const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api) && sitekey.length > 
       <div class="breadcrumbs"><a href={root + '/'}>首頁</a> / 讀者提問與內容勘誤</div>
       <span class="eyebrow">COMMUNITY FEEDBACK</span>
       <h1 class="page-title">讀者提問與內容勘誤</h1>
-      <p>來自不同詞條的提問、更正與補充。只有經管理員確認的留言才會出現在這裡。</p>
+      <p>把讀者的經驗補充、提問諮詢和內容更正分開整理。留言經工作人員確認後，才會出現在這裡。</p>
     </div>
   </section>
   <section class="section-spacer">
@@ -20,7 +20,35 @@ const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api) && sitekey.length > 
       {ready ? (
         <div class="guide-feedback-feed" id="guide-feedback-feed" data-api={api} data-root={root}>
           <p class="guide-feedback-feed-status" data-feed-status role="status" aria-live="polite">正在讀取留言……</p>
-          <div class="guide-feedback-feed-list" data-feed-items></div>
+          <div class="guide-feedback-categories" aria-label="依留言類型分類">
+            <section class="guide-feedback-category" data-feedback-kind="supplement">
+              <div class="guide-feedback-category-head">
+                <span class="guide-feedback-category-symbol" aria-hidden="true">＋</span>
+                <div><h2>補充留言</h2><p>實務經驗、案例與參考資料</p></div>
+              </div>
+              <p class="guide-feedback-category-count" data-kind-count></p>
+              <div class="guide-feedback-category-list" data-kind-items></div>
+              <button type="button" class="guide-feedback-category-more" data-kind-more hidden>顯示更多留言 ＋</button>
+            </section>
+            <section class="guide-feedback-category" data-feedback-kind="question">
+              <div class="guide-feedback-category-head">
+                <span class="guide-feedback-category-symbol" aria-hidden="true">？</span>
+                <div><h2>提問諮詢</h2><p>釐清文章內容與實際問題</p></div>
+              </div>
+              <p class="guide-feedback-category-count" data-kind-count></p>
+              <div class="guide-feedback-category-list" data-kind-items></div>
+              <button type="button" class="guide-feedback-category-more" data-kind-more hidden>顯示更多留言 ＋</button>
+            </section>
+            <section class="guide-feedback-category" data-feedback-kind="correction">
+              <div class="guide-feedback-category-head">
+                <span class="guide-feedback-category-symbol" aria-hidden="true">✓</span>
+                <div><h2>內容更正</h2><p>需查證、更新或修正的內容</p></div>
+              </div>
+              <p class="guide-feedback-category-count" data-kind-count></p>
+              <div class="guide-feedback-category-list" data-kind-items></div>
+              <button type="button" class="guide-feedback-category-more" data-kind-more hidden>顯示更多留言 ＋</button>
+            </section>
+          </div>
           <details class="guide-feedback-diagnostic" id="guide-feedback-diagnostic">
             <summary>留言無法送出？檢查連線狀態</summary>
             <p>此檢查只測試服務是否連得上，不會儲存任何留言，也不會傳送個人資料。</p>
@@ -28,7 +56,7 @@ const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api) && sitekey.length > 
             <pre class="guide-feedback-diagnostic-result" data-diagnostic-result role="status" aria-live="polite">尚未執行檢查。</pre>
             <p>若結果顯示跨網域連線失敗，請確認目前開啟的是 HTTPS 網址，並檢查 Worker 的 ALLOWED_ORIGINS 是否包含此頁面實際網址。</p>
           </details>
-          <div class="home-more-actions"><button type="button" class="home-more-button" data-feed-more hidden>顯示更多留言 ＋</button></div>
+
         </div>
       ) : (
         <div class="guide-feedback-standby"><h2>讀者留言功能正在準備中</h2>
