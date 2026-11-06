@@ -1,0 +1,50 @@
+---
+import '../styles/article-rating.css';
+const { entryId, entryTitle } = Astro.props;
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const api = (import.meta.env.PUBLIC_FEEDBACK_API_URL || '').replace(/\/$/, '');
+const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api);
+const reasons = [
+  { value:'missing_answer', label:'沒有找到需要的答案' },
+  { value:'unclear', label:'部分內容看不懂' },
+  { value:'needs_examples', label:'希望增加實際案例' },
+  { value:'possibly_outdated', label:'資訊可能有誤或過時' },
+  { value:'layout_issue', label:'排版或操作有問題' },
+  { value:'other', label:'其他建議' }
+];
+---
+{ready && (
+  <section class="guide-rating" data-article-rating data-api={api}
+    data-entry-id={entryId} data-entry-title={entryTitle}
+    id="guide-rating" aria-labelledby="guide-rating-title" data-pagefind-ignore hidden>
+    <div class="guide-rating-head">
+      <span class="eyebrow">HELP US IMPROVE</span>
+      <h2 id="guide-rating-title">這篇文章有幫助你解決問題嗎？</h2>
+      <p>只需要一個選擇，幫助我們了解哪些文章需要補充或修正。</p>
+    </div>
+    <div class="guide-rating-actions" role="group" aria-label="文章實用度回饋">
+      <button type="button" class="guide-rating-choice" data-rating-vote="helpful" aria-pressed="false">
+        <span aria-hidden="true">👍</span><strong>有幫助</strong>
+      </button>
+      <button type="button" class="guide-rating-choice" data-rating-vote="unresolved" aria-pressed="false">
+        <span aria-hidden="true">👎</span><strong>還沒解決</strong>
+      </button>
+    </div>
+    <form class="guide-rating-reasons" data-rating-form hidden>
+      <fieldset>
+        <legend>可以告訴我們主要原因嗎？</legend>
+        <div class="guide-rating-reason-grid">
+          {reasons.map((reason) => <label>
+            <input type="radio" name="reason" value={reason.value} required />
+            <span>{reason.label}</span>
+          </label>)}
+        </div>
+      </fieldset>
+      <button class="guide-rating-submit" type="submit" disabled>送出回饋 ↗</button>
+    </form>
+    <p class="guide-rating-status" data-rating-status role="status" aria-live="polite"></p>
+    <p class="guide-rating-correction" data-rating-correction hidden>如果發現規定有誤，歡迎到下方的<a href="#guide-feedback">「讀者提問與內容勘誤」</a>提供具體更正建議。</p>
+    <p class="guide-rating-foot">回饋不會公開顯示，也不需要登入；同一瀏覽器可以修改之前的選擇。請勿在其他留言欄填寫個人資料。</p>
+  </section>
+)}
+{ready && <script is:inline src={root + '/scripts/article-rating.js'} defer></script>}
