@@ -2,6 +2,7 @@
 // Deploy as a SEPARATE Cloudflare Worker. Never serve these endpoints from the public feedback Worker.
 // A Worker-level Cloudflare Access policy, matching ACCESS_AUD, and D1 allowlist are all mandatory.
 import { ADMIN_HTML, ADMIN_CSS, ADMIN_CLIENT } from './ui.js';
+import { queryWebAnalytics } from './analytics.js';
 
 const ROLES = ['owner', 'editor', 'moderator'];
 const STATUSES = ['pending', 'approved', 'resolved', 'rejected'];
@@ -275,6 +276,10 @@ export default {
         if (path === '/api/overview') return overview(env);
         if (path === '/api/comments') return requireRole(user, 'owner', 'moderator') || commentsList(env, url);
         if (path === '/api/ratings') return ratingStats(env, url);
+        if (path === '/api/analytics') {
+          const analytics = await queryWebAnalytics(env, url);
+          return json(analytics.body, analytics.status);
+        }
         if (path === '/api/users') return requireRole(user, 'owner') || usersList(env);
         if (path === '/api/audit') return requireRole(user, 'owner') || auditList(env);
       }
