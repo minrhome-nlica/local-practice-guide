@@ -3570,3 +3570,77 @@ main table :is(th, td) p {
 
 /* Balance long knowledge titles when the browser supports it. */
 .page-hero .page-title{text-wrap:balance}
+
+
+/* Complex source-based tables: desktop stays a real table; mobile reads each row
+   as a fully labeled card, without shrinking numbers or sideways swiping. */
+@media(max-width:700px){
+  .article.guide-article .guide-mobile-stack{
+    width:100%;max-width:100%;min-width:0;
+    overflow-x:visible!important;overflow-y:visible!important;
+    border:0!important;border-radius:0!important;
+    box-shadow:none!important;background:transparent!important;
+    margin:24px 0 30px;
+  }
+  .article.guide-article .guide-mobile-stack > table{
+    display:block!important;
+    min-width:0!important;max-width:100%!important;width:100%!important;
+    table-layout:auto!important;overflow:visible!important;
+    border:0!important;border-radius:0!important;
+    margin:0!important;background:transparent!important;
+  }
+  .article.guide-article .guide-mobile-stack > table > caption{
+    display:block;width:100%;max-width:100%;
+    padding:10px 6px 14px;text-align:left;white-space:normal;
+    font-size:13px;line-height:1.8;color:#596f5f;
+  }
+  .article.guide-article .guide-mobile-stack > table > thead{
+    position:absolute!important;width:1px!important;height:1px!important;
+    overflow:hidden!important;clip-path:inset(50%);white-space:nowrap;
+  }
+  .article.guide-article .guide-mobile-stack > table > tbody{
+    display:grid!important;grid-template-columns:minmax(0,1fr);
+    gap:12px;width:100%;min-width:0;
+  }
+  .article.guide-article .guide-mobile-stack > table > tbody > tr{
+    display:block!important;min-width:0;width:100%;
+    padding:3px 14px;background:#fff!important;
+    border:1px solid #dce6da!important;border-radius:9px;
+    box-shadow:0 3px 13px #24432d0a;
+  }
+  .article.guide-article .guide-mobile-stack > table > tbody > tr.insurance-focus-row{
+    border-color:#8cad92!important;background:#f7faf5!important;
+  }
+  .article.guide-article .guide-mobile-stack > table > tbody > tr > :is(th,td){
+    display:grid!important;
+    grid-template-columns:minmax(0,40%) minmax(0,1fr)!important;
+    gap:10px;align-items:start;
+    min-width:0!important;max-width:100%!important;width:100%!important;
+    margin:0!important;padding:11px 0!important;
+    border:0!important;border-bottom:1px solid #e7ede5!important;
+    background:transparent!important;
+    font-size:14px!important;line-height:1.8!important;
+    color:#304938;white-space:normal!important;word-break:normal;
+    overflow-wrap:anywhere;text-align:left!important;
+  }
+  .article.guide-article .guide-mobile-stack > table > tbody > tr > :is(th,td)::before{
+    content:attr(data-guide-label);
+    display:block;font-size:12px;line-height:1.75;
+    color:#67806b;font-weight:700;overflow-wrap:anywhere;
+  }
+  .article.guide-article .guide-mobile-stack > table > tbody > tr > :is(th,td):last-child{
+    border-bottom:0!important;
+  }
+  .article.guide-article .guide-mobile-stack > table > tbody > tr > :is(th,td) > :is(strong,b){
+    font-weight:700;
+  }
+}
+@media(max-width:360px){
+  .article.guide-article .guide-mobile-stack > table > tbody > tr{
+    padding-inline:11px;
+  }
+  .article.guide-article .guide-mobile-stack > table > tbody > tr > :is(th,td){
+    grid-template-columns:minmax(0,38%) minmax(0,1fr)!important;
+    gap:8px;font-size:13px!important;
+  }
+}

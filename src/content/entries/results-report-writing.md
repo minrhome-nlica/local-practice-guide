@@ -97,7 +97,7 @@ tags:
 
 可以先製作一張表，把核定計畫的目標和實際完成情形對照。以下為**假設案例**，數字僅用於示範進度表如何呈現，並非任何團隊的實際績效。
 
-<div class="report-table-scroll" role="region" aria-label="成果報告假設案例工作進度對照表，可左右捲動" tabindex="0">
+<div class="report-table-scroll guide-mobile-stack" role="region" aria-label="成果報告假設案例工作進度對照表，手機可分項閱讀" tabindex="0">
   <table class="report-kpi-table">
     <caption>工作進度對照｜假設案例（非真實計畫資料）</caption>
     <thead><tr><th scope="col">工作項目</th><th scope="col">期中預定</th><th scope="col">期中實際</th><th scope="col">閱讀重點</th></tr></thead>

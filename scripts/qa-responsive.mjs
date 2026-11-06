@@ -68,7 +68,7 @@ try {
           warnings.push(width+'px '+route+': outside-box '+data.offenders.join(', '));
         }
         if(width<=430&&data.innerScrollers.length) {
-          warnings.push(width+'px '+route+': inner horizontal scrollers '+
+          failures.push(width+'px '+route+': inner horizontal scrollers '+
             data.innerScrollers.map(x=>x.tag+'.'+x.className+' ('+x.width+'/'+x.scrollWidth+')').join(', '));
         }
         const shots={'/':'home','/entries/why-establish-legal-person/':'entry',

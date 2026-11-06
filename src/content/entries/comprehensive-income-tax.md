@@ -124,7 +124,7 @@ tags:
 
 以2026年度的綜合所得稅級距來看：
 
-<div class="org-table-scroll tax-table-wrap tax-table-horizontal" role="region" aria-label="115年度綜合所得稅累進稅率級距" tabindex="0">
+<div class="org-table-scroll tax-table-wrap tax-table-horizontal guide-mobile-stack" role="region" aria-label="115年度綜合所得稅累進稅率級距" tabindex="0">
 <table class="org-compare-table tax-guide-table tax-table-summary">
   <thead><tr><th scope="col">全年綜合所得淨額</th><th scope="col">適用稅率</th><th scope="col">計算提示</th></tr></thead>
   <tbody>
@@ -207,7 +207,7 @@ tags:
 
 假設依全年所得計算，我真正需要繳的所得稅是26,800元。如果付款單位這一年已經替我預扣30,000元，結算時就可能退回3,200元；如果之前只預扣20,000元，就可能還要補繳6,800元。
 
-<div class="org-table-scroll tax-table-wrap tax-table-horizontal" role="region" aria-label="預扣所得稅結算退補案例" tabindex="0">
+<div class="org-table-scroll tax-table-wrap tax-table-horizontal guide-mobile-stack" role="region" aria-label="預扣所得稅結算退補案例" tabindex="0">
 <table class="org-compare-table tax-guide-table tax-table-summary">
   <thead><tr><th scope="col">年度應納所得稅</th><th scope="col">先前已扣繳</th><th scope="col">結算結果</th></tr></thead>
   <tbody>

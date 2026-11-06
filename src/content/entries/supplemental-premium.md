@@ -233,7 +233,7 @@ tags:
 
 執行業務所得（代碼9A）與講演、稿費等收入（代碼9B）在實務上常一起討論，但兩者的<strong>所得性質</strong>並不相同。先從下表對照定義、常見對象與實際判斷方式：
 
-<div class="insurance-table-scroll insurance-income-compare-wrap" role="region" aria-label="所得代碼9A與9B比較表；窄螢幕可左右滑動" tabindex="0">
+<div class="insurance-table-scroll insurance-income-compare-wrap guide-mobile-stack" role="region" aria-label="所得代碼9A與9B比較表；手機改以卡片方式閱讀" tabindex="0">
   <table class="insurance-income-compare-table">
     <thead>
       <tr>
@@ -266,7 +266,7 @@ tags:
     </tbody>
   </table>
 </div>
-<p class="insurance-table-hint">手機閱讀時，可以左右滑動表格，逐項對照 9A 與 9B。</p>
+<p class="insurance-table-hint">手機閱讀時，各個比較項目會改成上下排列的卡片，可逐項對照 9A 與 9B。</p>
 
 <strong>提醒：</strong> 不是只要攝影師、表演者或設計師本人簽領據，就一定是執行業務所得（代碼9A）；也不能將所有上課鐘點費、設計費或審查費直接視為講演與稿費收入（代碼9B）。<strong>真正的工作關係與所得性質</strong>，才是分類依據。接下來我們再用「演講」與「授課」的例子，說明講演與稿費收入（代碼9B）和薪資所得（代碼50）的差別。
 

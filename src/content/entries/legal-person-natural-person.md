@@ -65,7 +65,7 @@ tags:
 
 ### 自然人與法人，放在一起比較
 
-<div class="org-table-scroll" role="region" aria-label="自然人與法人的主要差異對照表，窄螢幕可左右滑動" tabindex="0">
+<div class="org-table-scroll guide-mobile-stack" role="region" aria-label="自然人與法人的主要差異對照表，手機改以卡片方式閱讀" tabindex="0">
 <table class="org-compare-table">
   <thead><tr><th scope="col">比較項目</th><th scope="col">自然人</th><th scope="col">法人</th></tr></thead>
   <tbody>
@@ -78,7 +78,7 @@ tags:
   </tbody>
 </table>
 </div>
-<p class="org-table-hint">手機上可左右滑動表格比較。這是理解法律主體的入門整理，不代表所有自然人與法人都適用相同的債務責任規則。</p>
+<p class="org-table-hint">手機上會將每個比較項目分成卡片閱讀。這是理解法律主體的入門整理，不代表所有自然人與法人都適用相同的債務責任規則。</p>
 
 ## 三、成立法人對地方團隊的四項好處
 
@@ -124,7 +124,7 @@ tags:
 
 這是原本《團體立案指南》裡最重要的實務問題之一。**不是有名字、有招牌、有統一編號，甚至已經辦了某種「立案」，就一定具有法人資格。**
 
-<div class="org-table-scroll" role="region" aria-label="地方常見組織形式是否為法人的對照表，窄螢幕可左右滑動" tabindex="0">
+<div class="org-table-scroll guide-mobile-stack" role="region" aria-label="地方常見組織形式是否為法人的對照表，手機改以卡片方式閱讀" tabindex="0">
 <table class="org-compare-table org-type-table">
   <thead><tr><th scope="col">常見形式</th><th scope="col">是否具有法人資格？</th><th scope="col">白話說明</th></tr></thead>
   <tbody>

@@ -105,6 +105,18 @@ const related = [...new Set(relatedIds)].filter((id) => id !== entry.id).map((id
         table.before(frame);
         frame.append(table);
       });
+      // Opt-in mobile card representation for complex comparison tables.
+      // Header labels remain attached to the original semantic table cells.
+      articleBody?.querySelectorAll('.guide-mobile-stack > table').forEach((table) => {
+        const headers = [...table.querySelectorAll('thead tr:last-child > th, thead tr:last-child > td')]
+          .map(cell => (cell.textContent || '').replace(/\s+/g, ' ').trim());
+        table.querySelectorAll('tbody tr').forEach((row) => {
+          [...row.children].forEach((cell, index) => {
+            if (cell.matches('td, th')) cell.setAttribute('data-guide-label',
+              headers[index] || '欄位 ' + (index + 1));
+          });
+        });
+      });
     })();
   </script>
 </BaseLayout>

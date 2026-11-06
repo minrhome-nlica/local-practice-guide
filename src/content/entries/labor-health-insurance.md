@@ -48,8 +48,8 @@ tags:
 </figure>
 
 <details class="insurance-grade-details">
-  <summary>展開文字版級距表（可選取數字、手機可左右滑動）</summary>
-  <div class="insurance-table-scroll" role="region" aria-label="2026年一般受僱員工投保級距與費用負擔表" tabindex="0">
+  <summary>展開文字版級距表（可選取數字，手機以分項卡片閱讀）</summary>
+  <div class="insurance-table-scroll guide-mobile-stack" role="region" aria-label="2026年一般受僱員工投保級距與費用負擔表" tabindex="0">
     <table class="insurance-rate-table">
       <caption>民國 115 年（2026）一般全時受僱者常用級距｜金額單位：新臺幣元／月</caption>
       <thead><tr><th scope="col">級距</th><th scope="col">月投保金額</th><th scope="col">員工勞、就保</th><th scope="col">員工健保</th><th scope="col">員工合計</th><th scope="col">雇主勞、就保</th><th scope="col">雇主健保</th><th scope="col">雇主勞退 6%</th><th scope="col">雇主合計（未含職災）</th></tr></thead>
