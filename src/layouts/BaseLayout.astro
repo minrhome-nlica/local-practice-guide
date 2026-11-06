@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-const { title = '地方實踐指南', description = '地方工作的知識、方法與實務工具，從這裡開始。' } = Astro.props;
+const { title = '地方實踐指南', description = '地方工作的知識、方法與實務工具，從這裡開始。', noindex = false } = Astro.props;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const feedbackReady = Boolean(import.meta.env.PUBLIC_FEEDBACK_API_URL && import.meta.env.PUBLIC_TURNSTILE_SITE_KEY);
 const nav = [
@@ -18,6 +18,7 @@ const nav = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,nofollow,noarchive" />}
     <title>{title === '地方實踐指南' ? title : title + '｜地方實踐指南'}</title>
     <link rel="icon" href={root + '/favicon.svg'} type="image/svg+xml" />
     <link rel="preload" href={root + '/fonts/GenSenRounded2TW-R.woff2'} as="font" type="font/woff2" crossorigin="anonymous" />
@@ -58,6 +59,7 @@ const nav = [
         </div>
         <div class="footer-meta">
           <span>地方實踐指南・網站測試版</span>
+          {feedbackReady && <a class="footer-staff-link" href={root + '/admin/feedback/'}>工作人員留言管理 ↗</a>}
           <span>字體：<a href="https://github.com/ButTaiwan/gensen-font" target="_blank" rel="noopener noreferrer">源泉圓體</a>・<a href={root + '/fonts/SIL_Open_Font_License_1.1.txt'}>OFL 1.1</a></span>
         </div>
       </div>

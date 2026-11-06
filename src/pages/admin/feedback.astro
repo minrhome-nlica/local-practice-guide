@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/feedback-admin.css';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const api = (import.meta.env.PUBLIC_FEEDBACK_API_URL || '').replace(/\/$/, '');
+const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api);
+---
+<BaseLayout title="工作人員留言管理" description="地方實踐指南工作人員專用的留言審核入口。" noindex={true}>
+  <section class="page-hero staff-hero">
+    <div class="wrap">
+      <div class="breadcrumbs"><a href={root + '/'}>首頁</a> / 工作人員留言管理</div>
+      <span class="eyebrow">STAFF ONLY / MODERATION</span>
+      <h1 class="page-title">讀者留言管理</h1>
+      <p>在這裡審核讀者提問、內容更正與補充資訊，也能直接回覆與標記已處理。</p>
+    </div>
+  </section>
+  <section class="section-spacer">
+    <div class="wrap staff-shell" id="guide-feedback-admin" data-api={api} data-root={root} data-pagefind-ignore>
+      <aside class="staff-safety" role="note">
+        <strong>管理員專用</strong>
+        此頁面由 Cloudflare Worker 驗證管理金鑰，未通過驗證不能讀取或修改留言。
+        若瀏覽器網址列顯示「不安全」或 HTTPS 憑證錯誤，請勿輸入管理金鑰。
+      </aside>
+      {ready ? (
+        <>
+          <section class="staff-login" id="staff-login" aria-labelledby="staff-login-title">
+            <div class="staff-panel-head">
+              <span class="staff-icon" aria-hidden="true">✳</span>
+              <div>
+                <h2 id="staff-login-title">工作人員驗證</h2>
+                <p>輸入先前設於 Cloudflare Worker 的 <code>ADMIN_TOKEN</code>。</p>
+              </div>
+            </div>
+            <form id="staff-login-form" autocomplete="off">
+              <label for="staff-admin-token">管理金鑰</label>
+              <div class="staff-login-row">
+                <input id="staff-admin-token" name="admin_token" type="password" required minlength="32"
+                  autocomplete="off" autocapitalize="off" spellcheck="false"
+                  placeholder="輸入管理金鑰（至少 32 個字元）"/>
+                <button type="submit" class="staff-primary" id="staff-login-button">進入管理頁面</button>
+              </div>
+              <p class="staff-hint">金鑰只會在本次開啟頁面期間使用，不會寫入網址、網站程式或瀏覽器儲存空間。關閉或重新整理頁面後需再次驗證。</p>
+              <p class="staff-message" id="staff-login-message" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+          <section class="staff-dashboard" id="staff-dashboard" hidden aria-label="留言管理清單">
+            <div class="staff-dashboard-top">
+              <div><span class="eyebrow">MODERATION QUEUE</span><h2>留言審核</h2></div>
+              <div class="staff-toolbar">
+                <button class="staff-secondary" type="button" id="staff-refresh">重新整理</button>
+                <button class="staff-secondary" type="button" id="staff-logout">登出</button>
+              </div>
+            </div>
+            <div class="staff-tabs" role="group" aria-label="依處理狀態篩選">
+              <button type="button" class="staff-tab" data-status="pending" aria-pressed="true">待審核</button>
+              <button type="button" class="staff-tab" data-status="approved" aria-pressed="false">已公開</button>
+              <button type="button" class="staff-tab" data-status="resolved" aria-pressed="false">已處理</button>
+              <button type="button" class="staff-tab" data-status="rejected" aria-pressed="false">已拒絕</button>
+            </div>
+            <p id="staff-list-status" class="staff-message" role="status" aria-live="polite"></p>
+            <div class="staff-items" id="staff-items"></div>
+            <p class="staff-hint">每次最多載入目前狀態的前 100 則留言；若留言量增加，可再擴充分頁與個別工作人員帳號。</p>
+          </section>
+        </>
+      ) : (
+        <div class="staff-standby">
+          <h2>留言管理服務尚未設定完成</h2>
+          <p>目前網站尚未連接留言 API，因此不能使用此管理頁面。</p>
+        </div>
+      )}
+    </div>
+  </section>
+  {ready && <script src={root + '/scripts/feedback-admin.js'} is:inline defer></script>}
+</BaseLayout>
