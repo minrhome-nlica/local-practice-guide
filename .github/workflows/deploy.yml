@@ -90,6 +90,24 @@ jobs:
           assert 'type="number"' not in calc, 'unformatted numeric field in calculator'
           print('Comment grouping UI, three category columns, and calculator fields verified.')
           PY
+      - name: Verify mobile reading layout guardrails
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          css = Path('src/styles/global.css').read_text()
+          notes = Path('src/styles/feedback.css').read_text()
+          for token in ['.hero-grid .hero-art{', 'margin:20px auto 0', 'grid-column:1/-1;grid-row:2', 'max-width:650px', 'prefers-reduced-motion']:
+              assert token in css, token
+          section = notes.split('.guide-article .guide-annotated-paragraph{',1)[1].split('}',1)[0]
+          assert 'background:' not in section
+          assert 'border-left:' not in section
+          assert 'padding-left:' not in section
+          assert 'guide-annotation-marker' in notes
+          homepage=Path('dist/index.html').read_text()
+          assert '常用主題：' in homepage
+          assert '搜尋補助、經費編列、核銷' in homepage
+          print('Responsive hero and marker-only annotation guardrails validated.')
+          PY
       - name: Check feedback scripts and D1 schema
         run: |
           node --check services/feedback-worker/src/index.js

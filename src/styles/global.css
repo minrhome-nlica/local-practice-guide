@@ -3446,3 +3446,124 @@ main table :is(th, td) p {
   .action-card.guide-question-card,.guide-question-card-arrow{transition:none}
   .action-card.guide-question-card:hover,.guide-question-card:hover .guide-question-card-arrow{transform:none}
 }
+
+
+/* Cross-device reading polish, 2026-11: responsive hero and safe content bounds.
+   Keep these rules after the older legacy media queries so they win. */
+:where(main, .wrap, .hero-grid, .entry-grid, .entry-layout, .section-head,
+  .knowledge-index-groups, .guide-feedback, .nhi-layout) { min-width:0; }
+:where(.entry-card, .topic-card, .path-card, .action-card, .page-hero,
+  .search-result, .download-banner, .guide-table-frame) { max-width:100%; min-width:0; }
+:where(.article, .page-hero, .search-results, .section, .notice)
+  :is(img,video,picture,iframe) { max-width:100%; height:auto; }
+:where(.entry-card, .topic-card, .path-card, .action-card, .file-row,
+  .download-banner, .search-result) :is(h2,h3,p,strong,small,a) {
+  overflow-wrap:break-word;
+}
+.article :is(pre, code) { overflow-wrap:anywhere; }
+.article pre { white-space:pre; overflow-x:auto; }
+:where(.guide-feedback-dialog, .guide-feedback-notes-dialog) { max-width:calc(100vw - 24px); }
+@media (max-width:950px) {
+  .site-header .mobile-panel{
+    right:0; top:calc(100% + 10px);
+    width:min(285px,calc(100vw - 32px));
+    max-height:calc(100dvh - 90px);
+    overflow-y:auto; overscroll-behavior:contain;
+    box-shadow:0 12px 38px #15271c33;
+    border:1px solid #dfe6dc;
+  }
+  .site-header .mobile-panel a { padding:12px 11px;line-height:1.65; }
+  .entry-grid { grid-template-columns:minmax(0,1fr); }
+  .hero-grid > * { min-width:0; }
+}
+@media (min-width:651px) and (max-width:950px) {
+  .hero-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:25px;}
+  .hero-art{transform:none;min-width:0;height:350px;}
+  .hero-art::before{width:260px;height:260px;}
+  .hero-art::after{width:200px;height:200px;}
+  .hero-art .art-paper{transform:scale(.83) rotate(-8deg);}
+  .hero-title{font-size:clamp(34px,4.2vw,43px);letter-spacing:.02em;}
+}
+@media (max-width:650px) {
+  .wrap{width:calc(100% - 32px);}
+  .site-header .header-inner{min-height:69px;gap:10px;}
+  .site-header .brand{flex:1;min-width:0;gap:8px;}
+  .site-header .brand-logo{width:clamp(78px,24vw,105px);height:auto;max-height:52px;}
+  .site-header .brand strong{font-size:clamp(13px,4vw,17px);letter-spacing:.01em;line-height:1.5;}
+  .site-header .mobile-nav{flex:none;}
+  .site-header .mobile-nav summary{min-width:38px;min-height:40px;display:grid;place-items:center;}
+  .hero-grid{
+    display:grid;grid-template-columns:minmax(0,1fr);
+    gap:0;min-height:0;padding-top:37px;padding-bottom:32px;
+  }
+  .hero-grid > :first-child{min-width:0;}
+  .hero .eyebrow{font-size:10px;line-height:1.65;letter-spacing:.11em;overflow-wrap:break-word;}
+  .hero-title{
+    margin:19px 0 23px;
+    font-size:clamp(30px,8.2vw,38px);
+    line-height:1.5;letter-spacing:.015em;
+    overflow-wrap:break-word;
+  }
+  .hero-lead{max-width:100%;font-size:16px;line-height:1.9;margin:0;}
+  /* Two-line search form keeps its full prompt and button visible on narrow phones. */
+  .hero .search-form,.page-hero .search-form{
+    display:grid;grid-template-columns:44px minmax(0,1fr);
+    gap:0;margin-top:24px;width:100%;max-width:100%;
+    border-radius:10px;isolation:isolate;
+  }
+  .hero .search-form > span,.page-hero .search-form > span{
+    grid-column:1;grid-row:1;align-self:center;justify-self:center;
+    margin:0;font-size:26px;line-height:1;
+  }
+  .hero .search-form > input,.page-hero .search-form > input{
+    grid-column:2;grid-row:1;min-width:0;width:100%;
+    padding:14px 12px 14px 0;font-size:16px;line-height:1.5;
+  }
+  .hero .search-form > button,.page-hero .search-form > button{
+    grid-column:1/-1;grid-row:2;min-width:0;width:100%;min-height:46px;
+    padding:11px 14px;font-size:15px;line-height:1.5;white-space:normal;
+  }
+  .hero .popular{display:flex;align-items:baseline;flex-wrap:wrap;column-gap:10px;row-gap:8px;
+    font-size:13px;line-height:1.7;margin:13px 0 0;}
+  .hero .popular a{margin:0;}
+  /* The previous negative margin lifted the image over the input/button.
+     Restore normal grid flow and scale the artwork itself instead. */
+  .hero-grid .hero-art{
+    width:100%;max-width:350px;min-width:0;
+    height:232px;margin:20px auto 0;
+    transform:none;overflow:hidden;isolation:isolate;
+  }
+  .hero-grid .hero-art::before{width:clamp(205px,65vw,270px);height:clamp(205px,65vw,270px);}
+  .hero-grid .hero-art::after{width:clamp(160px,48vw,210px);height:clamp(160px,48vw,210px);}
+  .hero-grid .art-paper{transform:scale(.66) rotate(-8deg);transform-origin:center center;flex:none;}
+  .hero-grid .hero-art :is(.sun,.ridge,.line){max-width:none;}
+  .section{padding:46px 0;}
+  .section-head{gap:10px;}
+  .section-title{font-size:clamp(25px,7vw,34px);line-height:1.5;}
+  .page-hero{padding:37px 0 30px;}
+  .page-title{overflow-wrap:break-word;}
+  .entry-summary{font-size:16px;line-height:1.9;padding-left:15px;}
+  .article.guide-article{font-size:16px;line-height:1.95;}
+  .article.guide-article :is(h2,h3,h4){overflow-wrap:anywhere;}
+  .article.guide-article :is(figure,blockquote,pre,details){max-width:100%;min-width:0;}
+  .article :is(table, td,th){max-width:100%;}
+  .section-head .text-link{padding:5px 0;}
+  .file-row{gap:12px;padding:17px;}
+  .file-row a{max-width:100%;}
+  .download-banner{padding:24px 20px;}
+  .site-footer .footer-grid{gap:17px;}
+  .site-footer .footer-bottom{gap:12px;}
+  .site-footer .footer-meta{flex-wrap:wrap;}
+  .section-spacer{padding:33px 0 55px;}
+}
+@media (max-width:360px) {
+  .hero-title{font-size:30px;}
+  .hero-grid .hero-art{height:215px;margin-top:14px;}
+  .hero .eyebrow{font-size:9px;letter-spacing:.06em;}
+  .site-header .brand-logo{width:80px;}
+  .site-header .brand strong{font-size:13px;}
+  .chapter-jump-grid{grid-template-columns:minmax(0,1fr);}
+}
+@media (prefers-reduced-motion:reduce) {
+  html{scroll-behavior:auto;}
+}

@@ -71,15 +71,13 @@
 
 /* Highlight the WHOLE paragraph, not the individual selected character range. */
 .guide-article .guide-annotated-paragraph{
-  border-left:3px solid #93b79b;
-  background:linear-gradient(90deg,rgba(226,238,224,.65),rgba(244,249,242,.42));
-  border-radius:0 7px 7px 0;
-  padding-left:12px;
+  /* Preserve each article's existing box and paragraph styling.
+     Only the small, clickable comment-count badge marks the paragraph. */
   scroll-margin-top:110px;
 }
 .guide-article .guide-annotation-marker{
   display:inline-flex;align-items:center;gap:5px;
-  margin:5px 0 3px 9px;padding:4px 10px;
+  margin:3px 0 3px 8px;padding:4px 10px;
   border-radius:999px;border:1px solid #b9d4be;
   background:#edf5e9;color:#315e43;
   font:700 11px/1.5 "GenSen Rounded Guide","Noto Sans TC",sans-serif;
