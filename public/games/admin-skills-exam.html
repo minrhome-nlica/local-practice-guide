@@ -1,0 +1,2883 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>行政技能小考試｜報到第一天：馬鞍社區協會｜製作者：石竣旻</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=LXGW+WenKai+TC&family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 夜間辦公室：深藍框、米白對話框、金色任務標記；文件維持紙本 */
+  --night:#151a2e;
+  --frame:#232a4a;
+  --frame-2:#2f3866;
+  --cream:#f4efe1;
+  --gold:#f5d22e;
+  --ink:#1c2420;
+  --paper:#fbfbf7;
+  --rule:#c6d0c8;
+  --blue:#24477a;
+  --seal:#c4342c;
+  --note:#f6e48c;
+  --ok:#3fae68;
+  --font-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --font-hand:"LXGW WenKai TC","Kaiti TC","DFKai-SB",var(--font-body);
+  --font-pixel:"Press Start 2P",monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--night);color:var(--cream);font-family:var(--font-body);font-size:16px;line-height:1.65;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+#game{max-width:1040px;margin:0 auto;padding:12px 16px 24px;display:flex;flex-direction:column;gap:10px}
+
+/* 像素框 */
+.px{background:var(--frame);border:4px solid var(--cream);box-shadow:0 0 0 4px var(--night),0 0 0 8px var(--frame-2);border-radius:2px}
+.pbtn{background:var(--frame-2);border:3px solid var(--cream);padding:6px 12px;font-weight:700;border-radius:0;box-shadow:inset -3px -3px 0 rgba(0,0,0,.35)}
+.pbtn:hover{background:var(--gold);color:var(--night)}
+.pbtn:active{box-shadow:inset 3px 3px 0 rgba(0,0,0,.35)}
+.pbtn.gold{background:var(--gold);color:var(--night)}
+.pbtn:disabled{opacity:.45;cursor:not-allowed;background:var(--frame-2);color:var(--cream)}
+
+/* HUD */
+.hud{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.hud .org{font-family:var(--font-pixel);font-size:10px;letter-spacing:.06em;color:var(--gold)}
+.hud .org b{font-family:var(--font-body);font-size:15px;color:var(--cream);margin-left:8px;letter-spacing:.1em}
+.hud .btns{display:flex;gap:8px;align-items:center}
+.hud .stars{font-family:var(--font-pixel);font-size:11px;color:var(--gold)}
+.goal{display:flex;gap:10px;align-items:center;padding:6px 12px;font-size:15px;background:#10142a;border:2px solid var(--frame-2)}
+.goal .tag{font-family:var(--font-pixel);font-size:9px;color:var(--night);background:var(--gold);padding:4px 6px;flex:none}
+
+/* 畫面 */
+#stageWrap{position:relative;align-self:center;line-height:0}
+canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges;touch-action:none;cursor:pointer}
+#dialog{position:absolute;left:8px;right:8px;bottom:8px;line-height:1.6;padding:12px 16px 14px;min-height:92px;cursor:pointer;user-select:none}
+#dialog .name{position:absolute;top:-16px;left:12px;background:var(--gold);color:var(--night);font-weight:900;font-size:14px;padding:1px 10px;border:3px solid var(--night)}
+#dialog .text{font-size:17px;font-weight:500;padding-top:6px;min-height:2.6em}
+#dialog .more{position:absolute;right:12px;bottom:6px;font-size:12px;color:var(--gold);animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* 手機操作 */
+#pad{display:none;justify-content:space-between;align-items:center;padding:4px 8px;user-select:none;-webkit-user-select:none}
+.dpad{display:grid;grid-template-columns:repeat(3,54px);grid-template-rows:repeat(3,54px)}
+.dpad button,.abtn{touch-action:none;background:var(--frame-2);border:3px solid var(--cream);border-radius:0;font-size:20px;font-weight:900;box-shadow:inset -3px -3px 0 rgba(0,0,0,.35)}
+.dpad button.on,.abtn.on{background:var(--gold);color:var(--night)}
+.dpad .u{grid-area:1/2}.dpad .l{grid-area:2/1}.dpad .r{grid-area:2/3}.dpad .d{grid-area:3/2}
+.abtn{width:76px;height:76px;border-radius:50%;font-family:var(--font-pixel);font-size:18px}
+.keys{font-size:13px;color:#a9b0cc;margin:0;text-align:center}
+.keys kbd{font-family:var(--font-pixel);font-size:9px;border:2px solid #a9b0cc;padding:2px 4px;margin:0 2px}
+@media (pointer:coarse),(max-width:760px){#pad{display:flex}.keys.desk{display:none}}
+@media (pointer:fine) and (min-width:761px){.keys.touch{display:none}}
+
+/* 面板 */
+#panel{position:fixed;inset:0;background:rgba(10,12,24,.82);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 14px;z-index:5}
+#panel[hidden]{display:none}
+.pin{width:100%;max-width:980px;padding:18px;line-height:1.7;margin:auto 0}
+.phead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.phead h2{margin:0;font-size:20px;font-weight:900}
+.phead .lvno{font-family:var(--font-pixel);font-size:10px;color:var(--gold);display:block;margin-bottom:4px}
+.stage{display:grid;gap:16px}
+@media (min-width:860px){.stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}}
+.col{display:flex;flex-direction:column;gap:14px}
+
+.doc{background:var(--paper);color:var(--ink);padding:16px;border-radius:2px}
+.doc h3{font-size:17px;text-align:center;letter-spacing:.2em;border-bottom:3px double var(--ink);padding-bottom:6px;margin:0 0 10px}
+.doc .meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;color:#5a665f;margin-bottom:8px}
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid #9fb0a5;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#eef2ec;font-weight:500;white-space:nowrap}
+td.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.doc .remark{font-size:13px;margin-top:8px;color:#5a665f}
+
+.qbox{position:relative;background:#10142a;border:3px solid var(--frame-2);padding:16px}
+.progress{display:flex;gap:6px;margin-bottom:12px}
+.progress i{flex:1;height:6px;background:#3a4270}
+.progress i.on{background:var(--gold)}
+.q{font-size:18px;font-weight:700;margin:0 0 14px;padding-right:70px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;background:var(--frame-2);border:3px solid #6670a8;padding:10px 14px;border-radius:0}
+.opt::before{content:"▶ ";color:transparent}
+.opt:not(:disabled):hover{border-color:var(--gold)}
+.opt:not(:disabled):hover::before{color:var(--gold)}
+.opt.wrong{border-color:var(--seal);color:#e99b95;text-decoration:line-through}
+.opt.right{border-color:var(--ok);background:#1f4a33;font-weight:700}
+.opt:disabled{cursor:default}
+.numrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.numrow label{width:100%;font-size:13px;color:#a9b0cc}
+.numrow input{font:inherit;font-size:20px;width:180px;padding:8px 12px;border:3px solid var(--cream);background:var(--paper);color:var(--ink);border-radius:0;font-variant-numeric:tabular-nums}
+
+.sticky{background:var(--note);color:#3a3216;font-family:var(--font-hand);font-size:17px;line-height:1.65;padding:12px 16px 10px;box-shadow:4px 4px 0 rgba(0,0,0,.4);transform:rotate(-.6deg)}
+.sticky .sig{text-align:right;font-size:14px;opacity:.75}
+.good{background:#1f4a33;border-left:6px solid var(--ok);padding:10px 14px}
+.good b{color:#9be3b5}
+.gain{font-size:14px;color:var(--gold);font-weight:700}
+.hints{display:flex;flex-direction:column;gap:8px}
+.hint{border:2px dashed #8f99d6;padding:8px 12px;background:#1a2045;font-size:15px}
+.hint .lv{font-size:12px;font-weight:700;color:#b9c2f2;letter-spacing:.08em}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.fine{font-size:13px;color:#a9b0cc}
+
+.stamp{position:absolute;right:12px;top:10px;width:62px;height:62px;border:3px solid var(--seal);border-radius:50%;color:var(--seal);font-weight:900;font-size:26px;display:grid;place-items:center;transform:rotate(-14deg);pointer-events:none;background:rgba(255,255,255,.04)}
+.stamp.no{border-radius:4px;font-size:19px;width:62px;height:42px;color:#7fa3e0;border-color:#7fa3e0;top:14px}
+.stamp.anim{animation:press .32s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes press{from{transform:rotate(-14deg) scale(1.9);opacity:0}to{transform:rotate(-14deg) scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.stamp.anim,#dialog .more{animation:none}}
+
+.center{text-align:center}
+.bigstars{font-size:40px;letter-spacing:6px;color:var(--gold)}
+.stars-s{color:var(--gold);letter-spacing:2px;white-space:nowrap}
+.off{color:#4a5288}
+.notelist{display:flex;flex-direction:column;gap:10px;padding:0;margin:0;list-style:none}
+.notelist li{border-left:6px solid var(--note);background:#1a2045;padding:10px 14px}
+.notelist li b{display:block;color:var(--note)}
+.notelist li.locked{border-left-color:#4a5288;color:#8088b8}
+.notelist li.locked b{color:#8088b8}
+.qlist{display:flex;flex-direction:column;gap:8px}
+.qrow{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;background:#10142a;border:3px solid var(--frame-2);padding:10px 12px}
+.qrow .no{font-family:var(--font-pixel);font-size:11px;color:var(--gold)}
+.qrow .d{font-size:13px;color:#a9b0cc}
+.badge{display:inline-block;font-weight:900;font-size:26px;color:var(--seal);background:var(--paper);border:4px solid var(--seal);padding:4px 18px;transform:rotate(-3deg)}
+.title-screen{text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center;padding:20px 8px}
+.title-screen .k{font-family:var(--font-pixel);font-size:11px;color:var(--gold);letter-spacing:.1em}
+.title-screen h1{font-size:clamp(38px,9vw,60px);font-weight:900;margin:0;letter-spacing:.08em;text-shadow:4px 4px 0 var(--seal)}
+.title-screen p{max-width:32em;margin:0}
+.rolechip{font-size:13px;font-weight:700;background:var(--cream);color:var(--night);padding:2px 10px;border:3px solid var(--gold)}
+.rtag{display:inline-block;font-size:13px;background:var(--gold);color:var(--night);padding:0 8px;margin-right:8px;vertical-align:2px}
+.grouph{margin:10px 0 8px;font-size:16px;color:var(--gold)}
+.lvno{font-family:var(--font-pixel);font-size:10px;color:var(--gold);display:block;margin-bottom:4px}
+footer{max-width:992px;margin:0 auto;padding:0 16px 28px;font-size:12px;color:#8088b8;text-align:center}
+footer a{color:#b9c2f2}
+
+/* ===== 午後陽光：暖色、金框、襯線字 ===== */
+:root{--night:#140e09;--frame:#1f160d;--frame-2:#3b2a16;--cream:#f6ead0;--gold:#d9b46a;--font-pixel:"Cinzel",serif;--font-serif:"Noto Serif TC","Songti TC",serif}
+body{background:radial-gradient(ellipse 90% 60% at 50% 0%,#2e2014 0%,#120c07 70%);color:var(--cream)}
+.px{background:var(--frame);border:2px solid #c9a45c;box-shadow:inset 0 0 0 4px var(--frame),inset 0 0 0 5px rgba(201,164,92,.45),0 12px 28px rgba(0,0,0,.45);border-radius:0}
+.pbtn{background:#2a1d10;border:2px solid #c9a45c;box-shadow:none;font-family:var(--font-serif);border-radius:0}
+.pbtn:hover{background:#c9a45c;color:#1c130a}
+.pbtn:active{box-shadow:inset 0 2px 0 rgba(0,0,0,.35)}
+.pbtn.gold{background:#c9a45c;color:#1c130a;border-color:#fff1c9}
+.pbtn:disabled{background:#2a1d10;color:var(--cream)}
+.hud .org{font-family:var(--font-pixel);font-size:12px;letter-spacing:.22em;color:#c9a45c}
+.hud .org b{font-family:var(--font-serif);font-size:17px;font-weight:900}
+.hud .stars{font-family:var(--font-pixel);font-size:14px;color:#f0d79a}
+.rolechip{background:#f3e6c4;color:#3b2a12;border:2px solid #8a6a2c;font-family:var(--font-serif);font-weight:900}
+.goal{background:rgba(28,19,10,.85);border:1px solid #8a6a2c;font-family:var(--font-serif)}
+.goal .tag{font-family:var(--font-pixel);font-size:11px;letter-spacing:.14em;background:#c9a45c;color:#1c130a}
+
+#stageWrap{padding:0;line-height:normal}
+#scene{position:relative;overflow:hidden;background:radial-gradient(ellipse 80% 70% at 50% 25%,#3d2a18 0%,#160e08 78%);perspective-origin:50% 16%;touch-action:none;cursor:pointer;user-select:none;-webkit-user-select:none}
+#plane{position:absolute;left:0;top:0;width:1280px;height:832px;transform-origin:0 0;transform-style:preserve-3d;--inv:1}
+#plane img{image-rendering:pixelated;display:block;-webkit-user-drag:none}
+#plane .floor,#plane .wall,#plane .hit,#plane .bb,#plane .shadow{position:absolute}
+#plane .wall{transform-origin:50% 100%;transform:rotateX(-90deg)}
+#plane .hit{width:64px;height:64px}
+#plane .bb{transform-origin:50% 100%}
+#plane .char{width:60px;height:108px;transform-style:preserve-3d}
+#plane .char .spr{width:60px;height:108px}
+#plane .shadow{width:48px;height:16px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(40,18,4,.6),rgba(40,18,4,0) 70%);pointer-events:none}
+.ntagw{position:absolute;left:50%;bottom:100%;transform:translate(-50%,-2px);display:flex;flex-direction:column;align-items:center;pointer-events:none;font-size:calc(15px * var(--inv))}
+.ntag{background:#f3e6c4;color:#3b2a12;border:.13em solid #8a6a2c;box-shadow:0 0 0 .13em #f3e6c4,0 .2em .5em rgba(0,0,0,.45);padding:0 .6em;font:700 1em/1.5 var(--font-serif);white-space:nowrap}
+.ntagpt{width:.5em;height:.5em;background:#8a6a2c;transform:rotate(45deg);margin-top:-.2em}
+.ntagw.me .ntag{background:#c9a45c;color:#24170a;border-color:#fff1c9;box-shadow:0 0 0 .13em #6b4d1c,0 0 .9em rgba(255,214,140,.85);font-weight:900}
+.ntagw.me .ntagpt{background:#fff1c9}
+.nmark{width:1.7em;height:1.7em;border-radius:50%;display:grid;place-items:center;margin-bottom:.35em;background:#f0d79a;color:#24170a;border:.13em solid #fff1c9;font:900 1.1em/1 var(--font-pixel);box-shadow:0 0 1em rgba(255,214,140,.95);animation:markbob 1.1s ease-in-out infinite}
+@keyframes markbob{50%{transform:translateY(-.3em)}}
+.fx{position:absolute;inset:0;pointer-events:none}
+.grade{background:linear-gradient(160deg,rgba(255,200,120,.5) 0%,rgba(255,150,70,.16) 50%,rgba(90,45,100,.3) 100%);mix-blend-mode:soft-light}
+.beams i{position:absolute;top:-8%;width:7%;height:92%;transform-origin:50% 0;transform:rotate(-24deg);background:linear-gradient(180deg,rgba(255,238,196,.62),rgba(255,214,150,.16) 60%,rgba(255,214,150,0));filter:blur(12px);mix-blend-mode:screen}
+.dust b{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff3d1;box-shadow:0 0 6px 2px rgba(255,228,170,.8);animation:drift 9s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translate(0,0);opacity:.15}50%{transform:translate(14px,-18px);opacity:.9}}
+.vig{background:radial-gradient(ellipse 78% 74% at 50% 45%,rgba(0,0,0,0) 55%,rgba(38,20,6,.62) 100%)}
+.dof{backdrop-filter:blur(2.5px);-webkit-backdrop-filter:blur(2.5px)}
+.dof.top{bottom:auto;height:22%;-webkit-mask-image:linear-gradient(#000,rgba(0,0,0,0));mask-image:linear-gradient(#000,rgba(0,0,0,0))}
+.dof.bot{top:auto;height:14%;-webkit-mask-image:linear-gradient(rgba(0,0,0,0),#000);mask-image:linear-gradient(rgba(0,0,0,0),#000)}
+@media (prefers-reduced-motion:reduce){.dust b,.nmark{animation:none}}
+
+#dialog{background:linear-gradient(180deg,rgba(30,21,12,.93),rgba(16,11,6,.96));border:2px solid #c9a45c;box-shadow:inset 0 0 0 4px rgba(16,11,6,.9),inset 0 0 0 5px rgba(201,164,92,.45),0 14px 30px rgba(0,0,0,.5);border-radius:0;left:4%;right:4%;bottom:14px;padding:18px 26px 16px}
+#dialog .name{background:#c9a45c;color:#24170a;border:2px solid #fff1c9;font-family:var(--font-serif);font-size:15px;letter-spacing:.08em;top:-17px;left:22px;padding:1px 16px}
+#dialog .text{font-family:var(--font-serif);font-size:19px;font-weight:600;color:#f6ead0}
+#dialog .more{color:#f0d79a}
+
+.dpad button,.abtn{background:#2a1d10;border:2px solid #c9a45c;color:#f0d79a;box-shadow:inset 0 -3px 0 rgba(0,0,0,.35)}
+.dpad button{border-radius:6px}
+.dpad button.on,.abtn.on{background:#c9a45c;color:#1c130a}
+.abtn{font-family:var(--font-pixel);font-size:22px}
+.keys{color:#c9b896}
+.keys kbd{font-family:var(--font-pixel);font-size:10px;border-color:#8a6a2c;color:#f0d79a}
+
+#panel{background:rgba(12,8,4,.84)}
+.phead h2,.title-screen h1,.q,.pin h3,.qrow b,.notelist li b{font-family:var(--font-serif)}
+.phead .lvno,.lvno{font-family:var(--font-pixel);font-size:11px;letter-spacing:.18em;color:#c9a45c}
+.title-screen .k{font-family:var(--font-pixel);font-size:12px;letter-spacing:.24em;color:#c9a45c}
+.title-screen h1{text-shadow:0 0 24px rgba(255,200,120,.45),3px 3px 0 #6b4d1c;font-weight:900}
+.qbox{background:#1a120a;border:2px solid #5a4630}
+.progress i{background:#4a3a22}
+.progress i.on{background:#d9b46a}
+.opt{background:#2a1d10;border:2px solid #6b5228;font-family:var(--font-serif)}
+.opt:not(:disabled):hover{border-color:#e2c98e}
+.opt:not(:disabled):hover::before{color:#e2c98e}
+.hint{background:#241a0f;border:2px dashed #a8874a}
+.hint .lv{color:#e2c98e}
+.numrow label,.fine{color:#c9b896}
+.numrow input{border-color:#c9a45c}
+.notelist li{background:#241a0f}
+.notelist li b{color:#f0d79a}
+.notelist li.locked{border-left-color:#5a4630;color:#9c8a68}
+.notelist li.locked b{color:#9c8a68}
+.qrow{background:#1a120a;border:2px solid #3b2a16}
+.qrow .no{font-family:var(--font-pixel);color:#c9a45c}
+.qrow .d{color:#c9b896}
+.off{color:#5a4630}
+.grouph{color:#e2c98e;font-family:var(--font-serif)}
+.rtag{background:#c9a45c;color:#1c130a}
+.gain{color:#f0d79a}
+.bigstars,.stars-s{color:#f0c96a}
+footer{color:#9c8a68}
+footer a{color:#e2c98e}
+
+/* ===== 對話式作答、計算機、小抄、表情 ===== */
+.qd{position:absolute;left:3%;right:3%;bottom:12px;max-height:82%;overflow:auto;z-index:3;padding:14px 20px 16px;line-height:1.6;overscroll-behavior:contain}
+@media (pointer:coarse),(max-width:760px){.qd{position:fixed;left:8px;right:8px;bottom:8px;max-height:70vh;z-index:4;padding:12px 14px 14px}}
+body.questing #pad{visibility:hidden}
+.qd-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-family:var(--font-pixel);font-size:11px;letter-spacing:.1em;color:#c9a45c}
+.qd-x{background:none;border:1px solid #8a6a2c;color:#e2c98e;font:500 13px var(--font-serif);padding:3px 12px;cursor:pointer;flex:none}
+.qd-x:hover{background:#3b2a16}
+.qd .progress{margin:8px 0 10px}
+.qd-name{display:inline-block;background:#c9a45c;color:#24170a;border:2px solid #fff1c9;font:900 15px var(--font-serif);padding:1px 14px;letter-spacing:.06em}
+.qd-q{font:700 19px/1.6 var(--font-serif);margin:8px 0 12px;color:#f6ead0}
+.qd-opts{display:grid;gap:8px}
+@media (min-width:900px){.qd-opts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.qd-num{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.qd-num label{width:100%;font-size:13px;color:#c9b896}
+.qd-num input{font:inherit;font-size:20px;width:170px;padding:6px 10px;border:2px solid #c9a45c;background:#fbfbf7;color:#1c2420;border-radius:0;font-variant-numeric:tabular-nums}
+.qd-tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 2px}
+.qd .sticky,.qd .good,.qd .hints,.qd .gain{margin-top:10px}
+.qd-next{display:flex;justify-content:flex-end;margin-top:10px}
+.qd .stamp{top:36px;right:18px}
+.calc{margin-top:10px;background:#120c07;border:2px solid #5a4630;padding:10px;max-width:340px}
+.calc-d{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;background:#e7eed5;color:#1d2a14;font:600 17px/1.4 var(--font-body);font-variant-numeric:tabular-nums;padding:6px 10px;min-height:38px;box-shadow:inset 0 2px 0 rgba(0,0,0,.15)}
+.calc-r{font-weight:900;font-size:19px}
+.calc-k{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.calc-k button{min-height:44px;background:#2a1d10;border:1px solid #8a6a2c;color:#f6ead0;font:700 17px var(--font-body);border-radius:4px;cursor:pointer}
+.calc-k button:hover{border-color:#f0d79a}
+.calc-k button:active{background:#3b2a16}
+.calc-k .op{color:#f0d79a}
+.calc-k .pct{grid-column:span 2;background:#5a4220;color:#fff1c9}
+.calc-fill{width:100%;margin-top:8px}
+.chip{font:inherit;background:#fff3c4;border:1px dashed #b8962e;color:#3b2a12;padding:0 3px;border-radius:3px;cursor:pointer}
+.chip:hover,.chip:focus-visible{background:#f6e48c}
+.nemo{display:none}
+.nemo.show{display:grid;place-items:center;min-width:1.8em;height:1.8em;padding:0 .35em;margin-bottom:.3em;background:#fffaf0;color:#3b2a12;border:.13em solid #3b2a12;border-radius:1em;font:900 1.1em/1 var(--font-serif);box-shadow:0 .2em .4em rgba(0,0,0,.35);animation:pop .25s ease-out}
+.nemo.happy{background:#fff1c9;color:#b25a00}
+.nemo.worry{background:#e8eef8;color:#2f4a7a}
+@keyframes pop{from{transform:scale(.4)}to{transform:scale(1)}}
+#plane .char.hop .spr{animation:hop .55s ease-out}
+#plane .char.shake .spr{animation:shake .45s}
+@keyframes hop{30%{transform:translateY(-14px)}60%{transform:translateY(0)}78%{transform:translateY(-5px)}}
+@keyframes shake{20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
+#plane .ring{position:absolute;width:52px;height:52px;margin:6px;border-radius:50%;border:4px solid #f0d79a;box-shadow:0 0 18px rgba(255,214,140,.9),inset 0 0 14px rgba(255,214,140,.7);pointer-events:none;animation:ring 1.2s ease-in-out infinite}
+@keyframes ring{50%{transform:scale(.8);opacity:.6}}
+@media (prefers-reduced-motion:reduce){.nemo.show,#plane .char.hop .spr,#plane .char.shake .spr,#plane .ring{animation:none}}
+.goal .skip{margin-left:auto;font-size:13px;padding:2px 10px;flex:none}
+.wb{background:#f7f8f5;color:#1c2420;padding:16px;border:6px solid #b8c0c8;box-shadow:inset 0 0 0 2px #dfe4e8}
+.wb h3{font-family:var(--font-serif);margin:0 0 8px;color:#1f4a8a;font-size:19px}
+.wb-k{font-weight:700;color:#b0302a;margin:14px 0 6px}
+.wb-f{font:700 17px/1.6 var(--font-serif);background:#fffbe8;border:1px dashed #b8962e;padding:8px 12px}
+.wb-f span{font:400 13px var(--font-body);color:#5a665f}
+.wb-n{margin:14px 0 0;font-size:14px;color:#3b4a44}
+.wb th{background:#e6ecf2}
+.gloss{display:grid;gap:8px}
+@media (min-width:900px){.gloss{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.gloss details{background:#241a0f;border:2px solid #3b2a16;padding:8px 14px}
+.gloss summary{cursor:pointer;font:700 16px var(--font-serif);color:#f0d79a}
+.gloss details.seen summary::after{content:"　查過";font:500 12px var(--font-body);color:#9be3b5}
+.gloss p{margin:8px 0 2px}
+.samples{display:grid;gap:14px}
+@media (min-width:900px){.samples{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.sample .stitle{font:700 12px var(--font-body);color:#8a6a2c;margin-bottom:6px}
+.doc td.hl{background:#fff1b8;box-shadow:inset 0 -2px 0 #e1b23a}
+.doc sup{color:#b0302a;font-weight:900;margin-left:2px}
+.callouts{margin:10px 0 0;padding-left:1.4em;font-size:13px;color:#3b4a44}
+
+/* ===== 可互動提示 ===== */
+#olayer{position:absolute;inset:0;pointer-events:none;z-index:1}
+#olayer .olabel{position:absolute;left:0;top:0;font-size:14px;pointer-events:none;will-change:transform}
+#plane .oanchor{position:absolute;width:2px;height:2px;pointer-events:none}
+.near[hidden]{display:none}
+#olayer .opill{pointer-events:auto;cursor:pointer;display:inline-flex;align-items:center;gap:.35em;padding:.15em .7em .15em .45em;background:#1f5c5a;color:#f4fbf6;border:.13em solid #9fe0cf;border-radius:1em;font:700 1em/1.45 var(--font-serif);white-space:nowrap;box-shadow:0 0 0 .13em #0f3332,0 .25em .6em rgba(0,0,0,.45);animation:obob 2.4s ease-in-out infinite}
+#olayer .opill svg{width:1.05em;height:1.05em;flex:none}
+#olayer .olabel.is-near .opill{background:#2b8a78;border-color:#fff3c4;box-shadow:0 0 0 .13em #0f3332,0 0 1.1em rgba(160,240,215,.95);transform:scale(1.12)}
+@keyframes obob{50%{transform:translateY(-.25em)}}
+.near{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;display:flex;align-items:center;gap:10px;padding:6px 16px 6px 6px;background:rgba(20,14,8,.9);border:2px solid #9fe0cf;border-radius:999px;color:#f4fbf6;font:700 15px var(--font-serif);white-space:nowrap;box-shadow:0 6px 16px rgba(0,0,0,.45);pointer-events:none}
+.near-k{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#9fe0cf;color:#0f3332;font:900 14px var(--font-pixel)}
+@media (pointer:coarse),(max-width:760px){.near{bottom:8px;font-size:14px}#olayer .olabel{font-size:12px}}
+@media (prefers-reduced-motion:reduce){#olayer .opill{animation:none}}
+.abtn.ready{box-shadow:0 0 0 3px #9fe0cf,0 0 16px rgba(160,240,215,.9)}
+
+#olayer .olabel:not(.open) .otext{display:none}
+#olayer .olabel:not(.open) .opill{padding:.32em;gap:0;opacity:.92;animation:obob 2.4s ease-in-out infinite,glint 3s ease-in-out infinite}
+#olayer .olabel:not(.open) .opill svg{width:.95em;height:.95em}
+#olayer .olabel:not(.open) .opill:hover{opacity:1}
+@keyframes glint{0%,70%,100%{box-shadow:0 0 0 .13em #0f3332,0 .2em .5em rgba(0,0,0,.45)}82%{box-shadow:0 0 0 .13em #0f3332,0 0 .9em .2em rgba(160,240,215,.9)}}
+@media (prefers-reduced-motion:reduce){#olayer .olabel:not(.open) .opill{animation:none}}
+
+.qbox .calc{max-width:none;margin-top:14px}
+.qbox .qd-name{margin-bottom:6px}
+.chip.used{background:#c8f0de;border-color:#2b8a78}
+
+/* ===== v8：全螢幕版面、疊加標題列、矮對話框、浮動 A 鍵 ===== */
+html,body{height:100%;overflow:hidden}
+body{overscroll-behavior:none}
+#game{position:fixed;inset:0;max-width:none;margin:0;padding:0;display:block}
+#stageWrap{position:absolute;inset:0;width:auto!important;height:auto;padding:0;align-self:stretch;justify-self:stretch}
+#scene{width:100%!important;height:100%!important}
+#hud{position:absolute;left:0;right:0;top:0;z-index:3;display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"who goal btns";align-items:start;gap:8px 12px;padding:12px 14px 26px;padding-top:max(12px,env(safe-area-inset-top));pointer-events:none;background:linear-gradient(rgba(14,9,5,.78),rgba(14,9,5,.45) 60%,rgba(14,9,5,0))}
+#hud>*{pointer-events:auto}
+.hud-who{grid-area:who;display:flex;gap:8px;align-items:center;height:40px}
+.hud-who .stars{display:inline-block;background:rgba(31,22,13,.88);border:2px solid #8a6a2c;padding:3px 10px;font-size:14px;line-height:1.4;white-space:nowrap}
+.hud-who .stars.pop{animation:spop .35s ease-out}
+@keyframes spop{40%{transform:scale(1.3);background:#c9a45c;color:#1c130a}}
+#hud .goal{grid-area:goal;justify-self:start;max-width:620px;font-size:14px;line-height:1.5;padding:5px 10px;min-height:40px}
+.hud-r{grid-area:btns;display:flex;gap:6px}
+.ibtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:40px;min-width:40px;padding:0 12px;background:rgba(31,22,13,.9);border:2px solid #c9a45c;color:#f0d79a;font:700 14px var(--font-serif);border-radius:0;cursor:pointer}
+.ibtn:hover{background:#c9a45c;color:#1c130a}
+.ibtn svg{width:20px;height:20px;flex:none}
+.ibtn.muted{color:#9c8a68;border-color:#6b5228}
+#btnSound,#btnSet{padding:0;width:40px}
+@media (max-width:860px){
+  #hud{grid-template-columns:auto 1fr;grid-template-areas:"who btns" "goal goal";padding:10px 10px 22px;padding-top:max(10px,env(safe-area-inset-top))}
+  .hud-r{justify-self:end}
+  .ibtn{padding:0;width:40px}
+  .ibtn .ib-t{display:none}
+  #hud .goal{max-width:none;width:100%;font-size:13px;padding:4px 8px;min-height:0}
+  .hud-who .rolechip{font-size:12px;padding:1px 8px}
+  .hud-who .stars{font-size:13px;padding:2px 8px}
+}
+
+/* 對話框：矮、左側大頭貼 */
+#dialog{left:50%;right:auto;transform:translateX(-50%);width:min(780px,calc(100% - 24px));bottom:max(16px,env(safe-area-inset-bottom));min-height:0;display:flex;gap:14px;align-items:flex-start;padding:12px 18px 12px 12px;z-index:4}
+#dialog .name{position:static;display:inline-block;border:0;padding:0 10px;font-size:14px;margin-bottom:2px}
+#dialog .dbody{flex:1;min-width:0}
+#dialog .text{font-size:17px;line-height:1.6;padding-top:2px;min-height:3.2em}
+#dialog .more{right:12px;bottom:6px}
+.dport{position:relative;flex:none;width:76px;height:76px;background:linear-gradient(180deg,#f3e6c4,#e2cf9f);border:2px solid #c9a45c;box-shadow:inset 0 0 0 2px #fff1c9;overflow:hidden}
+.dport[hidden]{display:none}
+.dport-img{position:absolute;inset:0;background-repeat:no-repeat;image-rendering:pixelated;background-size:96px 172px;background-position:-12px -2px}
+.dport.say .dport-img{animation:dtalk .3s ease-out}
+@keyframes dtalk{40%{transform:translateY(-3px)}}
+.dport-emo{position:absolute;right:2px;top:2px;min-width:22px;height:22px;padding:0 4px;display:none;place-items:center;border-radius:11px;background:#fffaf0;color:#3b2a12;border:2px solid #3b2a12;font:900 13px/1 var(--font-serif)}
+.dport-emo.on{display:grid;animation:pop .25s ease-out}
+.dport-emo.happy{background:#fff1c9;color:#b25a00}
+.dport-emo.worry{background:#e8eef8;color:#2f4a7a}
+@media (max-width:760px){
+  #dialog{width:calc(100% - 16px);bottom:max(10px,env(safe-area-inset-bottom));gap:10px;padding:10px 14px 10px 10px}
+  .dport{width:60px;height:60px}
+  .dport-img{background-size:76px 136px;background-position:-9px -2px}
+  #dialog .text{font-size:16px;min-height:3.2em}
+}
+
+#dialog[hidden],.abtn[hidden],#hud[hidden]{display:none!important}
+.dof.top{height:9%}
+.nmark{background:#ffd76a;color:#2a1a06;border-color:#fff8dc;box-shadow:0 0 0 .12em #6b4d1c,0 0 1.2em rgba(255,200,90,1)}
+/* 浮動 A 鍵與可點的提示 */
+#pad,.keys.touch{display:none!important}
+.abtn{position:absolute;right:16px;bottom:max(18px,env(safe-area-inset-bottom));z-index:3;width:66px;height:66px;display:none;place-items:center;border-radius:50%;opacity:.88}
+.abtn.ready{opacity:1}
+@media (pointer:coarse),(max-width:760px){.abtn{display:grid}}
+body.talking .abtn,body.questing .abtn{display:none}
+.near{pointer-events:auto;cursor:pointer;bottom:20px}
+.near:hover{border-color:#fff3c4}
+@media (pointer:coarse),(max-width:760px){
+  .near{left:12px;right:96px;transform:none;bottom:max(28px,calc(env(safe-area-inset-bottom) + 10px));white-space:normal;justify-content:flex-start;padding:6px 14px 6px 6px;border-radius:24px;font-size:14px;width:max-content;max-width:calc(100% - 108px)}
+}
+#keyHint{position:absolute;left:14px;bottom:12px;z-index:2;margin:0;padding:4px 10px;background:rgba(20,14,8,.72);font-size:12px;pointer-events:none}
+body.talking #keyHint{display:none}
+@media (pointer:coarse),(max-width:760px){#keyHint{display:none}}
+@media (max-width:1100px){#keyHint{display:none}}
+
+/* 名牌：遠處收起、相鄰錯開 */
+.ntagw .ntag,.ntagw .ntagpt{transition:opacity .2s}
+.ntagw.far .ntag,.ntagw.far .ntagpt{opacity:0}
+.ntagw.lift{transform:translate(-50%,calc(-2px - 1.75em))}
+.nmark{width:2em;height:2em;font-size:1.2em}
+
+/* 畫面邊緣的「！」 */
+.edge{position:absolute;left:0;top:0;z-index:2;width:34px;height:34px;margin:-17px 0 0 -17px;display:grid;place-items:center;border-radius:50%;background:#f0d79a;color:#24170a;border:2px solid #fff1c9;font:900 17px/1 var(--font-pixel);box-shadow:0 0 14px rgba(255,214,140,.9);pointer-events:none}
+.edge i{position:absolute;left:50%;top:50%;width:0;height:0;border:7px solid transparent;border-left:10px solid #f0d79a;margin:-7px 0 0 15px;transform-origin:-15px 7px}
+.edge[hidden]{display:none}
+
+/* 小抄：手機卡片 */
+@media (max-width:640px){
+  .wb .tbl-wrap{overflow:visible}
+  .wb table,.wb tbody,.wb tr,.wb td{display:block;width:100%}
+  .wb tr:first-child{display:none}
+  .wb tr{background:#fff;border:1px solid #c6d0c8;border-left:5px solid #1f4a8a;padding:8px 12px 10px;margin-bottom:10px}
+  .wb td{border:0;padding:2px 0}
+  .wb td:first-child{font:700 17px/1.5 var(--font-serif);color:#1f4a8a;border-bottom:1px dashed #c6d0c8;padding-bottom:4px;margin-bottom:4px}
+  .wb td[data-label]::before{content:attr(data-label);display:block;font-size:12px;font-weight:700;color:#6b7a72;letter-spacing:.06em;margin-top:4px}
+}
+
+/* 設定 */
+.setrow{display:flex;justify-content:space-between;align-items:center;gap:14px;width:100%;text-align:left;background:#1a120a;border:2px solid #5a4630;padding:12px 14px;color:var(--cream)}
+.setrow:hover{border-color:#c9a45c}
+.setrow b{display:block;font:700 17px var(--font-serif);color:#f0d79a}
+.setrow .d{font-size:13px;color:#c9b896}
+.sw{flex:none;position:relative;width:52px;height:28px;border-radius:14px;background:#3b2a16;border:2px solid #8a6a2c}
+.sw::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#9c8a68;transition:transform .15s}
+.sw.on{background:#2b8a78;border-color:#9fe0cf}
+.sw.on::after{transform:translateX(24px);background:#fff3c4}
+.about{font-size:13px;color:#c9b896}
+.about a{color:#e2c98e}
+.title-screen .about{max-width:34em;margin-top:6px}
+
+/* 過關：核可章、星星 */
+.clearwrap{position:relative}
+.clearstamp{position:absolute;right:4px;top:-4px;padding:6px 14px;border:4px double var(--seal);color:var(--seal);background:rgba(255,240,230,.08);font:900 30px/1 var(--font-serif);letter-spacing:.2em;transform:rotate(-12deg);pointer-events:none;animation:slam .45s cubic-bezier(.2,1.5,.35,1) .15s both}
+@keyframes slam{from{transform:rotate(-12deg) scale(2.6);opacity:0}60%{opacity:1}to{transform:rotate(-12deg) scale(1);opacity:1}}
+.pin.shake{animation:pshake .3s .45s}
+@keyframes pshake{25%{transform:translate(-3px,2px)}50%{transform:translate(3px,-1px)}75%{transform:translate(-2px,1px)}}
+.bigstars .stars-s>*,.bigstars .stars-s{display:inline-block}
+.bigstars .s1{display:inline-block;animation:starin .35s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes starin{from{transform:scale(0) rotate(-90deg)}to{transform:scale(1)}}
+#flyLayer{position:fixed;inset:0;pointer-events:none;z-index:9}
+.flystar{position:absolute;left:0;top:0;font-size:34px;color:#f0c96a;text-shadow:0 0 12px rgba(255,214,140,.9);line-height:1}
+@media (max-width:760px){.clearstamp{font-size:22px;padding:4px 10px}}
+@media (prefers-reduced-motion:reduce){.clearstamp,.pin.shake,.bigstars .s1,.dport.say .dport-img,.dport-emo.on{animation:none}}
+
+/* 字大一點 */
+body.big .pin{font-size:19px}
+body.big .phead h2{font-size:23px}
+body.big .q{font-size:21px}
+body.big .opt{font-size:19px}
+body.big table{font-size:16.5px}
+body.big .doc .meta,body.big .doc .remark,body.big .callouts,body.big .fine,body.big .about{font-size:15px}
+body.big .sticky{font-size:20px}
+body.big .hint{font-size:17.5px}
+body.big .good{font-size:18px}
+body.big .gain{font-size:16px}
+body.big #dialog .text{font-size:20px}
+body.big #dialog .name{font-size:16px}
+body.big .gloss summary{font-size:19px}
+body.big .wb h3{font-size:22px}
+body.big .wb-f{font-size:20px}
+body.big .wb-n{font-size:16.5px}
+body.big .wb td:first-child{font-size:19px}
+body.big .wb td[data-label]::before{font-size:14px}
+body.big #hud .goal{font-size:16px}
+body.big .notelist li{font-size:18px}
+body.big .qrow .d{font-size:15px}
+body.big .numrow input,body.big .qd-num input{font-size:22px}
+body.big .qd-num label{font-size:15px}
+body.big .calc-k button{font-size:19px}
+body.big .near{font-size:17px}
+body.big .setrow .d{font-size:15px}
+
+/* ===== v9：可點名詞、付款試算、流程圖 ===== */
+.term{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:help;text-decoration:underline dotted 2px;text-underline-offset:.28em;text-decoration-color:#e2c98e}
+.sticky .term{text-decoration-color:#8a6a2c}
+.term:hover,.term:focus-visible,.term.on{background:rgba(226,201,142,.25)}
+#tpop{position:fixed;z-index:8;width:min(340px,calc(100vw - 16px));background:#fffaf0;color:#2a1d10;border:2px solid #8a6a2c;box-shadow:0 10px 28px rgba(0,0,0,.5);padding:12px 14px 10px;line-height:1.65}
+#tpop[hidden]{display:none}
+#tpop b{display:block;font:900 17px var(--font-serif);color:#6b4d1c;margin-bottom:4px}
+#tpop p{margin:0;font-size:15px}
+#tpop .tp-f{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;font-size:12px;color:#8a7a5c}
+#tpop .tp-x{background:none;border:1px solid #8a6a2c;color:#6b4d1c;font:700 13px var(--font-serif);padding:2px 10px;cursor:pointer}
+@media (max-width:640px){#tpop{left:8px!important;right:8px;top:auto!important;bottom:max(8px,env(safe-area-inset-bottom));width:auto}}
+body.big #tpop p{font-size:18px}
+body.big #tpop b{font-size:20px}
+
+.tabs{display:flex;gap:6px;margin:0 0 12px;flex-wrap:wrap}
+.tab{background:#1a120a;border:2px solid #5a4630;color:#c9b896;font:700 15px var(--font-serif);padding:6px 16px;cursor:pointer}
+.tab.on{background:#c9a45c;border-color:#fff1c9;color:#1c130a}
+.tab:not(.on):hover{border-color:#c9a45c;color:#f0d79a}
+
+.tool{display:grid;gap:16px}
+@media (min-width:860px){.tool{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}}
+.tkinds{display:grid;gap:6px;border:0;margin:0;padding:0}
+.tkinds legend,.tfield>span{font-size:13px;color:#c9b896;margin-bottom:4px;padding:0}
+.tkind{display:flex;gap:10px;align-items:flex-start;background:#1a120a;border:2px solid #3b2a16;padding:8px 12px;cursor:pointer}
+.tkind:hover{border-color:#8a6a2c}
+.tkind.on{border-color:#c9a45c;background:#2a1d10}
+.tkind input{margin-top:6px;accent-color:#c9a45c}
+.tkind b{display:block;font:700 16px var(--font-serif);color:#f0d79a}
+.tkind small{font-size:13px;color:#c9b896}
+.tfield{display:flex;flex-direction:column;gap:2px}
+.tfield input{font:inherit;font-size:20px;padding:6px 10px;border:2px solid #c9a45c;background:#fbfbf7;color:#1c2420;border-radius:0;font-variant-numeric:tabular-nums;width:100%;max-width:260px}
+.tfield .u{font-size:12px;color:#9c8a68}
+.tcheck{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#e6d8b8;cursor:pointer}
+.tcheck input{margin-top:5px;width:18px;height:18px;accent-color:#c9a45c;flex:none}
+.tout{background:var(--paper);color:var(--ink);padding:14px 16px}
+.tout .verdict{font:900 19px var(--font-serif);padding:4px 10px;display:inline-block;margin-bottom:6px}
+.tout .verdict.yes{background:#fde2d8;color:#a0281f}
+.tout .verdict.no{background:#d8f0e2;color:#1f6b41}
+.tout .why{font-size:14px;color:#3b4a44;margin:0 0 10px}
+.tout table{font-size:15px}
+.tout td.r{font-weight:700}
+.tout tr.net td{background:#fff6d6;font-size:17px}
+.tout .tfx{font-size:12px;color:#6b7a72;font-weight:400;display:block}
+.tsteps{margin:10px 0 0;padding-left:1.3em;font-size:14px;color:#3b4a44}
+.tsteps b{color:#1c2420}
+.tout .empty{color:#6b7a72;font-size:15px;margin:0}
+.tacts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tout .pbtn{color:#1c130a}
+.tout .pbtn:not(.gold){background:#efe6d2;color:#3b2a12}
+body.big .tkind b{font-size:19px}
+body.big .tkind small,body.big .tcheck,body.big .tout .why,body.big .tsteps{font-size:16.5px}
+body.big .tout table{font-size:17.5px}
+
+.fc h3{margin-bottom:6px}
+.fc-row{display:grid;gap:10px;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:stretch}
+.fc-q{position:relative;background:#fffbe8;border:2px solid #b8962e;padding:10px 12px 10px 46px;font:700 16px/1.55 var(--font-serif);color:#3b2a12;display:flex;align-items:center}
+.fc-n{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#1f4a8a;color:#fff;font:900 14px var(--font-body)}
+.fc-yes{display:flex;gap:10px;align-items:flex-start;background:#eef4fb;border:2px solid #8fb0d8;padding:8px 12px;font-size:14px;position:relative}
+.fc-row>.fc-yes::before{content:"";position:absolute;left:-12px;top:50%;width:10px;border-top:2px solid #8fb0d8}
+.fc-yes b{display:block;font:700 15px var(--font-serif);color:#1f4a8a}
+.fc-yes span{color:#3b4a44}
+.fc-yes .fc-tag{color:#fff}
+.fc-tag{flex:none;font:700 12px var(--font-body);padding:2px 8px;background:#1f4a8a;color:#fff;white-space:nowrap}
+.fc-tag.yes{background:#2b8a78}
+.fc-tag.no{background:#a0281f}
+.fc-split{display:grid;gap:8px}
+.fc-split .fc-yes{flex-direction:column;gap:4px}
+.fc-no,.fc-down{display:flex;align-items:center;gap:8px;margin:6px 0 6px 18px;padding-left:16px;border-left:3px solid #b8962e;min-height:30px;font-size:13px;color:#5a665f}
+.fc-down{color:#b8962e;font-weight:900}
+.fc-time{list-style:none;margin:8px 0 0;padding:0;counter-reset:t}
+.fc-time li{position:relative;padding:6px 0 10px 40px;border-left:3px solid #c6d0c8;margin-left:12px;font-size:15px}
+.fc-time li:last-child{border-left-color:transparent}
+.fc-time li::before{counter-increment:t;content:counter(t);position:absolute;left:-14px;top:4px;width:26px;height:26px;border-radius:50%;background:#c9a45c;color:#1c130a;display:grid;place-items:center;font:900 13px var(--font-body)}
+.fc-time b{display:block;color:#a0281f;font-family:var(--font-serif)}
+@media (max-width:640px){
+  .fc-row{grid-template-columns:1fr}
+  .fc-row>.fc-yes{margin-left:18px}
+  .fc-row>.fc-yes::before{left:-14px;top:-12px;height:22px;width:0;border-top:0;border-left:2px solid #8fb0d8}
+}
+body.big .fc-q{font-size:19px}
+body.big .fc-yes,body.big .fc-time li{font-size:17px}
+body.big .fc-yes b{font-size:18px}
+.rc-pre{margin-right:.2em}
+@media (max-width:860px){.rc-pre{display:none}}
+</style>
+</head>
+<body>
+<div id="game">
+  <div id="stageWrap">
+    <div id="scene" role="img" aria-label="馬鞍社區協會辦公室，午後陽光下的立體場景">
+      <div id="plane"></div>
+      <div class="fx grade" aria-hidden="true"></div>
+      <div class="fx beams" aria-hidden="true"><i style="left:14%;opacity:1"></i><i style="left:27%;opacity:0.8"></i><i style="left:58%;opacity:0.95"></i><i style="left:72%;opacity:0.75"></i></div>
+      <div class="fx dust" aria-hidden="true"><b style="left:22%;top:24%;animation-delay:0s"></b><b style="left:26%;top:38%;animation-delay:2s"></b><b style="left:31%;top:18%;animation-delay:4s"></b><b style="left:36%;top:44%;animation-delay:1s"></b><b style="left:62%;top:22%;animation-delay:3s"></b><b style="left:66%;top:36%;animation-delay:5s"></b><b style="left:70%;top:48%;animation-delay:2.5s"></b><b style="left:75%;top:28%;animation-delay:6s"></b><b style="left:48%;top:30%;animation-delay:7s"></b><b style="left:53%;top:52%;animation-delay:1.5s"></b></div>
+      <div class="fx vig" aria-hidden="true"></div>
+      <div class="fx dof top" aria-hidden="true"></div>
+      <div class="fx dof bot" aria-hidden="true"></div>
+      <div id="olayer"></div>
+    </div>
+    <div id="hud">
+      <div class="hud-who"><span class="rolechip" id="roleChip">出納小芸</span><span class="stars" id="hudStars">★ 0/12</span></div>
+      <div class="goal"><span class="tag">任務</span><span id="goalText">推開協會大門</span><button class="pbtn skip" id="btnSkip" hidden>跳過教學</button></div>
+      <div class="hud-r">
+        <button class="ibtn" id="btnList" title="工作清單" aria-label="工作清單"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="1.5"/><path d="M9 4V3h6v1M8.5 10h7M8.5 14h7M8.5 18h4"/></svg><span class="ib-t">工作清單</span></button>
+        <button class="ibtn" id="btnNote" title="筆記本（N）" aria-label="筆記本"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3M9 7.5h6"/></svg><span class="ib-t">筆記本</span></button>
+        <button class="ibtn" id="btnTool" title="付款試算" aria-label="付款試算"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><rect x="8" y="6" width="8" height="3"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 17h.01M12 17h.01M15.5 17h.01"/></svg><span class="ib-t">付款試算</span></button>
+        <button class="ibtn" id="btnSound" title="音效" aria-label="音效" aria-pressed="true"></button>
+        <button class="ibtn" id="btnSet" title="設定" aria-label="設定"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg></button>
+      </div>
+    </div>
+    <div id="dialog" class="px" hidden role="dialog" aria-live="polite"><div class="dport" id="dlgPort" aria-hidden="true"><i class="dport-img" id="dlgImg"></i><b class="dport-emo" id="dlgEmo"></b></div><div class="dbody"><span class="name" id="dlgName"></span><div class="text" id="dlgText"></div></div><span class="more">▼</span></div>
+    <div id="qd" class="qd px" hidden role="dialog" aria-label="作答"></div>
+    <div class="edge" id="edge0" hidden aria-hidden="true">!<i></i></div><div class="edge" id="edge1" hidden aria-hidden="true">!<i></i></div><div class="edge" id="edge2" hidden aria-hidden="true">!<i></i></div>
+    <button id="near" class="near" type="button" hidden aria-live="polite"><span class="near-k">A</span><span id="nearText"></span></button>
+    <button class="abtn" id="btnA" aria-label="對話／調查">A</button>
+    <p class="keys desk" id="keyHint"><kbd>←↑↓→</kbd>或<kbd>WASD</kbd>走路　<kbd>空白鍵</kbd>對話／調查　<kbd>N</kbd>筆記本　也可以直接點地面走過去</p>
+  </div>
+</div>
+<div id="panel" hidden><div class="pin px" id="pin"></div></div>
+<div id="flyLayer" aria-hidden="true"></div>
+<div id="tpop" hidden role="dialog" aria-live="polite"><b id="tpT"></b><p id="tpD"></p><div class="tp-f"><span>已收進筆記本的名詞小辭典</span><button type="button" class="tp-x" id="tpX">知道了</button></div></div>
+<script>
+/* ===== 年度設定：明年規定調整時只改這裡 ===== */
+const CFG = { year: 2026, rate: 0.0211, minWage: 29500, single: 20000, bonusX: 4, salaryTaxStart: 90501 };
+const fee = n => Math.round(n * CFG.rate);
+const fmt = n => Number(n).toLocaleString('zh-TW');
+const GUIDE = '/local-practice-guide/entries/supplemental-premium/';
+
+/* ===== 前輩筆記本 ===== */
+const NOTES = {
+  'n-9a':      { t: '50、9A、9B 怎麼分', d: '9A：獨立以專業勞務取得、自負成本與盈虧，例如表演者。9B：專題講演、稿費、著作、翻譯、版稅。50：受單位指揮監督的薪資。不能只看名稱或合約怎麼寫。' },
+  'n-thr':     { t: '單次門檻：達到就整筆算', d: `執行業務、租金、利息、股利：單次「達」${fmt(CFG.single)} 元，就以整筆 × 2.11% 計算；${fmt(CFG.single - 1)} 元不扣。看的是單次給付，不是同月合併。` },
+  'n-50':      { t: '正式課程鐘點費通常是 50', d: '單位排課、提供場地教材、按鐘點計酬的課程，通常是薪資所得（50）。名稱叫「講座」也一樣。' },
+  'n-pt':      { t: '兼職薪資的門檻比較高', d: `兼職薪資：單次給付達基本工資月額（${CFG.year} 年 ${fmt(CFG.minWage)} 元），且受領人沒有在本單位投保，就以整筆 × 2.11% 代扣。` },
+  'n-emp':     { t: '協會自己也可能要繳', d: '代碼 50、79A、79B 的薪資所得會計入單位當月薪資總額。超過員工投保金額總額的差額 × 2.11%，由單位自行負擔，不能從個人報酬扣。' },
+  'n-bonus':   { t: '獎金門檻 = 投保金額 × 4', d: '用健保投保金額計算，不是月薪。' },
+  'n-cum':     { t: '獎金看全年累計，只算超過的部分', d: '年內已發的節金、紅利都要加進來；只有超過門檻的部分要計費。這是獎金和其他所得最不一樣的地方。' },
+  'n-rent':    { t: '向個人租場地 → 租金收入', d: '出租人是個人、沒有開發票，就是租金收入。向依法營業的商號取得發票，則屬購買服務。' },
+  'n-cost':    { t: '不先扣成本', d: '租金收入不先扣必要費用，執行業務收入不先扣業務成本，都以整筆金額判斷門檻與計算。' },
+  'n-ask':     { t: '有疑慮就問，資料要留', d: '所得分類有疑慮，向國稅局說明實際情境；扣費門檻、投保身分、免扣資格問健保署。保留計算紀錄、領款憑單與繳款證明。' }
+};
+
+/* ===== 關卡 ===== */
+const LEVELS = [
+  {
+    id: 'perform', no: '1-1', title: '豐年祭前的兩場演出', desc: '表演費要不要扣？差 1 元差很多',
+    brief: '小芸，上週兩場演出的表演費今天要付喔。Panay 跟 Kacaw 都是自己帶團、自己準備服裝跟音響來演的，麻煩妳處理一下～',
+    doc: () => `
+      <h3>支出明細表</h3>
+      <div class="meta"><span>馬鞍社區協會</span><span>${CFG.year} 年 11 月</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>受領人</th><th>事由</th><th>金額（元）</th></tr>
+        <tr><td>Panay</td><td>豐年祭前夕晚會演出</td><td class="r">20,000</td></tr>
+        <tr><td>Kacaw</td><td>社區市集演出</td><td class="r">19,999</td></tr>
+      </table></div>
+      <div class="remark">備註：兩位皆自行承接演出，自備團員、服裝與音響，自負成本；未在本會投保健保。皆以個人簽收，無發票。</div>`,
+    steps: [
+      { type: 'choice', note: 'n-9a', q: '這兩筆表演費，屬於哪一類所得？',
+        options: [
+          { t: '50 薪資所得', why: '薪資所得是受單位指揮監督的工作。看看備註：誰準備器材？誰承擔成本？' },
+          { t: '9A 執行業務所得', ok: true },
+          { t: '9B 講演、稿費', why: '9B 是專題講演、稿費、著作、翻譯、版稅。表演者以專業勞務獨立演出，是另一類。' },
+          { t: '向商號購買服務，不用處理', why: '要向依法營業的商號購買、取得發票才算。這兩位是個人簽收。' }
+        ],
+        explain: '自己帶團、自備器材、自負盈虧，是獨立承接的專業勞務，屬 9A 執行業務所得。',
+        hints: ['先看文件備註：器材誰準備？成本誰承擔？', '9A：獨立以專業勞務取得，例如表演者。50：受單位指揮監督。9B：講演、稿費、版稅。（指南第五節）', '自備器材、自負盈虧 → 獨立承接 → 選 9A。'] },
+      { type: 'number', note: 'n-thr', q: 'Panay 的 20,000 元，要代扣多少補充保費？', answer: fee(20000),
+        errors: { 0: '執行業務收入的門檻是單次「達」20,000 元。剛好 20,000 元也算達到喔。' },
+        fallback: '達到門檻後，是整筆金額 × 2.11%，再四捨五入到元。',
+        explain: `20,000 × 2.11% = ${fmt(fee(20000))} 元。所得稅另計：10% 是 2,000 元，沒有超過 2,000 元免扣繳，所以 Panay 實領 ${fmt(20000 - fee(20000))} 元。`,
+        hints: ['先確認：20,000 元有沒有達到門檻？', '執行業務收入單次達 20,000 元就要代扣，費率 2.11%，以整筆計算。（指南第二節）', `20,000 × 2.11% = ${fmt(fee(20000))} 元。`] },
+      { type: 'choice', q: 'Kacaw 的 19,999 元呢？',
+        options: [
+          { t: '代扣 0 元，全額 19,999 元給付', ok: true },
+          { t: `代扣 ${fee(19999)} 元`, why: '19,999 元差 1 元，沒有達到單次 20,000 元的門檻。' },
+          { t: '先不扣，月底跟其他表演費合併再算', why: '門檻看的是「單次給付」，不是同月合併計算。' }
+        ],
+        explain: '沒有達到單次門檻，不用代扣。只差 1 元，結果就不一樣。',
+        hints: ['跟門檻比一比。', '單次「達」20,000 元才扣，看單次給付。', '19,999 < 20,000 → 不扣。'] }
+    ]
+  },
+  {
+    id: 'lecture', no: '1-2', title: '族語童謠課與竹編課', desc: '兼職講師的門檻不一樣',
+    brief: '這期社區課程結束了，兩位老師的鐘點費今天撥。課程是我們排的，教室跟教材也都是我們準備的。',
+    doc: () => `
+      <h3>鐘點費印領清冊</h3>
+      <div class="meta"><span>馬鞍社區協會 · 秋季社區課程</span><span>${CFG.year} 年 11 月</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>講師</th><th>課程</th><th>時數</th><th>鐘點費</th><th>小計（元）</th></tr>
+        <tr><td>Ofad</td><td>族語童謠教學</td><td class="r">15</td><td class="r">2,000</td><td class="r">30,000</td></tr>
+        <tr><td>Sawmah</td><td>竹編入門</td><td class="r">10</td><td class="r">2,000</td><td class="r">20,000</td></tr>
+      </table></div>
+      <div class="remark">備註：課程由本會排定，教室與教材由本會提供。兩位講師皆未在本會投保健保，各自一次領取。</div>`,
+    steps: [
+      { type: 'choice', note: 'n-50', q: '這兩筆鐘點費，屬於哪一類所得？',
+        options: [
+          { t: '50 薪資所得', ok: true },
+          { t: '9B 講演、稿費', why: '課程內容像分享，不代表就是 9B。單位排課、按鐘點計酬的正式課程，通常是薪資所得。' },
+          { t: '9A 執行業務所得', why: '老師沒有自己承擔成本與盈虧，課程、教室、教材都是協會安排的。' }
+        ],
+        explain: '協會排課、提供教室教材、按鐘點計酬，屬 50 薪資所得（兼職）。',
+        hints: ['課程是誰安排的？成本誰出？', '正式課程的授課鐘點費通常屬薪資所得（50），不能因為名稱叫「講座」就認定為 9B。（指南第五節）', '協會排課、按鐘點計酬 → 50。'] },
+      { type: 'number', note: 'n-pt', q: 'Ofad 的 30,000 元，要代扣多少補充保費？', answer: fee(30000),
+        errors: { 0: `兼職薪資的門檻是 ${CFG.year} 年基本工資 ${fmt(CFG.minWage)} 元，30,000 元已經達到了。`, [fee(30000 - CFG.minWage)]: '達到門檻後是整筆計算，不是只算超過門檻的部分。' },
+        fallback: '兼職薪資達門檻後，以整筆 × 2.11%，四捨五入到元。',
+        explain: `30,000 × 2.11% = ${fmt(fee(30000))} 元。所得稅另計：兼職薪資未達起扣標準 ${fmt(CFG.salaryTaxStart)} 元，免扣所得稅，所以 Ofad 實領 ${fmt(30000 - fee(30000))} 元。`,
+        hints: ['兼職薪資的門檻，跟表演費的 20,000 元一樣嗎？', `兼職薪資：單次給付達基本工資月額（${CFG.year} 年 ${fmt(CFG.minWage)} 元），以整筆 × 2.11%。（指南第四節）`, `30,000 ≥ ${fmt(CFG.minWage)} → 30,000 × 2.11% = ${fmt(fee(30000))} 元。`] },
+      { type: 'choice', q: 'Sawmah 的 20,000 元呢？',
+        options: [
+          { t: '代扣 0 元', ok: true },
+          { t: `代扣 ${fee(20000)} 元`, why: `20,000 元是執行業務、租金等的門檻。兼職薪資的門檻是 ${fmt(CFG.minWage)} 元。` },
+          { t: '跟 Ofad 的合併成 50,000 元一起算', why: '看的是每一位受領人的每一次給付，不是全部加總。' }
+        ],
+        explain: `20,000 元沒有達到兼職薪資門檻 ${fmt(CFG.minWage)} 元，不用代扣。`,
+        hints: ['這筆是兼職薪資，門檻是多少？', `兼職薪資門檻 ${fmt(CFG.minWage)} 元。`, `20,000 < ${fmt(CFG.minWage)} → 不扣。`] },
+      { type: 'choice', note: 'n-emp', q: '鐘點費付完了，還有什麼要注意？',
+        options: [
+          { t: '提醒人事主任：這兩筆屬於薪資所得，要計入協會當月薪資總額，檢查有沒有「雇主額外負擔」', ok: true },
+          { t: 'Ofad 的 30,000 元還要再扣一次 2.11%', why: '個人代扣只扣一次。協會自己要繳的部分由協會負擔，不能從老師的錢扣。' },
+          { t: '沒有了，付完就結束', why: '代碼 50 的薪資所得，還會影響協會月底的「雇主額外負擔」結算。' }
+        ],
+        explain: '協會自己可能也要繳，月底由人事主任結算（之後開放的角色「人事主任阿德」）。但不代表每筆講師費都要繳兩次 2.11%。',
+        hints: ['補充保費有兩種：一種代扣個人，另一種呢？', '單位當月薪資總額超過員工投保金額總額時，差額 × 2.11% 由單位負擔。（指南第一節）', '50 薪資所得 → 也要計入單位月底結算。'] }
+    ]
+  },
+  {
+    id: 'bonus', no: '1-3', title: 'Lisin 的年終獎金', desc: '獎金要看全年累計',
+    brief: 'Lisin 今年辛苦了，年終發 136,000 元！對了，她 6 月已經領過端午獎金 20,000 元。',
+    doc: () => `
+      <h3>員工獎金紀錄</h3>
+      <div class="meta"><span>馬鞍社區協會 · 人事資料</span><span>${CFG.year} 年度</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>姓名</th><td>Lisin（專員）</td></tr>
+        <tr><th>月薪</th><td class="r">34,000</td></tr>
+        <tr><th>健保投保金額</th><td class="r">34,800</td></tr>
+        <tr><th>6 月 端午獎金</th><td class="r">20,000（當時未達門檻，未扣）</td></tr>
+        <tr><th>12 月 年終獎金</th><td class="r">136,000（待發）</td></tr>
+      </table></div>`,
+    steps: [
+      { type: 'number', note: 'n-bonus', q: 'Lisin 的獎金扣費門檻是多少元？', answer: 34800 * CFG.bonusX,
+        errors: { [34000 * CFG.bonusX]: '這是用月薪 34,000 元算的。門檻要用「健保投保金額」。', 34800: '門檻是投保金額的 4 倍。', 20000: '20,000 元是執行業務、租金等單次所得的門檻，獎金有自己的算法。' },
+        fallback: '門檻 = 健保投保金額 × 4。',
+        explain: `34,800 × 4 = ${fmt(34800 * CFG.bonusX)} 元。`,
+        hints: ['獎金門檻跟哪一個金額有關？月薪還是投保金額？', '獎金：全年累計超過「當月投保金額 × 4」的部分才計費。（指南第三節）', `34,800 × 4 = ${fmt(34800 * CFG.bonusX)} 元。`] },
+      { type: 'number', note: 'n-cum', q: '加上這次年終，全年累計獎金超過門檻多少元？', answer: 156000 - 34800 * CFG.bonusX,
+        errors: { 0: '只看年終 136,000 元確實沒超過，但要用「全年累計」，6 月的端午獎金也要加進來。', [34800 * CFG.bonusX - 136000]: '這是門檻減掉年終，方向反了，而且還沒加上端午獎金。' },
+        fallback: '全年累計獎金 − 門檻 = 超過的部分。',
+        explain: `20,000 + 136,000 = 156,000；156,000 − ${fmt(34800 * CFG.bonusX)} = ${fmt(156000 - 34800 * CFG.bonusX)} 元。`,
+        hints: ['今年已經發了哪些獎金？', '全年累計獎金 − 門檻 = 超過的部分。', `20,000 + 136,000 = 156,000；156,000 − ${fmt(34800 * CFG.bonusX)} = ${fmt(156000 - 34800 * CFG.bonusX)} 元。`] },
+      { type: 'number', q: '這次年終要代扣多少補充保費？', answer: fee(156000 - 34800 * CFG.bonusX),
+        errors: { 7154: '7,154 是補充保費 354 加上所得稅 6,800 的合計。這題只問補充保費。', 6800: '6,800 是 5% 的所得稅扣繳。這題問的是補充保費。', [fee(156000)]: '這是全年累計整筆 × 2.11%。獎金只就超過門檻的部分計費。', [fee(136000)]: '獎金不是整筆計算，只算超過門檻的部分。', 0: '累計已經超過門檻，超過的部分要計費。' },
+        fallback: '超過門檻的部分 × 2.11%，四捨五入到元。',
+        explain: `${fmt(156000 - 34800 * CFG.bonusX)} × 2.11% ≈ ${fmt(fee(156000 - 34800 * CFG.bonusX))} 元。所得稅另計：年終 136,000 元已達起扣標準 ${fmt(CFG.salaryTaxStart)} 元，還要扣繳 5% 所得稅 6,800 元，所以 Lisin 實領 ${fmt(136000 - fee(156000 - 34800 * CFG.bonusX) - 6800)} 元。`,
+        hints: ['上一題算出的數字可以直接用。', '獎金只就超過門檻的部分 × 2.11%。', `${fmt(156000 - 34800 * CFG.bonusX)} × 2.11% = ${(16800 * CFG.rate).toFixed(2)} → ${fmt(fee(16800))} 元。`] }
+    ]
+  },
+  {
+    id: 'rent', no: '1-4', title: '借用老屋辦工作坊', desc: '租金能先扣掉水電嗎？',
+    brief: '下個月工作坊要租黃先生的老屋三天。他說清潔跟水電大概要 3,000，所以租金收 24,000，一次付清。',
+    doc: () => `
+      <h3>場地租金收據</h3>
+      <div class="meta"><span>出租人：黃○○（個人）</span><span>${CFG.year} 年 12 月 5 日至 7 日</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>項目</th><th>金額（元）</th></tr>
+        <tr><td>老屋場地租金（三日）</td><td class="r">24,000</td></tr>
+      </table></div>
+      <div class="remark">備註：出租人自行負擔清潔、水電約 3,000 元。出租人為個人，未開立發票，一次領取。</div>`,
+    steps: [
+      { type: 'choice', note: 'n-rent', q: '這筆錢屬於哪一類？',
+        options: [
+          { t: '租金收入', ok: true },
+          { t: '9A 執行業務所得', why: '9A 是專業勞務。出租房屋取得的，是另一類所得。' },
+          { t: '向商號購買服務，不用處理', why: '出租人是個人、沒有開發票，不算向商號購買服務。' }
+        ],
+        explain: '個人出租房屋，屬租金收入（所得代號 51）。',
+        hints: ['黃先生提供的是勞務，還是場地？', '個人出租房屋 → 租金收入；有發票的商號 → 購買服務。（指南第二節）', '選「租金收入」。'] },
+      { type: 'choice', note: 'n-cost', q: '可以先扣掉黃先生的清潔水電 3,000 元，再判斷門檻跟計算嗎？',
+        options: [
+          { t: '不行，以整筆 24,000 元計算', ok: true },
+          { t: '可以，用 21,000 元計算', why: '租金收入不先扣必要費用。執行業務收入也一樣，不先扣成本。' }
+        ],
+        explain: '租金收入不先扣必要費用，以整筆 24,000 元判斷。',
+        hints: ['指南的六類所得表裡，租金那一列怎麼寫？', '租金收入：單次達 20,000 元，不先扣必要費用。', '整筆 24,000 元。'] },
+      { type: 'number', q: '這筆租金要代扣多少補充保費？', answer: fee(24000),
+        errors: { 2906: '2,906 是補充保費 506 加上所得稅 2,400 的合計。這題只問補充保費。', 2400: '2,400 是 10% 的所得稅扣繳。這題問的是補充保費。', [fee(21000)]: '這是用 21,000 元算的。租金不先扣必要費用。', 0: '24,000 元已經達到單次 20,000 元的門檻。', [fee(4000)]: '單次門檻所得是整筆計算，不是只算超過 20,000 元的部分。' },
+        fallback: '整筆 24,000 × 2.11%，四捨五入到元。',
+        explain: `24,000 × 2.11% = ${(24000 * CFG.rate).toFixed(2)} → ${fmt(fee(24000))} 元。所得稅另計：10% 是 2,400 元，超過 2,000 元要扣繳，所以黃先生實領 ${fmt(24000 - fee(24000) - 2400)} 元。`,
+        hints: ['24,000 有沒有達到門檻？', '達到門檻 → 整筆 × 2.11%。', `24,000 × 2.11% = ${fmt(fee(24000))} 元。`] }
+    ]
+  }
+];
+
+/* ===== 人事、計畫、終章的筆記 ===== */
+Object.assign(NOTES, {
+  'a-base':  { t: '比較基準是「投保金額總額」', d: '單位補充保費比較的是當月薪資所得總額和受僱員工健保投保金額總額，不是月薪總額。' },
+  'a-diff':  { t: '只就正差額計算', d: '薪資所得總額 − 投保金額總額，正差額 × 2.11%；差額為零或負數，該月就是 0 元。不能直接把額外付款乘 2.11%。' },
+  'a-scope': { t: '哪些付款計入薪資總額', d: '只計入所得代碼 50、79A、79B 的薪資所得。9A 表演費、租金、向商號取得發票的費用都不計入。要不要計入看所得性質，跟個人有沒有被代扣無關。' },
+  'a-who':   { t: '單位負擔，不能轉嫁', d: '單位補充保費由協會自行負擔，不能從員工或講師的報酬扣回。它跟個人代扣的負擔者不同，不是重複扣同一個人。' },
+  'a-hire':  { t: '長期固定上班要檢查投保', d: '如果實質上已經是應投保的聘僱關係，就不能只當兼職領款處理。' },
+  'i-name':  { t: '名稱不決定類別', d: '叫「講座」不一定是 9B；合約寫「承攬」、個人簽領據，也不代表就是 9A。要看實際的工作方式。' },
+  'i-9b':    { t: '9B：專題講演、稿費', d: `單場專題講演、稿費、著作、翻譯、版稅屬 9B，跟 9A 一樣是單次達 ${fmt(CFG.single)} 元才代扣。` },
+  'i-three': { t: '耆老搭工寮的三種情況', d: '開發票的工作室 → 購買服務；依協會安排、協會出材料擔風險 → 可能是 50，計入單位薪資差額；獨立承接、自負盈虧 → 可能是 9A，不列入單位薪資差額。' },
+  'i-9a':    { t: '9A 不進單位薪資差額', d: '9A 執行業務所得由付款方依門檻代扣個人的補充保費，不先扣業務成本，也不列入單位的薪資差額。' },
+  'i-who':   { t: '問對單位', d: '所得分類有疑慮，向國稅局說明實際情境；扣費門檻、投保身分、免扣資格問健保署。' },
+  'f-twice': { t: '不是每筆都繳兩次 2.11%', d: '同樣 30,000 元的講師費，可能讓單位要繳、要代扣講師的、兩者都有，或兩者都沒有。先確認誰負擔 → 再確認所得性質 → 最後算金額。' }
+});
+const NOTE_GROUPS = [
+  ['出納篇', ['n-9a', 'n-thr', 'n-50', 'n-pt', 'n-emp', 'n-bonus', 'n-cum', 'n-rent', 'n-cost']],
+  ['人事篇', ['a-base', 'a-diff', 'a-scope', 'a-who', 'a-hire']],
+  ['計畫篇', ['i-name', 'i-9b', 'i-three', 'i-9a', 'i-who']],
+  ['終章', ['f-twice', 'n-ask']]
+];
+
+/* ===== 人事主任阿德 ===== */
+const INSURED = 34800 * 5, PAYROLL = 34000 * 5;
+const HR = [
+  {
+    id: 'hr-month', no: 'A-1', title: '月底的那張總表', desc: '單位補充保費怎麼算',
+    doc: () => `
+      <h3>本月薪資所得彙總</h3>
+      <div class="meta"><span>馬鞍社區協會 · 人事室</span><span>${CFG.year} 年 11 月</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>項目</th><th>說明</th><th>金額（元）</th></tr>
+        <tr><td>受僱員工月薪</td><td>5 人 × 34,000</td><td class="r">${fmt(PAYROLL)}</td></tr>
+        <tr><td>外聘授課薪資</td><td>所得代碼 50，多位講師的課程鐘點費</td><td class="r">90,000</td></tr>
+        <tr><td>本月薪資所得合計</td><td></td><td class="r">${fmt(PAYROLL + 90000)}</td></tr>
+      </table></div>
+      <div class="remark">員工健保投保金額：每人 34,800 元，5 人合計 ${fmt(INSURED)} 元。</div>`,
+    steps: [
+      { type: 'choice', note: 'a-base', q: '協會要不要繳單位補充保費，是拿本月薪資總額跟什麼比？',
+        options: [
+          { t: '員工的健保投保金額總額', ok: true },
+          { t: '員工的月薪總額', why: '比較基準是投保金額，不是月薪本身。看看備註欄。' },
+          { t: '不用比，外聘薪資直接乘 2.11%', why: '單位補充保費看的是當月的差額，不是單筆付款。' }
+        ],
+        explain: `比較基準是員工健保投保金額總額：5 × 34,800 = ${fmt(INSURED)} 元。`,
+        hints: ['文件有月薪，也有投保金額。哪一個跟健保有關？', '單位當月薪資所得總額超過受僱員工投保金額總額時，就正差額計算。（指南第一節）', '選「投保金額總額」。'] },
+      { type: 'number', note: 'a-diff', q: '這個月的正差額是多少元？', answer: PAYROLL + 90000 - INSURED,
+        errors: { 90000: `90,000 是外聘薪資本身。要用本月薪資所得合計 ${fmt(PAYROLL + 90000)} 減投保金額總額 ${fmt(INSURED)}。`, 0: `${fmt(PAYROLL + 90000)} 比 ${fmt(INSURED)} 多，差額是正的。` },
+        fallback: '本月薪資所得總額 − 員工投保金額總額。',
+        explain: `${fmt(PAYROLL + 90000)} − ${fmt(INSURED)} = ${fmt(PAYROLL + 90000 - INSURED)} 元。`,
+        hints: ['先算本月薪資所得總額：員工月薪加外聘授課。', '正差額 = 當月薪資所得總額 − 員工投保金額總額。', `${fmt(PAYROLL)} + 90,000 = ${fmt(PAYROLL + 90000)}；再減 ${fmt(INSURED)} = ${fmt(PAYROLL + 90000 - INSURED)} 元。`] },
+      { type: 'number', q: '協會這個月要繳多少單位補充保費？', answer: fee(PAYROLL + 90000 - INSURED),
+        errors: { [fee(90000)]: '這是把外聘薪資直接乘 2.11%。要用正差額計算。', [fee(PAYROLL + 90000)]: '只就正差額計算，不是整個薪資總額。', 0: '正差額大於零，要計費。' },
+        fallback: '正差額 × 2.11%，四捨五入到元。',
+        explain: `${fmt(PAYROLL + 90000 - INSURED)} × 2.11% = ${((PAYROLL + 90000 - INSURED) * CFG.rate).toFixed(1)} → ${fmt(fee(PAYROLL + 90000 - INSURED))} 元，由協會自行負擔。`,
+        hints: ['用上一題的正差額。', '正差額 × 2.11%，四捨五入到元。', `${fmt(PAYROLL + 90000 - INSURED)} × 2.11% ≈ ${fmt(fee(PAYROLL + 90000 - INSURED))} 元。`] }
+    ]
+  },
+  {
+    id: 'hr-quiet', no: 'A-2', title: '安靜的二月', desc: '差額是零的時候',
+    doc: () => `
+      <h3>二月薪資所得彙總</h3>
+      <div class="meta"><span>馬鞍社區協會 · 人事室</span><span>${CFG.year + 1} 年 2 月（預估）</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>項目</th><th>說明</th><th>金額（元）</th></tr>
+        <tr><td>受僱員工月薪</td><td>5 人 × 34,000</td><td class="r">${fmt(PAYROLL)}</td></tr>
+        <tr><td>外聘授課薪資</td><td>所得代碼 50，一堂 2 小時</td><td class="r">4,000</td></tr>
+      </table></div>
+      <div class="remark">員工健保投保金額合計 ${fmt(INSURED)} 元。</div>`,
+    steps: [
+      { type: 'number', q: '二月的正差額是多少元？（沒有超過就填 0）', answer: Math.max(0, PAYROLL + 4000 - INSURED),
+        errors: { 4000: `4,000 是外聘薪資本身。要用總額 ${fmt(PAYROLL + 4000)} 減投保總額 ${fmt(INSURED)}。`, [PAYROLL - INSURED]: '只用月薪算會變負數，外聘授課薪資也要加進總額。', [PAYROLL + 4000]: '要再減掉員工投保金額總額。' },
+        fallback: '本月薪資所得總額 − 員工投保金額總額。',
+        explain: `${fmt(PAYROLL)} + 4,000 = ${fmt(PAYROLL + 4000)}；${fmt(PAYROLL + 4000)} − ${fmt(INSURED)} = 0。`,
+        hints: ['先把月薪跟外聘授課加起來。', '正差額 = 薪資所得總額 − 投保金額總額。', `${fmt(PAYROLL + 4000)} − ${fmt(INSURED)} = 0。`] },
+      { type: 'choice', q: '那二月要繳多少單位補充保費？',
+        options: [
+          { t: '0 元', ok: true },
+          { t: `${fee(4000)} 元`, why: '差額為零或負數時，該月單位補充保費就是 0 元。' },
+          { t: '先記著，下個月合併再算', why: '單位補充保費按月計算，每個月各自看差額。' }
+        ],
+        explain: '差額為零，這個月是 0 元。月薪跟投保金額之間的空間，剛好吸收了這堂課。',
+        hints: ['差額是 0 的時候呢？', '差額為零或負數時，該月為 0 元。（指南第一節）', '選 0 元。'] }
+    ]
+  },
+  {
+    id: 'hr-scope', no: 'A-3', title: '哪些要算進去？', desc: '分辨薪資總額的範圍',
+    doc: () => `
+      <h3>本月支出清單</h3>
+      <div class="meta"><span>出納小芸整理</span><span>${CFG.year} 年 11 月</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>受領人</th><th>事由</th><th>類別</th><th>金額（元）</th></tr>
+        <tr><td>員工 5 人</td><td>月薪</td><td>50</td><td class="r">${fmt(PAYROLL)}</td></tr>
+        <tr><td>Ofad</td><td>族語童謠鐘點費</td><td>50</td><td class="r">30,000</td></tr>
+        <tr><td>Sawmah</td><td>竹編鐘點費</td><td>50</td><td class="r">20,000</td></tr>
+        <tr><td>Panay</td><td>晚會演出</td><td>9A</td><td class="r">20,000</td></tr>
+        <tr><td>黃先生</td><td>老屋租金</td><td>租金</td><td class="r">24,000</td></tr>
+        <tr><td>山海印刷行</td><td>海報印刷（開立發票）</td><td>—</td><td class="r">15,000</td></tr>
+      </table></div>
+      <div class="remark">員工健保投保金額合計 ${fmt(INSURED)} 元。</div>`,
+    steps: [
+      { type: 'choice', note: 'a-scope', q: 'Panay 的表演費（9A）要計入協會的薪資所得總額嗎？',
+        options: [
+          { t: '不計入', ok: true },
+          { t: '計入', why: '單位薪資總額只算 50、79A、79B。9A 由出納依門檻代扣個人的，不列入單位薪資差額。' }
+        ],
+        explain: '9A 執行業務所得不是薪資所得，不計入。',
+        hints: ['表演費是薪資所得嗎？', '只有所得代碼 50、79A、79B 計入單位薪資總額。（指南第一節）', '9A → 不計入。'] },
+      { type: 'choice', q: '印刷行開發票的 15,000 元，跟黃先生的租金呢？',
+        options: [
+          { t: '兩筆都不計入', ok: true },
+          { t: '兩筆都計入', why: '向商號取得發票屬購買服務；租金是租金收入。兩筆都不是薪資所得。' },
+          { t: '只計入租金', why: '租金收入不是薪資所得。' }
+        ],
+        explain: '購買服務跟租金收入都不是薪資所得。',
+        hints: ['這兩筆是在付誰的薪水嗎？', '向依法營業的商號購買服務並取得發票，一般不計入；租金是另一類所得。', '兩筆都不計入。'] },
+      { type: 'choice', q: 'Ofad 跟 Sawmah 的鐘點費呢？',
+        options: [
+          { t: '兩筆都計入', ok: true },
+          { t: '只計入有被代扣的 Ofad', why: '要不要計入，看所得性質是不是 50，跟個人有沒有達到代扣門檻無關。' },
+          { t: '都不計入，他們不是員工', why: '外聘講師的鐘點費屬薪資所得（50），也要計入單位當月薪資總額。' }
+        ],
+        explain: '兩筆都是 50 薪資所得，都要計入。',
+        hints: ['兩位講師的所得類別是什麼？', '計入與否看所得代碼，不看個人有沒有被代扣。', '兩筆都計入。'] },
+      { type: 'number', q: '這個月的薪資所得總額是多少元？', answer: PAYROLL + 50000,
+        errors: { [PAYROLL + 50000 + 20000 + 24000 + 15000]: '表演費、租金、印刷費都不計入。', [PAYROLL + 30000]: 'Sawmah 的 20,000 也要計入。', [PAYROLL]: '外聘講師的鐘點費也要計入。' },
+        fallback: '只加總類別是 50 的那幾筆。',
+        explain: `${fmt(PAYROLL)} + 30,000 + 20,000 = ${fmt(PAYROLL + 50000)} 元。`,
+        hints: ['只看類別欄是 50 的。', '員工月薪 + 兩位講師鐘點費。', `${fmt(PAYROLL)} + 30,000 + 20,000 = ${fmt(PAYROLL + 50000)} 元。`] },
+      { type: 'number', q: '協會這個月要繳多少單位補充保費？', answer: fee(PAYROLL + 50000 - INSURED),
+        errors: { [fee(50000)]: `這是只拿講師鐘點費乘 2.11%。要用總額 ${fmt(PAYROLL + 50000)} 減投保總額 ${fmt(INSURED)}。`, [fee(PAYROLL + 50000)]: '只就正差額計算。' },
+        fallback: '（薪資總額 − 投保總額）× 2.11%，四捨五入到元。',
+        explain: `${fmt(PAYROLL + 50000)} − ${fmt(INSURED)} = ${fmt(PAYROLL + 50000 - INSURED)}；× 2.11% = ${((PAYROLL + 50000 - INSURED) * CFG.rate).toFixed(1)} → ${fmt(fee(PAYROLL + 50000 - INSURED))} 元。`,
+        hints: ['先算正差額。', '正差額 × 2.11%。', `${fmt(PAYROLL + 50000 - INSURED)} × 2.11% ≈ ${fmt(fee(PAYROLL + 50000 - INSURED))} 元。`] }
+    ]
+  },
+  {
+    id: 'hr-burden', no: 'A-4', title: '會從鐘點費扣嗎？', desc: '誰負擔、會不會扣兩次',
+    doc: () => `
+      <h3>單位補充保費試算</h3>
+      <div class="meta"><span>馬鞍社區協會 · 人事室</span><span>${CFG.year} 年 11 月</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>項目</th><th>金額（元）</th></tr>
+        <tr><td>本月薪資所得總額</td><td class="r">${fmt(PAYROLL + 50000)}</td></tr>
+        <tr><td>員工投保金額總額</td><td class="r">${fmt(INSURED)}</td></tr>
+        <tr><td>正差額</td><td class="r">${fmt(PAYROLL + 50000 - INSURED)}</td></tr>
+        <tr><td>單位補充保費（協會負擔）</td><td class="r">${fmt(fee(PAYROLL + 50000 - INSURED))}</td></tr>
+      </table></div>
+      <div class="remark">另：出納已代扣 Ofad 個人補充保費 ${fmt(fee(30000))} 元。</div>`,
+    steps: [
+      { type: 'choice', note: 'a-who', q: `協會的 ${fmt(fee(PAYROLL + 50000 - INSURED))} 元，可以從 Ofad 跟 Sawmah 的鐘點費扣回來嗎？`,
+        options: [
+          { t: '不行，由協會自行負擔', ok: true },
+          { t: '可以，照鐘點費比例分攤', why: '單位補充保費不能從員工或講師原有的報酬扣除。' }
+        ],
+        explain: '單位補充保費由投保單位自行負擔。',
+        hints: ['這筆叫「雇主額外負擔」，誰負擔？', '此項補充保費不能從員工或講師原有報酬扣除。（指南第一節）', '選「不行」。'] },
+      { type: 'choice', q: `Ofad 已經被代扣 ${fmt(fee(30000))} 元，協會又為這個月繳補充保費，算重複扣 Ofad 嗎？`,
+        options: [
+          { t: `不算。${fmt(fee(30000))} 元是 Ofad 個人負擔；協會那筆是依差額自行負擔，負擔者不同`, ok: true },
+          { t: `算，應該退還 Ofad ${fmt(fee(30000))} 元`, why: '兩種補充保費的負擔者不同：個人代扣由領取者負擔，單位補充保費由協會負擔。' }
+        ],
+        explain: '一筆是個人負擔、一筆是單位負擔，並不是對 Ofad 扣兩次。',
+        hints: ['兩筆錢分別是誰出的？', '一般保險費、單位補充保費、個人補充保費，負擔者各不相同。（指南第六節）', '不算重複扣。'] },
+      { type: 'choice', note: 'a-hire', q: 'Sawmah 下學期每週固定三天來協會上班，要怎麼處理？',
+        options: [
+          { t: '檢查是不是已經構成應投保的聘僱關係，不能只當兼職領款', ok: true },
+          { t: '照樣每次當兼職鐘點費付就好', why: '如果實質上是應投保的聘僱關係，就不能只當成兼職領款處理。' }
+        ],
+        explain: '長期固定上班，要先確認投保。',
+        hints: ['固定排班、長期上班，跟偶爾來上課一樣嗎？', '指南第四節提醒：實質構成應投保的聘僱關係，就不能只當兼職領款處理。', '選「檢查投保」。'] }
+    ]
+  }
+];
+
+/* ===== 計畫專員 Ina ===== */
+const PLAN = [
+  {
+    id: 'pl-lecture', no: 'I-1', title: '講座、演講、稿費', desc: '名稱不等於類別',
+    doc: () => `
+      <h3>下一期計畫支出規劃</h3>
+      <div class="meta"><span>馬鞍社區協會 · 計畫辦公室</span><span>${CFG.year + 1} 年上半年</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>項目</th><th>做法</th><th>金額（元）</th></tr>
+        <tr><td>部落文化講座</td><td>6 週，每週 2 小時，協會排課，按鐘點付費</td><td class="r">每小時 2,000</td></tr>
+        <tr><td>豐年祭前夕專題演講</td><td>單場，外請學者</td><td class="r">12,000</td></tr>
+        <tr><td>年刊〈馬太鞍的水〉</td><td>青年訪談耆老後撰稿</td><td class="r">稿費 8,000</td></tr>
+      </table></div>`,
+    steps: [
+      { type: 'choice', note: 'i-name', q: '「部落文化講座」的鐘點費，屬於哪一類？',
+        options: [
+          { t: '50 薪資所得', ok: true },
+          { t: '9B 專題講演', why: '名稱叫講座，不代表就是 9B。協會排課、按鐘點付費的正式課程，通常是薪資所得。' },
+          { t: '9A 執行業務所得', why: '講師沒有自負成本盈虧，課程由協會安排。' }
+        ],
+        explain: '系列課程由協會排課、按鐘點付費，通常是 50。',
+        hints: ['看「做法」欄，不要看名稱。', '正式課程的授課鐘點費通常屬 50，不能因名稱叫講座就認定為 9B。（指南第五節）', '選 50。'] },
+      { type: 'choice', note: 'i-9b', q: '單場的專題演講呢？',
+        options: [
+          { t: '9B', ok: true },
+          { t: '50', why: '單場、外請的專題講演屬 9B，跟協會排定的系列課程不一樣。' },
+          { t: '9A', why: '9A 是表演者、專業技師這類獨立專業勞務；專題講演歸在 9B。' }
+        ],
+        explain: '單場專題講演屬 9B。',
+        hints: ['它跟系列課程有什麼不同？', '9B：專題講演、稿費、著作、翻譯、版稅。', '選 9B。'] },
+      { type: 'choice', q: '年刊的稿費呢？',
+        options: [
+          { t: '9B', ok: true },
+          { t: '50', why: '稿費、著作、翻譯、版稅屬 9B。' },
+          { t: '9A', why: '稿費有自己的類別：9B。' }
+        ],
+        explain: '稿費屬 9B。',
+        hints: ['稿費跟演講放在同一類嗎？', '9B 包含稿費。', '選 9B。'] },
+      { type: 'number', q: '專題演講費 12,000 元，要代扣多少補充保費？', answer: 0,
+        errors: { [fee(12000)]: `9B 跟 9A 一樣是執行業務收入，單次達 ${fmt(CFG.single)} 元才代扣。` },
+        fallback: '先跟門檻比一比。',
+        explain: `12,000 元沒有達到 ${fmt(CFG.single)} 元門檻，不用代扣補充保費。所得稅 10% 是 1,200 元，沒有超過 2,000 元，也免扣繳。`,
+        hints: ['9B 的門檻是多少？', `執行業務收入（9A、9B）單次達 ${fmt(CFG.single)} 元才代扣。`, `12,000 < ${fmt(CFG.single)} → 0 元。`] }
+    ]
+  },
+  {
+    id: 'pl-hut', no: 'I-2', title: '耆老的工寮', desc: '同樣的工作，三種結果',
+    doc: () => `
+      <h3>田邊工寮搭建 · 三種合作方式</h3>
+      <div class="meta"><span>承作：耆老 Faki</span><span>報酬皆為 60,000 元</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>版本</th><th>合作方式</th></tr>
+        <tr><td>一</td><td>Faki 的竹藤工作室依法登記，開立發票</td></tr>
+        <tr><td>二</td><td>依協會安排的時間施作，材料由協會採買，風險由協會承擔</td></tr>
+        <tr><td>三</td><td>Faki 獨立承接，自備材料與工具，自負盈虧</td></tr>
+      </table></div>`,
+    steps: [
+      { type: 'choice', note: 'i-three', q: '版本一（工作室開立發票）屬於？',
+        options: [
+          { t: '向商號購買服務', ok: true },
+          { t: '50 薪資所得', why: '依法營業的工作室開立發票，屬購買服務，不以個人所得認定。' },
+          { t: '9A 執行業務所得', why: '已經是工作室開發票，就屬購買服務。' }
+        ],
+        explain: '工作室開發票 → 購買服務。',
+        hints: ['有發票嗎？', '向依法營業的公司或商號購買服務並取得發票，一般不計入。（指南第一、五節）', '選購買服務。'] },
+      { type: 'choice', q: '版本二（照協會時間、協會出材料、協會擔風險）呢？',
+        options: [
+          { t: '可能是 50 薪資所得', ok: true },
+          { t: '9A 執行業務所得', why: '時間、材料、風險都由協會決定與承擔，比較接近受指揮監督的薪資所得。' },
+          { t: '向商號購買服務', why: '沒有工作室發票，是個人領款。' }
+        ],
+        explain: '受協會安排、協會負責材料與主要風險 → 可能是 50。',
+        hints: ['誰安排工作？誰承擔風險？', '依單位安排工作、單位負責材料與主要風險，可能屬薪資所得。', '選 50。'] },
+      { type: 'choice', q: '版本三（獨立承接、自備材料、自負盈虧）呢？',
+        options: [
+          { t: '可能是 9A 執行業務所得', ok: true },
+          { t: '50 薪資所得', why: '獨立承接、自負成本與盈虧，比較接近 9A。' }
+        ],
+        explain: '獨立承接、自負盈虧 → 可能是 9A。',
+        hints: ['成本與盈虧由誰承擔？', '耆老獨立承接、自負成本與盈虧，可能屬 9A。', '選 9A。'] },
+      { type: 'choice', note: 'i-9a', q: '哪一個版本會影響阿德月底的「單位薪資差額」？',
+        options: [
+          { t: '版本二', ok: true },
+          { t: '版本三', why: '9A 不列入單位薪資差額，由付款方依門檻代扣個人的。' },
+          { t: '三個都會', why: '只有薪資所得（50 等）會計入單位薪資總額。' }
+        ],
+        explain: '只有版本二是薪資所得，要計入。版本三單次達門檻時，由付款方代扣 Faki 個人的補充保費。',
+        hints: ['哪一個是薪資所得？', '單位薪資差額只算 50、79A、79B。', '選版本二。'] }
+    ]
+  },
+  {
+    id: 'pl-contract', no: 'I-3', title: '合約上寫「承攬」', desc: '看實際，不看名稱',
+    doc: () => `
+      <h3>契約摘要</h3>
+      <div class="meta"><span>Sawmah</span><span>${CFG.year} 年</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>契約名稱</th><td>竹編推廣承攬契約</td></tr>
+        <tr><th>工作方式</th><td>每週一至五依協會排班，聽從專案經理指示</td></tr>
+        <tr><th>材料</th><td>由協會提供</td></tr>
+        <tr><th>報酬</th><td>每月 32,000 元，個人簽領據</td></tr>
+      </table></div>`,
+    steps: [
+      { type: 'choice', q: '合約寫「承攬」，所以是 9A 嗎？',
+        options: [
+          { t: '不一定。要看實際工作方式；受協會指揮監督，可能是 50', ok: true },
+          { t: '是，合約寫承攬就是 9A', why: '不能只因契約寫「承攬」「委任」，就直接認定為 9A 或 9B。' }
+        ],
+        explain: '名稱不決定類別。每天依排班、聽從指示，比較接近薪資所得。',
+        hints: ['看「工作方式」欄。', '指南第五節：不能只因契約寫「承攬」就認定為 9A。', '選「不一定」。'] },
+      { type: 'choice', q: '個人簽領據，可以當作判斷依據嗎？',
+        options: [
+          { t: '不行，個人簽領據不代表就是 9A 或 9B', ok: true },
+          { t: '可以，個人領款就是執行業務所得', why: '指南提醒：不能只因為是個人簽領據，就直接認定類別。' }
+        ],
+        explain: '簽什麼單據，不改變所得的性質。',
+        hints: ['領據是形式，還是實質？', '不能只因為是個人簽領據就直接認定。', '選「不行」。'] },
+      { type: 'choice', note: 'i-who', q: '真的判斷不出來，要問誰？',
+        options: [
+          { t: '所得分類，向國稅局說明實際情境', ok: true },
+          { t: '問健保署這是哪一類所得', why: '健保署回答扣費門檻、投保身分跟免扣資格；所得分類問國稅局。' },
+          { t: '選最省錢的類別就好', why: '分類要依實際情境，選錯可能要補繳。' }
+        ],
+        explain: '所得分類問國稅局。另外，每週固定排班上班，也要請阿德檢查是否應該投保。',
+        hints: ['所得分類是稅務問題，還是健保問題？', '所得分類有疑慮，可向國稅局說明實際情境。（指南第六節）', '選國稅局。'] }
+    ]
+  },
+  {
+    id: 'pl-perform', no: 'I-4', title: '年底音樂會的領據', desc: '成本可以先扣嗎？',
+    doc: () => `
+      <h3>演出費領據</h3>
+      <div class="meta"><span>馬鞍社區協會</span><span>${CFG.year} 年 12 月</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>受領人</th><td>Kacaw（自行帶團承接，自負成本）</td></tr>
+        <tr><th>事由</th><td>年底社區音樂會</td></tr>
+        <tr><th>金額</th><td class="r">30,000 元</td></tr>
+      </table></div>
+      <div class="remark">備註：受領人自述交通與服裝成本約 12,000 元。</div>`,
+    steps: [
+      { type: 'choice', q: '這筆演出費屬於哪一類？',
+        options: [
+          { t: '9A 執行業務所得', ok: true },
+          { t: '50 薪資所得', why: 'Kacaw 自行帶團承接、自負成本，不是受協會指揮監督。' },
+          { t: '9B 講演、稿費', why: '表演屬 9A；9B 是講演、稿費、版稅。' }
+        ],
+        explain: '獨立帶團演出 → 9A。',
+        hints: ['表演者獨立承接，屬哪一類？', '9A：獨立以專業勞務取得，例如表演者。', '選 9A。'] },
+      { type: 'choice', q: '可以先扣掉 12,000 元成本，再判斷門檻嗎？',
+        options: [
+          { t: '不行，執行業務收入不先扣業務成本', ok: true },
+          { t: '可以，用 18,000 元判斷', why: '執行業務收入不先扣業務成本。扣了反而會誤以為沒達門檻。' }
+        ],
+        explain: '以整筆 30,000 元判斷。',
+        hints: ['指南的六類所得表，執行業務那一列怎麼寫？', '執行業務收入：單次達 20,000 元，不先扣業務成本。', '選「不行」。'] },
+      { type: 'number', q: '這筆要代扣多少補充保費？', answer: fee(30000),
+        errors: { 3633: '3,633 是補充保費 633 加上所得稅 3,000 的合計。所得稅也要扣沒錯，但這題只問補充保費。', 3000: '3,000 是 10% 的所得稅扣繳。這題問的是補充保費。', 0: '30,000 元已經達到門檻。先扣成本變成 18,000，才會誤判成不用扣。', [fee(18000)]: '不能先扣成本，要用整筆 30,000 元。', [fee(10000)]: '單次門檻所得是整筆計算，不是只算超過的部分。' },
+        fallback: '整筆 × 2.11%，四捨五入到元。',
+        explain: `30,000 × 2.11% = ${fmt(fee(30000))} 元。所得稅另計：10% 是 3,000 元，超過 2,000 元要扣繳；兩項合計代扣 ${fmt(fee(30000) + 3000)} 元，Kacaw 實領 ${fmt(30000 - fee(30000) - 3000)} 元。`,
+        hints: ['用整筆金額。', '達門檻 → 整筆 × 2.11%。', `30,000 × 2.11% = ${fmt(fee(30000))} 元。`] },
+      { type: 'choice', q: '這筆要請阿德列入協會的薪資所得總額嗎？',
+        options: [
+          { t: '不用，9A 不列入單位薪資差額', ok: true },
+          { t: '要', why: '9A 執行業務所得不是薪資所得，不列入單位薪資差額。' }
+        ],
+        explain: '個人的代扣由出納處理，單位差額不受影響。',
+        hints: ['9A 是薪資所得嗎？', '9A 不列入單位薪資差額。', '選「不用」。'] }
+    ]
+  }
+];
+
+/* ===== 終章 ===== */
+const FINALE = [{
+  id: 'finale', no: '終章', title: '同一筆 30,000 元', desc: '三個角色同桌會審',
+  doc: () => `
+    <h3>同一筆 30,000 元 · 三種版本</h3>
+    <div class="meta"><span>馬鞍社區協會 · 會議紀錄</span><span>${CFG.year} 年 12 月</span></div>
+    <div class="tbl-wrap"><table>
+      <tr><th>版本</th><th>情況</th></tr>
+      <tr><td>A</td><td>Ofad 系列課程鐘點費 15 小時 × 2,000，由協會排課；Ofad 沒有在本會投保</td></tr>
+      <tr><td>B</td><td>外請學者，單場對外公開的專題演講</td></tr>
+      <tr><td>C</td><td>講師透過自己登記的工作室接案，開立發票</td></tr>
+    </table></div>`,
+  steps: [
+    { type: 'choice', tag: 'Ina', q: '版本 A 屬於哪一類？',
+      options: [{ t: '50 薪資所得', ok: true }, { t: '9B 專題講演', why: '協會排課、按鐘點付費的系列課程，通常是 50。' }],
+      explain: '版本 A 是 50。', hints: ['誰排課？怎麼計酬？', '正式課程鐘點費通常是 50。', '選 50。'] },
+    { type: 'choice', tag: '小芸', q: '版本 A，要代扣講師個人的補充保費嗎？',
+      options: [{ t: `要，代扣 ${fmt(fee(30000))} 元`, ok: true }, { t: '不用', why: `兼職薪資單次達 ${fmt(CFG.minWage)} 元，且講師沒有在本會投保，要代扣。` }],
+      explain: `30,000 ≥ ${fmt(CFG.minWage)}，代扣 ${fmt(fee(30000))} 元。`, hints: ['兼職薪資的門檻？', `單次給付達 ${fmt(CFG.minWage)} 元。`, '選「要」。'] },
+    { type: 'choice', tag: '阿德', q: '版本 A，協會這邊呢？',
+      options: [
+        { t: '計入當月薪資所得總額；協會要不要繳，看當月整體的差額', ok: true },
+        { t: `協會一定要再繳 ${fmt(fee(30000))} 元`, why: '單位補充保費看的是當月總差額，不是每一筆各繳一次。' }
+      ],
+      explain: '計入總額，但不一定產生費用。', hints: ['單位補充保費是按筆還是按月？', '按月看薪資總額與投保總額的差額。', '選「計入總額」。'] },
+    { type: 'choice', tag: 'Ina', q: '版本 B 屬於哪一類？',
+      options: [{ t: '9B', ok: true }, { t: '50', why: '單場、外請的專題講演屬 9B。' }],
+      explain: '版本 B 是 9B。', hints: ['單場專題演講。', '9B：專題講演、稿費。', '選 9B。'] },
+    { type: 'choice', tag: '小芸、阿德', q: '版本 B，兩個人各要做什麼？',
+      options: [
+        { t: `小芸代扣 ${fmt(fee(30000))} 元；阿德不用計入薪資總額`, ok: true },
+        { t: '兩個人都要處理', why: '9B 不是薪資所得，不計入單位薪資總額。' },
+        { t: '兩個人都不用', why: `30,000 元已經達到 9B 的 ${fmt(CFG.single)} 元門檻。` }
+      ],
+      explain: '只有個人代扣，單位不受影響。', hints: ['9B 的門檻？9B 是薪資所得嗎？', `9B 單次達 ${fmt(CFG.single)} 元要代扣；9B 不計入單位薪資總額。`, '選第一個。'] },
+    { type: 'choice', tag: '三人', q: '版本 C（工作室開發票）呢？',
+      options: [
+        { t: '屬購買服務，三個人都不用處理補充保費', ok: true },
+        { t: `還是要代扣 ${fmt(fee(30000))} 元`, why: '向依法營業的商號購買服務並取得發票，一般不計入，也不代扣個人。' }
+      ],
+      explain: '購買服務，兩種補充保費都不產生。', hints: ['有發票嗎？', '購買服務一般不計入、不代扣。', '選第一個。'] },
+    { type: 'choice', tag: '理事長', note: 'f-twice', q: '所以，「每筆講師費都要繳兩次 2.11%」對嗎？',
+      options: [
+        { t: '不對。可能單位要繳、可能要代扣講師的、可能兩者都有，也可能都沒有', ok: true },
+        { t: '對，講師跟協會各繳一次', why: '剛剛三個版本的結果都不一樣。結果要看所得性質跟負擔者。' }
+      ],
+      explain: '先確認誰負擔 → 再確認所得性質 → 最後算金額。', hints: ['回想 A、B、C 三個版本的結果。', '指南第六節的常見誤解。', '選「不對」。'] }
+  ]
+}];
+
+/* ===== 角色 ===== */
+const LV = { cashier: LEVELS, hr: HR, plan: PLAN, finale: FINALE };
+const ROLE_ORDER = ['cashier', 'hr', 'plan'];
+const ROLES = {
+  cashier: { name: '出納小芸', short: '小芸', pal: 'xiaoyun', npc: 'xiaoyun', home: [3, 8], place: '左邊的出納桌', book: '出納篇' },
+  hr:      { name: '人事主任阿德', short: '阿德', pal: 'ade', npc: 'ade', home: [3, 3], place: '左上的人事室', book: '人事篇' },
+  plan:    { name: '計畫專員 Ina', short: 'Ina', pal: 'ina', npc: 'ina', home: [16, 3], place: '右上的計畫辦公室', book: '計畫篇' }
+};
+
+/* ===== 關卡 NPC 對話 ===== */
+const TALK = {
+  perform: { npc: ['panay', 'kacaw'], where: '到大廳等候區找表演者 Panay 和 Kacaw',
+    lines: [['Panay', '小芸妳好！上週豐年祭前夕晚會，是我們團去演的。'], ['Kacaw', '社區市集那場是我。我們都是自己帶團、自己準備服裝跟音響喔！'], ['小芸', '（理事長已經把支出明細放在這裡了。先確認再付款。）']],
+    wait: '我們等一下再處理就好～', thanks: [['Panay', '謝謝小芸！下次市集再來演給大家看！']] },
+  lecture: { npc: ['ofad', 'sawmah'], where: '到會議桌找講師 Ofad 和 Sawmah',
+    lines: [['Ofad', '我是 Ofad，教族語童謠。這期 15 個小時上完囉！'], ['Sawmah', '我是 Sawmah，竹編課 10 小時。教室跟材料都是協會準備的，謝謝你們。'], ['小芸', '（拿出鐘點費印領清冊。）']],
+    wait: '我們在這裡等簽領據，不急～', thanks: [['Sawmah', '下一期竹編課，記得幫我留一間教室喔！']] },
+  bonus: { npc: ['lisin'], where: '到右邊辦公桌找同事 Lisin',
+    lines: [['Lisin', '小芸～理事長說我的年終是 136,000！'], ['Lisin', '對了，我 6 月有領過端午獎金 20,000 喔。'], ['小芸', '（打開員工獎金紀錄。）']],
+    wait: '我還在寫成果報告，晚點再來找我～', thanks: [['Lisin', '算得好清楚！年終拿去買新的田野錄音筆～']] },
+  rent: { npc: ['huang'], where: '到門口找出租老屋的黃先生',
+    lines: [['黃先生', '妳好，我是出借老屋的黃先生。'], ['黃先生', '清潔跟水電我自己出，大概 3,000，租金就算 24,000，一次付清就好。'], ['小芸', '（拿出場地租金收據。）']],
+    wait: '我只是路過看看，等等再來談租屋的事。', thanks: [['黃先生', '收據我收好了。工作坊那幾天，老屋就交給你們囉。']] },
+
+  'hr-month': { npc: ['xiaoyun'], where: '到左邊的出納桌找小芸拿本月總表',
+    lines: [['小芸', '阿德，這是本月的薪資所得彙總，外聘授課比較多喔。'], ['阿德', '好，月底結算交給我。先看協會自己要不要繳。']],
+    wait: '', thanks: [['小芸', '原來協會自己也要繳，我記下來了！']] },
+  'hr-quiet': { npc: ['lisin'], where: '到右邊辦公桌找 Lisin 討論二月的預算',
+    lines: [['Lisin', '阿德，二月過年課程很少，只有一堂兩小時的課。'], ['Lisin', '這樣協會二月也要繳單位補充保費嗎？我要先編預算。'], ['阿德', '（拿出二月的薪資預估表。）']],
+    wait: '我在寫明年的預算，晚點聊～', thanks: [['Lisin', '那二月的預算就不用編這一項了，太好了！']] },
+  'hr-scope': { npc: ['ofad'], where: '到會議桌找 Ofad',
+    lines: [['Ofad', '阿德，我的鐘點費也會算進協會的薪資總表嗎？'], ['Ofad', '小芸說這個月付了好多種錢，表演、租金、印刷都有。'], ['阿德', '（拿出小芸整理的本月支出清單。）']],
+    wait: '我在備課，等等再說～', thanks: [['Ofad', '原來每一種錢的算法都不一樣！']] },
+  'hr-burden': { npc: ['sawmah'], where: '到會議桌找 Sawmah',
+    lines: [['Sawmah', '阿德，聽說協會這個月要多繳補充保費，會不會從我們的鐘點費扣？'], ['Sawmah', '還有，我下學期可能每週固定三天來協會上班。'], ['阿德', '（拿出單位補充保費試算表。）']],
+    wait: '我在整理竹材，等等喔～', thanks: [['Sawmah', '原來如此，我放心了！下學期的事再跟你約時間談。']] },
+
+  'pl-lecture': { npc: ['ofad'], where: '到會議桌找 Ofad 規劃下一期課程',
+    lines: [['Ofad', 'Ina，下一期我想開「部落文化講座」，6 週、每週 2 小時。'], ['Ofad', '豐年祭前一晚，也可以請學者來做一場專題演講嗎？年刊的稿費也要麻煩妳。'], ['Ina', '（打開下一期的計畫支出規劃。）']],
+    wait: '我在備課，等等再說～', thanks: [['Ofad', '名稱一樣叫講座，算法卻不一樣，學到了！']] },
+  'pl-hut': { npc: ['faki'], where: '到大廳找耆老 Faki 談工寮',
+    lines: [['Faki', 'Ina，協會要在田邊搭工寮，我可以來做。'], ['Faki', '看你們要怎麼請我：我有登記工作室；也可以照你們的時間來做；或是整個包給我，材料我自己弄。'], ['Ina', '（把三種合作方式寫下來比較。）']],
+    wait: '年輕人，先忙你的，我在這裡坐一下。', thanks: [['Faki', '好，就照你們決定的方式。工寮會搭得很漂亮。']] },
+  'pl-contract': { npc: ['sawmah'], where: '到會議桌找 Sawmah 看合約',
+    lines: [['Sawmah', 'Ina，協會給我的合約寫「承攬」，可是我每天都照協會的排班來上課、做行政。'], ['Sawmah', '這樣我的報酬到底算什麼？'], ['Ina', '（拿出契約摘要。）']],
+    wait: '我在整理竹材，等等喔～', thanks: [['Sawmah', '那我去請阿德幫我看看投保的事！']] },
+  'pl-perform': { npc: ['kacaw'], where: '到大廳找表演者 Kacaw',
+    lines: [['Kacaw', 'Ina，年底音樂會我們整團來演，30,000。'], ['Kacaw', '我自己出了交通跟服裝，大概 12,000，可以先扣掉再算嗎？'], ['Ina', '（拿出演出費領據。）']],
+    wait: '我在等 Panay，等等再說～', thanks: [['Kacaw', '好啦，整筆算就整筆算，年底音樂會見！']] },
+
+  finale: { npc: ['boss'], where: '回理事長室，召開終章會議',
+    lines: [['理事長', '小芸、阿德、Ina，三個人都到齊了。'], ['理事長', '今天一起看同一筆錢：30,000 元的講師費，有三種版本。'], ['Ina', '我先判斷它是哪一類所得。'], ['小芸', '我看要不要代扣講師個人的。'], ['阿德', '我看協會自己要不要繳。']],
+    wait: '', thanks: [['理事長', '同一筆錢，三種結果。你們三個合在一起，就是一個完整的協會行政。']] }
+};
+const FLAVOR = {
+  panay: '豐年祭快到了，最近每天都在練歌。', kacaw: '你聽過馬太鞍的歌嗎？下次來看我們表演！',
+  ofad: '族語童謠要從小唱，才會記得。', sawmah: '竹子要選對時間砍，才不會長蟲。',
+  lisin: '成果報告好難寫……', huang: '老屋是我阿公留下來的，給大家用很好。',
+  faki: '以前的工寮，都是大家一起搭的。'
+};
+
+/* ===== 地圖：20 x 14 格，每格 16 像素 ===== */
+const MAP = [
+  '##W##W##N###W##W####',
+  '#BB..P|BB...P|B..BP#',
+  '#.DD..|..DD..|.DD..#',
+  '#.....|......|.....#',
+  '#P....|......|....P#',
+  '#==L=====_==N===L==#',
+  '#P...B...........FR#',
+  '#.DD.....TTTT..DD..#',
+  '#........TTTT......#',
+  '#..................#',
+  '#..................#',
+  '#P,,,,,,,,,,,,,,,,P#',
+  '#SSS,,,,,,,,,,,,SSS#',
+  '#########EE#########'
+];
+const COLS = 20, ROWS = 14, T = 16, MW = COLS * T, MH = ROWS * T;
+const tile = (x, y) => (MAP[y] || '')[x] || '#';
+const WALKABLE = '.,_L';
+
+const PAL = {
+  xiaoyun: { hair: '#2a1f1d', skin: '#f1c9a2', shirt: '#2f5aa0', pants: '#33364a', bun: true },
+  boss:    { hair: '#b3b3b3', skin: '#e8b98f', shirt: '#7a2e2e', pants: '#3a3030', glasses: true },
+  panay:   { hair: '#1d1716', skin: '#d6a179', shirt: '#c7322b', trim: '#f2efe6', pants: '#1f1f1f', long: true },
+  kacaw:   { hair: '#1d1716', skin: '#cf9a72', shirt: '#c7322b', trim: '#1f1f1f', pants: '#2b2b2b', band: '#f2efe6' },
+  ofad:    { hair: '#1d1716', skin: '#d9a67e', shirt: '#f2efe6', trim: '#c7322b', pants: '#3b3b55', long: true },
+  sawmah:  { hair: '#3a2a20', skin: '#d4a07a', shirt: '#6b7a3a', pants: '#4a3a2a' },
+  lisin:   { hair: '#5a3a24', skin: '#f0c39c', shirt: '#e1b23a', pants: '#36405a' },
+  huang:   { hair: '#8d8d8d', skin: '#e2b48c', shirt: '#4a6fa5', pants: '#5a4a3a', cap: '#2d3b55' },
+  faki:    { hair: '#dcdcdc', skin: '#c98f66', shirt: '#c7322b', trim: '#f2efe6', pants: '#2b2b2b', band: '#e1b23a' },
+  ade:     { hair: '#222', skin: '#e8bb92', shirt: '#2f7f74', pants: '#333', glasses: true },
+  ina:     { hair: '#2a1d1a', skin: '#d8a47c', shirt: '#6b4c9a', pants: '#2f2f3f', long: true }
+};
+const NPCS = [
+  { id: 'boss', name: '理事長', x: 10, y: 3, dir: 'down', boss: true },
+  { id: 'xiaoyun', name: '小芸', x: 3, y: 8, dir: 'down', role: 'cashier' },
+  { id: 'ade', name: '阿德', x: 3, y: 3, dir: 'down', role: 'hr' },
+  { id: 'ina', name: 'Ina', x: 16, y: 3, dir: 'down', role: 'plan' },
+  { id: 'panay', name: 'Panay', x: 6, y: 11, dir: 'down' },
+  { id: 'kacaw', name: 'Kacaw', x: 7, y: 11, dir: 'down' },
+  { id: 'ofad', name: 'Ofad', x: 8, y: 7, dir: 'right' },
+  { id: 'sawmah', name: 'Sawmah', x: 13, y: 8, dir: 'left' },
+  { id: 'lisin', name: 'Lisin', x: 16, y: 8, dir: 'down' },
+  { id: 'huang', name: '黃先生', x: 12, y: 12, dir: 'down' },
+  { id: 'faki', name: 'Faki', x: 14, y: 11, dir: 'down' }
+];
+const HOME = Object.fromEntries(NPCS.map(n => [n.id, [n.x, n.y, n.dir]]));
+const visibleNpcs = () => NPCS.filter(n => n.role !== S.role);
+const npcAt = (x, y) => visibleNpcs().find(n => n.x === x && n.y === y);
+const walkable = (x, y) => WALKABLE.includes(tile(x, y)) && !npcAt(x, y);
+
+/* ===== 偏好（字體、音效） ===== */
+const PREF_KEY = 'maan-rpg-prefs';
+const PREF = (() => { try { return Object.assign({ big: false, sound: true }, JSON.parse(localStorage.getItem(PREF_KEY) || '{}')); } catch (e) { return { big: false, sound: true }; } })();
+const I_SOUND_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>';
+const I_SOUND_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg>';
+function applyPrefs() {
+  document.body.classList.toggle('big', !!PREF.big);
+  const b = document.getElementById('btnSound');
+  b.innerHTML = PREF.sound ? I_SOUND_ON : I_SOUND_OFF; b.classList.toggle('muted', !PREF.sound);
+  b.setAttribute('aria-pressed', String(!!PREF.sound)); b.title = b.ariaLabel = PREF.sound ? '音效：開（點一下關閉）' : '音效：關（點一下打開）';
+  try { localStorage.setItem(PREF_KEY, JSON.stringify(PREF)); } catch (e) {}
+}
+const SFX = (() => {
+  let ac = null, master = null;
+  const ensure = () => {
+    if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); master = ac.createGain(); master.gain.value = 0.5; master.connect(ac.destination); } catch (e) { ac = null; } }
+    if (ac && ac.state === 'suspended') ac.resume().catch(() => {});
+    return ac;
+  };
+  const tone = (f, t0, dur, type = 'square', vol = 0.05, f2) => {
+    const t = ac.currentTime + t0, o = ac.createOscillator(), g = ac.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t); if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.02);
+  };
+  const P = {
+    blip: () => tone(740 + Math.random() * 120, 0, 0.035, 'square', 0.018),
+    step: () => tone(150, 0, 0.04, 'triangle', 0.05, 90),
+    open: () => { tone(660, 0, 0.06, 'square', 0.035); tone(990, 0.06, 0.09, 'square', 0.035); },
+    ok: () => { tone(784, 0, 0.08, 'square', 0.045); tone(1047, 0.08, 0.16, 'square', 0.045); },
+    no: () => { tone(233, 0, 0.12, 'sawtooth', 0.035); tone(175, 0.11, 0.2, 'sawtooth', 0.035); },
+    note: () => { tone(1319, 0, 0.07, 'square', 0.03); tone(1568, 0.07, 0.12, 'square', 0.03); },
+    stamp: () => { tone(120, 0, 0.18, 'triangle', 0.16, 50); tone(60, 0, 0.12, 'square', 0.04, 40); },
+    clear: () => [523, 659, 784, 1047, 1319].forEach((f, i) => tone(f, i * 0.085, i === 4 ? 0.3 : 0.12, 'square', 0.04)),
+    star: i => tone(1175 * Math.pow(1.12, i || 0), 0, 0.12, 'square', 0.04)
+  };
+  return { play(n, a) { if (!PREF.sound || !ensure()) return; try { P[n](a); } catch (e) {} }, unlock() { if (PREF.sound) ensure(); } };
+})();
+addEventListener('pointerdown', () => SFX.unlock(), true);
+addEventListener('keydown', () => SFX.unlock(), true);
+
+/* ===== 狀態 ===== */
+const KEY = 'maan-rpg-v2';
+let S = { prog: {}, notes: [], terms: [], missed: [], tut: 0, met: false, role: 'cashier', roleDone: {}, tRole: 'cashier', lv: 0, st: 0, mistakes: 0, maxHint: 0, ss: null, inTask: null, lastStars: 0 };
+const player = { x: 9, y: 12, dir: 'up', moving: false, t: 0, fx: 9, fy: 12, step: 0 };
+function save() { try { localStorage.setItem(KEY, JSON.stringify({ prog: S.prog, notes: S.notes, terms: S.terms, missed: S.missed, tut: S.tut, met: S.met, role: S.role, roleDone: S.roleDone })); } catch (e) {} }
+function load(d) {
+  if (!d || !d.prog) { try { d = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { d = null; } }
+  if (d) { S.prog = d.prog || {}; S.notes = d.notes || []; S.terms = d.terms || []; S.missed = d.missed || []; S.tut = d.tut || 0; S.met = !!d.met; S.role = ROLES[d.role] ? d.role : 'cashier'; S.roleDone = d.roleDone || {}; }
+  if (S.met || Object.keys(S.prog).length) S.tut = 9;
+}
+const activeIdx = (r = S.role) => { const i = LV[r].findIndex(L => !S.prog[L.id]); return i < 0 ? LV[r].length : i; };
+const roleComplete = r => activeIdx(r) === LV[r].length;
+const allRoles = () => ROLE_ORDER.every(roleComplete);
+const maxStars = () => Object.values(LV).reduce((a, l) => a + l.length * 3, 0);
+const totalStars = () => Object.values(LV).flat().reduce((a, L) => a + (S.prog[L.id] || 0), 0);
+const roleStars = r => LV[r].reduce((a, L) => a + (S.prog[L.id] || 0), 0);
+const starsFor = (m, h) => (m === 0 && h === 0) ? 3 : (m <= 2 && h <= 2) ? 2 : 1;
+const titleFor = s => { const r = s / maxStars(); return r >= .9 ? '協會的定海神針' : r >= .7 ? '可靠的行政夥伴' : r >= .45 ? '行政新手' : '見習生'; };
+const starStr = n => `<span class="stars-s" aria-label="${n} 顆星">${'★'.repeat(n)}<span class="off">${'★'.repeat(3 - n)}</span></span>`;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const freshStep = () => ({ done: false, wrong: [], fb: null, stamp: null, anim: false, hint: 0, input: '' });
+const curL = () => LV[S.tRole][S.lv];
+const leftRoles = () => ROLE_ORDER.filter(r => r !== S.role && !roleComplete(r));
+
+function goalText() {
+  if (S.tut >= 1 && S.tut < 9) return tutGoal();
+  if (!S.met) return '到上方中間的理事長室，找理事長報到';
+  const a = activeIdx();
+  if (a < LV[S.role].length) return TALK[LV[S.role][a].id].where;
+  if (!S.roleDone[S.role]) return '這個角色的工作都完成了！回理事長室報告';
+  const left = leftRoles();
+  if (left.length) return '換角色繼續：' + left.map(r => `到${ROLES[r].place}找${ROLES[r].short}說話`).join('，或');
+  if (!S.prog.finale) return '三個角色都完成了！回理事長室召開終章會議';
+  return '全部完成！可以到處逛逛，或從工作清單重玩任一關';
+}
+let starHold = 0;
+function updateHud() {
+  document.getElementById('goalText').textContent = goalText();
+  document.getElementById('hudStars').textContent = `★ ${totalStars() - starHold}/${maxStars()}`;
+  { const R = ROLES[S.role], pre = R.name.slice(0, R.name.length - R.short.length).trim(); document.getElementById('roleChip').innerHTML = (pre ? `<span class="rc-pre">${pre}</span>` : '') + R.short; }
+  document.getElementById('btnSkip').hidden = !(S.tut >= 1 && S.tut < 9);
+}
+function markerNpcs() {
+  if (Q || (S.tut >= 1 && S.tut < 9)) return [];
+  if (!S.met) return ['boss'];
+  const a = activeIdx();
+  if (a < LV[S.role].length) return [TALK[LV[S.role][a].id].npc[0]];
+  if (!S.roleDone[S.role]) return ['boss'];
+  const left = leftRoles();
+  if (left.length) return left.map(r => ROLES[r].npc);
+  if (!S.prog.finale) return ['boss'];
+  return [];
+}
+
+/* ===== 繪圖 ===== */
+const cv = document.createElement('canvas'), ctx = cv.getContext('2d');
+const bg = document.createElement('canvas'); bg.width = MW; bg.height = MH;
+function paintTiles() {
+  const g = bg.getContext('2d');
+  const R = (x, y, w, h, c) => { g.fillStyle = c; g.fillRect(x, y, w, h); };
+  const wood = (X, Y, tx, ty) => {
+    R(X, Y, T, T, '#c99c64');
+    for (let r = 0; r < 4; r++) {
+      R(X, Y + r * 4 + 3, T, 1, '#ad8250');
+      const s = (r * 7 + tx * 5 + ty * 3) % 16; R(X + s, Y + r * 4, 1, 3, '#ad8250');
+    }
+    if ((tx * 7 + ty * 3) % 5 === 0) R(X + 4, Y + 6, 2, 1, '#d8ad75');
+  };
+  const stone = (X, Y) => { R(X, Y, T, T, '#d9d3c3'); R(X, Y + 15, T, 1, '#c2b9a3'); R(X + 15, Y, 1, T, '#c2b9a3'); R(X + 7, Y + 7, 1, 1, '#cbc3ae'); };
+  const face = (X, Y) => { R(X, Y, T, T, '#ece4d2'); R(X, Y, T, 2, '#d6ccb4'); R(X, Y + 12, T, 4, '#7a6450'); R(X, Y + 12, T, 1, '#5e4b3a'); };
+  const topw = (X, Y) => { R(X, Y, T, T, '#6e5c49'); R(X + 1, Y + 1, T - 2, T - 2, '#85715b'); R(X + 1, Y + 1, T - 2, 1, '#9a8569'); };
+  for (let y = 0; y < ROWS; y++) for (let x = 0; x < COLS; x++) {
+    const c = tile(x, y), X = x * T, Y = y * T;
+    const under = (y >= 11 && y <= 12) ? () => stone(X, Y) : () => wood(X, Y, x, y);
+    switch (c) {
+      case '.': case '_': wood(X, Y, x, y); break;
+      case ',': stone(X, Y); break;
+      case '#': (y === 0 || y === ROWS - 1) ? face(X, Y) : topw(X, Y); break;
+      case '|': topw(X, Y); break;
+      case '=': face(X, Y); break;
+      case 'W': face(X, Y); R(X + 2, Y + 2, 12, 9, '#f8f4ea'); R(X + 3, Y + 3, 10, 7, '#9fcbe0'); R(X + 8, Y + 3, 1, 7, '#f8f4ea'); R(X + 3, Y + 6, 10, 1, '#f8f4ea'); R(X + 4, Y + 4, 2, 1, '#d8f0fa'); break;
+      case 'N': face(X, Y); R(X + 1, Y + 1, 14, 11, '#7a5532'); R(X + 2, Y + 2, 12, 9, '#c49a6c'); R(X + 3, Y + 3, 4, 5, '#fbfbf7'); R(X + 8, Y + 3, 5, 3, '#f6e48c'); R(X + 8, Y + 7, 4, 3, '#cfe3f5'); R(X + 4, Y + 3, 1, 1, '#c4342c'); R(X + 10, Y + 3, 1, 1, '#c4342c'); R(X + 4, Y + 5, 2, 1, '#9aa'); R(X + 4, Y + 6, 2, 1, '#9aa'); break;
+      case 'L': wood(X, Y, x, y); R(X, Y, 2, T, '#5e4b3a'); R(X + 14, Y, 2, T, '#5e4b3a'); R(X, Y, T, 3, '#5e4b3a'); R(X + 2, Y + 3, 3, 12, '#8a5a32'); R(X + 3, Y + 4, 1, 10, '#9c6a3e'); R(X + 4, Y + 8, 1, 1, '#f5d22e'); R(X + 5, Y, 6, 2, '#e8e2d0'); break;
+      case 'E': stone(X, Y); R(X, Y, T, T, '#5b6b7a'); R(X + 1, Y + 1, 14, 15, '#b8dbe6'); R(X + 3, Y + 3, 3, 1, '#e4f4fa'); R(x === 9 ? X + 13 : X + 2, Y + 7, 1, 4, '#3c4652'); break;
+      case 'D': {
+        wood(X, Y, x, y);
+        R(X, Y + 2, T, 9, '#5e3f26'); R(X, Y + 2, T, 8, '#b98a58'); R(X, Y + 3, T, 1, '#c99c68'); R(X, Y + 10, T, 4, '#8a5f37'); R(X + 1, Y + 14, 2, 2, '#5e3f26'); R(X + 13, Y + 14, 2, 2, '#5e3f26');
+        if (tile(x - 1, y) !== 'D') {
+          if (x === 2 && y === 7) { R(X + 3, Y + 3, 7, 6, '#7a5a10'); R(X + 4, Y + 3, 6, 5, '#f2d45c'); R(X + 5, Y + 5, 4, 1, '#b8962e'); R(X + 12, Y + 4, 2, 3, '#c4342c'); }
+          else { R(X + 5, Y - 1, 7, 6, '#3c4250'); R(X + 6, Y, 5, 4, '#7fb3c8'); R(X + 8, Y + 5, 1, 2, '#3c4250'); R(X + 6, Y + 7, 5, 1, '#3c4250'); }
+        } else { R(X + 3, Y + 4, 5, 4, '#fbfbf7'); R(X + 4, Y + 5, 3, 1, '#aab'); }
+        break; }
+      case 'T': wood(X, Y, x, y); R(X, Y + 1, T, 12, '#8a6a3e'); R(X, Y + 1, T, 11, '#d0ad7a'); if (tile(x, y + 1) !== 'T') R(X, Y + 12, T, 3, '#9c7a4c'); if ((x + y) % 2) { R(X + 4, Y + 4, 6, 4, '#fbfbf7'); R(X + 5, Y + 5, 4, 1, '#aab'); } break;
+      case 'B': wood(X, Y, x, y); R(X, Y, T, 15, '#4a3020'); R(X + 1, Y + 1, 14, 13, '#6b4a2e'); R(X + 1, Y + 6, 14, 1, '#4a3020'); R(X + 1, Y + 11, 14, 1, '#4a3020');
+        ['#c4342c', '#2f5aa0', '#e1b23a', '#3f7f7a', '#f2efe6', '#6b4c9a'].forEach((c2, i) => { R(X + 2 + i * 2, Y + 2 + (i % 2), 2, 4 - (i % 2), c2); R(X + 3 + i * 2, Y + 7 + (i % 3 ? 0 : 1), 1, 4, c2); }); break;
+      case 'P': under(); R(X + 5, Y + 10, 6, 5, '#8c4a2c'); R(X + 4, Y + 10, 8, 2, '#b5603a'); R(X + 4, Y + 3, 8, 7, '#3f7a3c'); R(X + 3, Y + 5, 10, 4, '#4f8a4a'); R(X + 6, Y + 1, 4, 4, '#6bab5c'); R(X + 5, Y + 4, 2, 2, '#8cc87a'); break;
+      case 'S': stone(X, Y); R(X, Y + 3, T, 12, '#2c5a56'); R(X, Y + 3, T, 6, '#3f7f7a'); R(X, Y + 9, T, 5, '#5a9e98'); if (tile(x + 1, y) === 'S') R(X + 15, Y + 9, 1, 5, '#3f7f7a'); break;
+      case 'R': wood(X, Y, x, y); R(X + 4, Y + 6, 8, 9, '#c9d3da'); R(X + 4, Y + 5, 8, 9, '#eef2f5'); R(X + 5, Y, 6, 6, '#5aa8d8'); R(X + 6, Y + 1, 2, 3, '#a7d6f0'); R(X + 7, Y + 9, 2, 1, '#c4342c'); break;
+      default: wood(X, Y, x, y);
+    }
+  }
+  // 門牌字（像素字太小，以色塊示意）
+}
+function drawChar(X, Y, p, dir, frame) {
+  const R = (x, y, w, h, c) => { ctx.fillStyle = c; ctx.fillRect(X + x, Y + y, w, h); };
+  const O = '#1b1a22';
+  ctx.fillStyle = 'rgba(0,0,0,.22)'; ctx.fillRect(X + 3, Y + 14, 10, 2);
+  const l1 = frame === 1 ? -1 : 0, l2 = frame === 2 ? -1 : 0;
+  R(5, 12, 2, 3 + l1, p.pants); R(9, 12, 2, 3 + l2, p.pants);
+  R(5, 14 + l1, 2, 1, O); R(9, 14 + l2, 2, 1, O);
+  R(3, 7, 10, 6, O); R(4, 8, 8, 5, p.shirt);
+  if (p.trim) R(4, 10, 8, 1, p.trim);
+  R(3, 10, 1, 2, p.skin); R(12, 10, 1, 2, p.skin);
+  R(3, 1, 10, 8, O); R(4, 2, 8, 6, p.skin);
+  if (dir === 'up') R(4, 1, 8, 7, p.hair);
+  else {
+    R(4, 1, 8, 2, p.hair); R(4, 3, 1, 2, p.hair); R(11, 3, 1, 2, p.hair);
+    if (dir === 'left') R(9, 3, 3, 3, p.hair);
+    if (dir === 'right') R(4, 3, 3, 3, p.hair);
+  }
+  if (p.long) { R(3, 3, 1, 7, p.hair); R(12, 3, 1, 7, p.hair); }
+  if (p.bun) { R(6, 0, 4, 1, O); R(6, -1, 4, 2, p.hair); }
+  if (p.band) R(4, 3, 8, 1, p.band);
+  if (p.cap) { R(3, 0, 10, 3, p.cap); if (dir === 'down') R(4, 3, 8, 1, p.cap); if (dir === 'left') R(1, 2, 3, 1, p.cap); if (dir === 'right') R(12, 2, 3, 1, p.cap); }
+  if (dir === 'down') { R(6, 5, 1, 2, O); R(9, 5, 1, 2, O); R(5, 7, 1, 1, '#e89a8a'); R(10, 7, 1, 1, '#e89a8a'); }
+  if (dir === 'left') R(5, 5, 1, 2, O);
+  if (dir === 'right') R(10, 5, 1, 2, O);
+  if (p.glasses && dir !== 'up') { const gx = dir === 'left' ? 4 : dir === 'right' ? 9 : 5; R(gx, 4, dir === 'down' ? 6 : 3, 1, '#3a3a3a'); }
+}
+function drawMarker(X, Y, t) {
+  const b = Math.round(Math.sin(t / 220) * 1.5);
+  const R = (x, y, w, h, c) => { ctx.fillStyle = c; ctx.fillRect(X + x, Y + y + b, w, h); };
+  R(6, -12, 4, 8, '#1b1a22'); R(7, -11, 2, 6, '#f5d22e'); R(6, -3, 4, 3, '#1b1a22'); R(7, -2, 2, 1, '#f5d22e');
+}
+
+/* ===== 移動 ===== */
+const DIRS = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
+const OPP = { up: 'down', down: 'up', left: 'right', right: 'left' };
+let held = [], path = [], pending = null, last = performance.now();
+const busy = () => !document.getElementById('panel').hidden || dlg || Q;
+function tryMove(d) {
+  player.dir = d;
+  const [dx, dy] = DIRS[d], nx = player.x + dx, ny = player.y + dy;
+  if (!walkable(nx, ny)) { path = []; return false; }
+  player.moving = true; player.t = 0; player.ox = player.x; player.oy = player.y; player.x = nx; player.y = ny;
+  return true;
+}
+function update(dt) {
+  if (player.moving) {
+    player.t += dt / 140;
+    if (player.t >= 1) { player.t = 1; player.moving = false; player.step ^= 1; if (player.step) SFX.play('step'); player.fx = player.x; player.fy = player.y; checkTutorial(); }
+    player.fx = player.ox + (player.x - player.ox) * player.t;
+    player.fy = player.oy + (player.y - player.oy) * player.t;
+    if (player.moving) return;
+  }
+  if (busy()) return;
+  const d = held[held.length - 1];
+  if (d) { path = []; pending = null; tryMove(d); return; }
+  if (path.length) {
+    const n = path.shift();
+    const d2 = Object.keys(DIRS).find(k => player.x + DIRS[k][0] === n[0] && player.y + DIRS[k][1] === n[1]);
+    if (d2) tryMove(d2); else path = [];
+    return;
+  }
+  if (pending) {
+    const [tx, ty] = pending; pending = null;
+    const d3 = Object.keys(DIRS).find(k => player.x + DIRS[k][0] === tx && player.y + DIRS[k][1] === ty);
+    if (d3) { player.dir = d3; interact(); }
+  }
+}
+function bfs(goals) {
+  const key = (x, y) => x + ',' + y, prev = new Map([[key(player.x, player.y), null]]), q = [[player.x, player.y]];
+  const isGoal = (x, y) => goals.some(g => g[0] === x && g[1] === y);
+  while (q.length) {
+    const [x, y] = q.shift();
+    if (isGoal(x, y)) { const out = []; let k = key(x, y); while (prev.get(k)) { out.unshift(k.split(',').map(Number)); k = prev.get(k); } return out; }
+    for (const [dx, dy] of Object.values(DIRS)) {
+      const nx = x + dx, ny = y + dy, k2 = key(nx, ny);
+      if (!prev.has(k2) && walkable(nx, ny)) { prev.set(k2, key(x, y)); q.push([nx, ny]); }
+    }
+  }
+  return null;
+}
+function walkTo(tx, ty) {
+  if (tx === player.x && ty === player.y) return;
+  if (walkable(tx, ty)) { const p = bfs([[tx, ty]]); if (p) { path = p; pending = null; } return; }
+  const adj = Object.values(DIRS).map(([dx, dy]) => [tx + dx, ty + dy]).filter(([x, y]) => (x === player.x && y === player.y) || walkable(x, y));
+  if (adj.some(([x, y]) => x === player.x && y === player.y)) { path = []; pending = [tx, ty]; return; }
+  const p = bfs(adj); if (p) { path = p; pending = [tx, ty]; }
+}
+
+/* ===== 對話框 ===== */
+let dlg = null;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function say(lines, onDone) {
+  dlg = { lines, i: 0, n: 0, onDone }; showLine();
+}
+function speakerSid(name) {
+  const r = Object.values(ROLES).find(x => x.short === name); if (r) return r.pal;
+  const n = NPCS.find(x => x.name === name); return n ? n.id : null;
+}
+function moodOf(text) {
+  if (/^（/.test(text)) return null;
+  if (/謝謝|太好|安心|開心|期待|♪|很好|原來|就知道|簡單/.test(text)) return ['♪', 'happy'];
+  if (/？|\?|怎麼辦|糟|不太懂|……/.test(text)) return ['？', 'worry'];
+  if (/！/.test(text)) return ['！', ''];
+  return null;
+}
+function showLine() {
+  const box = document.getElementById('dialog'); box.hidden = false; document.body.classList.add('talking');
+  const [name, text] = dlg.lines[dlg.i];
+  document.getElementById('dlgName').textContent = name;
+  const port = document.getElementById('dlgPort'), sid = speakerSid(name), emo = document.getElementById('dlgEmo');
+  port.hidden = !sid;
+  if (sid) {
+    document.getElementById('dlgImg').style.backgroundImage = `url(${spriteURL(sid, 'front', 0)})`;
+    if (dlg.lastName !== name || dlg.i === 0) { port.classList.remove('say'); void port.offsetWidth; port.classList.add('say'); }
+    const m = moodOf(text); emo.className = 'dport-emo' + (m ? ' on ' + m[1] : ''); emo.textContent = m ? m[0] : '';
+  }
+  dlg.lastName = name;
+  if (reduce) SFX.play('blip');
+  dlg.n = reduce ? text.length : 0;
+  clearInterval(dlg.timer);
+  const el = document.getElementById('dlgText');
+  const tick = () => { el.textContent = text.slice(0, dlg.n); };
+  tick();
+  if (!reduce) dlg.timer = setInterval(() => { dlg.n++; tick(); if (dlg.n % 3 === 1) SFX.play('blip'); if (dlg.n >= text.length) clearInterval(dlg.timer); }, 28);
+}
+function advance() {
+  if (!dlg) return;
+  const text = dlg.lines[dlg.i][1];
+  if (dlg.n < text.length) { clearInterval(dlg.timer); dlg.n = text.length; document.getElementById('dlgText').textContent = text; return; }
+  dlg.i++;
+  if (dlg.i < dlg.lines.length) { showLine(); return; }
+  clearInterval(dlg.timer);
+  const cb = dlg.onDone; dlg = null; document.getElementById('dialog').hidden = true; document.body.classList.remove('talking');
+  if (cb) cb();
+}
+
+/* ===== 調查與對話 ===== */
+const OBJ_NAMES = { shelf: '書櫃（名詞小辭典）', cabinet: '檔案櫃（範例單據）', board: '白板（速查表、流程圖）', notice: '公布欄（工作清單）', desk: '出納桌（前輩筆記本）' };
+const MISC_NAMES = { D: '辦公桌', R: '飲水機', T: '會議桌', S: '沙發', P: '盆栽', W: '窗戶', E: '大門' };
+function targetAt(x, y) {
+  const n = npcAt(x, y); if (n) return { kind: 'npc', id: n.id, name: n.name };
+  const c = tile(x, y);
+  if (c === 'B') return { kind: 'obj', id: x === 5 && y === 6 ? 'shelf' : 'shelf-room', name: OBJ_NAMES.shelf };
+  if (c === 'F') return { kind: 'obj', id: 'cabinet', name: OBJ_NAMES.cabinet };
+  if (y === 5 && (x === 6 || x === 7)) return { kind: 'obj', id: 'board', name: OBJ_NAMES.board };
+  if (c === 'N' && y === 5) return { kind: 'obj', id: 'notice', name: OBJ_NAMES.notice };
+  if (c === 'D' && y === 7 && x <= 3) return { kind: 'obj', id: 'desk', name: OBJ_NAMES.desk };
+  if (MISC_NAMES[c]) return { kind: 'misc', id: c, name: MISC_NAMES[c] };
+  return null;
+}
+function nearTarget() {
+  const rank = t => t.kind === 'misc' ? 1 : 2;
+  let best = null;
+  for (const [k, [dx, dy]] of Object.entries(DIRS)) {
+    const t = targetAt(player.x + dx, player.y + dy); if (!t) continue;
+    const score = rank(t) * 2 + (k === player.dir ? 1 : 0);
+    if (!best || score > best.score) best = { ...t, dir: k, score };
+  }
+  return best;
+}
+function interact() {
+  if (busy()) return;
+  { const f = targetAt(player.x + DIRS[player.dir][0], player.y + DIRS[player.dir][1]); const nt = nearTarget(); if (nt && (!f || (f.kind === 'misc' && nt.kind !== 'misc'))) player.dir = nt.dir; }
+  const [dx, dy] = DIRS[player.dir], tx = player.x + dx, ty = player.y + dy;
+  const n = npcAt(tx, ty);
+  if (n) { n.dir = OPP[player.dir]; talk(n); return; }
+  const me = ROLES[S.role].short;
+  const c = tile(tx, ty);
+  const lines = {
+    E: '外面是馬鞍的稻田。工作還沒做完，先不要下班！', R: '喝了一杯水，精神好多了！',
+    B: '書架上是歷年的核銷資料夾，還有一本《地方實踐指南》。', T: '會議桌。講師們常在這裡簽領據。',
+    S: '等候區的沙發，坐起來很舒服。', P: '盆栽照顧得很好，是理事長的寶貝。', W: '窗外看得到海岸山脈。'
+  };
+  if (c === 'B') { say([[me, '書櫃裡有一本名詞小辭典，看不懂的詞可以查。']], () => openPanel('glossary')); return; }
+  if (c === 'F') { say([[me, '檔案櫃裡放著前輩整理的範例單據。']], () => openPanel('samples')); return; }
+  if (ty === 5 && (tx === 6 || tx === 7)) { boardTab = 'sheet'; say([[me, '白板正面是補充保費速查表，旁邊還畫了一張判斷流程圖。']], () => { afterClose = afterBoardTutorial; openPanel('board'); }); return; }
+  if (c === 'D' && ty === 7 && tx <= 3) { say([[me, '出納桌上有前輩留下的筆記本。']], () => openPanel('notebook')); return; }
+  if (c === 'D' && ty === 2 && tx <= 3) { say([[me, '人事室的桌上堆著投保資料跟薪資表。']]); return; }
+  if (c === 'D' && ty === 2 && tx >= 15) { say([[me, '計畫辦公室的桌上攤著明年的計畫書。']]); return; }
+  if (c === 'D') { say([[me, '桌上堆著還沒歸檔的核銷單據。']]); return; }
+  if (c === 'N') { say([[me, '公布欄上貼著這個月三個人的工作清單。']], () => openPanel('list')); return; }
+  if (lines[c]) say([[me, lines[c]]]);
+}
+function questFor(npcId) {
+  const L = LV[S.role];
+  const i = L.findIndex(l => TALK[l.id].npc.includes(npcId) && !S.prog[l.id]);
+  const done = L.find(l => TALK[l.id].npc.includes(npcId) && S.prog[l.id]);
+  return { i, done };
+}
+function talk(n) {
+  const me = ROLES[S.role].short;
+  if (n.boss) return talkBoss();
+  if (!S.met) { say([[n.name, '妳是新來的嗎？先去理事長室報到吧～']]); return; }
+  emote(n.id, '！', '', 1100);
+  const { i, done } = questFor(n.id);
+  if (i >= 0 && i === activeIdx()) { const L = LV[S.role][i]; const ls = TALK[L.id].lines.slice(); if (LSTORY[L.id]) ls.splice(1, 0, LSTORY[L.id]); say(ls, () => openTask(S.role, i)); return; }
+  if (n.role) { switchAsk(n.role); return; }
+  if (i >= 0) { say([[n.name, TALK[LV[S.role][i].id].wait]]); return; }
+  if (done) { say(TALK[done.id].thanks.map(l => l[0] === n.name ? l : [n.name, '謝謝，幫了大忙！'])); return; }
+  say([[n.name, FLAVOR[n.id] || '你好！']]);
+}
+function talkBoss() {
+  const me = ROLES[S.role].short;
+  if (!S.met) {
+    say([['理事長', `${me}，歡迎來到馬鞍社區協會！妳是我們新的出納。`],
+         ['理事長', '前一位夥伴離職了，在出納桌上留了一本筆記本，有空翻一翻。'],
+         ['理事長', '這個月有四筆款要付，清單貼在門外的公布欄。先去大廳找 Panay 跟 Kacaw 吧！'],
+         ['理事長', '人事室的阿德跟計畫辦公室的 Ina 也很忙。走過去跟他們說話，就可以換成他們的角色幫忙。'],
+         ['理事長', '三個人的工作都完成後，再回來找我開會。']],
+      () => { S.met = true; save(); updateHud(); });
+    return;
+  }
+  const a = activeIdx();
+  if (a < LV[S.role].length) { say([['理事長', `${me}，加油！下一件事：${TALK[LV[S.role][a].id].where.replace(/^到/, '去')}。`]]); return; }
+  if (!S.roleDone[S.role]) {
+    const finish = () => { S.roleDone[S.role] = true; save(); updateHud(); openPanel('roleDone'); };
+    const miss = S.missed.filter(m => m.role === S.role);
+    if (miss.length) {
+      say([['理事長', `${ROLES[S.role].name}的工作都完成了？我看看……`], ['理事長', `剛剛有 ${miss.length} 題卡住過。我們再練一次，練熟了才算數。`]],
+        () => startReview(miss, () => { emote('boss', '♪', 'happy', 2200); say([['理事長', '很好，這次都答對了！']], finish); }));
+    } else say([['理事長', `${ROLES[S.role].name}的工作都完成了？我看看……嗯，很清楚！`]], finish);
+    return;
+  }
+  if (!allRoles()) {
+    const left = leftRoles();
+    say([['理事長', '辛苦了！還有人需要幫忙：' + left.map(r => `${ROLES[r].place}的${ROLES[r].short}`).join('、') + '。'], ['理事長', '走過去跟他們說話，就可以換成他們的角色。']]);
+    return;
+  }
+  if (!S.prog.finale) { say(TALK.finale.lines, () => openTask('finale', 0)); return; }
+  say([['理事長', '辛苦了！想複習的話，公布欄的工作清單可以重玩任一關。']], () => openPanel('final'));
+}
+function switchAsk(r) { S.pendingRole = r; openPanel('switch'); }
+function switchRole(r) {
+  S.role = r; const [x, y] = ROLES[r].home;
+  Object.assign(player, { x, y, fx: x, fy: y, dir: 'down', moving: false });
+  path = []; pending = null;
+  NPCS.forEach(n => { const h = HOME[n.id]; n.x = h[0]; n.y = h[1]; n.dir = h[2]; });
+  camPos.init = false; save(); updateHud();
+  const a = activeIdx(r);
+  const msg = a < LV[r].length ? `現在是${ROLES[r].name}。${TALK[LV[r][a].id].where}。` : `現在是${ROLES[r].name}。這個角色的工作都完成了。`;
+  say([[ROLES[r].short, msg]]);
+}
+
+/* ===== 面板 ===== */
+const panel = document.getElementById('panel'), pin = document.getElementById('pin');
+let mode = null, afterClose = null;
+function flyStars() {
+  const n = starHold, hud = document.getElementById('hudStars'), layer = document.getElementById('flyLayer');
+  if (reduce || !hud.getBoundingClientRect().width) { starHold = 0; updateHud(); return; }
+  const tr = hud.getBoundingClientRect(), tx = tr.left + tr.width / 2, ty = tr.top + tr.height / 2;
+  const sx = innerWidth / 2, sy = innerHeight * 0.45;
+  for (let i = 0; i < n; i++) {
+    const st = document.createElement('span'); st.className = 'flystar'; st.textContent = '★'; layer.appendChild(st);
+    const ox = (i - (n - 1) / 2) * 46;
+    const anim = st.animate([
+      { transform: `translate(${sx + ox - 17}px, ${sy - 17}px) scale(.2)`, opacity: 0 },
+      { transform: `translate(${sx + ox - 17}px, ${sy - 40}px) scale(1.4)`, opacity: 1, offset: 0.3 },
+      { transform: `translate(${tx - 17}px, ${ty - 17}px) scale(.55)`, opacity: 1 }
+    ], { duration: 900, delay: i * 180, easing: 'cubic-bezier(.5,0,.3,1)', fill: 'both' });
+    anim.onfinish = () => { st.remove(); starHold = Math.max(0, starHold - 1); updateHud(); hud.classList.remove('pop'); void hud.offsetWidth; hud.classList.add('pop'); SFX.play('star', i); };
+  }
+}
+const OPEN_SFX = { tool: 1, board: 1, glossary: 1, samples: 1, notebook: 1, list: 1, settings: 1, switch: 1 };
+function openPanel(m) { if (OPEN_SFX[m]) SFX.play('open'); mode = m; panel.hidden = false; held = []; renderPanel(); panel.scrollTop = 0; }
+function closePanel() { const was = mode; panel.hidden = true; mode = null; if (was === 'result' && starHold) flyStars(); updateHud(); const cb = afterClose; afterClose = null; if (cb) cb(); }
+function openTask(role, i) {
+  if (S.inTask !== role + i) { S.tRole = role; S.lv = i; S.st = 0; S.mistakes = 0; S.maxHint = 0; S.ss = freshStep(); S.inTask = role + i; }
+  Q = { kind: 'task' }; calc.open = false; calc.expr = ''; renderQD();
+}
+function renderPanel(focus) {
+  const v = { q: qPanelHTML, board: pBoard, glossary: pGlossary, samples: pSamples, doc: pDoc, title: pTitle, settings: pSettings, tool: pTool, task: pTask, result: pResult, notebook: pNotebook, list: pList, final: pFinal, roleDone: pRoleDone, switch: pSwitch }[mode];
+  hideTerm(); pin.innerHTML = v();
+  pin.classList.remove('shake');
+  if (mode === 'result' || mode === 'roleDone') { void pin.offsetWidth; pin.classList.add('shake'); setTimeout(() => SFX.play('stamp'), 450); setTimeout(() => SFX.play('clear'), 700); }
+  if (S.ss) S.ss.anim = false;
+  const f = focus && document.getElementById(focus);
+  if (f) f.focus(); else pin.querySelector('[data-act]')?.focus({ preventScroll: true });
+}
+const ABOUT = `內容改編自〈<a href="/local-practice-guide/entries/supplemental-premium/" target="_blank" rel="noopener">二代健保補充保費｜地方實踐指南</a>〉。遊戲數字依 2026 年（民國 115 年）規定，題目只計算補充保費，所得稅扣繳另在說明中補充；並假設受領人都是境內居住者、沒有免扣資格。實際辦理請以主管機關當年公告與個案規定為準。`;
+const closeBtn = (t = '關閉') => `<button class="pbtn" data-act="close">${t}</button>`;
+function pTitle() {
+  const back = S.met || Object.keys(S.prog).length;
+  return `<div class="title-screen">
+    <div class="k">MAAN COMMUNITY ASSOCIATION</div>
+    <h1>報到第一天</h1>
+    <p>${CFG.year} 年 11 月，你是馬鞍社區協會的新出納「小芸」。前一位行政夥伴離職了，桌上只留下一本寫到一半的筆記本。</p>
+    <p class="fine">在辦公室裡走動，找人說話、處理付款。走去找人事主任阿德、計畫專員 Ina 說話，就能換成他們的角色。三個角色都完成，解鎖終章。</p>
+    <button class="pbtn gold" data-act="start">${back ? '繼續上班' : '推開協會大門'}</button>
+    <p class="about" style="margin-top:10px;font-weight:700;color:#f0d79a">遊戲製作者：石竣旻</p>
+    <p class="about">${ABOUT}</p>
+  </div>`;
+}
+function pSettings() {
+  const row = (act, on, t, d) => `<button class="setrow" data-act="${act}" aria-pressed="${on}"><span><b>${t}</b><span class="d">${d}</span></span><span class="sw ${on ? 'on' : ''}" aria-hidden="true"></span></button>`;
+  return `<div class="phead"><div><span class="lvno">SETTINGS</span><h2>設定</h2></div>${closeBtn()}</div>
+  <div class="col">
+    ${row('toggleBig', PREF.big, '字大一點', '題目、單據、小抄和對話的字放大約兩成')}
+    ${row('toggleSound', PREF.sound, '音效', '走路、對話、答對答錯、過關的復古小音效')}
+    <h3 class="grouph" style="margin-bottom:0">怎麼玩</h3>
+    <p style="margin:0">電腦：方向鍵或 WASD 走路，空白鍵對話／調查，N 打開筆記本；也可以直接點地面或人物走過去。<br>手機：點地面或人物就會走過去，走到旁邊後點畫面下方的提示，或右下角的 A 鍵。</p>
+    <p style="margin:0">頭上有金色「！」的人有事找你；綠色放大鏡標記的東西可以調查，裡面是速查表、流程圖、小辭典和範例單據。題目裡有虛線底線的名詞，點一下就能看解釋。</p>
+    <p style="margin:0">右上角的計算機圖示是「付款試算」：真的要付款時，填入類別和金額，就會算出要不要扣、扣多少、對方實領多少。</p>
+    <h3 class="grouph" style="margin-bottom:0">關於這個遊戲</h3>
+    <p class="about" style="margin:0"><strong>遊戲製作者：石竣旻</strong></p>
+    <p class="about" style="margin:0">${ABOUT}</p>
+  </div>`;
+}
+const TOOL = { tab: 'pay', kind: '9a', amt: '', ins: '', prior: '', exempt: false, sal: '', insTotal: '' };
+const TOOL_KINDS = [
+  ['9a', '執行業務、講演、稿費（9A、9B）', '例如講師的講座費、表演者、獨立接案的工匠'],
+  ['rent', '租金（51）', '向個人租場地或房屋，對方沒有開發票'],
+  ['part', '兼職薪資（50）', '沒在本會投保的鐘點講師、臨時工作人員'],
+  ['bonus', '獎金（50）', '本會投保員工的年終、績效獎金'],
+  ['buy', '向公司行號購買服務', '對方是公司或商號，開發票給協會']
+];
+const tnum = v => { const n = parseFloat(String(v ?? '').replace(/[,，\s元]/g, '')); return Number.isFinite(n) && n >= 0 ? Math.round(n) : null; };
+function toolCalc() {
+  const a = tnum(TOOL.amt), k = TOOL.kind;
+  if (!a) return null;
+  const r = { a, need: false, prem: 0, fx: '', why: '', tax: 0, taxWhy: '' };
+  const salaryTax = () => { if (a >= CFG.salaryTaxStart) { r.tax = Math.round(a * 0.05); r.taxWhy = `單次給付達起扣標準 ${fmt(CFG.salaryTaxStart)} 元，扣 5%`; } else r.taxWhy = `未達起扣標準 ${fmt(CFG.salaryTaxStart)} 元，免扣`; };
+  if (k === 'buy') { r.why = '向依法營業的公司行號購買服務並取得發票，不算個人所得，不代扣補充保費，也不扣所得稅。'; r.taxWhy = '購買服務，不扣'; return r; }
+  if (k === 'bonus') {
+    const ins = tnum(TOOL.ins), pr = tnum(TOOL.prior) || 0;
+    if (!ins) return { err: '獎金要填這位員工的投保金額，才能算門檻。' };
+    const cap = ins * CFG.bonusX, over = Math.min(Math.max(0, pr + a - cap) - Math.max(0, pr - cap), 1e7);
+    r.need = over > 0; r.prem = Math.round(over * CFG.rate);
+    r.why = r.need ? `今年累計獎金 ${fmt(pr + a)} 元，超過投保金額 × ${CFG.bonusX} = ${fmt(cap)} 元。這次只算超過的部分 ${fmt(over)} 元。` : `今年累計獎金 ${fmt(pr + a)} 元，沒有超過投保金額 × ${CFG.bonusX} = ${fmt(cap)} 元，不用扣。`;
+    if (r.need) r.fx = `${fmt(over)} × 2.11%`;
+    salaryTax();
+  } else {
+    const th = k === 'part' ? CFG.minWage : CFG.single, base = Math.min(a, 1e7);
+    r.need = a >= th; r.prem = r.need ? Math.round(base * CFG.rate) : 0;
+    r.why = r.need ? `單次給付 ${fmt(a)} 元，達到門檻 ${fmt(th)} 元，整筆計算${k === 'part' ? '' : '，不先扣成本或費用'}。` : `單次給付 ${fmt(a)} 元，沒達到門檻 ${fmt(th)} 元${k === 'part' ? '（基本工資）' : ''}，不用扣。`;
+    if (a > 1e7) r.why += '超過 1,000 萬元的部分不計。';
+    if (r.need) r.fx = `${fmt(base)} × 2.11%`;
+    if (k === 'part') salaryTax();
+    else { const t = Math.round(a * 0.1); if (t > 2000) { r.tax = t; r.taxWhy = '扣 10%'; } else r.taxWhy = `10% 是 ${fmt(t)} 元，不超過 2,000 元，免扣`; }
+  }
+  if (TOOL.exempt && r.need) { r.need = false; r.prem = 0; r.fx = ''; r.why += '但對方有免扣資格，而且領錢前交了證明，所以免扣（證明要留存）。'; }
+  return r;
+}
+function toolOutHTML() {
+  if (TOOL.tab === 'unit') {
+    const sal = tnum(TOOL.sal), ins = tnum(TOOL.insTotal);
+    if (sal == null || ins == null) return '<p class="empty">填入當月的兩個總額，就會算出協會這個月要負擔的單位補充保費。</p>';
+    const d = sal - ins, f = d > 0 ? Math.round(d * CFG.rate) : 0;
+    return `<span class="verdict ${f ? 'yes' : 'no'}">${f ? `協會負擔 ${fmt(f)} 元` : '這個月是 0 元'}</span>
+      <p class="why">${d > 0 ? `正差額 ${fmt(sal)} − ${fmt(ins)} = ${fmt(d)} 元，× 2.11% = ${fmt(f)} 元。` : `薪資所得總額沒有超過投保金額總額（差額 ${fmt(d)} 元），這個月不用負擔。`}</p>
+      <p class="why" style="margin:0">單位補充保費由協會自己負擔，不從員工薪水扣。薪資所得總額要算進當月所有給付的薪資，包括兼職人員。</p>`;
+  }
+  const r = toolCalc();
+  if (!r) return '<p class="empty">選好類別、填入金額，就會算出要不要扣、扣多少、對方實領多少。</p>';
+  if (r.err) return `<p class="empty">${esc(r.err)}</p>`;
+  const net = r.a - r.prem - r.tax;
+  const steps = r.need ? `<ol class="tsteps"><li><b>給付當天：</b>從付款扣下 ${fmt(r.prem)} 元，開扣費證明給對方。</li><li><b>給付日的次月底前：</b>繳給健保署。</li><li><b>次年 1 月 31 日前：</b>向健保署申報扣費明細。</li>${r.tax ? '<li><b>所得稅：</b>另外依國稅局的扣繳流程辦理。</li>' : ''}</ol>` : (r.tax ? '<ol class="tsteps"><li><b>所得稅：</b>依國稅局的扣繳流程辦理。</li></ol>' : '<p class="why" style="margin:8px 0 0">單據和判斷依據仍要留存。</p>');
+  return `<span class="verdict ${r.need ? 'yes' : 'no'}">${r.need ? '要代扣補充保費' : '不用代扣補充保費'}</span>
+    <p class="why">${esc(r.why)}</p>
+    <div class="tbl-wrap"><table>
+      <tr><th>付款金額</th><td class="r">${fmt(r.a)} 元</td></tr>
+      <tr><th>代扣補充保費</th><td class="r">${fmt(r.prem)} 元${r.fx ? `<span class="tfx">${r.fx} = ${fmt(r.prem)}</span>` : ''}</td></tr>
+      <tr><th>代扣所得稅</th><td class="r">${fmt(r.tax)} 元<span class="tfx">${esc(r.taxWhy)}</span></td></tr>
+      <tr class="net"><th>對方實領</th><td class="r">${fmt(net)} 元</td></tr>
+    </table></div>${steps}`;
+}
+function toolText() {
+  if (TOOL.tab === 'unit') { const sal = tnum(TOOL.sal) || 0, ins = tnum(TOOL.insTotal) || 0, d = sal - ins; return `【單位補充保費試算（${CFG.year} 年）】\n薪資所得總額：${fmt(sal)} 元\n投保金額總額：${fmt(ins)} 元\n正差額：${fmt(Math.max(0, d))} 元\n協會負擔：${fmt(d > 0 ? Math.round(d * CFG.rate) : 0)} 元`; }
+  const r = toolCalc(); if (!r || r.err) return '';
+  const k = TOOL_KINDS.find(x => x[0] === TOOL.kind);
+  return `【付款試算（${CFG.year} 年）】\n類別：${k[1]}\n付款金額：${fmt(r.a)} 元\n判斷：${r.need ? '要代扣' : '不用代扣'}。${r.why}\n代扣補充保費：${fmt(r.prem)} 元\n代扣所得稅：${fmt(r.tax)} 元（${r.taxWhy}）\n對方實領：${fmt(r.a - r.prem - r.tax)} 元\n※ 簡化試算，假設受領人為境內居住者；實際以主管機關規定為準。`;
+}
+function pTool() {
+  const tab = (t, l) => `<button class="tab ${TOOL.tab === t ? 'on' : ''}" data-act="ttab" data-t="${t}" aria-pressed="${TOOL.tab === t}">${l}</button>`;
+  const field = (id, label, val, unit) => `<label class="tfield"><span>${label}</span><input id="${id}" data-tf="${id}" inputmode="numeric" autocomplete="off" value="${esc(val)}" placeholder="例如 30,000">${unit ? `<span class="u">${unit}</span>` : ''}</label>`;
+  let form;
+  if (TOOL.tab === 'unit') {
+    form = `<div class="col">
+      ${field('sal', '當月薪資所得總額（元）', TOOL.sal, '所得代號 50 等薪資，含兼職人員')}
+      ${field('insTotal', '當月員工投保金額總額（元）', TOOL.insTotal, '每位在本會投保員工的投保金額加總')}
+    </div>`;
+  } else {
+    form = `<div class="col">
+      <fieldset class="tkinds"><legend>這筆錢是哪一類？</legend>
+        ${TOOL_KINDS.map(([v, t, d]) => `<label class="tkind ${TOOL.kind === v ? 'on' : ''}"><input type="radio" name="tkind" value="${v}" ${TOOL.kind === v ? 'checked' : ''}><span><b>${t}</b><small>${d}</small></span></label>`).join('')}
+      </fieldset>
+      ${field('amt', TOOL.kind === 'bonus' ? '這次發的獎金（元）' : '這次付款金額（元）', TOOL.amt, '每一次付款分開算，不要把同月份加總')}
+      ${TOOL.kind === 'bonus' ? field('ins', '這位員工的投保金額（元）', TOOL.ins, '看健保投保資料，不是月薪') + field('prior', '今年在這次之前已發的獎金（元）', TOOL.prior, '沒有就留空') : ''}
+      ${TOOL.kind === 'buy' ? '' : `<label class="tcheck"><input type="checkbox" id="texempt" ${TOOL.exempt ? 'checked' : ''}><span>對方有免扣資格，而且領錢前交了證明（例如以職業工會身分投保的人領執行業務收入、低收入戶成員）</span></label>`}
+    </div>`;
+  }
+  return `<div class="phead"><div><span class="lvno">CALCULATOR · ${CFG.year}</span><h2>付款試算</h2></div>${closeBtn()}</div>
+  <div class="tabs">${tab('pay', '單筆付款')}${tab('unit', '單位補充保費（每月）')}</div>
+  <div class="tool">${form}
+    <div><div class="tout" id="tout" aria-live="polite">${toolOutHTML()}</div>
+      <div class="tacts"><button class="pbtn gold" data-act="toolCopy">複製試算結果</button><button class="pbtn" data-act="toFlow">看判斷流程圖</button></div>
+      <p class="fine">簡化試算：假設受領人是境內居住者，費率與門檻依 ${CFG.year} 年規定。所得稅另有特殊情形（例如非居住者、稿費免稅額），實際辦理請以國稅局、健保署規定為準。</p>
+    </div>
+  </div>`;
+}
+pin.addEventListener('input', e => {
+  if (mode !== 'tool') return;
+  const f = e.target.dataset.tf; if (f) { TOOL[f] = e.target.value; document.getElementById('tout').innerHTML = toolOutHTML(); }
+});
+pin.addEventListener('change', e => {
+  if (mode !== 'tool') return;
+  if (e.target.name === 'tkind') { TOOL.kind = e.target.value; renderPanel(); pin.querySelector('input[name=tkind]:checked')?.focus(); }
+  else if (e.target.id === 'texempt') { TOOL.exempt = e.target.checked; document.getElementById('tout').innerHTML = toolOutHTML(); }
+});
+function pSwitch() {
+  const r = S.pendingRole, R = ROLES[r], a = activeIdx(r);
+  return `<div class="phead"><div><span class="lvno">CHANGE ROLE</span><h2>要換成「${R.name}」嗎？</h2></div></div>
+  <div class="col">
+    <div class="qrow"><span class="no">${roleComplete(r) ? 'DONE' : (a + 1) + '/' + LV[r].length}</span><span><b>${R.name}</b><br><span class="d">${roleComplete(r) ? '這個角色的工作都完成了' : esc(LV[r][a].title + '：' + LV[r][a].desc)}</span></span><span>${starStr(Math.round(roleStars(r) / LV[r].length))}</span></div>
+    <p class="fine">目前的角色「${ROLES[S.role].name}」的進度會保留，隨時可以走回去換回來。</p>
+    <div class="actions"><button class="pbtn" data-act="close">先不要</button><button class="pbtn gold" data-act="doSwitch">換成${R.short}</button></div>
+  </div>`;
+}
+function pTask() {
+  const L = curL(), step = L.steps[S.st], ss = S.ss;
+  const prog = L.steps.map((_, i) => `<i class="${i <= S.st ? 'on' : ''}"></i>`).join('');
+  let body;
+  if (step.type === 'choice') {
+    body = `<div class="opts">${step.options.map((o, i) => {
+      const cls = ss.wrong.includes(i) ? 'wrong' : (ss.done && o.ok) ? 'right' : '';
+      return `<button class="opt ${cls}" data-act="pick" data-i="${i}" ${ss.done || ss.wrong.includes(i) ? 'disabled' : ''}>${esc(o.t)}</button>`;
+    }).join('')}</div>`;
+  } else {
+    body = `<form class="numrow" data-form="num">
+      <label for="numIn">輸入金額（元，四捨五入到整數）</label>
+      <input id="numIn" inputmode="numeric" autocomplete="off" value="${esc(ss.input)}" ${ss.done ? 'disabled' : ''} placeholder="例如 1,234">
+      <span>元</span>
+      <button class="pbtn gold" type="submit" ${ss.done ? 'disabled' : ''}>送出</button>
+    </form>`;
+  }
+  const labels = ['第 1 層 · 方向', '第 2 層 · 規則', '第 3 層 · 示範'];
+  const hints = ss.hint ? `<div class="hints">${step.hints.slice(0, ss.hint).map((h, i) => `<div class="hint"><div class="lv">${labels[i]}</div>${esc(h)}</div>`).join('')}</div>` : '';
+  let fb = '';
+  if (ss.fb && !ss.done) fb = `<div class="sticky" role="status">${esc(ss.fb)}<div class="sig">— 前輩</div></div>`;
+  if (ss.done) fb = `<div class="good" role="status"><b>核可！</b> ${esc(step.explain)}</div>` + (step.note ? `<div class="gain">＋ 筆記本新增一頁：「${esc(NOTES[step.note].t)}」</div>` : '');
+  const lastStep = S.st === L.steps.length - 1;
+  const actions = ss.done
+    ? `<span></span><button class="pbtn gold" data-act="next">${lastStep ? '完成這件事 ▶' : '下一題 ▶'}</button>`
+    : `<button class="pbtn" data-act="hint" ${ss.hint >= 3 ? 'disabled' : ''}>${ss.hint >= 3 ? '提示已全部打開' : '給我提示（' + (ss.hint + 1) + '/3）'}</button><span class="fine">答錯不會失敗，可以再試</span>`;
+  const stamp = ss.stamp ? `<div class="stamp ${ss.stamp}${ss.anim ? ' anim' : ''}" aria-hidden="true">${ss.stamp === 'ok' ? '核' : '退件'}</div>` : '';
+  const who = S.tRole === 'finale' ? '三人會議' : ROLES[S.tRole].name;
+  return `<div class="phead"><div><span class="lvno">QUEST ${esc(L.no)} · ${esc(who)}</span><h2>${esc(L.title)}</h2></div>${closeBtn('先離開')}</div>
+  <div class="stage">
+    <div class="col"><div class="doc">${L.doc()}</div></div>
+    <div class="col">
+      <div class="qbox" id="qbox">${stamp}
+        <div class="progress" aria-label="第 ${S.st + 1} 題，共 ${L.steps.length} 題">${prog}</div>
+        <p class="q">${step.tag ? `<span class="rtag">${esc(step.tag)}</span>` : ''}${esc(step.q)}</p>${body}
+      </div>
+      ${fb}${hints}
+      <div class="actions">${actions}</div>
+    </div>
+  </div>`;
+}
+function pResult() {
+  const L = curL(), st = S.lastStars;
+  const learned = L.steps.filter(s => s.note).map(s => `<li><b>${esc(NOTES[s.note].t)}</b>${esc(NOTES[s.note].d)}</li>`).join('');
+  return `<div class="col">
+    <div class="center col clearwrap" style="align-items:center;gap:6px">
+      <div class="clearstamp" aria-hidden="true">核可</div>
+      <span class="lvno">QUEST ${esc(L.no)} CLEAR</span>
+      <h2 style="margin:0">${esc(L.title)}</h2>
+      <div class="bigstars"><span class="stars-s" aria-label="${st} 顆星">${[0, 1, 2].map(i => `<span class="s1 ${i < st ? '' : 'off'}" style="animation-delay:${0.55 + i * 0.16}s">★</span>`).join('')}</span></div>
+      <p class="fine" style="margin:0">答錯 ${S.mistakes} 次 · 最多用到第 ${S.maxHint} 層提示</p>
+    </div>
+    ${learned ? `<h3 style="margin:0">這關學到的</h3><ul class="notelist">${learned}</ul>` : '<p class="fine center">這關複習了筆記本裡已經有的觀念。</p>'}
+    <div class="actions"><span></span>${closeBtn('回到辦公室 ▶')}</div>
+  </div>`;
+}
+function noteGroupsHtml(onlyUnlocked) {
+  return NOTE_GROUPS.map(([g, keys]) => `<h3 class="grouph">${g}</h3><ul class="notelist">${keys.map(k => S.notes.includes(k) || onlyUnlocked === 'all'
+    ? `<li><b>${esc(NOTES[k].t)}</b>${esc(NOTES[k].d)}</li>` : `<li class="locked"><b>？？？</b>這頁還沒解鎖</li>`).join('')}</ul>`).join('');
+}
+function pNotebook() {
+  return `<div class="phead"><div><span class="lvno">NOTEBOOK ${S.notes.length}/${Object.keys(NOTES).length}</span><h2>前輩筆記本</h2></div>${closeBtn()}</div>
+  <p class="fine">答對題目就會補上一頁。全部收集完，就是一份帶得走的檢查清單。</p>${noteGroupsHtml()}
+  <h3 class="grouph">名詞小辭典（查過 ${S.terms.length}/${GLOSSARY.length}，到書櫃查更多）</h3><ul class="notelist">${S.terms.length ? S.terms.slice().sort((a, b) => a - b).map(i => `<li><b>${esc(GLOSSARY[i][0])}</b>${esc(GLOSSARY[i][1])}</li>`).join('') : '<li class="locked"><b>還沒查過</b>走到書櫃前調查，就能翻小辭典。</li>'}</ul>`;
+}
+function pList() {
+  const sec = r => {
+    const a = activeIdx(r), isMe = r === S.role;
+    const rows = LV[r].map((L, i) => {
+      const st = S.prog[L.id];
+      const right = st ? `${starStr(st)} <button class="pbtn" data-act="replay" data-r="${r}" data-i="${i}">重玩</button>` : (i === a && S.met && (isMe || r === 'finale') ? '<span class="fine">進行中</span>' : '<span class="fine">未完成</span>');
+      return `<div class="qrow"><span class="no">${esc(L.no)}</span><span><b>${esc(L.title)}</b><br><span class="d">${esc(L.desc)}</span></span><span style="display:flex;gap:8px;align-items:center">${right}</span></div>`;
+    }).join('');
+    const head = r === 'finale' ? '終章 · 三人會議' + (allRoles() ? '' : '（三個角色完成後解鎖）') : ROLES[r].name + (isMe ? '（目前角色）' : `（到${ROLES[r].place}找${ROLES[r].short}換角色）`);
+    return `<h3 class="grouph">${head}</h3><div class="qlist">${rows}</div>`;
+  };
+  return `<div class="phead"><div><span class="lvno">QUEST LIST</span><h2>本月工作清單</h2></div>${closeBtn()}</div>
+  <p class="fine">星等：一次答對 3 顆；答錯或用了提示 2 顆；看了示範 1 顆。重玩會保留最高星等。</p>
+  ${ROLE_ORDER.map(sec).join('')}${sec('finale')}`;
+}
+function pRoleDone() {
+  const r = S.role, R = ROLES[r], left = leftRoles();
+  const rows = LV[r].map(L => `<div class="qrow"><span class="no">${esc(L.no)}</span><span><b>${esc(L.title)}</b></span>${starStr(S.prog[L.id] || 0)}</div>`).join('');
+  const book = NOTE_GROUPS.find(g => g[0] === R.book)[1];
+  return `<div class="col">
+    <div class="center col clearwrap" style="align-items:center;gap:6px">
+      <div class="clearstamp" aria-hidden="true">結業</div>
+      <span class="lvno">ROLE CLEAR</span><h2 style="margin:0">${R.name} · 完成</h2>
+      <div class="bigstars num">${roleStars(r)} / ${LV[r].length * 3} ★</div>
+    </div>
+    <div class="qlist">${rows}</div>
+    <h3 class="grouph">筆記本 · ${R.book}</h3>
+    <ul class="notelist">${book.map(k => `<li><b>${esc(NOTES[k].t)}</b>${esc(NOTES[k].d)}</li>`).join('')}</ul>
+    <p>${left.length ? '接下來：' + left.map(x => `到${ROLES[x].place}找${ROLES[x].short}說話，換成${ROLES[x].name}`).join('；或') + '。' : '三個角色都完成了！回理事長室召開終章會議。'}</p>
+    <div class="actions"><span></span>${closeBtn('回到辦公室 ▶')}</div>
+  </div>`;
+}
+function checklistText() {
+  return `【補充保費檢查清單（${CFG.year} 年）】\n` + NOTE_GROUPS.map(([g, keys]) => `\n〈${g}〉\n` + keys.map(k => `・${NOTES[k].t}：${NOTES[k].d}`).join('\n')).join('\n') +
+    `\n\n檢查順序：先確認誰負擔 → 再確認所得性質（50、9A、9B…）→ 最後計算金額。\n資料來源：地方實踐指南〈二代健保補充保費〉 ${GUIDE}`;
+}
+function pFinal() {
+  const s = totalStars();
+  const by = ROLE_ORDER.map(r => `<div class="qrow"><span class="no">${ROLES[r].short}</span><span><b>${ROLES[r].name}</b></span><span class="stars-s num">${roleStars(r)} / ${LV[r].length * 3} ★</span></div>`).join('') +
+    `<div class="qrow"><span class="no">終章</span><span><b>同一筆 30,000 元</b></span>${starStr(S.prog.finale || 0)}</div>`;
+  return `<div class="col">
+    <div class="center col" style="align-items:center">
+      <span class="lvno">GRADUATION</span>
+      <div class="badge">${titleFor(s)}</div>
+      <div class="bigstars num">${s} / ${maxStars()} ★</div>
+    </div>
+    <div class="qlist">${by}</div>
+    <div class="sticky">最後一頁送你們：有疑慮就問，資料要留。所得分類問國稅局，門檻跟免扣資格問健保署。<div class="sig">— 前輩</div></div>
+    <h3 style="margin:0">馬鞍社區協會的檢查清單</h3>
+    ${noteGroupsHtml('all')}
+    <div class="actions">
+      <span style="display:flex;gap:8px;flex-wrap:wrap"><button class="pbtn gold" data-act="copy">複製檢查清單</button><button class="pbtn" data-act="openTool">打開付款試算</button><button class="pbtn" data-act="reset">清除進度重玩</button></span>
+      ${closeBtn('回到辦公室')}
+    </div>
+  </div>`;
+}
+
+/* ===== 答題 ===== */
+function wrong(msg) {
+  S.mistakes++; S.ss.fb = msg; S.ss.stamp = 'no'; S.ss.anim = true;
+  renderPanel(curL().steps[S.st].type === 'number' ? 'numIn' : null);
+}
+function right() {
+  const step = curL().steps[S.st];
+  S.ss.done = true; S.ss.fb = null; S.ss.stamp = 'ok'; S.ss.anim = true;
+  if (step.note && !S.notes.includes(step.note)) { S.notes.push(step.note); save(); }
+  renderPanel();
+}
+function submitNum(raw) {
+  const step = curL().steps[S.st];
+  S.ss.input = raw;
+  const v = parseInt(String(raw).replace(/[,，\s元]/g, ''), 10);
+  if (Number.isNaN(v)) { S.ss.fb = '請輸入數字，例如 1234。'; S.ss.stamp = null; renderPanel('numIn'); return; }
+  if (v === step.answer) { S.ss.input = fmt(v); right(); return; }
+  wrong(step.errors[v] || step.fallback);
+}
+function nextStep() {
+  const L = curL();
+  const firstTime = !S.prog[L.id];
+  const before = S.prog[L.id] || 0;
+  S.lastStars = starsFor(S.mistakes, S.maxHint);
+  starHold = Math.max(0, S.lastStars - before);
+  S.prog[L.id] = Math.max(S.prog[L.id] || 0, S.lastStars);
+  S.inTask = null; save(); updateHud();
+  const tk = { ...TALK[L.id], thanks: LTHANKS[L.id] ? [...TALK[L.id].thanks, LTHANKS[L.id]] : TALK[L.id].thanks };
+  if (S.tRole === 'finale') {
+    afterClose = () => say(tk.thanks, () => { if (!S.notes.includes('n-ask')) { S.notes.push('n-ask'); save(); } openPanel('final'); });
+  } else {
+    const finishedRole = firstTime && S.tRole === S.role && roleComplete(S.role);
+    afterClose = () => say(finishedRole ? [...tk.thanks, [ROLES[S.role].short, '這個角色的工作都完成了！回理事長室報告吧。']] : tk.thanks);
+  }
+  openPanel('result');
+}
+pin.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'); if (!b || b.disabled) return;
+  const a = b.dataset.act;
+  if (a === 'start') { closePanel(); if (!S.met && S.tut < 9) startTutorial(); else if (!S.met) say([['小芸', '（推開馬鞍社區協會的門。）今天是報到第一天！'], ['小芸', '先去理事長室找理事長吧。走到人旁邊，按 A 或空白鍵就能說話。']]); }
+  else if (a === 'term') { if (b.classList.contains('on') && !tpop.hidden) hideTerm(); else showTerm(b); }
+  else if (a === 'btab') { boardTab = b.dataset.t; renderPanel(); pin.querySelector('.tab.on')?.focus(); panel.scrollTop = 0; }
+  else if (a === 'toFlow') { boardTab = 'flow'; openPanel('board'); }
+  else if (a === 'openTool') { openPanel('tool'); }
+  else if (a === 'ttab') { TOOL.tab = b.dataset.t; renderPanel(); pin.querySelector('.tab.on')?.focus(); }
+  else if (a === 'toolCopy') { const done = ok => { b.textContent = ok ? '已複製' : '無法複製'; }; try { navigator.clipboard.writeText(toolText()).then(() => done(true), () => done(false)); } catch (err) { done(false); } }
+  else if (a === 'chip') { const n = b.dataset.num; calc.expr = (/[\d.]$/.test(calc.expr) ? '' : calc.expr) + n; const box = pin.querySelector('.calc'); if (box) box.outerHTML = calcHTML(); b.classList.add('used'); if (innerWidth < 760) pin.querySelector('.calc')?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+  else if (a === 'close') { if (mode === 'task') afterClose = null; closePanel(); }
+  else if (a === 'toggleBig') { PREF.big = !PREF.big; applyPrefs(); renderPanel(); pin.querySelector('[data-act=toggleBig]')?.focus(); }
+  else if (a === 'toggleSound') { PREF.sound = !PREF.sound; applyPrefs(); SFX.play('ok'); renderPanel(); pin.querySelector('[data-act=toggleSound]')?.focus(); }
+  else if (a === 'doSwitch') { const r = S.pendingRole; panel.hidden = true; mode = null; switchRole(r); }
+  else if (a === 'pick') { const o = curL().steps[S.st].options[+b.dataset.i]; if (o.ok) right(); else { S.ss.wrong.push(+b.dataset.i); wrong(o.why); } }
+  else if (a === 'hint') { const inp = document.getElementById('numIn'); if (inp) S.ss.input = inp.value; S.ss.hint = Math.min(3, S.ss.hint + 1); S.maxHint = Math.max(S.maxHint, S.ss.hint); renderPanel(); }
+  else if (a === 'next') nextStep();
+  else if (a === 'replay') { panel.hidden = true; mode = null; S.inTask = null; openTask(b.dataset.r, +b.dataset.i); }
+  else if (a === 'copy') { const done = ok => { b.textContent = ok ? '已複製' : '無法複製，請手動選取'; }; try { navigator.clipboard.writeText(checklistText()).then(() => done(true), () => done(false)); } catch (err) { done(false); } }
+  else if (a === 'reset') { S.terms = []; S.missed = []; S.tut = 0; Q = null; renderQD(); S.prog = {}; S.notes = []; S.met = false; S.roleDone = {}; S.inTask = null; S.role = 'cashier'; save(); Object.assign(player, { x: 9, y: 12, fx: 9, fy: 12, dir: 'up', moving: false }); camPos.init = false; updateHud(); openPanel('title'); }
+});
+pin.addEventListener('toggle', e => { const d = e.target; if (d.matches && d.matches('details[data-term]') && d.open) { const i = +d.dataset.term; if (!S.terms.includes(i)) { S.terms.push(i); save(); } d.classList.add('seen'); } }, true);
+pin.addEventListener('submit', e => { e.preventDefault(); const inp = document.getElementById('numIn'); if (inp && mode !== 'q') submitNum(inp.value); });
+document.getElementById('btnList').addEventListener('click', () => { if (!dlg) openPanel('list'); });
+document.getElementById('btnNote').addEventListener('click', () => { if (!dlg) openPanel('notebook'); });
+document.getElementById('btnTool').addEventListener('click', () => { if (!dlg) openPanel('tool'); });
+document.getElementById('btnSet').addEventListener('click', () => { if (!dlg) openPanel('settings'); });
+document.getElementById('btnSound').addEventListener('click', () => { PREF.sound = !PREF.sound; applyPrefs(); SFX.play('ok'); });
+document.getElementById('btnSkip').addEventListener('click', () => { if (Q && Q.kind === 'practice') { Q = null; renderQD(); } if (dlg) { clearInterval(dlg.timer); dlg = null; document.getElementById('dialog').hidden = true; document.body.classList.remove('talking'); } skipTutorial(); });
+
+/* ===== 人物小故事 ===== */
+const LSTORY = {
+  perform: ['Kacaw', '團員的車資我先墊了。扣完的錢，要夠付他們回程喔。'],
+  lecture: ['Ofad', '我想讓部落的小朋友都會唱族語童謠，這期有十二個孩子來上課。'],
+  bonus: ['Lisin', '年終我想拿去換一支田野錄音筆，把老人家說的故事錄下來。'],
+  rent: ['黃先生', '老屋是我阿公留下來的。給大家用，房子才有人氣。'],
+  'hr-month': ['小芸', '這個月講師很多，大家都說社區課程變熱鬧了。'],
+  'hr-quiet': ['Lisin', '過年大家都回部落，辦公室會安靜好一陣子。'],
+  'hr-scope': ['Ofad', '老實說，我不太懂這些錢怎麼算，只想把課教好。'],
+  'hr-burden': ['Sawmah', '竹編這門手藝快沒人會了，我想多教幾個年輕人。'],
+  'pl-lecture': ['Ofad', '講座最後一週，我想請耆老來唱古調。'],
+  'pl-hut': ['Faki', '以前的工寮都是大家一起搭的，一邊做一邊唱歌。'],
+  'pl-contract': ['Sawmah', '我只是想確定，自己到底算不算協會的人。'],
+  'pl-perform': ['Kacaw', '年底音樂會是我們團今年最大的一場，大家都很期待。']
+};
+const LTHANKS = {
+  perform: ['Kacaw', '算得清清楚楚，我就知道要留多少給團員了！'],
+  lecture: ['Ofad', '孩子們下週要表演給家長看，你一定要來！'],
+  bonus: ['Lisin', '錄音筆買到之後，第一個要錄 Faki 講工寮的故事。'],
+  rent: ['黃先生', '下次老屋辦活動，記得找我一起來。'],
+  'hr-burden': ['Sawmah', '聽你這樣說，我比較安心了。'],
+  'pl-hut': ['Faki', '年輕人做事仔細，很好。'],
+  'pl-contract': ['Sawmah', '原來看的是怎麼工作，不是合約怎麼寫。'],
+  'pl-perform': ['Kacaw', '整團來演，你也要來聽喔！']
+};
+Object.assign(FLAVOR, {
+  panay: '這套表演服是我阿嬤縫的，每次上台都會帶著。',
+  kacaw: '我們團有七個人，最小的才十六歲。',
+  ofad: '族語童謠要從小唱，長大才不會忘。',
+  sawmah: '竹子要選對時間砍，才不會長蟲。',
+  lisin: '成果報告寫到第三版了……',
+  huang: '老屋的檜木樑，是我阿公那一代自己扛上去的。',
+  faki: '以前沒有協會，大家有事就聚在工寮裡商量。'
+});
+
+/* ===== 小抄：名詞小辭典 ===== */
+const GLOSSARY = [
+  ['補充保費', `二代健保在一般保費之外，針對特定所得另外收的保費，${CFG.year} 年費率 2.11%。分成「單位補充保費」和「個人補充保費」。`],
+  ['投保金額', '健保依薪資級距認定的金額，用來計算保費。它不一定等於月薪，例如月薪 34,000 元，投保金額是 34,800 元。'],
+  ['扣費義務人', '付錢的一方，例如協會。付款時要先代扣個人補充保費，再繳給健保署。'],
+  ['單位補充保費', '也叫雇主額外負擔。協會當月薪資所得總額超過員工投保金額總額的部分 × 2.11%，由協會自己負擔。'],
+  ['正差額', '薪資所得總額減掉投保金額總額後，大於零的部分。零或負數時，該月單位補充保費是 0 元。'],
+  ['所得代號 50（薪資所得）', '受單位指揮監督的工作所得，包括員工薪水，以及由單位排課、按鐘點計酬的講師費。'],
+  ['兼職薪資所得', `在沒有投保的單位領到的薪資。單次給付達基本工資（${CFG.year} 年 ${fmt(CFG.minWage)} 元）就要代扣。`],
+  ['9A（執行業務所得）', '獨立以專業勞務取得、自己負擔成本和盈虧的收入，例如表演者、獨立承接的工匠。'],
+  ['9B（講演、稿費）', '專題講演、稿費、版稅、翻譯等收入。'],
+  ['租金收入（51）', '向個人租房屋、場地付的租金。向有發票的公司行號租，則屬購買服務。'],
+  ['單次給付', '每一次付款分開看，不是把同一個月、同一個人的錢加總。'],
+  ['購買服務', '向依法營業的公司、商號付款並取得發票，一般不算個人所得，不代扣個人補充保費。'],
+  ['免扣資格', '有些人可以不被代扣，例如以職業工會身分投保的人領執行業務收入，需要附證明文件。這個遊戲假設大家都沒有免扣資格。'],
+  ['所得稅扣繳', '另一套由國稅局管理的制度，和補充保費分開計算。例如執行業務、租金扣 10%，每次稅額不超過 2,000 元免扣。'],
+  ['繳納期限', '代扣下來的補充保費，要在給付日的次月底前繳給健保署。例如 11 月付的錢，12 月底前繳。'],
+  ['扣費明細申報', '次年 1 月 31 日前，把整年每一筆代扣的明細申報給健保署。對方報稅時才能列舉扣除。也可以每月繳費時一起申報，比較不會漏。'],
+  ['基本工資', `勞動部公告的每月最低工資，${CFG.year} 年是 ${fmt(CFG.minWage)} 元。兼職薪資單次給付達這個金額，才要代扣補充保費。`]
+];
+const TERM_ALIAS = [['單位補充保費', 3], ['雇主額外負擔', 3], ['投保金額', 1], ['扣費義務人', 2], ['正差額', 4], ['兼職薪資', 6], ['薪資所得', 5], ['執行業務', 7], ['講演', 8], ['稿費', 8], ['租金', 9], ['單次給付', 10], ['購買服務', 11], ['免扣', 12], ['所得稅', 13], ['次月底', 14], ['扣費明細', 15], ['基本工資', 16]];
+const TERM_RE = new RegExp(TERM_ALIAS.map(a => a[0]).join('|'), 'g');
+function termify(h, used) {
+  return h.replace(TERM_RE, m => { const i = TERM_ALIAS.find(a => a[0] === m)[1]; if (used.has(i)) return m; used.add(i); return `<button type="button" class="term" data-act="term" data-term="${i}" aria-haspopup="dialog">${m}</button>`; });
+}
+const tpop = document.getElementById('tpop');
+function showTerm(b) {
+  const i = +b.dataset.term, [t, d] = GLOSSARY[i];
+  document.querySelectorAll('.term.on').forEach(x => x.classList.remove('on')); b.classList.add('on');
+  document.getElementById('tpT').textContent = t; document.getElementById('tpD').textContent = d;
+  tpop.hidden = false;
+  const r = b.getBoundingClientRect(), w = tpop.offsetWidth, h = tpop.offsetHeight;
+  let x = Math.max(8, Math.min(innerWidth - w - 8, r.left + r.width / 2 - w / 2)), y = r.bottom + 8;
+  if (y + h > innerHeight - 8) y = Math.max(8, r.top - h - 8);
+  tpop.style.left = x + 'px'; tpop.style.top = y + 'px';
+  tpopAt = performance.now();
+  if (!S.terms.includes(i)) { S.terms.push(i); save(); }
+  SFX.play('open');
+}
+function hideTerm() { if (!tpop.hidden) { tpop.hidden = true; document.querySelectorAll('.term.on').forEach(x => x.classList.remove('on')); } }
+document.getElementById('tpX').addEventListener('click', hideTerm);
+document.addEventListener('pointerdown', e => { if (!tpop.hidden && !e.target.closest('#tpop') && !e.target.closest('.term')) hideTerm(); }, true);
+let tpopAt = 0;
+panel.addEventListener('scroll', () => { if (innerWidth > 640 && performance.now() - tpopAt > 400) hideTerm(); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && !tpop.hidden) { hideTerm(); e.stopImmediatePropagation(); } }, true);
+
+/* ===== 小抄：白板與範例單據 ===== */
+function boardHTML() {
+  const rows = [
+    ['獎金（50）', '全年累計超過「投保金額 × 4」', '只算超過的部分 × 2.11%'],
+    ['兼職薪資（50）', `單次給付達基本工資 ${fmt(CFG.minWage)} 元，且沒在本單位投保`, '整筆 × 2.11%'],
+    ['執行業務（9A、9B）', `單次達 ${fmt(CFG.single)} 元`, '整筆 × 2.11%，不先扣成本'],
+    ['股利', `單次達 ${fmt(CFG.single)} 元`, '整筆 × 2.11%（雇主、自營業主另有規定）'],
+    ['利息', `單次達 ${fmt(CFG.single)} 元`, '整筆 × 2.11%'],
+    ['租金（51）', `單次達 ${fmt(CFG.single)} 元`, '整筆 × 2.11%，不先扣必要費用']
+  ];
+  return `<div class="wb">
+    <h3>補充保費速查表（${CFG.year} 年）</h3>
+    <p class="wb-k">個人補充保費：付錢時先代扣，由領錢的人負擔</p>
+    <div class="tbl-wrap"><table><tr><th>所得</th><th>什麼時候要扣</th><th>怎麼算</th></tr>
+      ${rows.map(r => `<tr><td><b>${r[0]}</b></td><td data-label="什麼時候要扣">${r[1]}</td><td data-label="怎麼算">${r[2]}</td></tr>`).join('')}</table></div>
+    <p class="wb-k">單位補充保費：協會自己負擔，每月算一次</p>
+    <div class="wb-f">（當月薪資所得總額 − 員工投保金額總額）× 2.11%<br><span>零或負數就是 0 元；只算所得代號 50、79A、79B</span></div>
+    <p class="wb-n">檢查順序：先確認誰負擔 → 再確認所得性質 → 最後算金額。<br>所得稅是另一套制度，另外計算。看不懂的名詞，去書櫃查。</p>
+  </div>`;
+}
+const SAMPLES = [
+  { t: '個人領據（表演者，9A）', html: `
+    <h3>領據</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>受領人</th><td>Kacaw</td></tr>
+      <tr><th>事由</th><td class="hl">年底音樂會演出（自行帶團承接，自負成本）<sup>①</sup></td></tr>
+      <tr><th>金額</th><td class="hl r">30,000 元<sup>②</sup></td></tr>
+      <tr><th>代扣補充保費</th><td class="r">633 元</td></tr>
+      <tr><th>代扣所得稅</th><td class="hl r">3,000 元<sup>③</sup></td></tr>
+      <tr><th>實領</th><td class="r">26,367 元<sup>④</sup></td></tr>
+    </table></div>
+    <ol class="callouts"><li>看「事由」和工作方式判斷類別：獨立承接、自負成本 → 9A。</li><li>單次達 20,000 元 → 整筆 × 2.11% = 633 元，不先扣成本。</li><li>所得稅另計：10% = 3,000 元，超過 2,000 元要扣。</li><li>實領 = 金額 − 兩種代扣。</li></ol>` },
+  { t: '鐘點費印領清冊（兼職薪資，50）', html: `
+    <h3>鐘點費印領清冊</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>講師</th><th>時數 × 鐘點</th><th>小計</th><th>在本會投保？</th><th>代扣補充保費</th></tr>
+      <tr><td>Ofad</td><td>15 × 2,000</td><td class="hl r">30,000<sup>①</sup></td><td class="hl">否<sup>②</sup></td><td class="r">633</td></tr>
+      <tr><td>Sawmah</td><td>10 × 2,000</td><td class="r">20,000</td><td>否</td><td class="hl r">0<sup>③</sup></td></tr>
+    </table></div>
+    <ol class="callouts"><li>看「每一位、每一次」的金額，不要加總。</li><li>兼職薪資只扣沒在本單位投保的人。</li><li>20,000 元沒達基本工資 ${fmt(CFG.minWage)} 元，不扣。</li></ol>` },
+  { t: '場地租金收據（51）', html: `
+    <h3>場地租金收據</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>出租人</th><td class="hl">黃○○（個人，無發票）<sup>①</sup></td></tr>
+      <tr><th>租金</th><td class="hl r">24,000 元<sup>②</sup></td></tr>
+      <tr><th>代扣補充保費</th><td class="r">506 元</td></tr>
+      <tr><th>代扣所得稅</th><td class="r">2,400 元</td></tr>
+    </table></div>
+    <ol class="callouts"><li>個人出租、沒有發票 → 租金收入；有發票的商號 → 購買服務。</li><li>達 20,000 元 → 整筆 × 2.11%，清潔水電等費用不能先扣。</li></ol>` }
+];
+let boardTab = 'sheet';
+function pBoard() {
+  const tab = (t, l) => `<button class="tab ${boardTab === t ? 'on' : ''}" data-act="btab" data-t="${t}" aria-pressed="${boardTab === t}">${l}</button>`;
+  return `<div class="phead"><div><span class="lvno">WHITEBOARD</span><h2>會議室白板</h2></div>${closeBtn('看完了')}</div>
+  <div class="tabs">${tab('sheet', '速查表')}${tab('flow', '判斷流程圖')}</div>${boardTab === 'flow' ? flowHTML() : boardHTML()}`;
+}
+function flowHTML() {
+  const yes = (t, d) => `<div class="fc-yes"><span class="fc-tag yes">是</span><div><b>${t}</b><span>${d}</span></div></div>`;
+  const no = t => `<div class="fc-no"><span class="fc-tag no">否</span>${t}</div>`;
+  return `<div class="wb fc">
+    <h3>這筆錢要不要扣補充保費？（${CFG.year} 年）</h3>
+    <p class="wb-n" style="margin:0 0 12px">協會要付錢給別人時，從第 1 題往下問。</p>
+    <div class="fc-row"><div class="fc-q"><span class="fc-n">1</span>對方是公司行號，而且開發票給協會？</div>${yes('購買服務：不扣', '不算個人所得，補充保費和所得稅都不用代扣。')}</div>
+    ${no('往下看第 2 題')}
+    <div class="fc-row"><div class="fc-q"><span class="fc-n">2</span>對方是本會投保的員工？</div>${yes('看是薪水還是獎金', `每月薪水：不扣個人的，月底由協會算「單位補充保費」，自己負擔。<br>獎金：全年累計超過「投保金額 × ${CFG.bonusX}」的部分 × 2.11%。`)}</div>
+    ${no('往下看第 3 題')}
+    <div class="fc-row"><div class="fc-q"><span class="fc-n">3</span>這筆錢屬於哪一類？每一次付款分開看，不要加總。</div>
+      <div class="fc-split">
+        <div class="fc-yes"><span class="fc-tag">兼職薪資（50）</span><div><b>單次達基本工資 ${fmt(CFG.minWage)} 元？</b><span>達到：整筆 × 2.11%｜沒達到：不扣</span></div></div>
+        <div class="fc-yes"><span class="fc-tag">9A、9B、租金、利息、股利</span><div><b>單次達 ${fmt(CFG.single)} 元？</b><span>達到：整筆 × 2.11%，不先扣成本｜沒達到：不扣</span></div></div>
+      </div></div>
+    <div class="fc-down">↓ 算出要扣的金額後</div>
+    <div class="fc-row"><div class="fc-q"><span class="fc-n">4</span>對方有免扣資格，而且領錢前交了證明？</div>${yes('免扣', '例如以職業工會身分投保的人領執行業務收入、低收入戶成員。證明文件要留存。')}</div>
+    ${no('照第 2、3 題算出的金額代扣')}
+    <h3 style="margin-top:22px">扣了之後要做什麼？</h3>
+    <ol class="fc-time">
+      <li><b>給付當天</b>從付款裡扣下補充保費，開扣費證明給對方。</li>
+      <li><b>給付日的次月底前</b>把扣下的錢繳給健保署。例如 11 月付的錢，12 月底前繳。</li>
+      <li><b>次年 1 月 31 日前</b>向健保署申報整年的扣費明細。也可以每月繳費時一起申報，比較不會漏。</li>
+      <li><b>對方報稅時</b>被扣的補充保費可以列舉扣除，所以明細一定要報對。</li>
+    </ol>
+    <p class="wb-n">所得稅扣繳是另一套流程，歸國稅局管，期限和表單都不同，要分開處理。<br>不確定時：所得分類問國稅局，門檻和免扣資格問健保署。</p>
+  </div>`;
+}
+function pGlossary() {
+  const seen = S.terms.length;
+  return `<div class="phead"><div><span class="lvno">BOOKSHELF · ${seen}/${GLOSSARY.length}</span><h2>名詞小辭典</h2></div>${closeBtn('放回書櫃')}</div>
+  <p class="fine">點一下名詞就會展開。查過的名詞會收進筆記本。</p>
+  <div class="gloss">${GLOSSARY.map(([t, d], i) => `<details data-term="${i}" ${S.terms.includes(i) ? 'class="seen"' : ''}><summary>${esc(t)}</summary><p>${esc(d)}</p></details>`).join('')}</div>`;
+}
+function pSamples() {
+  return `<div class="phead"><div><span class="lvno">FILING CABINET</span><h2>檔案櫃：範例單據</h2></div>${closeBtn('關上抽屜')}</div>
+  <p class="fine">黃色底線的欄位是判斷的關鍵，對照下面的編號說明。</p>
+  <div class="samples">${SAMPLES.map(s => `<section class="doc sample"><div class="stitle">${esc(s.t)}</div>${s.html}</section>`).join('')}</div>`;
+}
+function pDoc() {
+  const { L } = qCtx();
+  return `<div class="phead"><div><span class="lvno">DOCUMENT</span><h2>手上的單據</h2></div>${closeBtn('收起單據')}</div>
+  <p class="fine">點單據上的數字，可以直接帶進計算機。</p>
+  <div class="doc">${chipify(L.doc())}</div>`;
+}
+function chipify(html) {
+  return html.replace(/>([^<]+)</g, (m, t) => '>' + t.replace(/(\d{1,3}(?:,\d{3})+|\d+)(?![\d,]*\s*[年月日])/g, n => `<button type="button" class="chip" data-act="chip" data-num="${n.replace(/,/g, '')}">${n}</button>`) + '<');
+}
+
+/* ===== 表情反應 ===== */
+function emote(id, txt, kind, ms) {
+  const e = ents[id]; if (!e) return;
+  e.emo.textContent = txt; e.emo.className = 'nemo show ' + (kind || '');
+  clearTimeout(e.emoT); e.emoT = setTimeout(() => { e.emo.className = 'nemo'; }, ms || 1800);
+  if (kind === 'happy' || kind === 'worry') { e.b.classList.remove('hop', 'shake'); void e.b.offsetWidth; e.b.classList.add(kind === 'happy' ? 'hop' : 'shake'); }
+}
+
+/* ===== 對話式作答 ===== */
+const qd = document.getElementById('qd');
+let Q = null;
+const calc = { open: false, expr: '', res: null };
+const PRACTICE = {
+  type: 'number', q: '練習一下：Panay 的演出費是 20,000 元。用下方的計算機，算出 20,000 × 2.11% 是多少元？', answer: fee(20000),
+  errors: { 20000: '這是演出費本身。再按一次「× 2.11%」。', 42200: '小數點跑掉了。2.11% 是 0.0211。' },
+  fallback: '點左邊單據上的 20,000（或用按鍵輸入）→ 按「× 2.11%」→ 按「填入答案」→ 送出。',
+  explain: `答對了！20,000 × 2.11% = ${fmt(fee(20000))} 元。之後每一題需要算錢時，計算機都會在題目下方，單據上的數字也都可以點。`,
+  hints: ['點左邊單據上的 20,000，數字會跑進計算機。', '再按「× 2.11%」。', `算出 ${(20000 * CFG.rate).toFixed(1)}，四捨五入是 ${fee(20000)}。按「填入答案」再送出。`]
+};
+const PRACTICE_L = { no: '教學', title: '計算機練習', doc: () => `<h3>支出明細表</h3><div class="tbl-wrap"><table><tr><th>受領人</th><th>事由</th><th>金額（元）</th></tr><tr><td>Panay</td><td>晚會演出</td><td class="r">20,000</td></tr></table></div>` };
+function qCtx() {
+  if (Q.kind === 'practice') return { L: PRACTICE_L, step: PRACTICE, idx: 0, total: 1, ss: Q.ss };
+  if (Q.kind === 'review') { const it = Q.queue[Q.idx]; const L = LV[it.role][it.lv]; return { L, step: L.steps[it.st], idx: Q.idx, total: Q.queue.length, ss: Q.ss }; }
+  const L = curL(); return { L, step: L.steps[S.st], idx: S.st, total: L.steps.length, ss: S.ss };
+}
+function askerOf(L, step) {
+  if (!Q || Q.kind === 'practice') return { name: '理事長', id: 'boss' };
+  if (step.tag) return { name: step.tag, id: 'boss' };
+  const id = TALK[L.id].npc[0]; const n = NPCS.find(x => x.id === id);
+  return { name: n.name, id: n.role === S.role ? '@player' : id };
+}
+function fmtExpr(x) { return x || '0'; }
+function evalExpr(x) {
+  let s = x.replace(/,/g, '').replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-').replace(/(\d+(?:\.\d+)?)%/g, '($1/100)');
+  s = s.replace(/[*/+\-]\s*$/, '');
+  if (!s.trim() || !/^[\d.+\-*/() ]+$/.test(s)) return null;
+  try { const v = Function('"use strict";return (' + s + ')')(); return Number.isFinite(v) ? v : null; } catch (e) { return null; }
+}
+function calcHTML() {
+  const r = evalExpr(calc.expr);
+  const keys = ['7', '8', '9', '÷', '4', '5', '6', '×', '1', '2', '3', '−', '0', '00', '.', '+'];
+  return `<div class="calc" role="group" aria-label="計算機">
+    <div class="calc-d" aria-live="polite"><span class="calc-e">${esc(fmtExpr(calc.expr))}</span><span class="calc-r">${r == null ? '' : '= ' + (Math.round(r * 100) / 100).toLocaleString('zh-TW')}</span></div>
+    <div class="calc-k">${keys.map(k => `<button type="button" data-c="${k}" aria-label="${k}">${k}</button>`).join('')}
+      <button type="button" data-c="C" class="op">C</button><button type="button" data-c="del" class="op" aria-label="刪除">⌫</button>
+      <button type="button" data-c="pct" class="pct">× 2.11%</button></div>
+    <button type="button" data-c="fill" class="pbtn gold calc-fill">填入答案（四捨五入）</button>
+  </div>`;
+}
+function calcPress(k) {
+  const ops = ['÷', '×', '−', '+'];
+  if (k === 'C') calc.expr = '';
+  else if (k === 'del') calc.expr = calc.expr.replace(/\s*[÷×−+]\s*$|.$/, '');
+  else if (k === 'pct') { if (!calc.expr) calc.expr = '0'; calc.expr += ' × 2.11%'; }
+  else if (k === 'fill') { const r = evalExpr(calc.expr); const inp = document.getElementById('qnum'); if (r != null && inp) { inp.value = fmt(Math.round(r)); qCtx().ss.input = inp.value; } return; }
+  else if (ops.includes(k)) { if (!calc.expr) calc.expr = '0'; calc.expr = calc.expr.replace(/\s*[÷×−+]\s*$/, '') + ' ' + k + ' '; }
+  else calc.expr += k;
+  const box = pin.querySelector('.calc'); if (box) box.outerHTML = calcHTML();
+}
+function qPanelHTML() {
+  const { L, step, idx, total, ss } = qCtx(); const who = askerOf(L, step);
+  let qText = step.q; if (!step.tag && Q.kind !== 'practice') qText = qText.replace(new RegExp('^' + who.name + ' 的'), '我的');
+  const lvno = Q.kind === 'review' ? `錯題複習 · ${idx + 1}/${total}` : Q.kind === 'practice' ? '新手教學 · 計算機' : `QUEST ${L.no} · 第 ${idx + 1}/${total} 題`;
+  const prog = Array.from({ length: total }, (_, i) => `<i class="${i <= idx ? 'on' : ''}"></i>`).join('');
+  let body = '';
+  if (step.type === 'choice') {
+    const order = Q.kind === 'review' ? (ss.order || (ss.order = step.options.map((_, i) => i).sort(() => Math.random() - 0.5))) : step.options.map((_, i) => i);
+    body = `<div class="opts">${order.map(i => { const o = step.options[i]; const cls = ss.wrong.includes(i) ? 'wrong' : (ss.done && o.ok) ? 'right' : ''; return `<button class="opt ${cls}" data-q="pick" data-i="${i}" ${ss.done || ss.wrong.includes(i) ? 'disabled' : ''}>${esc(o.t)}</button>`; }).join('')}</div>`;
+  } else {
+    body = `<form class="qd-num" id="qform"><label for="qnum">金額（元，四捨五入到整數）</label><input id="qnum" inputmode="numeric" autocomplete="off" value="${esc(ss.input)}" ${ss.done ? 'disabled' : ''} placeholder="例如 1,234"><span>元</span><button class="pbtn gold" type="submit" ${ss.done ? 'disabled' : ''}>送出</button></form>`;
+  }
+  const labels = ['方向', '規則', '示範'];
+  const used = new Set(); const qHtml = termify(esc(qText), used);
+  const hints = ss.hint && !ss.done ? `<div class="hints">${step.hints.slice(0, ss.hint).map((h, i) => `<div class="hint"><div class="lv">提示 ${i + 1} · ${labels[i]}</div>${termify(esc(h), used)}</div>`).join('')}</div>` : '';
+  let fb = '';
+  if (ss.fb && !ss.done) fb = `<div class="sticky" role="status">${termify(esc(ss.fb), used)}<div class="sig">— 前輩</div></div>`;
+  if (ss.done) fb = `<div class="good" role="status"><b>核可！</b> ${termify(esc(step.explain), used)}</div>` + (step.note && Q.kind === 'task' ? `<div class="gain">＋ 筆記本新增一頁：「${esc(NOTES[step.note].t)}」</div>` : '');
+  const last = idx === total - 1;
+  const actions = ss.done
+    ? `<span></span><button class="pbtn gold" data-q="next">${last ? (Q.kind === 'task' ? '完成這件事 ▶' : '完成 ▶') : '下一題 ▶'}</button>`
+    : `<button class="pbtn" data-q="hint" ${ss.hint >= 3 ? 'disabled' : ''}>${ss.hint >= 3 ? '提示已全部打開' : '給我提示（' + (ss.hint + 1) + '/3）'}</button><span class="fine">答錯不會失敗，可以再試</span>`;
+  const leave = `<button class="pbtn" data-q="leave">${Q.kind === 'practice' ? '跳過教學' : '先離開'}</button>`;
+  const stamp = ss.stamp ? `<div class="stamp ${ss.stamp}${ss.anim ? ' anim' : ''}" aria-hidden="true">${ss.stamp === 'ok' ? '核' : '退件'}</div>` : '';
+  const showCalc = step.type === 'number' && !ss.done;
+  return `<div class="phead"><div><span class="lvno">${esc(lvno)}</span><h2>${esc(L.title)}</h2></div>${leave}</div>
+  <div class="stage">
+    <div class="col"><div class="doc">${showCalc ? chipify(L.doc()) : L.doc()}</div>${showCalc ? '<p class="fine">點單據上的數字，會直接帶進下方的計算機。</p>' : ''}</div>
+    <div class="col">
+      <div class="qbox" id="qbox">${stamp}
+        <div class="progress" aria-label="第 ${idx + 1} 題，共 ${total} 題">${prog}</div>
+        <div class="qd-name">${esc(who.name)}</div>
+        <p class="q">${qHtml}</p>${body}
+        ${showCalc ? calcHTML() : ''}
+      </div>
+      ${fb}${hints}
+      <div class="actions">${actions}</div>
+    </div>
+  </div>`;
+}
+function renderQD(focus) {
+  if (!Q) { if (mode === 'q') { panel.hidden = true; mode = null; updateHud(); } document.body.classList.remove('questing'); return; }
+  document.body.classList.add('questing');
+  const fresh = mode !== 'q';
+  mode = 'q'; panel.hidden = false; held = [];
+  hideTerm(); pin.innerHTML = qPanelHTML();
+  const ss = qCtx().ss; ss.anim = false;
+  const f = focus && document.getElementById(focus);
+  if (f) f.focus({ preventScroll: true });
+  else if (ss.done) pin.querySelector('[data-q=next]')?.focus({ preventScroll: true });
+  if (fresh) panel.scrollTop = 0;
+  else if (ss.done || ss.fb) document.getElementById('qbox')?.scrollIntoView({ block: 'nearest' });
+}
+function qRight() {
+  const { step, ss, L } = qCtx(); const who = askerOf(L, step);
+  ss.done = true; ss.fb = null; ss.stamp = 'ok'; ss.anim = true;
+  const newNote = Q.kind === 'task' && step.note && !S.notes.includes(step.note);
+  if (newNote) { S.notes.push(step.note); save(); }
+  SFX.play('ok'); if (newNote) setTimeout(() => SFX.play('note'), 260);
+  emote(who.id, '♪', 'happy'); renderQD();
+}
+function qWrong(msg) {
+  const { step, ss, L } = qCtx(); const who = askerOf(L, step);
+  if (Q.kind === 'task') S.mistakes++;
+  ss.miss = true; ss.fb = msg; ss.stamp = 'no'; ss.anim = true; SFX.play('no');
+  emote(who.id, '？', 'worry'); renderQD(step.type === 'number' ? 'qnum' : null);
+}
+function qSubmit(raw) {
+  const { step, ss } = qCtx(); ss.input = raw;
+  const v = parseInt(String(raw).replace(/[,，\s元]/g, ''), 10);
+  if (Number.isNaN(v)) { ss.fb = '請輸入數字，例如 1234。'; ss.stamp = null; renderQD('qnum'); return; }
+  if (v === step.answer) { ss.input = fmt(v); qRight(); return; }
+  qWrong(step.errors[v] || step.fallback);
+}
+const missKey = m => m.role + '|' + m.lv + '|' + m.st;
+function qNext() {
+  calc.open = false; calc.expr = '';
+  if (Q.kind === 'practice') { Q = null; renderQD(); S.tut = 9; save(); updateHud(); say([['小芸', '原來這麼簡單！'], ['小芸', '教學完成。現在去上方中間的理事長室，找理事長報到吧。']]); return; }
+  if (Q.kind === 'review') {
+    Q.idx++; Q.ss = freshStep();
+    if (Q.idx < Q.queue.length) { renderQD(); return; }
+    const done = Q.queue.map(missKey); S.missed = S.missed.filter(m => !done.includes(missKey(m))); save();
+    const cb = Q.onDone; Q = null; renderQD(); if (cb) cb(); return;
+  }
+  const L = curL();
+  if ((S.ss.miss || S.ss.hint >= 3) && S.tRole !== 'finale') { const m = { role: S.tRole, lv: S.lv, st: S.st }; if (!S.missed.some(x => missKey(x) === missKey(m))) S.missed.push(m); }
+  if (S.st < L.steps.length - 1) { S.st++; S.ss = freshStep(); save(); renderQD(); return; }
+  Q = null; renderQD(); nextStep();
+  const who = TALK[L.id].npc[0]; emote(NPCS.find(n => n.id === who)?.role === S.role ? '@player' : who, '♪', 'happy', 2600); emote('@player', '♪', 'happy', 2600);
+}
+function startReview(queue, onDone) { Q = { kind: 'review', queue: queue.slice(), idx: 0, ss: freshStep(), onDone }; calc.open = false; renderQD(); }
+function startPractice() { Q = { kind: 'practice', ss: freshStep() }; calc.open = false; calc.expr = ''; renderQD(); }
+pin.addEventListener('click', e => {
+  if (mode !== 'q') return;
+  const c = e.target.closest('[data-c]'); if (c) { calcPress(c.dataset.c); return; }
+  const b = e.target.closest('[data-q]'); if (!b || b.disabled) return;
+  const a = b.dataset.q, ctx = qCtx();
+  if (a === 'pick') { const o = ctx.step.options[+b.dataset.i]; if (o.ok) qRight(); else { ctx.ss.wrong.push(+b.dataset.i); qWrong(o.why); } }
+  else if (a === 'hint') { const inp = document.getElementById('qnum'); if (inp) ctx.ss.input = inp.value; ctx.ss.hint = Math.min(3, ctx.ss.hint + 1); if (Q.kind === 'task') S.maxHint = Math.max(S.maxHint, ctx.ss.hint); renderQD(); }
+  else if (a === 'calc') { const inp = document.getElementById('qnum'); if (inp) ctx.ss.input = inp.value; calc.open = !calc.open; renderQD(); }
+  else if (a === 'doc') { const inp = document.getElementById('qnum'); if (inp) ctx.ss.input = inp.value; openPanel('doc'); }
+  else if (a === 'next') qNext();
+  else if (a === 'leave') { if (Q.kind === 'practice') { Q = null; renderQD(); skipTutorial(); } else { Q = null; renderQD(); } }
+});
+pin.addEventListener('submit', e => { if (mode !== 'q') return; e.preventDefault(); const inp = document.getElementById('qnum'); if (inp) qSubmit(inp.value); });
+
+/* ===== 新手教學 ===== */
+const TUT_RING = { 1: [9, 9], 2: [7, 6] };
+function tutGoal() { return { 1: '新手教學：走到前面地上的金色光圈（方向鍵、WASD，或直接點地面）', 2: '新手教學：走到白板前的光圈，面向白板按 A 或空白鍵調查', 3: '新手教學：試試計算機' }[S.tut]; }
+function startTutorial() {
+  S.tut = 1; save(); updateHud();
+  say([['小芸', '（推開馬鞍社區協會的門。）今天是報到第一天！'], ['小芸', '先熟悉一下辦公室。往前走到地上的金色光圈。']]);
+}
+function skipTutorial() { S.tut = 9; save(); updateHud(); if (!S.met) say([['小芸', '好，直接開始！先去上方中間的理事長室找理事長報到。']]); }
+function checkTutorial() {
+  if (S.tut === 1 && player.x === 9 && player.y === 9) {
+    S.tut = 2; save(); updateHud();
+    say([['小芸', '很好！會議桌左後方的白板，寫著補充保費速查表。'], ['小芸', '走到白板前的光圈，面向白板按 A 或空白鍵調查。']]);
+  }
+}
+function afterBoardTutorial() {
+  if (S.tut !== 2) return;
+  S.tut = 3; save(); updateHud();
+  say([['小芸', '頭上有綠色放大鏡標籤的東西都可以調查：白板、書櫃、檔案櫃、公布欄、出納桌。忘了規則就回來查。'], ['小芸', '再練習一次計算機，算錢不用心算。']], () => startPractice());
+}
+
+/* ===== 輸入 ===== */
+const KEYMAP = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right', w: 'up', s: 'down', a: 'left', d: 'right', W: 'up', S: 'down', A: 'left', D: 'right' };
+addEventListener('keydown', e => {
+  if (!panel.hidden) { if (e.key === 'Escape' && mode !== 'title' && mode !== 'q') { if (mode === 'task') afterClose = null; closePanel(); } return; }
+  if (dlg) { if ([' ', 'Enter', 'z', 'Z'].includes(e.key)) { e.preventDefault(); advance(); } return; }
+  if (Q) return;
+  const d = KEYMAP[e.key];
+  if (d) { e.preventDefault(); if (!held.includes(d)) held.push(d); return; }
+  if ([' ', 'Enter', 'z', 'Z'].includes(e.key)) { e.preventDefault(); if (!player.moving) interact(); }
+  if (e.key === 'n' || e.key === 'N') openPanel('notebook');
+});
+addEventListener('keyup', e => { const d = KEYMAP[e.key]; if (d) held = held.filter(h => h !== d); });
+addEventListener('blur', () => { held = []; });
+document.querySelectorAll('.dpad button').forEach(b => {
+  const d = b.dataset.dir;
+  const on = e => { e.preventDefault(); if (dlg) return; b.classList.add('on'); if (!held.includes(d)) held.push(d); };
+  const off = () => { b.classList.remove('on'); held = held.filter(h => h !== d); };
+  b.addEventListener('pointerdown', on); b.addEventListener('pointerup', off); b.addEventListener('pointerleave', off); b.addEventListener('pointercancel', off);
+  b.addEventListener('contextmenu', e => e.preventDefault());
+});
+const btnA = document.getElementById('btnA');
+btnA.addEventListener('pointerdown', e => { e.preventDefault(); if (Q) return; btnA.classList.add('on'); if (dlg) advance(); else if (!player.moving) interact(); });
+['pointerup', 'pointerleave', 'pointercancel'].forEach(t => btnA.addEventListener(t, () => btnA.classList.remove('on')));
+document.getElementById('near').addEventListener('click', e => { e.stopPropagation(); if (!player.moving) interact(); });
+document.getElementById('dialog').addEventListener('pointerdown', e => { e.preventDefault(); e.stopPropagation(); advance(); });
+
+
+/* ===== 角色像素圖 ===== */
+const SPR = (() => {
+// 24 x 40 原生像素角色：四分之三側臉、深色描邊、左上打光
+const W = 24, H = 43;
+function hex(c) { const n = parseInt(c.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function toHex([r, g, b]) { return '#' + [r, g, b].map(v => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join(''); }
+function mix(c, t, k) { const a = hex(c), b = hex(t); return toHex(a.map((v, i) => v + (b[i] - v) * k)); }
+const dark = (c, k) => mix(c, '#140c1c', k), light = (c, k) => mix(c, '#fff6e0', k);
+
+function paint(ch, view, frame) {
+  frame = frame || 0;
+  const g = Array.from({ length: H }, () => Array(W).fill(null));
+  const put = (x, y, c, part, flat) => { if (x >= 0 && x < W && y >= 0 && y < H) g[y][x] = c ? { c, part, flat } : null; };
+  const rect = (x, y, w, h, c, part, flat) => { for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) put(x + i, y + j, c, part, flat); };
+  const back = view === 'back';
+  const s = ch.skin, hair = ch.hair, st = ch.hairStyle;
+
+  // 後髮
+  if (st === 'long') { rect(5, 6, 14, back ? 18 : 17, hair, 'hairback'); }
+  if (st === 'pony') { rect(16, 4, 3, 4, hair, 'hairback'); rect(17, 8, 3, 9, hair, 'hairback'); rect(18, 17, 2, 2, hair, 'hairback'); }
+
+  // 下身
+  const legTop = 26;
+  const lL = frame === 2 ? 1 : 0, lR = frame === 1 ? 1 : 0, sL = frame === 1 ? -1 : 0, sR = frame === 2 ? 1 : 0;
+  if (ch.bottom === 'skirt') {
+    rect(8 + sL, 33, 2, 6 - lL, ch.legs || s, 'legL'); rect(13 + sR, 33, 2, 6 - lR, ch.legs || s, 'legR');
+    rect(8, legTop, 8, 3, ch.pants, 'skirt'); rect(7, legTop + 3, 10, 4, ch.pants, 'skirt');
+  } else {
+    rect(8 + sL, legTop + 2, 3, 11 - lL, ch.pants, 'legL'); rect(12 + sR, legTop + 2, 3, 11 - lR, ch.pants, 'legR'); rect(8, legTop, 7, 3, ch.pants, 'hip');
+  }
+  rect(6 + sL, 39 - lL, 5, 2, ch.shoes, 'shoeL'); rect(12 + sR, 39 - lR, 4, 2, ch.shoes, 'shoeR');
+
+  // 手臂
+  const sleeve = ch.outerType === 'vest' ? ch.top : (ch.outer || ch.top);
+  const armH = ch.shortSleeve ? 4 : 10;
+  const aL = frame === 1 ? -1 : 0, aR = frame === 2 ? -1 : 0;
+  rect(6, 15, 2, armH + aL, sleeve, 'armL'); rect(16, 15, 2, armH + aR, sleeve, 'armR');
+  if (ch.shortSleeve) { rect(6, 19, 2, 6 + aL, s, 'armL2'); rect(16, 19, 2, 6 + aR, s, 'armR2'); }
+  rect(6, 25 + aL, 2, 2, s, 'handL'); rect(16, 25 + aR, 2, 2, s, 'handR');
+
+  // 身體
+  rect(8, 14, 8, 12, ch.top, 'torso'); rect(7, 14, 10, 2, ch.top, 'torso');
+  if (ch.outer) {
+    if (back) rect(7, 14, 10, 12, ch.outer, 'torso');
+    else { rect(7, 14, 3, 12, ch.outer, 'outerL'); rect(14, 14, 3, 12, ch.outer, 'outerR'); }
+  }
+  if (ch.stripe && !(ch.outer && back)) rect(8, ch.stripeY || 19, 8, ch.stripeH || 2, ch.stripe, 'stripe', true);
+  if (ch.belt) rect(8, 25, 8, 1, ch.belt, 'belt', true);
+  if (!back && ch.collar) { put(10, 14, ch.collar, 'collar', true); put(13, 14, ch.collar, 'collar', true); put(10, 15, ch.collar, 'collar', true); put(13, 15, ch.collar, 'collar', true); }
+  if (!back && ch.logo) rect(10, 18, 3, 2, ch.logo, 'logo', true);
+  if (ch.hood) rect(8, 13, 8, 2, ch.hood, 'hood');
+  if (ch.scarf) { rect(9, 13, 6, 2, ch.scarf, 'scarf'); if (!back) rect(10, 15, 2, 5, ch.scarf, 'scarf2'); }
+  if (ch.towel) rect(9, 13, 6, 2, ch.towel, 'towel');
+  if (ch.lanyard && !back) { for (let y = 14; y < 19; y++) { put(10, y, ch.lanyard, 'lan', true); put(13, y, ch.lanyard, 'lan', true); } rect(10, 19, 4, 3, '#f4f1e8', 'card', true); rect(11, 20, 2, 1, ch.lanyard, 'card', true); }
+
+  // 頭
+  rect(11, 12, 3, 2, mix(s, '#6a3a2a', .18), 'neck', true);
+  rect(7, 3, 10, 10, s, 'face'); put(7, 3, null); put(16, 3, null); put(7, 12, null); put(8, 12, null); put(16, 12, null); put(15, 12, null); put(16, 11, null);
+
+  // 頭髮
+  if (back) { rect(7, 1, 10, 12, hair, 'hair'); rect(6, 3, 12, 8, hair, 'hair'); rect(8, 0, 8, 1, hair, 'hair'); }
+  else if (st === 'elder') { rect(8, 0, 8, 1, hair, 'hair'); rect(6, 1, 12, 3, hair, 'hair'); rect(6, 4, 2, 4, hair, 'hair'); rect(16, 4, 2, 4, hair, 'hair'); }
+  else {
+    rect(8, 0, 8, 1, hair, 'hair'); rect(6, 1, 12, 4, hair, 'hair');
+    rect(6, 5, 7, 1, hair, 'hair'); rect(6, 6, 3, 1, hair, 'hair'); rect(15, 5, 3, 1, hair, 'hair');
+    const sideH = (st === 'bob' || st === 'long') ? 9 : 4;
+    rect(6, 5, 1, sideH, hair, 'hair'); rect(17, 5, 1, sideH, hair, 'hair');
+    if (st === 'bob' || st === 'long') { rect(5, 5, 2, sideH, hair, 'hair'); rect(17, 5, 2, sideH, hair, 'hair'); }
+  }
+  if (st === 'bun') rect(14, -1, 4, 3, hair, 'bun'), rect(14, 0, 4, 2, hair, 'bun');
+  if (st === 'pony' && back) rect(10, 9, 4, 9, hair, 'hairback2');
+  if (ch.cap) { rect(6, 0, 12, 4, ch.cap, 'cap'); if (!back) rect(3, 4, 8, 1, dark(ch.cap, .3), 'brim', true); }
+  if (ch.band) rect(6, 3, 12, 2, ch.band, 'band');
+
+  // 臉（2x2 眼睛、眼神光、細眉、淡嘴、腮紅）
+  if (!back) {
+    const iris = ch.eye || '#4a2c26', lash = '#1d1418';
+    for (const ex of [8, 12]) { rect(ex, 8, 2, 1, lash, 'eye', true); put(ex, 9, iris, 'eye', true); put(ex + 1, 9, '#f6ece4', 'eye', true); }
+    if (!ch.glasses) { const bc = mix(hair, s, .35); rect(8, 6, 2, 1, bc, 'brow', true); rect(12, 6, 2, 1, bc, 'brow', true); }
+    put(11, 10, mix(s, '#7a4030', .12), 'nose', true);
+    rect(10, 11, 2, 1, mix(s, '#b0505a', .38), 'mouth', true);
+    put(7, 10, mix(s, '#ff8a8a', .28), 'blush', true); put(8, 10, mix(s, '#ff8a8a', .18), 'blush', true);
+    put(14, 10, mix(s, '#ff8a8a', .28), 'blush', true); put(13, 10, mix(s, '#ff8a8a', .18), 'blush', true);
+    if (ch.glasses) { const gc = mix(ch.glasses, s, .3); rect(7, 7, 4, 1, gc, 'gl', true); rect(11, 7, 4, 1, gc, 'gl', true); put(7, 8, gc, 'gl', true); put(14, 8, gc, 'gl', true); put(8, 10, mix(ch.glasses, s, .75), 'gl', true); put(13, 10, mix(ch.glasses, s, .75), 'gl', true); }
+    if (ch.wrinkle) { put(9, 11, mix(s, '#6a3a2a', .14), 'w', true); put(13, 11, mix(s, '#6a3a2a', .14), 'w', true); }
+  }
+
+  // 陰影：右側背光三欄、下緣；左上高光
+  const same = (x, y, p) => x >= 0 && y >= 0 && x < W && y < H && g[y][x] && g[y][x].part === p;
+  const out = g.map(r => r.map(v => v ? { ...v } : null));
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const v = g[y][x]; if (!v || v.flat) continue;
+    const p = v.part;
+    const soft = p === 'face' || p === 'neck';
+    if (!same(x + 1, y, p) || !same(x, y + 1, p)) out[y][x].c = dark(v.c, soft ? .13 : .32);
+    else if ((p === 'torso' || p === 'outerR' || p === 'legR' || p === 'skirt' || p === 'hair') && x >= 14) out[y][x].c = dark(v.c, .14);
+    else if (p === 'face' && x >= 15) out[y][x].c = dark(v.c, .08);
+    else if (!same(x - 1, y, p) || !same(x, y - 1, p)) out[y][x].c = light(v.c, .2);
+  }
+  if (!back) for (let x = 8; x < 12; x++) if (out[1][x] && out[1][x].part === 'hair') out[1][x].c = light(hair, .32);
+  // 外框
+  const res = out.map(r => r.slice());
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (out[y][x]) continue;
+    let n = null;
+    for (const [dx, dy] of [[0, 1], [1, 0], [-1, 0], [0, -1]]) { const q = out[y + dy] && out[y + dy][x + dx]; if (q) { n = q; break; } }
+    if (n) res[y][x] = { c: dark(n.c, .74), part: 'ol' };
+  }
+  return res;
+}
+
+const CHARS = {
+  xiaoyun: { name: '小芸', role: '出納', skin: '#f3cfae', hair: '#2b2024', hairStyle: 'pony', top: '#f4f1e8', outer: '#3d64b0', pants: '#2e3550', shoes: '#e9e2d4', lanyard: '#3d64b0', outfit: '藍色針織外套、白 T、牛仔褲、識別證' },
+  boss: { name: '理事長', role: '理事長', skin: '#e6b48c', hair: '#b9b5b0', hairStyle: 'elder', top: '#f1ede4', outer: '#7c2f33', outerType: 'vest', pants: '#4a3c35', shoes: '#3a2a22', glasses: '#3a2f2c', wrinkle: true, collar: '#ffffff', belt: '#2a1d18', outfit: '酒紅背心、白襯衫、老花眼鏡' },
+  ade: { name: '阿德', role: '人事主任', skin: '#e9bb93', hair: '#221c1e', hairStyle: 'short', top: '#2f8076', pants: '#c2ae86', shoes: '#4a3a30', glasses: '#26201f', collar: '#cfe7e2', belt: '#4a3a30', outfit: '墨綠 Polo 衫、卡其褲、細框眼鏡' },
+  ina: { name: 'Ina', role: '計畫專員', skin: '#d9a57d', hair: '#271b1c', hairStyle: 'long', top: '#6d4fa0', pants: '#26222e', bottom: 'skirt', legs: '#2c2834', shoes: '#1f1a22', collar: '#e8def5', outfit: '紫色襯衫、黑色長裙' },
+  panay: { name: 'Panay', role: '表演者', skin: '#d3a07a', hair: '#1f1718', hairStyle: 'long', top: '#c4302d', pants: '#36507a', shoes: '#f0ece2', logo: '#f4f1e8', outfit: '紅色帽 T、牛仔褲、白球鞋' },
+  kacaw: { name: 'Kacaw', role: '表演者', skin: '#cc976f', hair: '#1f1718', hairStyle: 'short', band: '#f4f1e8', top: '#c4302d', stripe: '#1b1416', stripeY: 19, shortSleeve: true, pants: '#262226', shoes: '#c4302d', outfit: '紅色運動上衣、白色頭帶、運動長褲' },
+  ofad: { name: 'Ofad', role: '族語講師', skin: '#d8a47c', hair: '#211819', hairStyle: 'bun', top: '#efe9dc', scarf: '#c4302d', pants: '#38405e', shoes: '#4a3428', outfit: '亞麻白襯衫、紅色圍巾、深藍長褲' },
+  sawmah: { name: 'Sawmah', role: '竹編講師', skin: '#d2a07a', hair: '#3a2a22', hairStyle: 'short', top: '#d9cfb8', outer: '#6b7a3a', pants: '#5a4634', shoes: '#3a2c22', belt: '#3a2c22', outfit: '橄欖色工作外套、工作褲' },
+  lisin: { name: 'Lisin', role: '專員', skin: '#f1c39d', hair: '#5a3926', hairStyle: 'bob', top: '#ddb03e', pants: '#2e3a5c', bottom: 'skirt', legs: '#2e3a5c', shoes: '#3a2a22', collar: '#f6efd8', outfit: '芥末黃毛衣、深藍及膝裙' },
+  huang: { name: '黃先生', role: '老屋屋主', skin: '#e2b28a', hair: '#8f8b88', hairStyle: 'short', cap: '#2c3a58', top: '#4a6fa8', stripe: '#6f8fc4', stripeY: 18, stripeH: 1, pants: '#c9b896', shoes: '#4a3a2e', wrinkle: true, collar: '#dde6f4', outfit: '鴨舌帽、藍格紋襯衫、米色長褲' },
+  faki: { name: 'Faki', role: '耆老', skin: '#c48c62', hair: '#e2ded8', hairStyle: 'elder', top: '#b8322f', towel: '#f4f1e8', pants: '#2b2a2e', shoes: '#2a2224', wrinkle: true, collar: '#f4f1e8', beard: null, outfit: '紅色 Polo 衫、白毛巾、黑長褲' }
+};
+
+
+return { paint, CHARS };
+})();
+
+/* ===== 立體家具（A 方案：3D 方塊） ===== */
+const FURN = (() => {
+function tex(w, h, fn, k) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d');
+  fn((x, y, ww, hh, col) => { g.fillStyle = col; g.fillRect(x, y, ww, hh); }, w, h);
+  const o = document.createElement('canvas'); o.width = w * (k || 4); o.height = h * (k || 4); const og = o.getContext('2d'); og.imageSmoothingEnabled = false; og.drawImage(c, 0, 0, o.width, o.height);
+  return o.toDataURL();
+}
+// ---------- 材質 ----------
+function woodTop(w, h, base, line) { return tex(w, h, (R) => { R(0, 0, w, h, base); for (let y = 2; y < h; y += 3) for (let x = (y * 7) % 5; x < w; x += 9) R(x, y, 4, 1, line); R(0, 0, w, 1, '#e6c08a'); }); }
+function woodFront(w, h, drawers) { return tex(w, h, (R) => { R(0, 0, w, h, '#8a5f37'); R(0, 0, w, 1, '#a87a45'); R(0, h - 1, w, 1, '#5e3f26'); if (drawers) { for (let i = 0; i < drawers; i++) { const x0 = 2 + i * Math.floor((w - 2) / drawers); const ww = Math.floor((w - 2) / drawers) - 2; R(x0, 2, ww, h - 4, '#7a5230'); R(x0, 2, ww, 1, '#9c6a3e'); R(x0 + Math.floor(ww / 2) - 1, Math.floor(h / 2), 3, 1, '#e1b23a'); } } }); }
+function plaster(w, h, cap) { return tex(w, h, (R) => { R(0, 0, w, h, '#ece4d2'); for (let x = 3; x < w; x += 11) R(x, 2 + (x % 5), 1, 1, '#e0d6c0'); R(0, h - 4, w, 4, '#7a6450'); R(0, h - 4, w, 1, '#5e4b3a'); if (cap) R(0, 0, w, 1, '#f8f2e4'); }); }
+function capTex(w, h) { return tex(w, h, (R) => { R(0, 0, w, h, '#d6cab0'); R(0, 0, w, 1, '#efe6d2'); R(0, h - 1, w, 1, '#b8ab8e'); }); }
+function booksTex(w, h) { return tex(w, h, (R) => { R(0, 0, w, h, '#4a3020'); const cols = ['#c4342c', '#2f5aa0', '#e1b23a', '#3f7f7a', '#f2efe6', '#6b4c9a', '#d07a3a']; const rows = 3, rh = Math.floor((h - 2) / rows); for (let r = 0; r < rows; r++) { const y0 = 1 + r * rh; R(1, y0, w - 2, rh - 1, '#6b4a2e'); let x = 2; let i = r * 3; while (x < w - 3) { const bw = 2 + (i % 2); const bh = rh - 3 - (i % 3); R(x, y0 + rh - 1 - bh, bw, bh, cols[i % cols.length]); x += bw + (i % 4 === 0 ? 1 : 0); i++; } R(1, y0 + rh - 1, w - 2, 1, '#3a2418'); } }); }
+function fabric(w, h, base) { return tex(w, h, (R) => { R(0, 0, w, h, base); for (let x = 0; x < w; x += 6) R(x, 0, 1, h, 'rgba(0,0,0,.12)'); R(0, 0, w, 1, 'rgba(255,255,255,.18)'); }); }
+
+// ---------- 方塊 ----------
+function face(style, bg, extra) { return `<div style="position:absolute;${style};background:${bg};background-size:100% 100%;image-rendering:pixelated;backface-visibility:hidden;pointer-events:none;${extra || ''}"></div>`; }
+function img(src) { return `url(${src})`; }
+function cuboid(x, y, w, d, h, z0, f) {
+  z0 = z0 || 0;
+  let s = '';
+  s += face(`left:${x}px;top:${y}px;width:${w}px;height:${d}px;transform:translateZ(${z0 + h}px)`, f.top);
+  s += face(`left:${x}px;top:${y + d - h}px;width:${w}px;height:${h}px;transform-origin:50% 100%;transform:translateZ(${z0}px) rotateX(-90deg)`, f.front);
+  s += face(`left:${x}px;top:${y}px;width:${h}px;height:${d}px;transform-origin:0 50%;transform:translateZ(${z0}px) rotateY(-90deg)`, f.sideL || f.side || '#4a3020', 'filter:brightness(.82)');
+  s += face(`left:${x + w - h}px;top:${y}px;width:${h}px;height:${d}px;transform-origin:100% 50%;transform:translateZ(${z0}px) rotateY(90deg)`, f.sideR || f.side || '#4a3020', 'filter:brightness(.66)');
+  return s;
+}
+function billboard(src, x, yBottom, w, h, TILT, z0) {
+  return `<img src="${src}" style="position:absolute;left:${x}px;top:${yBottom - h}px;width:${w}px;height:${h}px;transform-origin:50% 100%;transform:translateZ(${z0 || 0}px) rotateX(${-TILT}deg);image-rendering:pixelated;pointer-events:none">`;
+}
+const leaves = () => tex(16, 14, (R) => { R(4, 3, 8, 9, '#3f7a3c'); R(3, 5, 10, 6, '#4f8a4a'); R(6, 0, 4, 5, '#6bab5c'); R(5, 3, 2, 2, '#8cc87a'); R(9, 6, 2, 2, '#8cc87a'); R(4, 11, 8, 2, '#2f5a2c'); });
+
+
+function cubeHTML(map, TILT) {
+  const TP = 64, yb = r => r * TP;
+  const runs = (row, chars) => { const out = []; let st = -1; for (let x = 0; x <= 20; x++) { const c = map[row][x]; if (c && chars.includes(c)) { if (st < 0) st = x; } else if (st >= 0) { out.push([st, x - 1]); st = -1; } } return out; };
+  let s = '';
+    const wt = woodTop(30, 12, '#c99c64', '#b48650'), wf = woodFront(30, 11, 2), side = '#7a5230';
+    const plast = (w) => img(plaster(w, 18, true)), cap = img(capTex(16, 4));
+    // 內牆（半高，方便看見房間）
+    for (const [a, z] of runs(5, '=N')) { const x = a * TP, w = (z - a + 1) * TP; s += cuboid(x, yb(5) - 40, w, 16, 72, 0, { top: cap, front: plast((z - a + 1) * 16), side: '#cfc4aa' }); }
+    for (const col of [3, 16]) { s += cuboid(col * TP, yb(5) - 40, 8, 16, 84, 0, { top: '#6b4a2e', front: '#5e3f26', side: '#4a3020' }); s += cuboid(col * TP + 56, yb(5) - 40, 8, 16, 84, 0, { top: '#6b4a2e', front: '#5e3f26', side: '#4a3020' }); s += cuboid(col * TP + 18, yb(5) - 26, 28, 3, 12, 64, { top: '#e8e2d0', front: '#e8e2d0', side: '#cfc4aa' }); }
+    s += cuboid(12 * TP + 10, yb(5) - 24, 44, 3, 34, 20, { top: '#7a5532', front: img(tex(11, 9, (R) => { R(0, 0, 11, 9, '#7a5532'); R(1, 1, 9, 7, '#c49a6c'); R(2, 2, 3, 4, '#fbfbf7'); R(6, 2, 3, 3, '#f6e48c'); R(3, 2, 1, 1, '#c4342c'); })), side: '#5e3f26' });
+    for (const col of [6, 13]) s += cuboid(col * TP + 24, 0, 16, 4 * TP + 24, 72, 0, { top: cap, front: plast(4), side: img(plaster(4, 18)) });
+    // 前牆（低矮，玻璃門）
+    for (const [a, z] of [[0, 8], [11, 19]]) s += cuboid(a * TP, yb(13) - 16, (z - a + 1) * TP, 16, 36, 0, { top: cap, front: plast((z - a + 1) * 16), side: '#cfc4aa' });
+    s += cuboid(9 * TP, yb(13) - 10, 128, 4, 36, 0, { top: '#5b6b7a', front: 'linear-gradient(180deg,#e4f4fa,#b8dbe6)', side: '#5b6b7a' });
+    // 側牆
+    const sideTex = (skirtLeft) => img(tex(36, 52, (R) => { R(0, 0, 36, 52, '#ece4d2'); for (let y = 3; y < 52; y += 9) R(8 + (y % 13), y, 1, 1, '#e0d6c0'); if (skirtLeft) { R(0, 0, 4, 52, '#7a6450'); R(4, 0, 1, 52, '#5e4b3a'); R(35, 0, 1, 52, '#f8f2e4'); } else { R(32, 0, 4, 52, '#7a6450'); R(31, 0, 1, 52, '#5e4b3a'); R(0, 0, 1, 52, '#f8f2e4'); } [10, 34].forEach(wy => { const x0 = skirtLeft ? 14 : 8; R(x0, wy, 14, 10, '#f8f4ea'); R(x0 + 1, wy + 1, 12, 8, '#9fcbe0'); R(x0 + 6, wy + 1, 1, 8, '#f8f4ea'); }); }));
+    s += cuboid(0, -8, 64, 13 * TP + 8, 144, 0, { top: cap, front: plast(16), side: '#cfc4aa', sideR: sideTex(false) });
+    s += cuboid(1216, -8, 64, 13 * TP + 8, 144, 0, { top: cap, front: plast(16), side: '#cfc4aa', sideL: sideTex(true) });
+    // 辦公桌
+    const desks = [[2, 2, 0], [9, 2, 0], [15, 2, 0], [2, 7, 1], [15, 7, 0]];
+    for (const [x, r, cash] of desks) {
+      const X = x * TP + 6, Y = yb(r) - 52, W = 116, D = 40, H = 44;
+      s += cuboid(X, Y, W, D, H, 0, { top: img(wt), front: img(wf), side });
+      if (cash) { s += cuboid(X + 14, Y + 8, 30, 22, 3, H, { top: '#f2d45c', front: '#b8962e', side: '#9c7c22' }); s += cuboid(X + 54, Y + 14, 8, 8, 10, H, { top: '#e05a4f', front: '#c4342c', side: '#8c2620' }); s += cuboid(X + 72, Y + 10, 26, 18, 1, H, { top: '#fbfbf7', front: '#fbfbf7', side: '#ddd' }); }
+      else { s += cuboid(X + 66, Y + 10, 34, 5, 28, H + 6, { top: '#2a2f3a', front: 'linear-gradient(180deg,#a7d6f0,#5f97b3)', side: '#2a2f3a' }); s += cuboid(X + 80, Y + 10, 6, 6, 6, H, { top: '#2a2f3a', front: '#2a2f3a', side: '#1e222b' }); s += cuboid(X + 14, Y + 12, 26, 18, 1, H, { top: '#fbfbf7', front: '#fbfbf7', side: '#ddd' }); }
+    }
+    // 會議桌
+    { const X = 9 * TP + 8, Y = yb(6) + 12, W = 4 * TP - 16, D = 2 * TP - 28, H = 34;
+      for (const [lx, ly] of [[X + 6, Y + 6], [X + W - 14, Y + 6], [X + 6, Y + D - 14], [X + W - 14, Y + D - 14]]) s += cuboid(lx, ly, 8, 8, H, 0, { top: '#6b4a2e', front: '#6b4a2e', side: '#4a3020' });
+      s += cuboid(X, Y, W, D, 8, H, { top: img(woodTop(60, 25, '#d0ad7a', '#bf9a66')), front: '#9c7a4c', side: '#8a6a3e' });
+      for (const [px, py] of [[30, 14], [150, 18], [70, 60], [180, 64]]) s += cuboid(X + px, Y + py, 26, 18, 1, H + 8, { top: '#fbfbf7', front: '#fbfbf7', side: '#ddd' }); }
+    // 書櫃
+    for (let r = 1; r < 13; r++) for (let x = 0; x < 20; x++) if (map[r][x] === 'B') s += cuboid(x * TP + 4, (r - 1) * TP + 2, 56, 24, 112, 0, { top: '#7a5232', front: img(booksTex(14, 28)), side: '#4a3020' });
+    for (let r = 1; r < 13; r++) for (let x = 0; x < 20; x++) if (map[r][x] === 'F') s += cuboid(x * TP + 8, (r - 1) * TP + 4, 48, 30, 100, 0, { top: '#a7b0b9', front: img(tex(12, 25, (R) => { R(0, 0, 12, 25, '#8d97a1'); R(0, 0, 12, 1, '#b9c2cb'); for (let i = 0; i < 4; i++) { R(1, 1 + i * 6, 10, 5, '#9aa4ae'); R(1, 1 + i * 6, 10, 1, '#c3cbd3'); R(4, 3 + i * 6, 4, 1, '#59626b'); R(5, 2 + i * 6, 2, 1, '#f4f1e8'); } })), side: '#6c757f' });
+    { const X = 6 * TP + 12, Y = yb(5) - 25; s += cuboid(X, Y, 104, 3, 52, 16, { top: '#c9d0d6', front: img(tex(26, 13, (R) => { R(0, 0, 26, 13, '#b8c0c8'); R(1, 1, 24, 11, '#f7f8f5'); R(3, 3, 9, 1, '#2f5aa0'); R(3, 5, 12, 1, '#2f5aa0'); R(3, 7, 7, 1, '#b0302a'); R(15, 3, 8, 1, '#2f5aa0'); R(15, 5, 6, 1, '#1d2a14'); R(15, 7, 8, 1, '#1d2a14'); R(3, 9, 18, 1, '#9aa4ae'); })), side: '#9aa4ae' }); s += cuboid(X + 6, Y - 4, 92, 7, 3, 16, { top: '#9aa4ae', front: '#7d8790', side: '#6c757f' }); }
+    // 盆栽
+    for (let r = 1; r < 13; r++) for (let x = 0; x < 20; x++) if (map[r][x] === 'P') { const X = x * TP + 18, Y = (r - 1) * TP + 18; s += cuboid(X, Y, 28, 28, 26, 0, { top: '#5a3a24', front: img(tex(7, 7, (R) => { R(0, 0, 7, 7, '#a65a34'); R(0, 0, 7, 2, '#c4703f'); R(0, 6, 7, 1, '#7a3c20'); })), side: '#7a3c20' }); s += billboard(leaves(), X - 18, Y + 18, 64, 56, TILT, 24); }
+    // 飲水機
+    { const X = 18 * TP + 14, Y = yb(6) - 40; s += cuboid(X, Y, 36, 30, 64, 0, { top: '#f6f8fa', front: img(tex(9, 16, (R) => { R(0, 0, 9, 16, '#e3e9ee'); R(0, 0, 9, 1, '#f6f8fa'); R(3, 4, 3, 2, '#c4342c'); R(3, 7, 3, 2, '#2f5aa0'); })), side: '#c3ccd4' }); s += cuboid(X + 6, Y + 5, 24, 20, 28, 64, { top: '#7fc1e8', front: 'linear-gradient(90deg,#a7d6f0,#5aa8d8)', side: '#3f8cc0' }); }
+    // 沙發
+    for (const [a] of [[1], [16]]) { const X = a * TP + 4, Y = yb(12) - 54, W = 3 * TP - 8; s += cuboid(X, Y + 14, W, 36, 20, 0, { top: img(fabric(48, 9, '#5a9e98')), front: '#2c5a56', side: '#2c5a56' }); s += cuboid(X, Y, W, 14, 46, 0, { top: '#3f7f7a', front: img(fabric(48, 11, '#3f7f7a')), side: '#2c5a56' }); }
+  return s;
+}
+return { cubeHTML };
+})();
+
+/* ===== HD-2D 場景：傾斜地板、站立角色、鏡頭跟隨 ===== */
+const TILT = 40, TP = 64, SPR_W = 60, SPR_H = 108, PLANE_W = COLS * TP, PLANE_H = (ROWS - 1) * TP;
+const scene = document.getElementById('scene'), plane = document.getElementById('plane');
+let view = { w: 960, h: 560, s: 1 };
+const camPos = { x: 0, y: 0, init: false };
+const upscale = (src, k) => { const c = document.createElement('canvas'); c.width = src.width * k; c.height = src.height * k; const g = c.getContext('2d'); g.imageSmoothingEnabled = false; g.drawImage(src, 0, 0, c.width, c.height); return c.toDataURL(); };
+const sprCache = {};
+function spriteURL(id, viewName, frame) {
+  const key = id + viewName + frame;
+  if (sprCache[key]) return sprCache[key];
+  const px = SPR.paint(SPR.CHARS[id], viewName === 'back' ? 'back' : 'front', frame);
+  const c = document.createElement('canvas'); c.width = 24; c.height = 43; const g = c.getContext('2d');
+  px.forEach((row, y) => row.forEach((q, x) => { if (q) { g.fillStyle = q.c; g.fillRect(viewName === 'mirror' ? 23 - x : x, y, 1, 1); } }));
+  return (sprCache[key] = upscale(c, 5));
+}
+const dirView = d => d === 'up' ? 'back' : d === 'right' ? 'mirror' : 'front';
+function propCanvas(fn) { const c = document.createElement('canvas'); c.width = 16; c.height = 16; const g = c.getContext('2d'); fn((x, y, w, h, col) => { g.fillStyle = col; g.fillRect(x, y, w, h); }); return upscale(c, 4); }
+const PROPS = {
+  B: propCanvas(R => { R(0, 0, 16, 16, '#4a3020'); R(1, 1, 14, 14, '#6b4a2e'); R(1, 6, 14, 1, '#4a3020'); R(1, 11, 14, 1, '#4a3020'); ['#c4342c', '#2f5aa0', '#e1b23a', '#3f7f7a', '#f2efe6', '#6b4c9a'].forEach((c2, i) => { R(2 + i * 2, 2 + (i % 2), 2, 4 - (i % 2), c2); R(3 + i * 2, 7 + (i % 3 ? 0 : 1), 1, 4, c2); R(2 + i * 2, 12, 2, 3, c2); }); }),
+  P: propCanvas(R => { R(5, 10, 6, 6, '#8c4a2c'); R(4, 10, 8, 2, '#b5603a'); R(4, 3, 8, 7, '#3f7a3c'); R(3, 5, 10, 4, '#4f8a4a'); R(6, 0, 4, 4, '#6bab5c'); R(5, 3, 2, 2, '#8cc87a'); }),
+  R: propCanvas(R => { R(4, 6, 8, 10, '#c9d3da'); R(4, 5, 8, 10, '#eef2f5'); R(5, 0, 6, 6, '#5aa8d8'); R(6, 1, 2, 3, '#a7d6f0'); R(7, 9, 2, 1, '#c4342c'); })
+};
+function wallURL() {
+  const wc = document.createElement('canvas'); wc.width = 320; wc.height = 40; const wg = wc.getContext('2d'); const W2 = (x, y, w, h, c) => { wg.fillStyle = c; wg.fillRect(x, y, w, h); };
+  W2(0, 0, 320, 40, '#ece4d2'); W2(0, 0, 320, 3, '#cdbf9f'); W2(0, 3, 320, 1, '#f6f0e2'); W2(0, 33, 320, 7, '#7a6450'); W2(0, 33, 320, 1, '#5e4b3a');
+  [2, 5, 12, 15].forEach(cx => { const x = cx * 16 + 1; W2(x, 7, 14, 22, '#f8f4ea'); W2(x + 1, 8, 12, 20, '#9fcbe0'); W2(x + 6, 8, 2, 20, '#f8f4ea'); W2(x + 1, 17, 12, 1, '#f8f4ea'); W2(x + 2, 9, 3, 2, '#d8f0fa'); W2(x + 9, 19, 2, 1, '#d8f0fa'); });
+  { const x = 8 * 16 - 2; W2(x, 9, 20, 16, '#7a5532'); W2(x + 1, 10, 18, 14, '#c49a6c'); W2(x + 3, 12, 6, 8, '#fbfbf7'); W2(x + 11, 11, 6, 5, '#f6e48c'); W2(x + 11, 17, 5, 4, '#cfe3f5'); W2(x + 5, 12, 1, 1, '#c4342c'); W2(x + 13, 11, 1, 1, '#c4342c'); }
+  [6, 13].forEach(cx => { W2(cx * 16, 0, 16, 40, '#d9cfb8'); W2(cx * 16, 0, 1, 40, '#c4b89c'); W2(cx * 16 + 15, 0, 1, 40, '#f2ece0'); });
+  return upscale(wc, 4);
+}
+const ents = {};
+function el(tag, cls, style) { const e = document.createElement(tag); if (cls) e.className = cls; if (style) e.style.cssText = style; return e; }
+function buildScene() {
+  plane.innerHTML = '';
+  const orig = MAP.slice();
+  for (let y = 0; y < MAP.length; y++) MAP[y] = MAP[y].split('').map(ch => {
+    const lobby = y >= 11;
+    if (y === 13) return ',';
+    if ('BPRDTSF|=N_L'.includes(ch) || (ch === '#' && y > 0)) return lobby ? ',' : '.';
+    return ch;
+  }).join('');
+  paintTiles();
+  for (let y = 0; y < MAP.length; y++) MAP[y] = orig[y];
+  const crop = document.createElement('canvas'); crop.width = 320; crop.height = (ROWS - 1) * 16; crop.getContext('2d').drawImage(bg, 0, 16, 320, crop.height, 0, 0, 320, crop.height);
+  const floor = el('img', 'floor', `left:0;top:0;width:${PLANE_W}px;height:${PLANE_H}px`); floor.src = upscale(crop, 4); floor.alt = ''; plane.appendChild(floor);
+  const wall = el('img', 'wall', `left:0;top:-160px;width:${PLANE_W}px;height:160px`); wall.src = wallURL(); wall.alt = ''; plane.appendChild(wall);
+  for (let y = 1; y < ROWS; y++) for (let x = 0; x < COLS; x++) {
+    const t = el('div', 'hit', `left:${x * TP}px;top:${(y - 1) * TP}px`); t.dataset.tx = x; t.dataset.ty = y; plane.appendChild(t);
+  }
+  plane.insertAdjacentHTML('beforeend', FURN.cubeHTML(MAP, TILT));
+  const mk = (id) => {
+    const shadow = el('div', 'shadow'); plane.appendChild(shadow);
+    const b = el('div', 'bb char'); const img = el('img', 'spr'); img.alt = '';
+    const tagw = el('div', 'ntagw'); const mark = el('div', 'nmark'); mark.textContent = '!'; mark.setAttribute('aria-hidden', 'true');
+    const tag = el('div', 'ntag'); const pt = el('i', 'ntagpt');
+    const emo = el('div', 'nemo'); emo.setAttribute('aria-hidden', 'true');
+    tagw.append(emo, mark, tag, pt); b.append(tagw, img); plane.appendChild(b);
+    return (ents[id] = { b, img, tag, tagw, mark, shadow, emo, key: '' });
+  };
+  NPCS.forEach(n => mk(n.id));
+  mk('@player');
+  ringEl = el('div', 'ring'); ringEl.style.display = 'none'; plane.appendChild(ringEl);
+  const glass = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>';
+  const layer = document.getElementById('olayer'); layer.innerHTML = '';
+  OBJ_LABELS.forEach(o => {
+    const a = el('div', 'oanchor', `left:${o.cx}px;top:${o.fy}px;transform:translateZ(${o.h}px)`); plane.appendChild(a);
+    const w = el('div', 'olabel'); w.innerHTML = `<span class="opill" data-tx="${o.tx}" data-ty="${o.ty}" title="${o.text}">${glass}<span class="otext">${o.text}</span></span>`; w.obj = o;
+    layer.appendChild(w); labelEls[o.id] = w; w.anchor = a;
+  });
+}
+let ringEl = null;
+const labelEls = {};
+const OBJ_LABELS = [
+  { id: 'board', text: '速查表・流程圖', tx: 7, ty: 5, cx: 448, fy: 295, h: 74 },
+  { id: 'shelf', text: '名詞小辭典', tx: 5, ty: 6, cx: 352, fy: 346, h: 122 },
+  { id: 'cabinet', text: '範例單據', tx: 17, ty: 6, cx: 1120, fy: 354, h: 110 },
+  { id: 'notice', text: '工作清單', tx: 12, ty: 5, cx: 800, fy: 296, h: 64 },
+  { id: 'desk', text: '前輩筆記本', tx: 2, ty: 7, cx: 192, fy: 436, h: 58 }
+];
+function placeEnt(e, fx, fy, viewName, frame, name, isPlayer, marked, hidden) {
+  if (hidden) { e.b.style.display = 'none'; e.shadow.style.display = 'none'; return; }
+  e.b.style.display = ''; e.shadow.style.display = '';
+  if (!isPlayer && e.b.dataset.tx !== String(fx)) { e.b.dataset.tx = fx; e.b.dataset.ty = fy; }
+  const key = viewName + frame;
+  if (e.key !== key) { e.img.src = spriteURL(e.sid, viewName, frame); e.key = key; }
+  if (e.tag.textContent !== name) e.tag.textContent = name;
+  e.tagw.classList.toggle('me', !!isPlayer);
+  e.mark.style.display = marked ? '' : 'none';
+  const bob = frame ? -2 : 0;
+  e.b.style.left = (fx * TP + TP / 2 - SPR_W / 2) + 'px';
+  e.b.style.top = (fy * TP - SPR_H + 4) + 'px';
+  e.b.style.transform = `rotateX(${-TILT}deg) translateY(${bob}px)`;
+  e.shadow.style.left = (fx * TP + TP / 2 - 24) + 'px';
+  e.shadow.style.top = (fy * TP - 12) + 'px';
+}
+function applyScale() {
+  plane.style.setProperty('--inv', ((view.s < 0.8 ? 0.82 : 1) / view.s).toFixed(3));
+  scene.style.perspective = Math.round(1500 * view.s) + 'px';
+}
+function fit() {
+  const w = scene.clientWidth, h = scene.clientHeight;
+  if (!w || !h) return;
+  view.w = w; view.h = h;
+  const floorEl = plane.querySelector('.floor'), wallEl = plane.querySelector('.wall');
+  view.s = 1; applyScale(); setPlane(PLANE_W / 2, PLANE_H / 2);
+  const f = floorEl.getBoundingClientRect(), wl = wallEl.getBoundingClientRect();
+  const W1 = f.width || PLANE_W, H1 = (f.bottom - wl.top) || 800;
+  const portrait = h > w * 1.15;
+  let s = portrait ? 0.74 * h / H1 : Math.max(w / W1, h / H1);
+  s = Math.max(0.42, Math.min(portrait ? 0.86 : 1.35, s));
+  view.s = s; applyScale();
+  calibrate();
+}
+const camLim = { x0: 0, x1: PLANE_W, y0: 0, y1: PLANE_H };
+function setPlane(cx, cy) {
+  const s = view.s;
+  plane.style.transform = `translate3d(${view.w / 2}px, ${view.h * 0.55}px, 0) scale3d(${s}, ${s}, ${s}) rotateX(${TILT}deg) translate3d(${-cx}px, ${-cy}px, 0)`;
+}
+function calibrate() {
+  const floorEl = plane.querySelector('.floor'), wallEl = plane.querySelector('.wall');
+  if (!floorEl || !view.w) return;
+  const sr = scene.getBoundingClientRect();
+  const search = (fn, cx, cy, key, edge, dirSign) => {
+    let lo = 0, hi = key === 'y' ? PLANE_H : PLANE_W;
+    const test = v => { if (key === 'y') setPlane(cx, v); else setPlane(v, cy); return dirSign * (fn().getBoundingClientRect()[edge] - sr[edge]) > 0; };
+    const atLo = test(lo);
+    if (atLo === test(hi)) return atLo ? hi : lo;
+    for (let i = 0; i < 22; i++) { const mid = (lo + hi) / 2; if (test(mid) === atLo) lo = mid; else hi = mid; }
+    return (lo + hi) / 2;
+  };
+  const midX = PLANE_W / 2;
+  camLim.y1 = search(() => floorEl, midX, 0, 'y', 'bottom', 1);
+  camLim.y0 = search(() => wallEl, midX, 0, 'y', 'top', -1);
+  if (camLim.y0 > camLim.y1) camLim.y0 = camLim.y1 = (camLim.y0 + camLim.y1) / 2;
+  const cyMid = (camLim.y0 + camLim.y1) / 2;
+  camLim.x0 = search(() => floorEl, 0, cyMid, 'x', 'left', -1);
+  camLim.x1 = search(() => floorEl, 0, cyMid, 'x', 'right', 1);
+  if (camLim.x0 > camLim.x1) camLim.x0 = camLim.x1 = (camLim.x0 + camLim.x1) / 2;
+  camPos.init = false;
+}
+function updateCamera(snap) {
+  let tx = player.fx * TP + TP / 2, ty = player.fy * TP - 40, y1 = camLim.y1;
+  if (false) {
+    let id = null; try { const c = qCtx(); id = askerOf(c.L, c.step).id; } catch (e) {}
+    const n = id && id !== '@player' ? NPCS.find(x => x.id === id) : null;
+    const fx = n ? (n.x + player.fx) / 2 : player.fx, fy = n ? Math.max(n.y, player.fy) : player.fy;
+    tx = fx * TP + TP / 2; ty = fy * TP + view.h * 0.3 / view.s; y1 = camLim.y1 + view.h * 0.6 / view.s;
+  }
+  const cx = Math.max(camLim.x0, Math.min(camLim.x1, tx));
+  const cy = Math.max(camLim.y0, Math.min(y1, ty));
+  if (snap || !camPos.init) { camPos.x = cx; camPos.y = cy; camPos.init = true; }
+  else { camPos.x += (cx - camPos.x) * 0.12; camPos.y += (cy - camPos.y) * 0.12; }
+  setPlane(camPos.x, camPos.y);
+}
+scene.addEventListener('pointerdown', e => {
+  if (busy()) return;
+  const t = e.target.closest('[data-tx]');
+  if (t) walkTo(+t.dataset.tx, +t.dataset.ty);
+});
+
+/* ===== 名牌、邊緣提示 ===== */
+function tagRules(marks, nt) {
+  const R = view.w < 760 ? 2 : 3, speaker = dlg ? dlg.lines[dlg.i][0] : null;
+  const shown = [];
+  NPCS.forEach(n => {
+    const e = ents[n.id]; if (n.role === S.role) return;
+    const d = Math.max(Math.abs(n.x - player.x), Math.abs(n.y - player.y));
+    const show = marks.includes(n.id) || d <= R || (nt && nt.id === n.id) || n.name === speaker;
+    e.tagw.classList.toggle('far', !show);
+    if (show) shown.push([n.x, n.y, e]);
+  });
+  shown.push([player.x, player.y, ents['@player'], true]);
+  shown.forEach(([x, y, e, me]) => {
+    const clash = shown.some(([x2, y2, e2]) => e2 !== e && y2 === y && Math.abs(x2 - x) === 1);
+    e.tagw.classList.toggle('lift', !me && clash && x % 2 === 1);
+  });
+}
+function edgeMarks(marks, sr) {
+  let k = 0;
+  if (!busy()) {
+    const hudH = document.getElementById('hud').getBoundingClientRect().height;
+    for (const id of marks) {
+      const e = ents[id]; if (!e || e.b.style.display === 'none' || k > 2) continue;
+      const r = e.b.getBoundingClientRect(), cx = r.left + r.width / 2 - sr.left, cy = r.top + r.height * 0.35 - sr.top;
+      const top = hudH + 24, bot = sr.height - 96, pad = 26;
+      if (cx > pad && cx < sr.width - pad && cy > top && cy < bot) continue;
+      const x = Math.max(pad, Math.min(sr.width - pad, cx)), y = Math.max(top, Math.min(bot, cy));
+      const ed = document.getElementById('edge' + k++); ed.hidden = false;
+      ed.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+      ed.firstElementChild.style.transform = `rotate(${Math.atan2(cy - y, cx - x)}rad)`;
+    }
+  }
+  for (; k < 3; k++) document.getElementById('edge' + k).hidden = true;
+}
+
+/* ===== 主迴圈 ===== */
+function frame(now) {
+  const dt = Math.min(50, now - last); last = now;
+  update(dt);
+  const marks = markerNpcs();
+  NPCS.forEach(n => {
+    const e = ents[n.id]; e.sid = n.id;
+    placeEnt(e, n.x, n.y, dirView(n.dir), 0, n.name, false, marks.includes(n.id), n.role === S.role);
+  });
+  const pe = ents['@player']; pe.sid = ROLES[S.role].pal;
+  const f = player.moving ? (player.t > 0.15 && player.t < 0.85 ? (player.step ? 1 : 2) : 0) : 0;
+  if (pe.role !== S.role) { pe.key = ''; pe.role = S.role; }
+  placeEnt(pe, player.fx, player.fy, dirView(player.dir), f, ROLES[S.role].short, true, false, false);
+  const nt = !busy() && !player.moving ? nearTarget() : null;
+  tagRules(marks, nt);
+  const nearEl = document.getElementById('near');
+  if (nt && nt.kind !== 'misc') { const txt = nt.kind === 'npc' ? `和 ${nt.name} 說話` : `調查${nt.name}`; if (nearEl.dataset.t !== txt) { document.getElementById('nearText').textContent = (matchMedia('(pointer:coarse)').matches ? '' : '空白鍵：') + txt; nearEl.dataset.t = txt; } nearEl.hidden = false; }
+  else if (!nearEl.hidden) { nearEl.hidden = true; nearEl.dataset.t = ''; }
+  btnA.classList.toggle('ready', !!nt && nt.kind !== 'misc');
+  for (const [id, le] of Object.entries(labelEls)) le.classList.toggle('is-near', !!nt && nt.id === id);
+  const rt = !Q && TUT_RING[S.tut];
+  if (ringEl) { ringEl.style.display = rt ? '' : 'none'; if (rt) { ringEl.style.left = rt[0] * TP + 'px'; ringEl.style.top = (rt[1] - 1) * TP + 'px'; } }
+  updateCamera(false);
+  const sr = scene.getBoundingClientRect();
+  for (const le of Object.values(labelEls)) {
+    const r = le.anchor.getBoundingClientRect(), x = r.left - sr.left, y = r.top - sr.top;
+    const off = x < -60 || x > sr.width + 60 || y < 10 || y > sr.height + 40;
+    le.style.display = off || Q ? 'none' : '';
+    if (!off) le.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) translate(-50%, -100%)`;
+    le.dist = Math.max(Math.abs(player.x - le.obj.tx), Math.abs(player.y - le.obj.ty));
+  }
+  edgeMarks(marks, sr);
+  const lv = Object.values(labelEls);
+  const pick = lv.find(le => le.classList.contains('is-near')) || lv.filter(le => le.dist <= 2).sort((a, b) => a.dist - b.dist)[0];
+  lv.forEach(le => le.classList.toggle('open', le === pick));
+  requestAnimationFrame(frame);
+}
+
+/* ===== 啟動 ===== */
+function start(data) {
+  load(data); applyPrefs(); buildScene(); fit(); updateHud();
+  if (S.met) { const [x, y] = ROLES[S.role].home; Object.assign(player, { x, y, fx: x, fy: y, dir: 'down' }); }
+  openPanel('title');
+  requestAnimationFrame(t => { last = t; frame(t); });
+}
+addEventListener('resize', fit);
+window.visualViewport?.addEventListener('resize', fit);
+window.__game = { get Q() { return Q; }, calc, startPractice, S, player, view, camPos, interact, walkTo, say, advance, switchRole, get dlg() { return dlg; }, get mode() { return mode; }, openTask, tile };
+window.claude?.hot?.snapshot?.(() => ({ prog: S.prog, notes: S.notes, met: S.met, role: S.role, roleDone: S.roleDone }));
+window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
+
+</script>
+</body>
+</html>
