@@ -30,6 +30,21 @@ try {
           failures.push(width+'px '+route+': HTTP '+response?.status());
           continue;
         }
+        if(width===390 && route==='/about/') {
+          const heads=await page.locator('.guide-about-article h2').allTextContents();
+          if(heads.join('|')!=='這個網站誕生的原因|這是一份仍在編輯中的指南|關於我們')
+            failures.push('About guide missing required three sections');
+          if(!await page.locator('.guide-about-support').getByText('地方創生青年培力工作站').count())
+            failures.push('About guide missing funding acknowledgment');
+        }
+        if(width===390 && route==='/knowledge/tools/') {
+          const pdf=page.locator('a[download][href$="/downloads/youth-workstation-proposal-114.pdf"]');
+          const xlsx=page.locator('a[download][href$="/經費案例.xlsx"]');
+          if(!(await pdf.count()) || !(await xlsx.count())) failures.push('Practical downloads missing from tools category');
+          const nav=page.locator('.desktop-nav');
+          if(!(await nav.getByText('關於指南',{exact:true}).count())) failures.push('About link missing from navigation');
+          if(await nav.getByText('文件與範本',{exact:true}).count()) failures.push('Removed downloads navigation still present');
+        }
         if(route==='/' && width===390) {
           const support = page.locator('.desktop-nav .nav-support');
           if((await support.getAttribute('href'))!=='https://mountcounty.com/shop/')

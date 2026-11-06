@@ -3655,3 +3655,31 @@ main table :is(th, td) p {
 .guide-question-card-reply{margin-left:0}
 .guide-tool-entry .text-link{display:inline-block;margin-top:12px;color:#36634a;font-weight:700}
 .desktop-nav a.nav-support,.mobile-panel a.nav-support{color:#996747;font-weight:700}
+
+
+/* About the guide: prose-first spacing and simple funding credits. */
+.guide-about-article{max-width:800px;margin:0 auto;line-height:2;text-align:justify}
+.guide-about-article section + section{margin-top:54px;padding-top:29px;border-top:1px solid #dce5da}
+.guide-about-article h2{font-size:clamp(23px,2.5vw,30px);line-height:1.6;margin:0 0 24px}
+.guide-about-article p{margin:0 0 20px;overflow-wrap:anywhere}
+.guide-about-article a{color:#356c4c;text-decoration:underline;text-underline-offset:4px}
+.guide-about-support{display:grid;gap:12px;margin:18px 0 24px}
+.guide-about-support p{margin:0;padding:16px 19px;background:#f4f7f1;border:1px solid #dce6dc;border-radius:9px;text-align:left}
+.guide-about-support strong{display:block;color:#294d39;margin-bottom:6px}
+.guide-about-support span{display:block;line-height:1.8;color:#506a58}
+.guide-downloads-section{min-width:0;max-width:100%;margin-top:38px;padding-top:26px;border-top:1px solid #dbe5da}
+.guide-downloads-heading h3{font-size:clamp(20px,2.3vw,27px);color:#294c39;margin:7px 0 7px}
+.guide-downloads-heading p{line-height:1.85;color:#667b6a;font-size:14px;margin:0 0 18px}
+.guide-downloads-section .file-row{min-width:0}
+.guide-downloads-section .guide-file-desc{min-width:0;flex:1}
+.guide-downloads-section .guide-file-desc strong{line-height:1.7;overflow-wrap:anywhere}
+.guide-downloads-section .file-row .guide-file-desc p{line-height:1.85;max-width:700px;overflow-wrap:anywhere}
+.guide-downloads-section .notice{margin-top:22px}
+@media(max-width:700px){
+  .guide-about-article section + section{margin-top:38px;padding-top:25px}
+  .guide-about-article p{margin-bottom:18px}
+  .guide-about-support p{padding:15px}
+  .guide-downloads-section{margin-top:30px}
+  .guide-downloads-section .file-row{flex-direction:column;align-items:stretch;gap:12px;padding:17px}
+  .guide-downloads-section .file-actions{justify-content:flex-start}
+}

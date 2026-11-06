@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { categories, entriesInCategory, sortEntriesForCategory } from '../../data/catalog';
+import DownloadsCatalog from '../../components/DownloadsCatalog.astro';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const entries = await getCollection('entries');
 const categoryGroups = categories.map((cat) => ({
@@ -26,7 +27,7 @@ const categoryGroups = categories.map((cat) => ({
             <div class="english">{cat.english}</div>
             <h3>{cat.name}</h3>
             <p>{cat.description}</p>
-            {cat.slug === 'tools' && <span class="topic-entry-preview">收錄：二代健保補充保費計算機</span>}
+            {cat.slug === 'tools' && <span class="topic-entry-preview">收錄：二代健保補充保費計算機、實務文件與範本</span>}
             {cat.slug !== 'tools' && cat.entries.length > 0 && <span class="topic-entry-preview">收錄：{cat.entries.slice(0, 2).map((entry) => entry.data.title).join('、')}{cat.entries.length > 2 ? '等詞條' : ''}</span>}
           </div>
         </a>)}
@@ -62,6 +63,7 @@ const categoryGroups = categories.map((cat) => ({
                 <p>{item.data.summary}</p>
               </a>)}</div>
             : <p class="empty">這個分類的詞條正在整理中。</p>}
+          {cat.slug === 'tools' && <DownloadsCatalog />}
         </section>)}
       </div>
     </div>

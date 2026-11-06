@@ -1,0 +1,27 @@
+---
+import { practicalDownloads } from '../data/practicalDownloads';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<section class="guide-downloads-section" aria-labelledby="guide-downloads-title">
+  <div class="guide-downloads-heading">
+    <span class="eyebrow">PRACTICAL FILES</span>
+    <h3 id="guide-downloads-title">實務文件與範本</h3>
+    <p>整理實際計畫案例與可下載的工作表格，協助你從閱讀走向實作。</p>
+  </div>
+  <div class="files">
+    {practicalDownloads.map(file => (
+      <div class="file-row">
+        <div class="guide-file-desc">
+          <strong>{file.name}</strong>
+          <span>{file.type}</span>
+          <p class="muted small">{file.desc}</p>
+        </div>
+        <div class="file-actions">
+          {file.preview && <a class="file-preview-link" href={root + file.path} target="_blank" rel="noopener noreferrer">線上閱讀</a>}
+          <a href={root + file.path} download>下載文件 ↓</a>
+        </div>
+      </div>
+    ))}
+  </div>
+  <aside class="notice">提醒：以上文件是實務參考案例，不代表政府機關核定格式。申請補助或辦理核銷時，請優先使用各計畫提供的正式表單。</aside>
+</section>

@@ -77,7 +77,7 @@ const selected = selectedIds.map(id => entries.find(e => e.id === id)).filter(Bo
       <div class="topic-grid">{categories.map((cat) => <a class="topic-card" href={root + '/knowledge/' + cat.slug + '/'}><span class="topic-no">{cat.number}</span><div><div class="english">{cat.english}</div><h3>{cat.name}</h3><p>{cat.description}</p></div></a>)}</div>
     </div>
   </section>
-  <section class="section kraft"><div class="wrap"><div class="download-banner"><div><span class="eyebrow" style="color:#dfbaa2">DOCUMENTS & TEMPLATES</span><h3>知識之外，也要能真正使用。</h3><p>從計畫架構到經費表，取得可編輯的實務文件與檢查表。</p></div><a class="white-button" href={root + '/downloads/'}>前往文件工具箱 ↗</a></div></div></section>
+  <section class="section kraft"><div class="wrap"><div class="download-banner"><div><span class="eyebrow" style="color:#dfbaa2">DOCUMENTS & TEMPLATES</span><h3>知識之外，也要能真正使用。</h3><p>從計畫架構到經費表，取得可編輯的實務文件與檢查表。</p></div><a class="white-button" href={root + '/knowledge/tools/'}>前往工作工具與技能 ↗</a></div></div></section>
 
   <script is:inline>
     (() => {
