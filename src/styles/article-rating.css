@@ -24,3 +24,15 @@
 .guide-rating-correction a{text-decoration:underline;text-underline-offset:3px}
 .guide-rating-foot{font-size:12px;line-height:1.8;color:#76867c;margin:17px auto 0;text-align:center;max-width:690px}
 @media(max-width:650px){.guide-rating{padding:23px 18px;margin:27px 0}.guide-rating-reason-grid{grid-template-columns:1fr}.guide-rating-choice{min-height:64px;gap:5px;flex-direction:column}.guide-rating-choice strong{font-size:15px}}
+
+/* Keep all highlighted editorial copy centered; the global article style justifies paragraphs. */
+main .entry-layout .guide-rating .guide-rating-head,
+main .entry-layout .guide-rating .guide-rating-head .eyebrow,
+main .entry-layout .guide-rating .guide-rating-head h2,
+main .entry-layout .guide-rating .guide-rating-head p,
+main .entry-layout .guide-rating .guide-rating-status,
+main .entry-layout .guide-rating .guide-rating-correction,
+main .entry-layout .guide-rating .guide-rating-foot {
+  text-align: center;
+  text-justify: auto;
+}
