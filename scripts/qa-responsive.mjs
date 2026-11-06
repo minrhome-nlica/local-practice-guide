@@ -8,7 +8,9 @@ const entryNames = (await readdir('src/content/entries'))
   .map(name => name.slice(0,-3));
 const routes = [
   '/', '/questions/', '/knowledge/', '/search/', '/learn/', '/feedback/',
-  '/tools/', '/tools/nhi-calculator/', '/admin/feedback/',
+  '/about/', '/downloads/', '/tools/', '/tools/nhi-calculator/', '/admin/feedback/',
+  '/knowledge/basics/', '/knowledge/organizations/', '/knowledge/plans/',
+  '/knowledge/finance/', '/knowledge/people/', '/knowledge/tools/',
   ...entryNames.map(name => '/entries/'+name+'/')
 ];
 const browser = await chromium.launch({channel:'chrome',headless:true,args:['--no-sandbox']});
