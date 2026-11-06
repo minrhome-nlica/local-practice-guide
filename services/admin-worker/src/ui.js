@@ -20,7 +20,7 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <button type="button" class="nav-item" data-tab="comments" data-role="owner moderator">讀者留言管理</button>
         <button type="button" class="nav-item" data-tab="ratings">文章回饋分析</button>
         <button type="button" class="nav-item" data-tab="articles" data-role="owner editor">文章與草稿 <span class="future">下一階段</span></button>
-        <button type="button" class="nav-item" data-tab="analytics">Web Analytics <span class="future">待串接</span></button>
+        <button type="button" class="nav-item" data-tab="analytics">網站分析 Web Analytics</button>
         <button type="button" class="nav-item" data-tab="updates">更新紀錄 <span class="future">下一階段</span></button>
         <button type="button" class="nav-item" data-tab="team" data-role="owner">工作人員與權限</button>
         <button type="button" class="nav-item" data-tab="audit" data-role="owner">操作紀錄</button>
@@ -34,7 +34,7 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <p class="section-title">目前的網站狀況</p>
         <div class="stats" id="summary"><div class="stat"><small>讀取中</small><b>—</b></div></div>
         <div class="card"><h2>工作待辦</h2><div id="dashboard-tasks">正在整理待辦事項…</div></div>
-        <p class="hint">目前的統計來自現有 Cloudflare D1 留言與文章回饋資料；不是網站訪客數。Web Analytics 將另行串接。</p>
+        <p class="hint">上方數字為留言與文章回饋統計；網站瀏覽量請至左側「網站分析 Web Analytics」查看。</p>
       </section>
       <section class="panel" data-panel="comments" hidden>
         <div class="section-head"><div><h2>讀者留言</h2><p>審核、回覆及搜尋各篇文章的讀者留言。</p></div><button id="refresh-comments" type="button">重新整理</button></div>
@@ -50,8 +50,21 @@ export const ADMIN_HTML = String.raw`<!doctype html>
       <section class="panel" data-panel="articles" hidden>
         <div class="card"><span class="eyebrow">CONTENT WORKFLOW</span><h2>文章草稿與審核</h2><p>下一階段將與 GitHub 中的 Markdown 詞條連接。編輯人員只能儲存草稿；最高管理員核對預覽與版本差異後才能發布。</p><p class="hint">此階段尚未開放文章寫入、審核與發布，避免未完成的編輯器改動既有文章。現階段請繼續使用既有 Pages CMS／GitHub 工作流程。</p></div>
       </section>
+
       <section class="panel" data-panel="analytics" hidden>
-        <div class="card"><span class="eyebrow">ANALYTICS</span><h2>Cloudflare Web Analytics</h2><p>網站已有 Cloudflare Web Analytics 追蹤。後續在此呈現瀏覽量、熱門文章與流量趨勢，所需的唯讀 API 權杖只會放在後端。</p><p class="hint">目前尚未接入 Web Analytics API，因此這裡不顯示估算或假數據。</p><a href="https://dash.cloudflare.com/" rel="noopener noreferrer" target="_blank">前往 Cloudflare 控制台查看目前統計 ↗</a></div>
+        <div class="section-head">
+          <div><h2>網站分析 Web Analytics</h2><p>掌握網站瀏覽量、訪問次數、每日趨勢與熱門文章。</p></div>
+          <div class="analytics-controls">
+            <label>統計期間<select id="analytics-period"><option value="7">最近 7 天</option><option value="30">最近 30 天</option></select></label>
+            <button type="button" id="analytics-refresh">重新整理</button>
+          </div>
+        </div>
+        <p id="analytics-status" class="hint" role="status" aria-live="polite">準備讀取 Cloudflare 統計資料…</p>
+        <div class="stats" id="analytics-summary"></div>
+        <div class="card"><h3>每日瀏覽趨勢</h3><div id="analytics-chart" class="analytics-chart" role="img" aria-label="每日網站瀏覽量直條圖"><p class="hint">載入中…</p></div></div>
+        <div class="card"><h3>熱門頁面</h3><div id="analytics-top-pages" class="analytics-pages"><p class="hint">載入中…</p></div></div>
+        <p class="hint" id="analytics-note">資料來源：Cloudflare Web Analytics。訪問次數不是不重複訪客人數；資料可能有延遲及抽樣估算。</p>
+        <a href="https://dash.cloudflare.com/" rel="noopener noreferrer" target="_blank">前往 Cloudflare 控制台查看原始統計 ↗</a>
       </section>
       <section class="panel" data-panel="updates" hidden>
         <div class="card"><span class="eyebrow">CHANGELOG</span><h2>大型更新紀錄</h2><p>下一階段將整理 GitHub 變更，區分文章新增、功能新增、重要修正與一般編修。自動生成草稿後，仍需由管理員確認公開。</p><p class="hint">目前不會將程式碼提交紀錄直接當成讀者可見的更新公告。</p></div>
@@ -85,6 +98,20 @@ textarea{min-height:95px;resize:vertical;line-height:1.6}.filters input[type=sea
 button:not(.nav-item){border:1px solid #c3d2c5;border-radius:9px;min-height:40px;background:#fff;color:#234c38;padding:8px 16px;font-weight:600}button:hover:not(:disabled):not(.nav-item){background:#eff5ef}button:disabled{opacity:.5;cursor:not-allowed}button.primary{background:#285744;color:white;border-color:#285744}button.primary:hover:not(:disabled){background:#1d3d30;color:#fff}button.danger{border-color:#d8acac;color:#9b3434}
 .stack{display:flex;flex-direction:column;gap:12px;margin-top:16px}.item h3{font-size:17px;margin:0 0 5px;overflow-wrap:anywhere}.item h3 a{color:#234b38}.item .meta{font-size:12px;color:#6b7d70}.item p{white-space:pre-wrap;overflow-wrap:anywhere;margin:10px 0}.quote{background:#f5f7f2;border-left:3px solid #b1c5b8;padding:8px 12px;color:#5c705f}.item label{font-size:13px;display:block;font-weight:700;margin:14px 0 5px}.item .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.item .tag{display:inline-block;border-radius:20px;background:#e9f0e9;padding:1px 9px;font-size:11px;margin-right:5px}.item .tags{margin:8px 0}
 .pagination{display:flex;align-items:center;justify-content:center;gap:14px;margin:23px 0}.pagination span{font-size:13px;color:#6c7c73}.empty{padding:28px;background:white;border:1px dashed #ced8ce;border-radius:10px;color:#6d7d70}.user-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.user-main{flex:2;min-width:170px;overflow-wrap:anywhere}.user-row .user-select{width:auto;flex:1;min-width:130px}.rating-bar{height:8px;background:#eef1e8;border-radius:12px;overflow:hidden;margin-top:12px}.rating-bar>span{display:block;height:100%;background:#4f8667}.rating-reasons{font-size:12px;color:#6b7d70}.audit-row{font-size:13px;overflow-wrap:anywhere}
+
+.analytics-controls{display:flex;align-items:end;gap:10px;flex-wrap:wrap}.analytics-controls label{min-width:155px}
+.analytics-chart{overflow-x:auto;padding:8px 0}.analytics-bars{height:225px;display:flex;gap:5px;align-items:end;min-width:max-content;padding-top:20px}
+.analytics-day{display:flex;flex-direction:column;align-items:center;justify-content:end;min-width:37px;flex:1;height:100%;gap:4px}
+.analytics-day small{font-size:10px;color:#718078;white-space:nowrap}
+.analytics-bar-value{font-size:11px;color:#516f5c;font-variant-numeric:tabular-nums}
+.analytics-bar-track{width:min(100%,32px);height:150px;display:flex;align-items:end;border-radius:5px;background:#edf3eb;overflow:hidden}
+.analytics-bar-fill{width:100%;background:#4d8467;border-radius:5px 5px 0 0}
+.analytics-pages{display:flex;flex-direction:column;gap:0}
+.analytics-page-row{padding:10px 0;display:flex;align-items:center;gap:14px;border-bottom:1px solid #e9eee8}
+.analytics-page-row:last-child{border-bottom:none}
+.analytics-rank{color:#74887d;min-width:22px;text-align:right}
+.analytics-page-link{flex:1;min-width:0;overflow-wrap:anywhere;font-size:13px}
+.analytics-page-row strong{font-size:13px;color:#294f3e;white-space:nowrap}
 [hidden]{display:none!important}@media(max-width:940px){.shell{grid-template-columns:1fr}.sidebar{position:static;height:auto;padding:14px 14px 8px}.brand{padding:6px}.brand strong{font-size:18px}.nav-title{display:none}.sidebar nav{display:flex;gap:6px;overflow-x:auto;padding:6px 0}.nav-item{width:auto;white-space:nowrap;flex:none;font-size:13px;padding:8px 12px}.future{display:none}.sidebar-foot{flex-direction:row;flex-wrap:wrap;justify-content:space-between;padding:9px 6px 0}main{padding:20px 14px 48px}.topbar{margin:8px 0 24px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat,.card,.item{padding:16px}}@media(max-width:480px){.stats{gap:8px}.stat b{font-size:22px}.topbar{flex-direction:column;gap:10px}.profile{text-align:left}.filters>*{flex:1 1 100%;width:100%}.section-head{flex-direction:column}.section-head button{width:100%}.user-row .user-select{flex:1}.pagination{gap:8px}}
 `;
 
@@ -155,6 +182,7 @@ export const ADMIN_CLIENT = String.raw`
     if(tab==='overview')await guarded(loadOverview);
     if(tab==='comments')await guarded(loadComments);
     if(tab==='ratings')await guarded(loadRatings);
+    if(tab==='analytics')await guarded(loadAnalytics);
     if(tab==='team')await guarded(loadUsers);
     if(tab==='audit')await guarded(loadAudit);
   }
@@ -176,7 +204,7 @@ export const ADMIN_CLIENT = String.raw`
     const tasks=$('#dashboard-tasks');tasks.replaceChildren();
     const intro=n('p','',Number(c.pending)?'有 '+fmt(c.pending)+' 則讀者留言待審核。':'目前沒有待審核留言。');
     tasks.append(intro);
-    const hint=n('p','hint','下一階段將加入文章草稿審核、內容查核日期與 Web Analytics。');
+    const hint=n('p','hint','下一階段將加入文章草稿審核與內容查核日期；網站分析已另設專區。');
     tasks.append(hint);
     if(Number(c.pending)>0 && permitted('comments')){
       const btn=n('button','primary','查看待審核留言');
@@ -268,6 +296,68 @@ export const ADMIN_CLIENT = String.raw`
       list.append(card);
     }
   }
+  function analyticsDate(value){
+    return typeof value==='string'&&value.length>=10 ? value.slice(5,7)+'/'+value.slice(8,10) : '—';
+  }
+  async function loadAnalytics(){
+    const status=$('#analytics-status'),summary=$('#analytics-summary');
+    const chart=$('#analytics-chart'),pages=$('#analytics-top-pages');
+    summary.replaceChildren();chart.replaceChildren();pages.replaceChildren();
+    status.textContent='正在讀取 Cloudflare Web Analytics…';
+    const days=$('#analytics-period').value==='30'?30:7;
+    const data=await api('/api/analytics?days='+days);
+    if(!data.configured){
+      status.textContent=data.message||'尚未完成網站分析資料存取設定。';
+      chart.append(n('p','empty','等管理員設定 Cloudflare 分析唯讀權杖後，這裡會自動顯示瀏覽趨勢。'));
+      pages.append(n('p','empty','目前無法載入熱門頁面，沒有產生估算數據。'));
+      $('#analytics-note').textContent='網站分析讀取權限尚未完成，因此不顯示任何虛構流量。';
+      return;
+    }
+    summary.append(
+      stat('頁面瀏覽量',fmt(data.pageviews),'Cloudflare Web Analytics'),
+      stat('訪問次數',fmt(data.visits),'不等於不重複訪客'),
+      stat('資料範圍',days+' 天','最近統計'),
+      stat('有瀏覽的頁面',fmt((data.top_pages||[]).length),'最多顯示前12名')
+    );
+    status.textContent='資料來源：'+(data.source||'Cloudflare Web Analytics')+' · 更新時間 '+time(data.updated_at);
+    $('#analytics-note').textContent=data.note||'資料可能有延遲。';
+    const daily=(data.daily||[]).filter(x=>Number.isFinite(Number(x.pageviews)));
+    if(!daily.length){
+      chart.append(n('p','empty','目前查詢期間沒有可顯示的每日資料。'));
+    }else{
+      const max=Math.max(1,...daily.map(x=>Number(x.pageviews)||0));
+      const bars=n('div','analytics-bars');
+      for(const item of daily){
+        const col=n('div','analytics-day');
+        const value=Number(item.pageviews)||0;
+        const track=n('div','analytics-bar-track');
+        track.title=item.date+' · 瀏覽 '+fmt(value)+' 次';
+        const fill=n('div','analytics-bar-fill');
+        fill.style.height=(value?Math.max(3,100*value/max):0)+'%';
+        track.append(fill);
+        col.append(n('span','analytics-bar-value',fmt(value)),track,n('small','',analyticsDate(item.date)));
+        bars.append(col);
+      }
+      chart.append(bars);
+    }
+    const top=data.top_pages||[];
+    if(!top.length){
+      pages.append(n('p','empty','這段期間沒有可顯示的熱門頁面。'));
+    }else{
+      for(const [index,item] of top.entries()){
+        const row=n('div','analytics-page-row');
+        const rank=n('span','analytics-rank',String(index+1));
+        const link=n('a','analytics-page-link',item.path);
+        // All links are restricted to the current configured public site.
+        if(typeof item.path==='string'&&item.path.startsWith('/')&&!item.path.startsWith('//')){
+          link.href=state.site+item.path;
+          link.target='_blank';link.rel='noopener noreferrer';
+        }
+        row.append(rank,link,n('strong','',fmt(item.pageviews)+' 次'));
+        pages.append(row);
+      }
+    }
+  }
   async function loadUsers(){
     const data=await api('/api/users');
     const list=$('#user-list');list.replaceChildren();
@@ -336,6 +426,8 @@ export const ADMIN_CLIENT = String.raw`
         if(state.commentMore){state.commentOffset+=25;show('comments');}
       });
       $('#rating-period').addEventListener('change',()=>show('ratings'));
+      $('#analytics-period').addEventListener('change',()=>show('analytics'));
+      $('#analytics-refresh').addEventListener('click',()=>show('analytics'));
       $('#refresh-audit').addEventListener('click',()=>show('audit'));
       $('#create-user').addEventListener('click',()=>guarded(async()=>{
         const email=$('#new-email').value.trim(),name=$('#new-name').value.trim();
