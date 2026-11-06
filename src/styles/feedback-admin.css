@@ -53,3 +53,11 @@
 @media(max-width:700px){
   .staff-login-row input,.staff-reply{font-size:16px}
 }
+
+/* Only the pending tab shows a count. Others remain labels only. */
+.staff-pending-count{display:inline-flex;align-items:center;justify-content:center;
+  margin-left:4px;min-width:23px;min-height:23px;padding:2px 6px;
+  border-radius:999px;background:#d9e9db;color:#315b41;font-size:12px;
+  font-weight:800;font-variant-numeric:tabular-nums}
+.staff-pending-count[hidden]{display:none!important}
+.staff-tab[aria-pressed="true"] .staff-pending-count{background:#305c40;color:#fff}

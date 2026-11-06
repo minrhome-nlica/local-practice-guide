@@ -52,7 +52,7 @@ const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api);
               </div>
             </div>
             <div class="staff-tabs" role="group" aria-label="依處理狀態篩選">
-              <button type="button" class="staff-tab" data-status="pending" aria-pressed="true">待審核</button>
+              <button type="button" class="staff-tab" data-status="pending" aria-pressed="true">待審核 <span class="staff-pending-count" id="staff-pending-count" aria-label="待審核數量" hidden></span></button>
               <button type="button" class="staff-tab" data-status="approved" aria-pressed="false">已公開</button>
               <button type="button" class="staff-tab" data-status="resolved" aria-pressed="false">已處理</button>
               <button type="button" class="staff-tab" data-status="rejected" aria-pressed="false">已拒絕</button>

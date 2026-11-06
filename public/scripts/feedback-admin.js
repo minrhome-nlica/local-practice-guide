@@ -16,6 +16,24 @@
   const refreshButton = document.getElementById('staff-refresh');
   const logoutButton = document.getElementById('staff-logout');
   const tabs = [...page.querySelectorAll('[data-status]')];
+  const pendingCounter = document.getElementById('staff-pending-count');
+  function setPendingCount(rows) {
+    if (!pendingCounter) return;
+    const n = Array.isArray(rows) ? rows.length : 0;
+    pendingCounter.textContent = n >= 100 ? '100+' : String(n);
+    pendingCounter.hidden = false;
+  }
+  async function refreshPendingCount() {
+    if (!token) return;
+    try {
+      const result = await apiCall('/api/admin/comments?status=pending');
+      setPendingCount(result.items);
+    } catch(error) {
+      if (error.code === 'AUTH') logout(error.message);
+      else if (pendingCounter) pendingCounter.hidden = true;
+    }
+  }
+
   let token = null;
   let status = 'pending';
   let pending = false;
@@ -48,6 +66,7 @@
   }
   function logout(message = '') {
     token = null;
+    if (pendingCounter) pendingCounter.hidden = true;
     loginInput.value = '';
     loginPanel.hidden = false;
     dashboard.hidden = true;
@@ -183,6 +202,8 @@
       setCurrentStatus(nextStatus);
       list.replaceChildren();
       const notes = Array.isArray(result.items) ? result.items : [];
+      if (nextStatus === 'pending') setPendingCount(notes);
+      else await refreshPendingCount();
       if (notes.length === 0) list.append(el('p','staff-empty', '目前沒有' + labels[nextStatus] + '的留言。'));
       else notes.forEach(item => list.append(render(item)));
       msg(statusText, '本次載入 ' + notes.length + ' 則' + labels[nextStatus] + '留言' +
@@ -213,6 +234,7 @@
       const result = await apiCall('/api/admin/comments?status=pending', 'GET', undefined, candidate);
       if (!Array.isArray(result.items)) throw new Error('留言 API 回應資料格式不正確');
       token = candidate;
+      setPendingCount(result.items);
       loginInput.value = '';
       loginPanel.hidden = true;
       dashboard.hidden = false;
