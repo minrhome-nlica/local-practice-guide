@@ -8,6 +8,25 @@
     return isNaN(value.getTime()) ? '' : value.toLocaleDateString('zh-TW', { year:'numeric', month:'short', day:'numeric' });
   };
   const kindLabels = { question:'提問諮詢', correction:'內容更正', supplement:'補充留言' };
+  const SITE_FEEDBACK_ID = 'site-feedback';
+  const siteTags = [
+    { prefix:'【希望新增的主題】', label:'新主題建議' },
+    { prefix:'【網站使用建議】', label:'網站使用建議' }
+  ];
+  const displayFor = note => {
+    let label = kindLabels[note.kind] || '讀者留言';
+    let body = String(note.body || '');
+    if (note.entry_id === SITE_FEEDBACK_ID) {
+      for (const tag of siteTags) {
+        if (body.startsWith(tag.prefix + '\n')) {
+          label = tag.label;
+          body = body.slice(tag.prefix.length + 1);
+          break;
+        }
+      }
+    }
+    return {label,body};
+  };
   const create = (tag, className, text) => {
     const el = document.createElement(tag);
     if (className) el.className = className;
@@ -27,21 +46,26 @@
   const renderNote = (note, isGlobal = false) => {
     const item = create('article', 'guide-feedback-note');
     const header = create('div', 'guide-feedback-note-header');
-    header.append(create('span', 'guide-feedback-note-kind', kindLabels[note.kind] || '讀者留言'));
+    const presentation = displayFor(note);
+    header.append(create('span', 'guide-feedback-note-kind', presentation.label));
     header.append(create('span', 'guide-feedback-note-meta', (note.author || '讀者') + ' · ' + formatDate(note.created_at)));
     if (note.status === 'resolved') header.append(create('span', 'guide-feedback-note-resolved', '已處理'));
     item.append(header);
     if (isGlobal) {
-      const link = create('a', 'guide-feedback-note-entry', note.entry_title || note.entry_id);
-      link.href = root + '/entries/' + encodeURIComponent(note.entry_id) + '/' +
-        (note.section_id ? '#' + encodeURIComponent(note.section_id) : '');
+      const isSiteNote = note.entry_id === SITE_FEEDBACK_ID;
+      const link = create('a', 'guide-feedback-note-entry',
+        isSiteNote ? '網站整體留言' : (note.entry_title || note.entry_id));
+      link.href = isSiteNote
+        ? root + '/feedback/#guide-feedback-direct'
+        : root + '/entries/' + encodeURIComponent(note.entry_id) + '/' +
+          (note.section_id ? '#' + encodeURIComponent(note.section_id) : '');
       item.append(link);
     }
     if (note.quote) {
       const quotation = create('blockquote', 'guide-feedback-note-quote', note.quote);
       item.append(quotation);
     }
-    item.append(create('p', 'guide-feedback-note-body', note.body || ''));
+    item.append(create('p', 'guide-feedback-note-body', presentation.body));
     if (note.admin_reply) {
       const answer = create('div', 'guide-feedback-editor-response');
       answer.append(create('strong', '', '編輯回覆'));
@@ -51,6 +75,146 @@
     return item;
   };
   if (feed) {
+    // Site-wide requests are stored using the existing moderated D1 schema.
+    // Distinct public categories are represented by a short visible body tag,
+    // while 'kind' remains one of the three kinds the Worker accepts today.
+    const direct = feed.querySelector('#guide-direct-form');
+    const directType = feed.querySelector('#guide-direct-kind');
+    const directSubjectWrap = feed.querySelector('#guide-direct-subject-wrap');
+    const directSubject = direct.querySelector('[name="subject"]');
+    const directText = direct.querySelector('[name="body"]');
+    const directStatus = feed.querySelector('#guide-direct-message');
+    const directSubmit = feed.querySelector('[data-direct-submit]');
+    let directWidgetId = null;
+    let directLoading = null;
+    const directTypes = {
+      topic: {kind:'supplement', tag:'【希望新增的主題】'},
+      site: {kind:'supplement', tag:'【網站使用建議】'},
+      question: {kind:'question', tag:''},
+      supplement: {kind:'supplement', tag:''},
+      correction: {kind:'correction', tag:''}
+    };
+    function showDirectStatus(message, isError=false) {
+      directStatus.textContent = message;
+      directStatus.classList.toggle('is-error', isError);
+    }
+    function updateDirectType() {
+      const showTopic = directType.value === 'topic';
+      directSubjectWrap.hidden = !showTopic;
+      if(!showTopic) directSubject.value = '';
+      directText.placeholder = ({
+        topic:'想新增什麼知識、工具或案例？你希望它可以解決哪一種問題？',
+        site:'哪些導覽、搜尋、閱讀或互動功能可以更好用？',
+        question:'請描述你在地方實踐時遇到的問題。',
+        supplement:'歡迎分享實務經驗、參考資料或操作案例。',
+        correction:'請指出需要確認或更正的內容，並提供參考資料（如有）。'
+      })[directType.value] || '請寫下你的留言。';
+    }
+    async function ensureDirectTurnstile() {
+      if (directWidgetId !== null) return;
+      if (!directLoading) {
+        directLoading = new Promise((resolve, reject) => {
+          if (window.turnstile) return resolve();
+          const script = document.createElement('script');
+          script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+          script.async = true;
+          script.onload = resolve;
+          script.onerror = () => reject(new Error('安全驗證載入失敗'));
+          document.head.append(script);
+        });
+      }
+      try {
+        await directLoading;
+        if (!window.turnstile) throw new Error('安全驗證未載入');
+        directWidgetId = window.turnstile.render('#guide-direct-turnstile', {
+          sitekey:feed.dataset.sitekey,
+          action:'guide_feedback',
+          theme:'light'
+        });
+      } catch(error) {
+        directLoading = null;
+        throw error;
+      }
+    }
+    directType.addEventListener('change', updateDirectType);
+    updateDirectType();
+    // Load the verification widget as the user approaches the form, while
+    // keeping a safe explicit retry on submitting.
+    if ('IntersectionObserver' in window) {
+      const watcher = new IntersectionObserver((entries, observer) => {
+        if(entries.some(e => e.isIntersecting)) {
+          observer.disconnect();
+          ensureDirectTurnstile().catch(() =>
+            showDirectStatus('安全驗證暫時無法載入。請確認網路連線，再重新整理頁面。',true));
+        }
+      },{rootMargin:'160px'});
+      watcher.observe(direct);
+    } else {
+      ensureDirectTurnstile().catch(() =>
+        showDirectStatus('安全驗證暫時無法載入。請重新整理頁面。',true));
+    }
+    direct.addEventListener('submit', async event => {
+      event.preventDefault();
+      if(directSubmit.disabled) return;
+      const values = new FormData(direct);
+      const type = directTypes[String(values.get('topic_kind')||'')];
+      const content = String(values.get('body')||'').trim();
+      const author = String(values.get('author')||'').trim();
+      const subject = String(values.get('subject')||'').trim();
+      if(!type) return showDirectStatus('請先選擇留言類型。',true);
+      if(content.length < 10 || content.length > 1800)
+        return showDirectStatus('請填寫至少 10 字、最多 1800 字的留言。',true);
+      if(author.length > 40 || subject.length > 80)
+        return showDirectStatus('稱呼或主題名稱太長，請稍微縮短。',true);
+      try {
+        await ensureDirectTurnstile();
+      } catch {
+        return showDirectStatus('安全驗證載入失敗，請重新整理後再試。',true);
+      }
+      const token = directWidgetId !== null && window.turnstile
+        ? window.turnstile.getResponse(directWidgetId) : '';
+      if(!token) return showDirectStatus('請完成安全驗證，再送出留言。',true);
+      const prefix = type.tag ? type.tag + '\n' : '';
+      const subjectLine = directType.value === 'topic' && subject
+        ? '建議主題：' + subject + '\n' : '';
+      const body = prefix + subjectLine + content;
+      if(body.length > 2000) return showDirectStatus('留言內容過長，請稍微精簡。',true);
+      directSubmit.disabled = true;
+      showDirectStatus('正在送出留言……');
+      try {
+        const response = await fetch(apiRoot + '/api/comments', {
+          method:'POST',
+          headers: {'Content-Type':'application/json'},
+          mode:'cors', credentials:'omit',
+          body:JSON.stringify({
+            entry_id:SITE_FEEDBACK_ID,
+            entry_title:'網站整體留言與新主題建議',
+            section_id:'',quote:'',context_before:'',context_after:'',
+            author,kind:type.kind,body,
+            website:String(values.get('website')||''),
+            turnstile_token:token
+          })
+        });
+        const result = await response.json();
+        if(!response.ok || result?.ok!==true)
+          throw new Error(result?.error || '留言傳送失敗，請稍後再試。');
+        direct.reset();
+        updateDirectType();
+        showDirectStatus('已收到你的留言，審核通過後會公開在下方。謝謝你一起完善這份指南！');
+      } catch(error) {
+        const network = error instanceof TypeError ||
+          /failed to fetch|networkerror|load failed/i.test(String(error?.message||''));
+        showDirectStatus(network
+          ? '無法連線到留言服務。請確認網頁的 HTTPS 安全連線後再試，或重新整理頁面。'
+          : (error.message||'留言送出失敗，請稍後重試。'),true);
+      } finally {
+        directSubmit.disabled = false;
+        if(directWidgetId!==null && window.turnstile) {
+          try {window.turnstile.reset(directWidgetId);}catch{}
+        }
+      }
+    });
+
     const diagnosis = feed.querySelector('#guide-feedback-diagnostic');
     const runButton = diagnosis?.querySelector('[data-diagnostic-run]');
     const report = diagnosis?.querySelector('[data-diagnostic-result]');

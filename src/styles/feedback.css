@@ -134,3 +134,44 @@
   .guide-feedback-dialog :is(input,textarea,select){font-size:16px}
   .guide-article .guide-annotation-marker{min-height:36px;padding:6px 12px}
 }
+
+
+/* Inline, first-class feedback form for site-wide topic requests. */
+.guide-direct-panel{background:#fff;border:1px solid #d7e4d7;border-radius:14px;
+  padding:clamp(19px,3vw,29px);box-shadow:0 8px 25px #234b2f0b;
+  max-width:100%;min-width:0;scroll-margin-top:90px}
+.guide-direct-heading h2,.guide-feedback-feed-intro h2{
+  color:#305541;font:800 clamp(21px,2.5vw,27px)/1.5 "GenSen Rounded Guide","Noto Sans TC",sans-serif;
+  margin:7px 0 8px}
+.guide-direct-heading p,.guide-feedback-feed-intro p{line-height:1.85;font-size:14px;color:#657b6b;margin:0}
+.guide-direct-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:18px;row-gap:16px;margin-top:23px;min-width:0}
+.guide-direct-field{display:grid;align-content:start;gap:7px;min-width:0;
+  color:#34533f;font-size:14px;font-weight:700}
+.guide-direct-field>span{font-size:14px}
+.guide-direct-span{grid-column:1/-1}
+.guide-direct-field[hidden]{display:none!important}
+.guide-direct-field :is(input,select,textarea){box-sizing:border-box;width:100%;min-width:0;
+  font:400 16px/1.75 "GenSen Rounded Guide","Noto Sans TC",sans-serif;
+  color:#2e4435;background:#fff;border:1px solid #c5d8c6;border-radius:8px;
+  padding:10px 13px}
+.guide-direct-field :is(input,select){min-height:46px}
+.guide-direct-field textarea{min-height:135px;resize:vertical}
+.guide-direct-field :is(input,select,textarea):focus-visible{
+  outline:2px solid #6d9c7c;outline-offset:2px}
+.guide-direct-notice{grid-column:1/-1;font-size:12px;line-height:1.8;color:#738877;margin:0}
+.guide-direct-submit-row{grid-column:1/-1;display:flex;align-items:center;
+  flex-wrap:wrap;justify-content:space-between;gap:15px}
+.guide-direct-submit-row .guide-feedback-primary{min-height:45px}
+.guide-direct-turnstile{min-height:66px;max-width:100%;min-width:0}
+.guide-direct-message{grid-column:1/-1;min-height:1.5em;margin:0;overflow-wrap:anywhere}
+.guide-feedback-feed-intro{margin-top:55px}
+@media(max-width:650px){
+  .guide-direct-panel{padding:17px}
+  .guide-direct-form{grid-template-columns:minmax(0,1fr);row-gap:14px}
+  .guide-direct-span{grid-column:auto}
+  .guide-direct-notice,.guide-direct-submit-row,.guide-direct-message{grid-column:1}
+  .guide-direct-submit-row{align-items:stretch;flex-direction:column}
+  .guide-direct-submit-row .guide-feedback-primary{width:100%}
+  .guide-feedback-feed-intro{margin-top:42px}
+}

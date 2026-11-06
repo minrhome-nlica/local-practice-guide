@@ -122,6 +122,8 @@
     return button;
   }
   function entryUrl(comment) {
+    // A site-wide suggestion belongs to /feedback/, not a nonexistent entry slug.
+    if(comment.entry_id === 'site-feedback') return root + '/feedback/#guide-feedback-direct';
     // Backend must send stable entry slugs. Keep generated link within the guide.
     if (!/^[a-z0-9][a-z0-9-]{1,90}$/.test(String(comment.entry_id || ''))) return root + '/knowledge/';
     return root + '/entries/' + encodeURIComponent(comment.entry_id) + '/' +
@@ -131,19 +133,35 @@
     const card = el('article', 'staff-item');
     const header = el('div', 'staff-item-head');
     const tags = el('div', 'staff-item-tags');
-    tags.append(el('span','staff-pill staff-pill-type', labels[comment.kind] || '讀者留言'));
+    let noteLabel = labels[comment.kind] || '讀者留言';
+    let visibleBody = String(comment.body || '');
+    if(comment.entry_id === 'site-feedback') {
+      for(const [prefix,label] of [
+        ['【希望新增的主題】','新主題建議'],
+        ['【網站使用建議】','網站使用建議']
+      ]) {
+        if(visibleBody.startsWith(prefix+'\n')){
+          noteLabel = label;
+          visibleBody = visibleBody.slice(prefix.length+1);
+          break;
+        }
+      }
+    }
+    tags.append(el('span','staff-pill staff-pill-type',noteLabel));
     tags.append(el('span','staff-pill', labels[comment.status] || '留言'));
     header.append(tags);
     header.append(el('div', 'staff-item-meta', (comment.author || '讀者') + ' · ' + date(comment.created_at)));
     card.append(header);
 
-    const link = el('a', 'staff-entry-link', '查看詞條：' + (comment.entry_title || comment.entry_id));
+    const link = el('a', 'staff-entry-link',
+      (comment.entry_id === 'site-feedback' ? '查看網站留言：' : '查看詞條：') +
+      (comment.entry_title || comment.entry_id));
     link.href = entryUrl(comment);
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     card.append(link);
     if (comment.quote) card.append(el('blockquote', 'staff-quote', '讀者選取原文：' + comment.quote));
-    card.append(el('p', 'staff-comment', comment.body || ''));
+    card.append(el('p', 'staff-comment', visibleBody));
     const label = el('label', 'staff-reply-label', '編輯回覆（選填）');
     const textarea = el('textarea', 'staff-reply');
     textarea.rows = 3;

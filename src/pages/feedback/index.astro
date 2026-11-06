@@ -6,25 +6,71 @@ const api = (import.meta.env.PUBLIC_FEEDBACK_API_URL || '').replace(/\/$/, '');
 const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api) && sitekey.length > 10;
 ---
-<BaseLayout title="讀者提問與內容勘誤">
+<BaseLayout title="讀者留言與建議" description="直接提出地方實踐指南新主題建議、網站回饋、補充經驗與內容勘誤；留言經審核後公開。">
   <section class="page-hero">
     <div class="wrap">
-      <div class="breadcrumbs"><a href={root + '/'}>首頁</a> / 讀者提問與內容勘誤</div>
+      <div class="breadcrumbs"><a href={root + '/'}>首頁</a> / 讀者留言與建議</div>
       <span class="eyebrow">COMMUNITY FEEDBACK</span>
-      <h1 class="page-title">讀者提問與內容勘誤</h1>
-      <p>把讀者的經驗補充、提問諮詢和內容更正分開整理。留言經工作人員確認後，才會出現在這裡。</p>
+      <h1 class="page-title">讀者留言與建議</h1>
+      <p>不必指定某篇文章，也能直接告訴我們希望新增哪些內容、分享實務經驗、提出問題或協助勘誤。所有留言經工作人員確認後才公開。</p>
     </div>
   </section>
   <section class="section-spacer">
     <div class="wrap guide-feedback-feed-wrap">
       {ready ? (
-        <div class="guide-feedback-feed" id="guide-feedback-feed" data-api={api} data-root={root}>
+        <div class="guide-feedback-feed" id="guide-feedback-feed" data-api={api} data-sitekey={sitekey} data-root={root}>
+          <section class="guide-direct-panel" id="guide-feedback-direct" aria-labelledby="guide-direct-title">
+            <div class="guide-direct-heading">
+              <span class="eyebrow">YOUR VOICE, OUR NEXT CHAPTER</span>
+              <h2 id="guide-direct-title">直接留言給編輯團隊</h2>
+              <p>想增加什麼主題？哪個步驟還是不清楚？也歡迎提供網站使用上的建議。留言不必綁定任何一篇詞條。</p>
+            </div>
+            <form class="guide-direct-form" id="guide-direct-form" novalidate>
+              <label class="guide-direct-field">
+                <span>你想提出什麼？</span>
+                <select name="topic_kind" id="guide-direct-kind" required>
+                  <option value="topic">希望新增的主題</option>
+                  <option value="site">網站使用建議</option>
+                  <option value="question">提問諮詢</option>
+                  <option value="supplement">補充經驗與案例</option>
+                  <option value="correction">內容更正</option>
+                </select>
+              </label>
+              <label class="guide-direct-field">
+                <span>稱呼（可留空）</span>
+                <input name="author" maxlength="40" autocomplete="nickname" placeholder="例如：在地工作者"/>
+              </label>
+              <label class="guide-direct-field guide-direct-span" id="guide-direct-subject-wrap">
+                <span>希望增加的主題名稱（選填）</span>
+                <input name="subject" maxlength="80" placeholder="例如：如何籌辦社區課程、租借公共空間"/>
+              </label>
+              <label class="guide-direct-field guide-direct-span">
+                <span>留言內容（至少 10 個字）</span>
+                <textarea name="body" rows="5" minlength="10" maxlength="1800" required
+                  placeholder="請具體描述想新增的內容、遇到的問題，或可以提供的經驗。"></textarea>
+              </label>
+              <div class="guide-feedback-trap" aria-hidden="true">
+                <label>請勿填寫此欄 <input name="website" tabindex="-1" autocomplete="off"/></label>
+              </div>
+              <p class="guide-direct-notice">請勿填寫電話、住址、身分證字號或其他個人資料。留言會先由編輯團隊審核，公開後其他讀者也能看到。</p>
+              <div class="guide-direct-submit-row">
+                <div id="guide-direct-turnstile" class="guide-direct-turnstile" aria-label="安全驗證"></div>
+                <button class="guide-feedback-primary" type="submit" data-direct-submit>送出留言，等待審核 ↗</button>
+              </div>
+              <p class="guide-feedback-message guide-direct-message" id="guide-direct-message" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+          <div class="guide-feedback-feed-intro">
+            <span class="eyebrow">COMMUNITY NOTES</span>
+            <h2>已公開的讀者留言</h2>
+            <p>依「補充留言、提問諮詢、內容更正」分類。新主題與網站建議也收錄在「補充留言」欄中。</p>
+          </div>
           <p class="guide-feedback-feed-status" data-feed-status role="status" aria-live="polite">正在讀取留言……</p>
           <div class="guide-feedback-categories" aria-label="依留言類型分類">
             <section class="guide-feedback-category" data-feedback-kind="supplement">
               <div class="guide-feedback-category-head">
                 <span class="guide-feedback-category-symbol" aria-hidden="true">＋</span>
-                <div><h2>補充留言</h2><p>實務經驗、案例與參考資料</p></div>
+                <div><h2>補充留言</h2><p>實務經驗、案例、想新增的主題</p></div>
               </div>
               <p class="guide-feedback-category-count" data-kind-count></p>
               <div class="guide-feedback-category-list" data-kind-items></div>
