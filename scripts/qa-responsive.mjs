@@ -252,6 +252,71 @@ try {
     console.log('Checked '+width+'px on '+routes.length+' routes');
   }
 
+  // Text selection itself must never display the feedback popup.
+  // Only hovering the highlighted characters may reveal it.
+  for(const width of [390,1440]){
+    const context=await browser.newContext({
+      viewport:{width,height:900},deviceScaleFactor:width===390?2:1,
+      isMobile:width===390,hasTouch:width===390
+    });
+    const page=await context.newPage();
+    try{
+      await page.goto(origin+'/entries/labor-health-insurance/',{waitUntil:'domcontentloaded'});
+      await page.locator('.article.guide-article p').first().scrollIntoViewIfNeeded();
+      const rect=await page.locator('.article.guide-article p').first().evaluate(p=>{
+        const walker=document.createTreeWalker(p,NodeFilter.SHOW_TEXT);
+        let node,found=null;
+        while((node=walker.nextNode())) {
+          if(node.textContent.trim().length>10){found=node;break;}
+        }
+        if(!found) throw new Error('Could not find selectable article text');
+        const range=document.createRange();
+        range.setStart(found,0);range.setEnd(found,Math.min(13,found.textContent.length));
+        const selection=window.getSelection();
+        selection.removeAllRanges();selection.addRange(range);
+        document.dispatchEvent(new Event('selectionchange'));
+        const r=range.getClientRects()[0];
+        return {x:r.left+Math.min(r.width/2,30),y:r.top+r.height/2};
+      });
+      await page.waitForTimeout(170);
+      const action=page.locator('#guide-feedback-select');
+      if(await action.isVisible()) failures.push(width+'px selection should not immediately show popup');
+      if(width===1440) {
+        // Repeated selection updates and mouseup are intentionally inert.
+        await page.evaluate(()=>document.dispatchEvent(new MouseEvent('mouseup',{bubbles:true})));
+        await page.waitForTimeout(150);
+        if(await action.isVisible()) failures.push('Desktop mouseup unexpectedly reveals feedback action');
+        await page.mouse.move(rect.x,rect.y);
+        await action.waitFor({state:'visible',timeout:2500});
+        await page.mouse.move(2,2);
+        await page.waitForTimeout(450);
+        if(await action.isVisible()) failures.push('Feedback popup stays visible after cursor leaves selection');
+        await page.mouse.move(rect.x,rect.y);
+        await action.waitFor({state:'visible',timeout:2500});
+        await action.click();
+        if(!await page.locator('#guide-feedback-dialog').evaluate(el=>el.open))
+          failures.push('Hover-triggered feedback button did not open note dialog');
+      } else {
+        // Simulate deliberate second tap inside already selected text.
+        const tapped=await page.evaluate(({x,y})=>{
+          const selection=window.getSelection();
+          const r=selection.getRangeAt(0);
+          const textNode=r.startContainer;
+          const target=textNode.nodeType===Node.TEXT_NODE?textNode.parentElement:textNode;
+          const touch=new Touch({identifier:0,target,clientX:x,clientY:y});
+          target.dispatchEvent(new TouchEvent('touchstart',{touches:[touch],targetTouches:[touch],changedTouches:[touch],bubbles:true}));
+          target.dispatchEvent(new TouchEvent('touchend',{touches:[],targetTouches:[],changedTouches:[touch],bubbles:true}));
+          return !!target;
+        },rect);
+        if(!tapped)failures.push('Touch feedback test could not dispatch deliberate tap');
+        await action.waitFor({state:'visible',timeout:3000});
+      }
+      console.log('Text highlight interaction checked at '+width+'px.');
+    }catch(error){
+      failures.push(width+'px text selection interaction: '+error.message);
+    }finally{await page.close();await context.close();}
+  }
+
   // Functional + visual regression: two different quotes inside ONE paragraph
   // must produce ONE badge, and no paragraph-wide highlighting.
   const twoNotes = [

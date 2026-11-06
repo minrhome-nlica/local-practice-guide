@@ -318,69 +318,130 @@
     button.addEventListener('click', () => dialog.close()));
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
 
-  function hideAction() { action.hidden = true; }
-  let selectionCheck = null;
-  function captureSelection() {
-    if (!article || dialog.open) return hideAction();
+  // Selecting text is a normal reading behavior. Never display the note
+  // control on selectionchange, mouseup, scroll, or while the mouse is dragging.
+  // Desktop: hover the already selected characters.
+  // Touch: select first, then tap the same highlighted characters again.
+  let hideDelay = null;
+  let touchCandidate = null;
+  function cancelHide() {
+    if (hideDelay !== null) clearTimeout(hideDelay);
+    hideDelay = null;
+  }
+  function hideAction() {
+    cancelHide();
+    action.hidden = true;
+  }
+  function scheduleHide() {
+    if (action.hidden || hideDelay !== null) return;
+    // Permit moving across the small gap between highlighted text and button.
+    hideDelay = setTimeout(() => {
+      hideDelay = null;
+      action.hidden = true;
+    }, 380);
+  }
+  function readSelection() {
+    if (!article || dialog.open || notesDialog.open) return null;
     const selection = window.getSelection();
-    if (!selection || selection.rangeCount !== 1 || selection.isCollapsed) return hideAction();
+    if (!selection || selection.rangeCount !== 1 || selection.isCollapsed) return null;
     const range = selection.getRangeAt(0);
     const startNode = range.startContainer;
     const endNode = range.endContainer;
     const parent = startNode.nodeType === Node.ELEMENT_NODE ? startNode : startNode.parentElement;
     const endParent = endNode.nodeType === Node.ELEMENT_NODE ? endNode : endNode.parentElement;
-    // Allow headings, tables and formatted spans, too. Exclude only controls,
-    // links and non-reading content, where selection can be accidental.
+    // Select headings, paragraphs, tables and emphasis, but not controls,
+    // links or chapter navigation.
     const blocked = 'button, input, textarea, select, a, pre, code, script, style, [contenteditable], .chapter-jump, .guide-annotation-marker';
     if (!article.contains(parent) || !article.contains(endParent) ||
-        parent?.closest(blocked) || endParent?.closest(blocked)) return hideAction();
+        parent?.closest(blocked) || endParent?.closest(blocked)) return null;
     const quote = selection.toString().replace(/\s+/g, ' ').trim();
-    if (quote.length < 2) return hideAction();
-    // Long selections still work: cite the beginning, limited to the DB schema.
+    if (quote.length < 2) return null;
     const excerpt = quote.slice(0, 300);
-    const headings = [...article.querySelectorAll('h2[id],h3[id],h4[id]')];
     let section = '';
-    for (const heading of headings) {
+    for (const heading of article.querySelectorAll('h2[id],h3[id],h4[id]')) {
       const relation = heading.compareDocumentPosition(startNode);
-      if (heading === startNode || heading.contains(startNode) || (relation & Node.DOCUMENT_POSITION_FOLLOWING)) {
-        section = heading.id;
-      } else {
-        break;
-      }
+      if (heading === startNode || heading.contains(startNode) ||
+          (relation & Node.DOCUMENT_POSITION_FOLLOWING)) section = heading.id;
+      else break;
     }
     const context = parent?.textContent || '';
-    const at = Math.max(0, Math.min(context.length, startNode.nodeType === Node.TEXT_NODE ? range.startOffset : 0));
-    current = {
-      quote: excerpt, section_id: section,
-      context_before: context.slice(Math.max(0, at - 60), at),
-      context_after: context.slice(at, at + 60)
+    const at = Math.max(0, Math.min(context.length,
+      startNode.nodeType === Node.TEXT_NODE ? range.startOffset : 0));
+    const rects = [...range.getClientRects()].filter(r =>
+      Number.isFinite(r.left) && r.width > 1 && r.height > 1);
+    if (!rects.length) return null;
+    return {
+      data: {
+        quote: excerpt, section_id: section,
+        context_before: context.slice(Math.max(0, at - 60), at),
+        context_after: context.slice(at, at + 60)
+      },
+      rects
     };
-    const rects = range.getClientRects();
-    const rect = rects.length ? rects[rects.length - 1] : range.getBoundingClientRect();
-    if (!rect || rect.width === 0 && rect.height === 0) return hideAction();
-    action.style.top = Math.max(12, Math.min(window.innerHeight - 70, rect.bottom + 10)) + 'px';
-    action.style.left = Math.max(10, Math.min(window.innerWidth - 244, rect.left)) + 'px';
+  }
+  function withinSelection(info, x, y) {
+    return info.rects.some(rect =>
+      x >= rect.left - 1 && x <= rect.right + 1 &&
+      y >= rect.top - 1 && y <= rect.bottom + 1);
+  }
+  function revealAction(info, x, y) {
+    cancelHide();
+    current = { ...info.data };
+    if (!action.hidden) return;
+    // Anchor close to the character being hovered/tapped, not to the end
+    // of an arbitrarily long selection.
+    action.style.top = Math.max(10, Math.min(window.innerHeight - 65, y + 13)) + 'px';
+    action.style.left = Math.max(10, Math.min(window.innerWidth - 245, x + 12)) + 'px';
     action.hidden = false;
   }
-  function scheduleSelectionCheck() {
-    if (selectionCheck !== null) clearTimeout(selectionCheck);
-    selectionCheck = setTimeout(() => {
-      selectionCheck = null;
-      captureSelection();
-    }, 130);
-  }
-  document.addEventListener('selectionchange', scheduleSelectionCheck);
-  document.addEventListener('mouseup', scheduleSelectionCheck);
-  document.addEventListener('touchend', scheduleSelectionCheck, { passive:true });
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') hideAction();
-    else if (event.key.startsWith('Arrow') || event.key === 'Shift') scheduleSelectionCheck();
+  document.addEventListener('selectionchange', hideAction);
+  document.addEventListener('pointermove', event => {
+    if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return;
+    if (event.buttons !== 0) return hideAction();
+    if (action.contains(event.target)) return cancelHide();
+    if (!article?.contains(event.target)) return scheduleHide();
+    const info = readSelection();
+    if (info && withinSelection(info, event.clientX, event.clientY)) {
+      revealAction(info, event.clientX, event.clientY);
+    } else {
+      scheduleHide();
+    }
+  }, { passive:true });
+  document.addEventListener('pointerdown', event => {
+    if (!action.contains(event.target)) hideAction();
   });
-  document.addEventListener('scroll', () => {
-    if (!window.getSelection()?.isCollapsed) scheduleSelectionCheck();
-    else hideAction();
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' || event.key.startsWith('Arrow') || event.key === 'Shift') {
+      hideAction();
+    }
+  });
+  document.addEventListener('scroll', hideAction, { capture:true, passive:true });
+  // No hover on phones: the first long-press/drag only selects text. A later
+  // short tap inside an existing selection explicitly requests the action.
+  article?.addEventListener('touchstart', event => {
+    touchCandidate = null;
+    if (event.touches.length !== 1) return;
+    const point = event.touches[0];
+    const info = readSelection();
+    if (info && withinSelection(info, point.clientX, point.clientY)) {
+      touchCandidate = { x: point.clientX, y: point.clientY, info };
+    }
+  }, { passive:true });
+  article?.addEventListener('touchmove', () => {
+    touchCandidate = null;
+  }, { passive:true });
+  article?.addEventListener('touchend', event => {
+    const candidate = touchCandidate;
+    touchCandidate = null;
+    const point = event.changedTouches[0];
+    if (!candidate || !point ||
+        Math.hypot(point.clientX - candidate.x, point.clientY - candidate.y) > 12) return;
+    // Let the browser finish its native selection interaction before showing
+    // the action. The captured quote remains available even if a tap collapses it.
+    setTimeout(() => revealAction(candidate.info, candidate.x, candidate.y), 50);
   }, { passive:true });
   action.addEventListener('pointerdown', event => event.preventDefault());
+  action.addEventListener('pointerenter', cancelHide);
   action.addEventListener('click', () => openForm({ ...current }));
   form.addEventListener('submit', async event => {
     event.preventDefault();
