@@ -89,6 +89,22 @@ try {
           if(!await page.locator('.guide-about-support').getByText('地方創生青年培力工作站').count())
             failures.push('About guide missing funding acknowledgment');
         }
+        if(route==='/entries/labor-health-insurance/' && [390,1440].includes(width)){
+          const cta=page.locator('.insurance-article .insurance-calculator-cta');
+          if(await cta.count()!==1) failures.push('Labor-health entry must contain exactly one prominent calculator shortcut');
+          else {
+            const href=await cta.getAttribute('href');
+            if(!href?.endsWith('/tools/insurance-2026/'))
+              failures.push('Labor-health calculator shortcut points to wrong page: '+href);
+            const intro=page.locator('.article.guide-article > h2').first();
+            const order=await cta.evaluate((node)=>{
+              const heading=node.closest('.article.guide-article')?.querySelector(':scope > h2');
+              return heading ? Boolean(node.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING) : false;
+            });
+            if(!order) failures.push('Calculator shortcut should appear before the first chapter');
+            if(!await cta.isVisible()) failures.push('Calculator shortcut is not visible at '+width+'px');
+          }
+        }
         if(route==='/tools/insurance-2026/' && [390,1440].includes(width)) {
           const rangeCell=page.locator('.wage-combined-table tbody tr:first-child td:nth-child(2)');
           const note=rangeCell.locator('.wage-range-first-note');

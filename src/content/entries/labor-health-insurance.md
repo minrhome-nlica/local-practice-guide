@@ -26,7 +26,12 @@ tags:
 
 相較於[〈二代健保補充保費〉](/local-practice-guide/entries/supplemental-premium/)所談的特定所得與薪資差額，這篇先從每個月會遇到的**一般保險費**談起。究竟什麼叫做員工負擔、雇主負擔？薪資 34,000 元，為什麼不一定能實領 34,000 元？我們直接對照級距表來看。
 
-**快速試算：**已新增[〈2026 勞健保級距表與薪資試算〉](/local-practice-guide/tools/insurance-2026/)。輸入月薪即可查看員工自付、雇主負擔與勞退提繳，下方另提供勞保、健保、勞退級距完整對照。
+<a class="insurance-calculator-cta" href="/local-practice-guide/tools/insurance-2026/" aria-label="開啟 2026 勞健保級距表與薪資試算">
+  <span class="insurance-calculator-cta-kicker">實用工具・2026 年</span>
+  <strong>輸入月薪，直接試算勞健保與勞退</strong>
+  <span class="insurance-calculator-cta-description">快速查看員工每月自付、雇主額外負擔及勞退提繳金額，也能查詢完整的勞健保級距對照表。</span>
+  <span class="insurance-calculator-cta-action">前往勞健保計算機 ↗</span>
+</a>
 
 ## 一、2026 年勞健保級距表，應該怎麼看？
 

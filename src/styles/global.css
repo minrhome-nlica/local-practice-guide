@@ -3758,3 +3758,38 @@ main table :is(th, td) p {
 @media(max-width:360px){
   .guide-about-community-card nav a{min-width:calc(50% - 8px);flex:1}
 }
+
+
+/* Knowledge entry: one prominent insurance calculator shortcut directly
+   after the introduction, before the grade-table explanations. */
+.insurance-article .insurance-calculator-cta{
+  display:grid;gap:7px;min-width:0;max-width:100%;
+  margin:24px 0 30px;padding:21px 24px;
+  border:1px solid #cadfce;border-radius:12px;
+  background:#f2f7f0;color:#304e3b;text-decoration:none;
+  box-shadow:0 5px 18px #253c2a0b;
+  transition:background .15s ease,border-color .15s ease,box-shadow .15s ease;
+}
+.insurance-article .insurance-calculator-cta:hover{
+  background:#eaf3e9;border-color:#9ebda5;box-shadow:0 7px 22px #253c2a16;
+}
+.insurance-article .insurance-calculator-cta:focus-visible{
+  outline:3px solid #699875;outline-offset:3px;
+}
+.insurance-article .insurance-calculator-cta-kicker{
+  color:#788e77;font-size:12px;font-weight:700;letter-spacing:.05em;
+}
+.insurance-article .insurance-calculator-cta>strong{
+  font-size:clamp(17px,2.2vw,21px);font-weight:800;color:#2d513a;line-height:1.5;
+  overflow-wrap:anywhere;
+}
+.insurance-article .insurance-calculator-cta-description{
+  color:#526b57;font-size:14px;line-height:1.85;overflow-wrap:anywhere;
+}
+.insurance-article .insurance-calculator-cta-action{
+  margin-top:7px;color:#2d6244;font-size:14px;font-weight:800;line-height:1.7;
+}
+@media(max-width:650px){
+  .insurance-article .insurance-calculator-cta{margin:20px 0 27px;padding:17px}
+  .insurance-article .insurance-calculator-cta-description{font-size:13px}
+}
