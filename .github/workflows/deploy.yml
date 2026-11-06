@@ -108,6 +108,8 @@ jobs:
           assert '搜尋補助、經費編列、核銷' in homepage
           print('Responsive hero and marker-only annotation guardrails validated.')
           PY
+      - name: Check knowledge article relationships and tool links
+        run: node scripts/check-entry-links.mjs
       - name: Check feedback scripts and D1 schema
         run: |
           node --check services/feedback-worker/src/index.js

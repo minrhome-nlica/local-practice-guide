@@ -30,6 +30,8 @@ jobs:
         run: |
           python3 -m pip install --disable-pip-version-check 'fonttools[woff]'
           python3 scripts/build_webfonts.py
+      - name: Validate knowledge links and calculators
+        run: node scripts/check-entry-links.mjs
       - name: Build public site
         env:
           GUIDE_CUSTOM_DOMAIN: 'true'
