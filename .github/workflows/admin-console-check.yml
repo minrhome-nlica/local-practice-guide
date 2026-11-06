@@ -25,7 +25,8 @@ jobs:
         run: |
           node --check services/admin-worker/src/index.js
           node --check services/admin-worker/src/ui.js
-          node --test services/admin-worker/tests/admin.test.mjs
+          node --check services/admin-worker/src/analytics.js
+          node --test services/admin-worker/tests/*.test.mjs
       - name: Validate additive D1 migration
         run: |
           python3 - <<'PY'
