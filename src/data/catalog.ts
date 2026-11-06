@@ -4,7 +4,7 @@ export const categories = [
   { slug: 'plans', number: '03', name: '計畫與資源', english: 'PROJECTS & RESOURCES', description: '尋找補助與標案、計畫撰寫、執行及成果報告。' },
   { slug: 'finance', number: '04', name: '經費與財務', english: 'FINANCE & ACCOUNTING', description: '經費編列、自籌款、核銷及各種會計憑證。' },
   { slug: 'people', number: '05', name: '人事與法律', english: 'PEOPLE & LEGAL', description: '聘僱、勞健保、補充保費與法律實務。' },
-  { slug: 'tools', number: '06', name: '工作工具與技能', english: 'TOOLS & SKILLS', description: '計算機、可下載的實務文件、表格與工作範本，協助處理日常工作。' }
+  { slug: 'tools', number: '06', name: '工作工具與技能', english: 'TOOLS & SKILLS', description: '計算機、行政技能小考試、可下載的實務文件與工作範本，協助處理日常工作。' }
 ];
 export const categoryName = (slug: string) =>
   categories.find((item) => item.slug === slug)?.name ?? '未分類';
