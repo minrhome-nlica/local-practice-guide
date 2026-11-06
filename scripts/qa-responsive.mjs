@@ -30,6 +30,33 @@ try {
           failures.push(width+'px '+route+': HTTP '+response?.status());
           continue;
         }
+        if([390,1440].includes(width) && route==='/about/') {
+          const photo=page.locator('.guide-about-photo img');
+          if(await photo.count()!==1) failures.push('About-page team photo is missing');
+          else {
+            await photo.scrollIntoViewIfNeeded();
+            await photo.evaluate(img=>new Promise(resolve=>{
+              if(img.complete) resolve();
+              else {img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});}
+            }));
+            const imageInfo=await photo.evaluate(img=>({
+              src:img.currentSrc,naturalWidth:img.naturalWidth,naturalHeight:img.naturalHeight,
+              displayedWidth:img.getBoundingClientRect().width,
+              displayedHeight:img.getBoundingClientRect().height
+            }));
+            if(imageInfo.naturalWidth<900 || imageInfo.naturalHeight<500)
+              failures.push('About team photo failed to load at '+width+'px');
+            if(imageInfo.displayedWidth>width+3)
+              failures.push('About team photo stretches beyond '+width+'px');
+          }
+          const caption=await page.locator('.guide-about-photo figcaption').innerText();
+          if(caption!=='社團法人花蓮縣牛犁社區交流協會2026')
+            failures.push('Team photo caption changed');
+        }
+        if(route==='/' && [390,1440].includes(width)){
+          if(await page.getByText('地方實踐指南・V1.1',{exact:true}).count()!==1)
+            failures.push('Footer V1.1 version label missing at '+width+'px');
+        }
         if(width===390 && route==='/about/') {
           const heads=await page.locator('.guide-about-article h2').allTextContents();
           if(heads.join('|')!=='這個網站誕生的原因|這是一份仍在編輯中的指南|關於我們')
@@ -187,7 +214,7 @@ try {
             });
           }
         }
-        const shots={'/':'home','/entries/why-establish-legal-person/':'entry',
+        const shots={'/':'home','/about/':'about','/entries/why-establish-legal-person/':'entry',
           '/feedback/':'feedback','/tools/nhi-calculator/':'calculator'};
         if(shots[route]&&[390,768,1440].includes(width)) {
           await page.screenshot({path:'qa-screenshots/'+shots[route]+'-'+width+'.png',

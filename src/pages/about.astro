@@ -25,10 +25,19 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
         </section>
         <section aria-labelledby="guide-about-editing">
           <h2 id="guide-about-editing">這是一份仍在編輯中的指南</h2>
-          <p>本站測試版以社團法人花蓮縣牛犁社區交流協會的內部訓練教材，以及過往地方實踐經驗為基礎，將內容拆分為詞條、問題入口與學習路徑。各篇文章會逐步補充法規來源、修訂日期及可下載的實務文件。</p>
+          <p>本指南 V1.1 以社團法人花蓮縣牛犁社區交流協會的內部訓練教材，以及過往地方實踐經驗為基礎，將內容拆分為詞條、問題入口與學習路徑。各篇文章會逐步補充法規來源、修訂日期及可下載的實務文件。</p>
         </section>
         <section aria-labelledby="guide-about-us">
           <h2 id="guide-about-us">關於我們</h2>
+          <figure class="guide-about-photo">
+            <picture>
+              <source type="image/avif" srcset={root + '/images/about/nlica-team-2026.avif'} />
+              <img src={root + '/images/about/nlica-team-2026.webp'}
+                alt="牛犁協會的工作夥伴與孩子們在彩繪牆前合影"
+                width="1200" height="674" loading="lazy" decoding="async" />
+            </picture>
+            <figcaption>社團法人花蓮縣牛犁社區交流協會2026</figcaption>
+          </figure>
           <p>本網站由社團法人花蓮縣牛犁社區交流協會製作與編輯，相關內容與知識是我們過去地方實踐經驗的整理與總結。</p>
           <p>這個網站能夠誕生，需要感謝兩個部會與兩項計畫的支持：</p>
           <div class="guide-about-support">

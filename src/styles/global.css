@@ -3693,3 +3693,21 @@ main table :is(th, td) p {
 .guide-related-tools-list strong{display:block;color:#2f543c;line-height:1.65}
 .guide-related-tools-list span{display:block;font-size:13px;color:#637866;line-height:1.8;margin:5px 0}
 .guide-related-tools-list small{color:#3b7153;font-weight:700;font-size:12px}
+
+
+/* About-guide documentary photo: show the whole group on every screen. */
+.guide-about-photo{margin:13px 0 29px;width:100%;max-width:100%;min-width:0}
+.guide-about-photo picture{display:block;width:100%}
+.guide-about-photo img{
+  display:block;width:100%;max-width:100%;height:auto;aspect-ratio:1200/674;
+  object-fit:contain;border-radius:10px;background:#f5f6f3;
+}
+.guide-about-photo figcaption{
+  font-size:13px;line-height:1.75;color:#6a806e;
+  text-align:center;margin:11px 0 0;
+}
+@media(max-width:650px){
+  .guide-about-photo{margin:12px 0 23px}
+  .guide-about-photo img{border-radius:7px}
+  .guide-about-photo figcaption{font-size:12px;padding-inline:6px}
+}
