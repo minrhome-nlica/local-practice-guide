@@ -30,6 +30,20 @@ try {
           failures.push(width+'px '+route+': HTTP '+response?.status());
           continue;
         }
+        if(route==='/' && width===390) {
+          const support = page.locator('.desktop-nav .nav-support');
+          if((await support.getAttribute('href'))!=='https://mountcounty.com/shop/')
+            failures.push('Support shop link missing from header');
+          const bubble = page.locator('.guide-question-card-bubble').first();
+          if(await bubble.count()){
+            const bg=await bubble.evaluate(node=>getComputedStyle(node).backgroundColor);
+            if(bg!=='rgba(0, 0, 0, 0)')failures.push('Question card still has bubble background '+bg);
+          }
+        }
+        if(route==='/knowledge/tools/' && width===390) {
+          if(await page.locator('a[href$="/tools/nhi-calculator/"]').count()===0)
+            failures.push('Calculator missing from knowledge tools');
+        }
         const data = await page.evaluate(() => {
           const viewport=window.innerWidth;
           const docWidth=document.documentElement.scrollWidth,bodyWidth=document.body.scrollWidth;

@@ -7,8 +7,8 @@ const nav = [
   { label: '依問題找答案', url: root + '/questions/' },
   { label: '學習路徑', url: root + '/learn/' },
   { label: '知識百科', url: root + '/knowledge/' },
-  { label: '實用工具', url: root + '/tools/' },
   { label: '文件與範本', url: root + '/downloads/' },
+  { label: '支持我們', url: 'https://mountcounty.com/shop/', external: true },
   ...(feedbackReady ? [{ label: '讀者留言', url: root + '/feedback/' }] : [])
 ];
 ---
@@ -32,10 +32,10 @@ const nav = [
           <span><strong>地方實踐指南</strong><small>LOCAL PRACTICE GUIDE</small></span>
         </a>
         <nav class="desktop-nav" aria-label="主要導覽">
-          {nav.map((item) => <a href={item.url}>{item.label}</a>)}
+          {nav.map((item) => <a href={item.url} class={item.external ? 'nav-support' : undefined} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>{item.label}</a>)}
         </nav>
         <a class="header-search" href={root + '/search/'} aria-label="搜尋指南"><span aria-hidden="true">⌕</span> 搜尋</a>
-        <details class="mobile-nav"><summary aria-label="開啟選單">☰</summary><div class="mobile-panel">{nav.map((item) => <a href={item.url}>{item.label}</a>)}<a href={root + '/search/'}>搜尋</a></div></details>
+        <details class="mobile-nav"><summary aria-label="開啟選單">☰</summary><div class="mobile-panel">{nav.map((item) => <a href={item.url} class={item.external ? 'nav-support' : undefined} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>{item.label}</a>)}<a href={root + '/search/'}>搜尋</a></div></details>
       </div>
     </header>
     <main><slot /></main>
@@ -50,6 +50,7 @@ const nav = [
           <a href={root + '/about/'}>關於這份指南 ↗</a>
           <a href={root + '/knowledge/'}>探索知識百科 ↗</a>
           <a href={root + '/downloads/'}>下載實務範本 ↗</a>
+          <a href="https://mountcounty.com/shop/" target="_blank" rel="noopener noreferrer">支持我們 ↗</a>
         </div>
       </div>
       <div class="wrap footer-bottom">

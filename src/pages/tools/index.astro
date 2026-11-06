@@ -1,17 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
-const tools = [
-  { number:'01', title:'二代健保補充保費計算機', desc:'依付款方、收款者、費用性質與健保身分，試算個人代扣與投保單位負擔。', slug:'nhi-calculator', label:'2026年適用' }
-];
+const destination = root + '/knowledge/tools/';
 ---
-<BaseLayout title="實用工具">
-  <section class="page-hero"><div class="wrap"><div class="breadcrumbs"><a href={root+'/'}>首頁</a> / 實用工具</div><span class="eyebrow">PRACTICAL TOOLS</span><h1 class="page-title">實用工具</h1><p>從實際付款與工作情境出發，把複雜規定整理成可以直接使用的計算工具。</p></div></section>
-  <section class="section-spacer"><div class="wrap"><div class="entry-list">
-    {tools.map(item => <a class="entry-card" href={root + '/tools/' + item.slug + '/'}>
-      <span class="eyebrow">TOOL / {item.number} ・ {item.label}</span>
-      <h3>{item.title}</h3><p>{item.desc}</p>
-      <span class="text-link">開始使用 ↗</span>
-    </a>)}
-  </div><aside class="notice" style="margin-top:25px">工具協助確認可能適用的規定與算式，不取代國稅局對所得類別或健保署對免扣資格的認定。</aside></div></section>
+<BaseLayout title="工作工具與技能" noindex={true}>
+  <section class="section-spacer"><div class="wrap">
+    <h1 class="page-title">工作工具與技能</h1>
+    <p>原「實用工具」列表已整合至「工作工具與技能」。</p>
+    <p><a class="text-link" href={destination}>前往工作工具與技能 ↗</a></p>
+  </div></section>
+  <script is:inline define:vars={{ destination }}>window.location.replace(destination);</script>
 </BaseLayout>

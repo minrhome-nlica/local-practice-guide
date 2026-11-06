@@ -3404,14 +3404,10 @@ main table :is(th, td) p {
 .guide-question-card-dots{display:flex;align-items:center;gap:4px;margin-left:auto;opacity:.72}
 .guide-question-card-dots i{width:4px;height:4px;background:#bccab9;border-radius:50%;display:block}
 .guide-question-card-bubble{
-  position:relative;background:#f2f6ef;border:1px solid #e3ebdf;
-  border-radius:12px 12px 12px 4px;padding:10px 13px 11px;min-height:57px
+  position:static;background:transparent;border:0;border-radius:0;
+  padding:5px 0 2px;min-height:0
 }
-.guide-question-card-bubble::after{
-  content:"";position:absolute;left:13px;bottom:-5px;width:8px;height:8px;
-  background:#f2f6ef;border-left:1px solid #e3ebdf;border-bottom:1px solid #e3ebdf;
-  transform:rotate(-45deg)
-}
+.guide-question-card-bubble::after{display:none;content:none}
 .action-card.guide-question-card .guide-question-card-bubble h3{
   margin:0;font-size:17px;line-height:1.5;letter-spacing:.005em;color:#263f33;
   overflow-wrap:anywhere
@@ -3653,3 +3649,9 @@ main table :is(th, td) p {
     overflow-wrap:anywhere;white-space:normal;line-height:inherit;
   }
 }
+
+/* Plain white FAQ cards and accessible support navigation. */
+.guide-question-card-dots{display:none}
+.guide-question-card-reply{margin-left:0}
+.guide-tool-entry .text-link{display:inline-block;margin-top:12px;color:#36634a;font-weight:700}
+.desktop-nav a.nav-support,.mobile-panel a.nav-support{color:#996747;font-weight:700}
