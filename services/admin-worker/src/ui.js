@@ -305,7 +305,15 @@ export const ADMIN_CLIENT = String.raw`
     summary.replaceChildren();chart.replaceChildren();pages.replaceChildren();
     status.textContent='正在讀取 Cloudflare Web Analytics…';
     const days=$('#analytics-period').value==='30'?30:7;
-    const data=await api('/api/analytics?days='+days);
+    let data;
+    try{
+      data=await api('/api/analytics?days='+days);
+    }catch(e){
+      status.textContent='目前無法讀取網站分析：'+(e.message||'請稍後再試');
+      chart.append(n('p','empty','目前無法載入瀏覽趨勢。'));
+      pages.append(n('p','empty','目前無法載入熱門頁面。'));
+      return;
+    }
     if(!data.configured){
       status.textContent=data.message||'尚未完成網站分析資料存取設定。';
       chart.append(n('p','empty','等管理員設定 Cloudflare 分析唯讀權杖後，這裡會自動顯示瀏覽趨勢。'));
@@ -317,7 +325,7 @@ export const ADMIN_CLIENT = String.raw`
       stat('頁面瀏覽量',fmt(data.pageviews),'Cloudflare Web Analytics'),
       stat('訪問次數',fmt(data.visits),'不等於不重複訪客'),
       stat('資料範圍',days+' 天','最近統計'),
-      stat('有瀏覽的頁面',fmt((data.top_pages||[]).length),'最多顯示前12名')
+      stat('熱門頁面榜單',fmt((data.top_pages||[]).length),'最多顯示12頁')
     );
     status.textContent='資料來源：'+(data.source||'Cloudflare Web Analytics')+' · 更新時間 '+time(data.updated_at);
     $('#analytics-note').textContent=data.note||'資料可能有延遲。';
