@@ -27,8 +27,25 @@ const selected = selectedIds.map(id => entries.find(e => e.id === id)).filter(Bo
   <section class="section">
     <div class="wrap">
       <div class="section-head"><div><span class="eyebrow">FIND YOUR WAY</span><h2 class="section-title">你現在遇到什麼問題？</h2></div><a class="text-link" href={root + '/questions/'}>看所有問題 ↗</a></div>
-      <div class="card-grid" id="home-questions">
-        {questions.map((q) => <a class="action-card" data-faq-card href={root + '/entries/' + q.id + '/'}><span class="action-no">常見問題</span><h3>{q.title}</h3><p>{q.description}</p><div class="card-bottom" aria-hidden="true">↗</div></a>)}
+      <div class="card-grid home-question-grid" id="home-questions">
+        {questions.map((q, index) => (
+          <a class="action-card guide-question-card" data-faq-card href={root + '/entries/' + q.id + '/'} hidden={index >= 6} aria-label={'閱讀解答：' + q.title}>
+            <div class="guide-question-card-top">
+              <span class="guide-question-card-mark" aria-hidden="true">?</span>
+              <span class="guide-question-card-kicker">讀者提問</span>
+              <span class="guide-question-card-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            </div>
+            <div class="guide-question-card-bubble"><h3>{q.title}</h3></div>
+            <div class="guide-question-card-reply">
+              <span class="guide-question-card-reply-label">導讀</span>
+              <p>{q.description}</p>
+            </div>
+            <div class="guide-question-card-footer">
+              <span>查看解答</span>
+              <span class="guide-question-card-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+        ))}
       </div>
       <div class="home-more-actions"><button class="home-more-button" id="home-questions-more" type="button" hidden>顯示更多問題 ＋</button></div>
     </div>

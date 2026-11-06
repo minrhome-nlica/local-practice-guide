@@ -26,6 +26,8 @@ jobs:
           python scripts/build_webfonts.py
       - name: Build and upload Astro site
         uses: withastro/action@v6
+        env:
+          GUIDE_CUSTOM_DOMAIN: ${{ vars.GUIDE_CUSTOM_DOMAIN }}
         with:
           node-version: 24
           package-manager: npm

@@ -3387,3 +3387,62 @@ main table :is(th, td) p {
   .home-more-button{width:min(100%,360px);padding:14px 18px}
   .home-recommended .muted{margin-bottom:21px}
 }
+
+/* Compact conversational FAQ cards — limited to the homepage question grid. */
+.home-question-grid{gap:13px}
+.action-card.guide-question-card{
+  position:relative;display:flex;flex-direction:column;min-width:0;min-height:186px;
+  padding:15px 17px 13px;border:1px solid #dce5d9;border-radius:15px;
+  background:#fff;box-shadow:0 3px 13px rgba(34,65,46,.035);
+  transition:border-color .18s,box-shadow .18s,transform .18s
+}
+.action-card.guide-question-card:hover{border-color:#9bb7a2;box-shadow:0 10px 24px rgba(39,70,51,.10);transform:translateY(-2px)}
+.action-card.guide-question-card:focus-visible{outline:3px solid #688d78;outline-offset:3px}
+.guide-question-card-top{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.guide-question-card-mark{display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:#e6eee3;color:#3f6850;font-size:14px;font-weight:700}
+.guide-question-card-kicker{font-size:11px;color:#9c775d;font-weight:700;letter-spacing:.10em}
+.guide-question-card-dots{display:flex;align-items:center;gap:4px;margin-left:auto;opacity:.72}
+.guide-question-card-dots i{width:4px;height:4px;background:#bccab9;border-radius:50%;display:block}
+.guide-question-card-bubble{
+  position:relative;background:#f2f6ef;border:1px solid #e3ebdf;
+  border-radius:12px 12px 12px 4px;padding:10px 13px 11px;min-height:57px
+}
+.guide-question-card-bubble::after{
+  content:"";position:absolute;left:13px;bottom:-5px;width:8px;height:8px;
+  background:#f2f6ef;border-left:1px solid #e3ebdf;border-bottom:1px solid #e3ebdf;
+  transform:rotate(-45deg)
+}
+.action-card.guide-question-card .guide-question-card-bubble h3{
+  margin:0;font-size:17px;line-height:1.5;letter-spacing:.005em;color:#263f33;
+  overflow-wrap:anywhere
+}
+.guide-question-card-reply{display:flex;align-items:flex-start;gap:8px;min-width:0;margin:11px 2px 0 7px}
+.guide-question-card-reply-label{
+  flex:none;border-radius:4px;background:#f4eee6;color:#98735d;
+  padding:2px 5px;font-size:10px;line-height:1.5;font-weight:700
+}
+.action-card.guide-question-card .guide-question-card-reply p{
+  margin:0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  color:#738377;font-size:12px;line-height:1.7
+}
+.guide-question-card-footer{
+  display:flex;justify-content:flex-end;align-items:center;gap:9px;
+  margin-top:auto;padding-top:10px;color:#3c6750;font-size:12px;font-weight:700
+}
+.guide-question-card-arrow{
+  display:grid;place-items:center;width:26px;height:26px;border-radius:50%;
+  border:1px solid #d4e4d4;background:#edf4ec;color:#315b44;
+  font-size:14px;transition:background .18s,transform .18s
+}
+.guide-question-card:hover .guide-question-card-arrow{background:#dcebdd;transform:translate(1px,-1px)}
+#home-questions + .home-more-actions{margin-top:23px}
+@media(max-width:700px){
+  .home-question-grid{gap:11px}
+  .action-card.guide-question-card{min-height:0;padding:14px 15px 12px}
+  .action-card.guide-question-card .guide-question-card-bubble h3{font-size:16px}
+  .guide-question-card-reply{margin-top:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  .action-card.guide-question-card,.guide-question-card-arrow{transition:none}
+  .action-card.guide-question-card:hover,.guide-question-card:hover .guide-question-card-arrow{transform:none}
+}
