@@ -13,6 +13,25 @@ const employeeLabor = (w) => Math.round(w * .115 * .2) + Math.round(w * .01 * .2
 const employerLabor = (w) => Math.round(w * .115 * .7) + Math.round(w * .01 * .7);
 const employeeHealth = (w) => Math.round(w * .0517 * .3);
 const employerHealth = (w) => Math.round(w * .0517 * .6 * 1.56);
+const selectGrade = (income, levels) => levels.find(value => income <= value) ?? levels[levels.length - 1];
+const combinedGrades2026 = healthGrades2026.map((healthAmount, i) => {
+  const laborAmount = selectGrade(healthAmount, laborGrades2026);
+  const pensionAmount = selectGrade(healthAmount, pensionGrades2026);
+  const employeeLaborAmount = employeeLabor(laborAmount);
+  const employeeHealthAmount = employeeHealth(healthAmount);
+  const employerLaborAmount = employerLabor(laborAmount);
+  const employerHealthAmount = employerHealth(healthAmount);
+  const employerPensionAmount = Math.round(pensionAmount * .06);
+  return {
+    level:i + 1,
+    range:band(healthGrades2026,i),
+    laborAmount,healthAmount,pensionAmount,
+    employeeLaborAmount,employeeHealthAmount,
+    employeeTotal:employeeLaborAmount+employeeHealthAmount,
+    employerLaborAmount,employerHealthAmount,employerPensionAmount,
+    employerTotal:employerLaborAmount+employerHealthAmount+employerPensionAmount
+  };
+});
 ---
 <BaseLayout title="2026 勞健保級距表與薪資試算" description="輸入2026年月薪，查看員工與雇主的勞保、就業保險、健保、勞退與職災保險負擔，並查詢完整級距表。">
   <section class="page-hero wage-hero">
@@ -128,52 +147,63 @@ const employerHealth = (w) => Math.round(w * .0517 * .6 * 1.56);
 
       <section class="wage-tables-section" id="wage-tables" aria-labelledby="wage-tables-title">
         <div class="wage-section-head">
-          <span class="eyebrow">2026 OFFICIAL GRADES</span>
-          <h2 id="wage-tables-title">二、2026 年各項投保級距表</h2>
-          <p>不同制度有不同級距上限。表格在電腦使用傳統欄位，在手機改為分項卡片，不需要橫向拖動。</p>
+          <span class="eyebrow">2026 / LABOR · HEALTH · PENSION</span>
+          <h2 id="wage-tables-title">二、2026 年勞、健、退級距與費用總表</h2>
+          <p>依你查詢的月薪，一次對照<strong>雇主負擔</strong>與<strong>員工自付</strong>。全部 58 個健保級距列在同一張表中，無須分別展開勞保、健保與勞退表格。</p>
         </div>
-        <details class="wage-grade-details" open>
-          <summary>勞保與就保投保薪資（一般全時 11 級）</summary>
-          <div class="wage-table-scroll" role="region" aria-label="2026 勞保和就保級距">
-            <table><thead><tr><th>等級</th><th>月薪範圍（元）</th><th>投保薪資（元）</th><th>員工勞就保（元）</th><th>雇主勞就保（元）</th></tr></thead>
-              <tbody>{laborGrades2026.map((w,i)=><tr>
-                <th scope="row" data-label="等級">{i+1}</th>
-                <td data-label="月薪範圍">{i===laborGrades2026.length-1 ? '43,901 以上（最高級距）' : band(laborGrades2026,i)}</td>
-                <td data-label="投保薪資">{fmt(w)}</td>
-                <td data-label="員工勞就保">{fmt(employeeLabor(w))}</td>
-                <td data-label="雇主勞就保">{fmt(employerLabor(w))}</td>
-              </tr>)}</tbody>
-            </table>
-          </div>
-          <p class="wage-table-caption">以上合計包含普通事故 11.5% 與就業保險 1%，個別計算後四捨五入；僅有勞保或僅有就保者，應分開計算。勞保最高級距為 45,800 元。</p>
-        </details>
-        <details class="wage-grade-details">
-          <summary>全民健保投保金額（完整 58 級）</summary>
-          <div class="wage-table-scroll" role="region" aria-label="2026 健保投保金額級距">
-            <table><thead><tr><th>等級</th><th>實際月薪範圍（元）</th><th>投保金額（元）</th><th>員工本人（元）</th><th>雇主（元）</th></tr></thead>
-              <tbody>{healthGrades2026.map((w,i)=><tr>
-                <th scope="row" data-label="等級">{i+1}</th><td data-label="月薪範圍">{band(healthGrades2026,i)}</td>
-                <td data-label="投保金額">{fmt(w)}</td>
-                <td data-label="員工本人">{fmt(employeeHealth(w))}</td>
-                <td data-label="雇主">{fmt(employerHealth(w))}</td>
-              </tr>)}</tbody>
-            </table>
-          </div>
-          <p class="wage-table-caption">表中員工負擔只計本人，不含眷屬；雇主負擔採一般企業 60% ×（1＋平均眷口數 0.56）。健保最高投保金額 313,000 元。</p>
-        </details>
-        <details class="wage-grade-details">
-          <summary>勞退新制月提繳工資（一般全時常用 38 級）</summary>
-          <div class="wage-table-scroll" role="region" aria-label="2026 勞工退休金月提繳工資">
-            <table><thead><tr><th>等級</th><th>月薪範圍（元）</th><th>月提繳工資（元）</th><th>雇主提繳 6%（元）</th></tr></thead>
-              <tbody>{pensionGrades2026.map((w,i)=><tr>
-                <th scope="row" data-label="等級">{i+1}</th>
-                <td data-label="月薪範圍">{band(pensionGrades2026,i)}</td>
-                <td data-label="月提繳工資">{fmt(w)}</td><td data-label="雇主提繳 6%">{fmt(Math.round(w*.06))}</td>
-              </tr>)}</tbody>
-            </table>
-          </div>
-          <p class="wage-table-caption">此表整理一般全時工作者使用的 29,500 元以上級距。部分工時與低月薪特殊級距不包含在此表，仍應按勞保局完整公告辦理。月提繳工資上限 150,000 元。</p>
-        </details>
+        <div class="wage-combined-legend">
+          <span><i class="wage-swatch wage-swatch-employer" aria-hidden="true"></i> 雇主負擔</span>
+          <span><i class="wage-swatch wage-swatch-employee" aria-hidden="true"></i> 員工自付</span>
+          <span><i class="wage-swatch wage-swatch-current" aria-hidden="true"></i> 目前輸入月薪所屬級距</span>
+        </div>
+        <p class="wage-combined-small">金額單位：新臺幣元／月。以一般全時受僱者、勞保＋就保、健保僅計員工本人、雇主勞退 6% 計算；<strong>雇主合計不含依行業費率計收的職災保險</strong>。</p>
+        <div class="wage-combined-scroll" role="region" aria-label="2026 勞保、健保與勞退整合級距及員工雇主負擔表" tabindex="0">
+          <table class="wage-combined-table">
+            <caption>2026 年（民國 115 年）勞、健、退級距與雇主、員工負擔整合表（完整 58 個健保級距）</caption>
+            <thead>
+              <tr class="wage-combined-groups">
+                <th scope="col" rowspan="2">健保<br/>級數</th>
+                <th scope="col" rowspan="2">實際月薪範圍</th>
+                <th scope="col" colspan="3">各制度投保／提繳金額</th>
+                <th scope="colgroup" colspan="4" class="wage-group-employer">雇主負擔</th>
+                <th scope="colgroup" colspan="3" class="wage-group-employee">員工自付</th>
+              </tr>
+              <tr class="wage-combined-subheads">
+                <th scope="col">勞、就保</th>
+                <th scope="col">健保</th>
+                <th scope="col">勞退</th>
+                <th scope="col" class="wage-group-employer">勞、就保</th>
+                <th scope="col" class="wage-group-employer">健保</th>
+                <th scope="col" class="wage-group-employer">勞退 6%</th>
+                <th scope="col" class="wage-group-employer wage-group-total">雇主合計</th>
+                <th scope="col" class="wage-group-employee">勞、就保</th>
+                <th scope="col" class="wage-group-employee">健保</th>
+                <th scope="col" class="wage-group-employee wage-group-total">員工合計</th>
+              </tr>
+            </thead>
+            <tbody>
+              {combinedGrades2026.map(row => <tr data-insurance-grade={row.healthAmount} class={row.healthAmount===34800?'wage-example-row':undefined}>
+                <th scope="row" data-label="健保級數">{row.level}</th>
+                <td data-label="實際月薪範圍">{row.range}</td>
+                <td data-label="勞、就保投保金額">{fmt(row.laborAmount)}</td>
+                <td data-label="健保投保金額">{fmt(row.healthAmount)}</td>
+                <td data-label="勞退提繳金額">{fmt(row.pensionAmount)}</td>
+                <td data-label="雇主／勞、就保" class="wage-employer-cell">{fmt(row.employerLaborAmount)}</td>
+                <td data-label="雇主／健保" class="wage-employer-cell">{fmt(row.employerHealthAmount)}</td>
+                <td data-label="雇主／勞退 6%" class="wage-employer-cell">{fmt(row.employerPensionAmount)}</td>
+                <td data-label="雇主／合計（不含職災）" class="wage-employer-cell wage-total-cell">{fmt(row.employerTotal)}</td>
+                <td data-label="員工／勞、就保" class="wage-employee-cell">{fmt(row.employeeLaborAmount)}</td>
+                <td data-label="員工／健保（本人）" class="wage-employee-cell">{fmt(row.employeeHealthAmount)}</td>
+                <td data-label="員工／合計" class="wage-employee-cell wage-total-cell">{fmt(row.employeeTotal)}</td>
+              </tr>)}
+            </tbody>
+          </table>
+        </div>
+        <div class="wage-table-notes">
+          <p><strong>級距不是三種制度共用。</strong>勞保、就保投保薪資最高為 45,800 元；勞退月提繳工資最高為 150,000 元；健保投保金額最高為 313,000 元。因此月薪超過其中一種上限時，其他項目的保費仍可能增加。</p>
+          <p><strong>讀表方式：</strong>找到月薪所屬的「實際月薪範圍」，同一列向右就能看到雇主與員工的各項負擔。「雇主合計」尚未包含職災保險；如有健保眷屬、勞退自提或特殊投保身分，請以上方試算選項或官方資料另外計算。</p>
+          <p><strong>適用範圍：</strong>本表從 29,500 元一般全時月薪起算，不含部分工時、特殊低薪級距及非整月投保案例；這些情形請依官方分級表計算。</p>
+        </div>
       </section>
 
       <section class="wage-future-section" aria-labelledby="wage-future-title">

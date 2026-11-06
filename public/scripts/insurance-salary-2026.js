@@ -49,6 +49,10 @@
       if(accidentCustom.value && Number.isFinite(n) && n>=.12 && n<=.96) rate=n;
     }else if(accidentChoice.value) rate=Number(accidentChoice.value);
     const occ=(rate===null)?null:round(accidentGrade*rate/100);
+    // The single comparison table marks the salary's matching insurance grade.
+    pane.ownerDocument.querySelectorAll('.wage-combined-table tbody tr[data-insurance-grade]').forEach(row => {
+      row.classList.toggle('wage-current-row',Number(row.dataset.insuranceGrade) === healthGrade);
+    });
     set('labor-grade',laborGrade);
     set('health-grade',healthGrade);
     set('pension-grade',pensionGrade);

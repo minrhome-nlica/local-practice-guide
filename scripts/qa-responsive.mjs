@@ -38,6 +38,21 @@ try {
             failures.push('About guide missing funding acknowledgment');
         }
         if(width===390 && route==='/tools/insurance-2026/') {
+          const fullTable = page.locator('.wage-combined-table');
+          const rows = fullTable.locator('tbody tr');
+          if((await fullTable.count())!==1 || (await rows.count())!==58)
+            failures.push('Insurance levels must appear in ONE table containing all 58 grades');
+          if(await page.locator('.wage-grade-details').count())
+            failures.push('Split/collapsible insurance grade tables still exist');
+          const salaryRow = page.locator('.wage-combined-table tr[data-insurance-grade="34800"]');
+          if(await salaryRow.count()) {
+            const totals = await salaryRow.locator('.wage-total-cell').allTextContents();
+            if(totals.join('|') !== '6,817|1,410')
+              failures.push('Unified insurance grade 34,800 totals mismatch: '+totals.join(' / '));
+          }
+          if(await page.locator('.wage-combined-table tr.wage-current-row').count()!==1)
+            failures.push('One current salary row should be highlighted');
+
           const displayed=await page.locator('#out-employee-total').innerText();
           const employer=await page.locator('#out-employer-total').innerText();
           if(displayed!=='1,410 元'||employer!=='6,817 元')
