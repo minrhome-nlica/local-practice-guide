@@ -30,3 +30,10 @@
 GitHub 官方：
 - https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
 - https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https
+
+
+## 啟用後的檢查與復原
+- 更新 Actions repository variable 不會單獨觸發部署，需在 GitHub Actions 執行一次手動 workflow dispatch，或提交 repository 內容後才會重新發布。
+- 在建置紀錄中搜尋 `Domain adapter:`：出現 `rewrote legacy links` 才表示 `GUIDE_CUSTOM_DOMAIN=true` 已傳入建置程序；若出現 `GitHub Pages project path (no changes)`，請檢查 Repository variables 的名稱與值。
+- 檢查 `https://guide.mountcounty.com/` 的首頁、文章、圖片、搜尋、下載及字型。HTTPS 憑證可能晚於 DNS 生效。
+- 如需回復先前路徑，可將變數改回 `false`，再重新執行部署；但網域設定本身仍應由網域管理者確認。
