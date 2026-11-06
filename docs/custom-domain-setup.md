@@ -37,3 +37,9 @@ GitHub 官方：
 - 在建置紀錄中搜尋 `Domain adapter:`：出現 `rewrote legacy links` 才表示 `GUIDE_CUSTOM_DOMAIN=true` 已傳入建置程序；若出現 `GitHub Pages project path (no changes)`，請檢查 Repository variables 的名稱與值。
 - 檢查 `https://guide.mountcounty.com/` 的首頁、文章、圖片、搜尋、下載及字型。HTTPS 憑證可能晚於 DNS 生效。
 - 如需回復先前路徑，可將變數改回 `false`，再重新執行部署；但網域設定本身仍應由網域管理者確認。
+
+## 留言服務上線驗證（2026-11-06）
+- GitHub Actions 網站發佈需讀取公開變數 `FEEDBACK_API_URL` 與 `TURNSTILE_SITE_KEY`。
+- 新增或修改 Actions Variables 本身不會觸發自動發佈；提交本文更新將啟動新的網站部署。
+- 需驗證 `PUBLIC_FEEDBACK_API_URL` 與 `PUBLIC_TURNSTILE_SITE_KEY` 在建置時為非空值，並確認文章反白留言表單、`/feedback/`、Worker `/api/comments` 及實際提交／審核流程。
+- Secret key 不得提交到 GitHub。
