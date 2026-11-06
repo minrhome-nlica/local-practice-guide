@@ -17,6 +17,18 @@
   const logoutButton = document.getElementById('staff-logout');
   const tabs = [...page.querySelectorAll('[data-status]')];
   const pendingCounter = document.getElementById('staff-pending-count');
+  const ratingPanel = document.getElementById('staff-rating-insights');
+  const ratingList = document.getElementById('staff-rating-list');
+  const ratingOverview = document.getElementById('staff-rating-overview');
+  const ratingStatus = document.getElementById('staff-rating-status');
+  const ratingPeriod = document.getElementById('staff-rating-period');
+  const ratingRefresh = document.getElementById('staff-rating-refresh');
+  const ratingReasons = {
+    missing_answer:'沒有找到需要的答案', unclear:'部分內容看不懂',
+    needs_examples:'希望增加實際案例', possibly_outdated:'資訊可能有誤或過時',
+    layout_issue:'排版或操作有問題', other:'其他建議'
+  };
+
   function setPendingCount(rows) {
     if (!pendingCounter) return;
     const n = Array.isArray(rows) ? rows.length : 0;
@@ -71,6 +83,7 @@
     loginPanel.hidden = false;
     dashboard.hidden = true;
     list.replaceChildren();
+    if (ratingPanel) ratingPanel.hidden = true;
     msg(loginMessage, message);
     loginInput.focus();
   }
@@ -234,6 +247,71 @@
       setBusy(false);
     }
   }
+  // Private aggregate data, using the same in-memory authentication token as moderation.
+  async function loadRatings(candidate = token) {
+    if (!ratingPanel || !candidate) return;
+    ratingRefresh.disabled = true;
+    if (!ratingPanel.hidden) msg(ratingStatus, '正在讀取文章回饋……');
+    try {
+      const period = ratingPeriod.value === 'all' ? 'all' : '30';
+      const data = await apiCall('/api/admin/ratings?period=' + period, 'GET', undefined, candidate);
+      if (!Array.isArray(data.items)) throw new Error('文章統計資料格式不正確');
+      const items = data.items.filter(x => /^[a-z0-9][a-z0-9-]{1,90}$/.test(x.entry_id || ''));
+      const sum = key => items.reduce((n, x) => n + (Number(x[key]) || 0), 0);
+      ratingOverview.replaceChildren();
+      for (const [name, value] of [
+        ['回饋筆數',sum('total')],['有幫助',sum('helpful')],
+        ['還沒解決',sum('unresolved')],['有回饋的文章',items.length]
+      ]) {
+        const box = el('div','staff-rating-summary');
+        box.append(el('span','',name),el('strong','',Number(value).toLocaleString('zh-TW')));
+        ratingOverview.append(box);
+      }
+      ratingList.replaceChildren();
+      if (!items.length) ratingList.append(el('p','staff-empty','這個期間尚無文章回饋。'));
+      for (const item of items) {
+        const count = Math.max(0, Number(item.total) || 0);
+        const good = Math.max(0, Number(item.helpful) || 0);
+        const bad = Math.max(0, Number(item.unresolved) || 0);
+        const percent = count ? Math.round(100 * good / count) : 0;
+        const card = el('article','staff-rating-card');
+        const head = el('div','staff-rating-card-head');
+        const link = el('a','staff-rating-link',item.entry_title || item.entry_id);
+        link.href = root + '/entries/' + encodeURIComponent(item.entry_id) + '/';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        head.append(link,el('span','staff-rating-percent',percent+'% 有幫助'));
+        const stats = el('div','staff-rating-stats');
+        stats.append(el('span','','總回饋 '+count),el('span','','有幫助 '+good),el('span','','還沒解決 '+bad));
+        const track = el('div','staff-rating-bar');
+        const fill = el('div','staff-rating-bar-fill');
+        fill.style.width = Math.max(0,Math.min(100,percent))+'%';
+        track.append(fill);
+        card.append(head,stats,track);
+        const reasons = Object.entries(item.reasons || {}).filter(([k,v]) => ratingReasons[k] && Number(v)>0)
+          .sort((a,b)=>Number(b[1])-Number(a[1]));
+        if(reasons.length) {
+          const section = el('div','staff-rating-reasons');
+          section.append(el('strong','','還沒解決的原因'));
+          const chips = el('div','staff-rating-reason-chips');
+          reasons.forEach(([key,n]) => chips.append(el('span','',ratingReasons[key]+' '+Number(n))));
+          section.append(chips);
+          card.append(section);
+        }
+        if(count<10) card.append(el('p','staff-rating-caution','回饋少於 10 筆，比例僅供參考，不宜直接排名。'));
+        ratingList.append(card);
+      }
+      ratingPanel.hidden = false;
+      msg(ratingStatus,'已更新 '+items.length+' 篇文章的回饋統計。');
+    } catch(error) {
+      if(error.code === 'AUTH') return logout(error.message);
+      // Older Worker versions / missing migration should not show a broken panel.
+      if(!ratingPanel.hidden) msg(ratingStatus,'統計更新失敗：'+error.message,true);
+    } finally {
+      ratingRefresh.disabled = false;
+    }
+  }
+
   loginForm.addEventListener('submit', async event => {
     event.preventDefault();
     if (pending) return;
@@ -261,6 +339,7 @@
       if (result.items.length === 0) list.append(el('p','staff-empty','目前沒有待審核的留言。'));
       else result.items.forEach(item => list.append(render(item)));
       msg(statusText, '登入成功。本次載入 ' + result.items.length + ' 則待審核留言。');
+      void loadRatings(candidate);
     } catch (error) {
       token = null;
       msg(loginMessage, error.message, true);
@@ -272,6 +351,8 @@
     if (!pending && token && tab.dataset.status !== status) load(tab.dataset.status);
   }));
   refreshButton.addEventListener('click', () => { if (!pending && token) load(status); });
+  ratingRefresh?.addEventListener('click', () => { if(token) void loadRatings(); });
+  ratingPeriod?.addEventListener('change', () => { if(token) void loadRatings(); });
   logoutButton.addEventListener('click', () => logout('已登出。'));
   document.addEventListener('visibilitychange', () => {
     // Do not keep an admin token across a long idle session.
