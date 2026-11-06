@@ -43,9 +43,18 @@ try {
             return true;
           }).slice(0,12).map(node => node.tagName.toLowerCase()+'.'+
             String(node.className||'').replace(/\s+/g,'.').slice(0,75));
+          const innerScrollers=[...document.querySelectorAll('.article.guide-article *')]
+            .filter(node=>{
+              const style=getComputedStyle(node);
+              const box=node.getBoundingClientRect();
+              return /auto|scroll/.test(style.overflowX) &&
+                node.clientWidth>=90 && box.height>0 && node.scrollWidth>node.clientWidth+8;
+            }).map(node=>({tag:node.tagName.toLowerCase(),
+              className:String(node.className||'').replace(/\s+/g,'.').slice(0,90),
+              width:node.clientWidth,scrollWidth:node.scrollWidth})).slice(0,12);
           const form=document.querySelector('.hero .search-form'),art=document.querySelector('.hero .hero-art');
           const a=form?.getBoundingClientRect(),b=art?.getBoundingClientRect();
-          return {viewport,docWidth,bodyWidth,offenders,heroFormBottom:a?.bottom,heroArtTop:b?.top};
+          return {viewport,docWidth,bodyWidth,offenders,innerScrollers,heroFormBottom:a?.bottom,heroArtTop:b?.top};
         });
         records.push({route,width,...data});
         if(data.docWidth>data.viewport+3||data.bodyWidth>data.viewport+3) {
@@ -57,6 +66,10 @@ try {
         }
         if(data.offenders.length&&width<500) {
           warnings.push(width+'px '+route+': outside-box '+data.offenders.join(', '));
+        }
+        if(width<=430&&data.innerScrollers.length) {
+          warnings.push(width+'px '+route+': inner horizontal scrollers '+
+            data.innerScrollers.map(x=>x.tag+'.'+x.className+' ('+x.width+'/'+x.scrollWidth+')').join(', '));
         }
         const shots={'/':'home','/entries/why-establish-legal-person/':'entry',
           '/feedback/':'feedback','/tools/nhi-calculator/':'calculator'};
