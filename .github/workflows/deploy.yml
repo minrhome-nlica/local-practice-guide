@@ -129,6 +129,14 @@ jobs:
           assert '搜尋補助、經費編列、核銷' in homepage
           print('Responsive hero and marker-only annotation guardrails validated.')
           PY
+      - name: Verify article usefulness feedback, migration and privacy guardrails
+        env:
+          PUBLIC_FEEDBACK_API_URL: ${{ vars.FEEDBACK_API_URL }}
+        run: |
+          node --check public/scripts/article-rating.js
+          node --check public/scripts/feedback-admin.js
+          node --check services/feedback-worker/src/index.js
+          python3 scripts/check-article-ratings.py
       - name: Audit all generated pages, downloads and image assets
         run: python3 scripts/audit_published_site.py
       - name: Verify V1.1 search metadata, sitemap and robots policy
