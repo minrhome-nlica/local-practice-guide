@@ -356,7 +356,7 @@ export const ADMIN_CLIENT = String.raw`
       stat('資料範圍',days+' 天','最近統計'),
       stat('熱門頁面榜單',fmt((data.top_pages||[]).length),'最多顯示12頁')
     );
-    status.textContent='資料來源：'+(data.source||'Cloudflare Web Analytics')+' · 更新時間 '+time(data.updated_at);
+    status.textContent='資料來源：'+(data.source||'Cloudflare Web Analytics')+(data.matched_host?' · 網站：'+data.matched_host:'')+' · 更新時間 '+time(data.updated_at);
     $('#analytics-note').textContent=data.note||'資料可能有延遲。';
     const daily=(data.daily||[]).filter(x=>Number.isFinite(Number(x.pageviews)));
     if(!daily.length){
