@@ -44,7 +44,10 @@ function splitMarkdown(markdown){
   return {header,body,title:name.slice(0,140)};
 }
 function updateArticleDate(header){
-  const today=new Date().toISOString().slice(0,10);
+  const parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Taipei',
+    year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  const dateParts=Object.fromEntries(parts.map(p=>[p.type,p.value]));
+  const today=dateParts.year+'-'+dateParts.month+'-'+dateParts.day;
   const match=/(^|\n)(updated:\s*)(\d{4}-\d{2}-\d{2})(?=\r?\n|$)/;
   if(!match.test(header))throw Error('missing_updated_date');
   return header.replace(match,(_whole,prefix,key)=>prefix+key+today);
