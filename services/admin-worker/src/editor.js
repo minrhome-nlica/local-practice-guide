@@ -227,11 +227,14 @@ function insertArticleSeo(source,slug,title,description){
     source.includes("  '"+slug+"': {")){
     throw Error('SEO metadata source does not match expected structure.');
   }
-  const snippet="\n  '"+slug+"': {\n"+
+  // Insert only once at the object tail. Existing final entry ends with "}", not ",".
+  const before=source.slice(0,at);
+  if(!/\n  \}$/.test(before))throw Error('SEO end of list missing.');
+  const snippet=",\n  '"+slug+"': {\n"+
     '    title: '+JSON.stringify(title)+',\n'+
     '    description: '+JSON.stringify(description)+'\n'+
-    '  },';
-  return source.slice(0,at)+snippet+source.slice(at);
+    '  }';
+  return before+snippet+source.slice(at);
 }
 async function checkNewSlug(env,fetcher,slug){
   // Fail closed. 404 means the path is free; 403 / 5xx / network does not.
