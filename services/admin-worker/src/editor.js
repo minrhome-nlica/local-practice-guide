@@ -263,12 +263,29 @@ export async function editorRoute(env,user,request,url,fetcher=fetch){
     }
     const stamp=now(),next=Number(row.revision)+1;
     const done=await env.DB.prepare(
-      "UPDATE article_drafts SET status='submitted',submitted_at=?,updated_at=?,revision=? "+
+      "UPDATE article_drafts SET status='submitted',review_note='',reviewer_email=NULL,reviewed_at=NULL,submitted_at=?,updated_at=?,revision=? "+
       "WHERE id=? AND revision=? AND status IN ('draft','changes_requested')"
     ).bind(stamp,stamp,next,id,row.revision).run();
     if(!done.meta?.changes)return result(409,'草稿已更新，請重新載入。','stale_revision');
     await record(env,user,'draft_submitted',id,row.slug);
     return success({revision:next,status:'submitted'});
+  }
+
+  if(action==='cancel'){
+    if(!['draft','changes_requested','submitted'].includes(row.status)){
+      return result(409,'只有尚未建立 GitHub PR 的草稿可以取消。','invalid_status');
+    }
+    if(row.author_email!==user.email&&user.role!=='owner'){
+      return result(403,'不能取消他人的草稿。','forbidden');
+    }
+    const stamp=now(),next=Number(row.revision)+1;
+    const done=await env.DB.prepare(
+      "UPDATE article_drafts SET status='cancelled',updated_at=?,revision=? "+
+      "WHERE id=? AND revision=? AND status IN ('draft','changes_requested','submitted')"
+    ).bind(stamp,next,id,row.revision).run();
+    if(!done.meta?.changes)return result(409,'草稿已由其他人更新，請重新載入。','stale_revision');
+    await record(env,user,'draft_cancelled',id,row.slug);
+    return success({status:'cancelled',revision:next});
   }
 
   if(action==='request-changes'){
