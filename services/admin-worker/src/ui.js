@@ -24,7 +24,8 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <button type="button" class="nav-item current" data-tab="overview">總覽儀表板</button>
         <button type="button" class="nav-item" data-tab="comments" data-role="owner moderator">讀者留言管理</button>
         <button type="button" class="nav-item" data-tab="ratings">文章回饋分析</button>
-        <button type="button" class="nav-item" data-tab="articles" data-role="owner editor">文章目錄與編修</button>
+        <button type="button" class="nav-item" data-tab="articles" data-role="owner editor">文章目錄</button>
+        <button type="button" class="nav-item" data-tab="editorial" data-role="owner editor">文章草稿與審核</button>
         <button type="button" class="nav-item" data-tab="analytics">網站分析 Web Analytics</button>
         <button type="button" class="nav-item" data-tab="updates">重要更新紀錄</button>
         <button type="button" class="nav-item" data-tab="team" data-role="owner">工作人員與權限</button>
@@ -59,8 +60,8 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         </div>
         <div class="card">
           <h3>編輯與發布原則</h3>
-          <p>這裡目前提供已存在於正式分支的文章清單，供工作人員查閱與定位檔案。<strong>內建草稿編輯、送審及管理員核准發布尚未啟用。</strong></p>
-          <p class="hint">文章裡標記的「編輯稿」是內容編輯註記，不等於尚未公開。請繼續依既有 GitHub／Pages CMS 工作流程處理，正式發布前由管理員確認。</p>
+          <p>從正式網站選取文章，查看來源與編修狀態。草稿功能啟用後可直接建立草稿、提交審核；最高管理員確認修改後，透過 GitHub PR 安全發布。</p>
+          <p class="hint">文章裡標記的「編輯稿」是內容編輯註記，不等於尚未公開。未審核草稿只會儲存在後台，不會直接改動公開網站。</p>
         </div>
         <div class="filters">
           <label>搜尋文章名稱<input id="article-search" type="search" maxlength="80" placeholder="輸入名稱或關鍵字"></label>
@@ -68,6 +69,84 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         </div>
         <p id="article-count" class="hint" role="status" aria-live="polite">正在準備文章目錄…</p>
         <div id="article-list" class="stack"></div>
+      </section>
+
+      <section class="panel" data-panel="editorial" hidden>
+        <div class="section-head">
+          <div><h2>文章草稿與審核</h2><p>編輯、送審、比對版本，經最高管理員核准及 GitHub 檢查後才發布。</p></div>
+          <button type="button" id="refresh-editorial">重新整理</button>
+        </div>
+        <p id="editorial-availability" class="notice" role="status" aria-live="polite">正在確認草稿功能…</p>
+        <div id="editorial-workspace" hidden>
+          <div class="card">
+            <h3>建立與管理草稿</h3>
+            <p class="hint">從「文章目錄」選擇一篇文章建立草稿。同一篇文章一次只開放一份進行中的草稿，避免同事相互覆蓋。</p>
+            <button type="button" id="editorial-go-articles">前往文章目錄</button>
+            <div id="editorial-draft-list" class="stack" aria-live="polite"></div>
+          </div>
+          <section id="editorial-detail" class="card" hidden aria-labelledby="editorial-detail-heading">
+            <div class="section-head">
+              <div>
+                <h3 id="editorial-detail-heading">編輯文章</h3>
+                <p id="editorial-detail-meta" class="hint"></p>
+              </div>
+              <button type="button" id="editorial-close">返回草稿列表</button>
+            </div>
+            <p id="editorial-action-status" class="hint" aria-live="polite"></p>
+            <div id="editorial-form" class="editorial-form" hidden>
+              <label>文章標題
+                <input id="editorial-title" type="text" maxlength="125" placeholder="文章標題" />
+              </label>
+              <label>文章摘要
+                <textarea id="editorial-summary" rows="3" maxlength="380" placeholder="以白話說明文章的內容"></textarea>
+              </label>
+              <label>Markdown 文章正文
+                <textarea id="editorial-body" rows="18" spellcheck="false" placeholder="請在這裡修改文章原文，保留原有 HTML、圖表及連結。"></textarea>
+              </label>
+              <p class="hint">目前保留 Markdown 與既有 HTML 原始碼編輯，避免轉換後破壞表格、連結或圖卡。文字預覽只用來檢查內容，不等於網站實際版型。</p>
+              <div class="editorial-seo-fields">
+                <label>Google 搜尋標題
+                  <input id="editorial-seo-title" type="text" maxlength="135" />
+                </label>
+                <label>Google 搜尋摘要
+                  <textarea id="editorial-seo-description" rows="3" maxlength="340"></textarea>
+                </label>
+              </div>
+              <div class="actions editorial-actions">
+                <button id="editorial-preview" type="button">文字預覽</button>
+                <button id="editorial-save" type="button" class="primary">儲存草稿</button>
+                <button id="editorial-submit" type="button">提交管理員審核</button>
+              </div>
+            </div>
+            <div id="editorial-preview-output" class="editorial-preview" hidden></div>
+            <div id="editorial-compare" hidden>
+              <h3>修改前後比較</h3>
+              <p class="hint">完整原始碼並排顯示；若某段新增或移動，可能需要捲動比對。確定內容和 SEO 文字都正確後才進行審核或發布。</p>
+              <div class="editorial-compare-grid">
+                <div><strong>正式版（建立草稿時）</strong><pre id="editorial-original-text"></pre></div>
+                <div><strong>待發布版本</strong><pre id="editorial-edited-text"></pre></div>
+              </div>
+              <p id="editorial-seo-comparison" class="hint"></p>
+            </div>
+            <div id="editorial-review" class="editorial-review" hidden>
+              <label>管理員審核備註（退回修改必填）
+                <textarea id="editorial-review-note" rows="3" maxlength="1000" placeholder="請說明需要補充或修改的地方"></textarea>
+              </label>
+              <div class="actions">
+                <button id="editorial-request-changes" type="button">退回修改</button>
+                <button id="editorial-approve" type="button" class="primary">核准草稿</button>
+              </div>
+            </div>
+            <div id="editorial-release" class="editorial-release" hidden>
+              <p id="editorial-release-note" class="hint"></p>
+              <div class="actions">
+                <button id="editorial-prepare-pr" type="button">建立 GitHub 審查 PR</button>
+                <button id="editorial-merge-pr" type="button" class="primary">檢查並正式發布</button>
+              </div>
+            </div>
+            <div id="editorial-pr-info" hidden></div>
+          </section>
+        </div>
       </section>
 
       <section class="panel" data-panel="analytics" hidden>
@@ -151,6 +230,30 @@ button:not(.nav-item){border:1px solid #c3d2c5;border-radius:9px;min-height:40px
 .article-meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
 .article-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
 .article-links a{min-height:36px;display:inline-flex;align-items:center}
+.editorial-form{display:flex;flex-direction:column;gap:14px;min-width:0}
+.editorial-form label,.editorial-review label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:#365443}
+.editorial-form input,.editorial-form textarea,.editorial-review textarea{width:100%;min-width:0;max-width:100%;font-size:15px;background:#fff;border:1px solid #c6d4c9;border-radius:10px;padding:10px 12px;color:#26392f}
+#editorial-body{min-height:370px;font-family:ui-monospace,monospace;font-size:13px;line-height:1.65}
+.editorial-preview{margin-top:18px;padding:18px;border-radius:12px;background:#f5f7f3;border:1px solid #e0e8e1;overflow-wrap:anywhere}
+.editorial-preview h2{font-size:21px}.editorial-preview h3{font-size:17px}
+.editorial-preview p{white-space:pre-wrap}.editorial-preview .source-code{font:13px ui-monospace,monospace;white-space:pre-wrap}
+.editorial-compare-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;min-width:0}
+.editorial-compare-grid>div{min-width:0}
+.editorial-compare-grid pre{white-space:pre-wrap;word-break:break-word;overflow:auto;max-height:430px;padding:12px;border:1px solid #d7e0d4;border-radius:10px;background:#fafbf9;font:12px ui-monospace,monospace;line-height:1.65}
+.editorial-review,.editorial-release{border-top:1px solid #e1e8df;padding-top:18px;margin-top:18px}
+.editorial-actions,.editorial-review .actions,.editorial-release .actions{display:flex;flex-wrap:wrap;gap:9px}
+.editorial-entry-row{border-top:1px solid #e3eae2;padding:14px 0}
+.editorial-entry-row:first-child{border-top:0}
+.editorial-entry-row p{margin:4px 0}
+.editorial-seo-fields{border:1px solid #e4ece3;border-radius:12px;padding:15px;display:flex;flex-direction:column;gap:14px;background:#f9fbf8}
+#editorial-pr-info a{overflow-wrap:anywhere}
+@media(max-width:760px){
+  .editorial-compare-grid{grid-template-columns:1fr}
+  #editorial-body{min-height:330px}
+  .editorial-actions button,.editorial-review button,.editorial-release button{width:100%;min-height:44px}
+  .editorial-compare-grid pre{max-height:300px}
+  .editorial-form input,.editorial-form textarea,.editorial-review textarea{font-size:16px}
+}
 [hidden]{display:none!important}
 .mobile-bar{display:contents}.mobile-menu-toggle{display:none!important}
 .analytics-mobile-hint{display:none}
