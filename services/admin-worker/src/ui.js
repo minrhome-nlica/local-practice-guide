@@ -337,10 +337,13 @@ export const ADMIN_CLIENT = String.raw`
           const month=await api('/api/analytics?days=30');
           hints.append(n('p','hint',month.configured&&month.available?
             '自動檢查：最近 30 天有資料，7 天沒有記錄。請切換成「最近 30 天」查看。':
-            '自動檢查：最近 30 天也沒有可用的此站流量紀錄。請優先核對 Cloudflare Web Analytics 站點設定。'));
+            '自動檢查：最近 30 天也沒有可用的此站流量紀錄。'));
+          if(month.diagnostic)hints.append(n('p','hint',month.diagnostic));
         }catch{
           hints.append(n('p','hint','最近 30 天的延伸檢查暫時無法完成。'));
         }
+      }else if(data.diagnostic){
+        hints.append(n('p','hint',data.diagnostic));
       }
       chart.append(hints);
       pages.append(n('p','empty','尚無可用的熱門頁面數據；此處不會顯示虛構排名。'));
