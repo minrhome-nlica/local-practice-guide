@@ -95,6 +95,7 @@ export const ADMIN_HTML = String.raw`<!doctype html>
           <div class="actions editor-actions">
             <button id="editor-save" type="button" class="primary">儲存草稿</button>
             <button id="editor-submit" type="button">送出審核</button>
+            <button id="editor-cancel" type="button">取消此草稿</button>
             <button id="editor-return" type="button" hidden>退回修改</button>
             <button id="editor-approve" type="button" hidden>核准並建立 GitHub PR</button>
             <button id="editor-publish" type="button" hidden>檢查並正式發布</button>
@@ -656,6 +657,7 @@ export const ADMIN_CLIENT = String.raw`
     $('#editor-save').hidden=!editable;
     $('#editor-save').disabled=!state.editorConfig.drafts_ready;
     $('#editor-submit').hidden=!(ed.draftId&&editable);
+    $('#editor-cancel').hidden=!(ed.draftId&&['draft','changes_requested','submitted'].includes(ed.status)&&      (ed.author_email===state.user.email||state.user.role==='owner'));
     $('#editor-return').hidden=!(state.user.role==='owner'&&ed.status==='submitted');
     $('#editor-approve').hidden=!(state.user.role==='owner'&&ed.status==='submitted');
     $('#editor-approve').disabled=!state.editorConfig.github_ready;
@@ -744,7 +746,8 @@ export const ADMIN_CLIENT = String.raw`
     editorMessage(action==='submit'?'已送出審核。':
       action==='request-changes'?'已退回原作者修改。':
       action==='approve'?'已建立 GitHub PR，請檢查自動測試後再發布。':
-      action==='publish'?'已合併到 GitHub 正式分支，網站將依部署流程更新。':'操作完成。');
+      action==='publish'?'已合併到 GitHub 正式分支，網站將依部署流程更新。':
+      action==='cancel'?'已取消此草稿，可以從公開文章重新建立草稿。':'操作完成。');
   }
   function renderSimpleMarkdown(){
     if(!state.editor)return;
@@ -1011,6 +1014,9 @@ export const ADMIN_CLIENT = String.raw`
       $('#editor-save').addEventListener('click',()=>guarded(saveEditorDraft));
       $('#editor-submit').addEventListener('click',()=>guarded(()=>changeDraftStatus(
         'submit',{},'確定把草稿送交管理員審核？送出後暫時不能編輯。'
+      )));
+      $('#editor-cancel').addEventListener('click',()=>guarded(()=>changeDraftStatus(
+        'cancel',{},'確定取消這份草稿？原有公開文章不會改動；取消後可重新建立新草稿。'
       )));
       $('#editor-return').addEventListener('click',()=>guarded(async()=>{
         const note=prompt('請填寫退回原作者修改的原因（最多 900 字）：');
