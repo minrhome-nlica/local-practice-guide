@@ -71,7 +71,7 @@ test('client code parses and render has no embedded password',()=>{
   assert.doesNotThrow(()=>new Function(ADMIN_CLIENT));
   assert.match(ADMIN_HTML,/管理後台/);
   assert.match(ADMIN_HTML,/\/app\.js/);
-  assert.match(ADMIN_CSS,/max-width:940px/);
+  assert.match(ADMIN_CSS,/max-width:1000px/);
   assert.doesNotMatch(ADMIN_HTML,/ADMIN_TOKEN|Bearer\s+[a-z0-9]/i);
 });
 test('no Access identity is denied and no data leaks',async()=>{
