@@ -124,7 +124,9 @@ export async function queryWebAnalytics(env, url, fetcher = fetch) {
     return reportStatus(503, 'missing_site', '請檢查 Cloudflare 帳戶及 Web Analytics 站點識別碼。');
   }
   const now = Date.now();
-  const cached = cache.get(period);
+  const cacheKey = accountTag + ':' + siteTag + ':' + period;
+  const useCache = fetcher === fetch;
+  const cached = useCache ? cache.get(cacheKey) : null;
   if (cached && cached.expiry > now) return { status:200, body:cached.body };
   const end = new Date(now).toISOString();
   const start = new Date(now - period * 86400000).toISOString();
@@ -169,6 +171,6 @@ export async function queryWebAnalytics(env, url, fetcher = fetch) {
       result.body.diagnostic = '目前無法完成站點來源的交叉檢查，請以 Cloudflare Web Analytics 原始儀表板確認。';
     }
   }
-  if (result.status === 200) cache.set(period, { expiry: now + CACHE_MS, body:result.body });
+  if (useCache && result.status === 200) cache.set(cacheKey, { expiry: now + CACHE_MS, body:result.body });
   return result;
 }
