@@ -101,6 +101,6 @@ test('catalog can show a partial list if an individual file fails',async()=>{
   assert.equal(r.body.items[0].slug,'reimbursement');
 });
 test('article management endpoint denies unapproved users before any GitHub call',async()=>{
-  const response=await worker.fetch(new Request('https://test.example/api/articles'),{}, {});
+  const response=await worker.fetch(new Request('https://test.example/api/articles'),{DB:{},ACCESS_AUD:'test-aud'}, {});
   assert.equal(response.status,403);
 });
