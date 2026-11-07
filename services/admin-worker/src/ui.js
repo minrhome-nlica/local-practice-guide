@@ -1104,13 +1104,13 @@ export const ADMIN_CLIENT = String.raw`
       bindDraftActions();
       $('#article-search').addEventListener('input',()=>renderArticleList());
       $('#article-category').addEventListener('change',()=>renderArticleList());
-()=>init+`
+      $('#refresh-articles').addEventListener('click',()=>show('articles'));
       $('#new-article-toggle').addEventListener('click',()=>{
         const form=$('#new-article-fields');
         form.hidden=!form.hidden;
         $('#new-article-toggle').setAttribute('aria-expanded',String(!form.hidden));
       });
-      $('#new-article-fields').addEventListener('submit',createNewArticle);`
+      $('#new-article-fields').addEventListener('submit',createNewArticle);
       $('#updates-type').addEventListener('change',()=>show('updates'));
       $('#refresh-updates').addEventListener('click',()=>show('updates'));
       $('#analytics-period').addEventListener('change',()=>show('analytics'));
