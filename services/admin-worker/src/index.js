@@ -312,7 +312,7 @@ export default {
       if (request.method === 'POST' && !sameOriginPost(request, url)) {
         return error('跨網站請求已拒絕。', 403);
       }
-      if (path === '/api/editor/drafts' || path.startsWith('/api/editor/drafts/')) {
+      if (path === '/api/editor/new' || path === '/api/editor/drafts' || path.startsWith('/api/editor/drafts/')) {
         const denied = requireRole(user, 'owner', 'editor');
         if (denied) return denied;
         const result = await handleEditorRequest(env, user, request, url);
