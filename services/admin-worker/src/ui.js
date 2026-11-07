@@ -51,6 +51,21 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <div class="section-head"><div><h2>文章回饋分析</h2><p>各篇文章的「有幫助／還沒解決」與未解決原因。</p></div><label>統計期間<select id="rating-period"><option value="30">最近30天有更新的回饋</option><option value="all">全部時間</option></select></label></div>
         <p class="hint">同一瀏覽器在同一文章保留最新評分。「近30天」依最後更新日期篩選，並非每日訪客趨勢；小樣本請謹慎判讀。</p>
         <div class="stats" id="rating-summary"></div><div id="rating-list" class="stack"></div>
+        <div class="card rating-history-panel">
+          <div class="section-head">
+            <div><h3>每筆文章回饋的時間</h3>
+              <p>依最後更新排序，時間為臺灣時間。可看見首次回饋與最近修改時間，不顯示讀者身分。</p>
+            </div>
+            <button id="rating-history-refresh" type="button">重新整理紀錄</button>
+          </div>
+          <div class="filters"><label>選擇文章<select id="rating-history-entry">
+            <option value="">全部文章</option>
+          </select></label></div>
+          <p id="rating-history-status" class="hint" role="status" aria-live="polite">載入時間紀錄中…</p>
+          <div id="rating-history-list" class="stack"></div>
+          <div class="actions"><button type="button" id="rating-history-more" hidden>載入更多回饋紀錄</button></div>
+          <p class="hint">同一匿名瀏覽器在同一篇文章只保留最新評價；若讀者改變意見，之前的評價不另行留存。時間欄位來自現有資料庫，無須追蹤個資。</p>
+        </div>
       </section>
       <section class="panel" data-panel="articles" hidden>
         <div class="section-head">
@@ -312,7 +327,8 @@ export const ADMIN_CLIENT = String.raw`
     missing_answer:'找不到答案',unclear:'說明不清楚',needs_examples:'希望增加案例',
     possibly_outdated:'資訊可能過時',layout_issue:'排版與操作',other:'其他' };
   const state = { user:null,site:'https://guide.mountcounty.com', tab:'overview',
-    commentOffset:0,commentMore:false,loading:false,articles:[],drafts:[],currentDraft:null,replyDrafts:new Map() };
+    commentOffset:0,commentMore:false,loading:false,articles:[],drafts:[],currentDraft:null,
+    ratingHistoryOffset:0,ratingHistoryMore:false,replyDrafts:new Map() };
   const n = (tag, cls='', value) => {
     const node=document.createElement(tag);
     if(cls) node.className=cls;
@@ -492,10 +508,60 @@ export const ADMIN_CLIENT = String.raw`
     card.append(actions);
     return card;
   }
+  async function loadRatingHistory(){
+    const list=$('#rating-history-list');
+    const status=$('#rating-history-status');
+    const period=$('#rating-period').value;
+    const entry=$('#rating-history-entry').value;
+    const offset=state.ratingHistoryOffset;
+    if(!offset)list.replaceChildren();
+    status.textContent='正在載入回饋時間…';
+    const params=new URLSearchParams({period,limit:'25',offset:String(offset)});
+    if(entry)params.set('entry',entry);
+    try{
+      const data=await api('/api/ratings/history?'+params.toString());
+      for(const row of data.items||[]){
+        const card=n('article','item');
+        const head=n('div','article-row-head');
+        const link=n('a','',row.entry_title||row.entry_id);
+        link.href=entryHref(row);link.rel='noopener noreferrer';link.target='_blank';
+        head.append(link,n('span','update-tag',row.vote==='helpful'?'有幫助':'還沒解決'));
+        card.append(head);
+        if(row.vote==='unresolved'&&row.reason){
+          card.append(n('p','rating-reasons','原因：'+(labels[row.reason]||row.reason)));
+        }
+        const first='首次回饋：'+time(row.created_at);
+        const last=row.modified?' · 最後更新：'+time(row.updated_at):'';
+        card.append(n('p','meta',first+last));
+        list.append(card);
+      }
+      const count=(data.items||[]).length;
+      state.ratingHistoryMore=!!data.has_more;
+      $('#rating-history-more').hidden=!data.has_more;
+      state.ratingHistoryOffset=offset+count;
+      status.textContent='已載入 '+fmt(state.ratingHistoryOffset)+' 筆'+
+        (entry?'該文章':'全部文章')+'的回饋紀錄（依最後更新時間排序）。';
+      if(!state.ratingHistoryOffset)list.append(n('p','empty','這段期間沒有回饋紀錄。'));
+    }catch(err){
+      status.textContent='無法載入時間紀錄：'+(err?.message||'請稍後重試');
+      $('#rating-history-more').hidden=true;
+    }
+  }
   async function loadRatings(){
     const period=$('#rating-period').value;
     const data=await api('/api/ratings?period='+period);
     const list=$('#rating-list'),summary=$('#rating-summary');list.replaceChildren();summary.replaceChildren();
+    const select=$('#rating-history-entry'),selected=select.value;
+    select.replaceChildren();
+    const all=n('option','','全部文章');all.value='';select.append(all);
+    for(const row of (data.items||[]).slice().sort((a,b)=>
+      String(a.entry_title||a.entry_id).localeCompare(String(b.entry_title||b.entry_id),'zh-Hant'))){
+      const option=n('option','',row.entry_title||row.entry_id);
+      option.value=row.entry_id;select.append(option);
+    }
+    select.value=(data.items||[]).some(row=>row.entry_id===selected)?selected:'';
+    state.ratingHistoryOffset=0;
+    await loadRatingHistory();
     const total=(data.items||[]).reduce((s,r)=>s+Number(r.total||0),0);
     const helpful=(data.items||[]).reduce((s,r)=>s+Number(r.helpful||0),0);
     const unresolved=total-helpful;
@@ -952,6 +1018,13 @@ export const ADMIN_CLIENT = String.raw`
         if(state.commentMore){state.commentOffset+=25;show('comments');}
       });
       $('#rating-period').addEventListener('change',()=>show('ratings'));
+      $('#rating-history-entry').addEventListener('change',()=>{
+        state.ratingHistoryOffset=0;guarded(loadRatingHistory);
+      });
+      $('#rating-history-refresh').addEventListener('click',()=>{
+        state.ratingHistoryOffset=0;guarded(loadRatingHistory);
+      });
+      $('#rating-history-more').addEventListener('click',()=>guarded(loadRatingHistory));
       bindDraftActions();
       $('#article-search').addEventListener('input',()=>renderArticleList());
       $('#article-category').addEventListener('change',()=>renderArticleList());
