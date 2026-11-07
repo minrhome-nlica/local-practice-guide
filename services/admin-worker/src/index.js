@@ -5,6 +5,7 @@ import { ADMIN_HTML, ADMIN_CSS, ADMIN_CLIENT } from './ui.js';
 import { queryWebAnalytics } from './analytics.js';
 import { recentUpdates } from './updates.js';
 import { listArticles } from './articles.js';
+import { handleEditorial } from './editorial.js';
 import { handleEditorRequest } from './editor.js';
 
 const ROLES = ['owner', 'editor', 'moderator'];
@@ -275,6 +276,11 @@ export default {
         if (denied) return denied;
         const result = await handleEditorRequest(env, user, request, url);
         return json(result.body, result.status);
+      }
+      if (path==='/api/editorial/status' || path==='/api/editorial/drafts' ||
+          path.startsWith('/api/editorial/drafts/')) {
+        const result=await handleEditorial(env,user,request,url,audit);
+        return json(result.body,result.status);
       }
       if (request.method === 'GET') {
         if (path === '/') return response(ADMIN_HTML, 'text/html; charset=utf-8');
