@@ -322,7 +322,8 @@ export const ADMIN_CLIENT = String.raw`
     missing_answer:'找不到答案',unclear:'說明不清楚',needs_examples:'希望增加案例',
     possibly_outdated:'資訊可能過時',layout_issue:'排版與操作',other:'其他' };
   const state = { user:null,site:'https://guide.mountcounty.com', tab:'overview',
-    commentOffset:0,commentMore:false,loading:false,articles:[],replyDrafts:new Map() };
+    commentOffset:0,commentMore:false,loading:false,articles:[],replyDrafts:new Map(),
+    draftRows:[],editor:null,editorConfig:{drafts_ready:false,github_ready:false} };
   const n = (tag, cls='', value) => {
     const node=document.createElement(tag);
     if(cls) node.className=cls;
@@ -533,7 +534,9 @@ export const ADMIN_CLIENT = String.raw`
       preview.href=state.site+'/entries/'+encodeURIComponent(row.slug)+'/';preview.target='_blank';preview.rel='noopener noreferrer';
       const source=n('a','','查看 GitHub 原始檔 ↗');
       source.href=row.source_url;source.target='_blank';source.rel='noopener noreferrer';
-      links.append(preview,source);card.append(links);
+      const edit=n('button','','編輯文章／建立草稿');
+      edit.type='button';edit.addEventListener('click',()=>guarded(()=>openArticleSource(row.slug)));
+      links.append(preview,source,edit);card.append(links);
       list.append(card);
     }
   }
@@ -550,6 +553,231 @@ export const ADMIN_CLIENT = String.raw`
     }
     select.value=categories.includes(selected)?selected:'all';
     renderArticleList();
+    await loadEditorConfig();
+    await loadDrafts();
+  }
+  const draftStatusNames={
+    draft:'撰寫中',submitted:'等待審核',changes_requested:'退回修改',
+    pr_open:'GitHub PR 待發布',published:'已發布',cancelled:'已取消'
+  };
+  function editorMessage(text,bad=false){
+    const area=$('#editor-work-status');
+    area.textContent=text;area.classList.toggle('error',!!bad);
+  }
+  function editorDirty(){
+    return !!(state.editor&&$('#editor-body').value!==state.editor.savedBody);
+  }
+  function confirmLeaveEditor(){
+    return !editorDirty()||confirm('這篇文章有尚未儲存的修改。確定捨棄這些修改？');
+  }
+  async function loadEditorConfig(){
+    try{
+      const data=await api('/api/editor/config');
+      state.editorConfig=data;
+      const status=$('#editor-config-status');
+      if(!data.drafts_ready){
+        status.textContent='草稿資料庫尚未啟用：請先備份 guide-feedback D1，執行第二階段 SQL；目前可查看原文章，但無法儲存草稿。';
+      }else if(!data.github_ready){
+        status.textContent='草稿、送審與退回修改可使用；建立 PR／正式發布還需要管理員在 Worker Secret 設定 GITHUB_EDITOR_TOKEN。請勿把權杖放進聊天或 GitHub。';
+      }else{
+        status.textContent='草稿資料庫與 GitHub 發布授權已設定，可進行審核流程。正式發佈前仍需通過 GitHub 自動測試。';
+      }
+    }catch(e){
+      $('#editor-config-status').textContent='暫時無法確認草稿服務：'+e.message;
+      state.editorConfig={drafts_ready:false,github_ready:false};
+    }
+  }
+  function renderDraftRows(){
+    const list=$('#draft-list'),rows=state.draftRows||[];
+    list.replaceChildren();
+    $('#draft-count').textContent='共 '+fmt(rows.length)+' 筆草稿（依最後修改日期排序）。';
+    if(!rows.length){
+      list.append(n('p','empty','目前沒有符合條件的草稿。可從下方文章目錄開始編輯。'));
+      return;
+    }
+    for(const row of rows){
+      const section=n('div','editor-draft-row');
+      const header=n('div','article-row-head');
+      header.append(n('strong','',row.title),n('span','update-tag',draftStatusNames[row.status]||row.status));
+      section.append(header);
+      section.append(n('p','meta','編輯：'+row.author_email+' · 最後更新：'+time(row.updated_at)+' · 版本 '+row.revision));
+      if(row.review_note)section.append(n('p','hint','管理員意見：'+row.review_note));
+      const view=n('button','','開啟草稿／查看差異');
+      view.type='button';view.addEventListener('click',()=>guarded(()=>openArticleDraft(row.id)));
+      section.append(view);list.append(section);
+    }
+  }
+  async function loadDrafts(){
+    if(!state.editorConfig.drafts_ready){
+      state.draftRows=[];
+      $('#draft-count').textContent='草稿資料表尚未建立，目前不會變動公開文章。';
+      $('#draft-list').replaceChildren();
+      return;
+    }
+    const filter=$('#draft-status-filter').value;
+    try{
+      const data=await api('/api/editor/drafts?status='+encodeURIComponent(filter));
+      state.draftRows=data.items||[];
+      renderDraftRows();
+    }catch(e){
+      $('#draft-count').textContent='草稿清單讀取失敗：'+e.message;
+      $('#draft-list').replaceChildren();
+    }
+  }
+  function populateEditor(){
+    const ed=state.editor;
+    if(!ed)return;
+    $('#editor-workspace').hidden=false;
+    $('#editor-title').textContent=ed.title;
+    $('#editor-body').value=ed.savedBody;
+    $('#editor-meta').textContent=ed.draftId?
+      ('草稿狀態：'+(draftStatusNames[ed.status]||ed.status)+' · 編輯：'+ed.author_email+
+      ' · 修訂版本 '+ed.revision):
+      ('正在編輯已公開文章：'+ed.slug+' · 尚未建立草稿');
+    const author=ed.author_email===state.user.email;
+    const editable=!ed.draftId||(author&&['draft','changes_requested'].includes(ed.status));
+    $('#editor-body').readOnly=!editable;
+    $('#editor-save').hidden=!editable;
+    $('#editor-save').disabled=!state.editorConfig.drafts_ready;
+    $('#editor-submit').hidden=!(ed.draftId&&editable);
+    $('#editor-return').hidden=!(state.user.role==='owner'&&ed.status==='submitted');
+    $('#editor-approve').hidden=!(state.user.role==='owner'&&ed.status==='submitted');
+    $('#editor-approve').disabled=!state.editorConfig.github_ready;
+    $('#editor-publish').hidden=!(state.user.role==='owner'&&ed.status==='pr_open');
+    $('#editor-publish').disabled=!state.editorConfig.github_ready;
+    if(ed.review_note)editorMessage('管理員退回意見：'+ed.review_note);
+    else if(ed.status==='submitted')editorMessage('文章已送出審核，原作者目前不能再修改。');
+    else if(ed.status==='pr_open')editorMessage('GitHub PR 已建立，請檢查差異與自動測試後正式發布。');
+    else if(ed.status==='published')editorMessage('此版本已發布。可從公開文章重新建立新的修訂。');
+    else editorMessage('正在編輯正文。修改後請先儲存草稿，再送出審核。');
+    const box=$('#editor-pull-request');
+    box.replaceChildren();
+    box.hidden=!ed.pr_url;
+    if(ed.pr_url){
+      const link=n('a','','檢視 GitHub Pull Request 與自動測試 ↗');
+      link.href=ed.pr_url;link.target='_blank';link.rel='noopener noreferrer';
+      box.append(link);
+    }
+    $('#editor-preview').hidden=true;
+    $('#editor-diff').hidden=true;
+    $('#editor-workspace').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  async function openArticleSource(slug){
+    if(!confirmLeaveEditor())return;
+    const data=await api('/api/editor/source?slug='+encodeURIComponent(slug));
+    state.editor={
+      slug,title:data.title,base_sha:data.base_sha,original_body:data.body,
+      savedBody:data.body,author_email:state.user.email,
+      draftId:null,revision:0,status:'new',pr_url:'',review_note:''
+    };
+    populateEditor();
+  }
+  async function openArticleDraft(id){
+    if(!confirmLeaveEditor())return;
+    const data=await api('/api/editor/drafts/'+encodeURIComponent(id));
+    const r=data.draft;
+    state.editor={
+      slug:r.slug,title:r.title,base_sha:r.base_sha,original_body:r.original_body,
+      savedBody:r.draft_body,author_email:r.author_email,draftId:r.id,
+      revision:r.revision,status:r.status,pr_url:r.pr_url||'',review_note:r.review_note||''
+    };
+    populateEditor();
+  }
+  async function reloadEditorDraft(){
+    const id=state.editor?.draftId;
+    if(!id)return;
+    const data=await api('/api/editor/drafts/'+encodeURIComponent(id));
+    const r=data.draft;
+    state.editor={slug:r.slug,title:r.title,base_sha:r.base_sha,
+      original_body:r.original_body,savedBody:r.draft_body,
+      author_email:r.author_email,draftId:r.id,revision:r.revision,
+      status:r.status,pr_url:r.pr_url||'',review_note:r.review_note||''};
+    populateEditor();
+    await loadDrafts();
+  }
+  async function saveEditorDraft(){
+    if(!state.editor)return;
+    const body=$('#editor-body').value;
+    if(!body.trim())throw new Error('文章內容不能為空。');
+    const ed=state.editor;
+    if(ed.draftId){
+      const result=await api('/api/editor/drafts/'+ed.draftId+'/save',{
+        method:'POST',body:JSON.stringify({revision:ed.revision,body})
+      });
+      ed.savedBody=body;ed.revision=result.revision;
+      editorMessage('草稿已儲存。這不會修改公開網站。');
+    }else{
+      const result=await api('/api/editor/drafts',{
+        method:'POST',body:JSON.stringify({slug:ed.slug,base_sha:ed.base_sha,body})
+      });
+      ed.draftId=result.draft_id;ed.revision=result.revision;ed.status='draft';ed.savedBody=body;
+      editorMessage('草稿已建立並儲存。請確認內容後再送審。');
+    }
+    await loadDrafts();
+    populateEditor();
+  }
+  async function changeDraftStatus(action,body={},question=''){
+    if(!state.editor?.draftId)return;
+    if(editorDirty())throw new Error('文章還有未儲存內容。請先儲存草稿。');
+    const ed=state.editor;
+    if(question&&!confirm(question))return;
+    await api('/api/editor/drafts/'+ed.draftId+'/'+action,{
+      method:'POST',body:JSON.stringify({...body,revision:ed.revision})
+    });
+    await reloadEditorDraft();
+    editorMessage(action==='submit'?'已送出審核。':
+      action==='request-changes'?'已退回原作者修改。':
+      action==='approve'?'已建立 GitHub PR，請檢查自動測試後再發布。':
+      action==='publish'?'已合併到 GitHub 正式分支，網站將依部署流程更新。':'操作完成。');
+  }
+  function renderSimpleMarkdown(){
+    if(!state.editor)return;
+    const parent=$('#editor-preview');
+    parent.replaceChildren();
+    const content=$('#editor-body').value;
+    parent.append(n('p','hint','這是安全的簡化閱讀預覽，僅供檢查文字段落與標題；表格、圖片與 HTML 樣式請以 GitHub 預覽及正式網站為準。'));
+    for(const block of content.split(/\n{2,}/).slice(0,200)){
+      const line=block.trim();if(!line)continue;
+      const heading=/^(#{1,4})\s+(.+)$/.exec(line);
+      if(heading){
+        const level=Math.min(4,heading[1].length+1);
+        parent.append(n('h'+level,'',heading[2]));continue;
+      }
+      if(line.startsWith('<')||line.includes('<table')||line.includes('<figure')){
+        parent.append(n('pre','',line.slice(0,9000)));continue;
+      }
+      parent.append(n('p','',line));
+    }
+    parent.hidden=false;
+    $('#editor-diff').hidden=true;
+  }
+  function renderDiff(){
+    if(!state.editor)return;
+    const before=state.editor.original_body.split(/\r?\n/);
+    const after=$('#editor-body').value.split(/\r?\n/);
+    let start=0;
+    while(start<Math.min(before.length,after.length)&&before[start]===after[start])start++;
+    let tail=0;
+    while(tail<Math.min(before.length,after.length)-start&&
+      before[before.length-1-tail]===after[after.length-1-tail])tail++;
+    const view=$('#editor-diff');
+    view.replaceChildren();
+    if(start===before.length&&start===after.length){
+      view.append(n('p','hint','目前沒有修改。'));view.hidden=false;
+      $('#editor-preview').hidden=true;return;
+    }
+    view.append(n('p','hint','下方以原始正文文字比較變動區塊；省略相同段落，正式發布前仍需於 GitHub PR 確認完整差異。'));
+    const grid=n('div','editor-diff-grid');
+    const count=120;
+    for(const [rows,label,cls] of [[before,'原始內容','before'],[after,'修改內容','after']]){
+      const column=n('div',cls);
+      const changed=rows.slice(start,Math.max(start,rows.length-tail));
+      const show=changed.slice(0,count);
+      column.append(n('strong','',label+'（第 '+(start+1)+' 行開始；'+changed.length+' 行變動）'));
+      column.append(n('pre','',show.join('\n')+(changed.length>count?'\n…其餘差異請至 GitHub 查看':'')||'（此區間沒有內容）'));
+      grid.append(column);
+    }
+    view.append(grid);view.hidden=false;$('#editor-preview').hidden=true;
   }
   async function loadUpdates(){
     const type=$('#updates-type').value;
@@ -752,6 +980,32 @@ export const ADMIN_CLIENT = String.raw`
       $('#article-search').addEventListener('input',()=>renderArticleList());
       $('#article-category').addEventListener('change',()=>renderArticleList());
       $('#refresh-articles').addEventListener('click',()=>show('articles'));
+      $('#refresh-drafts').addEventListener('click',()=>guarded(loadDrafts));
+      $('#draft-status-filter').addEventListener('change',()=>guarded(loadDrafts));
+      $('#editor-body').addEventListener('input',()=>{
+        if(state.editor)editorMessage('內容已修改，尚未儲存。');
+      });
+      $('#editor-close').addEventListener('click',()=>{
+        if(!confirmLeaveEditor())return;
+        state.editor=null;$('#editor-workspace').hidden=true;
+      });
+      $('#editor-save').addEventListener('click',()=>guarded(saveEditorDraft));
+      $('#editor-submit').addEventListener('click',()=>guarded(()=>changeDraftStatus(
+        'submit',{},'確定把草稿送交管理員審核？送出後暫時不能編輯。'
+      )));
+      $('#editor-return').addEventListener('click',()=>guarded(async()=>{
+        const note=prompt('請填寫退回原作者修改的原因（最多 900 字）：');
+        if(!note||!note.trim())return;
+        await changeDraftStatus('request-changes',{note:note.trim()});
+      }));
+      $('#editor-approve').addEventListener('click',()=>guarded(()=>changeDraftStatus(
+        'approve',{},'確認已檢查原文、修改內容及法規數據？將建立 GitHub PR，但不會直接發布。'
+      )));
+      $('#editor-publish').addEventListener('click',()=>guarded(()=>changeDraftStatus(
+        'publish',{},'確認 GitHub PR 的文章差異與 SEO 測試均無誤？合併後正式網站將自動部署。'
+      )));
+      $('#editor-preview-toggle').addEventListener('click',renderSimpleMarkdown);
+      $('#editor-diff-toggle').addEventListener('click',renderDiff);
       $('#updates-type').addEventListener('change',()=>show('updates'));
       $('#refresh-updates').addEventListener('click',()=>show('updates'));
       $('#analytics-period').addEventListener('change',()=>show('analytics'));
