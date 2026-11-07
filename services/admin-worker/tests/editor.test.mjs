@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  validateArticleMarkdown,stampArticleDate,handleEditorRequest,pullBranch
+  validateArticleMarkdown,stampArticleDate,handleEditorRequest,pullBranch,githubRequest
 } from '../src/editor.js';
 import {ADMIN_HTML,ADMIN_CSS,ADMIN_CLIENT} from '../src/ui.js';
 import worker from '../src/index.js';
@@ -284,4 +284,19 @@ test('mobile editor controls and script parse without exposing the GitHub token'
   assert.doesNotMatch(ADMIN_HTML,/test-token-only-not-real/);
   assert.match(ADMIN_CLIENT,/function bindDraftActions/);
   assert.match(ADMIN_CLIENT,/expected_revision/);
+});
+
+test('public GitHub CI checks are read without fine-grained PAT; PR operations retain token',async()=>{
+  const env={GITHUB_EDITOR_TOKEN:'secret-token-that-must-stay-private'};
+  const seen=[];
+  const fetcher=async (_url,opts)=>{
+    seen.push({method:opts.method,headers:opts.headers});
+    return {ok:true,status:200,json:async()=>({check_runs:[]})};
+  };
+  await githubRequest(env,fetcher,'GET','/commits/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/check-runs?check_name=check-seo&filter=latest');
+  assert.equal(seen[0].headers.Authorization,undefined,'public CI read must omit fine-grained PAT');
+  await githubRequest(env,fetcher,'GET','/contents/src/content/entries/reimbursement.md?ref=main');
+  assert.equal(seen[1].headers.Authorization,'Bearer secret-token-that-must-stay-private');
+  await githubRequest(env,fetcher,'PUT','/pulls/42/merge',{merge_method:'squash'});
+  assert.equal(seen[2].headers.Authorization,'Bearer secret-token-that-must-stay-private');
 });
