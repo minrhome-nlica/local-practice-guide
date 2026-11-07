@@ -46,7 +46,7 @@
 
 - Resource owner：此網站的 GitHub repository 擁有者。
 - Repository access：**Only select repositories**，只勾選 `minrhome-nlica/local-practice-guide`。
-- Repository permissions：`Contents: Read and write`（建立分支、寫入核准的文章、合併 PR）；`Pull requests: Read and write`（建立審稿 PR）；`Checks: Read-only`（確認 SEO 建置測試）。
+- Repository permissions：`Contents: Read and write`（建立分支、寫入核准的文章、合併 PR）；`Pull requests: Read and write`（建立審稿 PR）；**不需 Checks 權限**（本專案為公開儲存庫，後台不帶權杖查詢公開的 SEO 檢查結果）。
 - 設定合理到期日並安排定期輪替。不要額外授予 `Administration` 或 `Workflows` 寫入權限。
 
 然後到 Cloudflare → Workers & Pages → `guide-admin-console` → Settings → Variables and Secrets → **Add Secret**：
