@@ -30,7 +30,7 @@ jobs:
           python3 -m pip install --disable-pip-version-check 'fonttools[woff]'
           python3 scripts/build_webfonts.py
       - name: Install project
-        run: npm ci --no-audit --no-fund
+        run: npm install --no-audit --no-fund
       - name: Build public guide for canonical domain
         env:
           GUIDE_CUSTOM_DOMAIN: "true"
