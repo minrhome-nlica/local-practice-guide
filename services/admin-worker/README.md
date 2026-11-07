@@ -1,8 +1,8 @@
 # 地方實踐指南：管理後台第一階段（獨立 Cloudflare Worker）
 
-> 此資料夾是第一階段程式，**不是已啟用的正式後台**。需要網站負責人完成 Cloudflare Access、D1 與獨立 Worker 的配置後才能登入。
+> 此後台已於 2026-11-07 經由 Cloudflare Workers Builds 上線，入口為 `https://guide-admin-console.e7968.workers.dev/`，並由 Cloudflare Access + D1 管理員白名單進行雙重授權。
 >
-> 2026-11-06：程式放在獨立分支／PR，尚未更改公開網站及舊留言管理頁。
+> 後台程式仍從獨立開發分支自動部署；公開網站頁尾已指向新管理後台，舊版留言管理暫留備援。
 
 ## 一、已實作的功能
 
@@ -12,6 +12,7 @@
 - 總覽：待審核、已公開留言，以及文章「有幫助／還沒解決」回饋數。
 - 留言管理：狀態篩選、關鍵字搜尋、分頁、回覆、公開、退回、拒絕、已處理；驗證更新時間，避免 2～5 位同事同時覆蓋處理結果。
 - 文章回饋：查看各文章統計和未解決原因，提醒小樣本偏差。
+- **Web Analytics**：已具備 7／30 天瀏覽量、訪問次數、每日趨勢及熱門頁面，透過唯讀 API Token 查詢，並自動區別 siteTag 與 siteToken；沒有查到紀錄時不視為 0 流量。
 - 最高管理員：新增、停用、調整工作人員；操作紀錄保存審核者、時間和異動。
 - 介面可手機閱讀，禁止被搜尋索引與代理快取；登入狀態由 Access 維護，不在 localStorage 保存金鑰。
 - 一旦部署，與 **現有** \`guide-feedback\` D1 共用資料，但 **不修改現有公開留言 Worker**。
@@ -19,7 +20,7 @@
 ## 二、第一階段尚未實作
 
 - **文章草稿／發布**：已預留角色與入口，但尚無可用的文章編輯／發布 API；目前文章仍以 GitHub Markdown 為正式版本。下一階段才接入草稿 → 預覽 → 管理員核准 → GitHub 發布，並建立版本差異與還原。
-- **Web Analytics**：後台已加入 GraphQL API 查詢、7／30 天瀏覽量、訪問次數、每日趨勢與熱門頁面。須由帳戶管理員設定唯讀 API Token 才會顯示真實流量，未設定時畫面會清楚顯示說明，不會填入假數據。
+
 - **重大更新紀錄**：已預留入口，下一階段接上 GitHub commits/PR，重要更新須人工核定後對外發布。
 - **讀者帳號**：預留未來方向，這次不開放註冊。
 - 舊的 \`/admin/feedback/\`、\`ADMIN_TOKEN\` 與頁尾入口在新後台經過完整驗證以前**維持原狀**。
@@ -85,7 +86,7 @@ Cloudflare Access 內的允許名單與 D1 \`admin_users\` **都要**通過。�
 
 ## 四、網站分析 Web Analytics：最後一項手動授權
 
-網站的 Cloudflare Web Analytics 瀏覽器追蹤已經在公開網頁上執行。後台用 Cloudflare 的 `rumPageloadEventsAdaptiveGroups` GraphQL API 查詢同一個 siteTag，包含：
+網站的 Cloudflare Web Analytics 瀏覽器追蹤已經在公開網頁上執行。後台透過唯讀 GraphQL API 自動辨識真正的站點 ID（siteTag），再查詢 `rumPageloadEventsAdaptiveGroups`：
 - 最近 7 天／30 天的頁面瀏覽量（Pageviews）
 - 訪問次數（Visits；**不是不重複訪客**）
 - 每日瀏覽趨勢，以及熱門頁面路徑
@@ -93,9 +94,10 @@ Cloudflare Access 內的允許名單與 D1 \`admin_users\` **都要**通過。�
 
 **已透過 wrangler.toml 設定的識別資料（不是秘密）：**
 - `CLOUDFLARE_ACCOUNT_ID`：與指南 Web Analytics 所在帳戶一致
-- `WEB_ANALYTICS_SITE_TAG`：與公開網站載入的 Cloudflare beacon `data-cf-beacon` token 一致
+- `WEB_ANALYTICS_SITE_TOKEN`：公開網站 `data-cf-beacon` 的 siteToken。**此識別碼與 GraphQL siteTag 不同，不得直接當作篩選條件。**
+- `WEB_ANALYTICS_SITE_TAG`：可選的真正站點 ID（從官方 Web Analytics 網站資料或站點 URL 獲得）。預設不設定；後台會根據 GraphQL 的 `dimensions { siteTag requestHost }` 自動辨識，只採用指南正式或舊版 GitHub Pages 主機名稱。
 
-**尚需由 Cloudflare 帳戶管理員自行完成的一件事：**
+**初次啟用時的授權步驟（目前管理員已設定過）：**
 
 1. 在 Cloudflare 控制台的「帳戶 API Tokens」建立自訂權杖，名稱例如 `guide-admin-analytics-read`。
 2. 權限選 **Account → Account Analytics → Read**；Resource 範圍儘量限制成指南所在的 Cloudflare 帳戶，不要使用 Global API Key 或 Edit 權限。
@@ -144,7 +146,7 @@ GitHub Actions \`.github/workflows/admin-console-check.yml\` 同時測試認證�
 
 下一階段文章編輯使用 GitHub 當唯一正式來源，避免 D1 草稿和 Markdown 同時變成不同版本。建議草稿建立時存原始 Git SHA、編輯者、變更時間，管理員看到文字 diff，審核時確認 GitHub 原版沒有被其他人更新，才以 GitHub API 或 Pull Request 發布。預設不允許直接改 main。
 
-下一階段整合 Web Analytics 時使用 Cloudflare GraphQL API 及只讀權杖。權杖只放在後台 Worker Secret；先確認 \`rumPageloadEventsAdaptiveGroups\` 在該 Cloudflare 帳戶可用、篩選正確網站 siteTag／hostname，避免將其他站的瀏覽量混入本指南。
+Web Analytics 已用 GraphQL API 與唯讀 Secret 實作，包含站點自動辨識、日期區間比對與錯誤降級。若原始報表有流量但後台沒有，請檢查站點的真正 `siteTag` 與 `requestHost`。不要把公開 beacon token 當作 GraphQL siteTag。
 
 官方說明：
 - Cloudflare Worker Access：https://developers.cloudflare.com/workers/configuration/cloudflare-access/
