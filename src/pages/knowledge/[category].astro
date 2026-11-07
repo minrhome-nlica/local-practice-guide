@@ -10,8 +10,22 @@ export async function getStaticPaths(){
 const {category} = Astro.props;
 const entries = sortEntriesForCategory(entriesInCategory(await getCollection('entries'), category.slug), category.slug);
 const showCalculator = category.slug === 'tools';
+const seoOrigin = Astro.site ?? Astro.url.origin;
+const seoLink = path => new URL(root + path, seoOrigin).toString();
+const breadcrumbs = [
+  ['首頁', seoLink('/')],
+  ['知識百科', seoLink('/knowledge/')],
+  [category.name, seoLink('/knowledge/' + category.slug + '/')]
+];
+const structuredData = [{
+  '@type':'BreadcrumbList',
+  itemListElement: breadcrumbs.map(([name,item],index) => ({
+    '@type':'ListItem',position:index+1,name,item
+  }))
+}];
+
 ---
-<BaseLayout title={category.name}>
+<BaseLayout title={category.name} description={category.description + "地方實踐指南依主題整理文章與相關實務工具，方便查找與學習。"} structuredData={structuredData}>
   <section class="page-hero"><div class="wrap"><p class="breadcrumbs"><a href={root + '/knowledge/'}>知識百科</a> / {category.name}</p><span class="eyebrow">{category.english}</span><h1 class="page-title">{category.name}</h1><p>{category.description}</p></div></section>
   <section class="section-spacer"><div class="wrap">{(entries.length > 0 || showCalculator) ? (
   <div class="entry-list">

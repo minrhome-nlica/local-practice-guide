@@ -1,0 +1,45 @@
+name: Check SEO quality
+on:
+  push:
+    branches: [main, feature/comprehensive-seo-20261107]
+    paths:
+      - "src/pages/**"
+      - "src/layouts/**"
+      - "src/data/seo.ts"
+      - "src/content/entries/**"
+      - "scripts/generate-sitemap.mjs"
+      - "scripts/check-seo.mjs"
+      - ".github/workflows/seo-check.yml"
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check-seo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+      - name: Install Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Prepare website font assets
+        run: |
+          python3 -m pip install --disable-pip-version-check 'fonttools[woff]'
+          python3 scripts/build_webfonts.py
+      - name: Install project
+        run: npm install --no-audit --no-fund
+      - name: Build public guide for canonical domain
+        env:
+          GUIDE_CUSTOM_DOMAIN: "true"
+          PUBLIC_FEEDBACK_API_URL: ${{ vars.FEEDBACK_API_URL }}
+          PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
+        run: npm run build
+      - name: Audit search metadata, canonical links and structured data
+        run: node scripts/check-seo.mjs
+      - name: Verify article links
+        run: node scripts/check-entry-links.mjs
+      - name: Audit internal links and assets
+        run: python3 scripts/audit_published_site.py
