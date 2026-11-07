@@ -52,16 +52,16 @@ function dbMock(){
         if(query.includes('draft_body=?')){
           const [draft_body,updated_at,revision,_id,oldRev]=args;
           id=_id;expected=oldRev;updates={draft_body,updated_at,revision};
-        }else if(query.includes("status='submitted'")){
+        }else if(query.includes("SET status='submitted'")){
           const [submitted_at,updated_at,revision,_id,oldRev]=args;
           id=_id;expected=oldRev;updates={status:'submitted',submitted_at,updated_at,revision};
-        }else if(query.includes("status='changes_requested'")){
+        }else if(query.includes("SET status='changes_requested'")){
           const [review_note,reviewer_email,reviewed_at,updated_at,revision,_id,oldRev]=args;
           id=_id;expected=oldRev;updates={status:'changes_requested',review_note,reviewer_email,reviewed_at,updated_at,revision};
-        }else if(query.includes("status='pr_open'")){
+        }else if(query.includes("SET status='pr_open'")){
           const [reviewer_email,reviewed_at,pr_number,pr_url,pr_head_sha,updated_at,revision,_id,oldRev]=args;
           id=_id;expected=oldRev;updates={status:'pr_open',reviewer_email,reviewed_at,pr_number,pr_url,pr_head_sha,updated_at,revision};
-        }else if(query.includes("status='published'")){
+        }else if(query.includes("SET status='published'")){
           const [publish_sha,published_at,updated_at,revision,_id,oldRev]=args;
           id=_id;expected=oldRev;updates={status:'published',publish_sha,published_at,updated_at,revision};
         }else throw Error('Unexpected UPDATE '+query);
