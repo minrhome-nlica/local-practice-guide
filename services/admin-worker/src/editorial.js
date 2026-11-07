@@ -198,7 +198,7 @@ async function readInput(request){
   const type=(request.headers.get('content-type')||'').toLowerCase();
   assert(type.startsWith('application/json'),415,'content_type','僅接受 JSON 表單資料。');
   const len=Number(request.headers.get('content-length')||0);
-  assert(len<=MAX_MARKDOWN+15000,413,'too_large','表單資料超過限制。');
+  assert(len<=MAX_MARKDOWN*4,413,'too_large','表單資料超過限制。');
   const text=await request.text();
   assert(text.length<=MAX_MARKDOWN+15000,413,'too_large','表單資料超過限制。');
   let body;
@@ -463,8 +463,8 @@ export async function handleEditorial(env,user,request,url,logAudit,fetcher=fetc
     if(pathname==='/api/editorial/drafts'){
       if(request.method==='GET'){
         const stmt=user.role==='owner'?
-          env.DB.prepare('SELECT * FROM admin_article_drafts ORDER BY updated_at DESC LIMIT 100'):
-          env.DB.prepare('SELECT * FROM admin_article_drafts WHERE created_by = ? COLLATE NOCASE ORDER BY updated_at DESC LIMIT 100').bind(user.email);
+          env.DB.prepare('SELECT id,slug,title,status,revision,created_by,updated_by,created_at,updated_at,submitted_at,reviewed_by,reviewed_at,review_note,seo_title,seo_description,original_seo_title,original_seo_description,github_pr_number,github_pr_url,github_merge_sha,published_at FROM admin_article_drafts ORDER BY updated_at DESC LIMIT 100'):
+          env.DB.prepare('SELECT id,slug,title,status,revision,created_by,updated_by,created_at,updated_at,submitted_at,reviewed_by,reviewed_at,review_note,seo_title,seo_description,original_seo_title,original_seo_description,github_pr_number,github_pr_url,github_merge_sha,published_at FROM admin_article_drafts WHERE created_by = ? COLLATE NOCASE ORDER BY updated_at DESC LIMIT 100').bind(user.email);
         const result=await stmt.all();
         return success({items:(result.results||[]).map(x=>publicRow(x)),total:(result.results||[]).length});
       }
