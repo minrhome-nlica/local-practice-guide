@@ -60,7 +60,7 @@ export function validateArticleMarkdown(content,original='') {
     const oldCategory=/^category:\s*(\S+)\s*$/m.exec(oldHeader)?.[1];
     if(category!==oldCategory) return '目前編輯器不開放改動文章分類，避免破壞相關導覽連結。';
   }
-  if(/<script\b|<iframe\b|<object\b|<embed\b|javascript\s*:|onerror\s*=|onload\s*=/i.test(content)) {
+  if(/<(?:script|iframe|object|embed|form|svg)\b|\son[a-z][a-z0-9_-]*\s*=|javascript\s*:|data\s*:\s*text\/html/i.test(content)) {
     return '文章中包含可能不安全的網頁程式碼，請交由網站維護人員處理。';
   }
   return '';
@@ -123,8 +123,11 @@ async function getMainSource(env,fetcher,slug) {
     return fail(502,'GitHub 文章文字無法解碼。','source_invalid');
   }
 }
+const initializedDatabases = new WeakSet();
 async function ensureTables(db) {
+  if(initializedDatabases.has(db))return;
   for(const sql of definitions)await db.prepare(sql).run();
+  initializedDatabases.add(db);
 }
 async function audit(env,user,action,id,details='') {
   await env.DB.prepare(
@@ -341,7 +344,7 @@ async function publishDraft(env,user,row,request,fetcher) {
   if(current.body.source.sha!==row.source_sha) {
     return fail(409,'正式文章已有其他更新，請先比較差異，不可覆蓋。','source_changed');
   }
-  const checks=await githubRequest(env,fetcher,'GET','/commits/'+row.pr_head_sha+'/check-runs?per_page=100');
+  const checks=await githubRequest(env,fetcher,'GET','/commits/'+row.pr_head_sha+'/check-runs?check_name=check-seo&filter=latest&per_page=20');
   if(!checks.ok)return fail(503,'無法驗證 GitHub 的網站建置測試。請檢查權杖的 Checks Read 權限。','checks_unavailable');
   if(!checkSucceeded(checks.data?.check_runs)){
     return fail(409,'網站 SEO 建置測試尚未成功，禁止正式發布。請稍後在 GitHub PR 檢查結果。','checks_not_ready');
