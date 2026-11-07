@@ -5,6 +5,9 @@ const REPO = 'minrhome-nlica/local-practice-guide';
 const API = 'https://api.github.com/repos/' + REPO;
 const READABLE = 'https://github.com/' + REPO;
 const MAX_MARKDOWN = 190000;
+const NEW_ARTICLE_SHA = 'NEW_ARTICLE';
+const CATEGORY_KEYS = new Set(['basics','organizations','plans','finance','people','tools']);
+
 const ID = /^[a-f0-9-]{36}$/i;
 const SLUG = /^[a-z0-9][a-z0-9-]{1,85}$/;
 const ACTIVE = ['draft','review','changes_requested','staged'];
@@ -187,6 +190,116 @@ async function listDrafts(env,user) {
   return ok({items:r.results||[],can_publish:user.role==='owner',
     github_configured:!!clean(env.GITHUB_EDITOR_TOKEN,300)});
 }
+function newMeta(content){
+  const header=/^---\r?\n([\s\S]*?)\r?\n---/.exec(content)?.[1]||'';
+  const parse=key=>{
+    const raw=new RegExp('^'+key+':\\s*(.*)$','m').exec(header)?.[1]?.trim()||'';
+    if(raw.startsWith('"')&&raw.endsWith('"')){
+      try{return JSON.parse(raw);}catch{return '';}
+    }
+    if(raw.startsWith("'")&&raw.endsWith("'")){
+      return raw.slice(1,-1).replace(/''/g,"'");
+    }
+    return raw;
+  };
+  const title=parse('title'),summary=parse('summary'),
+    seoTitle=parse('seo_title'),seoDescription=parse('seo_description');
+  return {title,summary,seoTitle,seoDescription,header};
+}
+function seoEntryMetadata(content){
+  const data=newMeta(content);
+  if(data.title.length<2||data.title.length>125||
+    data.summary.length<12||data.summary.length>380||
+    data.seoTitle.length<8||data.seoTitle.length>135||
+    data.seoDescription.length<20||data.seoDescription.length>340){
+    return {error:'新增文章需要標題、摘要、SEO 搜尋標題與搜尋摘要。'};
+  }
+  if(/[\u0000-\u001f\u007f]/.test(
+    data.title+data.summary+data.seoTitle+data.seoDescription)){
+    return {error:'文字欄位不可包含控制字元。'};
+  }
+  return {data};
+}
+function insertArticleSeo(source,slug,title,description){
+  const marker='\n};\n\nexport const homepageSearch';
+  const at=source.indexOf(marker);
+  if(at<0||source.indexOf(marker,at+1)>=0||
+    source.includes("  '"+slug+"': {")){
+    throw Error('SEO metadata source does not match expected structure.');
+  }
+  // Insert only once at the object tail. Existing final entry ends with "}", not ",".
+  const before=source.slice(0,at);
+  if(!/\n  \}$/.test(before))throw Error('SEO end of list missing.');
+  const snippet=",\n  '"+slug+"': {\n"+
+    '    title: '+JSON.stringify(title)+',\n'+
+    '    description: '+JSON.stringify(description)+'\n'+
+    '  }';
+  return before+snippet+source.slice(at);
+}
+async function checkNewSlug(env,fetcher,slug){
+  // Fail closed. 404 means the path is free; 403 / 5xx / network does not.
+  const r=await githubRequest(env,fetcher,'GET','/contents/'+pathFor(slug)+'?ref=main');
+  if(r.status===404)return {ok:true};
+  if(r.ok)return fail(409,'這個網址代號已有正式文章，請更換。','slug_taken');
+  return fail(503,'目前無法確認網址是否重複，請稍後再試。','github_unavailable');
+}
+async function createNewArticleDraft(env,user,request,fetcher) {
+  const parsed=await inputJson(request);if(!parsed.body.ok)return parsed;
+  const input=parsed.body.value;
+  const slug=clean(input.slug,90);
+  const title=clean(input.title,126),summary=clean(input.summary,381);
+  const seoTitle=clean(input.seo_title,136),seoDescription=clean(input.seo_description,341);
+  const category=clean(input.category,45);
+  if(!SLUG.test(slug)||slug.length>60||
+    !CATEGORY_KEYS.has(category)||
+    title.length<2||title.length>125||summary.length<12||summary.length>380||
+    seoTitle.length<8||seoTitle.length>135||
+    seoDescription.length<20||seoDescription.length>340){
+    return fail(400,'請確認文章網址、分類、標題、摘要和 SEO 資料皆已填寫。','invalid_input');
+  }
+  const active=await env.DB.prepare(
+    "SELECT id FROM admin_article_drafts WHERE slug=? AND status NOT IN ('published','cancelled')"
+  ).bind(slug).first();
+  if(active)return fail(409,'此文章已經有草稿，請回到草稿列表查看。','active_exists');
+  const available=await checkNewSlug(env,fetcher,slug);
+  if(!available.ok)return available;
+  const terms=Array.isArray(input.tags)?input.tags:[];
+  const tags=terms.slice(0,12).map(x=>clean(x,30)).filter(Boolean);
+  if(tags.length!==terms.length)return fail(400,'標籤最多 12 個、每個 30 字。','invalid_tags');
+  const front=[
+    '---',
+    'title: '+JSON.stringify(title),
+    'summary: '+JSON.stringify(summary),
+    'category: '+category,
+    'level: 入門',
+    'updated: '+new Date(Date.now()+8*3600000).toISOString().slice(0,10),
+    'status: 編輯稿',
+    'related: []',
+    ...(tags.length?['tags:',...tags.map(x=>'  - '+JSON.stringify(x))]:['tags: []']),
+    'seo_title: '+JSON.stringify(seoTitle),
+    'seo_description: '+JSON.stringify(seoDescription),
+    '---',
+    '',
+    '## 一、前言',
+    '',
+    '請在這裡填寫文章內容，儲存後再提交審核。',
+    ''
+  ];
+  const content=front.join('\n');
+  const error=validateArticleMarkdown(content);
+  if(error)return fail(422,error,'invalid_markdown');
+  const id=crypto.randomUUID(),ts=now();
+  try{
+    await env.DB.prepare(
+      'INSERT INTO admin_article_drafts '+
+      '(id,slug,source_sha,original_text,content,status,author_email,updated_by,created_at,updated_at) '+
+      "VALUES (?,?,?,?,?,'draft',?,?,?,?)"
+    ).bind(id,slug,NEW_ARTICLE_SHA,'',content,user.email,user.email,ts,ts).run();
+  }catch{return fail(409,'目前已有其他編輯建立這篇文章。','active_exists');}
+  await audit(env,user,'draft_new',id,slug);
+  return ok({draft:await getDraft(env.DB,id),created:true},201);
+}
+
 async function createDraft(env,user,request,fetcher) {
   const parsed=await inputJson(request);if(!parsed.body.ok)return parsed;
   const slug=clean(parsed.body.value.slug,90);
@@ -236,7 +349,17 @@ async function submitDraft(env,user,row,request) {
   const parsed=await inputJson(request);if(!parsed.body.ok)return parsed;
   const expected=expectedRevision(parsed.body.value.expected_revision);
   if(!expected)return fail(400,'缺少草稿版本資訊。');
-  if(row.content===row.original_text)return fail(422,'請先編修並儲存內容，再提交審核。');
+  if(row.source_sha===NEW_ARTICLE_SHA){
+    if(row.revision<2)return fail(422,'請先補齊內容並儲存新版文章。','incomplete_article');
+    const body=row.content.slice(row.content.indexOf('\n---\n')+5);
+    if(body.trim().length<90||body.includes('請在這裡填寫文章內容')){
+      return fail(422,'新增文章需要完整正文，不能直接送出空白範本。','incomplete_article');
+    }
+    const metadata=seoEntryMetadata(row.content);
+    if(metadata.error)return fail(422,metadata.error,'invalid_metadata');
+  } else if(row.content===row.original_text){
+    return fail(422,'請先編修並儲存內容，再提交審核。');
+  }
   const err=validateArticleMarkdown(row.content,row.original_text);
   if(err)return fail(422,err);
   const ts=now();
@@ -283,11 +406,21 @@ async function stageDraft(env,user,row,request,fetcher) {
   const invalid=validateArticleMarkdown(row.content,row.original_text);
   if(invalid)return fail(422,invalid,'invalid_markdown');
   if(row.content===row.original_text)return fail(422,'沒有可送審的修改內容。');
-  const current=await getMainSource(env,fetcher,row.slug);
-  if(!current.body.ok)return current;
-  if(current.body.source.sha!==row.source_sha){
-    return fail(409,'正式網站的文章已有較新版本，禁止覆蓋；請建立新草稿比對更新。','source_changed');
+  const creating=row.source_sha===NEW_ARTICLE_SHA;
+  if(creating){
+    const available=await checkNewSlug(env,fetcher,row.slug);
+    if(!available.ok)return available;
+    const meta=seoEntryMetadata(row.content);
+    if(meta.error)return fail(422,meta.error,'invalid_metadata');
+    if(row.content.includes('請在這裡填寫文章內容'))return fail(422,'請先移除空白範本內容。','incomplete_article');
+  } else {
+    const current=await getMainSource(env,fetcher,row.slug);
+    if(!current.body.ok)return current;
+    if(current.body.source.sha!==row.source_sha){
+      return fail(409,'正式網站的文章已有較新版本，禁止覆蓋；請建立新草稿比對更新。','source_changed');
+    }
   }
+
   const ref=await githubRequest(env,fetcher,'GET','/git/ref/heads/main');
   if(!ref.ok||!ref.data?.object?.sha)return fail(503,'目前無法確認 GitHub 正式分支。','github_error');
   const branch=pullBranch(row);
@@ -298,13 +431,34 @@ async function stageDraft(env,user,row,request,fetcher) {
   const date=new Date(Date.now()+8*3600000).toISOString().slice(0,10);
   const finalContent=stampArticleDate(row.content,date);
   const put=await githubRequest(env,fetcher,'PUT','/contents/'+pathFor(row.slug),{
-    message:'content: submit reviewed guide article '+row.slug,
+    message:(creating?'content: add ':'content: update ')+row.slug,
     content:encodeContent(finalContent),
-    sha:row.source_sha,
+    ...(creating?{}:{sha:row.source_sha}),
     branch
   });
   if(!put.ok||!put.data?.commit?.sha){
     return fail(503,'審核分支已建立，但無法提交文章；正式網站沒有受到影響。請檢查 GitHub 權限。','github_error');
+  }
+  if(creating){
+    const seo=await githubRequest(env,fetcher,'GET','/contents/src/data/seo.ts?ref='+encodeURIComponent(branch));
+    if(!seo.ok||seo.data?.encoding!=='base64'||!seo.data?.sha){
+      return fail(503,'新文章的 GitHub 分支已建立，但無法讀取搜尋資訊，請先檢查分支。','seo_unavailable');
+    }
+    let updatedSeo;
+    try{
+      updatedSeo=insertArticleSeo(decodeContent(seo.data.content),row.slug,
+        seoEntryMetadata(row.content).data.seoTitle,
+        seoEntryMetadata(row.content).data.seoDescription);
+    }catch{
+      return fail(409,'SEO 搜尋資料已變更，請管理員檢查新文章 PR 分支。','seo_conflict');
+    }
+    const seoPut=await githubRequest(env,fetcher,'PUT','/contents/src/data/seo.ts',{
+      message:'seo: register new guide article '+row.slug,
+      content:encodeContent(updatedSeo),sha:seo.data.sha,branch
+    });
+    if(!seoPut.ok||!seoPut.data?.commit?.sha){
+      return fail(503,'文章已存入審核分支，但搜尋資訊尚未更新，請管理員檢查 PR。','seo_unavailable');
+    }
   }
   const pr=await githubRequest(env,fetcher,'POST','/pulls',{
     title:'文章審核：'+row.slug,
@@ -345,10 +499,22 @@ async function publishDraft(env,user,row,request,fetcher) {
       pr.data?.head?.ref!==pullBranch(row)||pr.data?.head?.sha!==row.pr_head_sha) {
     return fail(409,'GitHub 審核 PR 已更新或關閉，請先到 GitHub 核對。','pr_changed');
   }
-  const current=await getMainSource(env,fetcher,row.slug);
-  if(!current.body.ok)return current;
-  if(current.body.source.sha!==row.source_sha) {
-    return fail(409,'正式文章已有其他更新，請先比較差異，不可覆蓋。','source_changed');
+  if(row.source_sha===NEW_ARTICLE_SHA){
+    const available=await checkNewSlug(env,fetcher,row.slug);
+    if(!available.ok)return available;
+    const changed=await githubRequest(env,fetcher,'GET',
+      '/pulls/'+row.pr_number+'/files?per_page=100');
+    const expected=['src/content/entries/'+row.slug+'.md','src/data/seo.ts'].sort();
+    if(!changed.ok||!Array.isArray(changed.data)||
+      JSON.stringify(changed.data.map(x=>x.filename).sort())!==JSON.stringify(expected)){
+      return fail(409,'新文章 PR 檔案不符合預期，已停止發布。','pr_changed');
+    }
+  }else{
+    const current=await getMainSource(env,fetcher,row.slug);
+    if(!current.body.ok)return current;
+    if(current.body.source.sha!==row.source_sha){
+      return fail(409,'正式文章已有其他更新，請先比較差異，不可覆蓋。','source_changed');
+    }
   }
   const checks=await githubRequest(env,fetcher,'GET','/commits/'+row.pr_head_sha+'/check-runs?check_name=check-seo&filter=latest&per_page=20');
   if(!checks.ok)return fail(503,'無法驗證 GitHub 的網站建置測試。請檢查權杖的 Checks Read 權限。','checks_unavailable');
@@ -398,6 +564,9 @@ export async function handleEditorRequest(env,user,request,url,fetcher=fetch) {
   if(!ROLES.includes(user?.role))return fail(403,'此帳號沒有文章編輯權限。','forbidden');
   await ensureTables(env.DB);
   const path=url.pathname.replace(/\/+$/,'');
+  if(path==='/api/editor/new'&&request.method==='POST'){
+    return createNewArticleDraft(env,user,request,fetcher);
+  }
   if(path==='/api/editor/drafts'){
     if(request.method==='GET')return listDrafts(env,user);
     if(request.method==='POST')return createDraft(env,user,request,fetcher);

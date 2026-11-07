@@ -6,6 +6,7 @@ import { queryWebAnalytics } from './analytics.js';
 import { recentUpdates } from './updates.js';
 import { listArticles } from './articles.js';
 import { handleEditorRequest } from './editor.js';
+import { getContentInsights } from './insights.js';
 
 const ROLES = ['owner', 'editor', 'moderator'];
 const STATUSES = ['pending', 'approved', 'resolved', 'rejected'];
@@ -198,6 +199,47 @@ async function ratingStats(env, url) {
     unresolved: Number(r.unresolved) || 0, reasons: map.get(r.entry_id) || {}
   })) });
 }
+// Read-only individual rating records: no voter_hash, IP, token or reader identity.
+// A record is the latest feedback PER anonymous browser/article, not a full click log.
+export async function ratingHistory(env,url){
+  const period=url.searchParams.get('period')||'30';
+  if(!['30','all'].includes(period))return {status:400,body:{ok:false,error:'統計期間不正確。'}};
+  const entry=url.searchParams.get('entry')||'';
+  if(entry && !/^[a-z0-9][a-z0-9-]{1,85}$/.test(entry)){
+    return {status:400,body:{ok:false,error:'文章網址代號不正確。'}};
+  }
+  const limit=Math.min(50,Math.max(1,Number(url.searchParams.get('limit'))||25));
+  const offset=Math.min(2000,Math.max(0,Number(url.searchParams.get('offset'))||0));
+  const cutoff=new Date(Date.now()-30*86400000).toISOString();
+  const where=[];
+  const bindings=[];
+  if(period==='30'){
+    where.push('updated_at >= ?');
+    bindings.push(cutoff);
+  }
+  if(entry){
+    where.push('entry_id = ?');
+    bindings.push(entry);
+  }
+  const clause=where.length?' WHERE '+where.join(' AND '):'';
+  const results=await env.DB.prepare(
+    'SELECT entry_id,entry_title,vote,reason,created_at,updated_at '+
+    'FROM article_ratings'+clause+
+    ' ORDER BY updated_at DESC,id DESC LIMIT ? OFFSET ?'
+  ).bind(...bindings,limit+1,offset).all();
+  const rows=results.results||[];
+  return {status:200,body:{ok:true,items:rows.slice(0,limit).map(x=>({
+    entry_id:String(x.entry_id||''),
+    entry_title:String(x.entry_title||''),
+    vote:x.vote,
+    reason:x.reason,
+    created_at:x.created_at,
+    updated_at:x.updated_at,
+    modified:x.updated_at!==x.created_at
+  })),has_more:rows.length>limit,offset,limit,period,
+  note:'每篇文章每個匿名瀏覽器保留最新評價。首次回饋及最後更新時間均來自原有資料庫，不會顯示讀者身分；修改前的舊評價沒有另外保存。'}};
+}
+
 async function usersList(env) {
   const r = await env.DB.prepare(
     'SELECT email, display_name, role, active, created_at, updated_at ' +
@@ -270,7 +312,7 @@ export default {
       if (request.method === 'POST' && !sameOriginPost(request, url)) {
         return error('跨網站請求已拒絕。', 403);
       }
-      if (path === '/api/editor/drafts' || path.startsWith('/api/editor/drafts/')) {
+      if (path === '/api/editor/new' || path === '/api/editor/drafts' || path.startsWith('/api/editor/drafts/')) {
         const denied = requireRole(user, 'owner', 'editor');
         if (denied) return denied;
         const result = await handleEditorRequest(env, user, request, url);
@@ -285,6 +327,14 @@ export default {
         if (path === '/api/overview') return overview(env);
         if (path === '/api/comments') return requireRole(user, 'owner', 'moderator') || commentsList(env, url);
         if (path === '/api/ratings') return ratingStats(env, url);
+        if (path === '/api/ratings/history') {
+          const history=await ratingHistory(env,url);
+          return json(history.body,history.status);
+        }
+        if (path === '/api/insights') {
+          const insights=await getContentInsights(env,url);
+          return json(insights.body,insights.status);
+        }
         if (path === '/api/articles') {
           return requireRole(user, 'owner', 'editor') || (async () => {
             const result = await listArticles(fetch, env);

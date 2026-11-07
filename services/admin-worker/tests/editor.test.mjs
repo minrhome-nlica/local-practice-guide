@@ -43,7 +43,7 @@ function fakeDB(){
             return role?{email:a[0],role,active:1,display_name:role}:null;
           }
           if(sql.includes('SELECT * FROM admin_article_drafts WHERE id='))return drafts.get(a[0])||null;
-          if(sql.includes('SELECT id,author_email FROM admin_article_drafts WHERE slug=')){
+          if(sql.includes('FROM admin_article_drafts WHERE slug=')){
             return [...drafts.values()].find(d=>d.slug===a[0]&&!['cancelled','published'].includes(d.status))||null;
           }
           return null;
@@ -299,4 +299,146 @@ test('public GitHub CI checks are read without fine-grained PAT; PR operations r
   assert.equal(seen[1].headers.Authorization,'Bearer secret-token-that-must-stay-private');
   await githubRequest(env,fetcher,'PUT','/pulls/42/merge',{merge_method:'squash'});
   assert.equal(seen[2].headers.Authorization,'Bearer secret-token-that-must-stay-private');
+});
+
+test('create new article draft requires unique slug, valid category, metadata and private D1 storage',async()=>{
+  const {db,drafts}=fakeDB(),calls=[];
+  const env={DB:db,GITHUB_EDITOR_TOKEN:'new-article-test-token'};
+  const git=async(url,opts)=>{
+    calls.push({url,opts});
+    return {ok:false,status:404,json:async()=>({message:'not found'})};
+  };
+  const data={
+    slug:'community-learning-guide',
+    title:'社區共學活動怎麼辦',
+    category:'plans',
+    summary:'整理社區共學活動的準備、經費編列和成果檢查方式，供地方工作者參考。',
+    seo_title:'社區共學活動籌備指南：計畫、經費與成果',
+    seo_description:'了解如何籌備社區共學活動、準備相關文件、編列經費與整理成果，以實務案例說明。',
+    tags:['社區','共學']
+  };
+  let result=await call(env,editor,'/api/editor/new','POST',data,git);
+  assert.equal(result.status,201,JSON.stringify(result.body));
+  const row=result.body.draft;
+  assert.equal(row.slug,data.slug);
+  assert.equal(row.source_sha,'NEW_ARTICLE');
+  assert.equal(row.original_text,'');
+  assert.match(row.content,/seo_title: "社區共學活動籌備指南/);
+  assert.match(row.content,/tags:\n  - "社區"\n  - "共學"/);
+  assert.equal(drafts.size,1);
+  assert.equal(calls.length,1);
+  assert.ok(calls[0].url.endsWith('/contents/src/content/entries/community-learning-guide.md?ref=main'));
+  const duplicate=await call(env,editor,'/api/editor/new','POST',data,git);
+  assert.equal(duplicate.status,409);
+  const blocked=await call(env,editor,'/api/editor/new','POST',{...data,category:'invalid'},git);
+  assert.equal(blocked.status,400);
+  const invalidSlug=await call(env,editor,'/api/editor/new','POST',{...data,slug:'../etc'},git);
+  assert.equal(invalidSlug.status,400);
+  const oneWithoutBody=await call(env,editor,'/api/editor/drafts/'+row.id+'/submit','POST',{expected_revision:1},git);
+  assert.equal(oneWithoutBody.status,422);
+  assert.equal(drafts.get(row.id).status,'draft');
+});
+
+test('new article stages Markdown and SEO in a dedicated PR; no automatic site publishing',async()=>{
+  const {db,drafts}=fakeDB();
+  const env={DB:db,GITHUB_EDITOR_TOKEN:'new-article-test-token'};
+  const slug='community-learning-guide',sha='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+    head='bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+    mergeSha='cccccccccccccccccccccccccccccccccccccccc';
+  const seoSource=[
+    'export const articleSearchMetadata: Record<string, {title: string; description: string}> = {',
+    "  'existing': {",
+    "    title: '舊版標題',",
+    "    description: '舊版摘要'",
+    '  }',
+    '};',
+    '',
+    'export const homepageSearch = {',
+    "  title: '首頁',",
+    "  description: '首頁搜尋描述'",
+    '};',
+    ''
+  ].join('\n');
+  const calls=[];
+  const git=async(url,opts)=>{
+    const uri=new URL(url),method=opts.method||'GET';
+    const data=opts.body?JSON.parse(opts.body):null;
+    calls.push({path:uri.pathname+uri.search,method,data});
+    const payload=(status,body)=>({ok:status>=200&&status<300,status,json:async()=>body});
+    if(uri.pathname.endsWith('/contents/src/content/entries/'+slug+'.md')&&method==='GET')
+      return payload(404,{message:'not found'});
+    if(uri.pathname.endsWith('/git/ref/heads/main'))return payload(200,{object:{sha}});
+    if(uri.pathname.endsWith('/git/refs')&&method==='POST')return payload(201,{ref:data.ref});
+    if(uri.pathname.endsWith('/contents/src/content/entries/'+slug+'.md')&&method==='PUT'){
+      assert.ok(!Object.hasOwn(data,'sha'),'new file must not specify old blob SHA');
+      assert.equal(data.branch.startsWith('guide-article-'+slug+'-'),true);
+      assert.match(Buffer.from(data.content,'base64').toString('utf8'),/社區共學活動怎麼辦/);
+      return payload(200,{commit:{sha:head}});
+    }
+    if(uri.pathname.endsWith('/contents/src/data/seo.ts')&&method==='GET'){
+      return payload(200,{sha,encoding:'base64',
+        content:Buffer.from(seoSource,'utf8').toString('base64')});
+    }
+    if(uri.pathname.endsWith('/contents/src/data/seo.ts')&&method==='PUT'){
+      assert.equal(data.sha,sha);
+      assert.equal(data.branch.startsWith('guide-article-'+slug+'-'),true);
+      const actual=Buffer.from(data.content,'base64').toString('utf8');
+      assert.match(actual,/community-learning-guide/);
+      assert.match(actual,/export const homepageSearch/);
+      assert.match(actual,/existing/);
+      return payload(200,{commit:{sha:head}});
+    }
+    if(uri.pathname.endsWith('/pulls')&&method==='POST'){
+      assert.equal(data.base,'main');
+      return payload(201,{number:42,
+        html_url:'https://github.com/minrhome-nlica/local-practice-guide/pull/42',
+        head:{ref:data.head,sha:head}});
+    }
+    if(uri.pathname.endsWith('/pulls/42')&&method==='GET'){
+      const branch=calls.find(x=>x.path.endsWith('/git/refs')).data.ref.replace('refs/heads/','');
+      return payload(200,{state:'open',base:{ref:'main'},head:{ref:branch,sha:head}});
+    }
+    if(uri.pathname.endsWith('/pulls/42/files')){
+      return payload(200,[
+        {filename:'src/content/entries/'+slug+'.md',status:'added'},
+        {filename:'src/data/seo.ts',status:'modified'}
+      ]);
+    }
+    if(uri.pathname.endsWith('/commits/'+head+'/check-runs')){
+      return payload(200,{check_runs:[{name:'check-seo',status:'completed',conclusion:'success'}]});
+    }
+    if(uri.pathname.endsWith('/pulls/42/merge')&&method==='PUT')
+      return payload(200,{merged:true,sha:mergeSha});
+    return payload(404,{message:'not found'});
+  };
+  const details={
+    slug,title:'社區共學活動怎麼辦',category:'plans',
+    summary:'整理社區共學活動的準備、經費編列和成果檢查方式，供地方工作者參考。',
+    seo_title:'社區共學活動籌備指南：計畫、經費與成果',
+    seo_description:'了解如何籌備社區共學活動、準備相關文件、編列經費與整理成果，以實務案例說明。'
+  };
+  const created=await call(env,editor,'/api/editor/new','POST',details,git);
+  assert.equal(created.status,201,JSON.stringify(created.body));
+  const id=created.body.draft.id;
+  const updated=created.body.draft.content.replace(
+    '請在這裡填寫文章內容，儲存後再提交審核。',
+    '這是一篇完整的社區共學文章。從人員邀請、場地準備、活動安排，到經費編列、執行紀錄和成果資料整理，逐步說明如何準備。'.repeat(2)
+  );
+  const path='/api/editor/drafts/'+id;
+  assert.equal((await call(env,editor,path+'/save','POST',
+    {expected_revision:1,content:updated},git)).status,200);
+  assert.equal((await call(env,editor,path+'/submit','POST',
+    {expected_revision:2},git)).status,200);
+  const staged=await call(env,owner,path+'/stage','POST',
+    {expected_revision:3,confirm:'APPROVE'},git);
+  assert.equal(staged.status,200,JSON.stringify(staged.body));
+  assert.equal(staged.body.draft.status,'staged');
+  assert.equal(drafts.get(id).pr_number,42);
+  assert.ok(!calls.some(x=>x.path.endsWith('/pulls/42/merge')));
+  const published=await call(env,owner,path+'/publish','POST',
+    {expected_revision:4,confirm:'PUBLISH'},git);
+  assert.equal(published.status,200,JSON.stringify(published.body));
+  assert.equal(published.body.draft.status,'published');
+  assert.equal(published.body.draft.published_commit,mergeSha);
+  assert.ok(calls.some(x=>x.path.endsWith('/commits/'+head+'/check-runs?check_name=check-seo&filter=latest&per_page=20')));
 });
