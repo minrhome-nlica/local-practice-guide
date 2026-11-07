@@ -84,3 +84,49 @@ test('analytics endpoint cannot bypass Cloudflare Access even with token configu
   },{});
   assert.equal(response.status,403);
 });
+
+test('empty site dataset is explicitly not presented as verified zero traffic',async()=>{
+  let requests=0;
+  const result=await queryWebAnalytics(env,new URL(endpoint+'?days=7'),async()=>{
+    requests++;
+    return {ok:true,status:200,json:async()=>({data:{viewer:{accounts:[{total:[],daily:[],topPaths:[]}]}}})};
+  });
+  assert.equal(result.status,200);
+  assert.equal(result.body.configured,true);
+  assert.equal(result.body.available,false);
+  assert.equal(result.body.data_state,'no_events');
+  assert.match(result.body.message,/不代表網站真的沒人閱讀/);
+  assert.equal(requests,1);
+});
+test('30-day empty data probes account-level RUM without leaking other site totals',async()=>{
+  const calls=[];
+  const fetcher=async (_url, options)=>{
+    const payload=JSON.parse(options.body);
+    calls.push(payload);
+    if(calls.length===1){
+      return {ok:true,status:200,json:async()=>({data:{viewer:{accounts:[{total:[],daily:[],topPaths:[]}]}}})};
+    }
+    return {ok:true,status:200,json:async()=>({data:{viewer:{accounts:[{sample:[{count:100}]}]}}})};
+  };
+  const result=await queryWebAnalytics(env,new URL(endpoint+'?days=30'),fetcher);
+  assert.equal(result.status,200);
+  assert.equal(result.body.available,false);
+  assert.equal(result.body.account_rum_detected,true);
+  assert.match(result.body.diagnostic,/帳戶內有/);
+  assert.equal(calls.length,2);
+  assert.equal(calls[0].variables.filter.siteTag,site);
+  assert.equal(calls[1].variables.filter.siteTag,undefined);
+  assert.doesNotMatch(JSON.stringify(result.body),/100|test-token-never-real/);
+});
+test('30-day probe distinguishes no account-level RUM data',async()=>{
+  let n=0;
+  const result=await queryWebAnalytics(env,new URL(endpoint+'?days=30'),async()=>{
+    n++;
+    return n===1?
+      {ok:true,status:200,json:async()=>({data:{viewer:{accounts:[{total:[],daily:[],topPaths:[]}]}}})}:
+      {ok:true,status:200,json:async()=>({data:{viewer:{accounts:[{sample:[]}]}}})};
+  });
+  assert.equal(result.body.available,false);
+  assert.equal(result.body.account_rum_detected,false);
+  assert.match(result.body.diagnostic,/帳戶目前也沒有/);
+});
