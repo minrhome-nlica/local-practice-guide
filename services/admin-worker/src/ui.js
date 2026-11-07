@@ -305,7 +305,7 @@ export const ADMIN_CLIENT = String.raw`
     if(state.loading)return;
     state.tab=tab;
     setMobileMenu(false);
-    $('[data-panel]').forEach(el=>{el.hidden=el.dataset.panel!==tab;});
+    $$('[data-panel]').forEach(el=>{el.hidden=el.dataset.panel!==tab;});
     $$('.nav-item').forEach(el=>el.classList.toggle('current',el.dataset.tab===tab));
     $('#page-title').textContent=tabTitles[tab]||'管理後台';
     $('#page-subtitle').textContent=tab==='overview'?'掌握重要待辦與網站內容管理情形。':'地方實踐指南內部管理介面';
