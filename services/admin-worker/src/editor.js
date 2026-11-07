@@ -94,7 +94,13 @@ export async function githubRequest(env,fetcher,method,path,body=null) {
     'User-Agent':'local-practice-guide-admin',
     'X-GitHub-Api-Version':'2022-11-28'
   };
-  if(token)headers.Authorization='Bearer '+token;
+  // This guide repository is public. GitHub's Checks API allows anonymous reads
+  // for public check runs, but fine-grained PAT UIs may not offer Checks: read.
+  // Never send a Contents/PR-only token to the Checks endpoint: some GitHub
+  // installations reject that scoped token even though anonymous reads work.
+  const publicChecks=method==='GET' &&
+    /^\/commits\/[a-f0-9]{40}\/check-runs(?:\?|$)/i.test(path);
+  if(token&&!publicChecks)headers.Authorization='Bearer '+token;
   if(body!==null)headers['Content-Type']='application/json';
   try {
     const response=await fetcher(API+path,{
