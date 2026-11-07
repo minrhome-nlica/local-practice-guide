@@ -406,6 +406,20 @@ export const ADMIN_CLIENT = String.raw`
     tasks.append(intro);
     const hint=n('p','hint','工作人員可以在「文章草稿與審核」建立草稿與送審；網站分析已另設專區。');
     tasks.append(hint);
+    if(permitted('articles')){
+      try{
+        const editorial=await api('/api/editor/drafts');
+        const pending=(editorial.items||[]).filter(d=>d.status==='review').length;
+        const staged=(editorial.items||[]).filter(d=>d.status==='staged').length;
+        tasks.append(n('p','',pending+' 篇草稿等待審核；'+staged+' 篇正在等待 GitHub 測試或發布。'));
+        if(pending||staged){
+          const open=n('button','primary','查看文章草稿與審核');
+          open.type='button';open.addEventListener('click',()=>show('articles'));tasks.append(open);
+        }
+      }catch{
+        tasks.append(n('p','hint','目前無法讀取草稿審核統計，請至文章草稿頁查看。'));
+      }
+    }
     const analyticsBtn=n('button','','查看網站流量');
     analyticsBtn.type='button';analyticsBtn.addEventListener('click',()=>show('analytics'));
     tasks.append(analyticsBtn);
