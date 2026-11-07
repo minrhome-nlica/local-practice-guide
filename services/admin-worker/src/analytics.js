@@ -20,7 +20,38 @@ export const WEB_ANALYTICS_QUERY = [
   '    }',
   '  }',
   '}'
+
 ].join('\n');
+
+// Used ONLY when this site's GraphQL result is empty. We return a boolean,
+// never traffic volumes or page paths from any other site in the account.
+const RUM_ACCOUNT_PROBE = [
+  'query GuideRUMProbe($accountTag: string!, $filter: AccountRumPageloadEventsAdaptiveGroupsFilter_InputObject) {',
+  '  viewer { accounts(filter: { accountTag: $accountTag }) {',
+  '    sample: rumPageloadEventsAdaptiveGroups(filter: $filter, limit: 1) { count }',
+  '  } }',
+  '}'
+].join('\n');
+
+async function probeAccountHasRum(fetcher, token, accountTag, start, end) {
+  try {
+    const response = await fetcher(GRAPHQL_ENDPOINT, {
+      method:'POST',
+      headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer ' + token },
+      body:JSON.stringify({
+        query:RUM_ACCOUNT_PROBE,
+        variables:{accountTag,filter:{datetime_geq:start,datetime_leq:end}}
+      }),
+      signal:AbortSignal.timeout(12000)
+    });
+    if (!response.ok) return null;
+    const data = await response.json();
+    if (Array.isArray(data?.errors) && data.errors.length) return null;
+    const rows = data?.data?.viewer?.accounts?.[0]?.sample;
+    if (!Array.isArray(rows)) return null;
+    return rows.some(row => positive(row?.count) > 0);
+  } catch { return null; }
+}
 
 function positive(value) {
   const n = Number(value);
@@ -127,6 +158,17 @@ export async function queryWebAnalytics(env, url, fetcher = fetch) {
     return reportStatus(502, 'graphql', 'Cloudflare 分析查詢失敗，請檢查站點權限與可用的資料期間。');
   }
   const result = parseReport(data, period, start, end);
+  if (result.status === 200 && result.body.available === false && period === 30) {
+    const accountHasRum = await probeAccountHasRum(fetcher,token,accountTag,start,end);
+    result.body.account_rum_detected = accountHasRum;
+    if (accountHasRum === true) {
+      result.body.diagnostic = 'Cloudflare 帳戶內有 Web Analytics 紀錄，但以目前指南站點標籤查不到。請核對 Cloudflare Web Analytics「管理站點」中的追蹤 Token 是否與網站安裝的標籤一致。';
+    } else if (accountHasRum === false) {
+      result.body.diagnostic = 'Cloudflare 帳戶目前也沒有可用的 Web Analytics 追蹤紀錄。請確認正式網站已開始傳送瀏覽器追蹤資料，並在 Cloudflare Web Analytics 原始儀表板確認。';
+    } else {
+      result.body.diagnostic = '目前無法完成站點來源的交叉檢查，請以 Cloudflare Web Analytics 原始儀表板確認。';
+    }
+  }
   if (result.status === 200) cache.set(period, { expiry: now + CACHE_MS, body:result.body });
   return result;
 }
