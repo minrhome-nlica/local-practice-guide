@@ -1,8 +1,37 @@
-# 地方實踐指南：管理後台第一階段（獨立 Cloudflare Worker）
+# 地方實踐指南：工作人員管理後台（獨立 Cloudflare Worker）
 
 > 此後台已於 2026-11-07 經由 Cloudflare Workers Builds 上線，入口為 `https://guide-admin-console.e7968.workers.dev/`，並由 Cloudflare Access + D1 管理員白名單進行雙重授權。
 >
 > 後台程式仍從獨立開發分支自動部署；公開網站頁尾已指向新管理後台，舊版留言管理暫留備援。
+
+## 第二階段：文章草稿、送審與安全發布
+
+本階段程式已具備文章正文編輯、D1 草稿、退回修改、管理員核准建立 GitHub PR，以及通過自動檢查後合併發布的完整流程。
+
+**但新功能必須先完成兩項 Cloudflare 私有設定，才會正式啟用：**
+
+1. **D1 備份與遷移**：Cloudflare → D1 SQL Database → `guide-feedback` → 先備份，再進入 Console 執行 `migrations/2026-11-07-article-drafts.sql` 的全文。這是加法建表，可重複執行，不會更動留言、評分與現有管理員。
+2. **設定 Worker Secret（只供最高管理員發布）**：在 GitHub 建立**細緻範圍的 Fine-grained personal access token**，只能使用 `minrhome-nlica/local-practice-guide` 這一個 repository，至少勾選：
+   - Repository permissions → **Contents: Read and write**
+   - **Pull requests: Read and write**
+   - **Checks: Read**（用來確認 `check-seo` 自動測試確實通過）
+   
+   在 Cloudflare Workers → `guide-admin-console` → Settings → Variables and Secrets 新增 **Secret** `GITHUB_EDITOR_TOKEN`，貼入權杖。請勿在聊天、GitHub、網址或一般公開環境變數中放入權杖。可為 Token 設定適當的到期日，之後定期輪換。
+
+**操作流程：**
+- `editor` 與 `owner`：到「文章草稿與審核」選公開文章，編輯 **Markdown 正文**（原有標題、分類、SEO 資料與圖片配置不會被草稿改動），按「儲存草稿」，確認差異後「送出審核」。
+- `owner`：檢查修改前後的文字、法規數據與 GitHub 版本，可「退回修改」並附原因；核准時建立 `guide-editor/<draft-id>` 分支與 PR，**不會直接修改 main**。
+- `owner`：在 GitHub PR 核對完整差異及 SEO 測試通過後，再按「檢查並正式發布」。後台會再次確認正式文章並未被其他人更新，才允許合併 PR 至 main；成功合併後正式網站由 GitHub Pages 自動部署。
+- 公開站部署後，原有 Sitemap 及文章 `updated` 日期會依正式建置更新；只在核准發布時改動這次文章的 `updated` 日期。
+- 工作人員可在「操作紀錄」查看草稿建立、儲存、送審、退回、建立 PR、正式發布的管理紀錄。草稿只存在 D1，不會在讀者網站曝光。
+
+**安全限制及已知範圍：**
+- 不允許未經審核的草稿直接發布；`moderator` 既不能查看也不能修改草稿；`editor` 只能查看與修改自己建立的草稿。
+- 保存原始 GitHub blob SHA 與 D1 草稿修訂版本，避免多人修改覆蓋與舊版內容直接發布；GitHub PR 自動檢查未通過時不能由後台合併。
+- 編輯器目前為 Markdown 正文＋安全的簡化閱讀預覽＋文字差異比較，**不是完全模擬 Astro 正式排版的 WYSIWYG**。含圖表、互動元件或自訂 HTML 的文章須查看 GitHub PR 與部署後畫面。新建文章、圖片上傳、SEO 標題直接編輯、版本一鍵回復及公開更新公告仍未開放。
+- GitHub 操作可能因網路中斷只執行部分步驟。若建立分支／PR 後發生錯誤，**不要反覆建立相同 PR**，先由管理員到 GitHub 查看 `guide-editor/` 分支與 PR 狀態，再處理。
+- 如果未執行 D1 遷移，後台既有留言、評分和分析功能仍會正常；文章編輯頁會顯示需要初始化草稿資料表。
+- 若未設定 `GITHUB_EDITOR_TOKEN`，草稿與送審／退回可使用，但核准建立 PR 和正式發布不可使用，也不會宣稱成功。
 
 ## 一、已實作的功能
 
@@ -15,14 +44,14 @@
 - **Web Analytics**：已具備 7／30 天瀏覽量、訪問次數、每日趨勢及熱門頁面，透過唯讀 API Token 查詢，並自動區別 siteTag 與 siteToken；沒有查到紀錄時不視為 0 流量。
 - 最高管理員：新增、停用、調整工作人員；操作紀錄保存審核者、時間和異動。
 - 手機版使用可展開的功能選單；統計、留言回覆、手機輸入欄、工作人員權限管理與網站分析圖表皆支援窄螢幕。登入狀態由 Access 維護，不在 localStorage 保存金鑰。
-- **文章目錄（唯讀）**：從 GitHub main 的 Markdown 詞條檔案取得名稱、分類、摘要、更新日期、編輯標籤；可搜尋、篩選並連到原始檔與公開文章。內建草稿編輯／審核／發布尚未啟用。
+- **文章目錄＋草稿審核**：可搜尋、篩選文章；完成 D1 與 GitHub Secret 設定後可在後台建立草稿、修改正文、送審、退回、核准 PR 與正式發布。
 - **重要更新紀錄（內部候選）**：讀取 GitHub main 的最近提交，依文章／新功能／修正／一般維護分類；僅供管理員核對，不自動公開發布。
 - 留言回覆未送出時，在當前頁面工作階段內暫存輸入（純瀏覽器記憶體；不是資料庫草稿），切換篩選可保留輸入；提交成功才清除。
 - 一旦部署，與 **現有** \`guide-feedback\` D1 共用資料，但 **不修改現有公開留言 Worker**。
 
 ## 二、第一階段尚未實作
 
-- **文章草稿／發布**：已預留角色與入口，但尚無可用的文章編輯／發布 API；目前文章仍以 GitHub Markdown 為正式版本。下一階段才接入草稿 → 預覽 → 管理員核准 → GitHub 發布，並建立版本差異與還原。
+- **完整 WYSIWYG 與版本一鍵還原**：目前編輯器有 Markdown 正文編輯、簡化預覽、修改前後文字比較；尚不支援圖片直接上傳、完全還原既有 HTML 元件排版、完整歷史版本還原。
 
 - **重大更新公開公告**：內部候選清單已實作；下一階段才加入管理員審核、對外發布、分類與公告訂閱。
 - **讀者帳號**：預留未來方向，這次不開放註冊。
@@ -131,8 +160,8 @@ Cloudflare 官方權杖設定指南：https://developers.cloudflare.com/analytic
 | 讀者留言檢視與審核 | ✅ | ❌ | ✅ |
 | 檢視／調整工作人員 | ✅ | ❌ | ❌ |
 | 操作紀錄 | ✅ | ❌ | ❌ |
-| 文章草稿編輯（下一階段） | ✅ | ✅ | ❌ |
-| 正式發布文章（下一階段） | ✅ | ❌ | ❌ |
+| 草稿編輯與送審（完成 D1 遷移後） | ✅ | ✅ | ❌ |
+| 核准 PR 與正式發布（需 GitHub Secret） | ✅ | ❌ | ❌ |
 
 ## 六、檢查指令
 
@@ -157,7 +186,7 @@ GitHub Actions \`.github/workflows/admin-console-check.yml\` 同時測試認證�
                                       管理員 / 編輯 / 留言審核
 \`\`\`
 
-下一階段草稿編輯與審核：使用 GitHub 當唯一正式來源，避免 D1 草稿和 Markdown 同時變成不同版本。建議草稿建立時存原始 Git SHA、編輯者、變更時間，管理員看到文字 diff，審核時確認 GitHub 原版沒有被其他人更新，才以 GitHub API 或 Pull Request 發布。預設不允許直接改 main。
+已完成的草稿編輯與審核使用 GitHub 當唯一正式來源，避免 D1 草稿和 Markdown 同時變成不同版本。建議草稿建立時存原始 Git SHA、編輯者、變更時間，管理員看到文字 diff，審核時確認 GitHub 原版沒有被其他人更新，才以 GitHub API 或 Pull Request 發布。預設不允許直接改 main。
 
 Web Analytics 已用 GraphQL API 與唯讀 Secret 實作，包含站點自動辨識、日期區間比對與錯誤降級。若原始報表有流量但後台沒有，請檢查站點的真正 `siteTag` 與 `requestHost`。不要把公開 beacon token 當作 GraphQL siteTag。
 
