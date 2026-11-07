@@ -74,6 +74,12 @@ test('client code parses and render has no embedded password',()=>{
   assert.match(ADMIN_CSS,/max-width:1000px/);
   assert.doesNotMatch(ADMIN_HTML,/ADMIN_TOKEN|Bearer\s+[a-z0-9]/i);
 });
+test('dashboard navigation selects every panel instead of calling array methods on a single element',()=>{
+  assert.match(ADMIN_CLIENT,/const \$ = selector => document\.querySelector\(selector\)/);
+  assert.match(ADMIN_CLIENT,/const \$\$ = selector => \[\.\.\.document\.querySelectorAll\(selector\)\]/);
+  assert.ok(ADMIN_CLIENT.includes("$('[data-panel]').forEach("));
+  assert.ok(!ADMIN_CLIENT.includes("$('[data-panel]').forEach("));
+});
 test('no Access identity is denied and no data leaks',async()=>{
   const {env}=fixture();
   const response=await call('/api/me',env,{});
