@@ -321,6 +321,32 @@ export const ADMIN_CLIENT = String.raw`
       $('#analytics-note').textContent='網站分析讀取權限尚未完成，因此不顯示任何虛構流量。';
       return;
     }
+    if(data.available===false){
+      summary.append(
+        stat('頁面瀏覽量','—','尚未收到此站資料'),
+        stat('訪問次數','—','無法確認'),
+        stat('資料範圍',days+' 天','目前查詢區間'),
+        stat('熱門頁面','—','尚無可用資料')
+      );
+      status.textContent=data.message||'Cloudflare 沒有傳回這個站點的瀏覽紀錄。';
+      const hints=n('div','');
+      hints.append(n('p','','這不是登入或權杖錯誤；也不能據此認定網站沒有訪客。'));
+      hints.append(n('p','hint','請在 Cloudflare 控制台的 Web Analytics 比對同一個站點是否有流量，並確認公開網站追蹤程式已開始傳送資料。新安裝的追蹤程式不能補算安裝前的瀏覽紀錄。'));
+      if(days===7){
+        try{
+          const month=await api('/api/analytics?days=30');
+          hints.append(n('p','hint',month.configured&&month.available?
+            '自動檢查：最近 30 天有資料，7 天沒有記錄。請切換成「最近 30 天」查看。':
+            '自動檢查：最近 30 天也沒有可用的此站流量紀錄。請優先核對 Cloudflare Web Analytics 站點設定。'));
+        }catch{
+          hints.append(n('p','hint','最近 30 天的延伸檢查暫時無法完成。'));
+        }
+      }
+      chart.append(hints);
+      pages.append(n('p','empty','尚無可用的熱門頁面數據；此處不會顯示虛構排名。'));
+      $('#analytics-note').textContent='Cloudflare API 已回應，但此網站在查詢區間沒有符合條件的事件紀錄。';
+      return;
+    }
     summary.append(
       stat('頁面瀏覽量',fmt(data.pageviews),'Cloudflare Web Analytics'),
       stat('訪問次數',fmt(data.visits),'不等於不重複訪客'),
