@@ -113,7 +113,8 @@ test('article list authenticates GitHub API reads using server-side secret only'
     if(url.includes('/contents/src/content/entries?ref=main')){
       return {ok:true,json:async()=>[{name:'reimbursement.md',type:'file'}]};
     }
-    return {ok:true,text:async()=> '---\\ntitle: 怎麼核銷\\nsummary: 核銷指南\\ncategory: finance\\nupdated: 2026-11-07\\n---\\n說明'};
+    return {ok:true,text:async()=> ['---','title: 怎麼核銷','summary: 核銷指南',
+      'category: finance','updated: 2026-11-07','---','說明'].join(String.fromCharCode(10))};
   };
   const response=await listArticles(fetcher,{GITHUB_EDITOR_TOKEN:secret});
   assert.equal(response.status,200);
@@ -135,7 +136,8 @@ test('article list falls back to public sitemap when GitHub directory API is una
       '</urlset>'
     };
     if(url.includes('/reimbursement.md'))return {ok:true,text:async()=>
-      '---\\ntitle: 怎麼核銷\\nsummary: 政府補助核銷\\ncategory: finance\\nupdated: 2026-11-07\\n---\\n內文'};
+      ['---','title: 怎麼核銷','summary: 政府補助核銷',
+      'category: finance','updated: 2026-11-07','---','內文'].join(String.fromCharCode(10))};
     throw new Error('Unexpected URL '+url);
   };
   const response=await listArticles(fetcher,{GITHUB_EDITOR_TOKEN:'bad-token-not-visible'});
