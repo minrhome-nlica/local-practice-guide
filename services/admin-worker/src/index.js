@@ -6,6 +6,7 @@ import { queryWebAnalytics } from './analytics.js';
 import { recentUpdates } from './updates.js';
 import { listArticles } from './articles.js';
 import { handleEditorRequest } from './editor.js';
+import { getContentInsights } from './insights.js';
 
 const ROLES = ['owner', 'editor', 'moderator'];
 const STATUSES = ['pending', 'approved', 'resolved', 'rejected'];
@@ -285,6 +286,10 @@ export default {
         if (path === '/api/overview') return overview(env);
         if (path === '/api/comments') return requireRole(user, 'owner', 'moderator') || commentsList(env, url);
         if (path === '/api/ratings') return ratingStats(env, url);
+        if (path === '/api/insights') {
+          const insights=await getContentInsights(env,url);
+          return json(insights.body,insights.status);
+        }
         if (path === '/api/articles') {
           return requireRole(user, 'owner', 'editor') || (async () => {
             const result = await listArticles(fetch, env);
