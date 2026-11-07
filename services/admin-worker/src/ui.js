@@ -24,7 +24,7 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <button type="button" class="nav-item current" data-tab="overview">總覽儀表板</button>
         <button type="button" class="nav-item" data-tab="comments" data-role="owner moderator">讀者留言管理</button>
         <button type="button" class="nav-item" data-tab="ratings">文章回饋分析</button>
-        <button type="button" class="nav-item" data-tab="articles" data-role="owner editor">文章目錄與編修</button>
+        <button type="button" class="nav-item" data-tab="articles" data-role="owner editor">文章草稿與審核</button>
         <button type="button" class="nav-item" data-tab="analytics">網站分析 Web Analytics</button>
         <button type="button" class="nav-item" data-tab="updates">重要更新紀錄</button>
         <button type="button" class="nav-item" data-tab="team" data-role="owner">工作人員與權限</button>
@@ -58,10 +58,56 @@ export const ADMIN_HTML = String.raw`<!doctype html>
           <button id="refresh-articles" type="button">重新整理</button>
         </div>
         <div class="card">
-          <h3>編輯與發布原則</h3>
-          <p>這裡目前提供已存在於正式分支的文章清單，供工作人員查閱與定位檔案。<strong>內建草稿編輯、送審及管理員核准發布尚未啟用。</strong></p>
-          <p class="hint">文章裡標記的「編輯稿」是內容編輯註記，不等於尚未公開。請繼續依既有 GitHub／Pages CMS 工作流程處理，正式發布前由管理員確認。</p>
+          <h3>文章編輯與審核流程</h3>
+          <p><strong>編輯人員：</strong>選擇文章、修改正文、儲存草稿，再送給最高管理員審核。<strong>最高管理員：</strong>對照修改前後，退回修改或核准建立 GitHub PR；自動檢查通過後才能正式發布。</p>
+          <p class="hint">原有正式文章、SEO 資料與網站排版不會在儲存草稿時改動。草稿只編輯 Markdown 正文；圖片、表格與複雜 HTML 請確認 GitHub 差異及網站呈現。詞條檔頭中的「編輯稿」是編輯標記，不代表內容尚未公開。</p>
+          <p id="editor-config-status" class="hint" role="status" aria-live="polite">正在檢查文章編輯設定…</p>
         </div>
+        <div class="card editor-draft-board">
+          <div class="section-head">
+            <div><h3>草稿與待審核文章</h3><p>只會顯示你有權查看的草稿。管理員可查看全部。</p></div>
+            <button id="refresh-drafts" type="button">更新草稿清單</button>
+          </div>
+          <label>顯示狀態<select id="draft-status-filter">
+            <option value="all">全部狀態</option>
+            <option value="draft">撰寫中</option>
+            <option value="submitted">等待審核</option>
+            <option value="changes_requested">退回修改</option>
+            <option value="pr_open">GitHub PR 待發布</option>
+            <option value="published">已發布</option>
+          </select></label>
+          <p id="draft-count" class="hint" role="status" aria-live="polite">正在讀取草稿…</p>
+          <div id="draft-list" class="stack"></div>
+        </div>
+        <div id="editor-workspace" class="card editorial-workspace" hidden>
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">EDITORIAL WORKSPACE</span>
+              <h3 id="editor-title">編輯文章</h3>
+              <p id="editor-meta" class="hint"></p>
+            </div>
+            <button id="editor-close" type="button">返回文章清單</button>
+          </div>
+          <p id="editor-work-status" class="hint" role="status" aria-live="polite">尚未選擇文章。</p>
+          <label class="editor-text-label" for="editor-body">文章正文（Markdown）</label>
+          <textarea id="editor-body" class="editor-textarea" rows="20" maxlength="120000" spellcheck="false" placeholder="在此編輯文章正文"></textarea>
+          <p class="hint">只修改正文，原文章標題、分類、關聯文章與 SEO 資料仍以正式檔案為準。編輯器的閱讀預覽僅簡化呈現，正式網站可能包含圖片、表格及其他自訂樣式。</p>
+          <div class="actions editor-actions">
+            <button id="editor-save" type="button" class="primary">儲存草稿</button>
+            <button id="editor-submit" type="button">送出審核</button>
+            <button id="editor-return" type="button" hidden>退回修改</button>
+            <button id="editor-approve" type="button" hidden>核准並建立 GitHub PR</button>
+            <button id="editor-publish" type="button" hidden>檢查並正式發布</button>
+          </div>
+          <div id="editor-pull-request" hidden class="editor-pr-link"></div>
+          <div class="editor-preview-buttons actions">
+            <button id="editor-preview-toggle" type="button">閱讀預覽（簡化）</button>
+            <button id="editor-diff-toggle" type="button">對照修改前後</button>
+          </div>
+          <div id="editor-preview" class="editor-preview" hidden></div>
+          <div id="editor-diff" class="editor-diff" hidden></div>
+        </div>
+        <h3 class="section-title">已公開文章目錄</h3>
         <div class="filters">
           <label>搜尋文章名稱<input id="article-search" type="search" maxlength="80" placeholder="輸入名稱或關鍵字"></label>
           <label>文章分類<select id="article-category"><option value="all">所有分類</option></select></label>
@@ -151,6 +197,37 @@ button:not(.nav-item){border:1px solid #c3d2c5;border-radius:9px;min-height:40px
 .article-meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
 .article-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
 .article-links a{min-height:36px;display:inline-flex;align-items:center}
+.editor-draft-board label{display:flex;flex-direction:column;gap:6px;max-width:260px;font-weight:600;margin:8px 0 14px}
+.editor-draft-board select{width:100%;min-width:0}
+.editorial-workspace{border:2px solid #7c9d85}
+.editorial-workspace h3{margin:0}
+.editor-text-label{display:block;font-weight:700;margin:16px 0 8px}
+.editor-textarea{width:100%;resize:vertical;min-height:360px;max-width:100%;padding:14px;font-size:15px;line-height:1.7;font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;background:#fcfdfb;color:#25342a;overflow-wrap:normal;white-space:pre;overflow-x:auto}
+.editor-actions,.editor-preview-buttons{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}
+.editor-actions button{min-height:44px}
+.editor-preview,.editor-diff{margin-top:18px;border:1px solid #dfe7df;background:#fbfcf9;border-radius:12px;padding:16px;max-height:65vh;overflow:auto}
+.editor-preview h2,.editor-preview h3,.editor-preview h4{margin:16px 0 8px;line-height:1.4}
+.editor-preview p{white-space:pre-wrap;margin:8px 0}
+.editor-preview pre,.editor-diff pre{font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;margin:8px 0;background:#f2f6f0;padding:12px;border-radius:8px}
+.editor-diff-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.editor-diff-grid>div{min-width:0}
+.editor-diff-grid strong{font-size:13px}
+.editor-diff-grid pre{max-height:50vh;overflow:auto}
+.editor-diff .before pre{background:#fff1ed}
+.editor-diff .after pre{background:#edf8ef}
+.editor-pr-link{margin-top:14px;overflow-wrap:anywhere;background:#e7f2e9;border-radius:8px;padding:12px}
+.editor-draft-row{border-bottom:1px solid #e7ede7;padding:12px 0}
+.editor-draft-row:last-child{border-bottom:0}
+.editor-draft-row p{margin:5px 0}
+@media(max-width:720px){
+ .editor-diff-grid{grid-template-columns:1fr}
+ .editorial-workspace{padding:14px}
+ .editor-textarea{font-size:16px;min-height:50vh}
+ .editor-actions{display:grid;grid-template-columns:1fr}
+ .editor-actions button,.editor-preview-buttons button{width:100%}
+ .editor-preview-buttons{display:grid;grid-template-columns:1fr}
+ .editor-draft-board label{max-width:none}
+}
 [hidden]{display:none!important}
 .mobile-bar{display:contents}.mobile-menu-toggle{display:none!important}
 .analytics-mobile-hint{display:none}
