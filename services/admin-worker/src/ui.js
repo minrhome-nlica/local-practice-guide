@@ -13,7 +13,12 @@ export const ADMIN_HTML = String.raw`<!doctype html>
   <a class="skip" href="#main">跳到主要內容</a>
   <div class="shell">
     <aside class="sidebar" aria-label="管理選單">
-      <a class="brand" href="/"><small>MOUNT COUNTY / ADMIN</small><strong>地方實踐指南</strong><span>網站管理中心</span></a>
+      <div class="mobile-bar">
+        <a class="brand" href="/"><small>MOUNT COUNTY / ADMIN</small><strong>地方實踐指南</strong><span>網站管理中心</span></a>
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle" type="button" aria-controls="navigation" aria-expanded="false" aria-label="開啟後台功能選單">
+          <span class="menu-icon" aria-hidden="true">☰</span><span class="menu-label">功能選單</span>
+        </button>
+      </div>
       <p class="nav-title">管理功能</p>
       <nav id="navigation" aria-label="後台功能">
         <button type="button" class="nav-item current" data-tab="overview">總覽儀表板</button>
@@ -61,7 +66,7 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         </div>
         <p id="analytics-status" class="hint" role="status" aria-live="polite">準備讀取 Cloudflare 統計資料…</p>
         <div class="stats" id="analytics-summary"></div>
-        <div class="card"><h3>每日瀏覽趨勢</h3><div id="analytics-chart" class="analytics-chart" role="img" aria-label="每日網站瀏覽量直條圖"><p class="hint">載入中…</p></div></div>
+        <div class="card"><h3>每日瀏覽趨勢</h3><p class="hint analytics-mobile-hint">手機可在圖表範圍內左右滑動，查看完整每日數據。</p><div id="analytics-chart" class="analytics-chart" role="img" aria-label="每日網站瀏覽量直條圖"><p class="hint">載入中…</p></div></div>
         <div class="card"><h3>熱門頁面</h3><div id="analytics-top-pages" class="analytics-pages"><p class="hint">載入中…</p></div></div>
         <p class="hint" id="analytics-note">資料來源：Cloudflare Web Analytics。訪問次數不是不重複訪客人數；資料可能有延遲及抽樣估算。</p>
         <a href="https://dash.cloudflare.com/" rel="noopener noreferrer" target="_blank">前往 Cloudflare 控制台查看原始統計 ↗</a>
@@ -112,7 +117,87 @@ button:not(.nav-item){border:1px solid #c3d2c5;border-radius:9px;min-height:40px
 .analytics-rank{color:#74887d;min-width:22px;text-align:right}
 .analytics-page-link{flex:1;min-width:0;overflow-wrap:anywhere;font-size:13px}
 .analytics-page-row strong{font-size:13px;color:#294f3e;white-space:nowrap}
-[hidden]{display:none!important}@media(max-width:940px){.shell{grid-template-columns:1fr}.sidebar{position:static;height:auto;padding:14px 14px 8px}.brand{padding:6px}.brand strong{font-size:18px}.nav-title{display:none}.sidebar nav{display:flex;gap:6px;overflow-x:auto;padding:6px 0}.nav-item{width:auto;white-space:nowrap;flex:none;font-size:13px;padding:8px 12px}.future{display:none}.sidebar-foot{flex-direction:row;flex-wrap:wrap;justify-content:space-between;padding:9px 6px 0}main{padding:20px 14px 48px}.topbar{margin:8px 0 24px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat,.card,.item{padding:16px}}@media(max-width:480px){.stats{gap:8px}.stat b{font-size:22px}.topbar{flex-direction:column;gap:10px}.profile{text-align:left}.filters>*{flex:1 1 100%;width:100%}.section-head{flex-direction:column}.section-head button{width:100%}.user-row .user-select{flex:1}.pagination{gap:8px}}
+[hidden]{display:none!important}
+.mobile-bar{display:contents}.mobile-menu-toggle{display:none!important}
+.analytics-mobile-hint{display:none}
+@media(max-width:1000px){
+  html,body{max-width:100%;overflow-x:clip}
+  .shell{display:block;min-width:0}
+  .sidebar{height:auto;position:sticky;top:0;z-index:50;padding:8px 14px;background:#183c33;box-shadow:0 3px 12px #102b211c}
+  .mobile-bar{display:flex;align-items:center;gap:12px;justify-content:space-between}
+  .brand{padding:4px 0;min-width:0;flex:1}
+  .brand strong{font-size:18px;line-height:1.4}
+  .brand small{font-size:9px}
+  .brand span{font-size:11px}
+  .sidebar .mobile-menu-toggle{display:inline-flex!important;min-height:44px;align-items:center;justify-content:center;gap:7px;flex:none;background:transparent;color:#fff;border-color:#809c89;padding:8px 12px;font-size:14px}
+  .sidebar .mobile-menu-toggle:hover{background:#315947;color:#fff}
+  .menu-icon{font-size:20px;line-height:1}
+  .nav-title{display:none}
+  .sidebar nav{display:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:min(64dvh,520px);overflow-y:auto;overscroll-behavior:contain;padding:13px 0 10px;border-top:1px solid #426457;margin-top:8px}
+  .sidebar.menu-open nav{display:grid}
+  .nav-item{min-width:0;width:100%;white-space:normal;font-size:14px;min-height:49px;padding:10px 12px;text-align:left;display:flex;flex-direction:column;justify-content:center;margin:0}
+  .future{display:block;font-size:11px;line-height:1.5}
+  .sidebar-foot{display:none;flex-direction:row;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:10px 0 4px}
+  .sidebar.menu-open .sidebar-foot{display:flex}
+  main{width:100%;max-width:100%;min-width:0;padding:24px 16px 58px}
+  .topbar{gap:12px;margin:0 0 25px;flex-wrap:wrap}
+  .topbar h1{font-size:clamp(24px,5vw,30px)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+  .stat,.card,.item{padding:16px}
+  .filters label,.section-head label{min-width:0}
+  .analytics-chart{max-width:100%}
+  .analytics-mobile-hint{display:block}
+}
+@media(max-width:600px){
+  body{font-size:14px}
+  main{padding:22px 14px 70px}
+  .sidebar{padding:8px 12px}
+  .mobile-bar{gap:8px}
+  .sidebar .mobile-menu-toggle{padding:8px 11px}
+  .sidebar nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .topbar{flex-direction:column;gap:10px;margin-bottom:22px}
+  .profile{text-align:left}
+  .profile strong{font-size:12px}
+  .topbar h1{font-size:26px}
+  .section-head{flex-direction:column;align-items:stretch;gap:12px}
+  .section-head>button{width:100%}
+  .section-head label{width:100%}
+  .filters{display:grid;grid-template-columns:minmax(0,1fr);gap:11px;margin:12px 0 18px}
+  .filters>*{min-width:0;width:100%}
+  .filters label{width:100%}
+  .filters input[type=search]{min-width:0}
+  input,select,textarea,.user-select,.filters input,.filters select,.section-head select{font-size:16px;min-height:44px}
+  button:not(.nav-item){min-height:44px}
+  .stat{padding:13px 14px}
+  .stat b{font-size:24px}
+  .stat small,.stat span{font-size:12px}
+  .card,.item{padding:15px}
+  .item .actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .item .actions button{min-width:0;width:100%;padding:9px 6px;line-height:1.4;white-space:normal}
+  .pagination{gap:9px;flex-wrap:wrap}
+  .user-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:100%;gap:10px}
+  .user-main{grid-column:1 / -1;min-width:0}
+  .user-row .user-select{min-width:0;width:100%}
+  .user-row>button{grid-column:1 / -1;width:100%}
+  .analytics-controls{display:grid;grid-template-columns:minmax(0,1fr);width:100%;gap:10px}
+  .analytics-controls label{min-width:0}
+  .analytics-controls button{width:100%}
+  .analytics-bars{height:190px}
+  .analytics-day{min-width:34px}
+  .analytics-bar-track{height:120px}
+  .analytics-page-row{gap:9px}
+  .analytics-page-link{font-size:13px}
+  .analytics-page-row strong{font-size:12px}
+}
+@media(max-width:360px){
+  .stats{grid-template-columns:1fr}
+  .sidebar nav{grid-template-columns:1fr}
+  .menu-label{display:none}
+  .item .actions{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:no-preference){
+  .sidebar nav{scroll-behavior:smooth}
+}
 `;
 
 export const ADMIN_CLIENT = String.raw`
@@ -169,12 +254,23 @@ export const ADMIN_CLIENT = String.raw`
     if(tab==='articles')return ['owner','editor'].includes(state.user.role);
     return true;
   }
+  function setMobileMenu(open){
+    const sidebar=$('.sidebar'),toggle=$('#mobile-menu-toggle');
+    if(!sidebar||!toggle)return;
+    const expanded=!!open;
+    sidebar.classList.toggle('menu-open',expanded);
+    toggle.setAttribute('aria-expanded',String(expanded));
+    toggle.setAttribute('aria-label',expanded?'關閉後台功能選單':'開啟後台功能選單');
+    const icon=toggle.querySelector('.menu-icon');
+    if(icon)icon.textContent=expanded?'×':'☰';
+  }
   const tabTitles={overview:'總覽儀表板',comments:'讀者留言管理',ratings:'文章回饋分析',
     articles:'文章與草稿',analytics:'Web Analytics',updates:'更新紀錄',team:'工作人員與權限',audit:'操作紀錄'};
   async function show(tab){
     if(!state.user||!permitted(tab))return;
     state.tab=tab;
-    $$('[data-panel]').forEach(el=>{el.hidden=el.dataset.panel!==tab;});
+    setMobileMenu(false);
+    $('[data-panel]').forEach(el=>{el.hidden=el.dataset.panel!==tab;});
     $$('.nav-item').forEach(el=>el.classList.toggle('current',el.dataset.tab===tab));
     $('#page-title').textContent=tabTitles[tab]||'管理後台';
     $('#page-subtitle').textContent=tab==='overview'?'掌握重要待辦與網站內容管理情形。':'地方實踐指南內部管理介面';
@@ -444,6 +540,18 @@ export const ADMIN_CLIENT = String.raw`
         state.site=data.site_url.replace(/\/$/,'');
         $('#open-site').href=state.site+'/';
       }
+      const menuToggle=$('#mobile-menu-toggle');
+      menuToggle.addEventListener('click',()=>setMobileMenu(!$('.sidebar').classList.contains('menu-open')));
+      document.addEventListener('keydown',e=>{if(e.key==='Escape')setMobileMenu(false);});
+      document.addEventListener('click',e=>{
+        if(window.matchMedia('(max-width:1000px)').matches&&
+          $('.sidebar').classList.contains('menu-open')&&!e.target.closest('.sidebar')){
+          setMobileMenu(false);
+        }
+      });
+      window.matchMedia('(min-width:1001px)').addEventListener('change',e=>{
+        if(e.matches)setMobileMenu(false);
+      });
       $('#signed-in-user').textContent=state.user.display_name||state.user.email;
       $('#role-label').textContent=labels[state.user.role]||'管理員';
       $$('.nav-item').forEach(btn=>{
