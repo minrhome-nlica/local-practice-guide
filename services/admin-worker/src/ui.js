@@ -77,6 +77,43 @@ export const ADMIN_HTML = String.raw`<!doctype html>
           <p>編輯人員可以建立、修改、儲存及送審草稿；最高管理員可以退回、核准建立 GitHub 審核 PR，並在 SEO 建置檢查通過後正式發布。</p>
           <p class="hint">草稿僅儲存在受保護的後台資料庫，讀者不會看到。正式文章始終以 GitHub main 為準；編輯器先支援 Markdown 原始碼，含表格及 HTML 的文章請注意核對預覽與正式頁面。</p>
         </div>
+        <div class="card new-article-card">
+          <div class="section-head">
+            <div><h3>新增全新文章</h3><p>建立詞條後先存成草稿；最高管理員審核通過 GitHub 建置檢查才會正式發布。</p></div>
+            <button type="button" id="new-article-toggle" aria-expanded="false" aria-controls="new-article-fields">新增文章</button>
+          </div>
+          <form id="new-article-fields" hidden>
+            <div class="new-article-fields">
+              <label>文章標題 <input id="new-article-title" name="title" maxlength="125" required placeholder="例如：如何撰寫成果報告"></label>
+              <label>文章網址代號（英文小寫與連字號）
+                <input id="new-article-slug" name="slug" maxlength="60" required pattern="[a-z0-9][a-z0-9-]{1,59}" placeholder="例如：project-result-guide">
+              </label>
+              <label>文章分類
+                <select id="new-article-category" name="category" required>
+                  <option value="basics">認識地方實踐</option>
+                  <option value="organizations">組織成立與經營</option>
+                  <option value="plans">計畫與資源</option>
+                  <option value="finance">經費與財務</option>
+                  <option value="people">人事與法律</option>
+                  <option value="tools">工作工具與技能</option>
+                </select>
+              </label>
+              <label>文章摘要
+                <textarea id="new-article-summary" name="summary" rows="3" maxlength="380" required placeholder="用一段話說明這篇文章處理的問題"></textarea>
+              </label>
+              <label>Google 搜尋標題 <input id="new-article-seo-title" name="seoTitle" maxlength="135" required placeholder="可以與網站文章標題不同"></label>
+              <label>Google 搜尋摘要
+                <textarea id="new-article-seo-description" name="seoDescription" rows="3" maxlength="340" required placeholder="描述讀者能從這篇文章找到什麼答案"></textarea>
+              </label>
+              <label>標籤（用逗號分隔，非必填）
+                <input id="new-article-tags" name="tags" maxlength="240" placeholder="例如：成果報告、核銷、政府補助">
+              </label>
+            </div>
+            <p class="hint">標題與摘要會預先建立文章的 YAML 資訊及搜尋描述。文章建立後請在下方編輯正文，再送審；新增時不會立即出現在公開網站。</p>
+            <div class="actions"><button class="primary" type="submit" id="new-article-create">建立文章草稿</button></div>
+          </form>
+        </div>
+
         <div class="filters">
           <label>搜尋文章名稱<input id="article-search" type="search" maxlength="80" placeholder="輸入名稱或關鍵字"></label>
           <label>文章分類<select id="article-category"><option value="all">所有分類</option></select></label>
@@ -233,6 +270,16 @@ button:not(.nav-item){border:1px solid #c3d2c5;border-radius:9px;min-height:40px
   .draft-heading{margin-top:28px}
 }
 @media(max-width:350px){.draft-action-bar{grid-template-columns:1fr}}
+.new-article-card{margin-bottom:24px}
+.new-article-card form{margin-top:16px}
+.new-article-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.new-article-fields label{display:flex;min-width:0;flex-direction:column;gap:5px;font-size:13px;font-weight:700;color:#385044}
+.new-article-fields input,.new-article-fields select,.new-article-fields textarea{
+  min-width:0;max-width:100%;width:100%;font-size:16px;color:#22352a;background:#fff;
+  border:1px solid #bdcebf;border-radius:9px;padding:10px 12px;line-height:1.5
+}
+.new-article-fields label:nth-child(4),.new-article-fields label:nth-child(6){grid-column:1/-1}
+@media(max-width:650px){.new-article-fields{grid-template-columns:1fr}.new-article-fields label{grid-column:1/-1}}
 [hidden]{display:none!important}
 .mobile-bar{display:contents}.mobile-menu-toggle{display:none!important}
 .analytics-mobile-hint{display:none}
@@ -622,6 +669,35 @@ export const ADMIN_CLIENT = String.raw`
       }
       item.append(buttons);box.append(item);
     }
+  }
+  async function createNewArticle(event){
+    event.preventDefault();
+    const title=$('#new-article-title').value.trim();
+    const slug=$('#new-article-slug').value.trim();
+    const summary=$('#new-article-summary').value.trim();
+    const seoTitle=$('#new-article-seo-title').value.trim();
+    const seoDescription=$('#new-article-seo-description').value.trim();
+    const category=$('#new-article-category').value;
+    const tags=$('#new-article-tags').value.split(/[，,]/).map(s=>s.trim()).filter(Boolean);
+    if(!title||!slug||!summary||!seoTitle||!seoDescription)return;
+    if(!/^[a-z0-9][a-z0-9-]{1,59}$/.test(slug)){
+      message('文章網址只能使用英文小寫、數字與連字號，長度最多 60 字元。',true);return;
+    }
+    if(!confirm('確定建立「'+title+'」的未發布草稿？'))return;
+    await guarded(async()=>{
+      const result=await api('/api/editor/new',{
+        method:'POST',body:JSON.stringify({
+          slug,title,summary,seo_title:seoTitle,seo_description:seoDescription,category,tags
+        })
+      });
+      $('#new-article-fields').reset();
+      $('#new-article-fields').hidden=true;
+      $('#new-article-toggle').setAttribute('aria-expanded','false');
+      await loadDrafts();
+      state.currentDraft=result.draft;
+      renderDraftEditor();
+      message('新文章草稿已建立。請補齊正文、儲存後送交審核。');
+    });
   }
   async function createArticleDraft(slug){
     if(state.currentDraft&&$('#draft-content').value!==state.currentDraft.content&&
@@ -1028,7 +1104,13 @@ export const ADMIN_CLIENT = String.raw`
       bindDraftActions();
       $('#article-search').addEventListener('input',()=>renderArticleList());
       $('#article-category').addEventListener('change',()=>renderArticleList());
-      $('#refresh-articles').addEventListener('click',()=>show('articles'));
+()=>init+`
+      $('#new-article-toggle').addEventListener('click',()=>{
+        const form=$('#new-article-fields');
+        form.hidden=!form.hidden;
+        $('#new-article-toggle').setAttribute('aria-expanded',String(!form.hidden));
+      });
+      $('#new-article-fields').addEventListener('submit',createNewArticle);`
       $('#updates-type').addEventListener('change',()=>show('updates'));
       $('#refresh-updates').addEventListener('click',()=>show('updates'));
       $('#analytics-period').addEventListener('change',()=>show('analytics'));
