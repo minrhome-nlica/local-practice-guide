@@ -4,6 +4,7 @@
 import { ADMIN_HTML, ADMIN_CSS, ADMIN_CLIENT } from './ui.js';
 import { queryWebAnalytics } from './analytics.js';
 import { recentUpdates } from './updates.js';
+import { listArticles } from './articles.js';
 
 const ROLES = ['owner', 'editor', 'moderator'];
 const STATUSES = ['pending', 'approved', 'resolved', 'rejected'];
@@ -277,6 +278,12 @@ export default {
         if (path === '/api/overview') return overview(env);
         if (path === '/api/comments') return requireRole(user, 'owner', 'moderator') || commentsList(env, url);
         if (path === '/api/ratings') return ratingStats(env, url);
+        if (path === '/api/articles') {
+          return requireRole(user, 'owner', 'editor') || (async () => {
+            const result = await listArticles();
+            return json(result.body, result.status);
+          })();
+        }
         if (path === '/api/updates') {
           const result = await recentUpdates(url);
           return json(result.body, result.status);
