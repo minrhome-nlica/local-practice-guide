@@ -183,6 +183,8 @@ jobs:
           urls = {
               'homepage':'https://guide.mountcounty.com/',
               'about':'https://guide.mountcounty.com/about/',
+              'sitemap':'https://guide.mountcounty.com/sitemap.xml',
+              'robots':'https://guide.mountcounty.com/robots.txt',
               'team-photo':'https://guide.mountcounty.com/images/about/nlica-team-2026.avif',
               'social-organization-site':'https://www.nlica.org/'
           }
@@ -193,4 +195,38 @@ jobs:
                   print('::warning::HTTPS verification failed for '+name+': '+result.stderr.strip()[:180])
               else:
                   print('HTTPS '+name+': '+result.stdout)
+          PY
+
+      - name: Diagnose live sitemap accessibility and XML for search engines
+        continue-on-error: true
+        run: |
+          python3 - <<'PY'
+          import urllib.request
+          import xml.etree.ElementTree as ET
+
+          origin='https://guide.mountcounty.com'
+          def read(path):
+              req=urllib.request.Request(origin+path, headers={'User-Agent':'Mozilla/5.0 (Site-SEO-Diagnostics)'})
+              with urllib.request.urlopen(req,timeout=25) as response:
+                  code=response.status
+                  kind=response.headers.get('Content-Type','')
+                  body=response.read(800_000)
+                  print(f'{path}: HTTP {code}; Content-Type={kind}; bytes={len(body)}; final={response.url}')
+                  if code!=200: raise RuntimeError(f'{path} is not HTTP 200')
+                  return body
+          sitemap=read('/sitemap.xml')
+          root=ET.fromstring(sitemap)
+          ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          if root.tag!='{http://www.sitemaps.org/schemas/sitemap/0.9}urlset':
+              raise RuntimeError('Sitemap XML must contain sitemaps.org urlset')
+          urls=[elem.text or '' for elem in root.findall('.//s:loc',ns)]
+          if not urls or any(not u.startswith(origin+'/') for u in urls):
+              raise RuntimeError('No site URLs in sitemap or mismatched origin')
+          print(f'Sitemap OK: {len(urls)} public URLs, first={urls[0]}')
+          robots=read('/robots.txt').decode('utf-8')
+          if f'Sitemap: {origin}/sitemap.xml' not in robots:
+              raise RuntimeError('robots.txt missing canonical sitemap reference')
+          if any(line.strip()=='Disallow: /' for line in robots.splitlines()):
+              raise RuntimeError('robots.txt globally blocks crawling')
+          print('robots.txt OK: sitemap advertised and public pages not globally blocked')
           PY
