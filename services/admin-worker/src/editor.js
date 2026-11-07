@@ -190,7 +190,13 @@ export async function editorRoute(env,user,request,url,fetcher=fetch){
   }
   if(method!=='POST')return result(404,'沒有這個文章編輯操作。','not_found');
   let input;
-  try{input=await request.json();}catch{return inputError('文章草稿資料格式不正確。');}
+  try{
+    const raw=await request.text();
+    if(encoder.encode(raw).length>160000){
+      return result(413,'文章編輯請求超過 160 KB 上限。','too_large');
+    }
+    input=JSON.parse(raw);
+  }catch{return inputError('文章草稿資料格式不正確。');}
   if(!input||typeof input!=='object'||Array.isArray(input))return inputError('文章草稿資料格式不正確。');
   if(path==='/api/editor/drafts'){
     const slug=input.slug;
