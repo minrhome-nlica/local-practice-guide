@@ -287,7 +287,7 @@ export default {
         if (path === '/api/ratings') return ratingStats(env, url);
         if (path === '/api/articles') {
           return requireRole(user, 'owner', 'editor') || (async () => {
-            const result = await listArticles();
+            const result = await listArticles(fetch, env);
             return json(result.body, result.status);
           })();
         }
