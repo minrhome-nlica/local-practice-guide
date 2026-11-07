@@ -24,9 +24,9 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <button type="button" class="nav-item current" data-tab="overview">總覽儀表板</button>
         <button type="button" class="nav-item" data-tab="comments" data-role="owner moderator">讀者留言管理</button>
         <button type="button" class="nav-item" data-tab="ratings">文章回饋分析</button>
-        <button type="button" class="nav-item" data-tab="articles" data-role="owner editor">文章與草稿 <span class="future">下一階段</span></button>
+        <button type="button" class="nav-item" data-tab="articles" data-role="owner editor">文章目錄與編修</button>
         <button type="button" class="nav-item" data-tab="analytics">網站分析 Web Analytics</button>
-        <button type="button" class="nav-item" data-tab="updates">更新紀錄 <span class="future">下一階段</span></button>
+        <button type="button" class="nav-item" data-tab="updates">重要更新紀錄</button>
         <button type="button" class="nav-item" data-tab="team" data-role="owner">工作人員與權限</button>
         <button type="button" class="nav-item" data-tab="audit" data-role="owner">操作紀錄</button>
       </nav>
@@ -53,7 +53,21 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <div class="stats" id="rating-summary"></div><div id="rating-list" class="stack"></div>
       </section>
       <section class="panel" data-panel="articles" hidden>
-        <div class="card"><span class="eyebrow">CONTENT WORKFLOW</span><h2>文章草稿與審核</h2><p>下一階段將與 GitHub 中的 Markdown 詞條連接。編輯人員只能儲存草稿；最高管理員核對預覽與版本差異後才能發布。</p><p class="hint">此階段尚未開放文章寫入、審核與發布，避免未完成的編輯器改動既有文章。現階段請繼續使用既有 Pages CMS／GitHub 工作流程。</p></div>
+        <div class="section-head">
+          <div><h2>文章目錄與編修</h2><p>從 GitHub 正式分支整理文章清單、更新日期和內容狀態。</p></div>
+          <button id="refresh-articles" type="button">重新整理</button>
+        </div>
+        <div class="card">
+          <h3>編輯與發布原則</h3>
+          <p>這裡目前提供已存在於正式分支的文章清單，供工作人員查閱與定位檔案。<strong>內建草稿編輯、送審及管理員核准發布尚未啟用。</strong></p>
+          <p class="hint">文章裡標記的「編輯稿」是內容編輯註記，不等於尚未公開。請繼續依既有 GitHub／Pages CMS 工作流程處理，正式發布前由管理員確認。</p>
+        </div>
+        <div class="filters">
+          <label>搜尋文章名稱<input id="article-search" type="search" maxlength="80" placeholder="輸入名稱或關鍵字"></label>
+          <label>文章分類<select id="article-category"><option value="all">所有分類</option></select></label>
+        </div>
+        <p id="article-count" class="hint" role="status" aria-live="polite">正在準備文章目錄…</p>
+        <div id="article-list" class="stack"></div>
       </section>
 
       <section class="panel" data-panel="analytics" hidden>
@@ -72,7 +86,22 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <a href="https://dash.cloudflare.com/" rel="noopener noreferrer" target="_blank">前往 Cloudflare 控制台查看原始統計 ↗</a>
       </section>
       <section class="panel" data-panel="updates" hidden>
-        <div class="card"><span class="eyebrow">CHANGELOG</span><h2>大型更新紀錄</h2><p>下一階段將整理 GitHub 變更，區分文章新增、功能新增、重要修正與一般編修。自動生成草稿後，仍需由管理員確認公開。</p><p class="hint">目前不會將程式碼提交紀錄直接當成讀者可見的更新公告。</p></div>
+        <div class="section-head">
+          <div><h2>重要更新紀錄</h2><p>從 GitHub 正式網站的更新，自動整理內容新增、功能與修正紀錄。</p></div>
+          <button id="refresh-updates" type="button">重新整理</button>
+        </div>
+        <p class="hint">以下是從正式分支整理的<strong>內部候選清單</strong>，不是公開公告。分類依提交訊息推估；重要變更仍需由管理員核對，才可用於正式發布紀錄。</p>
+        <div class="filters">
+          <label>紀錄分類<select id="updates-type">
+            <option value="all">全部更新</option>
+            <option value="articles">文章與內容</option>
+            <option value="feature">新增功能</option>
+            <option value="fix">功能修正</option>
+            <option value="maintenance">一般維護</option>
+          </select></label>
+        </div>
+        <p id="updates-count" class="hint" role="status" aria-live="polite">正在讀取最近的更新…</p>
+        <div id="updates-list" class="stack"></div>
       </section>
       <section class="panel" data-panel="team" hidden>
         <div class="section-head"><div><h2>管理工作人員</h2><p>只有最高管理員能邀請、停用與調整權限。</p></div></div>
@@ -117,6 +146,11 @@ button:not(.nav-item){border:1px solid #c3d2c5;border-radius:9px;min-height:40px
 .analytics-rank{color:#74887d;min-width:22px;text-align:right}
 .analytics-page-link{flex:1;min-width:0;overflow-wrap:anywhere;font-size:13px}
 .analytics-page-row strong{font-size:13px;color:#294f3e;white-space:nowrap}
+.update-tag{display:inline-block;padding:2px 9px;border-radius:999px;background:#eaf0e7;color:#365747;font-size:12px}
+.article-row-head{display:flex;align-items:start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.article-meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.article-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
+.article-links a{min-height:36px;display:inline-flex;align-items:center}
 [hidden]{display:none!important}
 .mobile-bar{display:contents}.mobile-menu-toggle{display:none!important}
 .analytics-mobile-hint{display:none}
@@ -211,7 +245,7 @@ export const ADMIN_CLIENT = String.raw`
     missing_answer:'找不到答案',unclear:'說明不清楚',needs_examples:'希望增加案例',
     possibly_outdated:'資訊可能過時',layout_issue:'排版與操作',other:'其他' };
   const state = { user:null,site:'https://guide.mountcounty.com', tab:'overview',
-    commentOffset:0,commentMore:false,loading:false };
+    commentOffset:0,commentMore:false,loading:false,articles:[] };
   const n = (tag, cls='', value) => {
     const node=document.createElement(tag);
     if(cls) node.className=cls;
@@ -279,6 +313,8 @@ export const ADMIN_CLIENT = String.raw`
     if(tab==='comments')await guarded(loadComments);
     if(tab==='ratings')await guarded(loadRatings);
     if(tab==='analytics')await guarded(loadAnalytics);
+    if(tab==='articles')await guarded(loadArticles);
+    if(tab==='updates')await guarded(loadUpdates);
     if(tab==='team')await guarded(loadUsers);
     if(tab==='audit')await guarded(loadAudit);
   }
@@ -390,6 +426,63 @@ export const ADMIN_CLIENT = String.raw`
       if(reasons.length)card.append(n('p','rating-reasons','主要原因：'+reasons.join('、')));
       if(total<10)card.append(n('p','hint','回饋不足10筆，比例僅供參考。'));
       list.append(card);
+    }
+  }
+  function renderArticleList(){
+    const list=$('#article-list'),search=$('#article-search').value.trim().toLocaleLowerCase('zh-Hant');
+    const category=$('#article-category').value;
+    list.replaceChildren();
+    const rows=(state.articles||[]).filter(row=>
+      (category==='all'||row.category===category)&&
+      (!search||[row.title,row.summary,row.slug,row.editorial_status].join(' ').toLocaleLowerCase('zh-Hant').includes(search)));
+    $('#article-count').textContent='共 '+fmt(rows.length)+' 篇（完整目錄 '+fmt((state.articles||[]).length)+' 篇）';
+    if(!rows.length){list.append(n('p','empty','找不到符合條件的文章。'));return;}
+    for(const row of rows){
+      const card=n('article','item'),head=n('div','article-row-head'),h=n('h3','',row.title);
+      head.append(h,n('span','update-tag',row.editorial_status||'未註記'));card.append(head);
+      if(row.summary)card.append(n('p','',row.summary));
+      const meta=n('p','meta','分類：'+row.category+' · 更新日期：'+(row.updated||'未標示'));
+      card.append(meta);
+      const links=n('div','article-links');
+      const preview=n('a','','查看公開文章 ↗');
+      preview.href=state.site+'/entries/'+encodeURIComponent(row.slug)+'/';preview.target='_blank';preview.rel='noopener noreferrer';
+      const source=n('a','','查看 GitHub 原始檔 ↗');
+      source.href=row.source_url;source.target='_blank';source.rel='noopener noreferrer';
+      links.append(preview,source);card.append(links);
+      list.append(card);
+    }
+  }
+  async function loadArticles(){
+    $('#article-count').textContent='正在讀取文章目錄…';
+    const data=await api('/api/articles');
+    state.articles=data.items||[];
+    const select=$('#article-category'),selected=select.value;
+    select.replaceChildren();
+    const all=n('option','','所有分類');all.value='all';select.append(all);
+    const categories=[...new Set(state.articles.map(row=>row.category))].sort((a,b)=>a.localeCompare(b,'zh-Hant'));
+    for(const cat of categories){
+      const opt=n('option','',cat);opt.value=cat;select.append(opt);
+    }
+    select.value=categories.includes(selected)?selected:'all';
+    renderArticleList();
+  }
+  async function loadUpdates(){
+    const type=$('#updates-type').value;
+    const list=$('#updates-list');
+    list.replaceChildren();$('#updates-count').textContent='正在整理 GitHub 更新紀錄…';
+    const data=await api('/api/updates?type='+encodeURIComponent(type));
+    $('#updates-count').textContent='共 '+fmt(data.total||0)+' 筆候選更新（來自網站正式分支）';
+    if(!data.items?.length){list.append(n('div','empty','目前沒有符合這個分類的更新紀錄。'));return;}
+    for(const row of data.items){
+      const card=n('article','item');
+      const head=n('div','article-row-head');
+      head.append(n('span','update-tag',row.category_label||'維護更新'));
+      head.append(n('span','meta',time(row.date)));
+      card.append(head,n('h3','',row.title));
+      if(row.important)card.append(n('p','hint','可能屬於重要更新，請管理員核對實際變更。'));
+      const link=n('a','','查看 GitHub 變更內容 ↗');
+      link.href=row.url;link.target='_blank';link.rel='noopener noreferrer';
+      card.append(link);list.append(card);
     }
   }
   function analyticsDate(value){
@@ -571,6 +664,11 @@ export const ADMIN_CLIENT = String.raw`
         if(state.commentMore){state.commentOffset+=25;show('comments');}
       });
       $('#rating-period').addEventListener('change',()=>show('ratings'));
+      $('#article-search').addEventListener('input',()=>renderArticleList());
+      $('#article-category').addEventListener('change',()=>renderArticleList());
+      $('#refresh-articles').addEventListener('click',()=>show('articles'));
+      $('#updates-type').addEventListener('change',()=>show('updates'));
+      $('#refresh-updates').addEventListener('click',()=>show('updates'));
       $('#analytics-period').addEventListener('change',()=>show('analytics'));
       $('#analytics-refresh').addEventListener('click',()=>show('analytics'));
       $('#refresh-audit').addEventListener('click',()=>show('audit'));
