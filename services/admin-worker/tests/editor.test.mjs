@@ -136,6 +136,7 @@ function fakeGithub(){
         sha:PR_HEAD},base:{ref:'main'}});
     }
     if(uri.pathname.endsWith('/commits/'+PR_HEAD+'/check-runs')){
+      assert.equal(uri.searchParams.get('check_name'),'check-seo');
       return payload(200,{check_runs:allowedChecks?[{name:'check-seo',status:'completed',conclusion:'success'}]:
         [{name:'check-seo',status:'in_progress',conclusion:null}]});
     }
