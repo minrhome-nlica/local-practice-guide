@@ -5,7 +5,7 @@ on:
       - 'services/admin-worker/**'
       - '.github/workflows/admin-console-check.yml'
   push:
-    branches: [feature/admin-console-phase1-20261106]
+    branches: [feature/admin-console-phase1-20261106, feature/admin-editor-phase2-20261107]
     paths:
       - 'services/admin-worker/**'
       - '.github/workflows/admin-console-check.yml'
@@ -26,6 +26,7 @@ jobs:
           node --check services/admin-worker/src/index.js
           node --check services/admin-worker/src/ui.js
           node --check services/admin-worker/src/analytics.js
+          node --check services/admin-worker/src/editor.js
           node --test services/admin-worker/tests/*.test.mjs
       - name: Validate additive D1 migration
         run: |
@@ -39,13 +40,21 @@ jobs:
           connection.execute("""INSERT INTO feedback
             (id,entry_id,entry_title,kind,body,created_at,updated_at)
             VALUES ('test','reimbursement','怎麼核銷','question','測試留言','now','now')""")
+          migration2 = Path('services/admin-worker/migrations/2026-11-07-article-drafts.sql').read_text()
           connection.executescript(migration)
           connection.executescript(migration)
+          connection.executescript(migration2)
+          connection.executescript(migration2)
           connection.execute("""INSERT INTO admin_users
             (email,role,active,created_at,updated_at)
             VALUES ('staff@example.org','owner',1,'now','now')""")
           assert connection.execute("SELECT count(*) FROM feedback").fetchone()[0] == 1
           assert connection.execute("SELECT count(*) FROM admin_users").fetchone()[0] == 1
           assert connection.execute("SELECT count(*) FROM article_ratings").fetchone()[0] == 0
+          connection.execute("""INSERT INTO article_drafts
+            (id,slug,title,base_sha,original_body,draft_body,author_email,created_at,updated_at)
+            VALUES ('a','reimbursement','怎麼核銷','sha','old','edited','editor@example.org','now','now')""")
+          assert connection.execute("SELECT status,revision FROM article_drafts WHERE id='a'").fetchone() == ('draft',1)
+          assert connection.execute("SELECT count(*) FROM feedback").fetchone()[0] == 1
           print('Migration is repeatable and preserves existing feedback and ratings.')
           PY
