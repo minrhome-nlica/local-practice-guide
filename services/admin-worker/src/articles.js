@@ -117,7 +117,7 @@ export async function listArticles(fetcher=fetch,env={}) {
         if(response.ok){
           const file=await response.json();
           if(file?.encoding==='base64'&&typeof file.content==='string'){
-            const raw=atob(file.content.replace(/\\s/g,''));
+            const raw=atob(file.content.replace(/\s/g,''));
             const bytes=Uint8Array.from(raw,c=>c.charCodeAt(0));
             return parseFrontmatter(new TextDecoder('utf-8').decode(bytes),slug);
           }
