@@ -104,3 +104,47 @@ test('article management endpoint denies unapproved users before any GitHub call
   const response=await worker.fetch(new Request('https://test.example/api/articles'),{DB:{},ACCESS_AUD:'test-aud'}, {});
   assert.equal(response.status,403);
 });
+
+test('article list authenticates GitHub API reads using server-side secret only',async()=>{
+  const secret='testing-github-secret-do-not-log';
+  const requests=[];
+  const fetcher=async (url,options)=>{
+    requests.push({url,headers:options.headers||{}});
+    if(url.includes('/contents/src/content/entries?ref=main')){
+      return {ok:true,json:async()=>[{name:'reimbursement.md',type:'file'}]};
+    }
+    return {ok:true,text:async()=> '---\\ntitle: 怎麼核銷\\nsummary: 核銷指南\\ncategory: finance\\nupdated: 2026-11-07\\n---\\n說明'};
+  };
+  const response=await listArticles(fetcher,{GITHUB_EDITOR_TOKEN:secret});
+  assert.equal(response.status,200);
+  assert.equal(response.body.total,1);
+  assert.equal(response.body.items[0].title,'怎麼核銷');
+  assert.equal(requests[0].headers.Authorization,'Bearer '+secret);
+  assert.equal(requests[1].headers.Authorization,undefined,'never forward token to raw.githubusercontent.com');
+  assert.ok(!JSON.stringify(response).includes(secret),'never disclose token in API response');
+});
+test('article list falls back to public sitemap when GitHub directory API is unavailable',async()=>{
+  const calls=[];
+  const fetcher=async (url,options)=>{
+    calls.push({url,headers:options.headers||{}});
+    if(url.includes('/contents/src/content/entries?ref=main'))return {ok:false,status:403};
+    if(url.endsWith('/sitemap.xml'))return {
+      ok:true,text:async()=>'<urlset>'+
+      '<url><loc>https://guide.mountcounty.com/entries/reimbursement/</loc></url>'+
+      '<url><loc>https://guide.mountcounty.com/admin/</loc></url>'+
+      '</urlset>'
+    };
+    if(url.includes('/reimbursement.md'))return {ok:true,text:async()=>
+      '---\\ntitle: 怎麼核銷\\nsummary: 政府補助核銷\\ncategory: finance\\nupdated: 2026-11-07\\n---\\n內文'};
+    throw new Error('Unexpected URL '+url);
+  };
+  const response=await listArticles(fetcher,{GITHUB_EDITOR_TOKEN:'bad-token-not-visible'});
+  assert.equal(response.status,200);
+  assert.equal(response.body.total,1);
+  assert.match(response.body.source,/sitemap/i);
+  assert.equal(response.body.items[0].slug,'reimbursement');
+  assert.equal(response.body.items[0].title,'怎麼核銷');
+  assert.equal(calls.filter(x=>x.url.includes('/contents/src/content/entries?ref=main')).length,2);
+  assert.equal(calls.filter(x=>x.url.endsWith('/sitemap.xml')).length,1);
+  assert.equal(calls.find(x=>x.url.endsWith('/sitemap.xml')).headers.Authorization,undefined);
+});
