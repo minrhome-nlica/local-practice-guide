@@ -26,6 +26,7 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <button type="button" class="nav-item" data-tab="ratings">文章回饋分析</button>
         <button type="button" class="nav-item" data-tab="articles" data-role="owner editor">文章草稿與審核</button>
         <button type="button" class="nav-item" data-tab="analytics">網站分析 Web Analytics</button>
+        <button type="button" class="nav-item" data-tab="insights">內容成效與待改善文章</button>
         <button type="button" class="nav-item" data-tab="updates">重要更新紀錄</button>
         <button type="button" class="nav-item" data-tab="team" data-role="owner">工作人員與權限</button>
         <button type="button" class="nav-item" data-tab="audit" data-role="owner">操作紀錄</button>
@@ -179,6 +180,34 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <p class="hint" id="analytics-note">資料來源：Cloudflare Web Analytics。訪問次數不是不重複訪客人數；資料可能有延遲及抽樣估算。</p>
         <a href="https://dash.cloudflare.com/" rel="noopener noreferrer" target="_blank">前往 Cloudflare 控制台查看原始統計 ↗</a>
       </section>
+      <section class="panel" data-panel="insights" hidden>
+        <div class="section-head">
+          <div>
+            <h2>內容成效與待改善文章</h2>
+            <p>綜合讀者評價、待審核留言及熱門文章瀏覽量，判斷哪些文章值得優先補充或查核。</p>
+          </div>
+          <div class="analytics-controls">
+            <label>回饋統計期間<select id="insights-period">
+              <option value="30">最近 30 天</option>
+              <option value="7">最近 7 天</option>
+            </select></label>
+            <button type="button" id="insights-refresh">重新整理</button>
+          </div>
+        </div>
+        <p id="insights-status" class="hint" role="status">正在整理文章成效…</p>
+        <div id="insights-summary" class="stats"></div>
+        <div class="card">
+          <h3>優先處理的文章</h3>
+          <p class="hint">優先順序以「還沒解決」筆數加上目前待審核留言數排列，不以小樣本百分比直接判定文章品質。可從文章連結前往閱讀。</p>
+          <div id="insights-article-list" class="stack"></div>
+        </div>
+        <div class="card">
+          <h3>數據範圍與限制</h3>
+          <p id="insights-data-note" class="hint"></p>
+          <p class="hint">單篇瀏覽數只會顯示 Cloudflare 提供的前 12 個熱門網址；其他文章不是零次瀏覽。Google 的搜尋曝光與搜尋字詞需要另外連結 Search Console，這裡暫未自動讀取。</p>
+        </div>
+      </section>
+
       <section class="panel" data-panel="updates" hidden>
         <div class="section-head">
           <div><h2>重要更新紀錄</h2><p>從 GitHub 正式網站的更新，自動整理內容新增、功能與修正紀錄。</p></div>
@@ -429,7 +458,7 @@ export const ADMIN_CLIENT = String.raw`
     if(icon)icon.textContent=expanded?'×':'☰';
   }
   const tabTitles={overview:'總覽儀表板',comments:'讀者留言管理',ratings:'文章回饋分析',
-    articles:'文章草稿與審核',analytics:'Web Analytics',updates:'更新紀錄',team:'工作人員與權限',audit:'操作紀錄'};
+    articles:'文章草稿與審核',analytics:'Web Analytics',insights:'內容成效',updates:'更新紀錄',team:'工作人員與權限',audit:'操作紀錄'};
   async function show(tab){
     if(!state.user||!permitted(tab))return;
     if(state.loading)return;
@@ -444,6 +473,7 @@ export const ADMIN_CLIENT = String.raw`
     if(tab==='comments')await guarded(loadComments);
     if(tab==='ratings')await guarded(loadRatings);
     if(tab==='analytics')await guarded(loadAnalytics);
+    if(tab==='insights')await guarded(loadInsights);
     if(tab==='articles')await guarded(loadArticles);
     if(tab==='updates')await guarded(loadUpdates);
     if(tab==='team')await guarded(loadUsers);
@@ -896,6 +926,55 @@ export const ADMIN_CLIENT = String.raw`
     renderArticleList();
     await loadDrafts();
   }
+  async function loadInsights(){
+    const status=$('#insights-status');
+    const totals=$('#insights-summary');
+    const list=$('#insights-article-list');
+    const note=$('#insights-data-note');
+    status.textContent='正在整理文章成效與讀者回饋…';
+    totals.replaceChildren();list.replaceChildren();
+    const days=$('#insights-period').value==='7'?7:30;
+    let data;
+    try{data=await api('/api/insights?days='+days);}
+    catch(error){
+      status.textContent='內容成效資料暫時無法讀取：'+(error?.message||'請稍後重試');
+      return;
+    }
+    const sum=data.summary||{};
+    totals.append(
+      stat('收到評價的文章',fmt(sum.rated_articles||0)),
+      stat('期間評價筆數',fmt(sum.total_ratings||0)),
+      stat('尚未解決的評價',fmt(sum.unresolved||0)),
+      stat('目前待審留言',fmt(sum.pending_comments||0))
+    );
+    if(!data.articles?.length){
+      list.append(n('p','empty','目前還沒有累積足夠的回饋，請先使用網站並收集讀者意見。'));
+    }
+    for(const item of (data.articles||[]).slice(0,35)){
+      const card=n('article','item');
+      const head=n('div','article-row-head');
+      const link=n('a','',item.title||item.slug);
+      link.href=state.site+'/entries/'+encodeURIComponent(item.slug)+'/';
+      link.target='_blank';link.rel='noopener noreferrer';
+      head.append(link);
+      if(item.attention_count>0)head.append(n('span','update-tag','值得優先檢視'));
+      card.append(head);
+      card.append(n('p','meta',
+        '還沒解決 '+fmt(item.unresolved)+' · 待審留言 '+fmt(item.pending_comments)+
+        ' · 評價 '+fmt(item.total_feedback)));
+      if(item.pageviews!==null)card.append(n('p','hint',
+        'Cloudflare 熱門頁面瀏覽量：'+fmt(item.pageviews)+'（'+days+' 天）'));
+      const reasons=Object.entries(item.reason_counts||{}).filter(x=>Number(x[1])>0)
+        .sort((a,b)=>b[1]-a[1])
+        .map(([key,count])=>(labels[key]||key)+' '+fmt(count));
+      if(reasons.length)card.append(n('p','rating-reasons','尚未解決的原因：'+reasons.join('、')));
+      if(item.sample_small)card.append(n('p','hint','目前評價數少於 10，暫不以滿意比例判斷內容品質。'));
+      list.append(card);
+    }
+    status.textContent='已整理 '+fmt((data.articles||[]).length)+' 篇有瀏覽或讀者回饋資料的文章。';
+    note.textContent=(data.disclaimer||'')+' '+(data.analytics?.note||'')+
+      (data.analytics?.available?'':' Cloudflare 此期間未提供可比對的文章流量。');
+  }
   async function loadUpdates(){
     const type=$('#updates-type').value;
     const list=$('#updates-list');
@@ -1115,6 +1194,8 @@ export const ADMIN_CLIENT = String.raw`
       $('#refresh-updates').addEventListener('click',()=>show('updates'));
       $('#analytics-period').addEventListener('change',()=>show('analytics'));
       $('#analytics-refresh').addEventListener('click',()=>show('analytics'));
+      $('#insights-period').addEventListener('change',()=>show('insights'));
+      $('#insights-refresh').addEventListener('click',()=>show('insights'));
       $('#refresh-audit').addEventListener('click',()=>show('audit'));
       $('#create-user').addEventListener('click',()=>guarded(async()=>{
         const email=$('#new-email').value.trim(),name=$('#new-name').value.trim();
