@@ -110,6 +110,15 @@ def main():
     if len(pages) < 30:
         problems.append(f'Too few generated pages ({len(pages)}): expected at least 30')
     for page in pages:
+        # Google's HTML verification file is intentionally a one-line plain-text
+        # response with a .html extension, not a normal SEO-indexed content page.
+        if page.parent == DIST and re.fullmatch(r'google[0-9a-f]{16}\.html', page.name):
+            expected = f'google-site-verification: {page.name}'
+            actual = page.read_text(encoding='utf-8')
+            if actual.strip() != expected:
+                problems.append(f'{page}: invalid Google verification file content')
+            counts['google_verification_files'] += 1
+            continue
         p = DocParser(page)
         p.feed(page.read_text(encoding='utf-8', errors='replace'))
         counts['html_pages'] += 1
