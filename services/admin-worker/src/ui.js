@@ -966,6 +966,63 @@ export const ADMIN_CLIENT = String.raw`
       $('#article-search').addEventListener('input',()=>renderArticleList());
       $('#article-category').addEventListener('change',()=>renderArticleList());
       $('#refresh-articles').addEventListener('click',()=>show('articles'));
+      $('#refresh-editorial').addEventListener('click',()=>{
+        if(state.editorialDirty&&!confirm('尚有未儲存的草稿內容，確定重新讀取嗎？'))return;
+        state.editorialDirty=false;
+        guarded(loadEditorial);
+      });
+      $('#editorial-go-articles').addEventListener('click',()=>show('articles'));
+      $('#editorial-close').addEventListener('click',()=>{
+        if(state.editorialDirty&&!confirm('目前內容尚未儲存，確定返回列表嗎？'))return;
+        state.editorialDirty=false;state.editorialDraft=null;state.editorialId=null;
+        $('#editorial-detail').hidden=true;renderEditorialDraftList();
+      });
+      for(const id of ['editorial-title','editorial-summary','editorial-body',
+        'editorial-seo-title','editorial-seo-description']){
+        $('#'+id).addEventListener('input',editorialSetDirty);
+      }
+      $('#editorial-preview').addEventListener('click',renderEditorialPreview);
+      $('#editorial-save').addEventListener('click',()=>guarded(async()=>{
+        const row=state.editorialDraft;
+        if(!row)return;
+        await api('/api/editorial/drafts/'+encodeURIComponent(row.id)+'/save',{
+          method:'POST',body:JSON.stringify({
+            expected_revision:row.revision,
+            title:$('#editorial-title').value,
+            summary:$('#editorial-summary').value,
+            body:$('#editorial-body').value,
+            seo_title:$('#editorial-seo-title').value,
+            seo_description:$('#editorial-seo-description').value
+          })
+        });
+        state.editorialDirty=false;
+        await loadEditorial();
+      }));
+      $('#editorial-submit').addEventListener('click',()=>{
+        editorialOperation('submit',{},'確定提交管理員審核？送出後無法直接修改，需由管理員退回。');
+      });
+      $('#editorial-request-changes').addEventListener('click',()=>{
+        editorialOperation('review',{
+          action:'request_changes',note:$('#editorial-review-note').value
+        },'確定退回這篇文章，要求編輯人員修改？');
+      });
+      $('#editorial-approve').addEventListener('click',()=>{
+        editorialOperation('review',{
+          action:'approve',note:$('#editorial-review-note').value
+        },'已仔細比對文章與搜尋摘要，確定核准這份草稿？');
+      });
+      $('#editorial-prepare-pr').addEventListener('click',()=>{
+        editorialOperation('prepare',{},
+          '確定將已核准版本送至 GitHub 建立 PR？這不會直接發布到網站。');
+      });
+      $('#editorial-merge-pr').addEventListener('click',()=>{
+        editorialOperation('merge',{},
+          '確定執行正式發布？系統將確認文章版本、審核 PR 與 SEO 檢查，通過才合併到 GitHub main。');
+      });
+      window.addEventListener('beforeunload',e=>{
+        if(state.editorialDirty){e.preventDefault();e.returnValue='';}
+      });
+
       $('#updates-type').addEventListener('change',()=>show('updates'));
       $('#refresh-updates').addEventListener('click',()=>show('updates'));
       $('#analytics-period').addEventListener('change',()=>show('analytics'));
