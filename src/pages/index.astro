@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { categories, learningPaths } from '../data/catalog';
 import { commonQuestions } from '../data/commonQuestions';
+import { homepageSearch } from '../data/seo';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const entries = await getCollection('entries');
 const questions = commonQuestions;
@@ -11,7 +12,7 @@ const selectedIds = ['subsidy-guide','budget-planning','reimbursement','suppleme
 const selected = selectedIds.map(id => entries.find(e => e.id === id)).filter(Boolean);
 
 ---
-<BaseLayout>
+<BaseLayout seoTitle={homepageSearch.title} description={homepageSearch.description}>
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
