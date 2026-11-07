@@ -83,6 +83,16 @@ test('auto resolves a different GraphQL siteTag then reads matching public guide
   assert.equal(calls[1].opts.headers.Authorization,'Bearer test-token-never-real');
   assert.doesNotMatch(JSON.stringify(r.body),/test-token-never-real|11112222333344445555666677778888/);
 });
+test('a leftover legacy SITE_TAG equal to the beacon token must not bypass discovery',async()=>{
+  const {calls,fetcher}=makeFetcher();
+  const previousEnv={...env,WEB_ANALYTICS_SITE_TAG:beaconToken};
+  const r=await queryWebAnalytics(previousEnv,new URL(endpoint+'?days=7'),fetcher);
+  assert.equal(r.status,200);
+  assert.equal(r.body.available,true);
+  assert.equal(calls.length,2);
+  assert.match(calls[0].body.query,/GuideRUMSiteDiscovery/);
+  assert.equal(calls[1].body.variables.filter.siteTag,actualSiteTag);
+});
 test('site discovery can match the legacy GitHub Pages address without requesting unrelated site stats',async()=>{
   const {calls,fetcher}=makeFetcher({
     rows:[{tag:'aaaaaaaabbbbbbbbccccccccdddddddd',host:'unrelated.org',count:500},
