@@ -139,7 +139,12 @@ function parseReport(data, period, start, end, matchedHost) {
 // browser beacon's token is intentionally NEVER passed as GraphQL siteTag.
 async function resolveSiteTag(env, accountTag, token, fetcher, now, useCache) {
   const explicitTag = validTag(env.WEB_ANALYTICS_SITE_TAG);
-  if (explicitTag) return { tag: explicitTag, host: '', state: 'configured' };
+  const beaconToken = validTag(env.WEB_ANALYTICS_SITE_TOKEN);
+  // Old deployments incorrectly set the beacon token as SITE_TAG. Even if
+  // Cloudflare retains that stale variable, never use it as the GraphQL tag.
+  if (explicitTag && explicitTag !== beaconToken) {
+    return { tag: explicitTag, host: '', state: 'configured' };
+  }
   const hosts = siteHostnames(env);
   if (!hosts.length) return { tag: '', host: '', state: 'missing_host' };
   const key = accountTag + ':' + hosts.join(',');
