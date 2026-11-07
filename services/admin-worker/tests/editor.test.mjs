@@ -58,7 +58,7 @@ function fakeDB(){
         },
         async run(){
           const a=this.args;
-          if(sql.startsWith('CREATE TABLE')||sql.startsWith('CREATE INDEX')){
+          if(sql.startsWith('CREATE TABLE')||sql.startsWith('CREATE INDEX')||sql.startsWith('CREATE UNIQUE INDEX')){
             ddl.push(sql);return{meta:{changes:0}};
           }
           if(sql.startsWith('INSERT INTO admin_article_drafts')){
