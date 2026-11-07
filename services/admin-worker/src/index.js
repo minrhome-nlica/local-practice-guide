@@ -5,6 +5,7 @@ import { ADMIN_HTML, ADMIN_CSS, ADMIN_CLIENT } from './ui.js';
 import { queryWebAnalytics } from './analytics.js';
 import { recentUpdates } from './updates.js';
 import { listArticles } from './articles.js';
+import { editorRoute } from './editor.js';
 
 const ROLES = ['owner', 'editor', 'moderator'];
 const STATUSES = ['pending', 'approved', 'resolved', 'rejected'];
@@ -268,6 +269,17 @@ export default {
       const path = url.pathname.replace(/\/+$/, '') || '/';
       if (request.method === 'POST' && !sameOriginPost(request, url)) {
         return error('跨網站請求已拒絕。', 403);
+      }
+      // Restrict request size before decoding editorial Markdown JSON.
+      if (request.method === 'POST' && path.startsWith('/api/editor/')) {
+        const size = Number(request.headers.get('content-length') || 0);
+        if (size > 160000) return error('文章草稿內容超過 160 KB 請求上限。', 413);
+        if (!(request.headers.get('content-type') || '').toLowerCase().startsWith('application/json')) {
+          return error('文章編輯僅接受 JSON 請求。', 415);
+        }
+      }
+      if (path.startsWith('/api/editor/')) {
+        return await editorRoute(env, user, request, url);
       }
       if (request.method === 'GET') {
         if (path === '/') return response(ADMIN_HTML, 'text/html; charset=utf-8');
