@@ -11,7 +11,7 @@ const {category} = Astro.props;
 const entries = sortEntriesForCategory(entriesInCategory(await getCollection('entries'), category.slug), category.slug);
 const showCalculator = category.slug === 'tools';
 ---
-<BaseLayout title={category.name}>
+<BaseLayout title={category.name} description={category.description + "地方實踐指南依主題整理文章與相關實務工具，方便查找與學習。"}>
   <section class="page-hero"><div class="wrap"><p class="breadcrumbs"><a href={root + '/knowledge/'}>知識百科</a> / {category.name}</p><span class="eyebrow">{category.english}</span><h1 class="page-title">{category.name}</h1><p>{category.description}</p></div></section>
   <section class="section-spacer"><div class="wrap">{(entries.length > 0 || showCalculator) ? (
   <div class="entry-list">
