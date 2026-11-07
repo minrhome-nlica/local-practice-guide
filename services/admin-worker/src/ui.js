@@ -245,7 +245,7 @@ export const ADMIN_CLIENT = String.raw`
     missing_answer:'找不到答案',unclear:'說明不清楚',needs_examples:'希望增加案例',
     possibly_outdated:'資訊可能過時',layout_issue:'排版與操作',other:'其他' };
   const state = { user:null,site:'https://guide.mountcounty.com', tab:'overview',
-    commentOffset:0,commentMore:false,loading:false,articles:[] };
+    commentOffset:0,commentMore:false,loading:false,articles:[],replyDrafts:new Map() };
   const n = (tag, cls='', value) => {
     const node=document.createElement(tag);
     if(cls) node.className=cls;
@@ -302,6 +302,7 @@ export const ADMIN_CLIENT = String.raw`
     articles:'文章與草稿',analytics:'Web Analytics',updates:'更新紀錄',team:'工作人員與權限',audit:'操作紀錄'};
   async function show(tab){
     if(!state.user||!permitted(tab))return;
+    if(state.loading)return;
     state.tab=tab;
     setMobileMenu(false);
     $('[data-panel]').forEach(el=>{el.hidden=el.dataset.panel!==tab;});
@@ -338,6 +339,9 @@ export const ADMIN_CLIENT = String.raw`
     tasks.append(intro);
     const hint=n('p','hint','下一階段將加入文章草稿審核與內容查核日期；網站分析已另設專區。');
     tasks.append(hint);
+    const analyticsBtn=n('button','','查看網站流量');
+    analyticsBtn.type='button';analyticsBtn.addEventListener('click',()=>show('analytics'));
+    tasks.append(analyticsBtn);
     if(Number(c.pending)>0 && permitted('comments')){
       const btn=n('button','primary','查看待審核留言');
       btn.type='button';btn.addEventListener('click',()=>show('comments'));
@@ -378,7 +382,10 @@ export const ADMIN_CLIENT = String.raw`
     if(row.quote)card.append(n('p','quote','選取原文：'+row.quote));
     card.append(n('p','',row.body));
     const label=n('label','','回覆內容（公開留言可見）');
-    const reply=n('textarea');reply.value=row.admin_reply||'';reply.maxLength=1800;
+    const reply=n('textarea');
+    reply.value=state.replyDrafts.has(row.id)?state.replyDrafts.get(row.id):(row.admin_reply||'');
+    reply.maxLength=1800;
+    reply.addEventListener('input',()=>state.replyDrafts.set(row.id,reply.value));
     reply.id='reply-'+row.id;label.htmlFor=reply.id;card.append(label,reply);
     const actions=n('div','actions');
     async function save(status){
@@ -391,6 +398,7 @@ export const ADMIN_CLIENT = String.raw`
             status,admin_reply:reply.value.trim(),expected_updated_at:row.updated_at
           })
         });
+        state.replyDrafts.delete(row.id);
         await loadComments();
       });
     }
