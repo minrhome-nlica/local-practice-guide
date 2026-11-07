@@ -415,8 +415,24 @@ export const ADMIN_CLIENT = String.raw`
     const tasks=$('#dashboard-tasks');tasks.replaceChildren();
     const intro=n('p','',Number(c.pending)?'有 '+fmt(c.pending)+' 則讀者留言待審核。':'目前沒有待審核留言。');
     tasks.append(intro);
-    const hint=n('p','hint','下一階段將加入文章草稿審核與內容查核日期；網站分析已另設專區。');
+    const hint=n('p','hint','文章草稿已設獨立編輯／審核專區。網站流量可到 Web Analytics 查看。');
     tasks.append(hint);
+    if(state.user.role==='owner'||state.user.role==='editor'){
+      try{
+        const setup=await api('/api/editor/config');
+        if(setup.drafts_ready){
+          const drafts=await api('/api/editor/drafts?status=submitted');
+          const number=drafts.items?.length||0;
+          const label=state.user.role==='owner'?'待審核草稿':'已送審草稿';
+          tasks.append(n('p','',label+'：'+fmt(number)+' 篇。'));
+          if(number>0){
+            tasks.append(makeButton('查看送審文章',()=>show('articles'),'primary'));
+          }
+        }
+      }catch{
+        tasks.append(n('p','hint','草稿審核統計暫時無法讀取，其他管理資料不受影響。'));
+      }
+    }
     const analyticsBtn=n('button','','查看網站流量');
     analyticsBtn.type='button';analyticsBtn.addEventListener('click',()=>show('analytics'));
     tasks.append(analyticsBtn);
@@ -954,6 +970,9 @@ export const ADMIN_CLIENT = String.raw`
           $('.sidebar').classList.contains('menu-open')&&!e.target.closest('.sidebar')){
           setMobileMenu(false);
         }
+      });
+      window.addEventListener('beforeunload',e=>{
+        if(editorDirty()){e.preventDefault();e.returnValue='';}
       });
       window.matchMedia('(min-width:1001px)').addEventListener('change',e=>{
         if(e.matches)setMobileMenu(false);
