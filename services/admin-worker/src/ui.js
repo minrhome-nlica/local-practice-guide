@@ -24,7 +24,7 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <button type="button" class="nav-item current" data-tab="overview">總覽儀表板</button>
         <button type="button" class="nav-item" data-tab="comments" data-role="owner moderator">讀者留言管理</button>
         <button type="button" class="nav-item" data-tab="ratings">文章回饋分析</button>
-        <button type="button" class="nav-item" data-tab="articles" data-role="owner editor">文章目錄與編修</button>
+        <button type="button" class="nav-item" data-tab="articles" data-role="owner editor">文章草稿與審核</button>
         <button type="button" class="nav-item" data-tab="analytics">網站分析 Web Analytics</button>
         <button type="button" class="nav-item" data-tab="updates">重要更新紀錄</button>
         <button type="button" class="nav-item" data-tab="team" data-role="owner">工作人員與權限</button>
@@ -54,13 +54,13 @@ export const ADMIN_HTML = String.raw`<!doctype html>
       </section>
       <section class="panel" data-panel="articles" hidden>
         <div class="section-head">
-          <div><h2>文章目錄與編修</h2><p>從 GitHub 正式分支整理文章清單、更新日期和內容狀態。</p></div>
+          <div><h2>文章草稿與審核</h2><p>選擇文章建立草稿，由管理員審核並經 GitHub 測試後發布。</p></div>
           <button id="refresh-articles" type="button">重新整理</button>
         </div>
         <div class="card">
-          <h3>編輯與發布原則</h3>
-          <p>這裡目前提供已存在於正式分支的文章清單，供工作人員查閱與定位檔案。<strong>內建草稿編輯、送審及管理員核准發布尚未啟用。</strong></p>
-          <p class="hint">文章裡標記的「編輯稿」是內容編輯註記，不等於尚未公開。請繼續依既有 GitHub／Pages CMS 工作流程處理，正式發布前由管理員確認。</p>
+          <h3>文章編輯與發布原則</h3>
+          <p>編輯人員可以建立、修改、儲存及送審草稿；最高管理員可以退回、核准建立 GitHub 審核 PR，並在 SEO 建置檢查通過後正式發布。</p>
+          <p class="hint">草稿僅儲存在受保護的後台資料庫，讀者不會看到。正式文章始終以 GitHub main 為準；編輯器先支援 Markdown 原始碼，含表格及 HTML 的文章請注意核對預覽與正式頁面。</p>
         </div>
         <div class="filters">
           <label>搜尋文章名稱<input id="article-search" type="search" maxlength="80" placeholder="輸入名稱或關鍵字"></label>
@@ -68,6 +68,48 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         </div>
         <p id="article-count" class="hint" role="status" aria-live="polite">正在準備文章目錄…</p>
         <div id="article-list" class="stack"></div>
+
+        <div class="section-head draft-heading">
+          <div><h2>草稿與審核工作區</h2><p>草稿、退回、待審、GitHub PR 與已發布紀錄。</p></div>
+          <button type="button" id="refresh-drafts">重新整理草稿</button>
+        </div>
+        <p id="draft-status" class="hint" role="status" aria-live="polite">正在準備草稿清單…</p>
+        <div class="filters">
+          <label>草稿狀態<select id="draft-filter">
+            <option value="active">進行中的草稿</option>
+            <option value="review">待管理員審核</option>
+            <option value="draft">編輯中</option>
+            <option value="changes_requested">退回修改</option>
+            <option value="staged">GitHub PR 待發布</option>
+            <option value="published">已發布紀錄</option>
+            <option value="all">所有紀錄</option>
+          </select></label>
+        </div>
+        <div id="draft-list" class="stack"></div>
+
+        <section class="card draft-editor" id="draft-editor" hidden aria-label="文章草稿編輯器">
+          <div class="article-row-head"><div><span class="eyebrow">EDITORIAL WORKFLOW</span><h3 id="draft-editor-title">文章草稿</h3></div><button type="button" id="draft-close">關閉編輯器</button></div>
+          <p class="hint" id="draft-editor-meta"></p>
+          <p class="hint" id="draft-review-note"></p>
+          <label class="draft-content-label" for="draft-content">文章 Markdown（包含檔案開頭標題、分類與更新日期等欄位）</label>
+          <textarea id="draft-content" rows="19" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="draft-editor-hint"></textarea>
+          <p id="draft-editor-hint" class="hint">可修改正文、標題及摘要。文章分類目前鎖定原本分類；發布時自動更新文章日期。SEO 專屬搜尋標題如需更動仍須另外校對。</p>
+          <p id="draft-dirty" class="hint" role="status" aria-live="polite"></p>
+          <div class="actions draft-action-bar">
+            <button type="button" id="draft-save" class="primary">儲存草稿</button>
+            <button type="button" id="draft-submit">送交管理員審核</button>
+            <button type="button" id="draft-show-diff">查看修改比較</button>
+            <button type="button" id="draft-show-preview">文字預覽</button>
+            <button type="button" id="draft-return">退回編輯修改</button>
+            <button type="button" id="draft-stage">核准並建立 GitHub PR</button>
+            <button type="button" id="draft-publish" class="primary">正式發布</button>
+            <button type="button" id="draft-cancel">取消此草稿</button>
+          </div>
+          <label id="draft-review-label" for="draft-review-input">退回原因<textarea id="draft-review-input" rows="3" maxlength="600" placeholder="告訴編輯人員需要修正的地方"></textarea></label>
+          <div id="draft-diff-view" class="draft-diff" hidden></div>
+          <div id="draft-preview-view" class="draft-preview" hidden></div>
+          <p class="hint" id="draft-pr-link"></p>
+        </section>
       </section>
 
       <section class="panel" data-panel="analytics" hidden>
@@ -151,6 +193,31 @@ button:not(.nav-item){border:1px solid #c3d2c5;border-radius:9px;min-height:40px
 .article-meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
 .article-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}
 .article-links a{min-height:36px;display:inline-flex;align-items:center}
+
+.draft-heading{margin-top:42px;border-top:1px solid #dce5dc;padding-top:28px}
+.draft-editor{margin-top:22px;border-color:#abc4b4}
+.draft-content-label{font-weight:700;display:block;margin:16px 0 7px}
+#draft-content{width:100%;max-width:100%;min-width:0;min-height:440px;padding:14px;border:1px solid #bdcfc3;border-radius:10px;background:#fff;color:#2c3b32;font:14px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2;white-space:pre;overflow:auto}
+#draft-content[readonly]{background:#eef2ef;color:#56675b}
+.draft-action-bar{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
+.draft-action-bar button{flex:0 0 auto;max-width:100%}
+#draft-review-label{display:block;max-width:720px;font-weight:700;margin-top:18px}
+#draft-review-input{display:block;min-width:0;width:100%;margin-top:6px;font-weight:400;min-height:85px}
+.draft-diff,.draft-preview{margin-top:18px;border:1px solid #d5e1d6;border-radius:9px;padding:12px;max-height:540px;overflow:auto;background:#fff}
+.draft-diff-line{font:13px/1.55 ui-monospace,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;padding:3px 6px;margin:0;border-bottom:1px solid #e7eee9}
+.draft-diff-line.removed{background:#fff0ed}
+.draft-diff-line.added{background:#ecf7ef}
+.draft-preview h4{font-size:17px;margin:16px 0 6px}
+.draft-preview p{margin:0 0 9px;white-space:pre-wrap;overflow-wrap:anywhere}
+.draft-status-label{display:inline-block;font-weight:700;border-radius:99px;padding:2px 9px;background:#e6eee7;font-size:12px}
+.draft-editor-meta{overflow-wrap:anywhere}
+@media(max-width:600px){
+  .draft-action-bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .draft-action-bar button{min-width:0;width:100%;white-space:normal}
+  #draft-content{font-size:14px;min-height:420px}
+  .draft-heading{margin-top:28px}
+}
+@media(max-width:350px){.draft-action-bar{grid-template-columns:1fr}}
 [hidden]{display:none!important}
 .mobile-bar{display:contents}.mobile-menu-toggle{display:none!important}
 .analytics-mobile-hint{display:none}
@@ -245,7 +312,7 @@ export const ADMIN_CLIENT = String.raw`
     missing_answer:'找不到答案',unclear:'說明不清楚',needs_examples:'希望增加案例',
     possibly_outdated:'資訊可能過時',layout_issue:'排版與操作',other:'其他' };
   const state = { user:null,site:'https://guide.mountcounty.com', tab:'overview',
-    commentOffset:0,commentMore:false,loading:false,articles:[],replyDrafts:new Map() };
+    commentOffset:0,commentMore:false,loading:false,articles:[],drafts:[],currentDraft:null,replyDrafts:new Map() };
   const n = (tag, cls='', value) => {
     const node=document.createElement(tag);
     if(cls) node.className=cls;
@@ -299,7 +366,7 @@ export const ADMIN_CLIENT = String.raw`
     if(icon)icon.textContent=expanded?'×':'☰';
   }
   const tabTitles={overview:'總覽儀表板',comments:'讀者留言管理',ratings:'文章回饋分析',
-    articles:'文章與草稿',analytics:'Web Analytics',updates:'更新紀錄',team:'工作人員與權限',audit:'操作紀錄'};
+    articles:'文章草稿與審核',analytics:'Web Analytics',updates:'更新紀錄',team:'工作人員與權限',audit:'操作紀錄'};
   async function show(tab){
     if(!state.user||!permitted(tab))return;
     if(state.loading)return;
@@ -337,7 +404,7 @@ export const ADMIN_CLIENT = String.raw`
     const tasks=$('#dashboard-tasks');tasks.replaceChildren();
     const intro=n('p','',Number(c.pending)?'有 '+fmt(c.pending)+' 則讀者留言待審核。':'目前沒有待審核留言。');
     tasks.append(intro);
-    const hint=n('p','hint','下一階段將加入文章草稿審核與內容查核日期；網站分析已另設專區。');
+    const hint=n('p','hint','工作人員可以在「文章草稿與審核」建立草稿與送審；網站分析已另設專區。');
     tasks.append(hint);
     const analyticsBtn=n('button','','查看網站流量');
     analyticsBtn.type='button';analyticsBtn.addEventListener('click',()=>show('analytics'));
@@ -436,6 +503,189 @@ export const ADMIN_CLIENT = String.raw`
       list.append(card);
     }
   }
+  function draftStatus(status){
+    return {draft:'編輯中',review:'待審核',changes_requested:'退回修改',
+      staged:'GitHub PR 待發布',published:'已發布',cancelled:'已取消'}[status]||status;
+  }
+  async function loadDrafts(){
+    const area=$('#draft-list');
+    $('#draft-status').textContent='正在讀取草稿清單…';
+    const data=await api('/api/editor/drafts');
+    state.drafts=data.items||[];
+    $('#draft-status').textContent='共 '+fmt(state.drafts.length)+' 筆草稿紀錄 · '+(data.github_configured?
+      'GitHub 審核發布已設定':'草稿可使用；正式發布尚需 GitHub 授權 Secret');
+    renderDraftList();
+    renderArticleList();
+  }
+  function renderDraftList(){
+    const box=$('#draft-list'),filter=$('#draft-filter').value;
+    box.replaceChildren();
+    const rows=(state.drafts||[]).filter(row=>filter==='all'||
+      (filter==='active'?!['published','cancelled'].includes(row.status):row.status===filter));
+    if(!rows.length){box.append(n('p','empty','目前沒有此狀態的草稿。'));return;}
+    for(const row of rows){
+      const item=n('div','item');
+      const title=n('div','article-row-head');
+      const article=state.articles.find(a=>a.slug===row.slug);
+      title.append(n('h3','',article?.title||row.slug),n('span','draft-status-label',draftStatus(row.status)));
+      item.append(title);
+      item.append(n('p','hint','編輯：'+row.author_email+' · 最後更新：'+time(row.updated_at)));
+      if(row.review_note)item.append(n('p','hint','退回原因：'+row.review_note));
+      const buttons=n('div','actions');
+      const btn=n('button','','檢視／編輯');
+      btn.type='button';btn.addEventListener('click',()=>guarded(()=>openDraft(row.id)));
+      buttons.append(btn);
+      if(row.pr_url){
+        const link=n('a','','查看 GitHub 審核 PR ↗');
+        link.href=row.pr_url;link.target='_blank';link.rel='noopener noreferrer';
+        buttons.append(link);
+      }
+      item.append(buttons);box.append(item);
+    }
+  }
+  async function createArticleDraft(slug){
+    if(state.currentDraft&&$('#draft-content').value!==state.currentDraft.content&&
+      !confirm('目前有尚未儲存的修改，確定要離開嗎？'))return;
+    const data=await api('/api/editor/drafts',{
+      method:'POST',body:JSON.stringify({slug})
+    });
+    await loadDrafts();
+    state.currentDraft=data.draft;
+    renderDraftEditor();
+  }
+  async function openDraft(id){
+    if(state.currentDraft&&$('#draft-content').value!==state.currentDraft.content&&
+      !confirm('目前有尚未儲存的修改，確定要離開嗎？'))return;
+    const data=await api('/api/editor/drafts/'+encodeURIComponent(id));
+    state.currentDraft=data.draft;
+    renderDraftEditor();
+  }
+  function currentCanEdit(){
+    const d=state.currentDraft;
+    return !!d&&['draft','changes_requested'].includes(d.status);
+  }
+  function renderDraftEditor(){
+    const d=state.currentDraft;
+    if(!d){$('#draft-editor').hidden=true;return;}
+    $('#draft-editor').hidden=false;
+    const article=state.articles.find(a=>a.slug===d.slug);
+    $('#draft-editor-title').textContent=(article?.title||d.slug)+' · '+draftStatus(d.status);
+    $('#draft-editor-meta').textContent='草稿建立者：'+d.author_email+
+      ' · 第 '+d.revision+' 版 · 最近更新：'+time(d.updated_at);
+    $('#draft-review-note').textContent=d.review_note?'管理員退回原因：'+d.review_note:'';
+    $('#draft-content').value=d.content;
+    $('#draft-content').readOnly=!currentCanEdit();
+    $('#draft-dirty').textContent=currentCanEdit()?'草稿內容已載入，可編輯並儲存。':'此狀態的文章內容僅供檢視。';
+    $('#draft-save').hidden=!currentCanEdit();
+    $('#draft-submit').hidden=!currentCanEdit();
+    $('#draft-cancel').hidden=!['draft','review','changes_requested'].includes(d.status);
+    $('#draft-return').hidden=!(state.user.role==='owner'&&d.status==='review');
+    $('#draft-stage').hidden=!(state.user.role==='owner'&&d.status==='review');
+    $('#draft-publish').hidden=!(state.user.role==='owner'&&d.status==='staged');
+    $('#draft-review-label').hidden=!(state.user.role==='owner'&&d.status==='review');
+    $('#draft-diff-view').hidden=true;
+    $('#draft-preview-view').hidden=true;
+    const p=$('#draft-pr-link');p.replaceChildren();
+    if(d.pr_url){
+      const link=n('a','','GitHub 審核 PR #'+d.pr_number+' ↗');
+      link.href=d.pr_url;link.target='_blank';link.rel='noopener noreferrer';p.append(link);
+    }
+    if(d.published_commit){
+      p.append(n('p','hint','已正式合併：'+d.published_commit.slice(0,12)));
+    }
+    $('#draft-editor').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function draftChanged(){
+    const d=state.currentDraft;
+    if(!d)return false;
+    const changed=$('#draft-content').value!==d.content;
+    $('#draft-dirty').textContent=changed?'尚有未儲存的修改；離開前請先儲存。':
+      (currentCanEdit()?'已儲存的草稿版本。':'目前是唯讀審核版本。');
+    return changed;
+  }
+  async function draftAction(action,params={}){
+    const d=state.currentDraft;
+    if(!d)return;
+    const path='/api/editor/drafts/'+encodeURIComponent(d.id)+'/'+action;
+    const body={expected_revision:d.revision,...params};
+    const data=await api(path,{method:'POST',body:JSON.stringify(body)});
+    state.currentDraft=data.draft;
+    await loadDrafts();
+    renderDraftEditor();
+    if(data.message)message(data.message);
+  }
+  function compareDraft(){
+    const d=state.currentDraft;if(!d)return;
+    const area=$('#draft-diff-view');area.replaceChildren();area.hidden=false;
+    $('#draft-preview-view').hidden=true;
+    const before=(d.original_text||'').split('\n');
+    const after=$('#draft-content').value.split('\n');
+    let p=0,oldEnd=before.length,newEnd=after.length;
+    while(p<oldEnd&&p<newEnd&&before[p]===after[p])p++;
+    while(oldEnd>p&&newEnd>p&&before[oldEnd-1]===after[newEnd-1]){oldEnd--;newEnd--;}
+    if(p===oldEnd&&p===newEnd){area.append(n('p','hint','沒有內容差異。'));return;}
+    area.append(n('p','hint','此處只顯示首尾相同部分之間的修改區間；完整 Markdown 可在上方核對。'));
+    const oldLines=before.slice(p,oldEnd),newLines=after.slice(p,newEnd);
+    for(const line of oldLines.slice(0,45))area.append(n('p','draft-diff-line removed','− '+line));
+    if(oldLines.length>45)area.append(n('p','hint','原始版本另有 '+(oldLines.length-45)+' 行修改未在此顯示。'));
+    for(const line of newLines.slice(0,45))area.append(n('p','draft-diff-line added','+ '+line));
+    if(newLines.length>45)area.append(n('p','hint','修改版本另有 '+(newLines.length-45)+' 行修改未在此顯示。'));
+  }
+  function previewDraft(){
+    const d=state.currentDraft;if(!d)return;
+    const area=$('#draft-preview-view');area.replaceChildren();area.hidden=false;
+    $('#draft-diff-view').hidden=true;
+    area.append(n('p','hint','安全文字預覽（不執行 HTML 或腳本）；表格、圖片和版型請在 GitHub PR 通過建置後檢查。'));
+    const markdown=$('#draft-content').value;
+    const body=markdown.replace(/^---\r?\n[\s\S]*?\r?\n---\s*/,'');
+    const lines=body.split(/\r?\n/).slice(0,190);
+    let shown=0;
+    for(const line of lines){
+      if(!line.trim())continue;
+      if(shown>=85){area.append(n('p','hint','預覽僅顯示文章前段，完整內容請檢查上方編輯框。'));break;}
+      const heading=/^(#{1,4})\s+(.+)$/.exec(line);
+      const h=heading?n('h4','',heading[2]):n('p','',line);
+      area.append(h);shown++;
+    }
+  }
+  function bindDraftActions(){
+    $('#draft-filter').addEventListener('change',renderDraftList);
+    $('#refresh-drafts').addEventListener('click',()=>guarded(loadDrafts));
+    $('#draft-close').addEventListener('click',()=>{
+      if(draftChanged()&&!confirm('尚未儲存修改，確定關閉嗎？'))return;
+      state.currentDraft=null;$('#draft-editor').hidden=true;
+    });
+    $('#draft-content').addEventListener('input',draftChanged);
+    $('#draft-show-diff').addEventListener('click',compareDraft);
+    $('#draft-show-preview').addEventListener('click',previewDraft);
+    $('#draft-save').addEventListener('click',()=>guarded(async()=>{
+      await draftAction('save',{content:$('#draft-content').value});
+    }));
+    $('#draft-submit').addEventListener('click',()=>guarded(async()=>{
+      if(draftChanged())throw new Error('請先儲存修改，再提交審核。');
+      if(!confirm('確認提交管理員審核？送審後會鎖定編輯。'))return;
+      await draftAction('submit');
+    }));
+    $('#draft-return').addEventListener('click',()=>guarded(async()=>{
+      const note=$('#draft-review-input').value.trim();
+      if(note.length<4)throw new Error('請填寫退回原因。');
+      if(!confirm('確認退回編輯修改？'))return;
+      await draftAction('return',{note});
+      $('#draft-review-input').value='';
+    }));
+    $('#draft-stage').addEventListener('click',()=>guarded(async()=>{
+      if(!confirm('確認審核通過並在 GitHub 建立測試 PR？此時不會發布到正式網站。'))return;
+      await draftAction('stage',{confirm:'APPROVE'});
+    }));
+    $('#draft-publish').addEventListener('click',()=>guarded(async()=>{
+      if(!confirm('確認正式發布？系統將驗證 GitHub SEO 測試通過並合併 PR，正式網站隨後更新。'))return;
+      await draftAction('publish',{confirm:'PUBLISH'});
+    }));
+    $('#draft-cancel').addEventListener('click',()=>guarded(async()=>{
+      if(!confirm('確認取消這份草稿？此操作不能復原。'))return;
+      await draftAction('cancel',{confirm:'CANCEL'});
+    }));
+  }
   function renderArticleList(){
     const list=$('#article-list'),search=$('#article-search').value.trim().toLocaleLowerCase('zh-Hant');
     const category=$('#article-category').value;
@@ -456,7 +706,22 @@ export const ADMIN_CLIENT = String.raw`
       preview.href=state.site+'/entries/'+encodeURIComponent(row.slug)+'/';preview.target='_blank';preview.rel='noopener noreferrer';
       const source=n('a','','查看 GitHub 原始檔 ↗');
       source.href=row.source_url;source.target='_blank';source.rel='noopener noreferrer';
-      links.append(preview,source);card.append(links);
+      links.append(preview,source);
+      const active=(state.drafts||[]).find(d=>d.slug===row.slug&&!['published','cancelled'].includes(d.status));
+      if(active){
+        if(state.user.role==='owner'||active.author_email===state.user.email){
+          const open=n('button','','開啟草稿（'+draftStatus(active.status)+'）');
+          open.type='button';open.addEventListener('click',()=>guarded(()=>openDraft(active.id)));
+          links.append(open);
+        }else{
+          links.append(n('span','hint','已有其他編輯進行中的草稿'));
+        }
+      }else{
+        const create=n('button','primary','建立草稿');
+        create.type='button';create.addEventListener('click',()=>guarded(()=>createArticleDraft(row.slug)));
+        links.append(create);
+      }
+      card.append(links);
       list.append(card);
     }
   }
@@ -473,6 +738,7 @@ export const ADMIN_CLIENT = String.raw`
     }
     select.value=categories.includes(selected)?selected:'all';
     renderArticleList();
+    await loadDrafts();
   }
   async function loadUpdates(){
     const type=$('#updates-type').value;
@@ -672,6 +938,7 @@ export const ADMIN_CLIENT = String.raw`
         if(state.commentMore){state.commentOffset+=25;show('comments');}
       });
       $('#rating-period').addEventListener('change',()=>show('ratings'));
+      bindDraftActions();
       $('#article-search').addEventListener('input',()=>renderArticleList());
       $('#article-category').addEventListener('change',()=>renderArticleList());
       $('#refresh-articles').addEventListener('click',()=>show('articles'));
