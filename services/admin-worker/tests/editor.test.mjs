@@ -43,7 +43,7 @@ function fakeDB(){
             return role?{email:a[0],role,active:1,display_name:role}:null;
           }
           if(sql.includes('SELECT * FROM admin_article_drafts WHERE id='))return drafts.get(a[0])||null;
-          if(sql.includes('SELECT id,author_email FROM admin_article_drafts WHERE slug=')){
+          if(sql.includes('FROM admin_article_drafts WHERE slug=')){
             return [...drafts.values()].find(d=>d.slug===a[0]&&!['cancelled','published'].includes(d.status))||null;
           }
           return null;
