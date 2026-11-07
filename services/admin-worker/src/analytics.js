@@ -53,11 +53,17 @@ function parseReport(data, period, start, end) {
     .filter(r => r.path)
     .slice(0, 12);
   const total = account.total[0];
+  const hasEvents = positive(total?.count) > 0 ||
+    daily.some(row => row.pageviews > 0) ||
+    pages.some(row => row.pageviews > 0);
   return {
     status:200,
     body:{
       ok:true,
       configured:true,
+      available:hasEvents,
+      data_state:hasEvents ? 'events_found' : 'no_events',
+      message:hasEvents ? '' : 'Cloudflare 已回應，但目前找不到這個網站在查詢期間的瀏覽紀錄。這不代表網站真的沒人閱讀，請核對 Cloudflare Web Analytics 的站點與追蹤設定。',
       source:'Cloudflare Web Analytics',
       period_days:period,
       since:start,
