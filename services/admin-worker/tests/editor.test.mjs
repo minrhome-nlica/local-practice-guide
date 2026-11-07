@@ -55,6 +55,9 @@ function dbMock(){
         }else if(query.includes("SET status='submitted'")){
           const [submitted_at,updated_at,revision,_id,oldRev]=args;
           id=_id;expected=oldRev;updates={status:'submitted',submitted_at,updated_at,revision};
+        }else if(query.includes("SET status='cancelled'")){
+          const [updated_at,revision,_id,oldRev]=args;
+          id=_id;expected=oldRev;updates={status:'cancelled',updated_at,revision};
         }else if(query.includes("SET status='changes_requested'")){
           const [review_note,reviewer_email,reviewed_at,updated_at,revision,_id,oldRev]=args;
           id=_id;expected=oldRev;updates={status:'changes_requested',review_note,reviewer_email,reviewed_at,updated_at,revision};
@@ -209,6 +212,25 @@ test('create/save/submit/review/approve/publish is owner-gated and never edits m
   assert.ok(e.DB.logs.some(a=>a.includes('draft_published')));
   assert.ok(!gh.calls.some(c=>c.method==='PUT'&&c.payload?.branch==='main'));
   assert.ok(!gh.calls.some(c=>c.payload&&JSON.stringify(c.payload).includes('test-secret-never-real')));
+});
+test('author can cancel an unpublished draft but cannot cancel an open PR',async()=>{
+  const e=env();
+  const row={id:validId,slug,title:'怎麼核銷',base_sha:fileSha,original_body:body,
+    draft_body:revised,status:'draft',author_email:editor.email,revision:2};
+  e.DB.drafts.set(validId,row);
+  const other=await route(e,{role:'editor',email:'other@nlica.org'},
+    '/api/editor/drafts/'+validId+'/cancel',{revision:2});
+  assert.equal(other.status,403);
+  const cancelled=await route(e,editor,'/api/editor/drafts/'+validId+'/cancel',{revision:2});
+  assert.equal(cancelled.status,200);
+  assert.equal(cancelled.body.status,'cancelled');
+  assert.equal(row.revision,3);
+  const again=await route(e,editor,'/api/editor/drafts/'+validId+'/cancel',{revision:3});
+  assert.equal(again.status,409);
+  row.status='pr_open';row.revision=4;
+  const pr=await route(e,owner,'/api/editor/drafts/'+validId+'/cancel',{revision:4});
+  assert.equal(pr.status,409);
+  assert.ok(e.DB.logs.some(a=>a.includes('draft_cancelled')));
 });
 test('pending SEO checks prevent merge and leave draft in PR state',async()=>{
   const e=env(),gh=githubMock({pending:true});
