@@ -5,6 +5,7 @@ import { ADMIN_HTML, ADMIN_CSS, ADMIN_CLIENT } from './ui.js';
 import { queryWebAnalytics } from './analytics.js';
 import { recentUpdates } from './updates.js';
 import { listArticles } from './articles.js';
+import { handleEditorRequest } from './editor.js';
 
 const ROLES = ['owner', 'editor', 'moderator'];
 const STATUSES = ['pending', 'approved', 'resolved', 'rejected'];
@@ -268,6 +269,12 @@ export default {
       const path = url.pathname.replace(/\/+$/, '') || '/';
       if (request.method === 'POST' && !sameOriginPost(request, url)) {
         return error('跨網站請求已拒絕。', 403);
+      }
+      if (path === '/api/editor/drafts' || path.startsWith('/api/editor/drafts/')) {
+        const denied = requireRole(user, 'owner', 'editor');
+        if (denied) return denied;
+        const result = await handleEditorRequest(env, user, request, url);
+        return json(result.body, result.status);
       }
       if (request.method === 'GET') {
         if (path === '/') return response(ADMIN_HTML, 'text/html; charset=utf-8');
