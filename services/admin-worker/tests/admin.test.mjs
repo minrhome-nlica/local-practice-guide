@@ -78,7 +78,7 @@ test('dashboard navigation selects every panel instead of calling array methods 
   assert.match(ADMIN_CLIENT,/const \$ = selector => document\.querySelector\(selector\)/);
   assert.match(ADMIN_CLIENT,/const \$\$ = selector => \[\.\.\.document\.querySelectorAll\(selector\)\]/);
   assert.ok(ADMIN_CLIENT.includes("$('[data-panel]').forEach("));
-  assert.ok(!ADMIN_CLIENT.includes("$('[data-panel]').forEach("));
+  assert.ok(!ADMIN_CLIENT.split('\n').some(line=>line.trimStart().startsWith("$('[data-panel]').forEach(")));
 });
 test('no Access identity is denied and no data leaks',async()=>{
   const {env}=fixture();
