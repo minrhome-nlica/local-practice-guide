@@ -1,4 +1,5 @@
 // Secure editorial workflow for guide articles: D1 drafts -> owner-reviewed PR -> CI -> merge.
+import { referencedDraftAssets, stageDraftAssets } from './media.js';
 // Runs only behind Cloudflare Access AND the admin_users role allowlist (see index.js).
 // A GitHub write token is NEVER sent to the browser or stored in D1.
 const REPO = 'minrhome-nlica/local-practice-guide';
@@ -460,6 +461,10 @@ async function stageDraft(env,user,row,request,fetcher) {
       return fail(503,'文章已存入審核分支，但搜尋資訊尚未更新，請管理員檢查 PR。','seo_unavailable');
     }
   }
+  // Stage only private assets that are actually linked from the reviewed article.
+  // They do not become public until this PR is approved and merged.
+  const preparedAssets=await stageDraftAssets(env,row,branch,githubRequest,fetcher);
+  if(preparedAssets.status!==200)return preparedAssets;
   const pr=await githubRequest(env,fetcher,'POST','/pulls',{
     title:'文章審核：'+row.slug,
     head:branch,base:'main',
@@ -499,22 +504,35 @@ async function publishDraft(env,user,row,request,fetcher) {
       pr.data?.head?.ref!==pullBranch(row)||pr.data?.head?.sha!==row.pr_head_sha) {
     return fail(409,'GitHub 審核 PR 已更新或關閉，請先到 GitHub 核對。','pr_changed');
   }
-  if(row.source_sha===NEW_ARTICLE_SHA){
+  const creating=row.source_sha===NEW_ARTICLE_SHA;
+  if(creating){
     const available=await checkNewSlug(env,fetcher,row.slug);
     if(!available.ok)return available;
-    const changed=await githubRequest(env,fetcher,'GET',
-      '/pulls/'+row.pr_number+'/files?per_page=100');
-    const expected=['src/content/entries/'+row.slug+'.md','src/data/seo.ts'].sort();
-    if(!changed.ok||!Array.isArray(changed.data)||
-      JSON.stringify(changed.data.map(x=>x.filename).sort())!==JSON.stringify(expected)){
-      return fail(409,'新文章 PR 檔案不符合預期，已停止發布。','pr_changed');
-    }
   }else{
     const current=await getMainSource(env,fetcher,row.slug);
     if(!current.body.ok)return current;
     if(current.body.source.sha!==row.source_sha){
       return fail(409,'正式文章已有其他更新，請先比較差異，不可覆蓋。','source_changed');
     }
+  }
+  // Fail closed if PR contains unexpected changes (e.g. somebody edits an
+  // image, SEO data, or another article after owner review).
+  const referenced=await referencedDraftAssets(env,row);
+  const expectedPaths=[
+    pathFor(row.slug),
+    ...(creating?['src/data/seo.ts']:[]),
+    ...referenced.map(a=>'public/assets/guide/'+row.slug+'/'+a.id+'.'+a.ext)
+  ];
+  const changed=await githubRequest(env,fetcher,'GET',
+    '/pulls/'+row.pr_number+'/files?per_page=100');
+  const expectedStatus=new Map(expectedPaths.map(name=>[
+    name,name===pathFor(row.slug)?(creating?'added':'modified'):
+      name==='src/data/seo.ts'?'modified':'added'
+  ]));
+  if(!changed.ok||!Array.isArray(changed.data)||
+    changed.data.length!==expectedStatus.size||
+    changed.data.some(file=>expectedStatus.get(file.filename)!==file.status)){
+    return fail(409,'GitHub PR 包含未核准的檔案，或原本審核版本已改變，已停止發布。','pr_changed');
   }
   const checks=await githubRequest(env,fetcher,'GET','/commits/'+row.pr_head_sha+'/check-runs?check_name=check-seo&filter=latest&per_page=20');
   if(!checks.ok)return fail(503,'無法驗證 GitHub 的網站建置測試。請檢查權杖的 Checks Read 權限。','checks_unavailable');
