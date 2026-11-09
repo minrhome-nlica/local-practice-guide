@@ -184,7 +184,7 @@ export const ADMIN_HTML = String.raw`<!doctype html>
             <button type="button" id="draft-save" class="primary">儲存草稿</button>
             <button type="button" id="draft-submit">送交管理員審核</button>
             <button type="button" id="draft-show-diff">查看修改比較</button>
-            <button type="button" id="draft-show-preview">文字預覽</button>
+            <button type="button" id="draft-show-preview">安全排版預覽</button>
             <button type="button" id="draft-return">退回編輯修改</button>
             <button type="button" id="draft-stage">核准並建立 GitHub PR</button>
             <button type="button" id="draft-publish" class="primary">正式發布</button>
@@ -357,6 +357,7 @@ button:not(.nav-item){border:1px solid #c3d2c5;border-radius:9px;min-height:40px
 .draft-preview .draft-table-scroll{max-width:100%;overflow-x:auto}
 .draft-preview img{max-width:100%;height:auto;border-radius:8px}
 .draft-preview code{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.7 ui-monospace,monospace}
+.draft-preview .draft-preview-bullet{padding-left:18px}.draft-preview .draft-preview-quote{border-left:3px solid #b4cbb8;padding-left:12px;color:#365444}.draft-preview .draft-preview-code{white-space:pre-wrap;word-break:break-word;background:#f3f6f2;border-radius:8px;padding:8px}
 @media(max-width:600px){
  .draft-format-bar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
  .draft-format-bar button{min-width:0;padding:8px 3px}
@@ -1054,22 +1055,93 @@ export const ADMIN_CLIENT = String.raw`
     for(const line of newLines.slice(0,45))area.append(n('p','draft-diff-line added','+ '+line));
     if(newLines.length>45)area.append(n('p','hint','修改版本另有 '+(newLines.length-45)+' 行修改未在此顯示。'));
   }
+  function appendSafeInline(target,line){
+    // Render a small documented Markdown subset with DOM/textContent only.
+    // Never render original HTML as executable markup.
+    const rx=/\*\*([^*]{1,150})\*\*|\[([^\]]{1,130})\]\((https:\/\/[^\s)]+|\/(?!\/)[^\s)]+)\)/g;
+    let last=0,match;
+    while((match=rx.exec(line))){
+      if(match.index>last)target.append(document.createTextNode(line.slice(last,match.index)));
+      if(match[1])target.append(n('strong','',match[1]));
+      else{
+        const link=n('a','',match[2]);link.href=match[3];
+        link.target='_blank';link.rel='noopener noreferrer';
+        target.append(link);
+      }
+      last=rx.lastIndex;
+    }
+    if(last<line.length)target.append(document.createTextNode(line.slice(last)));
+  }
+  function previewAssetUrl(path){
+    const m=/^\/assets\/guide\/[a-z0-9-]+\/([a-f0-9-]{36})\.(png|jpe?g|webp|pdf|docx|xlsx)$/i.exec(path);
+    if(!m)return '';
+    const asset=state.mediaAssets.find(x=>x.id===m[1]&&x.path===path);
+    return asset?'/api/media/drafts/'+state.currentDraft.id+'/assets/'+asset.id:
+      state.site+path;
+  }
   function previewDraft(){
     const d=state.currentDraft;if(!d)return;
     const area=$('#draft-preview-view');area.replaceChildren();area.hidden=false;
     $('#draft-diff-view').hidden=true;
-    area.append(n('p','hint','安全文字預覽（不執行 HTML 或腳本）；表格、圖片和版型請在 GitHub PR 通過建置後檢查。'));
+    area.append(n('p','hint','安全排版預覽：呈現標題、段落、粗體、清單、Markdown 表格與私人圖片。原始 HTML 不執行；實際頁面仍以網站建置版本為準。'));
     const markdown=$('#draft-content').value;
     const body=markdown.replace(/^---\r?\n[\s\S]*?\r?\n---\s*/,'');
-    const lines=body.split(/\r?\n/).slice(0,190);
-    let shown=0;
-    for(const line of lines){
-      if(!line.trim())continue;
-      if(shown>=85){area.append(n('p','hint','預覽僅顯示文章前段，完整內容請檢查上方編輯框。'));break;}
-      const heading=/^(#{1,4})\s+(.+)$/.exec(line);
-      const h=heading?n('h4','',heading[2]):n('p','',line);
-      area.append(h);shown++;
+    const lines=body.split(/\r?\n/);
+    const maxLines=Math.min(lines.length,450);
+    let rendered=0;
+    for(let i=0;i<maxLines&&rendered<300;i++){
+      const line=lines[i],trimmed=line.trim();
+      if(!trimmed)continue;
+      // Existing HTML may include tables or custom layout; show literal source.
+      if(/^<\s*[/a-zA-Z]/.test(trimmed)){
+        const code=n('code','',trimmed);
+        const pre=n('pre','draft-preview-code');pre.append(code);area.append(pre);
+        rendered++;continue;
+      }
+      const image=/^!\[([^\]]{0,140})\]\(([^)\s]{1,400})\)$/.exec(trimmed);
+      if(image){
+        const url=previewAssetUrl(image[2]);
+        if(url&&/\.(png|jpe?g|webp)$/i.test(image[2])){
+          const img=n('img');img.src=url;img.alt=image[1]||'文章插圖';
+          img.loading='lazy';area.append(img);
+        }else area.append(n('p','hint','圖片來源：'+image[2]));
+        rendered++;continue;
+      }
+      if(/^\|/.test(trimmed)){
+        const block=[trimmed];
+        while(i+1<maxLines&&/^\|/.test(lines[i+1].trim())&&block.length<70){
+          block.push(lines[++i].trim());
+        }
+        const table=n('table'),wrap=n('div','draft-table-scroll');
+        const rows=block.map(row=>row.replace(/^\|/,'').replace(/\|$/,'').split('|').map(v=>v.trim()));
+        let first=true;
+        for(const columns of rows){
+          if(columns.every(c=>/^:?-{2,}:?$/.test(c)))continue;
+          const tr=n('tr');
+          for(const value of columns){
+            const cell=n(first?'th':'td');
+            appendSafeInline(cell,value);tr.append(cell);
+          }
+          first=false;table.append(tr);
+        }
+        wrap.append(table);area.append(wrap);rendered++;continue;
+      }
+      const heading=/^(#{1,4})\s+(.+)$/.exec(trimmed);
+      if(heading){
+        const level=Math.min(5,1+heading[1].length);
+        const node=n('h'+level);appendSafeInline(node,heading[2]);
+        area.append(node);rendered++;continue;
+      }
+      const bullet=/^([-*]|\d+\.)\s+(.+)$/.exec(trimmed);
+      const quote=/^>\s*(.+)$/.exec(trimmed);
+      const node=n('p',bullet?'draft-preview-bullet':quote?'draft-preview-quote':'');
+      appendSafeInline(node,bullet?'• '+bullet[2]:quote?quote[1]:line);
+      area.append(node);rendered++;
     }
+    if(lines.length>maxLines||rendered>=300){
+      area.append(n('p','hint','文章較長，預覽僅顯示前段內容。完整內容仍可在編輯框或 GitHub PR 中核對。'));
+    }
+    area.scrollIntoView({behavior:'smooth',block:'nearest'});
   }
   function bindDraftActions(){
     $$('.draft-format-bar button').forEach(btn=>{
