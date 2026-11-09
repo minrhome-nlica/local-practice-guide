@@ -863,6 +863,126 @@ export const ADMIN_CLIENT = String.raw`
     const d=state.currentDraft;
     return !!d&&['draft','changes_requested'].includes(d.status);
   }
+  function insertDraftText(value){
+    if(!currentCanEdit())return;
+    const field=$('#draft-content');
+    const source=field.value;
+    const header=/^---\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/.exec(source);
+    let start=field.selectionStart,end=field.selectionEnd;
+    // Never let toolbar buttons corrupt frontmatter: insert in the body instead.
+    if(header && start<header[0].length){
+      start=source.length;end=start;
+    }
+    field.setRangeText(value,start,end,'end');
+    field.focus();draftChanged();
+  }
+  function formatDraftMarkdown(action){
+    if(!currentCanEdit())return;
+    const field=$('#draft-content');
+    const selected=field.value.slice(field.selectionStart,field.selectionEnd).trim();
+    const heading=selected||'請填寫標題';
+    if(action==='heading2')return insertDraftText('\n## '+heading+'\n');
+    if(action==='heading3')return insertDraftText('\n### '+heading+'\n');
+    if(action==='bold')return insertDraftText('**'+(selected||'要強調的文字')+'**');
+    if(action==='list')return insertDraftText('\n- '+(selected||'清單項目')+'\n- 第二個項目\n');
+    if(action==='table')return insertDraftText('\n| 項目 | 說明 |\n| --- | --- |\n| 第一項 | 內容 |\n| 第二項 | 內容 |\n');
+    if(action==='link'){
+      const href=prompt('請貼上公開網址（https:// 開頭）','https://');
+      if(!href)return;
+      try{
+        const u=new URL(href);
+        if(u.protocol!=='https:')throw Error('bad');
+        return insertDraftText('['+(selected||'連結文字')+']('+u.toString()+')');
+      }catch{message('請輸入有效的 https:// 網址。',true);}
+    }
+  }
+  function insertAssetIntoDraft(asset){
+    if(!currentCanEdit())return;
+    const label=String(asset.name||'附件').replace(/[\[\]\r\n]/g,' ').slice(0,90);
+    const text=asset.image?
+      '\n!['+(label||'圖片')+']('+asset.path+')\n':
+      '\n['+(label||'下載附件')+']('+asset.path+')\n';
+    insertDraftText(text);
+    $('#draft-media-status').textContent='已插入 Markdown，請按「儲存草稿」保存修改。';
+  }
+  function renderDraftMediaList(){
+    const list=$('#draft-media-list');list.replaceChildren();
+    const canEdit=currentCanEdit();
+    $('#draft-media-file').disabled=!canEdit||!state.mediaConfigured;
+    $('#draft-media-upload').disabled=!canEdit||!state.mediaConfigured;
+    if(!state.mediaConfigured)return;
+    if(!state.mediaAssets.length){
+      list.append(n('p','hint','這篇草稿目前沒有上傳的圖片或附件。'));
+      return;
+    }
+    for(const asset of state.mediaAssets){
+      const card=n('article','item');
+      card.append(n('strong','',asset.name));
+      card.append(n('p','hint',(asset.image?'圖片':'附件')+
+        ' · '+Math.round(Number(asset.size||0)/1024)+' KB · '+time(asset.created_at)));
+      const actions=n('div','actions');
+      const link=n('a','','查看私人附件');
+      link.href='/api/media/drafts/'+state.currentDraft.id+'/assets/'+asset.id;
+      link.target='_blank';link.rel='noopener noreferrer';
+      actions.append(link);
+      if(canEdit){
+        actions.append(makeButton('插入文章',()=>insertAssetIntoDraft(asset),'primary'));
+        actions.append(makeButton('刪除附件',()=>guarded(async()=>{
+          if(!confirm('確定要刪除「'+asset.name+'」？如果文章已引用，必須先移除連結並儲存。'))return;
+          await api('/api/media/drafts/'+state.currentDraft.id+'/delete',{
+            method:'POST',body:JSON.stringify({id:asset.id})
+          });
+          await loadDraftMedia();
+        })));
+      }
+      card.append(actions);
+      list.append(card);
+    }
+  }
+  async function loadDraftMedia(){
+    const id=state.currentDraft?.id;
+    if(!id)return;
+    const status=$('#draft-media-status');
+    status.textContent='讀取這篇草稿的私人附件…';
+    try{
+      const data=await api('/api/media/drafts/'+encodeURIComponent(id));
+      if(state.currentDraft?.id!==id)return;
+      state.mediaConfigured=!!data.configured;
+      state.mediaAssets=data.items||[];
+      status.textContent=data.configured?
+        '私人附件空間已連接；每份草稿最多 12 個檔案，合計 24 MB。':
+        (data.message||'私人附件空間尚未完成設定。');
+      renderDraftMediaList();
+    }catch(err){
+      if(state.currentDraft?.id!==id)return;
+      state.mediaConfigured=false;state.mediaAssets=[];
+      status.textContent='附件資訊讀取失敗：'+(err?.message||'請稍後再試');
+      renderDraftMediaList();
+    }
+  }
+  async function uploadDraftMedia(){
+    const draft=state.currentDraft;
+    if(!draft||!currentCanEdit()||!state.mediaConfigured)return;
+    if(draftChanged())throw new Error('請先儲存文章文字，再上傳與插入附件。');
+    const file=$('#draft-media-file').files?.[0];
+    if(!file)throw new Error('請先選擇要上傳的圖片或附件。');
+    if(file.size>5000000)throw new Error('檔案大小不得超過 5 MB。');
+    const form=new FormData();form.append('file',file);
+    $('#draft-media-status').textContent='正在上傳：'+file.name;
+    const response=await fetch('/api/media/drafts/'+encodeURIComponent(draft.id)+'/upload',{
+      method:'POST',credentials:'same-origin',cache:'no-store',
+      headers:{'X-Requested-With':'XMLHttpRequest'},
+      body:form
+    });
+    if(!(response.headers.get('content-type')||'').includes('application/json')){
+      throw new Error('登入可能已過期，請重新整理後再試。');
+    }
+    const result=await response.json();
+    if(!response.ok||!result.ok)throw new Error(result.error||'上傳未成功，請再試一次。');
+    $('#draft-media-file').value='';
+    await loadDraftMedia();
+    $('#draft-media-status').textContent='上傳成功，請點選附件右側的「插入文章」。';
+  }
   function renderDraftEditor(){
     const d=state.currentDraft;
     if(!d){$('#draft-editor').hidden=true;return;}
@@ -892,6 +1012,10 @@ export const ADMIN_CLIENT = String.raw`
     if(d.published_commit){
       p.append(n('p','hint','已正式合併：'+d.published_commit.slice(0,12)));
     }
+    $$('.draft-format-bar button').forEach(btn=>{btn.disabled=!currentCanEdit();});
+    state.mediaConfigured=false;state.mediaAssets=[];
+    renderDraftMediaList();
+    loadDraftMedia().catch(()=>{});
     $('#draft-editor').scrollIntoView({behavior:'smooth',block:'start'});
   }
   function draftChanged(){
@@ -948,6 +1072,10 @@ export const ADMIN_CLIENT = String.raw`
     }
   }
   function bindDraftActions(){
+    $$('.draft-format-bar button').forEach(btn=>{
+      btn.addEventListener('click',()=>formatDraftMarkdown(btn.dataset.mdInsert));
+    });
+    $('#draft-media-upload').addEventListener('click',()=>guarded(uploadDraftMedia));
     $('#draft-filter').addEventListener('change',renderDraftList);
     $('#refresh-drafts').addEventListener('click',()=>guarded(loadDrafts));
     $('#draft-close').addEventListener('click',()=>{
