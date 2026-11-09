@@ -35,25 +35,52 @@ def text_codepoints() -> set[int]:
     characters.update("臺灣地方實踐指南源泉圓體繁體中文年月日：，。「」『』、！？（）──")
     return {ord(char) for char in characters}
 
+def wordpress_codepoints() -> set[int]:
+    """Public WordPress site glyphs only; keep the guide's existing fonts untouched.
+
+    This corpus is maintained in public/fonts/mountcounty-site-charset.txt
+    and includes all currently published public pages, posts, and products.
+    Newly added characters still fall back to system fonts until this corpus
+    is refreshed. Do not include private content or customer information.
+    """
+    corpus = (OUT / "mountcounty-site-charset.txt").read_text(
+        encoding="utf-8-sig", errors="replace"
+    )
+    # Ignore explanatory lines while keeping all actual Unicode glyphs.
+    glyph_text = "\n".join(
+        line for line in corpus.splitlines() if not line.lstrip().startswith("#")
+    )
+    chars = set(chr(i) for i in range(32, 127))
+    chars.update(glyph_text)
+    chars.update("臺灣山下線地方實踐指南源泉圓體繁體中文：，。「」『』、！？（）──")
+    return {ord(char) for char in chars}
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     chars = sorted(text_codepoints())
-    print(f"Webfont subset: {len(chars)} distinct characters")
+    wordpress_chars = sorted(wordpress_codepoints())
+    print(f"Guide webfont subset: {len(chars)} distinct characters")
+    print(f"WordPress webfont subset: {len(wordpress_chars)} distinct characters")
+    # The originals must remain identical for the guide and current WP users.
+    # Add independent WP-only files, which may be adopted after inspection.
     for weight in WEIGHTS:
         filename = f"GenSenRounded2TW-{weight}"
         data = fetch(f"{UPSTREAM}{FONT_PATH}{filename}.otf")
-        font = TTFont(BytesIO(data))
-        options = subset.Options()
-        options.layout_features = ["*"]
-        options.notdef_glyph = True
-        options.notdef_outline = True
-        subs = subset.Subsetter(options=options)
-        subs.populate(unicodes=chars)
-        subs.subset(font)
-        font.flavor = "woff2"
-        output = OUT / f"{filename}.woff2"
-        font.save(output)
-        print(f"{filename}: {len(data):,} OTF bytes -> {output.stat().st_size:,} WOFF2 bytes")
+        for suffix, charset in (("", chars), ("-WP", wordpress_chars)):
+            font = TTFont(BytesIO(data))
+            options = subset.Options()
+            options.layout_features = ["*"]
+            options.notdef_glyph = True
+            options.notdef_outline = True
+            subs = subset.Subsetter(options=options)
+            subs.populate(unicodes=charset)
+            subs.subset(font)
+            font.flavor = "woff2"
+            output_name = filename if not suffix else f"GenSenRounded2TW-WP-{weight}"
+            output = OUT / f"{output_name}.woff2"
+            font.save(output)
+            print(f"{output_name}: {len(data):,} OTF bytes -> {output.stat().st_size:,} WOFF2 bytes")
     (OUT / "SIL_Open_Font_License_1.1.txt").write_bytes(
         fetch(UPSTREAM + "SIL_Open_Font_License_1.1.txt")
     )
