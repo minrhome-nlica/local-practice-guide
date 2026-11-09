@@ -204,6 +204,15 @@ export const ADMIN_HTML = String.raw`<!doctype html>
               <option value="30">最近 30 天</option>
               <option value="7">最近 7 天</option>
             </select></label>
+            <label>文章分類<select id="insights-category">
+              <option value="">全部分類</option>
+              <option value="basics">認識地方實踐</option>
+              <option value="organizations">組織成立與經營</option>
+              <option value="plans">計畫與資源</option>
+              <option value="finance">經費與財務</option>
+              <option value="people">人事與法律</option>
+              <option value="tools">工作工具與技能</option>
+            </select></label>
             <button type="button" id="insights-refresh">重新整理</button>
           </div>
         </div>
@@ -986,30 +995,41 @@ export const ADMIN_CLIENT = String.raw`
     await loadDrafts();
   }
   async function loadInsights(){
-    const status=$('#insights-status');
-    const totals=$('#insights-summary');
-    const list=$('#insights-article-list');
-    const note=$('#insights-data-note');
+    const status=$('#insights-status'),totals=$('#insights-summary');
+    const list=$('#insights-article-list'),note=$('#insights-data-note');
     status.textContent='正在整理文章成效與讀者回饋…';
     totals.replaceChildren();list.replaceChildren();
     const days=$('#insights-period').value==='7'?7:30;
+    const category=$('#insights-category').value;
     let data;
-    try{data=await api('/api/insights?days='+days);}
-    catch(error){
+    try{
+      const [insights,index]=await Promise.all([
+        api('/api/insights?days='+days),
+        category?getCategoryIndex():Promise.resolve(null)
+      ]);
+      if(category&&!index)throw new Error('尚未能讀取分類資料。');
+      data=insights;
+    }catch(error){
       status.textContent='內容成效資料暫時無法讀取：'+(error?.message||'請稍後重試');
       return;
     }
-    const sum=data.summary||{};
+    const articles=(data.articles||[]).filter(row=>ratingCategoryMatches(row.slug,category));
+    const sum=category?{
+      rated_articles:articles.filter(row=>row.total_feedback>0).length,
+      total_ratings:articles.reduce((acc,row)=>acc+Number(row.total_feedback||0),0),
+      unresolved:articles.reduce((acc,row)=>acc+Number(row.unresolved||0),0),
+      pending_comments:articles.reduce((acc,row)=>acc+Number(row.pending_comments||0),0)
+    }:(data.summary||{});
     totals.append(
       stat('收到評價的文章',fmt(sum.rated_articles||0)),
       stat('期間評價筆數',fmt(sum.total_ratings||0)),
       stat('尚未解決的評價',fmt(sum.unresolved||0)),
       stat('目前待審留言',fmt(sum.pending_comments||0))
     );
-    if(!data.articles?.length){
-      list.append(n('p','empty','目前還沒有累積足夠的回饋，請先使用網站並收集讀者意見。'));
+    if(!articles.length){
+      list.append(n('p','empty','這個分類目前沒有可供比較的文章回饋或瀏覽資料。'));
     }
-    for(const item of (data.articles||[]).slice(0,35)){
+    for(const item of articles.slice(0,35)){
       const card=n('article','item');
       const head=n('div','article-row-head');
       const link=n('a','',item.title||item.slug);
@@ -1030,7 +1050,8 @@ export const ADMIN_CLIENT = String.raw`
       if(item.sample_small)card.append(n('p','hint','目前評價數少於 10，暫不以滿意比例判斷內容品質。'));
       list.append(card);
     }
-    status.textContent='已整理 '+fmt((data.articles||[]).length)+' 篇有瀏覽或讀者回饋資料的文章。';
+    const label=$('#insights-category').selectedOptions[0]?.textContent||'全部分類';
+    status.textContent='已整理 '+fmt(articles.length)+' 篇'+(category?label:'有瀏覽或讀者回饋資料')+'的文章。';
     note.textContent=(data.disclaimer||'')+' '+(data.analytics?.note||'')+
       (data.analytics?.available?'':' Cloudflare 此期間未提供可比對的文章流量。');
   }
@@ -1265,6 +1286,7 @@ export const ADMIN_CLIENT = String.raw`
       $('#analytics-period').addEventListener('change',()=>show('analytics'));
       $('#analytics-refresh').addEventListener('click',()=>show('analytics'));
       $('#insights-period').addEventListener('change',()=>show('insights'));
+      $('#insights-category').addEventListener('change',()=>show('insights'));
       $('#insights-refresh').addEventListener('click',()=>show('insights'));
       $('#refresh-audit').addEventListener('click',()=>show('audit'));
       $('#create-user').addEventListener('click',()=>guarded(async()=>{
