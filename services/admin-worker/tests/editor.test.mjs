@@ -131,6 +131,9 @@ function fakeGithub(){
       return payload(201,{number:41,html_url:'https://github.com/minrhome-nlica/local-practice-guide/pull/41',
         head:{ref:data.head,sha:PR_HEAD},base:{ref:'main'}});
     }
+    if(uri.pathname.endsWith('/pulls/41/files')&&method==='GET'){
+      return payload(200,[{filename:'src/content/entries/reimbursement.md',status:'modified'}]);
+    }
     if(uri.pathname.endsWith('/pulls/41')&&method==='GET'){
       return payload(200,{state:'open',head:{ref:'guide-article-reimbursement-'+log.find(x=>x.data?.ref?.startsWith('refs/heads/guide-article'))?.data.ref.split('-').at(-1),
         sha:PR_HEAD},base:{ref:'main'}});
