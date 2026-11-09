@@ -33,7 +33,7 @@ jobs:
                           print('  ', k, repr(h.get(k)))
                       if url.endswith('/daily/'):
                           source = body.decode('utf-8', errors='replace')
-                          for marker in ('GENSEN ROUNDED TW WHOLE-SITE TYPOGRAPHY','GenSen Rounded Mount','global-styles-inline-css','wp-custom-css','custom-css'):
+                          for marker in ('GENSEN ROUNDED TW WHOLE-SITE TYPOGRAPHY','GenSen Rounded Mount','MC GenSen Rounded','mountcounty-gensen-rounded','global-styles-inline-css','wp-custom-css','custom-css'):
                               print('HTML HAS',marker,marker in source)
                           print('HTML FONT FAMILY APPEARANCES:',len(re.findall('GenSen',source,re.I)))
                           for href in re.findall(r'<link[^>]+href=["\']([^"\']+\.css(?:\?[^"\']*)?)["\']', source):
