@@ -6,6 +6,7 @@ import { queryWebAnalytics } from './analytics.js';
 import { recentUpdates } from './updates.js';
 import { listArticles } from './articles.js';
 import { getArticleCategoryIndex, validCategory } from './catalog.js';
+import { handleDraftMedia } from './media.js';
 import { handleEditorRequest } from './editor.js';
 import { getContentInsights } from './insights.js';
 
@@ -329,6 +330,12 @@ export default {
       const path = url.pathname.replace(/\/+$/, '') || '/';
       if (request.method === 'POST' && !sameOriginPost(request, url)) {
         return error('跨網站請求已拒絕。', 403);
+      }
+      if (path.startsWith('/api/media/drafts/')) {
+        const denied=requireRole(user,'owner','editor');
+        if(denied)return denied;
+        const result=await handleDraftMedia(env,user,request,url);
+        return result instanceof Response ? result : json(result.body,result.status);
       }
       if (path === '/api/editor/new' || path === '/api/editor/drafts' || path.startsWith('/api/editor/drafts/')) {
         const denied = requireRole(user, 'owner', 'editor');
