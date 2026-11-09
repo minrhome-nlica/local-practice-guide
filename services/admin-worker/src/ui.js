@@ -59,9 +59,22 @@ export const ADMIN_HTML = String.raw`<!doctype html>
             </div>
             <button id="rating-history-refresh" type="button">重新整理紀錄</button>
           </div>
-          <div class="filters"><label>選擇文章<select id="rating-history-entry">
-            <option value="">全部文章</option>
-          </select></label></div>
+          <div class="filters">
+            <label>目前文章分類
+              <select id="rating-history-category">
+                <option value="">全部分類</option>
+                <option value="basics">認識地方實踐</option>
+                <option value="organizations">組織成立與經營</option>
+                <option value="plans">計畫與資源</option>
+                <option value="finance">經費與財務</option>
+                <option value="people">人事與法律</option>
+                <option value="tools">工作工具與技能</option>
+              </select>
+            </label>
+            <label>選擇文章
+              <select id="rating-history-entry"><option value="">分類內全部文章</option></select>
+            </label>
+          </div>
           <p id="rating-history-status" class="hint" role="status" aria-live="polite">載入時間紀錄中…</p>
           <div id="rating-history-list" class="stack"></div>
           <div class="actions"><button type="button" id="rating-history-more" hidden>載入更多回饋紀錄</button></div>
@@ -404,7 +417,8 @@ export const ADMIN_CLIENT = String.raw`
     possibly_outdated:'資訊可能過時',layout_issue:'排版與操作',other:'其他' };
   const state = { user:null,site:'https://guide.mountcounty.com', tab:'overview',
     commentOffset:0,commentMore:false,loading:false,articles:[],drafts:[],currentDraft:null,
-    ratingHistoryOffset:0,ratingHistoryMore:false,replyDrafts:new Map() };
+    ratingHistoryOffset:0,ratingHistoryMore:false,ratingItems:[],categoryIndex:null,
+    replyDrafts:new Map() };
   const n = (tag, cls='', value) => {
     const node=document.createElement(tag);
     if(cls) node.className=cls;
@@ -585,15 +599,81 @@ export const ADMIN_CLIENT = String.raw`
     card.append(actions);
     return card;
   }
+  async function getCategoryIndex(){
+    if(state.categoryIndex?.items)return state.categoryIndex;
+    const index=await api('/api/ratings/catalog');
+    state.categoryIndex=index;
+    return index;
+  }
+  function ratingCategoryMatches(slug,category){
+    if(!category)return true;
+    const row=state.categoryIndex?.items?.find(x=>x.slug===slug);
+    return !!row?.categories?.includes(category);
+  }
+  function populateRatingArticleOptions(){
+    const cat=$('#rating-history-category').value;
+    const select=$('#rating-history-entry'),old=select.value;
+    select.replaceChildren();
+    const none=n('option','','分類內全部文章');none.value='';select.append(none);
+    const bySlug=new Map();
+    for(const row of state.categoryIndex?.items||[]){
+      if(!ratingCategoryMatches(row.slug,cat))continue;
+      bySlug.set(row.slug,row.title||row.slug);
+    }
+    // Older feedback can reference articles no longer in the published catalog.
+    // Keep those discoverable only when viewing ALL categories, never guess a category.
+    if(!cat)for(const row of state.ratingItems||[]){
+      if(!bySlug.has(row.entry_id))bySlug.set(row.entry_id,row.entry_title||row.entry_id);
+    }
+    for(const [slug,title] of [...bySlug.entries()].sort((a,b)=>a[1].localeCompare(b[1],'zh-Hant'))){
+      const option=n('option','',title);option.value=slug;select.append(option);
+    }
+    select.value=bySlug.has(old)?old:'';
+  }
+  function renderFilteredRatings(){
+    const category=$('#rating-history-category').value;
+    const entry=$('#rating-history-entry').value;
+    const data=(state.ratingItems||[]).filter(row=>
+      (!entry||row.entry_id===entry)&&ratingCategoryMatches(row.entry_id,category));
+    const list=$('#rating-list'),summary=$('#rating-summary');
+    list.replaceChildren();summary.replaceChildren();
+    const total=data.reduce((acc,row)=>acc+Number(row.total||0),0);
+    const helpful=data.reduce((acc,row)=>acc+Number(row.helpful||0),0);
+    const unresolved=total-helpful;
+    summary.append(stat('文章回饋',fmt(total)),stat('有幫助',fmt(helpful)),
+      stat('還沒解決',fmt(unresolved)),stat('收到回饋的文章',fmt(data.length)));
+    if(!data.length){
+      list.append(n('div','empty','目前選取的分類／文章在此期間尚無回饋。'));
+      return;
+    }
+    for(const row of data){
+      const card=n('article','item');
+      const head=n('h3'),link=n('a','',row.entry_title||row.entry_id);link.href=entryHref(row);
+      link.target='_blank';link.rel='noopener noreferrer';head.append(link);card.append(head);
+      const total=Number(row.total)||0,good=Number(row.helpful)||0;
+      const percent=total?Math.round(100*good/total):0;
+      card.append(n('p','meta','有幫助 '+fmt(good)+' · 還沒解決 '+
+        fmt(row.unresolved)+' · 合計 '+fmt(total)+' · '+percent+'% 有幫助'));
+      const bar=n('div','rating-bar'),fill=n('span');fill.style.width=percent+'%';
+      bar.append(fill);card.append(bar);
+      const reasons=Object.entries(row.reasons||{}).filter(([,v])=>Number(v)>0)
+        .sort((a,b)=>Number(b[1])-Number(a[1]))
+        .map(([k,v])=>(labels[k]||k)+' '+fmt(v));
+      if(reasons.length)card.append(n('p','rating-reasons','主要原因：'+reasons.join('、')));
+      if(total<10)card.append(n('p','hint','回饋不足10筆，比例僅供參考。'));
+      list.append(card);
+    }
+  }
   async function loadRatingHistory(){
-    const list=$('#rating-history-list');
-    const status=$('#rating-history-status');
+    const list=$('#rating-history-list'),status=$('#rating-history-status');
     const period=$('#rating-period').value;
+    const category=$('#rating-history-category').value;
     const entry=$('#rating-history-entry').value;
     const offset=state.ratingHistoryOffset;
     if(!offset)list.replaceChildren();
     status.textContent='正在載入回饋時間…';
     const params=new URLSearchParams({period,limit:'25',offset:String(offset)});
+    if(category)params.set('category',category);
     if(entry)params.set('entry',entry);
     try{
       const data=await api('/api/ratings/history?'+params.toString());
@@ -607,9 +687,8 @@ export const ADMIN_CLIENT = String.raw`
         if(row.vote==='unresolved'&&row.reason){
           card.append(n('p','rating-reasons','原因：'+(labels[row.reason]||row.reason)));
         }
-        const first='首次回饋：'+time(row.created_at);
-        const last=row.modified?' · 最後更新：'+time(row.updated_at):'';
-        card.append(n('p','meta',first+last));
+        card.append(n('p','meta','首次回饋：'+time(row.created_at)+
+          (row.modified?' · 最後更新：'+time(row.updated_at):'')));
         list.append(card);
       }
       const count=(data.items||[]).length;
@@ -617,7 +696,8 @@ export const ADMIN_CLIENT = String.raw`
       $('#rating-history-more').hidden=!data.has_more;
       state.ratingHistoryOffset=offset+count;
       status.textContent='已載入 '+fmt(state.ratingHistoryOffset)+' 筆'+
-        (entry?'該文章':'全部文章')+'的回饋紀錄（依最後更新時間排序）。';
+        (entry?'此文章':category?'此分類':'全部文章')+
+        '的回饋紀錄（依最後更新時間排序）。';
       if(!state.ratingHistoryOffset)list.append(n('p','empty','這段期間沒有回饋紀錄。'));
     }catch(err){
       status.textContent='無法載入時間紀錄：'+(err?.message||'請稍後重試');
@@ -626,39 +706,18 @@ export const ADMIN_CLIENT = String.raw`
   }
   async function loadRatings(){
     const period=$('#rating-period').value;
-    const data=await api('/api/ratings?period='+period);
-    const list=$('#rating-list'),summary=$('#rating-summary');list.replaceChildren();summary.replaceChildren();
-    const select=$('#rating-history-entry'),selected=select.value;
-    select.replaceChildren();
-    const all=n('option','','全部文章');all.value='';select.append(all);
-    for(const row of (data.items||[]).slice().sort((a,b)=>
-      String(a.entry_title||a.entry_id).localeCompare(String(b.entry_title||b.entry_id),'zh-Hant'))){
-      const option=n('option','',row.entry_title||row.entry_id);
-      option.value=row.entry_id;select.append(option);
+    const [data, catalog]=await Promise.all([
+      api('/api/ratings?period='+period),
+      getCategoryIndex().catch(()=>null)
+    ]);
+    state.ratingItems=data.items||[];
+    if(!catalog){
+      $('#rating-history-status').textContent='暫時無法讀取正式文章分類，請重新整理後再選擇分類。';
     }
-    select.value=(data.items||[]).some(row=>row.entry_id===selected)?selected:'';
+    populateRatingArticleOptions();
+    renderFilteredRatings();
     state.ratingHistoryOffset=0;
-    await loadRatingHistory();
-    const total=(data.items||[]).reduce((s,r)=>s+Number(r.total||0),0);
-    const helpful=(data.items||[]).reduce((s,r)=>s+Number(r.helpful||0),0);
-    const unresolved=total-helpful;
-    summary.append(stat('文章回饋',fmt(total)),stat('有幫助',fmt(helpful)),
-      stat('還沒解決',fmt(unresolved)),stat('收到回饋的文章',fmt(data.items.length)));
-    if(!data.items.length){list.append(n('div','empty','這個期間尚無文章回饋。'));return;}
-    for(const row of data.items){
-      const card=n('article','item');
-      const head=n('h3'),link=n('a','',row.entry_title||row.entry_id);link.href=entryHref(row);
-      link.target='_blank';link.rel='noopener noreferrer';head.append(link);card.append(head);
-      const total=Number(row.total)||0, good=Number(row.helpful)||0;
-      const percent=total?Math.round(100*good/total):0;
-      card.append(n('p','meta','有幫助 '+fmt(good)+' · 還沒解決 '+fmt(row.unresolved)+' · 合計 '+fmt(total)+' · '+percent+'% 有幫助'));
-      const bar=n('div','rating-bar'),fill=n('span');fill.style.width=percent+'%';bar.append(fill);card.append(bar);
-      const reasons=Object.entries(row.reasons||{}).filter(([,v])=>Number(v)>0)
-        .sort((a,b)=>Number(b[1])-Number(a[1])).map(([k,v])=>(labels[k]||k)+' '+fmt(v));
-      if(reasons.length)card.append(n('p','rating-reasons','主要原因：'+reasons.join('、')));
-      if(total<10)card.append(n('p','hint','回饋不足10筆，比例僅供參考。'));
-      list.append(card);
-    }
+    if(catalog || !$('#rating-history-category').value)await loadRatingHistory();
   }
   function draftStatus(status){
     return {draft:'編輯中',review:'待審核',changes_requested:'退回修改',
@@ -1179,6 +1238,17 @@ export const ADMIN_CLIENT = String.raw`
       $('#rating-history-refresh').addEventListener('click',()=>{
         state.ratingHistoryOffset=0;guarded(loadRatingHistory);
       });
+      $('#rating-history-category').addEventListener('change',()=>guarded(async()=>{
+        populateRatingArticleOptions();
+        renderFilteredRatings();
+        state.ratingHistoryOffset=0;
+        await loadRatingHistory();
+      }));
+      $('#rating-history-entry').addEventListener('change',()=>guarded(async()=>{
+        renderFilteredRatings();
+        state.ratingHistoryOffset=0;
+        await loadRatingHistory();
+      }));
       $('#rating-history-more').addEventListener('click',()=>guarded(loadRatingHistory));
       bindDraftActions();
       $('#article-search').addEventListener('input',()=>renderArticleList());
