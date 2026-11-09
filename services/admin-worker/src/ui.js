@@ -158,8 +158,27 @@ export const ADMIN_HTML = String.raw`<!doctype html>
           <p class="hint" id="draft-editor-meta"></p>
           <p class="hint" id="draft-review-note"></p>
           <label class="draft-content-label" for="draft-content">文章 Markdown（包含檔案開頭標題、分類與更新日期等欄位）</label>
+          <div class="draft-format-bar" role="group" aria-label="文章文字排版工具">
+            <button type="button" data-md-insert="heading2">大標題</button>
+            <button type="button" data-md-insert="heading3">小標題</button>
+            <button type="button" data-md-insert="bold">粗體</button>
+            <button type="button" data-md-insert="list">清單</button>
+            <button type="button" data-md-insert="table">插入表格</button>
+            <button type="button" data-md-insert="link">插入連結</button>
+          </div>
           <textarea id="draft-content" rows="19" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="draft-editor-hint"></textarea>
-          <p id="draft-editor-hint" class="hint">可修改正文、標題及摘要。文章分類目前鎖定原本分類；發布時自動更新文章日期。SEO 專屬搜尋標題如需更動仍須另外校對。</p>
+          <p id="draft-editor-hint" class="hint">可使用上方按鈕插入標題、粗體、清單、表格及連結。修改仍需儲存草稿；文章分類維持原有設定，發布時會更新日期。</p>
+          <div class="draft-media-section">
+            <h4>圖片及附件</h4>
+            <p id="draft-media-status" class="hint" role="status">確認私人附件空間中…</p>
+            <div class="draft-media-upload">
+              <label for="draft-media-file">選擇檔案（PNG、JPG、WebP、PDF、DOCX、XLSX，每檔 5 MB 以內）</label>
+              <input type="file" id="draft-media-file" accept=".png,.jpg,.jpeg,.webp,.pdf,.docx,.xlsx" />
+              <button type="button" id="draft-media-upload">上傳至私人草稿</button>
+            </div>
+            <div id="draft-media-list" class="stack" aria-live="polite"></div>
+            <p class="hint">上傳的檔案只保存在私人草稿；請按「插入文章」加入內容，並儲存草稿。管理員核准並通過 GitHub 檢查後，附件才會跟隨文章公開。</p>
+          </div>
           <p id="draft-dirty" class="hint" role="status" aria-live="polite"></p>
           <div class="actions draft-action-bar">
             <button type="button" id="draft-save" class="primary">儲存草稿</button>
@@ -321,6 +340,31 @@ button:not(.nav-item){border:1px solid #c3d2c5;border-radius:9px;min-height:40px
   .draft-heading{margin-top:28px}
 }
 @media(max-width:350px){.draft-action-bar{grid-template-columns:1fr}}
+.draft-format-bar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 10px}
+.draft-format-bar button{font-size:13px;padding:7px 11px;background:#f4f8f1;border:1px solid #c5d6c4;color:#27523d}
+.draft-format-bar button:disabled{opacity:.5}
+.draft-media-section{margin:18px 0;border:1px solid #cfe0cf;border-radius:12px;padding:16px;background:#f8faf6;min-width:0}
+.draft-media-section h4{margin:0 0 9px;font-size:17px}
+.draft-media-upload{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:12px 0}
+.draft-media-upload label{width:100%;font-size:13px;font-weight:600;color:#2e4c39}
+.draft-media-upload input{min-width:0;max-width:100%;flex:1;font-size:15px}
+.draft-media-section .item{padding:12px;margin-bottom:9px}
+.draft-media-section .item a{overflow-wrap:anywhere}
+.draft-media-section .item .actions{display:flex;gap:8px;flex-wrap:wrap}
+.draft-media-section .item .actions button{min-width:0}
+.draft-preview table{border-collapse:collapse;width:100%;font-size:13px}
+.draft-preview th,.draft-preview td{border:1px solid #cedccf;padding:7px 9px;text-align:left}
+.draft-preview .draft-table-scroll{max-width:100%;overflow-x:auto}
+.draft-preview img{max-width:100%;height:auto;border-radius:8px}
+.draft-preview code{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.7 ui-monospace,monospace}
+@media(max-width:600px){
+ .draft-format-bar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+ .draft-format-bar button{min-width:0;padding:8px 3px}
+ .draft-media-upload{display:block}
+ .draft-media-upload input,.draft-media-upload button{width:100%;margin:7px 0 10px}
+ .draft-media-section .item .actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .draft-media-section .item .actions button{width:100%}
+}
 .new-article-card{margin-bottom:24px}
 .new-article-card form{margin-top:16px}
 .new-article-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -427,6 +471,7 @@ export const ADMIN_CLIENT = String.raw`
   const state = { user:null,site:'https://guide.mountcounty.com', tab:'overview',
     commentOffset:0,commentMore:false,loading:false,articles:[],drafts:[],currentDraft:null,
     ratingHistoryOffset:0,ratingHistoryMore:false,ratingItems:[],categoryIndex:null,
+    mediaAssets:[],mediaConfigured:false,
     replyDrafts:new Map() };
   const n = (tag, cls='', value) => {
     const node=document.createElement(tag);
