@@ -5,6 +5,7 @@ import { ADMIN_HTML, ADMIN_CSS, ADMIN_CLIENT } from './ui.js';
 import { queryWebAnalytics } from './analytics.js';
 import { recentUpdates } from './updates.js';
 import { listArticles } from './articles.js';
+import { getArticleCategoryIndex, validCategory } from './catalog.js';
 import { handleEditorRequest } from './editor.js';
 import { getContentInsights } from './insights.js';
 
@@ -201,9 +202,11 @@ async function ratingStats(env, url) {
 }
 // Read-only individual rating records: no voter_hash, IP, token or reader identity.
 // A record is the latest feedback PER anonymous browser/article, not a full click log.
-export async function ratingHistory(env,url){
+export async function ratingHistory(env,url,loadCategoryIndex=getArticleCategoryIndex){
   const period=url.searchParams.get('period')||'30';
   if(!['30','all'].includes(period))return {status:400,body:{ok:false,error:'統計期間不正確。'}};
+  const category=url.searchParams.get('category')||'';
+  if(category&&!validCategory(category))return {status:400,body:{ok:false,error:'請選擇目前網站的六大文章分類。'}};
   const entry=url.searchParams.get('entry')||'';
   if(entry && !/^[a-z0-9][a-z0-9-]{1,85}$/.test(entry)){
     return {status:400,body:{ok:false,error:'文章網址代號不正確。'}};
@@ -211,6 +214,18 @@ export async function ratingHistory(env,url){
   const limit=Math.min(50,Math.max(1,Number(url.searchParams.get('limit'))||25));
   const offset=Math.min(2000,Math.max(0,Number(url.searchParams.get('offset'))||0));
   const cutoff=new Date(Date.now()-30*86400000).toISOString();
+  let matchingSlugs=null;
+  if(category){
+    const index=await loadCategoryIndex(env);
+    if(index.status!==200)return {status:index.status,body:index.body};
+    matchingSlugs=(index.body.items||[]).filter(x=>x.categories.includes(category)).map(x=>x.slug);
+    if(entry&&!matchingSlugs.includes(entry))return {
+      status:400,body:{ok:false,error:'此文章不屬於選取的分類，請重新選擇文章。'}
+    };
+    if(!matchingSlugs.length)return {
+      status:200,body:{ok:true,items:[],has_more:false,offset:0,limit:25,period,category}
+    };
+  }
   const where=[];
   const bindings=[];
   if(period==='30'){
@@ -220,6 +235,9 @@ export async function ratingHistory(env,url){
   if(entry){
     where.push('entry_id = ?');
     bindings.push(entry);
+  }else if(matchingSlugs){
+    where.push('entry_id IN ('+matchingSlugs.map(()=>'?').join(',')+')');
+    bindings.push(...matchingSlugs);
   }
   const clause=where.length?' WHERE '+where.join(' AND '):'';
   const results=await env.DB.prepare(
@@ -236,7 +254,7 @@ export async function ratingHistory(env,url){
     created_at:x.created_at,
     updated_at:x.updated_at,
     modified:x.updated_at!==x.created_at
-  })),has_more:rows.length>limit,offset,limit,period,
+  })),has_more:rows.length>limit,offset,limit,period,category,
   note:'每篇文章每個匿名瀏覽器保留最新評價。首次回饋及最後更新時間均來自原有資料庫，不會顯示讀者身分；修改前的舊評價沒有另外保存。'}};
 }
 
@@ -326,6 +344,10 @@ export default {
           site_url: clean(env.SITE_URL || 'https://guide.mountcounty.com', 200) });
         if (path === '/api/overview') return overview(env);
         if (path === '/api/comments') return requireRole(user, 'owner', 'moderator') || commentsList(env, url);
+        if (path === '/api/ratings/catalog') {
+          const catalog=await getArticleCategoryIndex(env);
+          return json(catalog.body,catalog.status);
+        }
         if (path === '/api/ratings') return ratingStats(env, url);
         if (path === '/api/ratings/history') {
           const history=await ratingHistory(env,url);
