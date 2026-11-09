@@ -1,0 +1,48 @@
+name: Verify shared webfont loads on mountcounty.com
+on:
+  push:
+    paths:
+      - '.github/workflows/audit-external-webfont.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Diagnose WordPress CSS and cross-domain WOFF2 headers
+        run: |
+          python3 - <<'PY'
+          import re, urllib.request, urllib.error, sys
+          urls = [
+            'https://mountcounty.com/daily/',
+            'https://guide.mountcounty.com/fonts/GenSenRounded2TW-R.woff2',
+            'https://guide.mountcounty.com/fonts/GenSenRounded2TW-B.woff2',
+          ]
+          source = ''
+          for url in urls:
+              try:
+                  req = urllib.request.Request(url, headers={
+                      'User-Agent':'Mozilla/5.0 (compatible; MountCountyFontAudit/1.0)',
+                      'Origin':'https://mountcounty.com' if url.endswith('.woff2') else 'https://guide.mountcounty.com'
+                  })
+                  with urllib.request.urlopen(req, timeout=35) as res:
+                      body = res.read()
+                      h = res.headers
+                      print('URL', url, 'STATUS', res.status, 'BYTES', len(body), 'FINAL', res.url)
+                      for k in ('content-type','access-control-allow-origin','cross-origin-resource-policy','cache-control','content-security-policy'):
+                          print('  ', k, repr(h.get(k)))
+                      if url.endswith('/daily/'):
+                          source = body.decode('utf-8', errors='replace')
+                          for marker in ('GENSEN ROUNDED TW WHOLE-SITE TYPOGRAPHY','GenSen Rounded Mount','global-styles-inline-css','wp-custom-css','custom-css'):
+                              print('HTML HAS',marker,marker in source)
+                          print('HTML FONT FAMILY APPEARANCES:',len(re.findall('GenSen',source,re.I)))
+                          for href in re.findall(r'<link[^>]+href=["\']([^"\']+\.css(?:\?[^"\']*)?)["\']', source):
+                              if any(z in href for z in ('global','custom','blocksy','style')):
+                                  print('CSS LINK',href[:220])
+                      else:
+                          print('  woff2 magic',repr(body[:4]))
+              except Exception as exc:
+                  print('FETCH_FAILED',url,repr(exc))
+          if source and 'GENSEN ROUNDED TW WHOLE-SITE TYPOGRAPHY' not in source:
+              print('DIAGNOSIS: WordPress global-styles font CSS marker absent from rendered HTML')
+          PY
