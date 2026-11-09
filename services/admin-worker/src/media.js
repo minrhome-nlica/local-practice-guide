@@ -117,8 +117,12 @@ export async function handleDraftMedia(env,user,request,url){
   if(!match)return fail(404,'找不到草稿附件操作。');
   const {row,error}=await getDraft(env,match[1],user);
   if(error)return error;
-  if(!ready(env))return ok({configured:false,items:[],
-    message:'圖片與附件上傳尚未啟用。請由管理員在 guide-admin-console Worker 綁定名為 GUIDE_MEDIA 的私人 R2 Bucket。'});
+  if(!ready(env)){
+    if(request.method!=='GET'||match[2])return fail(503,
+      '私人圖片與附件空間尚未完成設定，請先連接 Cloudflare R2。','storage_required');
+    return ok({configured:false,items:[],
+      message:'圖片與附件上傳尚未啟用。請由管理員在 guide-admin-console Worker 綁定名為 GUIDE_MEDIA 的私人 R2 Bucket。'});
+  }
   await ensureTable(env);
   const action=match[2]||'';
   if(!action&&request.method==='GET'){
