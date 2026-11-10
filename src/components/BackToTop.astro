@@ -1,0 +1,90 @@
+<!-- Global back-to-top control shared by all public pages. -->
+<button
+  class="guide-back-to-top"
+  type="button"
+  aria-label="回到頁面最上方"
+  title="回到頁首"
+  data-back-to-top
+  data-pagefind-ignore
+  hidden
+>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <path d="M12 20V6M6.5 11.5 12 6l5.5 5.5M5 3h14" />
+  </svg>
+  <span aria-hidden="true">頁首</span>
+</button>
+
+<style>
+  .guide-back-to-top {
+    position: fixed;
+    right: clamp(16px, 2.5vw, 30px);
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    z-index: 65;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 58px;
+    height: 65px;
+    padding: 8px;
+    border: 1px solid #cbd9cb;
+    border-radius: 18px;
+    background: #fbfaf6;
+    color: #2d503d;
+    box-shadow: 0 9px 25px rgb(34 58 41 / 18%);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+
+  .guide-back-to-top[hidden] { display: none !important; }
+  .guide-back-to-top svg { width: 24px; height: 24px; flex: none; }
+
+  .guide-back-to-top:hover {
+    transform: translateY(-3px);
+    background: #315644;
+    color: #fff;
+    border-color: #315644;
+    box-shadow: 0 13px 28px rgb(34 58 41 / 23%);
+  }
+
+  .guide-back-to-top:active { transform: translateY(-1px); }
+  .guide-back-to-top:focus-visible { outline: 3px solid #c99070; outline-offset: 4px; }
+
+  @media (max-width: 650px) {
+    .guide-back-to-top {
+      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      width: 52px;
+      height: 58px;
+      border-radius: 16px;
+    }
+    .guide-back-to-top svg { width: 21px; height: 21px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) { scroll-behavior: auto !important; }
+    .guide-back-to-top { transition: none; }
+  }
+</style>
+
+<script>
+  const backToTop = document.querySelector<HTMLButtonElement>('[data-back-to-top]');
+  if (backToTop) {
+    const updateVisibility = () => {
+      backToTop.hidden = window.scrollY < 480;
+    };
+
+    updateVisibility();
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    backToTop.addEventListener('click', () => {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+  }
+</script>
