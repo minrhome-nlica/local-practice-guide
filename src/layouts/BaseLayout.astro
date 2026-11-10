@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import BackToTop from '../components/BackToTop.astro';
 import { organizations } from '../data/organizationLinks';
 const {
   title = '地方實踐指南',
@@ -146,5 +147,6 @@ const nav = [
         <p class="footer-disclaimer"><strong>免責聲明：</strong>本網站內容供一般資訊與學習參考，實際適用仍以各主管機關最新公告、相關法令及個案規定為準。</p>
       </div>
     </footer>
+    {!noindex && <BackToTop />}
   </body>
 </html>
