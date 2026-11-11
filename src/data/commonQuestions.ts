@@ -9,6 +9,7 @@ export const commonQuestions = [
   { title: '成果報告怎麼寫，才能看出成效？', description: '量化指標、質性成果及佐證', id: 'results-report-writing' },
   { title: '工作室、公司、合作社與協會怎麼選？', description: '不同組織功能與適用時機', id: 'which-status-saves-tax' },
   { title: '個人接案與成立商號，稅費差多少？', description: '接案情境與稅務差異', id: 'why-establish-business-studio' },
+  { title: '我是個人接案，開工作室會比較划算嗎？', description: '比較個人接案與工作室的稅費、登記及經營方式', id: 'why-establish-business-studio' },
   { title: '設計費或講師費，需要預扣所得稅嗎？', description: '9A、9B、50 所得代碼與扣繳', id: 'income-withholding' },
   { title: '哪些收入會被扣二代健保補充保費？', description: '個人代扣與投保單位負擔', id: 'supplemental-premium' },
   { title: '聘請一名員工，實際人事成本有多少？', description: '勞健保、職災與勞退', id: 'labor-health-insurance' },
