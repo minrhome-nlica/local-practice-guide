@@ -1,0 +1,55 @@
+---
+import { getEntryCardQuestions } from '../data/entryCardQuestions';
+const { entryId } = Astro.props;
+const questions = getEntryCardQuestions(entryId);
+---
+{questions.length > 0 && (
+  <div class="guide-card-questions" aria-label="本篇能解答的問題">
+    <span class="guide-card-questions-label">這篇能解答</span>
+    <ul>
+      {questions.map(question => <li>{question}</li>)}
+    </ul>
+  </div>
+)}
+<style>
+  .guide-card-questions {
+    margin-top: 11px;
+    color: #576c5e;
+    font-size: 13px;
+    line-height: 1.75;
+    min-width: 0;
+  }
+  .guide-card-questions-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #8d684d;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .05em;
+  }
+  .guide-card-questions ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 4px;
+  }
+  .guide-card-questions li {
+    position: relative;
+    padding-left: 13px;
+    overflow-wrap: anywhere;
+  }
+  .guide-card-questions li::before {
+    content: "";
+    position: absolute;
+    top: .85em;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #a6b9a5;
+  }
+  @media (max-width: 650px) {
+    .guide-card-questions { font-size: 13px; line-height: 1.8; }
+  }
+</style>
