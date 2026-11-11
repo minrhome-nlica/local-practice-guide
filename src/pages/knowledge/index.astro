@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { categories, entriesInCategory, sortEntriesForCategory } from '../../data/catalog';
 import DownloadsCatalog from '../../components/DownloadsCatalog.astro';
+import EntryCardQuestions from '../../components/EntryCardQuestions.astro';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const entries = await getCollection('entries');
 const categoryGroups = categories.map((cat) => ({
@@ -55,24 +56,24 @@ const categoryGroups = categories.map((cat) => ({
               {cat.slug === 'tools' && <a class="entry-card guide-tool-entry" href={root + '/tools/insurance-2026/'}>
                 <span class="meta">2026 年正式資料 ・ 薪資試算</span>
                 <h3>2026 勞健保級距表與薪資試算</h3>
-                <p>快速查看勞健保、勞退與員工及雇主各項負擔。</p>
+                <EntryCardQuestions entryId="tool-insurance-2026" />
                 <span class="text-link">開啟薪資試算 ↗</span>
               </a>}
               {cat.slug === 'tools' && <a class="entry-card guide-tool-entry" href={root + '/tools/nhi-calculator/'}>
                 <span class="meta">工作工具與技能 ・ 互動計算工具</span>
                 <h3>二代健保補充保費計算機</h3>
-                <p>依付款與健保身分試算補充保費，並產出可複製的說明。</p>
+                <EntryCardQuestions entryId="tool-nhi-calculator" />
                 <span class="text-link">開啟計算機 ↗</span>
               </a>}{cat.slug === 'tools' && <a class="entry-card guide-tool-entry" href={root + '/tools/admin-skills-exam/'}>
                 <span class="meta">互動情境小考試 ・ 2026 年行政實務</span>
                 <h3>行政技能小考試｜報到第一天</h3>
-                <p>擔任出納、人事與計畫專員，在工作情境中練習二代健保、所得分類與付款判斷。</p>
+                <EntryCardQuestions entryId="tool-admin-skills-exam" />
                 <p class="small" style="margin-top:8px">製作者：石竣旻</p>
                 <span class="text-link">開始情境闖關 ↗</span>
               </a>}{cat.entries.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}>
                 <span class="meta">{cat.name} ・ {item.data.status}</span>
                 <h3>{item.data.title}</h3>
-                <p>{item.data.summary}</p>
+                <EntryCardQuestions entryId={item.id} />
               </a>)}</div>
             : <p class="empty">這個分類的詞條正在整理中。</p>}
           {cat.slug === 'tools' && <DownloadsCatalog />}
