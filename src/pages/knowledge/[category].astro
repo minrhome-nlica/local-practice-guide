@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { categories, entriesInCategory, sortEntriesForCategory } from '../../data/catalog';
 import DownloadsCatalog from '../../components/DownloadsCatalog.astro';
+import EntryCardQuestions from '../../components/EntryCardQuestions.astro';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 export async function getStaticPaths(){
   return categories.map((category) => ({params:{category:category.slug},props:{category}}));
@@ -32,24 +33,24 @@ const structuredData = [{
     {showCalculator && <a class="entry-card guide-tool-entry" href={root + '/tools/insurance-2026/'}>
       <span class="meta">2026 年正式資料 ・ 薪資即時試算</span>
       <h3>2026 勞健保級距表與薪資試算</h3>
-      <p>輸入約定月薪，查看員工自付、雇主額外負擔及勞退提繳，並查閱勞保、健保與勞退完整級距。</p>
+      <EntryCardQuestions entryId="tool-insurance-2026" />
       <span class="text-link">開啟試算與級距表 ↗</span>
     </a>}
     {showCalculator && <a class="entry-card guide-tool-entry" href={root + '/tools/nhi-calculator/'}>
       <span class="meta">互動計算工具 ・ 民國115年適用</span>
       <h3>二代健保補充保費計算機</h3>
-      <p>輸入付款金額、所得性質及健保身分，試算個人代扣與付款單位負擔的補充保費。</p>
+      <EntryCardQuestions entryId="tool-nhi-calculator" />
       <span class="text-link">開啟計算機 ↗</span>
     </a>}
     {showCalculator && <a class="entry-card guide-tool-entry" href={root + '/tools/admin-skills-exam/'}>
       <span class="meta">互動情境小考試 ・ 2026 年行政實務</span>
       <h3>行政技能小考試｜報到第一天</h3>
-      <p>化身馬鞍社區協會的出納、人事與計畫專員，透過任務練習二代健保補充保費、所得分類與付款判斷。</p>
+      <EntryCardQuestions entryId="tool-admin-skills-exam" />
       <p class="small" style="margin-top:8px">製作者：石竣旻</p>
       <span class="text-link">開始情境闖關 ↗</span>
     </a>}
     {entries.map((item) => <a class="entry-card" href={root + '/entries/' + item.id + '/'}>
-      <span class="meta">{item.data.level} ・ {item.data.status}</span><h3>{item.data.title}</h3><p>{item.data.summary}</p>
+      <span class="meta">{item.data.level} ・ {item.data.status}</span><h3>{item.data.title}</h3><EntryCardQuestions entryId={item.id} />
     </a>)}
   </div>
 ) : <div class="empty">此分類正在編輯中。可先閱讀其他分類，後續會逐步補充。</div>}{showCalculator && <DownloadsCatalog />}
