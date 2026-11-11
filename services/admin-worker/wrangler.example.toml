@@ -1,0 +1,27 @@
+# Copy this to wrangler.toml only after configuring Cloudflare Access and the D1 binding.
+# The admin Worker MUST be separate from the public feedback Worker.
+name = "guide-admin-console"
+main = "src/index.js"
+compatibility_date = "2026-11-06"
+workers_dev = false
+preview_urls = false
+
+[vars]
+SITE_URL = "https://guide.mountcounty.com"
+# Obtain from Cloudflare Zero Trust -> Access application -> Application AUD tag.
+# This is not a password; a fake value or missing policy makes the Worker deny access.
+ACCESS_AUD = "REPLACE_WITH_ACCESS_APPLICATION_AUD"
+
+# Bind to the existing guide-feedback database AFTER making a backup.
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "guide-feedback"
+# database_id = "REPLACE_WITH_EXISTING_D1_DATABASE_ID"
+
+# Domain setup after Cloudflare Access is applied to THIS Worker:
+# [[routes]]
+# pattern = "admin.guide.mountcounty.com"
+# custom_domain = true
+
+# Do NOT configure a public route without Cloudflare Access.
+# No ADMIN_TOKEN, analytics token or private credentials are allowed in this file.
