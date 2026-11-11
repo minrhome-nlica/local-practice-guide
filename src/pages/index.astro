@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { categories, learningPaths } from '../data/catalog';
 import { commonQuestions } from '../data/commonQuestions';
+import EntryCardQuestions from '../components/EntryCardQuestions.astro';
+import { entryCardQuestions } from '../data/entryCardQuestions';
 import { homepageSearch } from '../data/seo';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const entries = await getCollection('entries');
@@ -73,7 +75,7 @@ const selected = selectedIds.map(id => entries.find(e => e.id === id)).filter(Bo
         {selected.map(item => <a class="action-card home-entry-card" data-entry-id={item.id} href={root + '/entries/' + item.id + '/'}>
           <span class="action-no">{categories.find(cat => cat.slug === item.data.category)?.name ?? '知識百科'}</span>
           <h3>{item.data.title}</h3>
-          <p>{item.data.summary}</p>
+          <EntryCardQuestions entryId={item.id} />
           <div class="card-bottom" aria-hidden="true">閱讀詞條 ↗</div>
         </a>)}
       </div>
@@ -110,7 +112,7 @@ const selected = selectedIds.map(id => entries.find(e => e.id === id)).filter(Bo
     @media(max-width:740px){.home-exam-section{padding-top:36px}.home-exam-banner{flex-direction:column;align-items:stretch;padding:26px 23px;gap:22px}.home-exam-cta{width:100%}}
   </style>
 
-  <script is:inline>
+  <script is:inline define:vars={{entryCardQuestions}}>
     (() => {
       // 隨機抽取六題，按「顯示更多」每次再開六題。編號不表示原始排序。
       const panel = document.getElementById('home-questions');
@@ -167,9 +169,21 @@ const selected = selectedIds.map(id => entries.find(e => e.id === id)).filter(Bo
             meta.className = 'action-no';
             meta.textContent = item.categoryName || '知識百科';
             const heading = document.createElement('h3'); heading.textContent = item.title || id;
-            const summary = document.createElement('p'); summary.textContent = item.summary || '';
+            const teaser = document.createElement('div');
+            teaser.className = 'guide-card-questions';
+            teaser.setAttribute('aria-label', '本篇能解答的問題');
+            const teaserLabel = document.createElement('span');
+            teaserLabel.className = 'guide-card-questions-label';
+            teaserLabel.textContent = '這篇能解答';
+            const questionList = document.createElement('ul');
+            (entryCardQuestions[id] || []).forEach(question => {
+              const li = document.createElement('li');
+              li.textContent = question;
+              questionList.append(li);
+            });
+            teaser.append(teaserLabel, questionList);
             const foot = document.createElement('div'); foot.className = 'card-bottom'; foot.textContent = '閱讀詞條 ↗';
-            a.append(meta, heading, summary, foot);
+            a.append(meta, heading, teaser, foot);
             return a;
           }));
           if (title) title.textContent = '熱門知識百科';
