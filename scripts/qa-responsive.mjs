@@ -298,10 +298,18 @@ try {
         body:'【希望新增的主題】\n建議主題：社區活動中心\n想學習如何申請使用社區活動中心與相關文件。',
         status:'approved',created_at:'2026-11-06T00:00:00.000Z',admin_reply:''
       };
+      const articleSample={
+        id:'44444444-4444-4444-8444-444444444444',
+        entry_id:'income-withholding',entry_title:'預扣所得稅',
+        section_id:'',quote:'課程講師費如何扣繳？',author:'社區工作者',kind:'question',
+        body:'請問課程講師費如何處理預扣所得稅？',
+        status:'resolved',created_at:'2026-11-05T00:00:00.000Z',
+        admin_reply:'已補充課程與所得分類的案例。'
+      };
       await page.route('**/api/comments?*',async route=>{
         await route.fulfill({status:200,
           headers:{'Content-Type':'application/json','Access-Control-Allow-Origin':'*'},
-          body:JSON.stringify({ok:true,items:[sample],has_more:false})});
+          body:JSON.stringify({ok:true,items:[sample,articleSample],has_more:false})});
       });
       await page.route('**/api/comments',async route=>{
         if(route.request().method()==='POST') {
@@ -319,10 +327,32 @@ try {
       const proposed=page.locator('.guide-feedback-note-kind').filter({hasText:'新主題建議'});
       await proposed.waitFor({state:'visible',timeout:10000});
       if(await proposed.count()!==1)failures.push(width+'px: published site suggestion not tagged correctly');
-      const publicLink=page.locator('.guide-feedback-note-entry').first();
-      const href=await publicLink.getAttribute('href');
-      if(href!=='/feedback/#guide-feedback-direct')
-        failures.push(width+'px: published site suggestion points to invalid entry '+href);
+      if(await page.locator('.guide-feedback-note').count()!==2)
+        failures.push(width+'px: public feed should show all two moderated notes by default');
+      const scopes=await page.locator('.guide-feedback-note-scope').allTextContents();
+      if(scopes.join(',')!=='整體網站,個別文章')
+        failures.push(width+'px: site and article note scopes not clearly labelled '+scopes.join(','));
+      const publicLinks=page.locator('.guide-feedback-note-entry');
+      if(await publicLinks.count()!==1||
+         await publicLinks.first().getAttribute('href')!=='/entries/income-withholding/')
+        failures.push(width+'px: article note should link to its entry, site-wide note should not have an article link');
+      if(await page.locator('.guide-feedback-editor-response').count()!==1)
+        failures.push(width+'px: published editor response missing');
+      await page.locator('[data-filter-scope="site"]').click();
+      if(await page.locator('.guide-feedback-note').count()!==1||
+         !await page.locator('.guide-feedback-note-kind').first().innerText().then(s=>s.includes('新主題建議')))
+        failures.push(width+'px: site-wide filter did not show the correct note');
+      await page.locator('[data-filter-kind="question"]').click();
+      if(await page.locator('.guide-feedback-note').count()!==0)
+        failures.push(width+'px: combined filters should yield zero mismatched notes');
+      await page.locator('[data-filter-scope="article"]').click();
+      if(await page.locator('.guide-feedback-note').count()!==1||
+         !await page.locator('.guide-feedback-note-kind').first().innerText().then(s=>s.includes('提問諮詢')))
+        failures.push(width+'px: article-question filter failed');
+      await page.locator('[data-filter-reset]').click();
+      if(await page.locator('.guide-feedback-note').count()!==2||
+         !await page.locator('[data-filter-reset]').isHidden())
+        failures.push(width+'px: clear-filters action did not restore full note list');
       await form.locator('select[name="topic_kind"]').selectOption('topic');
       await form.locator('input[name="subject"]').fill('地方課程經費核銷');
       await form.locator('textarea[name="body"]').fill('希望有社區親子課程經費編列和實際核銷的對照案例。');

@@ -104,12 +104,16 @@ jobs:
           calc = Path('dist/tools/nhi-calculator/index.html').read_text()
           for token in ['guide-feedback-notes-dialog', 'data-feedback-paragraph-notes']:
               assert token in note, token
-          for kind in ['supplement', 'question', 'correction']:
-              assert f'data-feedback-kind="{kind}"' in feed, kind
+          for kind in ['all', 'supplement', 'question', 'correction', 'topic', 'site']:
+              assert f'data-filter-kind="{kind}"' in feed, kind
+          for scope in ['all', 'site', 'article']:
+              assert f'data-filter-scope="{scope}"' in feed, scope
+          assert 'data-feed-items' in feed, 'public chronological feedback list missing'
+          assert 'data-feed-status' in feed, 'feedback count and load status missing'
           assert '單位<strong>每月所有薪資</strong>的差額' in calc
           assert calc.count('data-money-input') == 5, 'expected five money fields'
           assert 'type="number"' not in calc, 'unformatted numeric field in calculator'
-          print('Comment grouping UI, three category columns, and calculator fields verified.')
+          print('Comment grouping UI, filterable public feed, and calculator fields verified.')
           PY
       - name: Verify mobile reading layout guardrails
         run: |
