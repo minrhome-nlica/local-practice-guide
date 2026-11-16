@@ -48,17 +48,16 @@
     const header = create('div', 'guide-feedback-note-header');
     const presentation = displayFor(note);
     header.append(create('span', 'guide-feedback-note-kind', presentation.label));
+    if (isGlobal) header.append(create('span', 'guide-feedback-note-scope',
+      note.entry_id === SITE_FEEDBACK_ID ? '整體網站' : '個別文章'));
     header.append(create('span', 'guide-feedback-note-meta', (note.author || '讀者') + ' · ' + formatDate(note.created_at)));
     if (note.status === 'resolved') header.append(create('span', 'guide-feedback-note-resolved', '已處理'));
     item.append(header);
-    if (isGlobal) {
-      const isSiteNote = note.entry_id === SITE_FEEDBACK_ID;
+    if (isGlobal && note.entry_id !== SITE_FEEDBACK_ID) {
       const link = create('a', 'guide-feedback-note-entry',
-        isSiteNote ? '網站整體留言' : (note.entry_title || note.entry_id));
-      link.href = isSiteNote
-        ? root + '/feedback/#guide-feedback-direct'
-        : root + '/entries/' + encodeURIComponent(note.entry_id) + '/' +
-          (note.section_id ? '#' + encodeURIComponent(note.section_id) : '');
+        '文章來源：' + (note.entry_title || note.entry_id));
+      link.href = root + '/entries/' + encodeURIComponent(note.entry_id) + '/' +
+        (note.section_id ? '#' + encodeURIComponent(note.section_id) : '');
       item.append(link);
     }
     if (note.quote) {
@@ -268,70 +267,104 @@
       diagnosis.open = true;
       runDiagnosis();
     }
-    const cards = ['supplement', 'question', 'correction'].map(kind => {
-      const section = feed.querySelector('[data-feedback-kind="' + kind + '"]');
-      return { kind, section, list: section.querySelector('[data-kind-items]'),
-        count: section.querySelector('[data-kind-count]'), more: section.querySelector('[data-kind-more]') };
-    });
+    // Display all moderated public notes in one chronological feed.
+    // Site-wide notes share the existing D1 table; two tagged subtypes are
+    // separated here without migrating existing data or changing the Worker.
     const status = feed.querySelector('[data-feed-status]');
-    const groups = { supplement:[], question:[], correction:[] };
-    const visible = { supplement:5, question:5, correction:5 };
-    let offset = 0, hasMore = true, loading = false, failed = false;
+    const list = feed.querySelector('[data-feed-items]');
+    const reset = feed.querySelector('[data-filter-reset]');
+    const kindButtons = [...feed.querySelectorAll('[data-filter-kind]')];
+    const scopeButtons = [...feed.querySelectorAll('[data-filter-scope]')];
+    const notes = [];
+    let kindFilter = 'all', scopeFilter = 'all';
+    let offset = 0, hasMore = true, loading = false, failed = false, capped = false;
 
-    async function fetchNext() {
-      if (!hasMore || loading) return false;
+    function noteKind(note) {
+      if (note.entry_id === SITE_FEEDBACK_ID && note.kind === 'supplement') {
+        const body = String(note.body || '');
+        if (body.startsWith('【希望新增的主題】\n')) return 'topic';
+        if (body.startsWith('【網站使用建議】\n')) return 'site';
+      }
+      return note.kind;
+    }
+    const noteScope = note => note.entry_id === SITE_FEEDBACK_ID ? 'site' : 'article';
+    const matchesKind = (note, kind) => kind === 'all' || noteKind(note) === kind;
+    const matchesScope = (note, scope) => scope === 'all' || noteScope(note) === scope;
+
+    function renderFeed() {
+      const matching = notes.filter(note =>
+        matchesKind(note, kindFilter) && matchesScope(note, scopeFilter));
+      const items = document.createDocumentFragment();
+      if (!matching.length) {
+        items.append(create('p', 'guide-feedback-filter-empty',
+          loading ? '正在載入公開留言……' :
+          notes.length ? '目前沒有符合這組篩選條件的留言，可以試試其他類型或對象。' :
+          '目前還沒有已公開的留言，歡迎留下第一則建議。'));
+      } else {
+        matching.forEach(note => items.append(renderNote(note, true)));
+      }
+      list.replaceChildren(items);
+
+      kindButtons.forEach(button => {
+        const kind = button.dataset.filterKind;
+        const count = notes.filter(note => matchesScope(note, scopeFilter) && matchesKind(note, kind)).length;
+        button.querySelector('[data-filter-count]').textContent = '（' + count + '）';
+        const active = kindFilter === kind;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      scopeButtons.forEach(button => {
+        const scope = button.dataset.filterScope;
+        const count = notes.filter(note => matchesKind(note, kindFilter) && matchesScope(note, scope)).length;
+        button.querySelector('[data-filter-count]').textContent = '（' + count + '）';
+        const active = scopeFilter === scope;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+      reset.hidden = kindFilter === 'all' && scopeFilter === 'all';
+      status.textContent = '已公開 ' + notes.length + ' 則，現在顯示 ' + matching.length + ' 則（最新優先）。' +
+        (loading ? ' 正在載入其餘留言……' :
+          failed ? ' 部分留言暫時無法讀取，請重新整理再試。' :
+          capped ? ' 目前僅能載入前 5,000 則。' : '');
+    }
+
+    kindButtons.forEach(button => button.addEventListener('click', () => {
+      kindFilter = button.dataset.filterKind;
+      renderFeed();
+    }));
+    scopeButtons.forEach(button => button.addEventListener('click', () => {
+      scopeFilter = button.dataset.filterScope;
+      renderFeed();
+    }));
+    reset.addEventListener('click', () => {
+      kindFilter = 'all';
+      scopeFilter = 'all';
+      renderFeed();
+    });
+
+    async function loadPublicFeed() {
       loading = true;
-      status.textContent = '正在整理各類留言……';
+      renderFeed();
       try {
-        const result = await requestList(null, offset, 30);
-        result.items.forEach(note => {
-          if (groups[note.kind]) groups[note.kind].push(note);
-        });
-        offset += result.items.length;
-        hasMore = result.has_more && result.items.length > 0;
-        failed = false;
-        return true;
+        while (hasMore) {
+          const result = await requestList(null, offset, 30);
+          notes.push(...result.items);
+          offset += result.items.length;
+          hasMore = Boolean(result.has_more && result.items.length);
+          if (offset >= 5000 && hasMore) {
+            capped = true;
+            hasMore = false;
+          }
+          renderFeed();
+        }
       } catch {
         failed = true;
-        status.textContent = '留言暫時無法讀取，請稍後再試。';
-        return false;
       } finally {
         loading = false;
+        renderFeed();
       }
     }
-    function renderCategories() {
-      cards.forEach(({kind, list, count, more}) => {
-        const matching = groups[kind];
-        const show = matching.slice(0, visible[kind]);
-        list.replaceChildren();
-        if (!show.length) {
-          list.append(create('p','guide-feedback-category-empty',
-            hasMore ? '目前載入的留言尚無此類，可繼續載入查找。' : '目前沒有已公開的相關留言。'));
-        } else {
-          show.forEach(note => list.append(renderNote(note, true)));
-        }
-        count.textContent = '已載入 ' + matching.length + ' 則';
-        more.hidden = !hasMore && matching.length <= visible[kind];
-        more.textContent = matching.length > visible[kind] ? '顯示更多留言 ＋' : '繼續載入留言 ＋';
-        more.disabled = loading;
-      });
-      if (!failed) {
-        status.textContent = '目前已整理 ' + offset + ' 則公開留言，依留言類型分類顯示。' +
-          (hasMore ? '可點各欄下方載入更多。' : '');
-      }
-    }
-    cards.forEach(({kind, more}) => {
-      more.addEventListener('click', async () => {
-        if (loading) return;
-        visible[kind] += 5;
-        more.disabled = true;
-        while (hasMore && groups[kind].length < visible[kind]) {
-          if (!(await fetchNext())) break;
-        }
-        renderCategories();
-      });
-    });
-    fetchNext().then(renderCategories);
+    loadPublicFeed();
     return;
   }
   const article = document.querySelector('.article.guide-article');

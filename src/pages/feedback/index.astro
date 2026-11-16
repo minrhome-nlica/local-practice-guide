@@ -63,38 +63,34 @@ const ready = /^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(api) && sitekey.length > 
           <div class="guide-feedback-feed-intro">
             <span class="eyebrow">COMMUNITY NOTES</span>
             <h2>已公開的讀者留言</h2>
-            <p>依「補充留言、提問諮詢、內容更正」分類。新主題與網站建議也收錄在「補充留言」欄中。</p>
+            <p>所有已公開的留言依最新時間排列。可依留言類型與留言對象即時篩選，查看針對整體網站或個別文章的意見。</p>
           </div>
-          <p class="guide-feedback-feed-status" data-feed-status role="status" aria-live="polite">正在讀取留言……</p>
-          <div class="guide-feedback-categories" aria-label="依留言類型分類">
-            <section class="guide-feedback-category" data-feedback-kind="supplement">
-              <div class="guide-feedback-category-head">
-                <span class="guide-feedback-category-symbol" aria-hidden="true">＋</span>
-                <div><h2>補充留言</h2><p>實務經驗、案例、想新增的主題</p></div>
+          <div class="guide-feedback-filters" aria-label="篩選已公開的讀者留言">
+            <div class="guide-feedback-filter-row" role="group" aria-label="依留言類型篩選">
+              <span class="guide-feedback-filter-label">留言類型</span>
+              <div class="guide-feedback-filter-options">
+                <button type="button" class="guide-feedback-filter-button is-active" data-filter-kind="all" aria-pressed="true">全部留言<span data-filter-count></span></button>
+                <button type="button" class="guide-feedback-filter-button" data-filter-kind="supplement" aria-pressed="false">補充留言<span data-filter-count></span></button>
+                <button type="button" class="guide-feedback-filter-button" data-filter-kind="question" aria-pressed="false">提問諮詢<span data-filter-count></span></button>
+                <button type="button" class="guide-feedback-filter-button" data-filter-kind="correction" aria-pressed="false">內容更正<span data-filter-count></span></button>
+                <button type="button" class="guide-feedback-filter-button" data-filter-kind="topic" aria-pressed="false">新主題建議<span data-filter-count></span></button>
+                <button type="button" class="guide-feedback-filter-button" data-filter-kind="site" aria-pressed="false">網站使用建議<span data-filter-count></span></button>
               </div>
-              <p class="guide-feedback-category-count" data-kind-count></p>
-              <div class="guide-feedback-category-list" data-kind-items></div>
-              <button type="button" class="guide-feedback-category-more" data-kind-more hidden>顯示更多留言 ＋</button>
-            </section>
-            <section class="guide-feedback-category" data-feedback-kind="question">
-              <div class="guide-feedback-category-head">
-                <span class="guide-feedback-category-symbol" aria-hidden="true">？</span>
-                <div><h2>提問諮詢</h2><p>釐清文章內容與實際問題</p></div>
+            </div>
+            <div class="guide-feedback-filter-row" role="group" aria-label="依留言對象篩選">
+              <span class="guide-feedback-filter-label">留言對象</span>
+              <div class="guide-feedback-filter-options">
+                <button type="button" class="guide-feedback-filter-button is-active" data-filter-scope="all" aria-pressed="true">全部<span data-filter-count></span></button>
+                <button type="button" class="guide-feedback-filter-button" data-filter-scope="site" aria-pressed="false">整體網站<span data-filter-count></span></button>
+                <button type="button" class="guide-feedback-filter-button" data-filter-scope="article" aria-pressed="false">個別文章<span data-filter-count></span></button>
               </div>
-              <p class="guide-feedback-category-count" data-kind-count></p>
-              <div class="guide-feedback-category-list" data-kind-items></div>
-              <button type="button" class="guide-feedback-category-more" data-kind-more hidden>顯示更多留言 ＋</button>
-            </section>
-            <section class="guide-feedback-category" data-feedback-kind="correction">
-              <div class="guide-feedback-category-head">
-                <span class="guide-feedback-category-symbol" aria-hidden="true">✓</span>
-                <div><h2>內容更正</h2><p>需查證、更新或修正的內容</p></div>
-              </div>
-              <p class="guide-feedback-category-count" data-kind-count></p>
-              <div class="guide-feedback-category-list" data-kind-items></div>
-              <button type="button" class="guide-feedback-category-more" data-kind-more hidden>顯示更多留言 ＋</button>
-            </section>
+            </div>
           </div>
+          <div class="guide-feedback-feed-toolbar">
+            <p class="guide-feedback-feed-status" data-feed-status role="status" aria-live="polite">正在讀取留言……</p>
+            <button type="button" class="guide-feedback-filter-reset" data-filter-reset hidden>清除篩選</button>
+          </div>
+          <div class="guide-feedback-feed-list" data-feed-items aria-label="已公開的讀者留言"></div>
           <details class="guide-feedback-diagnostic" id="guide-feedback-diagnostic" hidden>
             <summary>留言無法送出？檢查連線狀態</summary>
             <p>此檢查只測試服務是否連得上，不會儲存任何留言，也不會傳送個人資料。</p>
